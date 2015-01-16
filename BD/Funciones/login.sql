@@ -111,7 +111,7 @@ end if;
 
     end;
 
-$BODY$
+$body$
   LANGUAGE plpgsql VOLATILE
   COST 100;
 ALTER FUNCTION login(character varying, character varying, character varying, character varying, character varying)
