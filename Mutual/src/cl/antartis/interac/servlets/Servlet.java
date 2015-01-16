@@ -84,7 +84,6 @@ public class Servlet extends HttpServlet {
 	
 	/**********SESION******************************************************************************/
 	public void login(HttpServletRequest request, HttpServletResponse response) {
-		Error error = new Error();
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
 		
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
@@ -102,11 +101,14 @@ public class Servlet extends HttpServlet {
 		
 		mapaEntrada.put("usuario", usuario);
 		mapaSalida = ejbRemoto.logIn(mapaEntrada);
+		
+		/*
 		mapaSalida = ejbRemoto.buscarParametros(mapaEntrada);
 		
 		request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
 		request.setAttribute("listaProductos", mapaSalida.get("listaProductos"));
 		request.setAttribute("listaAreas", mapaSalida.get("listaAreas"));
+		*/
 		//TODO: buscar lista perfiles disponibles y devolverla
 		
 		error = (Error)mapaSalida.get("error");
@@ -115,7 +117,7 @@ public class Servlet extends HttpServlet {
 		log.info("Msj Error: "+error.getMsjError());
 
 		if(error.getNumError().equals("0")){
-			int sessionTime = Integer.parseInt(ConfigUtils.loadProperties("sessionTime"));
+			int sessionTime = Integer.parseInt(ConfigUtils.loadProperties("timeSession"));
 			System.out.println("sessionTime: "+sessionTime+"[seg]");
 			
 			//setting session to expiry in 30 mins.
@@ -134,8 +136,6 @@ public class Servlet extends HttpServlet {
 			System.out.println("Debería mandar a login.");
 			pagDestino = "login.jsp";
 		}
-		
-		pagDestino = "contenedor.jsp";	
 	}
 	
 	public void logOut(HttpServletRequest request, HttpServletResponse response) {
