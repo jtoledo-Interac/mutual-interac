@@ -1,0 +1,35 @@
+<%@ page language="java"%>
+<%@ include file="declaraciones.jsp" %>
+<%@ include file="encabezado.jsp" %>
+
+<script type="text/javascript">
+$(function()
+{
+	$("#btnLogin").click(function()
+	{
+		if(($('#sNomUsuario').val() == 'admin') && ($('#sContrasena').val() == 'mutual2014'))
+		{
+			$('#formLogin').attr('action','Servlet?accion=login');
+			$('#formLogin').submit();
+		}else{
+			alert("Nombre de usuario o contraseña incorrecta");
+		}
+	});
+});
+</script>
+
+<div id="contenedor">
+	<form id="formLogin" method="post">		
+		<div class="centrado" style="width:270px;">
+			<img src="img/logo-mutual.png" style="width:270px;margin-top:30px;">
+		</div>
+		
+		<div id="login" style="background: url('img/trama.png');width:270px;height:200px;text-align:center;margin-top:35px;" class="centrado">
+			<input type="text" id="sNomUsuario" name="sNomUsuario" maxlength="20" tabindex="1" placeholder="Usuario" style="width: 150px;margin-top: 20px;border-radius: 10px 10px;height: 20px;"><br>
+			<input type="password" id="sContrasena" name="sContrasena" maxlength="20" tabindex="2" placeholder="Contraseña" style="width: 150px;border-radius: 10px 10px;height: 20px;margin-top: 10px;"><br>
+			<input type=image id="btnLogin" src="img/btnLogin.png" tabindex="3" alt="Login" style="width: 120px;height: 30px;margin-top:20px;"><br><br>
+			
+			<a href="#"><span>¿Olvid&oacute; su clave?</span></a>
+		</div>
+	</form>
+</div>
