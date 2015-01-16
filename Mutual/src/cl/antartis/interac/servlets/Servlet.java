@@ -22,7 +22,9 @@ import cl.antartis.interac.beans.Documento;
 import cl.antartis.interac.beans.Producto;
 import cl.antartis.interac.beans.Reclamo;
 import cl.antartis.interac.beans.Usuario;
+import cl.antartis.interac.beans.Error;
 import cl.antartis.interac.ejb.interfaces.EJBRemoto;
+import cl.antartis.interac.funciones.ConfigUtils;
 import cl.antartis.interac.funciones.Encriptador;
 import cl.antartis.interac.funciones.Utils;
 
@@ -82,8 +84,7 @@ public class Servlet extends HttpServlet {
 	
 	/**********SESION******************************************************************************/
 	public void login(HttpServletRequest request, HttpServletResponse response) {
-		String numError = "0";
-		String msjError = "";
+		Error error = new Error();
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
 		
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
@@ -91,6 +92,7 @@ public class Servlet extends HttpServlet {
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
 		Encriptador encriptador = new Encriptador();
+		
 		Usuario usuario = new Usuario();
 		usuario.setsNomUsuario(request.getParameter("sNomUsuario"));
 		usuario.setsContrasena(encriptador.encriptar(request.getParameter("sContrasena")));
@@ -100,29 +102,40 @@ public class Servlet extends HttpServlet {
 		
 		mapaEntrada.put("usuario", usuario);
 		mapaSalida = ejbRemoto.logIn(mapaEntrada);
-		//TODO: buscar lista perfiles disponibles y devolverla
-		
-		numError = (String)mapaSalida.get("numError");
-		msjError = (String)mapaSalida.get("msjError");
-		
-		log.info("Num Error: "+numError);
-		log.info("Msj Error: "+msjError);
-
-		//sesion = (Sesion)mapaSalida.get("sesion");
-		error = (Error)mapaSalida.get("error");
-		//perfiles = (Perfil)mapaSalida.get("perfiles");
-		
 		mapaSalida = ejbRemoto.buscarParametros(mapaEntrada);
 		
 		request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
 		request.setAttribute("listaProductos", mapaSalida.get("listaProductos"));
 		request.setAttribute("listaAreas", mapaSalida.get("listaAreas"));
+		//TODO: buscar lista perfiles disponibles y devolverla
 		
-		pagDestino = "contenedor.jsp";
+		error = (Error)mapaSalida.get("error");
 		
+		log.info("Num Error: "+error.getNumError());
+		log.info("Msj Error: "+error.getMsjError());
+
+		if(error.getNumError().equals("0")){
+			int sessionTime = Integer.parseInt(ConfigUtils.loadProperties("sessionTime"));
+			System.out.println("sessionTime: "+sessionTime+"[seg]");
+			
+			//setting session to expiry in 30 mins.
+			HttpSession session = request.getSession();
+			session.setAttribute("user", request.getParameter("sNomUsuario"));
+			session.setMaxInactiveInterval(sessionTime);
+			
+			//setting cookie to expiry in 30 mins.
+			Cookie userName = new Cookie("user", request.getParameter("sNomUsuario"));
+			userName.setMaxAge(sessionTime);
+			response.addCookie(userName);
+			
+			pagDestino = "contenedor.jsp";
+		}
+		else{
+			System.out.println("Debería mandar a login.");
+			pagDestino = "login.jsp";
+		}
 		
-		
-		
+		pagDestino = "contenedor.jsp";	
 	}
 	
 	public void logOut(HttpServletRequest request, HttpServletResponse response) {
