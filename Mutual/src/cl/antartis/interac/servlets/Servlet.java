@@ -97,6 +97,8 @@ public class Servlet extends HttpServlet {
 		usuario.setsContrasena(encriptador.encriptar(request.getParameter("sContrasena")));
 		usuario.setsHost(request.getRemoteAddr());
 		
+		System.out.println("["+usuario.getsNomUsuario()+" - "+usuario.getsContrasena()+"]");
+		
 		log.info("Usuario: "+usuario.getUsuario());
 		
 		mapaEntrada.put("usuario", usuario);

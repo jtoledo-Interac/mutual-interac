@@ -32,7 +32,7 @@ public class MutualEJB implements EJBRemoto {
 
 	private Logger log = Logger.getLogger(MutualEJB.class);
 
-	@Resource(mappedName = "java:/MutualPro")
+	@Resource(mappedName = "java:/MutualDes")
 	private DataSource interacDS;
 	private Connection dbConeccion;
 
@@ -569,7 +569,6 @@ public class MutualEJB implements EJBRemoto {
 			dbConeccion = interacDS.getConnection();
 
 			cStmt = dbConeccion.prepareCall("{ call login(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
-						
 			cStmt.setString(1, usuario.getsNomUsuario());
 			cStmt.setString(2, usuario.getsContrasena());
 			cStmt.setString(3, usuario.getsHost());
@@ -593,28 +592,12 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.registerOutParameter(21, Types.VARCHAR);// msjerror$
 
 			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
+			System.out.println("["+usuario.getsNomUsuario()+" - "+usuario.getsContrasena()+"]");
 			cStmt.execute();
-
 			error.setNumError(cStmt.getString(20));
 			error.setMsjError(cStmt.getString(21));
-
-			if (error.getNumError().equals("0")) {
-				sesion = new Sesion();
-				sesion.setSesIdSesion(cStmt.getString(6)); // encriptar KSI
-				sesion.setSesFhoLogueo(cStmt.getString(7));
-				sesion.setSesFhoUltimaConsulta(cStmt.getString(8));
-				sesion.setSesCodAplicacion(cStmt.getString(9));
-				sesion.setSesIdUsuario(cStmt.getString(10));
-				sesion.setSesRutUsuario(cStmt.getString(11));
-				sesion.setSesNomUsuario(cStmt.getString(12));
-				sesion.setSesCodIdioma(cStmt.getString(13));
-				sesion.setSesData01(cStmt.getString(14));
-				sesion.setSesData02(cStmt.getString(15));
-				sesion.setSesData03(cStmt.getString(16));
-				sesion.setSesData04(cStmt.getString(17));
-				sesion.setSesData05(cStmt.getString(18));
-				sesion.setSesIndExpiraContrasena(cStmt.getString(19));
-			}
+			System.out.println(error.getError()+"<----");
+			
 		} catch (SQLException e) {
 			//e.printStackTrace();
 			log.info("Error code: "+e.getErrorCode());
@@ -634,7 +617,6 @@ public class MutualEJB implements EJBRemoto {
 		}
 
 		mapaSalida.put("error", error);
-		mapaSalida.put("sesion", sesion);
 
 		return mapaSalida;
 	}

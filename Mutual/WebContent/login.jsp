@@ -3,6 +3,12 @@
 <%@ include file="encabezado.jsp" %>
 <%@ page import="cl.antartis.interac.beans.Error" %>
 
+<%
+	if(session.getAttribute("user")!= null){
+		response.sendRedirect("contenedor.jsp?accion=login");
+	}
+%>
+
 <script type="text/javascript">
 $(function()
 {
