@@ -22,6 +22,8 @@ import cl.antartis.interac.beans.Documento;
 import cl.antartis.interac.beans.Producto;
 import cl.antartis.interac.beans.Reclamo;
 import cl.antartis.interac.beans.Usuario;
+import cl.antartis.interac.beans.Sesion;
+import cl.antartis.interac.beans.Error;
 import cl.antartis.interac.ejb.interfaces.EJBRemoto;
 import cl.antartis.interac.funciones.Utils;
 
@@ -551,11 +553,10 @@ public class MutualEJB implements EJBRemoto {
 
 	public Map<String, Object> logIn(Map<String, Object> mapaEntrada) {
 		CallableStatement cStmt = null;
-		//Sesion sesion = null;
+		Sesion sesion = null;
 		Map<String, Object> mapaSalida = null;
 		Usuario usuario = null;
-		String numError = "0";
-		String msjError = "";
+		Error error = new Error();
 
 		try {
 			log.info("Login");
@@ -568,7 +569,7 @@ public class MutualEJB implements EJBRemoto {
 			dbConeccion = interacDS.getConnection();
 
 			cStmt = dbConeccion.prepareCall("{ call login(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
-
+						
 			cStmt.setString(1, usuario.getsNomUsuario());
 			cStmt.setString(2, usuario.getsContrasena());
 			cStmt.setString(3, usuario.getsHost());
@@ -594,11 +595,11 @@ public class MutualEJB implements EJBRemoto {
 			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
 			cStmt.execute();
 
-			numError = cStmt.getString(20);
-			msjError = cStmt.getString(21);
+			error.setNumError(cStmt.getString(20));
+			error.setMsjError(cStmt.getString(21));
 
-			if (numError.equals("0")) {
-				/*sesion = new Sesion();
+			if (error.getNumError().equals("0")) {
+				sesion = new Sesion();
 				sesion.setSesIdSesion(cStmt.getString(6)); // encriptar KSI
 				sesion.setSesFhoLogueo(cStmt.getString(7));
 				sesion.setSesFhoUltimaConsulta(cStmt.getString(8));
@@ -612,7 +613,7 @@ public class MutualEJB implements EJBRemoto {
 				sesion.setSesData03(cStmt.getString(16));
 				sesion.setSesData04(cStmt.getString(17));
 				sesion.setSesData05(cStmt.getString(18));
-				sesion.setSesIndExpiraContrasena(cStmt.getString(19));*/
+				sesion.setSesIndExpiraContrasena(cStmt.getString(19));
 			}
 		} catch (SQLException e) {
 			//e.printStackTrace();
@@ -621,7 +622,6 @@ public class MutualEJB implements EJBRemoto {
 			log.info("SQL Exception");
 			// controlar error sql, (de conexion, por ej)
 		} finally {
-
 			try {
 				log.info("Cerrando la conexion");
 				dbConeccion.close();
@@ -633,8 +633,8 @@ public class MutualEJB implements EJBRemoto {
 			}
 		}
 
-		mapaSalida.put("numError", numError);
-		mapaSalida.put("msjError", msjError);
+		mapaSalida.put("error", error);
+		mapaSalida.put("sesion", sesion);
 
 		return mapaSalida;
 	}
