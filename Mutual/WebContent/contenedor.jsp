@@ -11,6 +11,10 @@ if( session.getAttribute("user")== null){
 <script type="text/javascript">
 $(function()
 {	
+	$('#cerrar').click(function(){
+		$('#accionLogOut').val("logOut");
+		$('#logOut').submit();
+	});
 	$('#organigrama').click(function(){
 		$('.menu-item').removeClass('selected');
 		$('#organigrama li').addClass('selected');
