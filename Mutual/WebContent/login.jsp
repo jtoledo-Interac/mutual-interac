@@ -1,19 +1,15 @@
 <%@ page language="java"%>
 <%@ include file="declaraciones.jsp" %>
 <%@ include file="encabezado.jsp" %>
+<%@ page import="cl.antartis.interac.beans.Error" %>
 
 <script type="text/javascript">
 $(function()
 {
 	$("#btnLogin").click(function()
 	{
-		if(($('#sNomUsuario').val() == 'admin') && ($('#sContrasena').val() == 'mutual2014'))
-		{
-			$('#formLogin').attr('action','Servlet?accion=login');
-			$('#formLogin').submit();
-		}else{
-			alert("Nombre de usuario o contraseña incorrecta");
-		}
+		$('#formLogin').attr('action','Servlet?accion=login')
+		$('#formLogin').submit();
 	});
 });
 </script>
@@ -28,7 +24,14 @@ $(function()
 			<input type="text" id="sNomUsuario" name="sNomUsuario" maxlength="20" tabindex="1" placeholder="Usuario" style="width: 150px;margin-top: 20px;border-radius: 10px 10px;height: 20px;"><br>
 			<input type="password" id="sContrasena" name="sContrasena" maxlength="20" tabindex="2" placeholder="Contraseña" style="width: 150px;border-radius: 10px 10px;height: 20px;margin-top: 10px;"><br>
 			<input type=image id="btnLogin" src="img/btnLogin.png" tabindex="3" alt="Login" style="width: 120px;height: 30px;margin-top:20px;"><br><br>
-			
+			<%
+				Error e = ((Error)(request.getAttribute("error")));
+				if(e!=null){
+					if(e.getNumError().equals("1")){
+						out.print("<div style='color:RED'>Datos de inicio de sesión inválidos.</div>");
+					}
+				}
+			%>
 			<a href="#"><span>¿Olvid&oacute; su clave?</span></a>
 		</div>
 	</form>
