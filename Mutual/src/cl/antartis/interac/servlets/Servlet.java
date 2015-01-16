@@ -8,9 +8,11 @@ import java.util.Map;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.MethodUtils;
 import org.apache.log4j.Logger;
@@ -117,6 +119,31 @@ public class Servlet extends HttpServlet {
 		request.setAttribute("listaAreas", mapaSalida.get("listaAreas"));
 		
 		pagDestino = "contenedor.jsp";
+		
+		
+		
+		
+	}
+	
+	public void logOut(HttpServletRequest request, HttpServletResponse response) {
+		response.setContentType("text/html");
+        Cookie[] cookies = request.getCookies();
+        if(cookies != null){
+	        for(Cookie cookie : cookies){
+	            if(cookie.getName().equals("JSESSIONID")){
+	                System.out.println("JSESSIONID="+cookie.getValue());
+	                break;
+	            }
+	        }
+        }
+        
+        //invalidate the session if exists
+        HttpSession session = request.getSession(false);
+        if(session != null){
+        	System.out.println("User="+session.getAttribute("user"));
+            session.invalidate();
+        }
+		pagDestino = "login.jsp";
 	}
 	
 	/**********ORGANIGRAMA****************************************************************************/	
