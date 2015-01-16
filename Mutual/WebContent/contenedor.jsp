@@ -87,10 +87,15 @@ $(function()
 
 <div class="banner">
 	<div class="logo-banner">
-		<!-- <img src="img/logo-mutual.png"> -->
+		<img src="img/logo-interac.png">
 	</div>
-	<div class="info-user">
-		<span>Bienvenido Invitado</span>
+	<div class="info-user" onload="cargarNombre()">
+		<br />
+		<p id="contNombre"><% out.print(session.getAttribute("user") );	%></p>
+		<form id="logOut" action="Servlet" method="post">
+			<input type="hidden" id="accionLogOut" name="accion">
+			<a href="#" id="cerrar">Cerrar Sesión</a>
+		</form>
 	</div>
 </div>
 
