@@ -1,7 +1,7 @@
 create or replace function public.login
 (
     in username varchar,
-    in contrasena varchar, 
+    in contrasena_in varchar, 
     in host varchar, 
     in codaplicacion varchar, 
     in codidioma varchar, 
@@ -76,189 +76,43 @@ $body$
         from
             usuario u
         where
-            upper(nomusuario) = upper(username);
+            upper(nomusuario) = upper(username) and  contrasena_in = contrasena;
 
 if found then
-    return;
-else
-RAISE EXCEPTION 'No existe el usuario %',$1;
 
---msjerror := 'prueba de error'||'asd'|| USING ERRCODE;
-   --raise notice '%', sqlca.sqlcode;
 
-end if;
 
-/*
-exception when others then 
-
-    raise notice 'The transaction is in an uncommittable state. '
-                 'Transaction was rolled back';
-
-    raise notice '% %', SQLERRM, SQLSTATE;*/
-
-        /*exception
-            when no_data_found then
-                numerror := '1';
-                msjerror := '[login] no existe usuario '||sqlerrm;
-                return;
-
-            when others then
-                numerror := '2';
-                msjerror := '[login] no puede obtener usuario (sql) '||sqlerrm;
-                return;
-*/
-/*
-
-        if trim(xindvigencia) = 'b' then
-            numerror := 3;
-            msjerror := '[login] contraseña bloqueada. utilice funciÎ³n de desbloqueo en linea.';
-            return;
-        end if;
-
-        if trim(xindvigencia) = 'd' then
-            numerror := '4';
-            msjerror := '[login] usuario deshabilitado. solicite al administrador su habilitaciÎ³n.';
-            return;	
-        end if;
-
-        if trim(xindvigencia) <> 'h' then
-            numerror := '5';
-            msjerror := '[login] usuario no habilitado. solicite al administrador su habilitaciÎ³n.';
-            return;		
-        end if;
-
-        if trim(xcontrasena) is null then
-            xcontrasena := 'd41d8cd98f00b204e9800998ecf8427e';
-        end if;
-
-        if (contrasena <> xcontrasena) then
-            numerror := '0';
-            msjerror := ' ';
-
-            xcantintentos := xcantintentos + 1;
-
-            if xcantintentos >= 3 then
-                xindvigencia := 'b';
-            end if;
-
-            numerror := '6';
-            msjerror := '[login] la contraseña ingresada no es correcta';
-            return;
-        else
-            numerror := '0';
-            msjerror := ' ';
-        end if;
-
-        expiracontrasena := 'n';
-
-        if xfhocontrasena <= now() then
-            expiracontrasena := 's';
-        end if;
-
-        numerror := '0';
-        msjerror := ' ';
-        xfechaactual := to_char(now(), 'yyyymmddhh24miss') || '00';
-
-        select 
-            *
-        into
-            xses_idsesion,
-            numerror,
-            msjerror
-        from
-            genera_sesion (host,upper(username),xfechaactual);
-
-        if (numerror <> '0') then 
-            return;
-        end if;
-
-        numerror := '0';
-        msjerror := ' ';
-
-        begin
-            delete from 
-                sesion
-            where
-                ses_scodaplicacion = codaplicacion and
-                ses_snumusuario = to_char(xnumusuario, 'fm999');
-
-            exception
-                when others then
-                    numerror := '7';
-                    msjerror := '[login] no puede eliminar sesion actual del usuario (sql) ||' sqlerrm;
-                    return;
-        end;
-
-        numerror := '0';
-        msjerror := ' ';
-
-        xnombre_completo := trim(trim(xnombre) || ' ' || trim(xapepaterno) || ' ' || trim(xapematerno));
-        xrut_completo:= trim(xrutusuario) || '-' || trim(xvusuario);
-
-        begin
-
-            insert into sesion 
-            (
-                ses_sidsesion,
-                ses_dfeclogueo,
-                ses_dfecultimaconsulta,
-                ses_snomhost,
-                ses_scodaplicacion,
-                ses_snumusuario,
-                ses_srutusuario,
-                ses_snomusuario,
-                ses_scodidioma,
-                ses_sdata01,
-                ses_sdata02,
-                ses_sdata03,
-                ses_sdata04,
-                ses_sdata05
-            ) 
-            values 
-            (
-                xses_idsesion,
-                now(),
-                now(),
-                host,
-                codaplicacion,                         
-                trim(to_char(xnumusuario, '99999999')),              
-                xrut_completo,
-                xnombre_completo,				
-                xtelefono,
-                xemail,
-                ' ',
-                ' ',
-                ' ',
-                codidioma
-            );
-
-            exception
-                when unique_violation then
-                    numerror := '8';
-                    msjerror := '[login] sesion usuario ya existe';
-                    return;
-                when others then
-                    numerror := sqlstate;
-                    msjerror := '[login] no puede insertar sesion usuario (sql) '|| sqlerrm;
-                    return;
-        end;
-*/
-
-        ses_idsesion			:= xses_idsesion;
-        ses_fhologueo 			:= xfechaactual;
-        ses_fhoultimaconsulta	:= xfechaactual;
-        ses_scodaplicacion		:= codaplicacion;
+        ses_idsesion            := xses_idsesion;
+        ses_fhologueo           := xfechaactual;
+        ses_fhoultimaconsulta   := xfechaactual;
+        ses_scodaplicacion      := codaplicacion;
         ses_snumusuario         := trim(to_char(xnumusuario, '99999999'));
         ses_srutusuario         := xrutusuario;
         ses_snomusuario         := xnombre_completo;
-        ses_scodidioma			:= xtelefono;
-        ses_data01				:= xemail;
-        ses_data02				:= ' ';
-        ses_data03				:= ' ';
-        ses_data04				:= ' ';
-        ses_data05				:= codidioma;
+        ses_scodidioma          := xtelefono;
+        ses_data01              := xemail;
+        ses_data02              := ' ';
+        ses_data03              := ' ';
+        ses_data04              := ' ';
+        ses_data05              := codidioma;
+
+
+
+    return;
+else
+        numerror := '1';
+        msjerror := 'Datos de inicio de sesión inválidos.';
+
+
+end if;
+
+
+
 
     end;
 
-$body$
-language 'plpgsql'
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+ALTER FUNCTION login(character varying, character varying, character varying, character varying, character varying)
+  OWNER TO postgres;
