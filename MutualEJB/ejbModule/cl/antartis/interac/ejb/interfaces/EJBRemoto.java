@@ -70,4 +70,6 @@ public interface EJBRemoto {
 
 	public Map<String, Object> agregarEmpresa(Map<String, Object> mapaEntrada);
 
+	public Map<String, Object> cargarEmpresa(Map<String, Object> mapaEntrada);
+
 }

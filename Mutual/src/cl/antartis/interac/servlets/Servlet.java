@@ -699,17 +699,13 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		String codProducto = request.getParameter("codProducto");
+		String numAd = request.getParameter("numAd");
 		
-		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
-
-		log.info("codProducto: "+codProducto);
+		mapaEntrada.put("numAd", numAd);
 		
-		mapaEntrada.put("codProducto", codProducto);
+		mapaSalida = ejbRemoto.cargarEmpresa(mapaEntrada);
 		
-		mapaSalida = ejbRemoto.cargarProducto(mapaEntrada);
-		
-		request.setAttribute("producto", (Cartera)mapaSalida.get("producto"));
+		request.setAttribute("empresa", (Empresa)mapaSalida.get("empresa"));
 
 		pagDestino = "/empresas/cargaEmpresa.jsp";
 	}

@@ -1292,7 +1292,7 @@ public class MutualEJB implements EJBRemoto {
 
 			dbConeccion = interacDS.getConnection();
 
-			cStmt = dbConeccion.prepareCall("{ call buscar_parametros(?,?,?,?,?) }");
+			cStmt = dbConeccion.prepareCall("{ call agregar_empresa(?,?,?,?) }");
 			
 			cStmt.setString(1, empresa.getNumAdherente());// cursor$
 			cStmt.setString(2, empresa.getNombre());// cursor$
@@ -1325,8 +1325,150 @@ public class MutualEJB implements EJBRemoto {
 			}
 		}
 
+		log.info("Num Error: "+ error.getNumError());
+		log.info("Msj Error: "+ error.getMsjError());
+
+		return mapaSalida;
+	}
+	
+	public Map<String, Object> cargarEmpresa(Map<String, Object> mapaEntrada){
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		Empresa empresa = new Empresa();
+		
+		Error error = new Error();
+		
+		try {
+			log.info("Cargar empresas");
+						
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call cargar_empresa(?,?,?,?) }");
+			cStmt.setString(1, (String)mapaEntrada.get("numAd"));
+			cStmt.registerOutParameter(2, Types.OTHER);// empresas$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+
+			cStmt.execute();
+			
+			ResultSet rsEmpresa = (ResultSet) cStmt.getObject(2);
+			error.setNumError(cStmt.getString(3));
+			error.setMsjError(cStmt.getString(4));
+						
+			while (rsEmpresa.next()) {
+				empresa = new Empresa();
+				empresa.setNombre(rsEmpresa.getString("nombre"));
+				empresa.setNumAdherente(rsEmpresa.getString("enp_nidencuesta"));
+			}
+			
+			rsEmpresa.close();			
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+		mapaSalida.put("empresa",empresa);
+		mapaSalida.put("error", error);
+		
+		return mapaSalida;
+	}
+	
+	public Map<String, Object> buscarEmpresa(Map<String, Object> mapaEntrada) {
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		ArrayList<Documento> listaDocumentos = null;
+		Documento documento = null;
+		String numError = "0";
+		String msjError = "";
+
+		try {
+			log.info("Buscar Documentos");
+			
+			documento = (Documento)mapaEntrada.get("documento");
+
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call buscar_documentos(?,?,?,?,?,?,?,?,?) }");
+			cStmt.setString(1,documento.getNombre());
+			cStmt.setString(2,documento.getNumFolio());
+			cStmt.setString(3,documento.getNumAdherente());
+			cStmt.setString(4,documento.getCodCartera());
+			cStmt.setString(5,documento.getCodProducto());
+			cStmt.setString(6,documento.getCodArea());
+			cStmt.registerOutParameter(7, Types.OTHER);// cursor$
+			cStmt.registerOutParameter(8, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(9, Types.VARCHAR);// msjerror$
+
+			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
+			cStmt.execute();
+
+			ResultSet rs = (ResultSet) cStmt.getObject(7);
+			numError = cStmt.getString(8);
+			msjError = cStmt.getString(9);
+		
+			listaDocumentos = new ArrayList<Documento>();
+
+			if(rs !=null){
+				while (rs.next()) {
+					documento = new Documento();
+					documento.setIdDocumento(rs.getLong("id_documento"));
+					documento.setNombre(rs.getString("nombre"));
+					documento.setNumFolio(rs.getString("num_folio"));
+					documento.setNumAdherente(rs.getString("num_adherente"));
+					documento.setCodCartera(rs.getString("cod_cartera"));
+					documento.setDesCartera(rs.getString("des_cartera"));
+					documento.setCodProducto(rs.getString("cod_producto"));
+					documento.setDesProducto(rs.getString("des_producto"));
+					documento.setDesArea(rs.getString("des_area"));
+					listaDocumentos.add(documento);
+				}
+				rs.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+
 		log.info("Num Error: "+numError);
 		log.info("Msj Error: "+msjError);
+		
+		mapaSalida.put("listaDocumentos",listaDocumentos);
+		mapaSalida.put("numError", numError);
+		mapaSalida.put("msjError", msjError);
 
 		return mapaSalida;
 	}
