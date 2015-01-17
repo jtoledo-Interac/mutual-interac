@@ -230,21 +230,21 @@
 			<input type="text" 		id="numAdherente" 	name="numAdherente"	placeholder="Nº Adherente">
 						
 			<select id="codCartera" name="codCartera">
-				<option value="0" selected>Seleccione una cartera</option>
+				<option value="" selected>Seleccione una cartera</option>
 				<c:forEach items="${requestScope.listaCarteras}" var="cartera">
 					<option value="${cartera.codCartera}" >${cartera.desCartera}</option>
 				</c:forEach>
 			</select> 
 			
 			<select id="codProducto" name="codProducto">
-				<option value="0" selected>Seleccione un producto</option>
+				<option value="" selected>Seleccione un producto</option>
 				<c:forEach items="${requestScope.listaProductos}" var="producto">
 					<option value="${producto.codProducto}" >${producto.desProducto}</option>
 				</c:forEach>
 			</select>
 			
 			<select id="codArea" name="codArea">
-				<option value="0" selected>Seleccione un área</option>
+				<option value="" selected>Seleccione un área</option>
 				<c:forEach items="${requestScope.listaAreas}" var="area">
 					<option value="${area.codArea}" >${area.desArea}</option>
 				</c:forEach>

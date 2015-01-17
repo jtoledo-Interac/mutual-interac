@@ -26,9 +26,9 @@ $body$
 
 
         /*filtros*/
-        xnombre := coalesce(upper(trim(xnombre$)),'') || '%';
-        xnum_folio := '%' || coalesce(upper(trim(xnum_folio$)),'') || '%';
-        xnum_adherente := '%' || coalesce(upper(trim(xnum_adherente$)),'') || '%';
+        xnombre := coalesce(upper(trim(xnombre$)),' ') || '%';
+        xnum_folio := '%' || coalesce(upper(trim(xnum_folio$)),' ') || '%';
+        xnum_adherente := '%' || coalesce(upper(trim(xnum_adherente$)),' ') || '%';
 
         if trim(xcod_cartera$) = '' then
             xcod_cartera := ' ';
@@ -72,7 +72,7 @@ $body$
         inner join producto as p 
             on d.cod_producto = p.cod_producto
         where
-            upper(d.nombre) like xnombre and
+            upper(d.nombre) like     and
             upper(d.num_folio) like xnum_folio and
             upper(d.num_adherente) like xnum_adherente and
             (xcod_cartera =  ' ' or upper(d.cod_cartera) = xcod_cartera) and
