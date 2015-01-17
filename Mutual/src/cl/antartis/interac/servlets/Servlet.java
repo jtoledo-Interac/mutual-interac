@@ -687,7 +687,7 @@ public class Servlet extends HttpServlet {
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
-		mapaSalida = ejbRemoto.agregarCartera(mapaEntrada);
+		mapaSalida = ejbRemoto.agregarEmpresa(mapaEntrada);
 		
 		log.info("Cod Producto: "+mapaSalida.get("codProducto"));
 

@@ -1286,7 +1286,7 @@ public class MutualEJB implements EJBRemoto {
 		try {
 			log.info("Buscar Parametros");
 			
-			empresa = (Empresa)mapaSalida.get("empresa");
+			empresa = (Empresa)mapaEntrada.get("empresa");
 
 			mapaSalida = new HashMap<String, Object>();
 
