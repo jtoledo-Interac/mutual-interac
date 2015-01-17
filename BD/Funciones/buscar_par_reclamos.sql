@@ -6,6 +6,7 @@ create or replace function public.buscar_par_reclamos
     out carteras refcursor,
     out estados refcursor,
     out medios refcursor,
+    out medios_respuestas refcursor,
     out numerror varchar, 
     out msjerror varchar
 ) returns record as

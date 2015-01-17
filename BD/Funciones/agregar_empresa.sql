@@ -20,7 +20,7 @@ $body$
 		insert into empresa
 		(
 			num_adherente,
-			nombre,
+			nombre
 		)
         values
 		(
