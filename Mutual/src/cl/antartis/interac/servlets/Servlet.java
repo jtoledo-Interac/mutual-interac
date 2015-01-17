@@ -19,6 +19,7 @@ import org.apache.log4j.Logger;
 
 import cl.antartis.interac.beans.Cartera;
 import cl.antartis.interac.beans.Documento;
+import cl.antartis.interac.beans.Empresa;
 import cl.antartis.interac.beans.Producto;
 import cl.antartis.interac.beans.Reclamo;
 import cl.antartis.interac.beans.Usuario;
@@ -677,10 +678,12 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		Producto producto = new Producto();
-		producto.setDesProducto(request.getParameter("nomProducto"));
+		Empresa empresa = new Empresa();
+		
+		empresa.setNombre("nombreExp");
+		empresa.setNumAdherente("numAdherente");
 
-		mapaEntrada.put("producto",producto);
+		mapaEntrada.put("empresa",empresa);
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		

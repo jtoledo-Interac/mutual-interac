@@ -67,4 +67,7 @@ public interface EJBRemoto {
 	public Map<String, Object> buscarParametros(Map<String, Object> mapaEntrada);
 
 	public Map<String, Object> buscarParametrosReclamo(Map<String, Object> mapaEntrada);
+
+	public Map<String, Object> agregarEmpresa(Map<String, Object> mapaEntrada);
+
 }

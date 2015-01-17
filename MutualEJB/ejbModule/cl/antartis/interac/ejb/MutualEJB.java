@@ -19,6 +19,7 @@ import cl.antartis.interac.beans.Area;
 import cl.antartis.interac.beans.Cartera;
 import cl.antartis.interac.beans.Constantes;
 import cl.antartis.interac.beans.Documento;
+import cl.antartis.interac.beans.Empresa;
 import cl.antartis.interac.beans.Producto;
 import cl.antartis.interac.beans.Reclamo;
 import cl.antartis.interac.beans.Usuario;
@@ -32,7 +33,7 @@ public class MutualEJB implements EJBRemoto {
 
 	private Logger log = Logger.getLogger(MutualEJB.class);
 
-	@Resource(mappedName = "java:/MutualDes")
+	@Resource(mappedName = "java:/MutualPro")
 	private DataSource interacDS;
 	private Connection dbConeccion;
 
@@ -1270,6 +1271,62 @@ public class MutualEJB implements EJBRemoto {
 		mapaSalida.put("listaAreas",listaAreas);
 		mapaSalida.put("numError", numError);
 		mapaSalida.put("msjError", msjError);
+
+		return mapaSalida;
+	}
+	
+	public Map<String, Object> agregarEmpresa(Map<String, Object> mapaEntrada) {
+		CallableStatement cStmt = null;
+		Error error = new Error();
+		Map<String, Object> mapaSalida = null;
+		Empresa empresa = new Empresa();
+		String numError = "0";
+		String msjError = "";
+
+		try {
+			log.info("Buscar Parametros");
+			
+			empresa = (Empresa)mapaSalida.get("empresa");
+
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call buscar_parametros(?,?,?,?,?) }");
+			
+			cStmt.setString(1, empresa.getNumAdherente());// cursor$
+			cStmt.setString(2, empresa.getNombre());// cursor$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+
+			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
+			cStmt.execute();
+
+			error.setNumError(cStmt.getString(3));
+			error.setMsjError(cStmt.getString(4));
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+
+		log.info("Num Error: "+numError);
+		log.info("Msj Error: "+msjError);
 
 		return mapaSalida;
 	}
