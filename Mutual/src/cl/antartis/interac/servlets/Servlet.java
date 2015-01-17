@@ -658,16 +658,9 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 	
-		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		mapaSalida = ejbRemoto.buscarEmpresas(mapaEntrada);
 		
-		//Documento documento = new Documento();
-		//documento.setDesProducto(request.getParameter("nomDocumento"));
-		
-	//	mapaEntrada.put("producto",producto);
-		
-		//mapaSalida = ejbRemoto.buscarProductos(mapaEntrada);
-		
-		request.setAttribute("listaDocumentos", mapaSalida.get("listaDocumentos"));
+		request.setAttribute("listaEmpresas", mapaSalida.get("listaEmpresas"));
 		
 		pagDestino = "/emrpesas/listaEmpresasXml.jsp";	
 	}

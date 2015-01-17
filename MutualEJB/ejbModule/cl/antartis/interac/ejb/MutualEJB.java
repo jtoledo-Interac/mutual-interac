@@ -1390,56 +1390,40 @@ public class MutualEJB implements EJBRemoto {
 		return mapaSalida;
 	}
 	
-	public Map<String, Object> buscarEmpresa(Map<String, Object> mapaEntrada) {
+	public Map<String, Object> buscarEmpresas(Map<String, Object> mapaEntrada) {
 		CallableStatement cStmt = null;
 		Map<String, Object> mapaSalida = null;
-		ArrayList<Documento> listaDocumentos = null;
-		Documento documento = null;
-		String numError = "0";
-		String msjError = "";
+		ArrayList<Empresa> listaEmpresas = null;
+		Empresa empresa = null;
+		Error error = new Error();
 
 		try {
-			log.info("Buscar Documentos");
+			log.info("Buscar Empresas");
 			
-			documento = (Documento)mapaEntrada.get("documento");
-
 			mapaSalida = new HashMap<String, Object>();
 
 			dbConeccion = interacDS.getConnection();
 
 			cStmt = dbConeccion.prepareCall("{ call buscar_documentos(?,?,?,?,?,?,?,?,?) }");
-			cStmt.setString(1,documento.getNombre());
-			cStmt.setString(2,documento.getNumFolio());
-			cStmt.setString(3,documento.getNumAdherente());
-			cStmt.setString(4,documento.getCodCartera());
-			cStmt.setString(5,documento.getCodProducto());
-			cStmt.setString(6,documento.getCodArea());
-			cStmt.registerOutParameter(7, Types.OTHER);// cursor$
-			cStmt.registerOutParameter(8, Types.VARCHAR);// numerror$
-			cStmt.registerOutParameter(9, Types.VARCHAR);// msjerror$
+			cStmt.registerOutParameter(1, Types.OTHER);// cursor$
+			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
 
 			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
 			cStmt.execute();
 
-			ResultSet rs = (ResultSet) cStmt.getObject(7);
-			numError = cStmt.getString(8);
-			msjError = cStmt.getString(9);
+			ResultSet rs = (ResultSet) cStmt.getObject(1);
+			error.setNumError(cStmt.getString(8));
+			error.setMsjError(cStmt.getString(9));
 		
-			listaDocumentos = new ArrayList<Documento>();
+			listaEmpresas = new ArrayList<Empresa>();
 
 			if(rs !=null){
 				while (rs.next()) {
-					documento = new Documento();
-					documento.setIdDocumento(rs.getLong("id_documento"));
-					documento.setNombre(rs.getString("nombre"));
-					documento.setNumFolio(rs.getString("num_folio"));
-					documento.setNumAdherente(rs.getString("num_adherente"));
-					documento.setCodCartera(rs.getString("cod_cartera"));
-					documento.setDesCartera(rs.getString("des_cartera"));
-					documento.setCodProducto(rs.getString("cod_producto"));
-					documento.setDesProducto(rs.getString("des_producto"));
-					documento.setDesArea(rs.getString("des_area"));
-					listaDocumentos.add(documento);
+					empresa = new Empresa();
+					empresa.setNombre(rs.getString("nombre"));
+					empresa.setNumAdherente(rs.getString("num_adherente"));
+					listaEmpresas.add(empresa);
 				}
 				rs.close();
 			}
@@ -1463,12 +1447,11 @@ public class MutualEJB implements EJBRemoto {
 			}
 		}
 
-		log.info("Num Error: "+numError);
-		log.info("Msj Error: "+msjError);
+		log.info("Num Error: "+ error.getNumError());
+		log.info("Msj Error: "+ error.getMsjError());
 		
-		mapaSalida.put("listaDocumentos",listaDocumentos);
-		mapaSalida.put("numError", numError);
-		mapaSalida.put("msjError", msjError);
+		mapaSalida.put("listaEmpresas",listaEmpresas);
+		mapaSalida.put("error", error);
 
 		return mapaSalida;
 	}

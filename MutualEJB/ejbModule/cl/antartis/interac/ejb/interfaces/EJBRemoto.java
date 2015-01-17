@@ -72,4 +72,6 @@ public interface EJBRemoto {
 
 	public Map<String, Object> cargarEmpresa(Map<String, Object> mapaEntrada);
 
+	public Map<String, Object> buscarEmpresas(Map<String, Object> mapaEntrada);
+
 }
