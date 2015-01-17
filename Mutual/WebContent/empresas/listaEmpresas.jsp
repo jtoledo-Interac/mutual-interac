@@ -14,15 +14,16 @@
 		{
 		   	url: getUrlBuscarEmpresas(),
 			datatype: "xml",
-			colNames : ['', 'Nombre Empresa',''],
+			colNames : ['Nº Adherente', 'Nombre Empresa',''],
 			colModel : [
-						{name : 'codEmpresa', index:'codEmpresa', hidden : true}, 
-						{name : 'desEmpresa', index:'desEmpresa', width : 80, search : true, resizable : false, sortable : true},				
+						{name : 'numAdherente', index:'numAdherente', width : 110}, 
+						{name : 'nombre', index:'desEmpresa', width : 300, search : true, resizable : false, sortable : true},				
 						{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
 						],
-		   	rowNum:10,
+		   	rowNum:100,
+		   	height: 450,
 		   	autowidth: true,
-		   	rowList:[10,20,30],
+		   	rowList:[100,200,300],
 			xmlReader: {
 				root : "filas",
 				row: "fila",
@@ -165,7 +166,7 @@
 		$('#listadoEmpresas').jqGrid('setGridParam', {
 			url : getUrlBuscarEmpresas(),
 			page : 1,
-			rowNum : numFilas,
+			rowNum : 100,
 			autoencode : false,
 			mtype : 'POST',
 			datatype : 'xml',

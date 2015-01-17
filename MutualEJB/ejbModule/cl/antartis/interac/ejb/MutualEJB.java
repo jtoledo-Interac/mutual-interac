@@ -1466,8 +1466,8 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.execute();
 
 			ResultSet rs = (ResultSet) cStmt.getObject(1);
-			error.setNumError(cStmt.getString(8));
-			error.setMsjError(cStmt.getString(9));
+			error.setNumError(cStmt.getString(2));
+			error.setMsjError(cStmt.getString(3));
 		
 			listaEmpresas = new ArrayList<Empresa>();
 

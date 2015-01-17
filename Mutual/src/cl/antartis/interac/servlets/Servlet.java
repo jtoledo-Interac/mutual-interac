@@ -2,6 +2,7 @@ package cl.antartis.interac.servlets;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -659,10 +660,11 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 	
 		mapaSalida = ejbRemoto.buscarEmpresas(mapaEntrada);
+		log.info("N¼ Empresas: "+((ArrayList<Empresa>)mapaSalida.get("listaEmpresas")).size());
 		
 		request.setAttribute("listaEmpresas", mapaSalida.get("listaEmpresas"));
 		
-		pagDestino = "/emrpesas/listaEmpresasXml.jsp";	
+		pagDestino = "/empresas/listaEmpresasXml.jsp";	
 	}
 
 	public void agregarEmpresa(HttpServletRequest request, HttpServletResponse response) {
