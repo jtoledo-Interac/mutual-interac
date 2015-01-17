@@ -709,36 +709,35 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
+		Empresa empresa = new Empresa();
+		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
-		
-		Producto producto = new Producto();
-		producto.setCodProducto(request.getParameter("codProducto"));
-		producto.setDesProducto(request.getParameter("desProducto"));
 
-		mapaEntrada.put("producto",producto);
+		empresa.setNombre(request.getParameter("nombre"));
+		empresa.setNumAdherente(request.getParameter("numAd"));
+
+		mapaEntrada.put("empresa",empresa);
 		
-		mapaSalida = ejbRemoto.modificarProducto(mapaEntrada);
+		mapaSalida = ejbRemoto.modificarEmpresa(mapaEntrada);
 
 		pagDestino = "/empresas/listaEmpresas.jsp";
-	}
+	} 
 	
 	public void eliminarEmpresa(HttpServletRequest request, HttpServletResponse response) {
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();		
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		String codProducto = request.getParameter("codProducto");
+		String numAd = request.getParameter("numAd");
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 
-		log.info("codProducto: "+codProducto);
+		log.info("Número de adherente: " + numAd);
 		
-		mapaEntrada.put("codProducto", codProducto);
+		mapaEntrada.put("numAd", numAd);
 		
-		mapaSalida = ejbRemoto.eliminarProducto(mapaEntrada);
+		mapaSalida = ejbRemoto.eliminarEmpresa(mapaEntrada);
 		
-		request.setAttribute("producto", (Producto)mapaSalida.get("producto"));
-
 		pagDestino = "/empresas/listaEmpresasXml.jsp";
 	}
 	

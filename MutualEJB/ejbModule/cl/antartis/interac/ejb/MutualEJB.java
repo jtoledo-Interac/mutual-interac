@@ -667,6 +667,59 @@ public class MutualEJB implements EJBRemoto {
 		return null;
 	}
 
+	public Map<String, Object> modificarEmpresa(Map<String, Object> mapaEntrada) {
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		Empresa empresa = null;
+		Error error = new Error();
+
+		try {
+			log.info("Modificar Empresa");
+			
+			empresa = (Empresa)mapaEntrada.get("empresa");
+
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call modificar_empresa(?,?,?,?) }");
+			cStmt.setString(1,empresa.getNombre());
+			cStmt.setString(2,empresa.getNumAdherente());
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+
+			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
+			cStmt.execute();
+			
+			error.setNumError(cStmt.getString(8));
+			error.setMsjError(cStmt.getString(9));
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+
+		log.info("Num Error: "+ error.getNumError());
+		log.info("Msj Error: "+ error.getMsjError());
+
+		return mapaSalida;
+	}
+	
 	public Map<String, Object> modificarProducto(Map<String, Object> mapaEntrada) {
 		// TODO Auto-generated method stub
 		return null;
@@ -1404,7 +1457,7 @@ public class MutualEJB implements EJBRemoto {
 
 			dbConeccion = interacDS.getConnection();
 
-			cStmt = dbConeccion.prepareCall("{ call buscar_documentos(?,?,?,?,?,?,?,?,?) }");
+			cStmt = dbConeccion.prepareCall("{ call buscar_empresas(?,?,?) }");
 			cStmt.registerOutParameter(1, Types.OTHER);// cursor$
 			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
@@ -1453,6 +1506,58 @@ public class MutualEJB implements EJBRemoto {
 		mapaSalida.put("listaEmpresas",listaEmpresas);
 		mapaSalida.put("error", error);
 
+		return mapaSalida;
+	}
+	
+	public Map<String, Object> eliminarEmpresa(Map<String, Object> mapaEntrada) {
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		String numAd = "";
+		
+		Error error = new Error();
+		
+		try {
+			log.info("Eliminar usuario");
+
+			numAd = (String)mapaEntrada.get("numAd");
+			
+			log.info("Número de adherente: " + numAd);
+			
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ eliminar_empresa(?,?,?) }");
+			cStmt.setString(1, numAd);
+			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
+
+			cStmt.execute();
+			
+			error.setNumError(cStmt.getString(2));
+			error.setMsjError(cStmt.getString(3));	
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+		mapaSalida.put("error", error);
+		
 		return mapaSalida;
 	}
 }
