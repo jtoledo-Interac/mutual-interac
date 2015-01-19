@@ -940,9 +940,16 @@ public class Servlet extends HttpServlet {
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
-		mapaSalida = ejbRemoto.buscarParametrosReclamo(mapaEntrada);
+		mapaSalida = ejbRemoto.buscarParReclamos(mapaEntrada);
 		
-		log.info("Cod Reclamo: "+mapaSalida.get("codReclamo"));
+		log.info("Cod Reclamo: "+mapaSalida.get("codReclamo"));		
+		
+		request.setAttribute("listaTipos", mapaSalida.get("listaTipos"));
+		request.setAttribute("listaMotivos", mapaSalida.get("listaMotivos"));
+		request.setAttribute("listaPrioridades", mapaSalida.get("listaPrioridades"));
+		request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
+		request.setAttribute("listaEstados", mapaSalida.get("listaEstados"));
+		request.setAttribute("listaMedios", mapaSalida.get("listaMedios"));
 
 		pagDestino = "contenedor.jsp";
 	}

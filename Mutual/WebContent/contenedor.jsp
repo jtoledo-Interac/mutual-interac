@@ -112,10 +112,10 @@ $(function()
 			<a href="#" id="empresas"><li class="menu-item">EMPRESAS</li></a>
 			<a href="#" id="carteras"><li class="menu-item">CARTERAS</li></a>
 			<a href="#" id="productos"><li class="menu-item">PRODUCTOS</li></a>
-			<a href="#" id="reportes"><li class="menu-item">REPORTES</li></a>
+			<!--  <a href="#" id="reportes"><li class="menu-item">REPORTES</li></a>-->
 			<a href="#" id="usuarios"><li class="menu-item">USUARIOS</li></a>
 			<a href="#" id="reclamos"><li class="menu-item">RECLAMOS</li></a>
-			<a href="#" id="perfiles"><li class="menu-item">PERFILES</li></a>
+			<!-- <a href="#" id="perfiles"><li class="menu-item">PERFILES</li></a> -->
 		</ul>
 	</div>
 	

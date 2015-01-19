@@ -7,12 +7,14 @@
     	<fila>
        		<idReclamo>${reclamo.idReclamo}</idReclamo>
        		<numAdherente>${reclamo.numAdherente}</numAdherente>
-       		<numFolio>${reclamo.numFolio}</numFolio>
-       		<nombre>${reclamo.nombre}</nombre>
-       		<desCartera>${reclamo.desCartera}</desCartera>
-       		<desProducto>${reclamo.desProducto}</desProducto>
-       		<fecCreacion>12/12/2014</fecCreacion>
-       		<desArea>${reclamo.desArea}</desArea>
+       		<nombreSolicitante>${reclamo.nombreSolicitante}</nombreSolicitante>
+       		<codTipo>${reclamo.codTipo}</codTipo>
+       		<codMotivo>${reclamo.codMotivo}</codMotivo>
+			<codMedioRespuesta>${reclamo.codMedioRespuesta}</codMedioRespuesta>
+       		<codEstado>${reclamo.codEstado}</codEstado>
+       		<codPrioridad>${reclamo.codPrioridad}</codPrioridad>
+       		<diasSistema>${reclamo.diasSistema}</diasSistema>
+       		<diasBandeja>${reclamo.diasBandeja}</diasBandeja>
        </fila>
 	</c:forEach>
 </filas>
