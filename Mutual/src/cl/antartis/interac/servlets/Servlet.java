@@ -940,7 +940,7 @@ public class Servlet extends HttpServlet {
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
-		mapaSalida = ejbRemoto.buscarParReclamos(mapaEntrada);
+		//mapaSalida = ejbRemoto.buscarParReclamos(mapaEntrada);
 		
 		log.info("Cod Reclamo: "+mapaSalida.get("codReclamo"));		
 		

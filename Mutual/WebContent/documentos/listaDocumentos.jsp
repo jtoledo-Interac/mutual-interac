@@ -225,9 +225,11 @@
 		<form id="formDocumento" action="Servlet" method="post">
 			<input type="button" 	id="btnBuscar" 		name="btnBuscar" 	value="Buscar"/>
 			<input type="button" 	id="btnAgregar" 	name="btnAgregar" 	value="Agregar"/>
-			<input type="text" 		id="nombre" 		name="nombre"		placeholder="Nombre Documento">
-			<input type="text" 		id="numFolio" 		name="numFolio"		placeholder="Nº Folio">
 			<input type="text" 		id="numAdherente" 	name="numAdherente"	placeholder="Nº Adherente">
+			<input type="text" 		id="numFolio" 		name="numFolio"		placeholder="Nº Folio">
+			<input type="text" 		id="nombre" 		name="nombre"		placeholder="Nombre Documento">
+			
+			
 						
 			<select id="codCartera" name="codCartera">
 				<option value="" selected>Seleccione una cartera</option>

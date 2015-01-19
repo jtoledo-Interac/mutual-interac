@@ -26,13 +26,4 @@ public class ConfigUtils {
 		
 		return props.getProperty(key);
 	}
-	
-	public static Properties getEmailProperties(String account){		
-		Properties properties = new Properties();
-        properties.put("mail.smtp.host", loadProperties(account+"_host"));
-        properties.put("mail.smtp.port", loadProperties(account+"_port"));
-        properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.starttls.enable", "false");
-		return properties;
-	}
 }
