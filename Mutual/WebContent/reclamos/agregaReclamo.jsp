@@ -61,8 +61,6 @@
 	<input type="text" 		id="glosa" 					name="glosa" 				placeholder="glosa">
 	<input type="text" 		id="adjunto" 				name="adjunto" 				placeholder="adjunto">
 	<input type="text" 		id="observaciones" 			name="observaciones" 		placeholder="observaciones">
-	<input type="text" 		id="observaciones" 			name="observaciones" 		placeholder="observaciones">
-	<input type="text" 		id="responsable_ingreso" 	name="responsable_ingreso" 	placeholder="responsable_ingreso">		
 	<input type="text" 		id="responsable_ingreso" 	name="responsable_ingreso" 	placeholder="responsable_ingreso">			
 	<input type="text" 		id="responsable_actual" 	name="responsable_actual" 	placeholder="responsable_actual">		
 	<input type="text" 		id="fec_respuesta" 			name="fec_respuesta" 		placeholder="fec_respuesta" class="fecha" readonly>
