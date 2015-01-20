@@ -18,7 +18,7 @@ $body$
     declare xcod_cartera varchar;
     declare xcod_tipo varchar;
     declare xcod_estado varchar;
-    declare xcod_prioridad varchar,
+    declare xcod_prioridad varchar
 
     begin
         numerror := '0';
@@ -88,7 +88,7 @@ $body$
             reclamo 
         where
             
-            (xid_reclamo =  ' ' or (id_reclamo as varchar) = xid_reclamo) and
+            (xid_reclamo =  ' ' or cast (id_reclamo as varchar) = xid_reclamo) and
             (xnum_adherente =  ' ' or upper(num_adherente) = xnum_adherente) and
             (xcod_cartera =  ' ' or upper(cod_cartera) = xcod_cartera) and
             (xcod_tipo =  ' ' or upper(cod_tipo) = xcod_tipo) and
