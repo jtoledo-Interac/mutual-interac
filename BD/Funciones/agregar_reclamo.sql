@@ -9,7 +9,7 @@ create or replace function public.agregar_reclamo
 	in xcod_motivo varchar,
 	in xcod_prioridad varchar,
 	in xcod_cartera varchar,
-	in xfec_ingreso varchar,
+	in xfec_ingreso timestamp,
 	in xglosa varchar,
 	in xadjunto varchar,
 	in xobservaciones varchar,
@@ -19,7 +19,7 @@ create or replace function public.agregar_reclamo
 	in xdias_bandeja varchar,
 	in xdias_sistema varchar,
 	in xcod_medio_respuesta varchar,
-	in xfec_respuesta varchar,
+	in xfec_respuesta timestamp,
     out xid_reclamo bigint, 
     out numerror varchar, 
     out msjerror varchar
