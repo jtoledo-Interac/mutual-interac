@@ -17,13 +17,13 @@ public class EmailUtils {
 	private static String password = "";
 		
 	public static Boolean sendMail(String to, String subject, String body, String signature){
-		String out = "avegay";
+		String out = "contacto";
         Properties props = ConfigUtils.getEmailProperties(out);
         user = ConfigUtils.loadProperties(out+"_user");
         password = ConfigUtils.loadProperties(out+"_password");
         
-        System.out.println(user+" - "+ password
-				+" - "+props.getProperty("mail.smtp.port")+" - "+props.getProperty("mail.smtp.host"));
+//        System.out.println(user+" - "+ password
+//				+" - "+props.getProperty("mail.smtp.port")+" - "+props.getProperty("mail.smtp.host"));
         
         String message = body+"\n-- \n"+signature;
         
@@ -35,7 +35,6 @@ public class EmailUtils {
         };
  
         Session session = Session.getInstance(props, auth);
-        System.out.println("obtiene session");
         
         // creates a new e-mail message
         Message msg = new MimeMessage(session);
@@ -46,7 +45,6 @@ public class EmailUtils {
 	        msg.setSubject(subject);
 	        msg.setSentDate(new Date());
 	        msg.setText(message);
-	        System.out.println("settea mensaje");
         }catch(Exception e){
         	e.printStackTrace();
         	return false;

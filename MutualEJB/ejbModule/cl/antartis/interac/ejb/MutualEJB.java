@@ -1124,8 +1124,88 @@ public class MutualEJB implements EJBRemoto {
 	}
 
 	public Map<String, Object> buscarReclamos(Map<String, Object> mapaEntrada) {
-		// TODO Auto-generated method stub
-		return null;
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		ArrayList<Reclamo> listaReclamos = null;
+		Reclamo reclamo = null;
+		Error error = new Error();
+
+		try {
+			log.info("Buscar Reclamos");
+
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call buscar_reclamos(?,?,?) }");
+			cStmt.registerOutParameter(1, Types.OTHER);// cursor$
+			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
+
+			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
+			cStmt.execute();
+
+			ResultSet rs = (ResultSet) cStmt.getObject(1);
+			error.setNumError(cStmt.getString(2));
+			error.setMsjError(cStmt.getString(3));
+		
+			listaReclamos = new ArrayList<Reclamo>();
+
+			if(rs !=null){
+				while (rs.next()) {
+					reclamo = new Reclamo();
+	                reclamo.setNombreSolicitante(rs.getString("nombre_solicitante") );
+	                reclamo.setEmailSolicitante(rs.getString("email_solicitante") );
+	                reclamo.setFonoSolicitante(rs.getString("fono_solicitante") );
+	                reclamo.setRegionSolicitante(rs.getString("region_solicitante") );
+	                reclamo.setCodTipo(rs.getString("cod_tipo"));
+	                reclamo.setCodMotivo(rs.getString("cod_motivo"));
+	                reclamo.setCodPrioridad(rs.getString("cod_prioridad"));
+	                reclamo.setCodCartera(rs.getString("cod_cartera"));
+	                reclamo.setFecIngreso(rs.getString("fec_ingreso"));
+	                reclamo.setGlosa(rs.getString("glosa"));
+	                reclamo.setAdjunto(rs.getString("adjunto"));
+	                reclamo.setObservaciones(rs.getString("observaciones"));
+	                reclamo.setCodEstado(rs.getString("cod_estado"));
+	                reclamo.setResponsableIngreso(rs.getString("responsable_ingreso"));
+	                reclamo.setResponsableActual(rs.getString("responsable_actual"));
+	                //reclamo.setDiasBandeja( );
+	                //reclamo.setDiasSistema( );
+	                reclamo.setCodMedioRespuesta(rs.getString("cod_medio_respuesta"));
+	                reclamo.setFecRespuesta(rs.getString("fec_respuesta") );
+					listaReclamos.add(reclamo);
+				}
+				rs.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+
+		log.info("Num Error: "+ error.getNumError());
+		log.info("Msj Error: "+ error.getMsjError());
+		
+		mapaSalida.put("listaReclamos",listaReclamos);
+		mapaSalida.put("numError", error.getNumError());
+		mapaSalida.put("msjError", error.getMsjError());
+
+		return mapaSalida;
+
 	}
 
 	public Map<String, Object> agregarReclamo(Map<String, Object> mapaEntrada) {

@@ -6,8 +6,6 @@ import java.util.Properties;
 
 public class ConfigUtils {
 	
-	private static String pathConfigFile = "/config/config.properties";
-	
 	/**
 	 * Retorna valor de configuración. <p>
 	 * Retorna valor de configuración correspondiente a la variable 'key', si no existe retorna null.
@@ -18,12 +16,21 @@ public class ConfigUtils {
 		Properties props = new Properties();
 		InputStream is = null;
 		try {
-			is = Encriptador.class.getResourceAsStream(pathConfigFile);
+			is = Encriptador.class.getResourceAsStream("/config/config.properties");
 			props.load(is);
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 		}
 		
 		return props.getProperty(key);
+	}
+	
+	public static Properties getEmailProperties(String account){		
+		Properties properties = new Properties();
+        properties.put("mail.smtp.host", loadProperties(account+"_host"));
+        properties.put("mail.smtp.port", loadProperties(account+"_port"));
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "false");
+		return properties;
 	}
 }
