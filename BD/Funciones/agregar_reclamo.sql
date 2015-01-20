@@ -15,7 +15,7 @@ create or replace function public.agregar_reclamo
 	in xobservaciones varchar,
 	in xcod_estado varchar,
 	in xresponsable_ingreso varchar,
-	in xresponsable_actual varchar,
+	in xresponsable_actual varchar,	
 	in xdias_bandeja varchar,
 	in xdias_sistema varchar,
 	in xcod_medio_respuesta varchar,

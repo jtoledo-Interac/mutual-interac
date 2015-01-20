@@ -1,11 +1,11 @@
 create or replace function public.buscar_reclamos
 (
-    /*in xnombre$ varchar,
-    in xnum_folio$ varchar,
+    in xid_reclamo$ varchar,
     in xnum_adherente$ varchar,
     in xcod_cartera$ varchar,
-    in xcod_producto$ varchar,
-    in xcod_area$ varchar,*/
+    in xcod_tipo$ varchar,
+    in xcod_estado$ varchar,
+    in xcod_prioridad$ varchar,
     out reclamos refcursor, 
     out numerror varchar, 
     out msjerror varchar
@@ -13,22 +13,28 @@ create or replace function public.buscar_reclamos
 
 $body$
 
-    declare xnombre varchar;
-    declare xnum_folio varchar;
+    declare xid_reclamo varchar;
     declare xnum_adherente varchar;
     declare xcod_cartera varchar;
-    declare xcod_producto varchar;
-    declare xcod_area varchar;
+    declare xcod_tipo varchar;
+    declare xcod_estado varchar;
+    declare xcod_prioridad varchar,
 
     begin
         numerror := '0';
         msjerror := ' ';
 
+        if trim(xid_reclamo$) = '' then
+            xid_reclamo := ' ';
+        else
+            xid_reclamo := upper(trim(xid_reclamo$));
+        end if;
 
-        /*filtros
-        xnombre := coalesce(upper(trim(xnombre$)),'') || '%';
-        xnum_folio := '%' || coalesce(upper(trim(xnum_folio$)),'') || '%';
-        xnum_adherente := '%' || coalesce(upper(trim(xnum_adherente$)),'') || '%';
+        if trim(xnum_adherente$) = '' then
+            xnum_adherente := ' ';
+        else
+            xnum_adherente := upper(trim(xnum_adherente$));
+        end if;
 
         if trim(xcod_cartera$) = '' then
             xcod_cartera := ' ';
@@ -36,17 +42,23 @@ $body$
             xcod_cartera := upper(trim(xcod_cartera$));
         end if;
 
-        if trim(xcod_producto$) = '' then
-            xcod_producto := ' ';
+         if trim(xcod_tipo$) = '' then
+            xcod_tipo := ' ';
         else
-            xcod_producto := upper(trim(xcod_producto$));
+            xcod_tipo := upper(trim(xcod_tipo$));
         end if;
 
-        if trim(xcod_area$) = '' then
-            xcod_area := ' ';
+        if trim(xcod_estado$) = '' then
+            xcod_estado := ' ';
         else
-            xcod_area := upper(trim(xcod_area$));
-        end if;*/
+            xcod_estado := upper(trim(xcod_estado$));
+        end if;
+
+        if trim(xcod_prioridad$) = '' then
+            xcod_prioridad := ' ';
+        else
+            xcod_prioridad := upper(trim(xcod_prioridad$));
+        end if;
 
         open reclamos for
 
@@ -73,23 +85,18 @@ $body$
             cod_medio_respuesta,
             fec_respuesta
         from 
-            reclamo r
-        /*inner join area as a 
-            on d.cod_area = a.cod_area
-        inner join cartera as c 
-            on d.cod_cartera = c.cod_cartera
-        inner join producto as p 
-            on d.cod_producto = p.cod_producto
+            reclamo 
         where
-            upper(d.nombre) like xnombre and
-            upper(d.num_folio) like xnum_folio and
-            upper(d.num_adherente) like xnum_adherente and
-            (xcod_cartera =  ' ' or upper(d.cod_cartera) = xcod_cartera) and
-            (xcod_producto =  ' ' or upper(d.cod_producto) = xcod_producto) and
-            (xcod_area =  ' ' or upper(d.cod_area) = xcod_area)*/
+            
+            (xid_reclamo =  ' ' or (id_reclamo as varchar) = xid_reclamo) and
+            (xnum_adherente =  ' ' or upper(num_adherente) = xnum_adherente) and
+            (xcod_cartera =  ' ' or upper(cod_cartera) = xcod_cartera) and
+            (xcod_tipo =  ' ' or upper(cod_tipo) = xcod_tipo) and
+            (xcod_estado =  ' ' or upper(cod_estado) = xcod_estado) and
+            (xcod_prioridad =  ' ' or upper(cod_prioridad) = xcod_prioridad) 
         order by
             id_reclamo;
-        
+    
         exception
             when others then
                 numerror := sqlstate;

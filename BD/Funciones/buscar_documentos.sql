@@ -26,9 +26,9 @@ $body$
 
 
         /*filtros*/
-        xnombre := coalesce(upper(trim(xnombre$)),' ') || '%';
-        xnum_folio := '%' || coalesce(upper(trim(xnum_folio$)),' ') || '%';
-        xnum_adherente := '%' || coalesce(upper(trim(xnum_adherente$)),' ') || '%';
+        xnombre := coalesce(upper(trim(xnombre$)),'') || '%';
+        xnum_folio := '%' || coalesce(upper(trim(xnum_folio$)),'') || '%';
+        xnum_adherente := '%' || coalesce(upper(trim(xnum_adherente$)),'') || '%';
 
         if trim(xcod_cartera$) = '' then
             xcod_cartera := ' ';
