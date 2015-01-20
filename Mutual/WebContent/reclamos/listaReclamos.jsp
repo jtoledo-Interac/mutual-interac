@@ -227,9 +227,11 @@
 		<form id="formReclamo" action="Servlet" method="post">
 			<input type="button" 	id="btnBuscar" 		name="btnBuscar" 	value="Buscar"/>
 			<input type="button" 	id="btnAgregar" 	name="btnAgregar" 	value="Agregar"/>
-			<input type="text" 		id="nombre" 		name="nombre"		placeholder="Nombre Reclamo">
-			<input type="text" 		id="numFolio" 		name="numFolio"		placeholder="Nº Folio">
-			<input type="text" 		id="numAdherente" 	name="numAdherente"	placeholder="Nº Adherente">
+			<input type="text" 		id="id_reclamo" 	name="id_reclamo"	placeholder="ID Reclamo">
+			<input type="text" 		id="num_adherente" 	name="num_adherente"		placeholder="Nº Adherente">
+			<input type="text" 		id="xcod_cartera" 	name="xcod_cartera"	placeholder="Código Cartera">
+			<input type="text" 		id="xcod_estado" 	name="xcod_estado"	placeholder="Código Estado">
+			<input type="text" 		id="xcod_prioridad" 	name="xcod_prioridad"	placeholder="Código Prioridad">
 						
 			<select id="codCartera" name="codCartera">
 				<option value="0" selected>Seleccione una cartera</option>

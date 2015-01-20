@@ -925,7 +925,7 @@ public class Servlet extends HttpServlet {
 		
 		request.setAttribute("listaReclamos", mapaSalida.get("listaReclamos"));
 		
-		pagDestino = "/reclamos/listaReclamosXml.jsp";	
+		pagDestino = "/reclamos/listaReclamosXml.jsp";		
 	}
 
 	public void agregarReclamo(HttpServletRequest request, HttpServletResponse response) {
@@ -1008,7 +1008,7 @@ public class Servlet extends HttpServlet {
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
 		Reclamo reclamo = new Reclamo();
-		//reclamo.setCodReclamo(request.getParameter("codReclamo"));
+		reclamo.setIdReclamo(Long.parseLong(request.getParameter("idReclamo")));
 		//reclamo.setDesReclamo(request.getParameter("desReclamo"));
 
 		mapaEntrada.put("reclamo",reclamo);
