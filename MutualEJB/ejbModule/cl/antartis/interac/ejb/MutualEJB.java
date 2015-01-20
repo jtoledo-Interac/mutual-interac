@@ -499,6 +499,8 @@ public class MutualEJB implements EJBRemoto {
 
 			cStmt = dbConeccion.prepareCall("{ call buscar_productos(?,?,?) }");
 			
+		
+			
 			cStmt.registerOutParameter(1, Types.OTHER);// cursor$
 			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
@@ -1137,17 +1139,24 @@ public class MutualEJB implements EJBRemoto {
 
 			dbConeccion = interacDS.getConnection();
 
-			cStmt = dbConeccion.prepareCall("{ call buscar_reclamos(?,?,?) }");
-			cStmt.registerOutParameter(1, Types.OTHER);// cursor$
-			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
-			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
+			cStmt = dbConeccion.prepareCall("{ call buscar_reclamos(?,?,?,?,?,?,?,?,?) }");
+			cStmt.setString(1, "");
+			cStmt.setString(2, "");
+			cStmt.setString(3, "");
+			cStmt.setString(4, "");
+			cStmt.setString(5, "");
+			cStmt.setString(6, "");
+			
+			cStmt.registerOutParameter(7, Types.OTHER);// cursor$
+			cStmt.registerOutParameter(8, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(9, Types.VARCHAR);// msjerror$
 
 			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
 			cStmt.execute();
 
-			ResultSet rs = (ResultSet) cStmt.getObject(1);
-			error.setNumError(cStmt.getString(2));
-			error.setMsjError(cStmt.getString(3));
+			ResultSet rs = (ResultSet) cStmt.getObject(7);
+			error.setNumError(cStmt.getString(8));
+			error.setMsjError(cStmt.getString(9));
 		
 			listaReclamos = new ArrayList<Reclamo>();
 
