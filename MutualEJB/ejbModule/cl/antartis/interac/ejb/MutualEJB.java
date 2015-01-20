@@ -1243,6 +1243,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(7, reclamo.getCodMotivo());
 			cStmt.setString(8, reclamo.getCodPrioridad());
 			cStmt.setString(9, reclamo.getCodCartera());
+			cStmt.setDate(10, Utils.stringToDate(reclamo.getFecIngreso()));
 			cStmt.setString(10, reclamo.getFecIngreso());
 			cStmt.setString(11, reclamo.getGlosa());
 			cStmt.setString(12, reclamo.getAdjunto());
@@ -1261,6 +1262,8 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.registerOutParameter(23, Types.VARCHAR);// msjerror$
 
 			log.info("N° Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
+			
+			System.out.println(reclamo.getEmailBody());
 			cStmt.execute();
 			
 			reclamo.setIdReclamo(cStmt.getLong(21));
