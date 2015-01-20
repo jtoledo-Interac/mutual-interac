@@ -28,6 +28,40 @@ public class Reclamo implements Serializable {
 	private String codMedioRespuesta;
 	private String fecRespuesta;
 
+	public Reclamo(){}
+	
+	public Reclamo(long idReclamo, String numAdherente,
+			String nombreSolicitante, String emailSolicitante,
+			String fonoSolicitante, String regionSolicitante, String codTipo,
+			String codMotivo, String codPrioridad, String codCartera,
+			String fecIngreso, String glosa, String adjunto,
+			String observaciones, String codEstado, String responsableIngreso,
+			String responsableActual, String diasBandeja, String diasSistema,
+			String codMedioRespuesta, String fecRespuesta) {
+		super();
+		this.idReclamo = idReclamo;
+		this.numAdherente = numAdherente;
+		this.nombreSolicitante = nombreSolicitante;
+		this.emailSolicitante = emailSolicitante;
+		this.fonoSolicitante = fonoSolicitante;
+		this.regionSolicitante = regionSolicitante;
+		this.codTipo = codTipo;
+		this.codMotivo = codMotivo;
+		this.codPrioridad = codPrioridad;
+		this.codCartera = codCartera;
+		this.fecIngreso = fecIngreso;
+		this.glosa = glosa;
+		this.adjunto = adjunto;
+		this.observaciones = observaciones;
+		this.codEstado = codEstado;
+		this.responsableIngreso = responsableIngreso;
+		this.responsableActual = responsableActual;
+		this.diasBandeja = diasBandeja;
+		this.diasSistema = diasSistema;
+		this.codMedioRespuesta = codMedioRespuesta;
+		this.fecRespuesta = fecRespuesta;
+	}
+
 	public long getIdReclamo() {
 		return idReclamo;
 	}
@@ -201,5 +235,31 @@ public class Reclamo implements Serializable {
 		reclamo += "\nglosa: " + this.glosa;
 		reclamo += "\nidReclamo: " + this.idReclamo;
 		return reclamo;
+	}
+	
+	public String getEmailBody(){
+		String body = "Ha ingresado un nuevo reclamo (codigo de reclamo: "+this.getIdReclamo()+
+			") detallado a continuación:\n"+
+			"Número adherente: "+ this.numAdherente+"\n"+
+			"Nombre solicitante: "+ this.nombreSolicitante+"\n"+
+			"Email solicitante: "+ this.emailSolicitante+"\n"+
+			"Fono solicitante: "+ this.fonoSolicitante+"\n"+
+			"Region solicitante: "+ this.regionSolicitante+"\n"+
+			"Código tipo: "+ this.codTipo+"\n"+
+			"Código motivo: "+ this.codMotivo+"\n"+
+			"Código prioridad: "+ this.codPrioridad+"\n"+
+			"Código cartera: "+ this.codCartera+"\n"+
+			"Fecha ingreso: "+ this.fecIngreso+"\n"+
+			"Glosa: "+ this.glosa+"\n"+
+			"Adjunto: "+ this.adjunto+"\n"+
+			"Observaciones: "+ this.observaciones+"\n"+
+			"Código estado: "+ this.codEstado+"\n"+
+			"Responsable ingreso: "+ this.responsableIngreso+"\n"+
+			"Responsable actual: "+ this.responsableActual+"\n"+
+			"Días bandeja: "+ this.diasBandeja+"\n"+
+			"Días sistema: "+ this.diasSistema+"\n"+
+			"Código meedio respuesta: "+ this.codMedioRespuesta+"\n"+
+			"Fecha respuesta: "+ this.fecRespuesta+"\n\n";
+		return body;
 	}
 }

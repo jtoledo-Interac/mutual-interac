@@ -1212,17 +1212,13 @@ public class MutualEJB implements EJBRemoto {
 		CallableStatement cStmt = null;
 		Map<String, Object> mapaSalida = null;
 		Reclamo reclamo = null;
-		String numError = "0";
-		String msjError = "";
-		long idReclamo = 0;
+		Error error = new Error();
 		
 		try {
 			log.info("Agregar reclamo");
-
 			reclamo = (Reclamo)mapaEntrada.get("reclamo");
-			
 			log.info(reclamo.getReclamo());
-			
+			System.out.println(reclamo.getEmailBody());
 			mapaSalida = new HashMap<String, Object>();
 
 			dbConeccion = interacDS.getConnection();
@@ -1249,29 +1245,31 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(18, reclamo.getDiasSistema());
 			cStmt.setString(19, reclamo.getCodMedioRespuesta());
 			cStmt.setString(20, reclamo.getFecRespuesta());
-
+			
+			
 			cStmt.registerOutParameter(21, Types.BIGINT);// nidreclamo$
 			cStmt.registerOutParameter(22, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(23, Types.VARCHAR);// msjerror$
 
-			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
+			log.info("N° Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
 			cStmt.execute();
 			
-			idReclamo = cStmt.getLong(21);
-			numError = cStmt.getString(22);
-			msjError = cStmt.getString(23);
+			reclamo.setIdReclamo(cStmt.getLong(21));
+			error.setNumError(cStmt.getString(22));
+			error.setMsjError(cStmt.getString(23));
 			
-			log.info("Num Error: "+numError);
-			log.info("Msj Error: "+msjError);
+			log.info("Num Error: "+error.getNumError());
+			log.info("Msj Error: "+error.getMsjError());
 	
 		}catch (SQLException e) {
 			e.printStackTrace();
 			log.info("SQL Exception");
+			return null;
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.info("SQL Exception 2");
+			return null;
 		} finally {
-
 			try {
 				log.info("Cerrando la conexion");
 				dbConeccion.close();
@@ -1280,16 +1278,16 @@ public class MutualEJB implements EJBRemoto {
 			} catch (SQLException e) {
 				log.info("Error al cerrar la conexion");
 				e.printStackTrace();
+				return null;
 			}
 		}
 		
-		mapaSalida.put("idReclamo", idReclamo);
-		mapaSalida.put("numError", numError);
-		mapaSalida.put("msjError", msjError);
+		mapaSalida.put("reclamo", reclamo);
+		mapaSalida.put("error", error);
 		
 		return mapaSalida;
 	}
-
+	
 	public Map<String, Object> cargarReclamo(Map<String, Object> mapaEntrada) {
 		// TODO Auto-generated method stub
 		return null;
