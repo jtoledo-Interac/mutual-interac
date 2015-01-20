@@ -21,6 +21,7 @@
         <script type="text/javascript" src="js/jquery.jqGrid.min.js"></script>  
 		<script type="text/javascript" src="js/grid.locale-es.js"></script>
 		<script type="text/javascript" src="js/funciones.js"></script>
+		<script type="text/javascript" src="js/Chart.js"></script>
 		
 		<!-- js graficos -->
 		<script type="text/javascript" src="js/amcharts.js"></script>
