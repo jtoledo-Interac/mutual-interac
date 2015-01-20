@@ -998,7 +998,7 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		String codReclamo = request.getParameter("codReclamo");
+		String codReclamo = request.getParameter("idReclamo");
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 
@@ -1007,9 +1007,7 @@ public class Servlet extends HttpServlet {
 		mapaEntrada.put("codReclamo", codReclamo);
 		
 		mapaSalida = ejbRemoto.eliminarReclamo(mapaEntrada);
-		
-		request.setAttribute("reclamo", (Reclamo)mapaSalida.get("reclamo"));
 
-		pagDestino = "/reclamos/listaReclamosXml.jsp";
+		pagDestino = "/reclamos/listaReclamos.jsp";
 	}
 }

@@ -1301,7 +1301,53 @@ public class MutualEJB implements EJBRemoto {
 	}
 
 	public Map<String, Object> eliminarReclamo(Map<String, Object> mapaEntrada) {
-		// TODO Auto-generated method stub
+		Map<String, Object> mapaSalida = null;
+		Error error = new Error();
+		CallableStatement cStmt = null;
+		
+		try {
+			log.info("Eliminar reclamo");
+						
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call eliminar_reclamo(?,?,?) }");
+
+			cStmt.setLong(1, ((Reclamo)mapaEntrada.get("reclamo")).getIdReclamo());
+			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
+
+			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
+			cStmt.execute();
+			
+			error.setNumError(cStmt.getString(2));
+			error.setMsjError(cStmt.getString(3));
+			
+			log.info("Num Error: "+ error.getNumError());
+			log.info("Msj Error: "+ error.getMsjError());
+	
+		}catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+		
+		mapaSalida.put("error", error);
+		
 		return null;
 	}
 

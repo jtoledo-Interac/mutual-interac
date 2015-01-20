@@ -209,10 +209,10 @@
 		return sData;
 	}
 
-	function getUrlEliminarReclamo(nIdReclamo){  
+	function getUrlEliminarReclamo(idReclamo){  
 		var sData = 'Servlet';
 		sData += '?accion=eliminarReclamo';
-		sData += '&nIdReclamo='+nIdReclamo;
+		sData += '&idReclamo='+idReclamo;
 		return sData;
     }
 </script>
