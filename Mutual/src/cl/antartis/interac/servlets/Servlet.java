@@ -27,6 +27,7 @@ import cl.antartis.interac.beans.Usuario;
 import cl.antartis.interac.beans.Error;
 import cl.antartis.interac.ejb.interfaces.EJBRemoto;
 import cl.antartis.interac.funciones.ConfigUtils;
+import cl.antartis.interac.funciones.EmailUtils;
 import cl.antartis.interac.funciones.Encriptador;
 import cl.antartis.interac.funciones.Utils;
 
@@ -35,7 +36,6 @@ public class Servlet extends HttpServlet {
 	private static final long serialVersionUID = 24805145326056582L;
 	private Logger log = Logger.getLogger(Servlet.class);
 	private String pagDestino = "";
-	//private Sesion sesion = null;
 	private Error error = null;
 	//private Perfil perfiles = null; //TODO
 	
@@ -934,24 +934,48 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
 		Reclamo reclamo = new Reclamo();
-		//reclamo.set(request.getParameter("nomReclamo"));
+		
+		reclamo.setNumAdherente(request.getParameter("num_adherente"));
+		reclamo.setNombreSolicitante(request.getParameter("nombre_solicitante") );
+		reclamo.setEmailSolicitante(request.getParameter("email_solicitante") );
+		reclamo.setFonoSolicitante(request.getParameter("fono_solicitante") );
+		reclamo.setRegionSolicitante(request.getParameter("region_solicitante") );
+		reclamo.setCodTipo(request.getParameter("cod_tipo"));
+		reclamo.setCodMotivo(request.getParameter("cod_motivo"));
+		reclamo.setCodPrioridad(request.getParameter("cod_prioridad"));
+		reclamo.setCodCartera(request.getParameter("cod_cartera"));
+		reclamo.setFecIngreso(request.getParameter("fec_ingreso"));
+		reclamo.setGlosa(request.getParameter("glosa"));
+		reclamo.setAdjunto(request.getParameter("adjunto"));
+		reclamo.setObservaciones(request.getParameter("observaciones"));
+		reclamo.setCodEstado(request.getParameter("cod_estado"));
+		reclamo.setResponsableIngreso(request.getParameter("responsable_ingreso"));
+		reclamo.setResponsableActual(request.getParameter("responsable_actual"));
+		reclamo.setDiasBandeja("");
+		reclamo.setDiasSistema("");
+		reclamo.setCodMedioRespuesta(request.getParameter("cod_medio_respuesta"));
+		reclamo.setFecRespuesta(request.getParameter("fec_respuesta") );
 
 		mapaEntrada.put("reclamo",reclamo);
-		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
-		//mapaSalida = ejbRemoto.buscarParReclamos(mapaEntrada);
+		mapaSalida = ejbRemoto.agregarReclamo(mapaEntrada);
 		
-		log.info("Cod Reclamo: "+mapaSalida.get("codReclamo"));		
-		
-		request.setAttribute("listaTipos", mapaSalida.get("listaTipos"));
-		request.setAttribute("listaMotivos", mapaSalida.get("listaMotivos"));
-		request.setAttribute("listaPrioridades", mapaSalida.get("listaPrioridades"));
-		request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
-		request.setAttribute("listaEstados", mapaSalida.get("listaEstados"));
-		request.setAttribute("listaMedios", mapaSalida.get("listaMedios"));
-
-		pagDestino = "contenedor.jsp";
+		if(mapaSalida!=null){
+			reclamo = (Reclamo)mapaSalida.get("reclamo");
+			
+			//send emails
+			//encargado reclamos
+			String to = ConfigUtils.loadProperties("reclamos_user");
+			String subject = "Nuevo reclamo("+reclamo.getIdReclamo()+")";
+			String body = reclamo.getEmailBody();
+			String signature = "Firma de mutual..";
+			EmailUtils.sendMail(to, subject, body, signature);
+			to = reclamo.getEmailSolicitante();
+			EmailUtils.sendMail(to, subject, body, signature);
+			pagDestino = "contenedor.jsp";
+		}
+		else pagDestino = "error.jsp";
 	}
 	
 	public void cargarReclamo(HttpServletRequest request, HttpServletResponse response) {
