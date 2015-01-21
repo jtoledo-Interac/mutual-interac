@@ -8,7 +8,8 @@
 </head>
 <body>
 <form action="Servlet" method="post">
-	<input type="hidden" name="accion" value="testMail"/>
+	<input type="hidden"  id="accion" name="accion" value="cargarArchivo"/>
+	<input type="file" id="rescatar" name="rescatar" value=""/>
 	<input type="submit" />
 </form>
 </body>

@@ -77,5 +77,7 @@ public interface EJBRemoto {
 	public Map<String, Object> eliminarEmpresa(Map<String, Object> mapaEntrada);
 
 	public Map<String, Object> modificarEmpresa(Map<String, Object> mapaEntrada);
+	
+	public Map<String, Object> subirArchivo(Map<String, Object> mapaEntrada);
 
 }

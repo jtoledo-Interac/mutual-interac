@@ -1733,7 +1733,7 @@ public class MutualEJB implements EJBRemoto {
 
 			dbConeccion = interacDS.getConnection();
 
-			cStmt = dbConeccion.prepareCall("{ eliminar_empresa(?,?,?) }");
+			cStmt = dbConeccion.prepareCall("{ call eliminar_empresa(?,?,?) }");
 			cStmt.setString(1, numAd);
 			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
@@ -1766,4 +1766,52 @@ public class MutualEJB implements EJBRemoto {
 		
 		return mapaSalida;
 	}
+	
+	public Map<String, Object> subirArchivo(Map<String, Object> mapaEntrada){
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		Error error = new Error();
+		
+		try {
+			log.info("Subir Archivo");
+			
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call subir_archivo(?,?,?,?) }");
+			cStmt.setString(1, (String)mapaEntrada.get("path"));
+			cStmt.setString(2, (String)mapaEntrada.get("nombre"));
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+
+			cStmt.execute();
+			
+			error.setNumError(cStmt.getString(3));
+			error.setMsjError(cStmt.getString(4));	
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+		mapaSalida.put("error", error);
+		
+		return mapaSalida;
+	}
+	
 }

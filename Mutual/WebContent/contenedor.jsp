@@ -86,6 +86,13 @@ $(function()
 		$('#accion').val("perfiles");
 		$('#formMantenedores').submit();
 	});
+	$('#grafico').click(function(){
+		$('.menu-item').removeClass('selected');
+		$('#grafico li').addClass('selected');
+		
+		$('#accion').val("graficar");
+		$('#formMantenedores').submit();
+	});
 });
 </script>
 
@@ -116,6 +123,7 @@ $(function()
 			<a href="#" id="usuarios"><li class="menu-item">USUARIOS</li></a>
 			<a href="#" id="reclamos"><li class="menu-item">RECLAMOS</li></a>
 			<!-- <a href="#" id="perfiles"><li class="menu-item">PERFILES</li></a> -->
+			<a href="#" id="grafico"> <li class="menu-item">gráfico prueba</li></a>
 		</ul>
 	</div>
 	
@@ -127,6 +135,11 @@ $(function()
 				<c:choose>
 					<c:when test="${param.accion eq 'login'}">	
 						<%@ include file="documentos/listaDocumentos.jsp" %>
+					</c:when>
+					
+					<%-- GRAFICO --%>
+					<c:when test="${param.accion eq 'graficar'}">
+						<%@ include file="graficos/grafico_bar.jsp" %>
 					</c:when>
 					
 					<%-- ORGANIGRAMA --%>
@@ -198,7 +211,6 @@ $(function()
 					<c:when test="${param.accion eq 'modificarReclamo'}">
 						<%@ include file="reclamos/listaReclamos.jsp" %>
 					</c:when>
-
 					<c:otherwise></c:otherwise>
 				</c:choose>
 			</div>

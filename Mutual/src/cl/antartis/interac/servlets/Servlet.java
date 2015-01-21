@@ -1,6 +1,7 @@
 
 package cl.antartis.interac.servlets;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -1034,5 +1035,25 @@ public class Servlet extends HttpServlet {
 		mapaSalida = ejbRemoto.eliminarReclamo(mapaEntrada);
 
 		pagDestino = "/reclamos/listaReclamos.jsp";
+	}
+	
+	public void cargarArchivo(HttpServletRequest request, HttpServletResponse response) {
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		
+		
+		String path = "";
+		path = request.getParameter("rescatar");
+		System.out.println("xxxxxx");
+		System.out.println(path);
+		File archivo = new File(path);
+	
+		mapaEntrada.put("path", archivo.getAbsolutePath());
+		mapaEntrada.put("nombre", archivo.getName());
+		
+		mapaSalida = ejbRemoto.subirArchivo(mapaEntrada);
+		
+		pagDestino = "contenedor.jsp";
 	}
 }
