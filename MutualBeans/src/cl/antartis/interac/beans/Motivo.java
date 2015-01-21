@@ -23,5 +23,14 @@ public class Motivo implements Serializable {
 	public void setDesMotivo(String desMotivo) {
 		this.desMotivo = desMotivo;
 	}
+	
+	public String getMotivo() {
+		String motivo = "\nDATOS DE Motivo:";
+		
+		motivo += "\ncodMotivo: "+this.codMotivo;  
+		motivo += "\nmdesMotivo: "+this.desMotivo;
+
+		return motivo;
+	}
 
 }

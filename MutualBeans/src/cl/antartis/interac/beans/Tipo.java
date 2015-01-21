@@ -23,5 +23,12 @@ public class Tipo implements Serializable {
 	public void setDesTipo(String desTipo) {
 		this.desTipo = desTipo;
 	}
+	public String getTipo() {
+		String tipo = "\nDATOS DE Tipo:";
+		
+		tipo += "\ncodcodTipo: "+this.codTipo;  
+		tipo += "\ndesTipo: "+this.desTipo;
 
+		return tipo;
+	}
 }

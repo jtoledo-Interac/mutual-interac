@@ -24,12 +24,11 @@ public class Medio implements Serializable {
 		this.desMedio = desMedio;
 	}
 
-	public String getProducto() {
+	public String getMedio() {
 		String medio = "\nDATOS DE Medio:";
 		
-		medio += "\ntipoLogueo: "+this.codMedio;  
-		medio += "\nmid: "+this.desMedio;
-	
+		medio += "\ncodMedio: "+this.codMedio;  
+		medio += "\ndesMedio: "+this.desMedio;
 
 		return medio;
 	}

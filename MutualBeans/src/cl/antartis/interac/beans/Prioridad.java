@@ -23,5 +23,14 @@ public class Prioridad implements Serializable {
 	public void setDesPrioridad(String desPrioridad) {
 		this.desPrioridad = desPrioridad;
 	}
+	
+	public String getPrioridad() {
+		String prioridad = "\nDATOS DE Prioridad:";
+		
+		prioridad += "\ncodPrioridad: "+this.codPrioridad;  
+		prioridad += "\ndesPrioridad: "+this.desPrioridad;
+
+		return prioridad;
+	}
 
 }

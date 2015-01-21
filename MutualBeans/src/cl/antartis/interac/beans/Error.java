@@ -35,7 +35,7 @@ public class Error implements Serializable {
 	}
 	
 	public String getError(){
-		String error = "\nDATOS DE ERROR:";
+		String error = "\nDATOS DE Error:";
 		error += "\nnumError: "+this.numError;  
 		error += "\nmsjError: "+this.msjError;
 		

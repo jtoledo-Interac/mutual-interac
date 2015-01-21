@@ -67,10 +67,10 @@ public class Login implements Serializable {
 		String login = "\nDATOS DE Login:";
 		login += "\ntipoLogueo: "+this.tipoLogueo;  
 		login += "\nmid: "+this.id;
-		login += "\nmid: "+this.username;
-		login += "\nmid: "+this.password;
-		login += "\nmid: "+this.host;
-		login += "\nmid: "+this.idioma;
+		login += "\nmusername: "+this.username;
+		login += "\nmpassword: "+this.password;
+		login += "\nmhost: "+this.host;
+		login += "\nmidioma: "+this.idioma;
 
 		
 		

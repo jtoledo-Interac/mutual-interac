@@ -24,7 +24,7 @@ public class Area implements Serializable {
 		this.desArea = desArea;
 	}
 
-	public String getProducto() {
+	public String getArea() {
 		String area = "\nDATOS DE Area:";
 		area += "\ncodArea: " + this.codArea;
 		area += "\ndesArea: " + this.desArea;
