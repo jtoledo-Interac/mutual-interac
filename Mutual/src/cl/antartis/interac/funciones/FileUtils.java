@@ -4,20 +4,15 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Iterator;
-
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 
 public class FileUtils {
 	
-	public static Object[][] excelGraficoBarras(String pathIn, int cantEtiquetas, int cantDatos){
-		int f = cantDatos;
-		int c = cantEtiquetas;
+	public static String[][] excelGraficoBarras(String pathIn, int f, int c){
 		FileInputStream file = null;
-		Object[][] out = new Object[f][c];
+		String[][] out = new String[f][c];
 		try {
 			file = new FileInputStream(new File(pathIn));			
 		} catch (FileNotFoundException e) {
@@ -31,16 +26,13 @@ public class FileUtils {
 		try {
 			workbook = new HSSFWorkbook(file);
 			HSSFSheet sheet = workbook.getSheetAt(0);
-			Iterator<Row> rowIterator = sheet.iterator();
-			int i = 0;
-			while(rowIterator.hasNext()){
-				Row row = rowIterator.next();
+			for(int i =0;i<f;i++){
+				Row row =sheet.getRow(i); 
 				for(int j=0;j<c;j++){
-					out[i++][j]=row.getCell(j).toString();
+					out[i][j]=row.getCell(j).toString();
 				}
 			}
 			workbook.close();
-			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -78,4 +70,6 @@ public class FileUtils {
 		
 		return out;
 	}
+	
+	
 }

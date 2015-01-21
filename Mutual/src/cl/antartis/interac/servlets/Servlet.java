@@ -31,6 +31,7 @@ import cl.antartis.interac.ejb.interfaces.EJBRemoto;
 import cl.antartis.interac.funciones.ConfigUtils;
 import cl.antartis.interac.funciones.EmailUtils;
 import cl.antartis.interac.funciones.Encriptador;
+import cl.antartis.interac.funciones.FileUtils;
 import cl.antartis.interac.funciones.Utils;
 
 public class Servlet extends HttpServlet {
@@ -772,6 +773,23 @@ public class Servlet extends HttpServlet {
 
 		pagDestino = "contenedor.jsp";
 	}
+	
+	public void graficar(HttpServletRequest request, HttpServletResponse response){
+		String pathIn = "graficar.xls";
+		String [][] datosExcel = FileUtils.excelGraficoBarras(pathIn, 16, 2);
+		String[] etiquetas = new String[16];
+		String[] datos = new String[16];
+		
+		for(int i=0;i<16;i++){
+			etiquetas[i] = datosExcel[i][0];
+			datos[i] = datosExcel[i][1];
+		}
+		request.setAttribute("etiquetas", etiquetas);
+		request.setAttribute("datos", datos);
+		
+		pagDestino = "contenedor.jsp";
+	}
+	
 	/**********PRODUCTOS****************************************************************************/	
 	public void productos(HttpServletRequest request, HttpServletResponse response) 
 	{
