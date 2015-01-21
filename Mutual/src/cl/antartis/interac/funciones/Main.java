@@ -11,11 +11,7 @@ public class Main {
 		for(int i=0;i<16;i++){
 			System.out.println(datos[i][0]+" \t "+datos[i][1]);
 		}
-		
-		
-		
-		
-		
+				
 //		String path="prueba.xls";
 //		FileInputStream file = null;
 //		try {
