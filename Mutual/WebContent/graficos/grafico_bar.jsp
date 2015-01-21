@@ -5,27 +5,19 @@
 </div>
 
 <script>
-	var etiquetas = [];
-	var datos =[];
-	<%
-		String[] arreglo = (String[])request.getAttribute("etiquetas");
-		for(int i=0;i<arreglo.length;i++){
-			%>etiquetas[<%=i%>] = "<%=arreglo[i]%>";<%
-		}
-		arreglo = (String[])request.getAttribute("datos");
-		for(int i=0;i<arreglo.length;i++){
-			%>datos[<%=i%>] = "<%=arreglo[i]%>";<%
-		}
-	%>
+	var hola = [239126, 336769, 622640, 312486, 771085, 1825757, 7314176, 918751, 1042989, 2114286, 989798, 40432, 841123, 164661, 108328,];
 	var barData = {
-		labels: etiquetas,
+		labels:["XV - Arica y Parinacota", "I - Tarapacá", "II - Antofagasta","III - Atacama",
+		        "IV - Coquimbo", "V - Valparaíso","RM - Metropolitana" ,"VI - O'Higgins",
+		        "VII - Maule", "VIII - Biobío", "IX - Araucanía", "XIV - Los Riíos", "X - Los Lagos",
+		        "XI - Aysén", "XII - Magallanes"],
 		datasets :[
 	        {
 		       	fillColor : "rgba(220,220,220,0.5)",
 				strokeColor : "rgba(220,220,220,0.8)",
 				highlightFill: "rgba(220,220,220,0.75)",
 				highlightStroke: "rgba(220,220,220,1)",
-				data : datos
+				data : hola
         	},
 		]
 	}

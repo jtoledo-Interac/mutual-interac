@@ -20,8 +20,13 @@ import cl.antartis.interac.beans.Cartera;
 import cl.antartis.interac.beans.Constantes;
 import cl.antartis.interac.beans.Documento;
 import cl.antartis.interac.beans.Empresa;
+import cl.antartis.interac.beans.Estado;
+import cl.antartis.interac.beans.Medio;
+import cl.antartis.interac.beans.Motivo;
+import cl.antartis.interac.beans.Prioridad;
 import cl.antartis.interac.beans.Producto;
 import cl.antartis.interac.beans.Reclamo;
+import cl.antartis.interac.beans.Tipo;
 import cl.antartis.interac.beans.Usuario;
 import cl.antartis.interac.beans.Sesion;
 import cl.antartis.interac.beans.Error;
@@ -1434,12 +1439,19 @@ public class MutualEJB implements EJBRemoto {
 	public Map<String, Object> buscarParametrosReclamo(Map<String, Object> mapaEntrada) {
 		CallableStatement cStmt = null;
 		Map<String, Object> mapaSalida = null;
-		ArrayList<Producto> listaProductos = null;
+		ArrayList<Tipo> listaTipos = null;
+		ArrayList<Motivo> listaMotivos = null;
+		ArrayList<Prioridad> listaPrioridades = null;
+		ArrayList<Estado> listaEstados = null;
+		ArrayList<Medio> listaMedios = null;
 		ArrayList<Cartera> listaCarteras = null;
-		ArrayList<Area> listaAreas = null;
-		Producto producto = null;
+		Tipo tipo = null;
+		Motivo motivo = null;
+		Prioridad prioridad = null;
+		Estado estado = null;
+		Medio medio = null;
 		Cartera cartera = null;
-		Area area = null;
+		
 		String numError = "0";
 		String msjError = "";
 
@@ -1450,27 +1462,72 @@ public class MutualEJB implements EJBRemoto {
 
 			dbConeccion = interacDS.getConnection();
 
-			cStmt = dbConeccion.prepareCall("{ call buscar_parametros(?,?,?,?,?) }");
+			cStmt = dbConeccion.prepareCall("{ call buscar_par_reclamos(?,?,?,?,?,?,?,?) }");
 			
 			cStmt.registerOutParameter(1, Types.OTHER);// cursor$
 			cStmt.registerOutParameter(2, Types.OTHER);// cursor$
 			cStmt.registerOutParameter(3, Types.OTHER);// cursor$
-			cStmt.registerOutParameter(4, Types.VARCHAR);// numerror$
-			cStmt.registerOutParameter(5, Types.VARCHAR);// msjerror$
+			cStmt.registerOutParameter(4, Types.OTHER);// cursor$
+			cStmt.registerOutParameter(5, Types.OTHER);// cursor$
+			cStmt.registerOutParameter(6, Types.OTHER);// cursor$
+			cStmt.registerOutParameter(7, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(8, Types.VARCHAR);// msjerror$
 
 			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
 			cStmt.execute();
 
-			ResultSet rsCarteras = (ResultSet) cStmt.getObject(1);
-			ResultSet rsProductos = (ResultSet) cStmt.getObject(2);
-			ResultSet rsAreas = (ResultSet) cStmt.getObject(3);
-			numError = cStmt.getString(4);
-			msjError = cStmt.getString(5);
+			
+			ResultSet rsTipos = (ResultSet) cStmt.getObject(1);
+			ResultSet rsMotivos = (ResultSet) cStmt.getObject(2);
+			ResultSet rsPrioridades = (ResultSet) cStmt.getObject(3);
+			ResultSet rsCarteras = (ResultSet) cStmt.getObject(4);
+			ResultSet rsEstados = (ResultSet) cStmt.getObject(5);
+			ResultSet rsMedios = (ResultSet) cStmt.getObject(6);
+			numError = cStmt.getString(7);
+			msjError = cStmt.getString(8);
+			
+			listaTipos = new ArrayList<Tipo>();
+
+			System.out.println("++++++++++++++++++");
+			
+			if(rsTipos !=null){
+				while (rsTipos.next()) {
+					tipo = new Tipo();
+					tipo.setCodTipo(rsTipos.getString("cod_tipo"));
+					tipo.setDesTipo(rsTipos.getString("des_tipo"));
+					listaTipos.add(tipo);
+				}
+				rsTipos.close();
+			}
+		
+			listaMotivos = new ArrayList<Motivo>();
+
+			if(rsMotivos !=null){
+				while (rsMotivos.next()) {
+					motivo = new Motivo();
+					motivo.setCodMotivo(rsMotivos.getString("cod_motivo"));
+					motivo.setDesMotivo(rsMotivos.getString("des_motivo"));
+					listaMotivos.add(motivo);
+				}
+				rsMotivos.close();
+			}
+			
+			listaPrioridades = new ArrayList<Prioridad>();
+
+			if(rsPrioridades !=null){
+				while (rsPrioridades.next()) {
+					prioridad = new Prioridad();
+					prioridad.setCodPrioridad(rsPrioridades.getString("cod_prioridad"));
+					prioridad.setDesPrioridad(rsPrioridades.getString("des_prioridad"));
+					listaPrioridades.add(prioridad);
+				}
+				rsPrioridades.close();
+			}
 			
 			listaCarteras = new ArrayList<Cartera>();
-
-			if(rsCarteras !=null){
-				while (rsCarteras.next()) {
+			
+			if(rsCarteras != null){
+				while (rsCarteras.next()){
 					cartera = new Cartera();
 					cartera.setCodCartera(rsCarteras.getString("cod_cartera"));
 					cartera.setDesCartera(rsCarteras.getString("des_cartera"));
@@ -1478,30 +1535,31 @@ public class MutualEJB implements EJBRemoto {
 				}
 				rsCarteras.close();
 			}
-		
-			listaProductos = new ArrayList<Producto>();
-
-			if(rsProductos !=null){
-				while (rsProductos.next()) {
-					producto = new Producto();
-					producto.setCodProducto(rsProductos.getString("cod_producto"));
-					producto.setDesProducto(rsProductos.getString("des_producto"));
-					listaProductos.add(producto);
+			
+			listaEstados = new ArrayList<Estado>();
+			
+			if(rsEstados != null){
+				while (rsEstados.next()){
+					estado = new Estado();
+					estado.setCodEstado(rsEstados.getString("cod_estado"));
+					estado.setDesEstado(rsEstados.getString("des_estado"));
+					listaEstados.add(estado);
 				}
-				rsProductos.close();
+				rsEstados.close();
 			}
 			
-			listaAreas = new ArrayList<Area>();
-
-			if(rsAreas !=null){
-				while (rsAreas.next()) {
-					area = new Area();
-					area.setCodArea(rsAreas.getString("cod_area"));
-					area.setDesArea(rsAreas.getString("des_area"));
-					listaAreas.add(area);
+			listaMedios = new ArrayList<Medio>();
+			
+			if(rsMedios != null){
+				while (rsMedios.next()){
+					medio = new Medio();
+					medio.setDesMedio(rsMedios.getString("des_medio_respuesta"));
+					medio.setCodMedio(rsMedios.getString("cod_medio_respuesta"));
+					listaMedios.add(medio);
 				}
-				rsAreas.close();
+				rsMedios.close();
 			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			log.info("SQL Exception");
@@ -1525,9 +1583,12 @@ public class MutualEJB implements EJBRemoto {
 		log.info("Num Error: "+numError);
 		log.info("Msj Error: "+msjError);
 		
+		mapaSalida.put("listaTipos", listaTipos);
+		mapaSalida.put("listaMotivos", listaMotivos);
+		mapaSalida.put("listaPrioridades", listaPrioridades);
 		mapaSalida.put("listaCarteras", listaCarteras);
-		mapaSalida.put("listaProductos",listaProductos);
-		mapaSalida.put("listaAreas",listaAreas);
+		mapaSalida.put("listaEstados", listaEstados);
+		mapaSalida.put("listaMedios", listaMedios);
 		mapaSalida.put("numError", numError);
 		mapaSalida.put("msjError", msjError);
 

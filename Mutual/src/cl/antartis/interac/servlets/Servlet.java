@@ -550,6 +550,8 @@ public class Servlet extends HttpServlet {
 		
 		log.info("ID Documento: "+mapaSalida.get("idDocumento"));
 		
+		System.out.println("Buscar parametros agregar");
+		
 		mapaSalida = ejbRemoto.buscarParametros(mapaEntrada);
 		
 		request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
@@ -933,6 +935,15 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 	
+		mapaSalida = ejbRemoto.buscarParametrosReclamo(mapaEntrada);
+		
+		request.setAttribute("listaTipos", mapaSalida.get("listaTipos"));
+		request.setAttribute("listaMotivos", mapaSalida.get("listaMotivos"));
+		request.setAttribute("listaPrioridades", mapaSalida.get("listaPrioridades"));
+		request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
+		request.setAttribute("listaEstados", mapaSalida.get("listaEstados"));
+		request.setAttribute("listaMedios", mapaSalida.get("listaMedios"));
+		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
 		Reclamo reclamo = new Reclamo();
@@ -980,6 +991,12 @@ public class Servlet extends HttpServlet {
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
 		mapaSalida = ejbRemoto.agregarReclamo(mapaEntrada);
+		
+		mapaSalida = ejbRemoto.buscarParametrosReclamo(mapaEntrada);
+	
+		request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
+		request.setAttribute("listaProductos", mapaSalida.get("listaProductos"));
+		request.setAttribute("listaAreas", mapaSalida.get("listaAreas"));
 		
 		if(mapaSalida!=null){
 			reclamo = (Reclamo)mapaSalida.get("reclamo");
