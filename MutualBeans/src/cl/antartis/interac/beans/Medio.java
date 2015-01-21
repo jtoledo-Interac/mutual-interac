@@ -25,8 +25,12 @@ public class Medio implements Serializable {
 	}
 
 	public String getProducto() {
-		String area = "\nDATOS DE Area:";
+		String medio = "\nDATOS DE Medio:";
+		
+		medio += "\ntipoLogueo: "+this.codMedio;  
+		medio += "\nmid: "+this.desMedio;
+	
 
-		return area;
+		return medio;
 	}
 }

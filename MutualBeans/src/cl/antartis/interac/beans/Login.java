@@ -63,4 +63,17 @@ public class Login implements Serializable {
 	public void setIdioma(String idioma) {
 		this.idioma = idioma;
 	}
+	public String setLogin(){
+		String login = "\nDATOS DE Login:";
+		login += "\ntipoLogueo: "+this.tipoLogueo;  
+		login += "\nmid: "+this.id;
+		login += "\nmid: "+this.username;
+		login += "\nmid: "+this.password;
+		login += "\nmid: "+this.host;
+		login += "\nmid: "+this.idioma;
+
+		
+		
+		return login;
+	}
 }

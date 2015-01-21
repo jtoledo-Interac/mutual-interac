@@ -232,8 +232,35 @@ public class Reclamo implements Serializable {
 
 	public String getReclamo() {
 		String reclamo = "\nDATOS DE Reclamo:";
-		reclamo += "\nglosa: " + this.glosa;
 		reclamo += "\nidReclamo: " + this.idReclamo;
+		reclamo += "\nnumAdherente" +this.numAdherente;
+		reclamo += "\nnombreSolicitante" +this.nombreSolicitante; 												
+		reclamo += "\nemailSolicitante" +this.emailSolicitante;
+		reclamo += "\nfonoSolicitante" +this.fonoSolicitante;
+		reclamo += "\nregionSolicitante" +this.regionSolicitante;
+		reclamo += "\ncodTipo" +this.codTipo;
+		reclamo += "\ncodMotivo" +this.codMotivo;
+		reclamo += "\ncodPrioridad" +this.codPrioridad;
+		reclamo += "\ncodCartera" +this.codCartera;
+		reclamo += "\nfecIngreso" +this.fecIngreso;
+		reclamo += "\nglosa" +this.glosa;
+		reclamo += "\nadjunto" +this.adjunto;
+		reclamo += "\nobservaciones" +this.observaciones;
+		reclamo += "\ncodEstado" +this.codEstado;
+		reclamo += "\nresponsableIngreso" +this.responsableIngreso;
+		reclamo += "\nresponsableActual" +this.responsableActual;
+		reclamo += "\ndiasBandeja" +this.diasBandeja;
+		reclamo += "\ndiasSistema" +this.diasSistema;
+		reclamo += "\ncodMedioRespuesta" +this.codMedioRespuesta;
+		reclamo += "\nfecRespuesta" +this.fecRespuesta;
+	
+	
+		
+		
+		
+		
+		
+		
 		return reclamo;
 	}
 	

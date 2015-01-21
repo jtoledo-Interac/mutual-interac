@@ -23,5 +23,16 @@ public class Estado implements Serializable {
 	public void setDesEstado(String desEstado) {
 		this.desEstado = desEstado;
 	}
+	public String getEstado(){
+		String estado = "\nDATOS DE Estado:";
+		estado += "\ncodEstado: "+this.codEstado;  
+		estado += "\ndesEstado: "+this.desEstado;
+		
+		return estado;
+	}
+	
+	
+		
+	
 
 }

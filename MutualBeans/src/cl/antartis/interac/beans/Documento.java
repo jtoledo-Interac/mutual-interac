@@ -117,6 +117,19 @@ public class Documento implements Serializable {
 
 	public String getDocumento() {
 		String documento = "\nDATOS DE Documento:";
+		documento += "\nidDocumento" + this.idDocumento; 
+		documento += "\nnombre" + this.nombre;
+		documento += "\nnumFolio" + this.numFolio;
+		documento += "\nnumAdherente" + this.numAdherente;
+		documento += "\ndescripcion" + this.descripcion;
+		documento += "\ncodArea" + this.codArea;
+		documento += "\ndesArea" + this.desArea;
+		documento += "\ncodCartera" + this.codCartera;
+		documento += "\ndesCartera" + this.desCartera;
+		documento += "\ncodProducto" + this.codProducto;
+		documento += "\ndesProducto" + this.desProducto;
+		documento += "\nfecCreacion" + this.fecCreacion;
+
 		return documento;
 	}
 }
