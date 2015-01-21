@@ -596,12 +596,13 @@ public class Servlet extends HttpServlet {
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
 		Documento documento = new Documento();
-		/*documento.setIdDocumento(Utils.stringToNum(request.getParameter("nIdUsuario"));
-		
-		usuario.setnIdUsuario(Utils.stringToNum(request.getParameter("nIdUsuario")));
-		usuario.setsRut(Utils.getRutSinDV(request.getParameter("sRut")));
-		usuario.setsDV(request.getParameter("sDV"));
-	*/
+		documento.setNombre(request.getParameter("nombre"));
+		documento.setNumFolio(request.getParameter("numFolio"));
+		documento.setNumAdherente(request.getParameter("numAdherente"));
+		documento.setDescripcion(request.getParameter("descripcion"));
+		documento.setCodArea(request.getParameter("codArea"));
+		documento.setCodCartera(request.getParameter("codCartera"));
+		documento.setCodProducto(request.getParameter("codProducto"));
 		
 		mapaEntrada.put("documento",documento);
 		

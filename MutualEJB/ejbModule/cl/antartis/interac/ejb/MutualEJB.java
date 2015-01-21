@@ -923,8 +923,11 @@ public class MutualEJB implements EJBRemoto {
 				documento.setNombre(rs.getString("nombre"));
 				documento.setNumFolio(rs.getString("num_folio"));
 				documento.setNumAdherente(rs.getString("num_adherente"));
+				documento.setDescripcion(rs.getString("descripcion"));
 				documento.setCodCartera(rs.getString("cod_cartera"));
 				documento.setCodProducto(rs.getString("cod_producto"));
+				documento.setCodArea(rs.getString("cod_area"));
+				documento.setFecCreacion(Utils.formateaFecha(rs.getString("fec_creacion")));
 			}
 			
 			rs.close();
