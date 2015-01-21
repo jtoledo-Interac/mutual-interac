@@ -8,13 +8,15 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 
-public class FileUtils {
+public class FileUtils{
 	
 	public static String[][] excelGraficoBarras(String pathIn, int f, int c){
+		System.out.println("Entra al metodo excelGraficoBarras");
 		FileInputStream file = null;
 		String[][] out = new String[f][c];
 		try {
-			file = new FileInputStream(new File(pathIn));			
+			file = new FileInputStream(new File(pathIn));
+			System.out.println("abre el archivo");
 		} catch (FileNotFoundException e) {
 			System.out.println("No se pudo abrir el archivo "+ pathIn);
 			e.printStackTrace();
@@ -24,6 +26,7 @@ public class FileUtils {
 		HSSFWorkbook workbook;
 		
 		try {
+			System.out.println("1");
 			workbook = new HSSFWorkbook(file);
 			HSSFSheet sheet = workbook.getSheetAt(0);
 			for(int i =0;i<f;i++){
@@ -32,6 +35,7 @@ public class FileUtils {
 					out[i][j]=row.getCell(j).toString();
 				}
 			}
+			System.out.println("2");
 			workbook.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -41,35 +45,4 @@ public class FileUtils {
 		
 		return out;
 	}
-	
-	public static Object[][] excelColumnas(String pathIn,int f,int c){
-		FileInputStream file = null;
-		Object[][] out = new Object[f][c];
-		
-		try {
-			file = new FileInputStream(new File(pathIn));
-		} catch (FileNotFoundException e) {
-			System.out.println("No se pudo abrir el archivo "+ pathIn);
-			e.printStackTrace();
-		}
-		
-		HSSFWorkbook workbook;
-		
-		try {
-			workbook = new HSSFWorkbook(file);
-			HSSFSheet sheet = workbook.getSheetAt(0);
-			//Object[0][0]
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-			
-			
-		
-		return out;
-	}
-	
-	
 }
