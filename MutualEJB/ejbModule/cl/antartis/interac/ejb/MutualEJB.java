@@ -631,33 +631,367 @@ public class MutualEJB implements EJBRemoto {
 	}
 
 	public Map<String, Object> agregarCartera(Map<String, Object> mapaEntrada) {
-		// TODO Auto-generated method stub
-		return null;
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		Cartera cartera = null;
+		String numError = "0";
+		String msjError = "";
+		long idDocumento = 0;
+		
+		try {
+			log.info("Agregar cartera");
+
+			cartera = (Cartera)mapaEntrada.get("cartera");
+			
+			log.info(cartera.getCartera());
+			
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call agregar_cartera(?,?,?,?,?) }"); //falta SP, posibles cambios aqui
+			cStmt.setString(1, cartera.getCodCartera());
+			cStmt.setString(2, cartera.getDesCartera());
+			
+			cStmt.registerOutParameter(4, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(5, Types.VARCHAR);// msjerror$
+
+			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
+			cStmt.execute();
+			
+	
+			numError = cStmt.getString(3);
+			msjError = cStmt.getString(4);
+			
+			log.info("Num Error: "+numError);
+			log.info("Msj Error: "+msjError);
+	
+		}catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+			
+		}
+		finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+		
+		mapaSalida.put("numError", numError);
+		mapaSalida.put("msjError", msjError);
+			
+		return mapaSalida;
+	
 	}
 
 	public Map<String, Object> cargarCartera(Map<String, Object> mapaEntrada) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		Cartera cartera = new Cartera();
+		
+		Error error = new Error();
+		
+		try {
+			log.info("Cargar carteras");
+						
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call cargar_cartera(?,?,?,?) }");
+			cStmt.setString(1, (String)mapaEntrada.get("codCartera")); 
+			cStmt.registerOutParameter(2, Types.OTHER);// carteras$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+
+			cStmt.execute();
+			
+			ResultSet rsCartera = (ResultSet) cStmt.getObject(2);
+			error.setNumError(cStmt.getString(3));
+			error.setMsjError(cStmt.getString(4));
+						
+			while (rsCartera.next()) {
+				cartera = new Cartera();
+				cartera.setCodCartera(rsCartera.getString("cod_cartera"));
+				cartera.setDesCartera(rsCartera.getString("enp_nidencuesta"));
+			}
+			
+			rsCartera.close();			
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+		mapaSalida.put("cartera",cartera);
+		mapaSalida.put("error", error);
+		
+		return mapaSalida;		
+		
+		
 	}
 
 	public Map<String, Object> modificarCartera(Map<String, Object> mapaEntrada) {
-		// TODO Auto-generated method stub
-		return null;
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		Cartera cartera = null;
+		Error error = new Error();
+
+		try {
+			log.info("Modificar cartera");
+			
+			cartera = (Cartera)mapaEntrada.get("cartera");
+
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call modificar_cartera(?,?,?,?) }");
+			cStmt.setString(1,cartera.getCodCartera());
+			cStmt.setString(2,cartera.getDesCartera());
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+
+			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
+			cStmt.execute();
+			
+			error.setNumError(cStmt.getString(3));
+			error.setMsjError(cStmt.getString(4));
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+
+		log.info("Num Error: "+ error.getNumError());
+		log.info("Msj Error: "+ error.getMsjError());
+
+		return mapaSalida;
 	}
 
 	public Map<String, Object> eliminarCartera(Map<String, Object> mapaEntrada) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		String cod_cartera = "";
+		
+		String numError = "0";
+		String msjError = "";
+		
+		try {
+			log.info("Eliminar cartera");
+
+			cod_cartera = (String)mapaEntrada.get("cod_cartera");
+			
+			log.info("cod_cartera: "+cod_cartera);
+			
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call eliminar_cartera(?,?,?) }");
+			cStmt.setString(1, cod_cartera);
+			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
+
+			cStmt.execute();
+			numError = cStmt.getString(2);
+			msjError = cStmt.getString(3);			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+		mapaSalida.put("numError", numError);
+		mapaSalida.put("msjError", msjError);
+		
+		return mapaSalida;
+	
 	}
 
 	public Map<String, Object> agregarProducto(Map<String, Object> mapaEntrada) {
-		// TODO Auto-generated method stub
-		return null;
+	
+		CallableStatement cStmt = null;
+		Error error = new Error();
+		Map<String, Object> mapaSalida = null;
+		Producto producto = new Producto();
+		String numError = "0";
+		String msjError = "";
+
+		try {
+			log.info("Buscar Produtos");
+			
+			producto = (Producto)mapaEntrada.get("producto");
+
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call agergaar_pructo(?,?,?,?) }"); //cambiar segun SP
+			
+			cStmt.setString(1, producto.getCodProducto());// cursor$
+			cStmt.setString(2, producto.getDesProducto());// cursor$			
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+
+			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
+			cStmt.execute();
+
+			error.setNumError(cStmt.getString(3));
+			error.setMsjError(cStmt.getString(4));
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+
+		log.info("Num Error: "+ error.getNumError());
+		log.info("Msj Error: "+ error.getMsjError());
+
+		return mapaSalida;		
+		
+		
 	}
 
 	public Map<String, Object> cargarProducto(Map<String, Object> mapaEntrada) {
-		// TODO Auto-generated method stub
-		return null;
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		String  cod_producto = "";
+		Producto producto = null;
+		String numError = "0";
+		String msjError = "";
+		
+		try {
+			log.info("Cargar producto");
+
+			cod_producto = (String)mapaEntrada.get("cod_producto");
+			
+			log.info("cod_producto: "+cod_producto);
+			
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call cargar_producto(?,?,?,?) }");
+			cStmt.setString(1, cod_producto);
+			cStmt.registerOutParameter(2, Types.OTHER);// documento$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+
+			cStmt.execute();
+			ResultSet rs = (ResultSet) cStmt.getObject(2);
+			numError = cStmt.getString(3);
+			msjError = cStmt.getString(4);
+			
+			while (rs.next()) {
+				
+				producto= new Producto();
+				producto.setCodProducto(rs.getString("cod_producto"));
+				producto.setDesProducto(rs.getString("des_producto"));
+			}
+			
+			rs.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+
+		//log.info(documento.getDocumento());
+		mapaSalida.put("producto",producto);
+		mapaSalida.put("numError", numError);
+		mapaSalida.put("msjError", msjError);
+		
+		return mapaSalida;
+		
+		
+		
+		
 	}
 
 	public Map<String, Object> modificarEmpresa(Map<String, Object> mapaEntrada) {
@@ -684,8 +1018,8 @@ public class MutualEJB implements EJBRemoto {
 			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
 			cStmt.execute();
 			
-			error.setNumError(cStmt.getString(8));
-			error.setMsjError(cStmt.getString(9));
+			error.setNumError(cStmt.getString(3));
+			error.setMsjError(cStmt.getString(4));
 		
 		} catch (SQLException e) {
 			e.printStackTrace();
