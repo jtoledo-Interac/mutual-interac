@@ -109,21 +109,13 @@ public class Servlet extends HttpServlet {
 		mapaEntrada.put("usuario", usuario);
 		mapaSalida = ejbRemoto.logIn(mapaEntrada);
 		
-		/*
-		mapaSalida = ejbRemoto.buscarParametros(mapaEntrada);
-		
-		request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
-		request.setAttribute("listaProductos", mapaSalida.get("listaProductos"));
-		request.setAttribute("listaAreas", mapaSalida.get("listaAreas"));
-		*/
-		//TODO: buscar lista perfiles disponibles y devolverla
-		
 		error = (Error)mapaSalida.get("error");
 		
 		log.info("Num Error: "+error.getNumError());
 		log.info("Msj Error: "+error.getMsjError());
 
 		if(error.getNumError().equals("0")){
+			request.setAttribute("nombre", mapaSalida.get("nombre"));
 			int sessionTime = Integer.parseInt(ConfigUtils.loadProperties("timeSession"));
 			System.out.println("sessionTime: "+sessionTime+"[seg]");
 			

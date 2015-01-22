@@ -102,7 +102,7 @@ $(function()
 	</div>
 	<div class="info-user" onload="cargarNombre()">
 		<br />
-		<p id="contNombre"><% out.print("bienvenido(a): "+session.getAttribute("user") );	%></p>
+		<p id="contNombre"><% out.print("bienvenido(a): "+request.getAttribute("nombre") );	%></p>
 		<form id="logOut" action="Servlet" method="post">
 			<input type="hidden" id="accionLogOut" name="accion">
 			<a href="#" id="cerrar">Cerrar Sesión</a>

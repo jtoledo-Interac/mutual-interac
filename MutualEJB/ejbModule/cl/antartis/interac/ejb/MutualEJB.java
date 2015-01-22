@@ -576,34 +576,21 @@ public class MutualEJB implements EJBRemoto {
 
 			dbConeccion = interacDS.getConnection();
 
-			cStmt = dbConeccion.prepareCall("{ call login(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
+			cStmt = dbConeccion.prepareCall("{ call login(?,?,?,?,?}");
 			cStmt.setString(1, usuario.getsNomUsuario());
 			cStmt.setString(2, usuario.getsContrasena());
-			cStmt.setString(3, usuario.getsHost());
-			cStmt.setString(4, Constantes.codAplicacion);
-			cStmt.setString(5, usuario.getsCodIdioma());
-			cStmt.registerOutParameter(6, Types.VARCHAR);// ses_idsesion$
-			cStmt.registerOutParameter(7, Types.VARCHAR);// ses_fhologueo$
-			cStmt.registerOutParameter(8, Types.VARCHAR);// ses_fhoultimaconsulta$
-			cStmt.registerOutParameter(9, Types.VARCHAR);// ses_scodaplicacion$
-			cStmt.registerOutParameter(10, Types.VARCHAR);// ses_snumusuario$
-			cStmt.registerOutParameter(11, Types.VARCHAR);// ses_srutusuario$
-			cStmt.registerOutParameter(12, Types.VARCHAR);// ses_snomusuario$
-			cStmt.registerOutParameter(13, Types.VARCHAR);// ses_scodidioma$
-			cStmt.registerOutParameter(14, Types.VARCHAR);// ses_data01$
-			cStmt.registerOutParameter(15, Types.VARCHAR);// ses_data02$
-			cStmt.registerOutParameter(16, Types.VARCHAR);// ses_data03$
-			cStmt.registerOutParameter(17, Types.VARCHAR);// ses_data04$
-			cStmt.registerOutParameter(18, Types.VARCHAR);// ses_data05$
-			cStmt.registerOutParameter(19, Types.VARCHAR);// expiracontrasena$
-			cStmt.registerOutParameter(20, Types.VARCHAR);// numerror$
-			cStmt.registerOutParameter(21, Types.VARCHAR);// msjerror$
+			cStmt.registerOutParameter(3, Types.VARCHAR);
+			cStmt.registerOutParameter(4, Types.VARCHAR);
+			cStmt.registerOutParameter(5, Types.VARCHAR);
+			
 
 			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
 			System.out.println("["+usuario.getsNomUsuario()+" - "+usuario.getsContrasena()+"]");
 			cStmt.execute();
-			error.setNumError(cStmt.getString(20));
-			error.setMsjError(cStmt.getString(21));
+			
+			mapaSalida.put("nombre", cStmt.getString(3));
+			error.setNumError(cStmt.getString(4));
+			error.setMsjError(cStmt.getString(5));
 			System.out.println(error.getError()+"<----");
 			
 		} catch (SQLException e) {
@@ -625,7 +612,6 @@ public class MutualEJB implements EJBRemoto {
 		}
 
 		mapaSalida.put("error", error);
-
 		return mapaSalida;
 	}
 
