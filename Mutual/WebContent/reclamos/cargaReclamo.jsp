@@ -9,11 +9,12 @@
 
 <form id="formEdita" action="Servlet" method="post">
 	<input type="hidden"	id="accion" 				name="accion" 					value="modificarReclamo">
+	<input type="hidden"	id="idReclamo"				name="idReclamo"	value="${reclamo.idReclamo }" >
 	<input type="text" 		id="num_adherente" 			name="num_adherente"			placeholder="Nº Adherente" value="${reclamo.numAdherente}">
-	<input type="text" 		id="nombre_solicitante" 	name="nombre_solicitante"		placeholder="nombre_solicitante" value="${reclamo.numAdherente}">
-	<input type="text" 		id="email_solicitante" 		name="email_solicitante" 		placeholder="email_solicitante" value="${reclamo.numAdherente}">
-	<input type="text" 		id="fono_solicitante" 		name="fono_solicitante" 		placeholder="fono_solicitante" value="${reclamo.numAdherente}">
-	<input type="text" 		id="region_solicitante" 	name="region_solicitante" 		placeholder="region_solicitante" value="${reclamo.numAdherente}">
+	<input type="text" 		id="nombre_solicitante" 	name="nombre_solicitante"		placeholder="nombre_solicitante" value="${reclamo.nombreSolicitante}">
+	<input type="text" 		id="email_solicitante" 		name="email_solicitante" 		placeholder="email_solicitante" value="${reclamo.emailSolicitante}">
+	<input type="text" 		id="fono_solicitante" 		name="fono_solicitante" 		placeholder="fono_solicitante" value="${reclamo.fonoSolicitante}">
+	<input type="text" 		id="region_solicitante" 	name="region_solicitante" 		placeholder="region_solicitante" value="${reclamo.regionSolicitante}">
 	
 	<select id="codCartera" name="codCartera">
 		<option value="" selected>Seleccione una cartera</option>
@@ -64,13 +65,11 @@
 		</c:forEach>
 	</select> 
 
-	<input type="text" 		id="fec_ingreso" 			name="fec_ingreso" 			placeholder="fec_ingreso" class="fecha" value="${reclamo.numAdherente}" readonly>
-	<input type="text" 		id="glosa" 					name="glosa" 				placeholder="glosa" value="${reclamo.numAdherente}">
-	<input type="text" 		id="adjunto" 				name="adjunto" 				placeholder="adjunto" value="${reclamo.numAdherente}">
-	<input type="text" 		id="observaciones" 			name="observaciones" 		placeholder="observaciones" value="${reclamo.numAdherente}">
-	<input type="text" 		id="observaciones" 			name="observaciones" 		placeholder="observaciones" value="${reclamo.numAdherente}">
-	<input type="text" 		id="responsable_ingreso" 	name="responsable_ingreso" 	placeholder="responsable_ingreso" value="${reclamo.numAdherente}">		
-	<input type="text" 		id="responsable_ingreso" 	name="responsable_ingreso" 	placeholder="responsable_ingreso" value="${reclamo.numAdherente}">			
-	<input type="text" 		id="responsable_actual" 	name="responsable_actual" 	placeholder="responsable_actual" value="${reclamo.numAdherente}">		
-	<input type="text" 		id="fec_respuesta" 			name="fec_respuesta" 		placeholder="fec_respuesta" class="fecha" value="${reclamo.numAdherente}" readonly>
+	<input type="text" 		id="fec_ingreso" 			name="fec_ingreso" 			placeholder="fec_ingreso" class="fecha" value="${reclamo.fecIngreso}" readonly>
+	<input type="text" 		id="glosa" 					name="glosa" 				placeholder="glosa" value="${reclamo.glosa}">
+	<input type="text" 		id="adjunto" 				name="adjunto" 				placeholder="adjunto" value="${reclamo.adjunto}">
+	<input type="text" 		id="observaciones" 			name="observaciones" 		placeholder="observaciones" value="${reclamo.observaciones}">
+	<input type="text" 		id="responsable_ingreso" 	name="responsable_ingreso" 	placeholder="responsable_ingreso" value="${reclamo.responsableIngreso}">			
+	<input type="text" 		id="responsable_actual" 	name="responsable_actual" 	placeholder="responsable_actual" value="${reclamo.responsableActual}">		
+	<input type="text" 		id="fec_respuesta" 			name="fec_respuesta" 		placeholder="fec_respuesta" class="fecha" value="${reclamo.fecRespuesta}" readonly>
 </form>
