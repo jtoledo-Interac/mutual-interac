@@ -185,12 +185,13 @@
 	{  
 		var sData = "Servlet";
 		sData += "?accion=buscarReclamos";
-		sData += "&nombre="+$('#nombre').val();
-		sData += "&numFolio="+$('#numFolio').val();
-		sData += "&numAdherente="+$('#numAdherente').val();
+		sData += "&id_reclamo="+$('#id_reclamo').val();
+		sData += "&num_adherente="+$('#num_adherente').val();
 		sData += "&codCartera="+$('#codCartera').val();
-		sData += "&codProducto="+$('#codProducto').val();
-		sData += "&codArea="+$('#codArea').val();
+		sData += "&codTipo="+$('#codTipo').val();
+		sData += "&codEstado="+$('#codEstado').val();
+		sData += "&codPrioridad="+$('#codPrioridad').val();
+		
 		return sData;
 	}
 
@@ -227,30 +228,34 @@
 		<form id="formReclamo" action="Servlet" method="post">
 			<input type="button" 	id="btnBuscar" 		name="btnBuscar" 	value="Buscar"/>
 			<input type="button" 	id="btnAgregar" 	name="btnAgregar" 	value="Agregar"/>
-			<input type="text" 		id="id_reclamo" 	name="id_reclamo"	placeholder="ID Reclamo">
-			<input type="text" 		id="num_adherente" 	name="num_adherente"		placeholder="Nº Adherente">
-			<input type="text" 		id="xcod_cartera" 	name="xcod_cartera"	placeholder="Código Cartera">
-			<input type="text" 		id="xcod_estado" 	name="xcod_estado"	placeholder="Código Estado">
-			<input type="text" 		id="xcod_prioridad" 	name="xcod_prioridad"	placeholder="Código Prioridad">
+			<input type="text" 		id="id_reclamo" 	name="id_reclamo"		placeholder="ID Reclamo">
+			<input type="text" 		id="num_adherente" 	name="num_adherente"	placeholder="Nº Adherente">
 						
 			<select id="codCartera" name="codCartera">
-				<option value="0" selected>Seleccione una cartera</option>
+				<option value="" selected>Seleccione una cartera</option>
 				<c:forEach items="${requestScope.listaCarteras}" var="cartera">
 					<option value="${cartera.codCartera}" >${cartera.desCartera}</option>
 				</c:forEach>
 			</select> 
 			
-			<select id="codProducto" name="codProducto">
-				<option value="0" selected>Seleccione un producto</option>
-				<c:forEach items="${requestScope.listaProductos}" var="producto">
-					<option value="${producto.codProducto}" >${producto.desProducto}</option>
+			<select id="codTipo" name="codTipo">
+				<option value="" selected>Seleccione un tipo</option>
+				<c:forEach items="${requestScope.listaTipos}" var="tipo">
+					<option value="${tipo.codTipo}" >${tipo.desTipo}</option>
 				</c:forEach>
 			</select>
 			
-			<select id="codArea" name="codArea">
-				<option value="0" selected>Seleccione un área</option>
-				<c:forEach items="${requestScope.listaAreas}" var="area">
-					<option value="${area.codArea}" >${area.desArea}</option>
+			<select id="codEstado" name="codEstado">
+				<option value="" selected>Seleccione un estado</option>
+				<c:forEach items="${requestScope.listaEstados}" var="estado">
+					<option value="${estado.codEstado}" >${estado.desEstado}</option>
+				</c:forEach>
+			</select>
+			
+			<select id="codPrioridad" name="codPrioridad">
+				<option value="" selected>Seleccione una prioridad</option>
+				<c:forEach items="${requestScope.listaPrioridades}" var="prioridad">
+					<option value="${prioridad.codPrioridad}" >${prioridad.desPrioridad}</option>
 				</c:forEach>
 			</select>
 		</form>

@@ -317,8 +317,6 @@ public class Servlet extends HttpServlet {
 		mapaEntrada.put("idUsuario", idUsuario);
 		
 		mapaSalida = ejbRemoto.eliminarUsuario(mapaEntrada);
-		
-		request.setAttribute("usuario", (Usuario)mapaSalida.get("usuario"));
 
 		pagDestino = "/usuarios/listaUsuariosXml.jsp";
 	}
@@ -608,17 +606,15 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		String codProducto = request.getParameter("codProducto");
+		long idDocumento = Utils.stringToNum(request.getParameter("idDocumento"));
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 
-		log.info("codProducto: "+codProducto);
+		log.info("idDocumento: "+idDocumento);
 		
-		mapaEntrada.put("codProducto", codProducto);
+		mapaEntrada.put("idDocumento", idDocumento);
 		
-		mapaSalida = ejbRemoto.eliminarProducto(mapaEntrada);
-		
-		request.setAttribute("producto", (Producto)mapaSalida.get("producto"));
+		mapaSalida = ejbRemoto.eliminarDocumento(mapaEntrada);
 
 		pagDestino = "/documentos/listaDocumentosXml.jsp";
 	}
@@ -948,8 +944,13 @@ public class Servlet extends HttpServlet {
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
-		Reclamo reclamo = new Reclamo();
-		//reclamo.setDesReclamo(request.getParameter("nomReclamo"));
+		Reclamo reclamo = new Reclamo();		
+		reclamo.setIdReclamo(Utils.stringToNum(request.getParameter("id_reclamo")));
+		reclamo.setNumAdherente(request.getParameter("num_adherente"));
+		reclamo.setCodCartera(request.getParameter("codCartera"));
+		reclamo.setCodTipo(request.getParameter("codTipo"));
+		reclamo.setCodEstado(request.getParameter("codEstado"));
+		reclamo.setCodPrioridad(request.getParameter("codPrioridad"));
 		
 		mapaEntrada.put("reclamo",reclamo);
 		
@@ -1061,17 +1062,17 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		String codReclamo = request.getParameter("idReclamo");
+		long idReclamo = Utils.stringToNum(request.getParameter("idReclamo"));
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 
-		log.info("codReclamo: "+codReclamo);
+		log.info("idReclamo: "+idReclamo);
 		
-		mapaEntrada.put("codReclamo", codReclamo);
+		mapaEntrada.put("idReclamo", idReclamo);
 		
 		mapaSalida = ejbRemoto.eliminarReclamo(mapaEntrada);
 
-		pagDestino = "/reclamos/listaReclamos.jsp";
+		pagDestino = "/reclamos/listaReclamosXml.jsp";
 	}
 	
 	public void cargarArchivo(HttpServletRequest request, HttpServletResponse response) {

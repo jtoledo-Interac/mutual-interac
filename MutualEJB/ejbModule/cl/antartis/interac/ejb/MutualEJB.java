@@ -1012,8 +1012,55 @@ public class MutualEJB implements EJBRemoto {
 	}
 
 	public Map<String, Object> eliminarDocumento(Map<String, Object> mapaEntrada) {
-		// TODO Auto-generated method stub
-		return null;
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		long idDocumento = 0;
+		
+		String numError = "0";
+		String msjError = "";
+		
+		try {
+			log.info("Eliminar documento");
+
+			idDocumento = (Long)mapaEntrada.get("idDocumento");
+			
+			log.info("ID documento: "+idDocumento);
+			
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call eliminar_documento(?,?,?) }");
+			cStmt.setLong(1, idDocumento);
+			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
+
+			cStmt.execute();
+			numError = cStmt.getString(2);
+			msjError = cStmt.getString(3);			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+		mapaSalida.put("numError", numError);
+		mapaSalida.put("msjError", msjError);
+		
+		return mapaSalida;
 	}
 
 	public Map<String, Object> buscarParametros(Map<String, Object> mapaEntrada) {
@@ -1135,13 +1182,12 @@ public class MutualEJB implements EJBRemoto {
 
 			cStmt = dbConeccion.prepareCall("{ call buscar_reclamos(?,?,?,?,?,?,?,?,?) }");
 			
-			cStmt.setString(1,"");
-			cStmt.setString(2,"");
-			cStmt.setString(3,"");
-			cStmt.setString(4,"");
-			cStmt.setString(5,"");
-			cStmt.setString(6,"");
-			
+			cStmt.setLong(1,reclamo.getIdReclamo());
+			cStmt.setString(2,reclamo.getNumAdherente());
+			cStmt.setString(3,reclamo.getCodCartera());
+			cStmt.setString(4,reclamo.getCodTipo());
+			cStmt.setString(5,reclamo.getCodEstado());
+			cStmt.setString(6,reclamo.getCodPrioridad());			
 			cStmt.registerOutParameter(7, Types.OTHER);// cursor$
 			cStmt.registerOutParameter(8, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(9, Types.VARCHAR);// msjerror$
@@ -1158,6 +1204,8 @@ public class MutualEJB implements EJBRemoto {
 			if(rs !=null){
 				while (rs.next()) {
 					reclamo = new Reclamo();
+					reclamo.setIdReclamo(rs.getLong("id_reclamo"));
+					reclamo.setNumAdherente(rs.getString("num_adherente"));
 	                reclamo.setNombreSolicitante(rs.getString("nombre_solicitante") );
 	                reclamo.setEmailSolicitante(rs.getString("email_solicitante") );
 	                reclamo.setFonoSolicitante(rs.getString("fono_solicitante") );
@@ -1166,17 +1214,17 @@ public class MutualEJB implements EJBRemoto {
 	                reclamo.setCodMotivo(rs.getString("cod_motivo"));
 	                reclamo.setCodPrioridad(rs.getString("cod_prioridad"));
 	                reclamo.setCodCartera(rs.getString("cod_cartera"));
-	                reclamo.setFecIngreso(rs.getString("fec_ingreso"));
+	                reclamo.setFecIngreso(Utils.formateaFecha(rs.getString("fec_ingreso")));
 	                reclamo.setGlosa(rs.getString("glosa"));
 	                reclamo.setAdjunto(rs.getString("adjunto"));
 	                reclamo.setObservaciones(rs.getString("observaciones"));
 	                reclamo.setCodEstado(rs.getString("cod_estado"));
 	                reclamo.setResponsableIngreso(rs.getString("responsable_ingreso"));
 	                reclamo.setResponsableActual(rs.getString("responsable_actual"));
-	                //reclamo.setDiasBandeja( );
-	                //reclamo.setDiasSistema( );
+	                reclamo.setDiasBandeja(rs.getString("dias_bandeja") );
+	                reclamo.setDiasSistema(rs.getString("dias_sistema") );
 	                reclamo.setCodMedioRespuesta(rs.getString("cod_medio_respuesta"));
-	                reclamo.setFecRespuesta(rs.getString("fec_respuesta") );
+	                reclamo.setFecRespuesta(Utils.formateaFecha(rs.getString("fec_respuesta")));
 					listaReclamos.add(reclamo);
 				}
 				rs.close();
@@ -1375,20 +1423,29 @@ public class MutualEJB implements EJBRemoto {
 	}
 
 	public Map<String, Object> eliminarReclamo(Map<String, Object> mapaEntrada) {
+		
+		CallableStatement cStmt = null;
 		Map<String, Object> mapaSalida = null;
 		Error error = new Error();
-		CallableStatement cStmt = null;
+		long idReclamo = 0;
+		
+		String numError = "0";
+		String msjError = "";
 		
 		try {
 			log.info("Eliminar reclamo");
-						
+
+			idReclamo = (Long)mapaEntrada.get("idReclamo"); // recupero el Long idReclamo desde el servlet
+			
+			log.info("ID reclamo: "+idReclamo);
+			
 			mapaSalida = new HashMap<String, Object>();
 
 			dbConeccion = interacDS.getConnection();
 
 			cStmt = dbConeccion.prepareCall("{ call eliminar_reclamo(?,?,?) }");
 
-			cStmt.setLong(1, ((Reclamo)mapaEntrada.get("reclamo")).getIdReclamo());
+			cStmt.setLong(1, idReclamo); 
 			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
 

@@ -18,7 +18,7 @@ $body$
     declare xcod_cartera varchar;
     declare xcod_tipo varchar;
     declare xcod_estado varchar;
-    declare xcod_prioridad varchar
+    declare xcod_prioridad varchar;
 
     begin
         numerror := '0';
@@ -86,14 +86,14 @@ $body$
             fec_respuesta
         from 
             reclamo 
-        where
+        /*where
             
             (xid_reclamo =  ' ' or cast (id_reclamo as varchar) = xid_reclamo) and
             (xnum_adherente =  ' ' or upper(num_adherente) = xnum_adherente) and
             (xcod_cartera =  ' ' or upper(cod_cartera) = xcod_cartera) and
             (xcod_tipo =  ' ' or upper(cod_tipo) = xcod_tipo) and
             (xcod_estado =  ' ' or upper(cod_estado) = xcod_estado) and
-            (xcod_prioridad =  ' ' or upper(cod_prioridad) = xcod_prioridad) 
+            (xcod_prioridad =  ' ' or upper(cod_prioridad) = xcod_prioridad) */
         order by
             id_reclamo;
     

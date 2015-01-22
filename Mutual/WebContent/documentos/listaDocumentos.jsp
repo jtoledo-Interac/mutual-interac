@@ -210,7 +210,7 @@
 	function getUrlEliminarDocumento(nIdDocumento){  
 		var sData = 'Servlet';
 		sData += '?accion=eliminarDocumento';
-		sData += '&nIdDocumento='+nIdDocumento;
+		sData += '&idDocumento='+nIdDocumento;
 		return sData;
     }
 </script>
