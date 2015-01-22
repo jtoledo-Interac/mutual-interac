@@ -778,6 +778,15 @@ public class Servlet extends HttpServlet {
 	}
 	
 	public void graficar(HttpServletRequest request, HttpServletResponse response){
+		File f = new File ("aqui.aqui");
+		try {
+			f.createNewFile();
+			System.out.println("Se creo "+f.getAbsolutePath());
+		} catch (IOException e) {
+			System.out.println("no lo crea");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		String pathIn = "graficar.xls";
 		String [][] datosExcel = FileUtils.excelGraficoBarras(pathIn, 16, 2);
 		String[] etiquetas = new String[16];
