@@ -40,28 +40,28 @@
 	<select id="cod_prioridad" name="cod_prioridad">
 		<option value="0" selected>Seleccione una prioridad</option>
 		<c:forEach items="${requestScope.listaPrioridades}" var="prioridad">
-			<option value="${prioridad.codPrioridad}" <c:if test='${reclamo.codPrioridad == prioridad.codPrioridad}'> selected</c:if>>>${prioridad.dePrioridad}</option>
+			<option value="${prioridad.codPrioridad}" <c:if test='${reclamo.codPrioridad == prioridad.codPrioridad}'> selected</c:if>>>${prioridad.desPrioridad}</option>
 		</c:forEach>
 	</select>
 
 	<select id="cod_cartera" name="cod_cartera">
 		<option value="0" selected>Seleccione una cartera</option>
 		<c:forEach items="${requestScope.listaCarteras}" var="cartera">
-			<option value="${cartera.codCartera}" <c:if test='${documento.codCartera == cartera.codCartera}'> selected</c:if>> >${cartera.desCartera}</option>
+			<option value="${cartera.codCartera}" <c:if test='${reclamo.codCartera == cartera.codCartera}'> selected</c:if>> >${cartera.desCartera}</option>
 		</c:forEach>
 	</select> 
 	
 	<select id="cod_estado" name="cod_estado">
 		<option value="0" selected>Seleccione un estado</option>
 		<c:forEach items="${requestScope.listaEstados}" var="estado">
-			<option value="${estado.codEstado}" <c:if test='${documento.codEstado == estado.codEstado}'> selected</c:if>>>${estado.desEstado}</option>
+			<option value="${estado.codEstado}" <c:if test='${reclamo.codEstado == estado.codEstado}'> selected</c:if>>>${estado.desEstado}</option>
 		</c:forEach>
 	</select> 
 							
 	<select id="cod_medio_respuesta" name="cod_medio_respuesta">
 		<option value="0" selected>Seleccione un medio de respuesta</option>
-		<c:forEach items="${requestScope.listaMediosRespuesta}" var="medioRespuesta">
-			<option value="${medioRespuesta.codMedioRespuesta}" <c:if test='${documento.codMedioRespuesta == medioRespuesta.codMedioRespuesta}'> selected</c:if>>>${medioRespuesta.desMedioRespuesta}</option>
+		<c:forEach items="${requestScope.listaMedios}" var="medio">
+			<option value="${medio.codMedio}" <c:if test='${reclamo.codMedio == medio.codMedio}'> selected</c:if>>>${medio.desMedio}</option>
 		</c:forEach>
 	</select> 
 

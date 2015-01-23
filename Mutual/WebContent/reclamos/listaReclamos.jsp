@@ -21,7 +21,7 @@
 						{name : 'nombreSolicitante', index:'nombreSolicitante', width : 80, search : true, resizable : false, sortable : true},	
 						{name : 'codTipo', index:'codTipo', width : 80, search : true, resizable : false, sortable : true},	
 						{name : 'codMotivo', index:'codMotivo', width : 80, search : true, resizable : false, sortable : true},	
-						{name : 'codMedioRespuesta', index:'codMedioRespuesta', width : 80, search : true, resizable : false, sortable : true},
+						{name : 'codMedio', index:'codMedio', width : 80, search : true, resizable : false, sortable : true},
 						{name : 'codEstado', index:'codEstado', width : 80, search : true, resizable : false, sortable : true},
 						{name : 'codPrioridad', index:'codPrioridad', width : 80, search : true, resizable : false, sortable : true},
 						{name : 'diasSistema', index:'diasSistema', width : 80, search : true, resizable : false, sortable : true},	
@@ -255,7 +255,7 @@
 			<select id="codPrioridad" name="codPrioridad">
 				<option value="" selected>Seleccione una prioridad</option>
 				<c:forEach items="${requestScope.listaPrioridades}" var="prioridad">
-					<option value="${prioridad.codPrioridad}" >${prioridad.desPrioridad}</option>
+					<option value="${prioridad.codPrioridad}">${prioridad.desPrioridad}</option>
 				</c:forEach>
 			</select>
 		</form>

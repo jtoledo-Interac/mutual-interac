@@ -932,12 +932,13 @@ public class Servlet extends HttpServlet {
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
 		mapaSalida = ejbRemoto.buscarParametrosReclamo(mapaEntrada);
-		
-		request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
+
 		request.setAttribute("listaTipos", mapaSalida.get("listaTipos"));
-		request.setAttribute("listaEstados", mapaSalida.get("listaEstados"));
+		request.setAttribute("listaMotivos", mapaSalida.get("listaMotivos"));
 		request.setAttribute("listaPrioridades", mapaSalida.get("listaPrioridades"));
-	
+		request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
+		request.setAttribute("listaEstados", mapaSalida.get("listaEstados"));
+		request.setAttribute("listaMedios", mapaSalida.get("listaMedios"));	
 		pagDestino = "reclamos/agregaReclamo.jsp";
 	}
 	
@@ -946,19 +947,16 @@ public class Servlet extends HttpServlet {
 
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 	
 		mapaSalida = ejbRemoto.buscarParametrosReclamo(mapaEntrada);
-		
-		System.out.println("++++++++++");
 		request.setAttribute("listaTipos", mapaSalida.get("listaTipos"));
-		System.out.println(mapaSalida.get("listaTipos"));
 		request.setAttribute("listaMotivos", mapaSalida.get("listaMotivos"));
 		request.setAttribute("listaPrioridades", mapaSalida.get("listaPrioridades"));
 		request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
 		request.setAttribute("listaEstados", mapaSalida.get("listaEstados"));
 		request.setAttribute("listaMedios", mapaSalida.get("listaMedios"));
-		
-		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
 		Reclamo reclamo = new Reclamo();
 		reclamo.setIdReclamo(Utils.stringToNum(request.getParameter("id_reclamo")));
@@ -1003,7 +1001,7 @@ public class Servlet extends HttpServlet {
 		reclamo.setResponsableActual(request.getParameter("responsable_actual"));
 		reclamo.setDiasBandeja("");
 		reclamo.setDiasSistema("");
-		reclamo.setCodMedioRespuesta(request.getParameter("cod_medio_respuesta"));
+		reclamo.setCodMedio(request.getParameter("cod_medio_respuesta"));
 		reclamo.setFecRespuesta(request.getParameter("fec_respuesta") );
 
 		mapaEntrada.put("reclamo",reclamo);
@@ -1019,9 +1017,6 @@ public class Servlet extends HttpServlet {
 		
 		if(mapaSalida!=null){
 			reclamo = (Reclamo)mapaSalida.get("reclamo");
-			
-			//send emails
-			//encargado reclamos
 			String to = ConfigUtils.loadProperties("reclamos_user");
 			String subject = "Nuevo reclamo("+reclamo.getIdReclamo()+")";
 			String body = reclamo.getEmailBody();
@@ -1038,17 +1033,23 @@ public class Servlet extends HttpServlet {
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();		
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
-		
-		String codReclamo = request.getParameter("idReclamo");
-		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
-
-		log.info("codReclamo: "+codReclamo);
+	
+		mapaSalida = ejbRemoto.buscarParametrosReclamo(mapaEntrada);
+		request.setAttribute("listaTipos", mapaSalida.get("listaTipos"));
+		request.setAttribute("listaMotivos", mapaSalida.get("listaMotivos"));
+		request.setAttribute("listaPrioridades", mapaSalida.get("listaPrioridades"));
+		request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
+		request.setAttribute("listaEstados", mapaSalida.get("listaEstados"));
+		request.setAttribute("listaMedios", mapaSalida.get("listaMedios"));
 		
-		mapaEntrada.put("codReclamo", codReclamo);
+		String idReclamo = request.getParameter("idReclamo");
+
+		log.info("idReclamo: "+idReclamo);
+		
+		mapaEntrada.put("idReclamo", idReclamo);
 		
 		mapaSalida = ejbRemoto.cargarReclamo(mapaEntrada);
-		
 		request.setAttribute("reclamo", (Reclamo)mapaSalida.get("reclamo"));
 
 		pagDestino = "/reclamos/cargaReclamo.jsp";
@@ -1063,8 +1064,6 @@ public class Servlet extends HttpServlet {
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
 		String idReclamo = request.getParameter("idReclamo");
-		System.out.println("++++");
-		System.out.println(idReclamo);
 		Reclamo reclamo = new Reclamo();
 		reclamo.setIdReclamo(Long.parseLong(idReclamo));
 		//reclamo.setDesReclamo(request.getParameter("desReclamo"));

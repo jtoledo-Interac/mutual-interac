@@ -10,7 +10,7 @@
        		<nombreSolicitante>${reclamo.nombreSolicitante}</nombreSolicitante>
        		<codTipo>${reclamo.codTipo}</codTipo>
        		<codMotivo>${reclamo.codMotivo}</codMotivo>
-			<codMedioRespuesta>${reclamo.codMedioRespuesta}</codMedioRespuesta>
+			<codMedio>${reclamo.codMedio}</codMedio>
        		<codEstado>${reclamo.codEstado}</codEstado>
        		<codPrioridad>${reclamo.codPrioridad}</codPrioridad>
        		<diasSistema>${reclamo.diasSistema}</diasSistema>

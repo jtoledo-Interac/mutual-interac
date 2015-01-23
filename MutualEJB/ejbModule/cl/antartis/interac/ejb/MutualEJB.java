@@ -1519,13 +1519,8 @@ public class MutualEJB implements EJBRemoto {
 			
 			reclamo = new Reclamo();
 			reclamo = (Reclamo)mapaEntrada.put("reclamo",reclamo);
-			if(reclamo.getIdReclamo()==0){
-				cStmt.setString(1,"");
-			}
-			else{
-				System.out.println(Long.toString(reclamo.getIdReclamo()));
-				cStmt.setString(1,Long.toString(reclamo.getIdReclamo()));
-			}
+	
+			cStmt.setLong(1,reclamo.getIdReclamo());
 			cStmt.setString(2,reclamo.getNumAdherente());
 			cStmt.setString(3,reclamo.getCodCartera());
 			cStmt.setString(4,reclamo.getCodTipo());
@@ -1539,8 +1534,6 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.execute();
 
 			ResultSet rs = (ResultSet) cStmt.getObject(7);
-			System.out.println("+++");
-			System.out.println(rs);
 			error.setNumError(cStmt.getString(8));
 			error.setMsjError(cStmt.getString(9));
 		
@@ -1550,7 +1543,6 @@ public class MutualEJB implements EJBRemoto {
 				while (rs.next()) {
 					reclamo = new Reclamo();
 					reclamo.setIdReclamo(rs.getLong("id_reclamo"));
-					System.out.println(rs.getLong("id_reclamo"));
 					reclamo.setNumAdherente(rs.getString("num_adherente"));
 	                reclamo.setNombreSolicitante(rs.getString("nombre_solicitante") );
 	                reclamo.setEmailSolicitante(rs.getString("email_solicitante") );
@@ -1569,7 +1561,7 @@ public class MutualEJB implements EJBRemoto {
 	                reclamo.setResponsableActual(rs.getString("responsable_actual"));
 	                reclamo.setDiasBandeja(rs.getString("dias_bandeja") );
 	                reclamo.setDiasSistema(rs.getString("dias_sistema") );
-	                reclamo.setCodMedioRespuesta(rs.getString("cod_medio_respuesta"));
+	                reclamo.setCodMedio(rs.getString("cod_medio_respuesta"));
 	                reclamo.setFecRespuesta(Utils.formateaFecha(rs.getString("fec_respuesta")));
 					listaReclamos.add(reclamo);
 				}
@@ -1640,7 +1632,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(16, reclamo.getResponsableActual());
 			cStmt.setString(17, reclamo.getDiasBandeja());
 			cStmt.setString(18, reclamo.getDiasSistema());
-			cStmt.setString(19, reclamo.getCodMedioRespuesta());
+			cStmt.setString(19, reclamo.getCodMedio());
 			cStmt.setDate(20, Utils.stringToDate(reclamo.getFecRespuesta()));
 			
 			cStmt.registerOutParameter(21, Types.BIGINT);// nidreclamo$
@@ -1695,8 +1687,7 @@ public class MutualEJB implements EJBRemoto {
 		try {
 			log.info("Cargar reclamo");
 
-			
-			idReclamo = Long.parseLong((String)mapaEntrada.get("codReclamo"));
+			idReclamo = Long.parseLong((String)mapaEntrada.get("idReclamo"));
 			
 			log.info("ID reclamo: "+idReclamo);
 			
@@ -1718,7 +1709,6 @@ public class MutualEJB implements EJBRemoto {
 			while (rs.next()) {
 				reclamo = new Reclamo();
 				reclamo.setIdReclamo(rs.getLong("id_reclamo"));
-				System.out.println(rs.getLong("id_reclamo"));
 				reclamo.setNumAdherente(rs.getString("num_adherente"));
                 reclamo.setNombreSolicitante(rs.getString("nombre_solicitante") );
                 reclamo.setEmailSolicitante(rs.getString("email_solicitante") );
@@ -1737,7 +1727,7 @@ public class MutualEJB implements EJBRemoto {
                 reclamo.setResponsableActual(rs.getString("responsable_actual"));
                 reclamo.setDiasBandeja(rs.getString("dias_bandeja") );
                 reclamo.setDiasSistema(rs.getString("dias_sistema") );
-                reclamo.setCodMedioRespuesta(rs.getString("cod_medio_respuesta"));
+                reclamo.setCodMedio(rs.getString("cod_medio_respuesta"));
                 reclamo.setFecRespuesta(Utils.formateaFecha(rs.getString("fec_respuesta")));
 			}
 			
@@ -1808,7 +1798,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(17, reclamo.getResponsableActual());
 			cStmt.setString(18, reclamo.getDiasBandeja());
 			cStmt.setString(19, reclamo.getDiasSistema());
-			cStmt.setString(20, reclamo.getCodMedioRespuesta());
+			cStmt.setString(20, reclamo.getCodMedio());
 			cStmt.setDate(21, Utils.stringToDate(reclamo.getFecRespuesta()));
 			
 			cStmt.registerOutParameter(22, Types.VARCHAR);// numerror$

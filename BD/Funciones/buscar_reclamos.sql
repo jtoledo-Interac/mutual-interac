@@ -1,6 +1,6 @@
 create or replace function public.buscar_reclamos
 (
-    in xid_reclamo$ varchar,
+    in xid_reclamo$ numeric,
     in xnum_adherente$ varchar,
     in xcod_cartera$ varchar,
     in xcod_tipo$ varchar,
@@ -13,7 +13,7 @@ create or replace function public.buscar_reclamos
 
 $body$
 
-    declare xid_reclamo varchar;
+    declare xid_reclamo numeric;
     declare xnum_adherente varchar;
     declare xcod_cartera varchar;
     declare xcod_tipo varchar;
@@ -24,12 +24,7 @@ $body$
         numerror := '0';
         msjerror := ' ';
 
-        if trim(xid_reclamo$) = '' then
-            xid_reclamo := ' ';
-        else
-            xid_reclamo := upper(trim(xid_reclamo$));
-        end if;
-
+        --TODO: falta agregar filtro para ID Reclamo
         if trim(xnum_adherente$) = '' then
             xnum_adherente := ' ';
         else

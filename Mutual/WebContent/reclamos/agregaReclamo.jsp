@@ -18,7 +18,7 @@
 	<select id="cod_tipo" name="cod_tipo">
 		<option value="0" selected>Seleccione un tipo</option>
 		<c:forEach items="${requestScope.listaTipos}" var="tipo">
-			<option value="${tipo.codTipo}" >${tipo.desTipo}</option>
+			<option value="${tipo.codTipo}">${tipo.desTipo}</option>
 		</c:forEach>
 	</select> 	
 
@@ -32,7 +32,7 @@
 	<select id="cod_prioridad" name="cod_prioridad">
 		<option value="0" selected>Seleccione una prioridad</option>
 		<c:forEach items="${requestScope.listaPrioridades}" var="prioridad">
-			<option value="${prioridad.codPrioridad}" >${prioridad.dePrioridad}</option>
+			<option value="${prioridad.codPrioridad}" >${prioridad.desPrioridad}</option>
 		</c:forEach>
 	</select>
 
@@ -52,8 +52,8 @@
 							
 	<select id="cod_medio_respuesta" name="cod_medio_respuesta">
 		<option value="0" selected>Seleccione un medio de respuesta</option>
-		<c:forEach items="${requestScope.listaMediosRespuesta}" var="medioRespuesta">
-			<option value="${medioRespuesta.codMedioRespuesta}" >${medioRespuesta.desMedioRespuesta}</option>
+		<c:forEach items="${requestScope.listaMedios}" var="medio">
+			<option value="${medio.codMedio}" >${medio.desMedio}</option>
 		</c:forEach>
 	</select> 
 

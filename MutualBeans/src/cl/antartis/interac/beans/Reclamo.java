@@ -25,7 +25,7 @@ public class Reclamo implements Serializable {
 	private String responsableActual;
 	private String diasBandeja;
 	private String diasSistema;
-	private String codMedioRespuesta;
+	private String codMedio;
 	private String fecRespuesta;
 
 	public Reclamo(){}
@@ -37,7 +37,7 @@ public class Reclamo implements Serializable {
 			String fecIngreso, String glosa, String adjunto,
 			String observaciones, String codEstado, String responsableIngreso,
 			String responsableActual, String diasBandeja, String diasSistema,
-			String codMedioRespuesta, String fecRespuesta) {
+			String codMedio, String fecRespuesta) {
 		super();
 		this.idReclamo = idReclamo;
 		this.numAdherente = numAdherente;
@@ -58,7 +58,7 @@ public class Reclamo implements Serializable {
 		this.responsableActual = responsableActual;
 		this.diasBandeja = diasBandeja;
 		this.diasSistema = diasSistema;
-		this.codMedioRespuesta = codMedioRespuesta;
+		this.codMedio = codMedio;
 		this.fecRespuesta = fecRespuesta;
 	}
 
@@ -214,12 +214,12 @@ public class Reclamo implements Serializable {
 		this.diasSistema = diasSistema;
 	}
 
-	public String getCodMedioRespuesta() {
-		return codMedioRespuesta;
+	public String getCodMedio() {
+		return codMedio;
 	}
 
-	public void setCodMedioRespuesta(String codMedioRespuesta) {
-		this.codMedioRespuesta = codMedioRespuesta;
+	public void setCodMedio(String codMedio) {
+		this.codMedio = codMedio;
 	}
 
 	public String getFecRespuesta() {
@@ -251,16 +251,8 @@ public class Reclamo implements Serializable {
 		reclamo += "\nresponsableActual" +this.responsableActual;
 		reclamo += "\ndiasBandeja" +this.diasBandeja;
 		reclamo += "\ndiasSistema" +this.diasSistema;
-		reclamo += "\ncodMedioRespuesta" +this.codMedioRespuesta;
-		reclamo += "\nfecRespuesta" +this.fecRespuesta;
-	
-	
-		
-		
-		
-		
-		
-		
+		reclamo += "\ncodMedio" +this.codMedio;
+		reclamo += "\nfecRespuesta" +this.fecRespuesta;	
 		return reclamo;
 	}
 	
@@ -285,7 +277,7 @@ public class Reclamo implements Serializable {
 			"Responsable actual: "+ this.responsableActual+"\n"+
 			"Días bandeja: "+ this.diasBandeja+"\n"+
 			"Días sistema: "+ this.diasSistema+"\n"+
-			"Código meedio respuesta: "+ this.codMedioRespuesta+"\n"+
+			"Código medio respuesta: "+ this.codMedio+"\n"+
 			"Fecha respuesta: "+ this.fecRespuesta+"\n\n";
 		return body;
 	}
