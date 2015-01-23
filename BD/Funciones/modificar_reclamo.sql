@@ -36,7 +36,7 @@ $body$
 		update 
 			reclamo
 		set
-		(
+		
 			num_adherente = xnum_adherente,
 			nombre_solicitante = xnombre_solicitante,
 			email_solicitante = xemail_solicitante,
@@ -57,9 +57,9 @@ $body$
 			dias_sistema = xdias_sistema,
 			cod_medio_respuesta = xcod_medio_respuesta,
 			fec_respuesta = xfec_respuesta
-		)
+		
 		where
-        id_reclamo := xid_reclamo;
+        id_reclamo = xid_reclamo;
         return;
 
 		exception
