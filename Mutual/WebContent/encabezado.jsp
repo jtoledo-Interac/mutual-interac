@@ -38,7 +38,7 @@
         <script type="text/javascript" src="js/filesaver.js"></script>
         <script type="text/javascript" src="js/jspdf.plugin.addimage.js"></script>
         
-        <title>Interac 2014 - Plataforma de Marketing</title>
+        <title>Plataforma Soporte Web - Mutual de Seguridad</title>
     </head>
     <!--<body oncontextmenu="return false;">click derecho deshabilitado -->
    	<body>

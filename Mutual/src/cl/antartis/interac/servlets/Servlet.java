@@ -193,12 +193,13 @@ public class Servlet extends HttpServlet {
 			String body = "Recibimos una solicitud de cambio de contraseña. Para confirmar tu nueva contraseña haz click en el siguiente enlace: .<br/>"
 					+link+ "<br/>Si tu no has solicitado cambio de contraseña ignora este email.<br/>";
 			
-			if(EmailUtils.sendMailHtml(email, subject, body)){
+			//TODO: Ivan:REVISAR sendMailHtml: arroja errores
+			/*if(EmailUtils.sendMailHtml(email, subject, body)){
 				this.pagDestino = "mensaje.jsp";
 			}
 			else{
 				this.pagDestino = "error.jsp";
-			}
+			}*/
 		}
 	}
 		
@@ -346,9 +347,6 @@ public class Servlet extends HttpServlet {
 		usuario.setnIdUsuario(Utils.stringToNum(request.getParameter("nIdUsuario")));
 		usuario.setsRut(Utils.getRutSinDV(request.getParameter("sRut")));
 		usuario.setsDV(request.getParameter("sDV"));
-	
-		log.info("rut: "+usuario.getsRut());
-		log.info("DV: "+usuario.getsDV());
 		usuario.setsNombres(request.getParameter("sNombres"));
 		usuario.setsApePaterno(request.getParameter("sApePaterno"));
 		usuario.setsApeMaterno(request.getParameter("sApeMaterno"));
@@ -359,13 +357,11 @@ public class Servlet extends HttpServlet {
 		usuario.setsTelefono(request.getParameter("sTelefono"));
 		usuario.setsCelular(request.getParameter("sCelular"));
 		usuario.setsEmail(request.getParameter("sEmail"));
-		log.info("aca");
+
 		log.info(usuario.getUsuario());
 		
-		mapaEntrada.put("usuario",usuario);
-		
+		mapaEntrada.put("usuario",usuario);		
 		mapaSalida = ejbRemoto.modificarUsuario(mapaEntrada);
-
 		pagDestino = "/usuarios/listaUsuarios.jsp";
 	}
 	
@@ -1140,9 +1136,10 @@ public class Servlet extends HttpServlet {
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
-		String idReclamo = request.getParameter("idReclamo");
+		long idReclamo = Utils.stringToNum(request.getParameter("idReclamo"));
+		
 		Reclamo reclamo = new Reclamo();
-		reclamo.setIdReclamo(Utils.stringToNum(idReclamo));
+		reclamo.setIdReclamo(idReclamo);
 		reclamo.setNumAdherente(request.getParameter("num_adherente"));
 		reclamo.setNombreSolicitante(request.getParameter("nombre_solicitante") );
 		reclamo.setEmailSolicitante(request.getParameter("email_solicitante") );
@@ -1164,10 +1161,8 @@ public class Servlet extends HttpServlet {
 		reclamo.setCodMedio(request.getParameter("cod_medio_respuesta"));
 		reclamo.setFecRespuesta(request.getParameter("fec_respuesta") );
 
-		mapaEntrada.put("reclamo",reclamo);
-		
+		mapaEntrada.put("reclamo",reclamo);		
 		mapaSalida = ejbRemoto.modificarReclamo(mapaEntrada);
-
 		pagDestino = "contenedor.jsp";
 	}
 	

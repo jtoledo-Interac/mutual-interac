@@ -1,3 +1,6 @@
+-- Function: buscar_reclamos(numeric, character varying, character varying, character varying, character varying, character varying)
+
+-- DROP FUNCTION buscar_reclamos(numeric, character varying, character varying, character varying, character varying, character varying);
 
 CREATE OR REPLACE FUNCTION buscar_reclamos(IN "xid_reclamo$" numeric, IN "xnum_adherente$" character varying, IN "xcod_cartera$" character varying, IN "xcod_tipo$" character varying, IN "xcod_estado$" character varying, IN "xcod_prioridad$" character varying, OUT reclamos refcursor, OUT numerror character varying, OUT msjerror character varying)
   RETURNS record AS
@@ -55,36 +58,48 @@ $BODY$
             email_solicitante,
             fono_solicitante,
             region_solicitante,
-            d.cod_tipo,
-            cod_motivo,
-            cod_prioridad,
-            cod_cartera,
+            r.cod_tipo as cod_tipo,
+            t.des_tipo as des_tipo,
+            r.cod_motivo as cod_motivo,
+            m.des_motivo as des_motivo,
+            r.cod_prioridad as cod_prioridad,
+            p.des_prioridad as des_prioridad,
+            r.cod_cartera as cod_cartera,
+            c.des_cartera as des_cartera,
             fec_ingreso,
             glosa,
             adjunto,
             observaciones,
-            cod_estado,
+            r.cod_estado as cod_estado,
+            e.des_estado as des_estado,
             responsable_ingreso,
             responsable_actual,
             dias_bandeja,
             dias_sistema,
-            cod_medio_respuesta,
+            r.cod_medio_respuesta as cod_medio_respuesta,
+            me.des_medio_respuesta as des_medio_respuesta,
             fec_respuesta
         from 
-        reclamo d
-             inner join tipo as a
-            on d.cod_tipo = a.cod_tipo
-        
-        
+            reclamo r
+            inner join tipo as t
+                on r.cod_tipo = t.cod_tipo
+            inner join motivo as m
+                on r.cod_motivo = m.cod_motivo
+            inner join prioridad as p
+                on r.cod_prioridad = p.cod_prioridad
+            inner join cartera as c
+                on r.cod_cartera = c.cod_cartera
+            inner join estado as e
+                on r.cod_estado = e.cod_estado
+            inner join medios_respuesta me
+                on r.cod_medio_respuesta = me.cod_medio_respuesta 
         where
-            
-          --  (xid_reclamo =  ' ' or cast (id_reclamo as varchar) = xid_reclamo) and
-            (xnum_adherente =  ' ' or upper(d.num_adherente) = xnum_adherente) and
-            (xcod_cartera =  ' ' or upper(d.cod_cartera) = xcod_cartera) and
-            (xcod_tipo =  ' ' or upper(d.cod_tipo) = xcod_tipo) and
-            (xcod_estado =  ' ' or upper(d.cod_estado) = xcod_estado) and
-            (xcod_prioridad =  ' ' or upper(d.cod_prioridad) = xcod_prioridad) 
-
+            --(xid_reclamo =  ' ' or cast (id_reclamo as varchar) = xid_reclamo) and
+            (xnum_adherente =  ' ' or upper(trim(num_adherente)) = xnum_adherente) and
+            (xcod_cartera =  ' ' or upper(trim(r.cod_cartera)) = xcod_cartera) and
+            (xcod_tipo =  ' ' or upper(trim(r.cod_tipo)) = xcod_tipo) and
+            (xcod_estado =  ' ' or upper(trim(r.cod_estado)) = xcod_estado) and
+            (xcod_prioridad =  ' ' or upper(trim(r.cod_prioridad)) = xcod_prioridad) 
           order by
             id_reclamo;
     
