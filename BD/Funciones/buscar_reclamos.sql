@@ -1,17 +1,7 @@
-create or replace function public.buscar_reclamos
-(
-    in xid_reclamo$ numeric,
-    in xnum_adherente$ varchar,
-    in xcod_cartera$ varchar,
-    in xcod_tipo$ varchar,
-    in xcod_estado$ varchar,
-    in xcod_prioridad$ varchar,
-    out reclamos refcursor, 
-    out numerror varchar, 
-    out msjerror varchar
-) returns record as
 
-$body$
+CREATE OR REPLACE FUNCTION buscar_reclamos(IN "xid_reclamo$" numeric, IN "xnum_adherente$" character varying, IN "xcod_cartera$" character varying, IN "xcod_tipo$" character varying, IN "xcod_estado$" character varying, IN "xcod_prioridad$" character varying, OUT reclamos refcursor, OUT numerror character varying, OUT msjerror character varying)
+  RETURNS record AS
+$BODY$
 
     declare xid_reclamo numeric;
     declare xnum_adherente varchar;
@@ -53,6 +43,7 @@ $body$
             xcod_prioridad := ' ';
         else
             xcod_prioridad := upper(trim(xcod_prioridad$));
+           
         end if;
 
         open reclamos for
@@ -64,7 +55,7 @@ $body$
             email_solicitante,
             fono_solicitante,
             region_solicitante,
-            cod_tipo,
+            d.cod_tipo,
             cod_motivo,
             cod_prioridad,
             cod_cartera,
@@ -80,16 +71,21 @@ $body$
             cod_medio_respuesta,
             fec_respuesta
         from 
-            reclamo 
-        /*where
+        reclamo d
+             inner join tipo as a
+            on d.cod_tipo = a.cod_tipo
+        
+        
+        where
             
-            (xid_reclamo =  ' ' or cast (id_reclamo as varchar) = xid_reclamo) and
-            (xnum_adherente =  ' ' or upper(num_adherente) = xnum_adherente) and
-            (xcod_cartera =  ' ' or upper(cod_cartera) = xcod_cartera) and
-            (xcod_tipo =  ' ' or upper(cod_tipo) = xcod_tipo) and
-            (xcod_estado =  ' ' or upper(cod_estado) = xcod_estado) and
-            (xcod_prioridad =  ' ' or upper(cod_prioridad) = xcod_prioridad) */
-        order by
+          --  (xid_reclamo =  ' ' or cast (id_reclamo as varchar) = xid_reclamo) and
+            (xnum_adherente =  ' ' or upper(d.num_adherente) = xnum_adherente) and
+            (xcod_cartera =  ' ' or upper(d.cod_cartera) = xcod_cartera) and
+            (xcod_tipo =  ' ' or upper(d.cod_tipo) = xcod_tipo) and
+            (xcod_estado =  ' ' or upper(d.cod_estado) = xcod_estado) and
+            (xcod_prioridad =  ' ' or upper(d.cod_prioridad) = xcod_prioridad) 
+
+          order by
             id_reclamo;
     
         exception
@@ -99,5 +95,8 @@ $body$
                 return; 
     end;
 
-$body$
-language 'plpgsql'
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+ALTER FUNCTION buscar_reclamos(numeric, character varying, character varying, character varying, character varying, character varying)
+  OWNER TO postgres;
