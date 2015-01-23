@@ -907,8 +907,17 @@ public class Servlet extends HttpServlet {
 	public void reclamos(HttpServletRequest request, HttpServletResponse response) 
 	{
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		mapaSalida = ejbRemoto.buscarParametrosReclamo(mapaEntrada);
+		
+		request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
+		request.setAttribute("listaTipos", mapaSalida.get("listaTipos"));
+		request.setAttribute("listaEstados", mapaSalida.get("listaEstados"));
+		request.setAttribute("listaPrioridades", mapaSalida.get("listaPrioridades"));
 
 		pagDestino = "contenedor.jsp";
 	}
@@ -917,7 +926,17 @@ public class Servlet extends HttpServlet {
 	{
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
 		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		mapaSalida = ejbRemoto.buscarParametrosReclamo(mapaEntrada);
+		
+		request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
+		request.setAttribute("listaTipos", mapaSalida.get("listaTipos"));
+		request.setAttribute("listaEstados", mapaSalida.get("listaEstados"));
+		request.setAttribute("listaPrioridades", mapaSalida.get("listaPrioridades"));
 	
 		pagDestino = "reclamos/agregaReclamo.jsp";
 	}
