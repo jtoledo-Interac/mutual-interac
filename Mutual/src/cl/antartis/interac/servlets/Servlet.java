@@ -26,6 +26,7 @@ import cl.antartis.interac.beans.Documento;
 import cl.antartis.interac.beans.Empresa;
 import cl.antartis.interac.beans.Producto;
 import cl.antartis.interac.beans.Reclamo;
+import cl.antartis.interac.beans.Tipo;
 import cl.antartis.interac.beans.Usuario;
 import cl.antartis.interac.beans.Error;
 import cl.antartis.interac.ejb.interfaces.EJBRemoto;
@@ -117,8 +118,9 @@ public class Servlet extends HttpServlet {
 		log.info("Msj Error: "+error.getMsjError());
 
 		if(error.getNumError().equals("0")){
+			System.out.println(ConfigUtils.loadProperties("sessionTime"));
 			int sessionTime = Integer.parseInt(ConfigUtils.loadProperties("sessionTime"));
-			System.out.println("sessionTime: "+sessionTime+"[seg]");
+			
 			
 			//setting session to expiry in 30 mins.
 			HttpSession session = request.getSession();
@@ -1072,13 +1074,7 @@ public class Servlet extends HttpServlet {
 		
 		mapaSalida = ejbRemoto.agregarReclamo(mapaEntrada);
 		
-		mapaSalida = ejbRemoto.buscarParametrosReclamo(mapaEntrada);
-	
-		request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
-		request.setAttribute("listaProductos", mapaSalida.get("listaProductos"));
-		request.setAttribute("listaAreas", mapaSalida.get("listaAreas"));
-		
-		if(mapaSalida!=null){
+		if(mapaSalida.get("reclamo")!=null){
 			reclamo = (Reclamo)mapaSalida.get("reclamo");
 			String to = ConfigUtils.loadProperties("reclamos_user");
 			String subject = "Nuevo reclamo("+reclamo.getIdReclamo()+")";
@@ -1086,10 +1082,19 @@ public class Servlet extends HttpServlet {
 			String signature = "Firma de mutual..";
 			EmailUtils.sendMail(to, subject, body, signature);
 			to = reclamo.getEmailSolicitante();
-			EmailUtils.sendMail(to, subject, body, signature);
-			pagDestino = "contenedor.jsp";
+			EmailUtils.sendMail(to, subject, body, signature);	
 		}
-		else pagDestino = "error.jsp";
+		
+		mapaSalida = ejbRemoto.buscarParametrosReclamo(mapaEntrada);
+	
+		request.setAttribute("listaTipos", mapaSalida.get("listaTipos"));
+		request.setAttribute("listaMotivos", mapaSalida.get("listaMotivos"));
+		request.setAttribute("listaPrioridades", mapaSalida.get("listaPrioridades"));
+		request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
+		request.setAttribute("listaEstados", mapaSalida.get("listaEstados"));
+		request.setAttribute("listaMedios", mapaSalida.get("listaMedios"));
+
+		pagDestino = "contenedor.jsp";
 	}
 	
 	public void cargarReclamo(HttpServletRequest request, HttpServletResponse response) {
@@ -1115,6 +1120,15 @@ public class Servlet extends HttpServlet {
 		mapaSalida = ejbRemoto.cargarReclamo(mapaEntrada);
 		request.setAttribute("reclamo", (Reclamo)mapaSalida.get("reclamo"));
 
+		mapaSalida = ejbRemoto.buscarParametrosReclamo(mapaEntrada);
+		
+		request.setAttribute("listaTipos", mapaSalida.get("listaTipos"));
+		request.setAttribute("listaMotivos", mapaSalida.get("listaMotivos"));
+		request.setAttribute("listaPrioridades", mapaSalida.get("listaPrioridades"));
+		request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
+		request.setAttribute("listaEstados", mapaSalida.get("listaEstados"));
+		request.setAttribute("listaMedios", mapaSalida.get("listaMedios"));
+				
 		pagDestino = "/reclamos/cargaReclamo.jsp";
 	}
 	
@@ -1128,8 +1142,27 @@ public class Servlet extends HttpServlet {
 		
 		String idReclamo = request.getParameter("idReclamo");
 		Reclamo reclamo = new Reclamo();
-		reclamo.setIdReclamo(Long.parseLong(idReclamo));
-		//reclamo.setDesReclamo(request.getParameter("desReclamo"));
+		reclamo.setIdReclamo(Utils.stringToNum(idReclamo));
+		reclamo.setNumAdherente(request.getParameter("num_adherente"));
+		reclamo.setNombreSolicitante(request.getParameter("nombre_solicitante") );
+		reclamo.setEmailSolicitante(request.getParameter("email_solicitante") );
+		reclamo.setFonoSolicitante(request.getParameter("fono_solicitante") );
+		reclamo.setRegionSolicitante(request.getParameter("region_solicitante") );
+		reclamo.setCodTipo(request.getParameter("cod_tipo"));
+		reclamo.setCodMotivo(request.getParameter("cod_motivo"));
+		reclamo.setCodPrioridad(request.getParameter("cod_prioridad"));
+		reclamo.setCodCartera(request.getParameter("cod_cartera"));
+		reclamo.setFecIngreso(request.getParameter("fec_ingreso"));
+		reclamo.setGlosa(request.getParameter("glosa"));
+		reclamo.setAdjunto(request.getParameter("adjunto"));
+		reclamo.setObservaciones(request.getParameter("observaciones"));
+		reclamo.setCodEstado(request.getParameter("cod_estado"));
+		reclamo.setResponsableIngreso(request.getParameter("responsable_ingreso"));
+		reclamo.setResponsableActual(request.getParameter("responsable_actual"));
+		reclamo.setDiasBandeja("");
+		reclamo.setDiasSistema("");
+		reclamo.setCodMedio(request.getParameter("cod_medio_respuesta"));
+		reclamo.setFecRespuesta(request.getParameter("fec_respuesta") );
 
 		mapaEntrada.put("reclamo",reclamo);
 		

@@ -1670,6 +1670,7 @@ public class MutualEJB implements EJBRemoto {
 			}
 		}
 		
+		log.info(reclamo);
 		mapaSalida.put("reclamo", reclamo);
 		mapaSalida.put("error", error);
 		
@@ -1753,7 +1754,6 @@ public class MutualEJB implements EJBRemoto {
 			}
 		}
 
-		//log.info(documento.getDocumento());
 		mapaSalida.put("reclamo",reclamo);
 		mapaSalida.put("numError", numError);
 		mapaSalida.put("msjError", msjError);
@@ -1779,7 +1779,7 @@ public class MutualEJB implements EJBRemoto {
 	
 			cStmt = dbConeccion.prepareCall("{ call modificar_reclamo(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)	}");
 	
-			cStmt.setLong(1, reclamo.getIdReclamo());
+			cStmt.setInt(1, (int) reclamo.getIdReclamo());
 			cStmt.setString(2, reclamo.getNumAdherente());
 			cStmt.setString(3, reclamo.getNombreSolicitante());
 			cStmt.setString(4, reclamo.getEmailSolicitante());
@@ -1789,6 +1789,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(8, reclamo.getCodMotivo());
 			cStmt.setString(9, reclamo.getCodPrioridad());
 			cStmt.setString(10, reclamo.getCodCartera());
+			System.out.println(Utils.stringToDate(reclamo.getFecIngreso()));
 			cStmt.setDate(11, Utils.stringToDate(reclamo.getFecIngreso()));
 			cStmt.setString(12, reclamo.getGlosa());
 			cStmt.setString(13, reclamo.getAdjunto());
@@ -2070,7 +2071,7 @@ public class MutualEJB implements EJBRemoto {
 		mapaSalida.put("listaMedios", listaMedios);
 		mapaSalida.put("numError", numError);
 		mapaSalida.put("msjError", msjError);
-
+		
 		return mapaSalida;
 	}
 	
@@ -2353,7 +2354,6 @@ public class MutualEJB implements EJBRemoto {
 		
 		return mapaSalida;
 	}
-	
 	public Map<String, Object> getEmailUsuario(Map<String, Object> mapaEntrada){
 		Map<String, Object> mapaSalida = null;
 		CallableStatement cStmt = null;

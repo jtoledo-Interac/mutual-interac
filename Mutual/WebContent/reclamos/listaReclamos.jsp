@@ -237,7 +237,6 @@
 					<option value="${cartera.codCartera}" >${cartera.desCartera}</option>
 				</c:forEach>
 			</select> 
-			
 			<select id="codTipo" name="codTipo">
 				<option value="" selected>Seleccione un tipo</option>
 				<c:forEach items="${requestScope.listaTipos}" var="tipo">

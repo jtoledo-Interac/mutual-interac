@@ -66,8 +66,9 @@ public class Upload extends HttpServlet{
 					//File archivo_server = new File("C://interac/imagenes.war/" + fileName);
 					
 					//PRODUCCION
-					File archivo_server = new File("/home/ec2-user/interac/fotos.war/" + fileName);
-
+					File archivo_server = new File("/archivos/" + fileName);
+					File hola = new File("hola.hola");
+					hola.createNewFile();
 					if (item.isFormField()) {
 						String name = item.getFieldName();
 						String value = item.getString();

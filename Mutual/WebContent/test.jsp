@@ -7,9 +7,8 @@
 	<title>page for tests</title>
 </head>
 <body>
-<form action="Servlet" method="post">
-	<input type="hidden"  id="accion" name="accion" value="cargarArchivo"/>
-	<input type="file" id="rescatar" name="rescatar" value=""/>
+<form action="Upload" method="post" enctype="multipart/form-data">
+	<input type="file" id="file" name="file" value=""/>
 	<input type="submit" />
 </form>
 </body>
