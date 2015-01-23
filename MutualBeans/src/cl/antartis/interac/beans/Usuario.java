@@ -1,6 +1,10 @@
 package cl.antartis.interac.beans;
 
 import java.io.Serializable;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import cl.antartis.interac.funciones.Utils;
 
 public class Usuario implements Serializable {
 
@@ -209,6 +213,30 @@ public class Usuario implements Serializable {
 		usuario += "\nsHost: "+this.sHost;
 		usuario += "\nsCodIdioma: "+this.sCodIdioma;
 		
+		return usuario;
+	}
+	
+	public static Usuario newUserByCursor(ResultSet rsUsuarios) throws SQLException{
+		Usuario usuario = new Usuario();
+		usuario = new Usuario();
+		usuario.setnIdUsuario(rsUsuarios.getLong("idusuario"));
+		usuario.setsRut(rsUsuarios.getString("rut"));
+		usuario.setsDV(rsUsuarios.getString("dv"));
+		usuario.setsRutFormat(Utils.getRutFormat(usuario.getsRut()+usuario.getsDV()));
+		usuario.setsNombres(rsUsuarios.getString("nombres"));
+		usuario.setsApePaterno(rsUsuarios.getString("apepaterno"));
+		usuario.setsApeMaterno(rsUsuarios.getString("apematerno"));
+		usuario.setsNomUsuario(rsUsuarios.getString("nomusuario"));
+		usuario.setsContrasena(rsUsuarios.getString("contrasena"));
+		usuario.setsCodGenero(rsUsuarios.getString("codgenero"));
+		usuario.setsFecNacimiento(Utils.formateaFecha(rsUsuarios.getString("fecnacimiento")));
+		usuario.setsTelefono(rsUsuarios.getString("telefono"));
+		usuario.setsCelular(rsUsuarios.getString("celular"));
+		usuario.setsEmail(rsUsuarios.getString("email"));
+		usuario.setnCantIntentos(rsUsuarios.getInt("cantintentos"));
+		usuario.setsFecCreacion(Utils.formateaFecha(rsUsuarios.getString("feccreacion")));
+		usuario.setsFecContrasena(Utils.formateaFecha(rsUsuarios.getString("feccontrasena")));
+		usuario.setsIndVigencia(rsUsuarios.getString("indvigencia"));
 		return usuario;
 	}
 }

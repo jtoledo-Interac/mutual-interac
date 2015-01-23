@@ -230,7 +230,7 @@ input[type=radio]:checked + label:before {
 
 .info-user{
 	float:right;
-	width:200px;
+	width:350px;
 	height:80px;
 	color: white;
 	margin-top: 20px;

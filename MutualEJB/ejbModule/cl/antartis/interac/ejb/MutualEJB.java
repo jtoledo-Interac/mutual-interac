@@ -561,36 +561,37 @@ public class MutualEJB implements EJBRemoto {
 
 	public Map<String, Object> logIn(Map<String, Object> mapaEntrada) {
 		CallableStatement cStmt = null;
-		Sesion sesion = null;
 		Map<String, Object> mapaSalida = null;
 		Usuario usuario = null;
 		Error error = new Error();
 
 		try {
 			log.info("Login");
-
+			usuario = (Usuario)mapaEntrada.get("usuario");
 			mapaSalida = new HashMap<String, Object>();
-			usuario = (Usuario) mapaEntrada.get("usuario");
-
-			log.info(usuario.getUsuario());
+			//log.info(usuario.getUsuario());
 
 			dbConeccion = interacDS.getConnection();
 
-			cStmt = dbConeccion.prepareCall("{ call login(?,?,?,?,?}");
+			cStmt = dbConeccion.prepareCall("{ call login(?,?,?,?,?,?,?)}");
 			cStmt.setString(1, usuario.getsNomUsuario());
 			cStmt.setString(2, usuario.getsContrasena());
-			cStmt.registerOutParameter(3, Types.VARCHAR);
-			cStmt.registerOutParameter(4, Types.VARCHAR);
-			cStmt.registerOutParameter(5, Types.VARCHAR);
-			
-
+			cStmt.registerOutParameter(3, Types.VARCHAR);// nombre$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// apellidoP$
+			cStmt.registerOutParameter(5, Types.VARCHAR);// apellidoM$
+			cStmt.registerOutParameter(6, Types.VARCHAR);
+			cStmt.registerOutParameter(7, Types.VARCHAR);
+		
 			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
 			System.out.println("["+usuario.getsNomUsuario()+" - "+usuario.getsContrasena()+"]");
 			cStmt.execute();
-			
-			mapaSalida.put("nombre", cStmt.getString(3));
-			error.setNumError(cStmt.getString(4));
-			error.setMsjError(cStmt.getString(5));
+			usuario.setsNombres(cStmt.getString(3));
+			usuario.setsApePaterno(cStmt.getString(4));
+			usuario.setsApeMaterno(cStmt.getString(5));
+			error.setNumError(cStmt.getString(6));
+			error.setMsjError(cStmt.getString(7));
+			mapaSalida.put("error", error);
+			mapaSalida.put("usuario",usuario);
 			System.out.println(error.getError()+"<----");
 			
 		} catch (SQLException e) {
@@ -610,8 +611,7 @@ public class MutualEJB implements EJBRemoto {
 				e.printStackTrace();
 			}
 		}
-
-		mapaSalida.put("error", error);
+		
 		return mapaSalida;
 	}
 

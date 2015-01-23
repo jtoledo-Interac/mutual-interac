@@ -100,12 +100,13 @@ $(function()
 	<div class="logo-banner">
 		
 	</div>
-	<div class="info-user" onload="cargarNombre()">
+	<div class="info-user">
 		<br />
-		<p id="contNombre"><% out.print("bienvenido(a): "+request.getAttribute("nombre") );	%></p>
+		
+		<p id="contNombre" style="float:right;"><% out.print("bienvenido(a): "+session.getAttribute("nombre") );	%></p>
 		<form id="logOut" action="Servlet" method="post">
 			<input type="hidden" id="accionLogOut" name="accion">
-			<a href="#" id="cerrar">Cerrar Sesión</a>
+			<span style="float:right;"><a href="#" id="cerrar">Cerrar Sesión</a></span>
 		</form>
 	</div>
 </div>

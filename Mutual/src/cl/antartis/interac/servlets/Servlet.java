@@ -110,18 +110,19 @@ public class Servlet extends HttpServlet {
 		mapaSalida = ejbRemoto.logIn(mapaEntrada);
 		
 		error = (Error)mapaSalida.get("error");
+		usuario = (Usuario)mapaSalida.get("usuario");
 		
 		log.info("Num Error: "+error.getNumError());
 		log.info("Msj Error: "+error.getMsjError());
 
 		if(error.getNumError().equals("0")){
-			request.setAttribute("nombre", mapaSalida.get("nombre"));
-			int sessionTime = Integer.parseInt(ConfigUtils.loadProperties("timeSession"));
+			int sessionTime = Integer.parseInt(ConfigUtils.loadProperties("sessionTime"));
 			System.out.println("sessionTime: "+sessionTime+"[seg]");
 			
 			//setting session to expiry in 30 mins.
 			HttpSession session = request.getSession();
-			session.setAttribute("user", request.getParameter("sNomUsuario"));
+			session.setAttribute("nombre", usuario.getsNombres()+" "+usuario.getsApePaterno()+" "+usuario.getsApeMaterno());
+			session.setAttribute("user",usuario);
 			session.setMaxInactiveInterval(sessionTime);
 			
 			//setting cookie to expiry in 30 mins.
