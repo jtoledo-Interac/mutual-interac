@@ -187,7 +187,7 @@ public class Servlet extends HttpServlet {
 			String link= request.getParameter("_user")+" "+new Date().toString();
 			link = e.encriptar(link);
 			link = "<a href='"+ConfigUtils.loadProperties("dominio")+
-					"/cambiarContrasena.jsp?l="+link+"'>Recuperar contraseña.</a>";
+					"usuarios/cambiarContrasena.jsp?l="+link+"'>Recuperar contraseña.</a>";
 			String email = (String)mapaSalida.get("email");
 			String subject = "Mutual - Recuperación de contraseña";
 			String body = "Recibimos una solicitud de cambio de contraseña. Para confirmar tu nueva contraseña haz click en el siguiente enlace: .<br/>"
@@ -222,6 +222,11 @@ public class Servlet extends HttpServlet {
 		else{
 			this.pagDestino = "error.jsp";
 		}
+	}
+	
+	public void verificaLinkContrasena(HttpServletRequest request, HttpServletResponse response){
+		this.pagDestino = "usuarios/cambiarContrasena.jsp";
+		
 	}
 	
 	/**********ORGANIGRAMA****************************************************************************/	
