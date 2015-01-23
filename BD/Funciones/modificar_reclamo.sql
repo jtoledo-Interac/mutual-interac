@@ -1,6 +1,6 @@
 create or replace function public.modificar_reclamo
 (
-	in id_reclamo integer,
+	in xid_reclamo integer,
 	in xnum_adherente varchar,
 	in xnombre_solicitante varchar,
 	in xemail_solicitante varchar,
