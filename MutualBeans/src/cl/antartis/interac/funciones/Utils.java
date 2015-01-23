@@ -147,6 +147,16 @@ public class Utils {
 		return fecha;
 	}
 
+	// *******************************************
+	// Fecha Formateada(00/00/0000) a String8
+	// *******************************************
+	public static int diferenciaEnDias(Date fecha){
+		Date actual = new Date();
+		long difEnMiliSegundos = fecha.getTime() - actual.getTime();
+		long dias = difEnMiliSegundos / (1000 * 60 * 60 * 24);
+		return (int)dias;
+	}
+	
 	// **************************************************************
 	// String tipo numero a String tipo numero formateado n.nnn.nnn
 	// **************************************************************

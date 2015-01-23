@@ -4,10 +4,9 @@
 	<canvas id="canvas" height="450" width="600"></canvas>
 </div>
 
-<h2>Otro ...</h2>
 <div id="canvas-holder" style="width:5%">
 	
-	<canvas id="chart-area" width="500" height="500"/>
+	<canvas id="chart-area" width="500" height="500"></canvas>
 </div>
 
 <script>

@@ -21,10 +21,7 @@ public class EmailUtils {
         Properties props = ConfigUtils.getEmailProperties(out);
         user = ConfigUtils.loadProperties(out+"_user");
         password = ConfigUtils.loadProperties(out+"_password");
-        
-//        System.out.println(user+" - "+ password
-//				+" - "+props.getProperty("mail.smtp.port")+" - "+props.getProperty("mail.smtp.host"));
-        
+                
         String message = body+"\n-- \n"+signature;
         
         // creates a new session with an authenticator
@@ -45,6 +42,48 @@ public class EmailUtils {
 	        msg.setSubject(subject);
 	        msg.setSentDate(new Date());
 	        msg.setText(message);
+        }catch(Exception e){
+        	e.printStackTrace();
+        	return false;
+        }
+        // sends the e-mail
+        try {
+			Transport.send(msg);
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+        return true;
+	}
+	
+	public static Boolean sendMailHtml(String to, String subject, String body){
+		String out = "contacto";
+        Properties props = ConfigUtils.getEmailProperties(out);
+        user = ConfigUtils.loadProperties(out+"_user");
+        password = ConfigUtils.loadProperties(out+"_password");
+                
+        String message = body+"\n-- \n"+signature;
+        
+        // creates a new session with an authenticator
+        Authenticator auth = new Authenticator() {
+            public PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(user, password);
+            }
+        };
+ 
+        Session session = Session.getInstance(props, auth);
+        
+        // creates a new e-mail message
+        Message msg = new MimeMessage(session);
+        try{
+        	msg.setContent(message, "text/html; charset=utf-8");
+        	msg.setFrom(new InternetAddress(user));
+	        InternetAddress[] toAddresses = { new InternetAddress(to)};
+	        msg.setRecipients(Message.RecipientType.TO, toAddresses);
+	        msg.setSubject(subject);
+	        msg.setSentDate(new Date());
+	        //msg.setText(message,"text/html; charset=utf-8");
         }catch(Exception e){
         	e.printStackTrace();
         	return false;

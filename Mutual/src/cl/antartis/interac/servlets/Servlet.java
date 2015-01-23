@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -159,6 +160,67 @@ public class Servlet extends HttpServlet {
 		pagDestino = "login.jsp";
 	}
 	
+	public void recuperar(HttpServletRequest request, HttpServletResponse response){
+		String opcion = request.getParameter("op");
+		log.info(opcion);
+		log.info(request.getParameter("_user"));
+		if(opcion.equals("op1")){
+			this.recuperarContrasena(request,response);
+		}
+		else{
+			this.recuperarUsuario(request, response);
+		}
+	}
+	
+	public void recuperarContrasena(HttpServletRequest request, HttpServletResponse response){
+		log.info("Entra a "+new Object(){}.getClass().getEnclosingMethod().getName());
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		mapaEntrada.put("usuario", request.getParameter("_user"));
+		mapaSalida = ejbRemoto.recuperarContrasena(mapaEntrada);
+		
+		if((Boolean)mapaSalida.get("valido")){
+			Encriptador e = new Encriptador();
+			String link= request.getParameter("_user")+" "+new Date().toString();
+			link = e.encriptar(link);
+			link = "<a href='"+ConfigUtils.loadProperties("dominio")+
+					"/cambiarContrasena.jsp?l="+link+"'>Recuperar contraseña.</a>";
+			String email = (String)mapaSalida.get("email");
+			String subject = "Mutual - Recuperación de contraseña";
+			String body = "Recibimos una solicitud de cambio de contraseña. Para confirmar tu nueva contraseña haz click en el siguiente enlace: .<br/>"
+					+link+ "<br/>Si tu no has solicitado cambio de contraseña ignora este email.<br/>";
+			
+			if(EmailUtils.sendMailHtml(email, subject, body)){
+				this.pagDestino = "mensaje.jsp";
+			}
+			else{
+				this.pagDestino = "error.jsp";
+			}
+		}
+	}
+		
+	public void recuperarUsuario(HttpServletRequest request, HttpServletResponse response){
+		String email = request.getParameter("email");
+		String subject = "";
+		String body = "Ha solicitado recuperar su contraseña.\n"
+				+ "";
+		String signature = "\n-- \n";
+		//llamo a metodo que valida si existe mail
+		Boolean mailValido = false;
+		
+		if(mailValido){
+			if(EmailUtils.sendMail(email, subject, body, signature)){
+				request.setAttribute("cabezera", "¡Éxito!");
+				request.setAttribute("cuerpo", "Se ha envíado un mail con un enlace para recuperar la contraseña");
+				this.pagDestino = "resultado.jsp";
+			}
+		}
+		else{
+			this.pagDestino = "error.jsp";
+		}
+	}
+	
 	/**********ORGANIGRAMA****************************************************************************/	
 	public void organigrama(HttpServletRequest request, HttpServletResponse response) 
 	{
@@ -168,6 +230,7 @@ public class Servlet extends HttpServlet {
 
 		pagDestino = "contenedor.jsp";
 	}
+	
 	/**********USUARIOS****************************************************************************/	
 	public void usuarios(HttpServletRequest request, HttpServletResponse response) 
 	{
