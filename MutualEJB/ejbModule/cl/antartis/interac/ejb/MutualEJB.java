@@ -1544,10 +1544,10 @@ public class MutualEJB implements EJBRemoto {
 					reclamo = new Reclamo();
 					reclamo.setIdReclamo(rs.getLong("id_reclamo"));
 					reclamo.setNumAdherente(rs.getString("num_adherente"));
-	                reclamo.setNombreSolicitante(rs.getString("nombre_solicitante") );
-	                reclamo.setEmailSolicitante(rs.getString("email_solicitante") );
-	                reclamo.setFonoSolicitante(rs.getString("fono_solicitante") );
-	                reclamo.setRegionSolicitante(rs.getString("region_solicitante") );
+	                reclamo.setNombreSolicitante(rs.getString("nombre_solicitante"));
+	                reclamo.setEmailSolicitante(rs.getString("email_solicitante"));
+	                reclamo.setFonoSolicitante(rs.getString("fono_solicitante"));
+	                reclamo.setRegionSolicitante(rs.getString("region_solicitante"));
 	                reclamo.setCodTipo(rs.getString("cod_tipo"));
 	                reclamo.setCodMotivo(rs.getString("cod_motivo"));
 	                reclamo.setCodPrioridad(rs.getString("cod_prioridad"));
