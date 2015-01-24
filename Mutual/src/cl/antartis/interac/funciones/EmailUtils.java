@@ -97,7 +97,5 @@ public class EmailUtils {
 			return false;
 		}
         return true;
-	}
-	
-	
+	}	
 }
