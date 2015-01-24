@@ -63,7 +63,7 @@ public class EmailUtils {
         user = ConfigUtils.loadProperties(out+"_user");
         password = ConfigUtils.loadProperties(out+"_password");
                 
-        String message = body+"\n-- \n";//+signature; //TODO:IVAN error de codigo
+        String message = body;
         
         // creates a new session with an authenticator
         Authenticator auth = new Authenticator() {
