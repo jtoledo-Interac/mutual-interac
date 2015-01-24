@@ -150,11 +150,11 @@ public class Utils {
 	// *******************************************
 	// Fecha Formateada(00/00/0000) a String8
 	// *******************************************
-	public static int diferenciaEnDias(Date fecha){
+	public static int diferenciaEnHoras(Date fecha){
 		Date actual = new Date();
 		long difEnMiliSegundos = fecha.getTime() - actual.getTime();
-		long dias = difEnMiliSegundos / (1000 * 60 * 60 * 24);
-		return (int)dias;
+		long horas = difEnMiliSegundos / (1000 * 60 * 60 );
+		return (int)horas;
 	}
 	
 	// **************************************************************
