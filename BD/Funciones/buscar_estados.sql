@@ -1,11 +1,6 @@
-create or replace function public.buscar_estados
-(
-    out estados refcursor, 
-    out numerror varchar, 
-    out msjerror varchar
-) returns record as
-
-$body$
+CREATE OR REPLACE FUNCTION buscar_estados(OUT estados refcursor, OUT numerror character varying, OUT msjerror character varying)
+  RETURNS record AS
+$BODY$
 
     begin
         numerror := '0';
@@ -28,5 +23,8 @@ $body$
                 return; 
     end;
 
-$body$
-language 'plpgsql'
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+ALTER FUNCTION buscar_estados()
+  OWNER TO postgres;

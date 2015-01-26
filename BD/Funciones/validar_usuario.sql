@@ -1,42 +1,68 @@
-﻿-- Function: validar_usuario(character varying)
-
--- DROP FUNCTION validar_usuario(character varying);
-
-CREATE OR REPLACE FUNCTION validar_usuario(
-	IN username_in character varying,
-	OUT id_out integer,	
-	OUT email_out character varying, 
-	OUT numerror character varying, 
-	OUT msjerror character varying
-) RETURNS record AS
-$BODY$
+﻿create or replace function validar_usuario(in username_in character varying, out email_out character varying, out numerror character varying, out msjerror character varying)
+  returns record as
+$body$
 	declare xusu_snomusuario varchar(100);
-	declare xusu_idusuario integer;
 	declare xusu_semail 	 varchar(100);
 
 begin
-	numerror :='0';
+
+       	numerror :='0';
 	msjerror :=' ';
 
 	select 
-		email,
-		idusuario
+	usu_semail
 	into
-		xusu_semail,
-		xusu_idusuario
+	xusu_semail
+	from 
+		usuario
+	where
+		usu_snomusuario=username_in;
+	if found then
+		email_out := xusu_semail;
+	else
+	numerror := '1';
+	msjerror := 'usuario no encontrado';
+	end if;
+	end;
+
+$body$
+  language plpgsql volatile
+  cost 100;
+alter function validar_usuario(character varying)
+  owner to postgres;
+-- function: validar_usuario(character varying)
+
+-- drop function validar_usuario(character varying);
+
+create or replace function validar_usuario(in username_in character varying, out email_out character varying, out numerror character varying, out msjerror character varying)
+  returns record as
+$body$
+	declare xusu_snomusuario varchar(100);
+	declare xusu_semail 	 varchar(100);
+
+begin
+
+   	numerror :='0';
+	msjerror :=' ';
+
+	select 
+		email
+		into
+		xusu_semail
 	from 
 		usuario
 	where
 		nomusuario = username_in;
-	IF FOUND THEN
+	if found then
 		email_out := xusu_semail;
-		id_out := xusu_idusuario;
-	ELSE
+	else
 	numerror := '1';
-	msjerror := 'Usuario no encontrado';
-	END IF;
+	msjerror := 'usuario no encontrado';
+	end if;
 	end;
 
-$BODY$
-
-LANGUAGE plpgsql 
+$body$
+  language plpgsql volatile
+  cost 100;
+alter function validar_usuario(character varying)
+  owner to postgres;

@@ -1,15 +1,15 @@
-create or replace function public.buscar_par_reclamos
+create or replace function buscar_par_reclamos
 (
-    out tipos refcursor,
-    out motivos refcursor, 
-    out prioridades refcursor,
-    out carteras refcursor,
-    out estados refcursor,
-    out medios refcursor,
-    out medios_respuestas refcursor,
-    out numerror varchar, 
-    out msjerror varchar
-) returns record as
+    out tipos refcursor, 
+    out motivos refcursor,
+    out prioridades refcursor, 
+    out carteras refcursor, 
+    out estados refcursor, 
+    out medios_respuestas refcursor, 
+    out regiones refcursor,
+    out numerror character varying, 
+    out msjerror character varying
+)returns record as
 
 $body$
 begin
@@ -127,12 +127,12 @@ begin
         open medios_respuestas for
 
         select
-            cod_medios_respuesta,
-            des_medios_respuesta
+            cod_medio_respuesta,
+            des_medio_respuesta
         from 
             medios_respuesta
         order by
-            des_medios_respuesta;
+            des_medio_respuesta;
         
         exception
             when others then
@@ -140,6 +140,31 @@ begin
                 msjerror := '[busca_medios_respuestas] error al buscar medios_respuestas(sql) ' ||sqlerrm;
                 return; 
     end;
+
+    begin
+        numerror := '0';
+        msjerror := ' ';
+
+        open regiones for
+
+        select
+            reg_snombre,
+            reg_nidregion
+               
+         from 
+            region
+        order by
+            reg_snombre;
+        
+        exception
+            when others then
+                numerror := sqlstate;
+                msjerror := '[busca_comunas] error al buscar comunas(sql) ' ||sqlerrm;
+                return; 
+    end;
 end;
 $body$
-language 'plpgsql'
+  language plpgsql volatile
+  cost 100;
+alter function buscar_par_reclamos()
+  owner to postgres;

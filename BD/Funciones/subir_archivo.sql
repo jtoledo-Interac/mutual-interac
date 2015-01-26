@@ -1,10 +1,6 @@
--- Function: subir_archivo(character varying, character varying)
-
--- DROP FUNCTION subir_archivo(character varying, character varying);
-
-CREATE OR REPLACE FUNCTION subir_archivo(IN patharchivo character varying, IN nombrearchivo character varying, OUT numerror character varying, OUT msjerror character varying)
-  RETURNS record AS
-$BODY$
+create or replace function subir_archivo(in patharchivo character varying, in nombrearchivo character varying, out numerror character varying, out msjerror character varying)
+  returns record as
+$body$
 
 	begin
 
@@ -30,8 +26,8 @@ $BODY$
 				msjerror := '[agregar_empresa] error al crear empresa(sql) ' ||sqlerrm;
 				return;	
 	end;
-$BODY$
-  LANGUAGE plpgsql VOLATILE
-  COST 100;
-ALTER FUNCTION subir_archivo(character varying, character varying)
-  OWNER TO postgres;
+$body$
+  language plpgsql volatile
+  cost 100;
+alter function subir_archivo(character varying, character varying)
+  owner to postgres;
