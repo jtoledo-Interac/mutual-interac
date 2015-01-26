@@ -1550,19 +1550,24 @@ public class MutualEJB implements EJBRemoto {
 	                reclamo.setFonoSolicitante(rs.getString("fono_solicitante"));
 	                reclamo.setRegionSolicitante(rs.getString("region_solicitante"));
 	                reclamo.setCodTipo(rs.getString("cod_tipo"));
+	                reclamo.setDesTipo(rs.getString("des_tipo"));	    
 	                reclamo.setCodMotivo(rs.getString("cod_motivo"));
+	                reclamo.setDesMotivo(rs.getString("des_motivo"));
 	                reclamo.setCodPrioridad(rs.getString("cod_prioridad"));
+	                reclamo.setDesPrioridad(rs.getString("des_prioridad"));
 	                reclamo.setCodCartera(rs.getString("cod_cartera"));
 	                reclamo.setFecIngreso(Utils.formateaFecha(rs.getString("fec_ingreso")));
 	                reclamo.setGlosa(rs.getString("glosa"));
 	                reclamo.setAdjunto(rs.getString("adjunto"));
 	                reclamo.setObservaciones(rs.getString("observaciones"));
 	                reclamo.setCodEstado(rs.getString("cod_estado"));
+	                reclamo.setDesEstado(rs.getString("des_estado"));
 	                reclamo.setResponsableIngreso(rs.getString("responsable_ingreso"));
 	                reclamo.setResponsableActual(rs.getString("responsable_actual"));
 	                reclamo.setDiasBandeja(rs.getString("dias_bandeja") );
 	                reclamo.setDiasSistema(rs.getString("dias_sistema") );
 	                reclamo.setCodMedio(rs.getString("cod_medio_respuesta"));
+	                reclamo.setDesMedio(rs.getString("des_medio_respuesta"));
 	                reclamo.setFecRespuesta(Utils.formateaFecha(rs.getString("fec_respuesta")));
 					listaReclamos.add(reclamo);
 				}
