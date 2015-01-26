@@ -99,11 +99,11 @@ public class Servlet extends HttpServlet {
 		Encriptador encriptador = new Encriptador();
 		
 		Usuario usuario = new Usuario();
-		usuario.setsNomUsuario(request.getParameter("sNomUsuario"));
-		usuario.setsContrasena(encriptador.encriptar(request.getParameter("sContrasena")));
-		usuario.setsHost(request.getRemoteAddr());
+		usuario.setNomUsuario(request.getParameter("sNomUsuario"));
+		usuario.setContrasena1(encriptador.encriptar(request.getParameter("sContrasena")));
+		usuario.setHost(request.getRemoteAddr());
 		
-		System.out.println("["+usuario.getsNomUsuario()+" - "+usuario.getsContrasena()+"]");
+		System.out.println("["+usuario.getNomUsuario()+" - "+usuario.getContrasena1()+"]");
 		
 		log.info("Usuario: "+usuario.getUsuario());
 		
@@ -123,7 +123,7 @@ public class Servlet extends HttpServlet {
 			
 			//setting session to expiry in 30 mins.
 			HttpSession session = request.getSession();
-			session.setAttribute("nombre", usuario.getsNombres()+" "+usuario.getsApePaterno()+" "+usuario.getsApeMaterno());
+			session.setAttribute("nombre", usuario.getNombres()+" "+usuario.getApePaterno()+" "+usuario.getApeMaterno());
 			session.setAttribute("user",usuario);
 			session.setMaxInactiveInterval(sessionTime);
 			
@@ -326,12 +326,12 @@ public class Servlet extends HttpServlet {
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
 		Usuario usuario = new Usuario();
-		usuario.setsRut(Utils.getRutSinDV(request.getParameter("sRut")));
-		usuario.setsDV(request.getParameter("sDV"));
-		usuario.setsNombres(request.getParameter("sNombres"));
-		usuario.setsApePaterno(request.getParameter("sApePaterno"));
-		usuario.setsApeMaterno(request.getParameter("sApeMaterno"));
-		usuario.setsNomUsuario(request.getParameter("sNomUsuario"));
+		usuario.setRut(Utils.getRutSinDV(request.getParameter("sRut")));
+		usuario.setDv(request.getParameter("sDV"));
+		usuario.setNombres(request.getParameter("sNombres"));
+		usuario.setApePaterno(request.getParameter("sApePaterno"));
+		usuario.setApeMaterno(request.getParameter("sApeMaterno"));
+		usuario.setNomUsuario(request.getParameter("sNomUsuario"));
 		
 		mapaEntrada.put("usuario",usuario);
 		
@@ -351,18 +351,18 @@ public class Servlet extends HttpServlet {
 		log.info("Comuna: "+request.getParameter("nIdComuna"));
 		
 		Usuario usuario = new Usuario();
-		usuario.setsRut(Utils.getRutSinDV(request.getParameter("sRut")));
-		usuario.setsDV(request.getParameter("sDV"));
-		usuario.setsNombres(request.getParameter("sNombres"));
-		usuario.setsApePaterno(request.getParameter("sApePaterno"));
-		usuario.setsApeMaterno(request.getParameter("sApeMaterno"));
-		usuario.setsNomUsuario(request.getParameter("sNomUsuario"));
-		usuario.setsContrasena(request.getParameter("sContrasena"));
-		usuario.setsCodGenero(request.getParameter("sCodGenero"));
-		usuario.setsFecNacimiento(request.getParameter("sFecNacimiento"));
-		usuario.setsTelefono(request.getParameter("sTelefono"));
-		usuario.setsCelular(request.getParameter("sCelular"));
-		usuario.setsEmail(request.getParameter("sEmail"));
+		usuario.setRut(Utils.getRutSinDV(request.getParameter("sRut")));
+		usuario.setDv(request.getParameter("sDV"));
+		usuario.setNombres(request.getParameter("sNombres"));
+		usuario.setApePaterno(request.getParameter("sApePaterno"));
+		usuario.setApeMaterno(request.getParameter("sApeMaterno"));
+		usuario.setNomUsuario(request.getParameter("sNomUsuario"));
+		usuario.setContrasena1(request.getParameter("sContrasena"));
+		usuario.setCodGenero(request.getParameter("sCodGenero"));
+		usuario.setFecNacimiento(request.getParameter("sFecNacimiento"));
+		usuario.setTelefono(request.getParameter("sTelefono"));
+		usuario.setCelular(request.getParameter("sCelular"));
+		usuario.setEmail(request.getParameter("sEmail"));
 		
 		mapaEntrada.put("usuario",usuario);
 		
@@ -409,19 +409,19 @@ public class Servlet extends HttpServlet {
 		Encriptador e = new Encriptador();
 		
 		Usuario usuario = new Usuario();
-		usuario.setnIdUsuario(Utils.stringToNum(request.getParameter("nIdUsuario")));
-		usuario.setsRut(Utils.getRutSinDV(request.getParameter("sRut")));
-		usuario.setsDV(request.getParameter("sDV"));
-		usuario.setsNombres(request.getParameter("sNombres"));
-		usuario.setsApePaterno(request.getParameter("sApePaterno"));
-		usuario.setsApeMaterno(request.getParameter("sApeMaterno"));
-		usuario.setsNomUsuario(request.getParameter("sNomUsuario"));
-		usuario.setsContrasena(e.encriptar(request.getParameter("sContrasena")));
-		usuario.setsCodGenero(request.getParameter("sCodGenero"));
-		usuario.setsFecNacimiento(request.getParameter("sFecNacimiento"));
-		usuario.setsTelefono(request.getParameter("sTelefono"));
-		usuario.setsCelular(request.getParameter("sCelular"));
-		usuario.setsEmail(request.getParameter("sEmail"));
+		usuario.setIdUsuario(Utils.stringToNum(request.getParameter("nIdUsuario")));
+		usuario.setRut(Utils.getRutSinDV(request.getParameter("sRut")));
+		usuario.setDv(request.getParameter("sDV"));
+		usuario.setNombres(request.getParameter("sNombres"));
+		usuario.setApePaterno(request.getParameter("sApePaterno"));
+		usuario.setApeMaterno(request.getParameter("sApeMaterno"));
+		usuario.setNomUsuario(request.getParameter("sNomUsuario"));
+		usuario.setContrasena1(e.encriptar(request.getParameter("sContrasena")));
+		usuario.setCodGenero(request.getParameter("sCodGenero"));
+		usuario.setFecNacimiento(request.getParameter("sFecNacimiento"));
+		usuario.setTelefono(request.getParameter("sTelefono"));
+		usuario.setCelular(request.getParameter("sCelular"));
+		usuario.setEmail(request.getParameter("sEmail"));
 
 		log.info(usuario.getUsuario());
 		
@@ -660,8 +660,6 @@ public class Servlet extends HttpServlet {
 		mapaSalida = ejbRemoto.agregarDocumento(mapaEntrada);
 		
 		log.info("ID Documento: "+mapaSalida.get("idDocumento"));
-		
-		System.out.println("Buscar parametros agregar");
 		
 		mapaSalida = ejbRemoto.buscarParametros(mapaEntrada);
 		

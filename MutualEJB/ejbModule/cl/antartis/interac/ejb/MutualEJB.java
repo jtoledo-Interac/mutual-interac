@@ -17,9 +17,9 @@ import org.apache.log4j.Logger;
 
 import cl.antartis.interac.beans.Area;
 import cl.antartis.interac.beans.Cartera;
-import cl.antartis.interac.beans.Constantes;
 import cl.antartis.interac.beans.Documento;
 import cl.antartis.interac.beans.Empresa;
+import cl.antartis.interac.beans.Error;
 import cl.antartis.interac.beans.Estado;
 import cl.antartis.interac.beans.Medio;
 import cl.antartis.interac.beans.Motivo;
@@ -29,8 +29,6 @@ import cl.antartis.interac.beans.Reclamo;
 import cl.antartis.interac.beans.Region;
 import cl.antartis.interac.beans.Tipo;
 import cl.antartis.interac.beans.Usuario;
-import cl.antartis.interac.beans.Sesion;
-import cl.antartis.interac.beans.Error;
 import cl.antartis.interac.ejb.interfaces.EJBRemoto;
 import cl.antartis.interac.funciones.Utils;
 
@@ -67,17 +65,17 @@ public class MutualEJB implements EJBRemoto {
 
 			cStmt = dbConeccion.prepareCall("{ call buscar_usuarios(?,?,?,?,?,?,?,?,?) }");
 			
-			cStmt.setString(1, usuario.getsRut());
-			cStmt.setString(2, usuario.getsDV());
-			cStmt.setString(3, usuario.getsNombres());
-			cStmt.setString(4, usuario.getsApePaterno());
-			cStmt.setString(5, usuario.getsApeMaterno());
-			cStmt.setString(6, usuario.getsNomUsuario());
+			cStmt.setString(1, usuario.getRut());
+			cStmt.setString(2, usuario.getDv());
+			cStmt.setString(3, usuario.getNombres());
+			cStmt.setString(4, usuario.getApePaterno());
+			cStmt.setString(5, usuario.getApeMaterno());
+			cStmt.setString(6, usuario.getNomUsuario());
 			cStmt.registerOutParameter(7, Types.OTHER);// cursor$
 			cStmt.registerOutParameter(8, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(9, Types.VARCHAR);// msjerror$
 
-			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
+			
 			cStmt.execute();
 
 			ResultSet rs = (ResultSet) cStmt.getObject(7);
@@ -89,24 +87,24 @@ public class MutualEJB implements EJBRemoto {
 			if(rs !=null){
 				while (rs.next()) {
 					usuario = new Usuario();
-					usuario.setnIdUsuario(rs.getLong("idusuario"));
-					usuario.setsRut(rs.getString("rut"));
-					usuario.setsDV(rs.getString("dv"));
-					usuario.setsRutFormat(Utils.getRutFormat(usuario.getsRut()+usuario.getsDV()));
-					usuario.setsNombres(rs.getString("nombres"));
-					usuario.setsApePaterno(rs.getString("apepaterno"));
-					usuario.setsApeMaterno(rs.getString("apematerno"));
-					usuario.setsNomUsuario(rs.getString("nomusuario"));
-					usuario.setsContrasena(rs.getString("contrasena"));
-					usuario.setsCodGenero(rs.getString("codgenero"));
-					usuario.setsFecNacimiento(Utils.formateaFecha(rs.getString("fecnacimiento")));
-					usuario.setsTelefono(rs.getString("telefono"));
-					usuario.setsCelular(rs.getString("celular"));
-					usuario.setsEmail(rs.getString("email"));
-					usuario.setnCantIntentos(rs.getInt("cantintentos"));
-					usuario.setsFecCreacion(Utils.formateaFecha(rs.getString("feccreacion")));
-					usuario.setsFecContrasena(Utils.formateaFecha(rs.getString("feccontrasena")));
-					usuario.setsIndVigencia(rs.getString("indvigencia"));
+					usuario.setIdUsuario(rs.getLong("idusuario"));
+					usuario.setRut(rs.getString("rut"));
+					usuario.setDv(rs.getString("dv"));
+					usuario.setRutFormat(Utils.getRutFormat(usuario.getRut()+usuario.getDv()));
+					usuario.setNombres(rs.getString("nombres"));
+					usuario.setApePaterno(rs.getString("apepaterno"));
+					usuario.setApeMaterno(rs.getString("apematerno"));
+					usuario.setNomUsuario(rs.getString("nomusuario"));
+					usuario.setContrasena1(rs.getString("contrasena"));
+					usuario.setCodGenero(rs.getString("codgenero"));
+					usuario.setFecNacimiento(Utils.formateaFecha(rs.getString("fecnacimiento")));
+					usuario.setTelefono(rs.getString("telefono"));
+					usuario.setCelular(rs.getString("celular"));
+					usuario.setEmail(rs.getString("email"));
+					usuario.setCantIntentos(rs.getInt("cantintentos"));
+					usuario.setFecCreacion(Utils.formateaFecha(rs.getString("feccreacion")));
+					usuario.setFecContrasena(Utils.formateaFecha(rs.getString("feccontrasena")));
+					usuario.setIndVigencia(rs.getString("indvigencia"));
 					listaUsuarios.add(usuario);
 				}
 				rs.close();
@@ -161,23 +159,23 @@ public class MutualEJB implements EJBRemoto {
 			dbConeccion = interacDS.getConnection();
 
 			cStmt = dbConeccion.prepareCall("{ call agregar_usuario(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
-			cStmt.setString(1, usuario.getsRut());
-			cStmt.setString(2, usuario.getsDV());
-			cStmt.setString(3, usuario.getsNombres());
-			cStmt.setString(4, usuario.getsApePaterno());
-			cStmt.setString(5, usuario.getsApeMaterno());
-			cStmt.setString(6, usuario.getsNomUsuario());
-			cStmt.setString(7, usuario.getsContrasena());
-			cStmt.setString(8, usuario.getsCodGenero());
-			cStmt.setDate(9, Utils.stringToDate(usuario.getsFecNacimiento()));
-			cStmt.setString(10, usuario.getsTelefono());
-			cStmt.setString(11, usuario.getsCelular());
-			cStmt.setString(12, usuario.getsEmail());
+			cStmt.setString(1, usuario.getRut());
+			cStmt.setString(2, usuario.getDv());
+			cStmt.setString(3, usuario.getNombres());
+			cStmt.setString(4, usuario.getApePaterno());
+			cStmt.setString(5, usuario.getApeMaterno());
+			cStmt.setString(6, usuario.getNomUsuario());
+			cStmt.setString(7, usuario.getContrasena1());
+			cStmt.setString(8, usuario.getCodGenero());
+			cStmt.setDate(9, Utils.stringToDate(usuario.getFecNacimiento()));
+			cStmt.setString(10, usuario.getTelefono());
+			cStmt.setString(11, usuario.getCelular());
+			cStmt.setString(12, usuario.getEmail());
 			cStmt.registerOutParameter(13, Types.BIGINT);// nidusuario$
 			cStmt.registerOutParameter(14, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(15, Types.VARCHAR);// msjerror$
 
-			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
+			
 			cStmt.execute();
 			
 			idUsuario = cStmt.getLong(13);
@@ -230,23 +228,23 @@ public class MutualEJB implements EJBRemoto {
 			dbConeccion = interacDS.getConnection();
 			
 			cStmt = dbConeccion.prepareCall("{ call modificar_usuario(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
-			cStmt.setLong(1, usuario.getnIdUsuario());
-			cStmt.setString(2, usuario.getsRut());
-			cStmt.setString(3, usuario.getsDV());
-			cStmt.setString(4, usuario.getsNombres());
-			cStmt.setString(5, usuario.getsApePaterno());
-			cStmt.setString(6, usuario.getsApeMaterno());
-			cStmt.setString(7, usuario.getsNomUsuario());
-			cStmt.setString(8, usuario.getsContrasena());
-			cStmt.setString(9, usuario.getsCodGenero());
-			cStmt.setDate(10, Utils.stringToDate(usuario.getsFecNacimiento()));
-			cStmt.setString(11, usuario.getsTelefono());
-			cStmt.setString(12, usuario.getsCelular());
-			cStmt.setString(13, usuario.getsEmail());
+			cStmt.setLong(1, usuario.getIdUsuario());
+			cStmt.setString(2, usuario.getRut());
+			cStmt.setString(3, usuario.getDv());
+			cStmt.setString(4, usuario.getNombres());
+			cStmt.setString(5, usuario.getApePaterno());
+			cStmt.setString(6, usuario.getApeMaterno());
+			cStmt.setString(7, usuario.getNomUsuario());
+			cStmt.setString(8, usuario.getContrasena1());
+			cStmt.setString(9, usuario.getCodGenero());
+			cStmt.setDate(10, Utils.stringToDate(usuario.getFecNacimiento()));
+			cStmt.setString(11, usuario.getTelefono());
+			cStmt.setString(12, usuario.getCelular());
+			cStmt.setString(13, usuario.getEmail());
 			cStmt.registerOutParameter(14, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(15, Types.VARCHAR);// msjerror$
 
-			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
+			
 			cStmt.execute();
 			
 			numError = cStmt.getString(14);
@@ -311,28 +309,28 @@ public class MutualEJB implements EJBRemoto {
 			numError = cStmt.getString(3);
 			msjError = cStmt.getString(4);
 			
-			System.out.println("??????");
+			log.info("??????");
 			
 			while (rsUsuarios.next()) {
 				usuario = new Usuario();
-				usuario.setnIdUsuario(rsUsuarios.getLong("idusuario"));
-				usuario.setsRut(rsUsuarios.getString("rut"));
-				usuario.setsDV(rsUsuarios.getString("dv"));
-				usuario.setsRutFormat(Utils.getRutFormat(usuario.getsRut()+usuario.getsDV()));
-				usuario.setsNombres(rsUsuarios.getString("nombres"));
-				usuario.setsApePaterno(rsUsuarios.getString("apepaterno"));
-				usuario.setsApeMaterno(rsUsuarios.getString("apematerno"));
-				usuario.setsNomUsuario(rsUsuarios.getString("nomusuario"));
-				usuario.setsContrasena(rsUsuarios.getString("contrasena"));
-				usuario.setsCodGenero(rsUsuarios.getString("codgenero"));
-				usuario.setsFecNacimiento(Utils.formateaFecha(rsUsuarios.getString("fecnacimiento")));
-				usuario.setsTelefono(rsUsuarios.getString("telefono"));
-				usuario.setsCelular(rsUsuarios.getString("celular"));
-				usuario.setsEmail(rsUsuarios.getString("email"));
-				usuario.setnCantIntentos(rsUsuarios.getInt("cantintentos"));
-				usuario.setsFecCreacion(Utils.formateaFecha(rsUsuarios.getString("feccreacion")));
-				usuario.setsFecContrasena(Utils.formateaFecha(rsUsuarios.getString("feccontrasena")));
-				usuario.setsIndVigencia(rsUsuarios.getString("indvigencia"));
+				usuario.setIdUsuario(rsUsuarios.getLong("idusuario"));
+				usuario.setRut(rsUsuarios.getString("rut"));
+				usuario.setDv(rsUsuarios.getString("dv"));
+				usuario.setRutFormat(Utils.getRutFormat(usuario.getRut()+usuario.getDv()));
+				usuario.setNombres(rsUsuarios.getString("nombres"));
+				usuario.setApePaterno(rsUsuarios.getString("apepaterno"));
+				usuario.setApeMaterno(rsUsuarios.getString("apematerno"));
+				usuario.setNomUsuario(rsUsuarios.getString("nomusuario"));
+				usuario.setContrasena1(rsUsuarios.getString("contrasena"));
+				usuario.setCodGenero(rsUsuarios.getString("codgenero"));
+				usuario.setFecNacimiento(Utils.formateaFecha(rsUsuarios.getString("fecnacimiento")));
+				usuario.setTelefono(rsUsuarios.getString("telefono"));
+				usuario.setCelular(rsUsuarios.getString("celular"));
+				usuario.setEmail(rsUsuarios.getString("email"));
+				usuario.setCantIntentos(rsUsuarios.getInt("cantintentos"));
+				usuario.setFecCreacion(Utils.formateaFecha(rsUsuarios.getString("feccreacion")));
+				usuario.setFecContrasena(Utils.formateaFecha(rsUsuarios.getString("feccontrasena")));
+				usuario.setIndVigencia(rsUsuarios.getString("indvigencia"));
 			}
 			
 			rsUsuarios.close();
@@ -440,7 +438,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
 
-			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
+			
 			cStmt.execute();
 
 			ResultSet rs = (ResultSet) cStmt.getObject(1);
@@ -513,7 +511,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
 
-			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
+			
 			cStmt.execute();
 
 			ResultSet rs = (ResultSet) cStmt.getObject(1);
@@ -577,25 +575,25 @@ public class MutualEJB implements EJBRemoto {
 			dbConeccion = interacDS.getConnection();
 
 			cStmt = dbConeccion.prepareCall("{ call login(?,?,?,?,?,?,?)}");
-			cStmt.setString(1, usuario.getsNomUsuario());
-			cStmt.setString(2, usuario.getsContrasena());
+			cStmt.setString(1, usuario.getNomUsuario());
+			cStmt.setString(2, usuario.getContrasena1());
 			cStmt.registerOutParameter(3, Types.VARCHAR);// nombre$
 			cStmt.registerOutParameter(4, Types.VARCHAR);// apellidoP$
 			cStmt.registerOutParameter(5, Types.VARCHAR);// apellidoM$
 			cStmt.registerOutParameter(6, Types.VARCHAR);
 			cStmt.registerOutParameter(7, Types.VARCHAR);
 		
-			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
-			System.out.println("["+usuario.getsNomUsuario()+" - "+usuario.getsContrasena()+"]");
+			
+			log.info("["+usuario.getNomUsuario()+" - "+usuario.getContrasena1()+"]");
 			cStmt.execute();
-			usuario.setsNombres(cStmt.getString(3));
-			usuario.setsApePaterno(cStmt.getString(4));
-			usuario.setsApeMaterno(cStmt.getString(5));
+			usuario.setNombres(cStmt.getString(3));
+			usuario.setApePaterno(cStmt.getString(4));
+			usuario.setApeMaterno(cStmt.getString(5));
 			error.setNumError(cStmt.getString(6));
 			error.setMsjError(cStmt.getString(7));
 			mapaSalida.put("error", error);
 			mapaSalida.put("usuario",usuario);
-			System.out.println(error.getError()+"<----");
+			log.info(error.getError()+"<----");
 			
 		} catch (SQLException e) {
 			//e.printStackTrace();
@@ -659,7 +657,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.registerOutParameter(4, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(5, Types.VARCHAR);// msjerror$
 
-			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
+			
 			cStmt.execute();
 			
 	
@@ -780,7 +778,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
 
-			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
+			
 			cStmt.execute();
 			
 			error.setNumError(cStmt.getString(3));
@@ -892,7 +890,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
 
-			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
+			
 			cStmt.execute();
 
 			error.setNumError(cStmt.getString(3));
@@ -1018,7 +1016,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
 
-			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
+			
 			cStmt.execute();
 			
 			error.setNumError(cStmt.getString(3));
@@ -1088,7 +1086,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.registerOutParameter(8, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(9, Types.VARCHAR);// msjerror$
 
-			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
+			
 			cStmt.execute();
 
 			ResultSet rs = (ResultSet) cStmt.getObject(7);
@@ -1174,7 +1172,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.registerOutParameter(9, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(10, Types.VARCHAR);// msjerror$
 
-			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
+			
 			cStmt.execute();
 			
 			idDocumento = cStmt.getLong(8);
@@ -1313,7 +1311,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.registerOutParameter(9, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(10, Types.VARCHAR);// msjerror$
 
-			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
+			
 			cStmt.execute();
 			
 			numError = cStmt.getString(9);
@@ -1356,7 +1354,7 @@ public class MutualEJB implements EJBRemoto {
 		String msjError = "";
 		
 		try {
-			System.out.println("no entra??");
+			log.info("no entra??");
 			
 			log.info("Eliminar documento");
 
@@ -1428,7 +1426,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.registerOutParameter(4, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(5, Types.VARCHAR);// msjerror$
 
-			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
+			
 			cStmt.execute();
 
 			ResultSet rsCarteras = (ResultSet) cStmt.getObject(1);
@@ -1533,7 +1531,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.registerOutParameter(8, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(9, Types.VARCHAR);// msjerror$
 
-			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
+			
 			cStmt.execute();
 
 			ResultSet rs = (ResultSet) cStmt.getObject(7);
@@ -1610,7 +1608,7 @@ public class MutualEJB implements EJBRemoto {
 			log.info("Agregar reclamo");
 			reclamo = (Reclamo)mapaEntrada.get("reclamo");
 			log.info(reclamo.getReclamo());
-			System.out.println(reclamo.getEmailBody());
+			log.info(reclamo.getEmailBody());
 			mapaSalida = new HashMap<String, Object>();
 
 			dbConeccion = interacDS.getConnection();
@@ -1792,7 +1790,6 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(8, reclamo.getCodMotivo());
 			cStmt.setString(9, reclamo.getCodPrioridad());
 			cStmt.setString(10, reclamo.getCodCartera());
-			System.out.println(Utils.stringToDate(reclamo.getFecIngreso()));
 			cStmt.setDate(11, Utils.stringToDate(reclamo.getFecIngreso()));
 			cStmt.setString(12, reclamo.getGlosa());
 			cStmt.setString(13, reclamo.getAdjunto());
@@ -1808,7 +1805,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.registerOutParameter(22, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(23, Types.VARCHAR);// msjerror$
 	
-			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
+			
 			cStmt.execute();
 			
 			numError = cStmt.getString(22);
@@ -1869,7 +1866,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
 
-			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
+			
 			cStmt.execute();
 			
 			error.setNumError(cStmt.getString(2));
@@ -1942,7 +1939,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.registerOutParameter(8, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(9, Types.VARCHAR);// msjerror$
 
-			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
+			
 			cStmt.execute();
 
 			
@@ -1962,9 +1959,7 @@ public class MutualEJB implements EJBRemoto {
 				while (rsRegiones.next()){
 					region = new Region();
 					region.setCodRegion(rsRegiones.getString("cod_region"));
-					System.out.println(rsRegiones.getString("cod_region"));
 					region.setDesRegion(rsRegiones.getString("des_region"));
-					System.out.println(rsRegiones.getString("des_region"));
 					listaRegiones.add(region);
 				}
 				rsRegiones.close();
@@ -1972,15 +1967,13 @@ public class MutualEJB implements EJBRemoto {
 			
 			listaTipos = new ArrayList<Tipo>();
 
-			System.out.println("++++++++++++++++++");
+			log.info("++++++++++++++++++");
 			
 			if(rsTipos !=null){
 				while (rsTipos.next()) {
 					tipo = new Tipo();
 					tipo.setCodTipo(rsTipos.getString("cod_tipo"));
-					System.out.println(rsTipos.getString("cod_tipo"));
 					tipo.setDesTipo(rsTipos.getString("des_tipo"));
-					System.out.println(rsTipos.getString("des_tipo"));
 					listaTipos.add(tipo);
 				}
 				rsTipos.close();
@@ -1993,9 +1986,6 @@ public class MutualEJB implements EJBRemoto {
 					motivo = new Motivo();
 					motivo.setCodMotivo(rsMotivos.getString("cod_motivo"));
 					motivo.setDesMotivo(rsMotivos.getString("des_motivo"));
-
-					System.out.println(rsMotivos.getString("cod_motivo"));
-					System.out.println(rsMotivos.getString("des_motivo"));
 					listaMotivos.add(motivo);
 				}
 				rsMotivos.close();
@@ -2008,9 +1998,6 @@ public class MutualEJB implements EJBRemoto {
 					prioridad = new Prioridad();
 					prioridad.setCodPrioridad(rsPrioridades.getString("cod_prioridad"));
 					prioridad.setDesPrioridad(rsPrioridades.getString("des_prioridad"));
-					
-					System.out.println(rsPrioridades.getString("cod_prioridad"));
-					System.out.println(rsPrioridades.getString("des_prioridad"));
 					listaPrioridades.add(prioridad);
 				}
 				rsPrioridades.close();
@@ -2023,9 +2010,6 @@ public class MutualEJB implements EJBRemoto {
 					cartera = new Cartera();
 					cartera.setCodCartera(rsCarteras.getString("cod_cartera"));
 					cartera.setDesCartera(rsCarteras.getString("des_cartera"));
-					
-					System.out.println(rsCarteras.getString("cod_cartera"));
-					System.out.println(rsCarteras.getString("des_cartera"));
 					listaCarteras.add(cartera);
 				}
 				rsCarteras.close();
@@ -2038,9 +2022,6 @@ public class MutualEJB implements EJBRemoto {
 					estado = new Estado();
 					estado.setCodEstado(rsEstados.getString("cod_estado"));
 					estado.setDesEstado(rsEstados.getString("des_estado"));
-					
-					System.out.println(rsEstados.getString("cod_estado"));
-					System.out.println(rsEstados.getString("des_estado"));
 					listaEstados.add(estado);
 				}
 				rsEstados.close();
@@ -2053,9 +2034,6 @@ public class MutualEJB implements EJBRemoto {
 					medio = new Medio();
 					medio.setDesMedio(rsMedios.getString("des_medio_respuesta"));
 					medio.setCodMedio(rsMedios.getString("cod_medio_respuesta"));
-					
-					System.out.println(rsMedios.getString("cod_medio_respuesta"));
-					System.out.println(rsMedios.getString("des_medio_respuesta"));
 					listaMedios.add(medio);
 				}
 				rsMedios.close();
@@ -2121,7 +2099,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
 
-			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
+			
 			cStmt.execute();
 
 			error.setNumError(cStmt.getString(3));
@@ -2231,7 +2209,6 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
 
-			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
 			cStmt.execute();
 
 			ResultSet rs = (ResultSet) cStmt.getObject(1);

@@ -1,242 +1,214 @@
 package cl.antartis.interac.beans;
 
 import java.io.Serializable;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import cl.antartis.interac.funciones.Utils;
 
 public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = -8969393201692586300L;
-	private long nIdUsuario;
-	private String sRut;
-	private String sDV;
-	private String sRutFormat;
-	private String sNombres;
-	private String sApePaterno;
-	private String sApeMaterno;
-	private String sNomUsuario;
-	private String sContrasena;
-	private String sCodGenero;
-	private String sFecNacimiento;
-	private String sTelefono;
-	private String sCelular;
-	private String sEmail;
-	private int nCantIntentos;
-	private String sFecCreacion;
-	private String sFecContrasena;
-	private String sIndVigencia;
-	private String sHost;
-	private String sCodIdioma="spa";
+	private long idUsuario;
+	private String rut;
+	private String dv;
+	private String rutFormat;
+	private String nombres;
+	private String apePaterno;
+	private String apeMaterno;
+	private String nomUsuario;
+	private String contrasena1;
+	private String contrasena2;
+	private String codGenero;
+	private String fecNacimiento;
+	private String telefono;
+	private String celular;
+	private String email;
+	private int cantIntentos;
+	private String fecCreacion;
+	private String fecContrasena;
+	private String indVigencia;
+	private String host;
 
-	public long getnIdUsuario() {
-		return nIdUsuario;
+	public long getIdUsuario() {
+		return idUsuario;
 	}
 
-	public void setnIdUsuario(long nIdUsuario) {
-		this.nIdUsuario = nIdUsuario;
+	public void setIdUsuario(long idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 
-	public String getsRut() {
-		return sRut;
+	public String getRut() {
+		return rut;
 	}
 
-	public void setsRut(String sRut) {
-		this.sRut = sRut;
+	public void setRut(String rut) {
+		this.rut = rut;
 	}
 
-	public String getsDV() {
-		return sDV;
+	public String getDv() {
+		return dv;
 	}
 
-	public void setsDV(String sDV) {
-		this.sDV = sDV;
-	}
-	
-	public String getsRutFormat() {
-		return sRutFormat;
+	public void setDv(String dv) {
+		this.dv = dv;
 	}
 
-	public void setsRutFormat(String sRutFormat) {
-		this.sRutFormat = sRutFormat;
+	public String getRutFormat() {
+		return rutFormat;
 	}
 
-	public String getsNombres() {
-		return sNombres;
+	public void setRutFormat(String rutFormat) {
+		this.rutFormat = rutFormat;
 	}
 
-	public void setsNombres(String sNombres) {
-		this.sNombres = sNombres;
+	public String getNombres() {
+		return nombres;
 	}
 
-	public String getsApePaterno() {
-		return sApePaterno;
+	public void setNombres(String nombres) {
+		this.nombres = nombres;
 	}
 
-	public void setsApePaterno(String sApePaterno) {
-		this.sApePaterno = sApePaterno;
+	public String getApePaterno() {
+		return apePaterno;
 	}
 
-	public String getsApeMaterno() {
-		return sApeMaterno;
+	public void setApePaterno(String apePaterno) {
+		this.apePaterno = apePaterno;
 	}
 
-	public void setsApeMaterno(String sApeMaterno) {
-		this.sApeMaterno = sApeMaterno;
+	public String getApeMaterno() {
+		return apeMaterno;
 	}
 
-	public String getsNomUsuario() {
-		return sNomUsuario;
+	public void setApeMaterno(String apeMaterno) {
+		this.apeMaterno = apeMaterno;
 	}
 
-	public void setsNomUsuario(String sNomUsuario) {
-		this.sNomUsuario = sNomUsuario;
+	public String getNomUsuario() {
+		return nomUsuario;
 	}
 
-	public String getsContrasena() {
-		return sContrasena;
+	public void setNomUsuario(String nomUsuario) {
+		this.nomUsuario = nomUsuario;
 	}
 
-	public void setsContrasena(String sContrasena) {
-		this.sContrasena = sContrasena;
+	public String getContrasena1() {
+		return contrasena1;
 	}
 
-	public String getsCodGenero() {
-		return sCodGenero;
+	public void setContrasena1(String contrasena1) {
+		this.contrasena1 = contrasena1;
 	}
 
-	public void setsCodGenero(String sCodGenero) {
-		this.sCodGenero = sCodGenero;
+	public String getContrasena2() {
+		return contrasena2;
 	}
 
-	public String getsFecNacimiento() {
-		return sFecNacimiento;
+	public void setContrasena2(String contrasena2) {
+		this.contrasena2 = contrasena2;
 	}
 
-	public void setsFecNacimiento(String sFecNacimiento) {
-		this.sFecNacimiento = sFecNacimiento;
+	public String getCodGenero() {
+		return codGenero;
 	}
 
-	public String getsTelefono() {
-		return sTelefono;
+	public void setCodGenero(String codGenero) {
+		this.codGenero = codGenero;
 	}
 
-	public void setsTelefono(String sTelefono) {
-		this.sTelefono = sTelefono;
+	public String getFecNacimiento() {
+		return fecNacimiento;
 	}
 
-	public String getsCelular() {
-		return sCelular;
+	public void setFecNacimiento(String fecNacimiento) {
+		this.fecNacimiento = fecNacimiento;
 	}
 
-	public void setsCelular(String sCelular) {
-		this.sCelular = sCelular;
+	public String getTelefono() {
+		return telefono;
 	}
 
-	public String getsEmail() {
-		return sEmail;
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
 	}
 
-	public void setsEmail(String sEmail) {
-		this.sEmail = sEmail;
+	public String getCelular() {
+		return celular;
 	}
 
-	public int getnCantIntentos() {
-		return nCantIntentos;
+	public void setCelular(String celular) {
+		this.celular = celular;
 	}
 
-	public void setnCantIntentos(int nCantIntentos) {
-		this.nCantIntentos = nCantIntentos;
+	public String getEmail() {
+		return email;
 	}
 
-	public String getsFecCreacion() {
-		return sFecCreacion;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public void setsFecCreacion(String sFecCreacion) {
-		this.sFecCreacion = sFecCreacion;
+	public int getCantIntentos() {
+		return cantIntentos;
 	}
 
-	public String getsFecContrasena() {
-		return sFecContrasena;
+	public void setCantIntentos(int cantIntentos) {
+		this.cantIntentos = cantIntentos;
 	}
 
-	public void setsFecContrasena(String sFecContrasena) {
-		this.sFecContrasena = sFecContrasena;
+	public String getFecCreacion() {
+		return fecCreacion;
 	}
 
-	public String getsIndVigencia() {
-		return sIndVigencia;
+	public void setFecCreacion(String fecCreacion) {
+		this.fecCreacion = fecCreacion;
 	}
 
-	public void setsIndVigencia(String sIndVigencia) {
-		this.sIndVigencia = sIndVigencia;
+	public String getFecContrasena() {
+		return fecContrasena;
 	}
 
-	public String getsHost() {
-		return sHost;
+	public void setFecContrasena(String fecContrasena) {
+		this.fecContrasena = fecContrasena;
 	}
 
-	public void setsHost(String sHost) {
-		this.sHost = sHost;
+	public String getIndVigencia() {
+		return indVigencia;
 	}
 
-	public String getsCodIdioma() {
-		return sCodIdioma;
+	public void setIndVigencia(String indVigencia) {
+		this.indVigencia = indVigencia;
 	}
 
-	public void setsCodIdioma(String sCodIdioma) {
-		this.sCodIdioma = sCodIdioma;
+	public String getHost() {
+		return host;
 	}
 
-	public String getUsuario(){
+	public void setHost(String host) {
+		this.host = host;
+	}
+
+	public String getUsuario() {
 		String usuario = "\nDATOS DE USUARIO:";
-		usuario += "\nnIdUsuario: "+this.nIdUsuario;  
-		usuario += "\nsRut: "+this.sRut;
-		usuario += "\nsDV: "+this.sDV;
-		usuario += "\nsRutFormat: "+this.sRutFormat;
-		usuario += "\nsNombres: "+this.sNombres;
-		usuario += "\nsApePaterno: "+this.sApePaterno;
-		usuario += "\nsApeMaterno: "+this.sApeMaterno;
-		usuario += "\nsNomUsuario: "+this.sNomUsuario;
-		usuario += "\nsContrasena: "+this.sContrasena;
-		usuario += "\nsCodGenero: "+this.sCodGenero;
-		usuario += "\nsFecNacimiento: "+this.sFecNacimiento;
-		usuario += "\nsTelefono: "+this.sTelefono;
-		usuario += "\nsCelular: "+this.sCelular;
-		usuario += "\nsMail: "+this.sEmail;
-		usuario += "\nnCantIntentos: "+this.nCantIntentos;
-		usuario += "\nsFecCreacion: "+this.sFecCreacion;
-		usuario += "\nsFecContrasena: "+this.sFecContrasena;
-		usuario += "\nsIndVigencia: "+this.sIndVigencia;
-		usuario += "\nsHost: "+this.sHost;
-		usuario += "\nsCodIdioma: "+this.sCodIdioma;
-		
-		return usuario;
-	}
-	
-	public static Usuario newUserByCursor(ResultSet rsUsuarios) throws SQLException{
-		Usuario usuario = new Usuario();
-		usuario = new Usuario();
-		usuario.setnIdUsuario(rsUsuarios.getLong("idusuario"));
-		usuario.setsRut(rsUsuarios.getString("rut"));
-		usuario.setsDV(rsUsuarios.getString("dv"));
-		usuario.setsRutFormat(Utils.getRutFormat(usuario.getsRut()+usuario.getsDV()));
-		usuario.setsNombres(rsUsuarios.getString("nombres"));
-		usuario.setsApePaterno(rsUsuarios.getString("apepaterno"));
-		usuario.setsApeMaterno(rsUsuarios.getString("apematerno"));
-		usuario.setsNomUsuario(rsUsuarios.getString("nomusuario"));
-		usuario.setsContrasena(rsUsuarios.getString("contrasena"));
-		usuario.setsCodGenero(rsUsuarios.getString("codgenero"));
-		usuario.setsFecNacimiento(Utils.formateaFecha(rsUsuarios.getString("fecnacimiento")));
-		usuario.setsTelefono(rsUsuarios.getString("telefono"));
-		usuario.setsCelular(rsUsuarios.getString("celular"));
-		usuario.setsEmail(rsUsuarios.getString("email"));
-		usuario.setnCantIntentos(rsUsuarios.getInt("cantintentos"));
-		usuario.setsFecCreacion(Utils.formateaFecha(rsUsuarios.getString("feccreacion")));
-		usuario.setsFecContrasena(Utils.formateaFecha(rsUsuarios.getString("feccontrasena")));
-		usuario.setsIndVigencia(rsUsuarios.getString("indvigencia"));
+		usuario += "\nidUsuario: " + this.idUsuario;
+		usuario += "\nrut: " + this.rut;
+		usuario += "\ndv: " + this.dv;
+		usuario += "\nrutFormat: " + this.rutFormat;
+		usuario += "\nnombres: " + this.nombres;
+		usuario += "\napePaterno: " + this.apePaterno;
+		usuario += "\napeMaterno: " + this.apeMaterno;
+		usuario += "\nnomUsuario: " + this.nomUsuario;
+		usuario += "\ncontrasena1: " + this.contrasena1;
+		usuario += "\ncontrasena2: " + this.contrasena2;
+		usuario += "\ncodGenero: " + this.codGenero;
+		usuario += "\nfecNacimiento: " + this.fecNacimiento;
+		usuario += "\ntelefono: " + this.telefono;
+		usuario += "\ncelular: " + this.celular;
+		usuario += "\nemail: " + this.email;
+		usuario += "\ncantIntentos: " + this.cantIntentos;
+		usuario += "\nfecCreacion: " + this.fecCreacion;
+		usuario += "\nfecContrasena: " + this.fecContrasena;
+		usuario += "\nindVigencia: " + this.indVigencia;
+		usuario += "\nhost: " + this.host;
+
 		return usuario;
 	}
 }
