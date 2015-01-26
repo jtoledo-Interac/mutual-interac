@@ -9,6 +9,7 @@
 
 <form id="formEdita" action="Servlet" method="post">
 	<input type="hidden"	id="accion" 		name="accion" 		value="modificarDocumento">
+	<input type="hidden"	id="idDocumento"				name="idDocumento"				value="${documento.idDocumento }" >
 	<input type="text" 		id="nombre" 		name="nombre"		placeholder="Nombre Documento" value="${documento.nombre}">
 	<input type="text" 		id="numFolio" 		name="numFolio"		placeholder="Nº Folio" value="${documento.numFolio}">
 	<input type="text" 		id="numAdherente" 	name="numAdherente"	placeholder="Nº Adherente" value="${documento.numAdherente}">

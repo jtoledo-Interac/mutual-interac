@@ -647,6 +647,7 @@ public class Servlet extends HttpServlet {
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
 		Documento documento = new Documento();
+		documento.setIdDocumento(Utils.stringToNum(request.getParameter("idDocumento")));
 		documento.setNombre(request.getParameter("nombre"));
 		documento.setNumFolio(request.getParameter("numFolio"));
 		documento.setNumAdherente(request.getParameter("numAdherente"));

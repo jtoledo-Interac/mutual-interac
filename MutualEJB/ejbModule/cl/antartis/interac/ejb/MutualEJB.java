@@ -1299,6 +1299,7 @@ public class MutualEJB implements EJBRemoto {
 
 			cStmt = dbConeccion.prepareCall("{ call modificar_documento(?,?,?,?,?,?,?,?,?,?)}");
 
+			log.info("ID Documento:" + documento.getIdDocumento());
 			cStmt.setLong(1, documento.getIdDocumento());
 			cStmt.setString(2, documento.getNombre());
 			cStmt.setString(3, documento.getNumFolio());
@@ -1778,7 +1779,6 @@ public class MutualEJB implements EJBRemoto {
 			dbConeccion = interacDS.getConnection();
 	
 			cStmt = dbConeccion.prepareCall("{ call modificar_reclamo(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)	}");
-	
 			cStmt.setInt(1, (int) reclamo.getIdReclamo());
 			cStmt.setString(2, reclamo.getNumAdherente());
 			cStmt.setString(3, reclamo.getNombreSolicitante());
