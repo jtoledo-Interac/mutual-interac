@@ -132,6 +132,12 @@ public class Servlet extends HttpServlet {
 			userName.setMaxAge(sessionTime);
 			response.addCookie(userName);
 			
+			mapaSalida = ejbRemoto.buscarParametros(mapaEntrada);
+			
+			request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
+			request.setAttribute("listaProductos", mapaSalida.get("listaProductos"));
+			request.setAttribute("listaAreas", mapaSalida.get("listaAreas"));
+			
 			pagDestino = "contenedor.jsp";
 		}
 		else{
