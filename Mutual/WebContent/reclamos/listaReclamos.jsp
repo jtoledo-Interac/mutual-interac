@@ -23,7 +23,7 @@
 						{name : 'nombreSolicitante', index:'nombreSolicitante', width : 80, search : true, resizable : false, sortable : true},	
 						{name : 'desTipo', index:'desTipo', width : 80, search : true, resizable : false, sortable : true},	
 						{name : 'desMotivo', index:'desMotivo', width : 80, search : true, resizable : false, sortable : true},	
-						{name : 'desdMedio', index:'desMedio', width : 80, search : true, resizable : false, sortable : true},
+						{name : 'desMedio', index:'desMedio', width : 80, search : true, resizable : false, sortable : true},
 						{name : 'desEstado', index:'desEstado', width : 80, search : true, resizable : false, sortable : true},
 						{name : 'desPrioridad', index:'desPrioridad', width : 80, search : true, resizable : false, sortable : true},
 						{name : 'diasSistema', index:'diasSistema', width : 80, search : true, resizable : false, sortable : true},	
