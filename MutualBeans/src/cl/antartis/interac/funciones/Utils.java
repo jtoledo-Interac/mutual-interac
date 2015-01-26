@@ -152,7 +152,7 @@ public class Utils {
 	// *******************************************
 	public static int diferenciaEnHoras(Date fecha){
 		Date actual = new Date();
-		long difEnMiliSegundos = fecha.getTime() - actual.getTime();
+		long difEnMiliSegundos = actual.getTime()-fecha.getTime();
 		long horas = difEnMiliSegundos / (1000 * 60 * 60 );
 		return (int)horas;
 	}

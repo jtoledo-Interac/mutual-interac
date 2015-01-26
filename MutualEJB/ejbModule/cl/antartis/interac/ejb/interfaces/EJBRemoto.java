@@ -84,4 +84,5 @@ public interface EJBRemoto {
 	
 	public Map<String, Object> actualizarContrasena(Map<String, Object> mapaEntrada);
 	
+	public Map<String, Object> recuperarUsername(Map<String, Object> mapaEntrada);
 }

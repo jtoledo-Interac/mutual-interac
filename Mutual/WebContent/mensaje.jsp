@@ -6,4 +6,5 @@
 	out.println(request.getAttribute("msgBody"));
 %>
 
-<a href="${msgRedirect}">OK :-)</a>
+<br><br>
+<center><a href="${msgRedirect}" style="color:#000000">OK :-)</a></center>

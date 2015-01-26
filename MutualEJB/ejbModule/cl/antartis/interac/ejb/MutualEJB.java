@@ -1299,7 +1299,6 @@ public class MutualEJB implements EJBRemoto {
 
 			cStmt = dbConeccion.prepareCall("{ call modificar_documento(?,?,?,?,?,?,?,?,?,?)}");
 
-			log.info("ID Documento:" + documento.getIdDocumento());
 			cStmt.setLong(1, documento.getIdDocumento());
 			cStmt.setString(2, documento.getNombre());
 			cStmt.setString(3, documento.getNumFolio());
@@ -1550,24 +1549,19 @@ public class MutualEJB implements EJBRemoto {
 	                reclamo.setFonoSolicitante(rs.getString("fono_solicitante"));
 	                reclamo.setRegionSolicitante(rs.getString("region_solicitante"));
 	                reclamo.setCodTipo(rs.getString("cod_tipo"));
-	                reclamo.setDesTipo(rs.getString("des_tipo"));	    
 	                reclamo.setCodMotivo(rs.getString("cod_motivo"));
-	                reclamo.setDesMotivo(rs.getString("des_motivo"));
 	                reclamo.setCodPrioridad(rs.getString("cod_prioridad"));
-	                reclamo.setDesPrioridad(rs.getString("des_prioridad"));
 	                reclamo.setCodCartera(rs.getString("cod_cartera"));
 	                reclamo.setFecIngreso(Utils.formateaFecha(rs.getString("fec_ingreso")));
 	                reclamo.setGlosa(rs.getString("glosa"));
 	                reclamo.setAdjunto(rs.getString("adjunto"));
 	                reclamo.setObservaciones(rs.getString("observaciones"));
 	                reclamo.setCodEstado(rs.getString("cod_estado"));
-	                reclamo.setDesEstado(rs.getString("des_estado"));
 	                reclamo.setResponsableIngreso(rs.getString("responsable_ingreso"));
 	                reclamo.setResponsableActual(rs.getString("responsable_actual"));
 	                reclamo.setDiasBandeja(rs.getString("dias_bandeja") );
 	                reclamo.setDiasSistema(rs.getString("dias_sistema") );
 	                reclamo.setCodMedio(rs.getString("cod_medio_respuesta"));
-	                reclamo.setDesMedio(rs.getString("des_medio_respuesta"));
 	                reclamo.setFecRespuesta(Utils.formateaFecha(rs.getString("fec_respuesta")));
 					listaReclamos.add(reclamo);
 				}
@@ -1784,6 +1778,7 @@ public class MutualEJB implements EJBRemoto {
 			dbConeccion = interacDS.getConnection();
 	
 			cStmt = dbConeccion.prepareCall("{ call modificar_reclamo(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)	}");
+	
 			cStmt.setInt(1, (int) reclamo.getIdReclamo());
 			cStmt.setString(2, reclamo.getNumAdherente());
 			cStmt.setString(3, reclamo.getNombreSolicitante());
@@ -2359,57 +2354,58 @@ public class MutualEJB implements EJBRemoto {
 		
 		return mapaSalida;
 	}
-//	public Map<String, Object> getEmailUsuario(Map<String, Object> mapaEntrada){
-//		Map<String, Object> mapaSalida = null;
-//		CallableStatement cStmt = null;
-//		Error error = new Error();
-//		String email ="";
-//		try {
-//			mapaSalida = new HashMap<String, Object>();
-//
-//			dbConeccion = interacDS.getConnection();
-//			log.info("user: "+(String)mapaEntrada.get("user"));
-//			cStmt = dbConeccion.prepareCall("{ call validar_usuario(?,?,?,?,?) }");
-//			cStmt.setString(1, (String)mapaEntrada.get("user"));
-//			cStmt.registerOutParameter(2, Types.NUMERIC);// id?$
-//			cStmt.registerOutParameter(3, Types.VARCHAR);// email?$
-//			cStmt.registerOutParameter(4, Types.VARCHAR);// numerror$
-//			cStmt.registerOutParameter(5, Types.VARCHAR);// msjerror$
-//			
-//			
-//			log.info("validar usuario, "+(String)mapaEntrada.get("usuario"));
-//			cStmt.setString(1, (String)mapaEntrada.get("usuario"));
-//			
-//			cStmt.execute();
-//			
-//			cStmt.execute();
-//			email = cStmt.getString(2);
-//			error.setNumError(cStmt.getString(3));
-//			error.setMsjError(cStmt.getString(4));	
-//			log.info("email: "+email);
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//			log.info("SQL Exception");
-//			// controlar error sql, (de conexion, por ej)
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			log.info("SQL Exception 2");
-//		} finally {
-//
-//			try {
-//				log.info("Cerrando la conexion");
-//				dbConeccion.close();
-//				cStmt.close();
-//				dbConeccion = null;
-//			} catch (SQLException e) {
-//				log.info("Error al cerrar la conexion");
-//				e.printStackTrace();
-//			}
-//		}
-//		mapaSalida.put("email", email);
-//		mapaSalida.put("error", error);
-//		return mapaSalida;
-//	}
+	
+	public Map<String, Object> recuperarUsername(Map<String, Object> mapaEntrada){
+		Map<String, Object> mapaSalida = null;
+		CallableStatement cStmt = null;
+		Error error = new Error();
+		String email = (String)mapaEntrada.get("email");
+		
+		try {
+			log.info("Verificar E-Mail");
+			
+			mapaSalida = new HashMap<String, Object>();
+			dbConeccion = interacDS.getConnection();
+			
+			log.info("validar email, "+email);
+			cStmt = dbConeccion.prepareCall("{ call validar_email(?,?,?,?,?) }");
+			cStmt.setString(1, email);
+			cStmt.registerOutParameter(2, Types.VARCHAR);// user?$
+			cStmt.registerOutParameter(3, Types.BOOLEAN);// esvalido?$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(5, Types.VARCHAR);// msjerror$
+			cStmt.execute();
+			
+			error.setNumError(cStmt.getString(4));
+			error.setMsjError(cStmt.getString(5));
+			
+			if (error.getNumError().equals("0")) {
+				mapaSalida.put("user",cStmt.getString(2));
+				mapaSalida.put("email", email);
+				mapaSalida.put("valido", true);
+				mapaSalida.put("error",error);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+		return mapaSalida;
+	}
 	
 	public Map<String, Object> recuperarContrasena(Map<String, Object> mapaEntrada){
 		Map<String, Object> mapaSalida = null;
@@ -2422,27 +2418,15 @@ public class MutualEJB implements EJBRemoto {
 			mapaSalida = new HashMap<String, Object>();
 			dbConeccion = interacDS.getConnection();
 			
-			if((String)mapaEntrada.get("email")!=null){
-				log.info("validar email, "+email);
-				cStmt = dbConeccion.prepareCall("{ call validar_email(?,?,?,?,?) }");
-				cStmt.setString(1, email);
-				cStmt.registerOutParameter(2, Types.INTEGER);// id?$
-				cStmt.registerOutParameter(3, Types.BOOLEAN);// esvalido?$
-				cStmt.registerOutParameter(4, Types.VARCHAR);// numerror$
-				cStmt.registerOutParameter(5, Types.VARCHAR);// msjerror$
-				cStmt.execute();
-			}
-			else{
-				cStmt = dbConeccion.prepareCall("{ call validar_usuario(?,?,?,?,?) }");
-				log.info("validar usuario, "+(String)mapaEntrada.get("usuario"));
-				cStmt.setString(1, (String)mapaEntrada.get("usuario"));
-				cStmt.registerOutParameter(2, Types.INTEGER);// id?$
-				cStmt.registerOutParameter(3, Types.VARCHAR);// email?$
-				cStmt.registerOutParameter(4, Types.VARCHAR);// numerror$
-				cStmt.registerOutParameter(5, Types.VARCHAR);// msjerror$
-				cStmt.execute();
-				email = cStmt.getString(3);
-			}
+			cStmt = dbConeccion.prepareCall("{ call validar_usuario(?,?,?,?,?) }");
+			log.info("validar usuario, "+(String)mapaEntrada.get("usuario"));
+			cStmt.setString(1, (String)mapaEntrada.get("usuario"));
+			cStmt.registerOutParameter(2, Types.INTEGER);// id?$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// email?$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(5, Types.VARCHAR);// msjerror$
+			cStmt.execute();
+			email = cStmt.getString(3);
 			
 			error.setNumError(cStmt.getString(4));
 			error.setMsjError(cStmt.getString(5));

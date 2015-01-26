@@ -26,7 +26,6 @@ import cl.antartis.interac.beans.Documento;
 import cl.antartis.interac.beans.Empresa;
 import cl.antartis.interac.beans.Producto;
 import cl.antartis.interac.beans.Reclamo;
-import cl.antartis.interac.beans.Tipo;
 import cl.antartis.interac.beans.Usuario;
 import cl.antartis.interac.beans.Error;
 import cl.antartis.interac.ejb.interfaces.EJBRemoto;
@@ -204,21 +203,27 @@ public class Servlet extends HttpServlet {
 			}
 		}
 	}
-		
+	
 	public void recuperarUsuario(HttpServletRequest request, HttpServletResponse response){
-		String email = request.getParameter("email");
-		String subject = "";
-		String body = "Ha solicitado recuperar su contraseña.\n"
-				+ "";
-		String signature = "\n-- \n";
-		//llamo a metodo que valida si existe mail
-		Boolean mailValido = false;
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		if(mailValido){
-			if(EmailUtils.sendMail(email, subject, body, signature)){
-				request.setAttribute("cabezera", "¡Éxito!");
-				request.setAttribute("cuerpo", "Se ha envíado un mail con un enlace para recuperar la contraseña");
-				this.pagDestino = "resultado.jsp";
+		mapaEntrada.put("email", request.getParameter("email"));
+		mapaSalida = ejbRemoto.recuperarUsername(mapaEntrada);
+		error = (Error)mapaSalida.get("error");
+		if(error.getNumError().equals("0")){
+			String user = (String)mapaSalida.get("user");
+			
+			String email = request.getParameter("email");
+			String subject = "Mutual - Recuperación de nombre de usuario";
+			String body = "Hemos recibido una solicitud para recuperar su nombre de usuario.<br>Su nombre de usuario es: "
+					+ user;
+			
+			if(EmailUtils.sendMailHtml(email, subject, body)){
+				request.setAttribute("msgHeader", "¡Éxito!");
+				request.setAttribute("msgBody", "Se ha envíado un mail con su nombre de usuario.");
+				request.setAttribute("msgRedirect", "index.jsp");
+				this.pagDestino = "mensaje.jsp";
 			}
 		}
 		else{
@@ -239,7 +244,8 @@ public class Servlet extends HttpServlet {
 		log.info("Fecha: "+fecha);
 		log.info("Ahora: "+new Date());
 		int horas = Utils.diferenciaEnHoras(fecha);
-		if(horas <= Integer.parseInt(ConfigUtils.loadProperties("duracion_recovery")) ){
+		log.info("diferencia en horas: "+horas);
+		if(horas <Integer.parseInt(ConfigUtils.loadProperties("duracion_recovery")) ){
 			request.setAttribute("user", user);
 			request.setAttribute("id", id);
 			this.pagDestino = "usuarios/cambiarContrasena.jsp";
@@ -251,6 +257,7 @@ public class Servlet extends HttpServlet {
 			this.pagDestino = "mensaje.jsp";
 		}
 	}
+	
 	public void actualizarContrasena(HttpServletRequest request, HttpServletResponse response){
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
@@ -273,6 +280,7 @@ public class Servlet extends HttpServlet {
 		}
 		
 	}
+	
 	/**********ORGANIGRAMA****************************************************************************/	
 	public void organigrama(HttpServletRequest request, HttpServletResponse response) 
 	{
