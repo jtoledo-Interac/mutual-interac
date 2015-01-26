@@ -406,6 +406,8 @@ public class Servlet extends HttpServlet {
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
+		Encriptador e = new Encriptador();
+		
 		Usuario usuario = new Usuario();
 		usuario.setnIdUsuario(Utils.stringToNum(request.getParameter("nIdUsuario")));
 		usuario.setsRut(Utils.getRutSinDV(request.getParameter("sRut")));
@@ -414,7 +416,7 @@ public class Servlet extends HttpServlet {
 		usuario.setsApePaterno(request.getParameter("sApePaterno"));
 		usuario.setsApeMaterno(request.getParameter("sApeMaterno"));
 		usuario.setsNomUsuario(request.getParameter("sNomUsuario"));
-		usuario.setsContrasena(request.getParameter("sContrasena"));
+		usuario.setsContrasena(e.encriptar(request.getParameter("sContrasena")));
 		usuario.setsCodGenero(request.getParameter("sCodGenero"));
 		usuario.setsFecNacimiento(request.getParameter("sFecNacimiento"));
 		usuario.setsTelefono(request.getParameter("sTelefono"));

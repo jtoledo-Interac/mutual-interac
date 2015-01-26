@@ -228,7 +228,7 @@ public class MutualEJB implements EJBRemoto {
 			mapaSalida = new HashMap<String, Object>();
 
 			dbConeccion = interacDS.getConnection();
-
+			
 			cStmt = dbConeccion.prepareCall("{ call modificar_usuario(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
 			cStmt.setLong(1, usuario.getnIdUsuario());
 			cStmt.setString(2, usuario.getsRut());
@@ -292,7 +292,7 @@ public class MutualEJB implements EJBRemoto {
 		try {
 			log.info("Cargar usuario");
 
-			idUsuario = (Long)mapaEntrada.get("idUsuario");
+			idUsuario = (Long) mapaEntrada.get("nIdUsuario");
 			
 			log.info("ID usuario: "+idUsuario);
 			
@@ -310,6 +310,8 @@ public class MutualEJB implements EJBRemoto {
 			ResultSet rsUsuarios = (ResultSet) cStmt.getObject(2);
 			numError = cStmt.getString(3);
 			msjError = cStmt.getString(4);
+			
+			System.out.println("??????");
 			
 			while (rsUsuarios.next()) {
 				usuario = new Usuario();
