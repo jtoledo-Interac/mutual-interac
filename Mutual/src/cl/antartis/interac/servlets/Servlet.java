@@ -372,7 +372,7 @@ public class Servlet extends HttpServlet {
 		
 		log.info("ID Usuario: "+mapaSalida.get("nIdUsuario"));
 
-		pagDestino = "/usuarios/listaUsuarios.jsp";
+		pagDestino = "contenedor.jsp?accion=usuarios";
 	}
 	
 	public void cargarUsuario(HttpServletRequest request, HttpServletResponse response) {
@@ -505,7 +505,7 @@ public class Servlet extends HttpServlet {
 		
 		log.info("ID Cartera: "+mapaSalida.get("codCartera"));
 
-		pagDestino = "/carteras/listaCarteras.jsp";
+		pagDestino = "contenedor.jsp?accion=carteras";
 	}
 	
 	public void cargarCartera(HttpServletRequest request, HttpServletResponse response) {
@@ -667,7 +667,7 @@ public class Servlet extends HttpServlet {
 		request.setAttribute("listaProductos", mapaSalida.get("listaProductos"));
 		request.setAttribute("listaAreas", mapaSalida.get("listaAreas"));
 
-		pagDestino = "contenedor.jsp";
+		pagDestino = "contenedor.jsp?accion=documentos";
 	}
 	
 	public void cargarDocumento(HttpServletRequest request, HttpServletResponse response) {
@@ -800,7 +800,7 @@ public class Servlet extends HttpServlet {
 		
 		log.info("Cod Producto: "+mapaSalida.get("codProducto"));
 
-		pagDestino = "/empresas/listaEmpresas.jsp";
+		pagDestino = "contenedor.jsp?accion=empresas";
 	}
 	
 	public void cargarEmpresa(HttpServletRequest request, HttpServletResponse response) {
@@ -966,7 +966,7 @@ public class Servlet extends HttpServlet {
 		
 		log.info("Cod Producto: "+mapaSalida.get("codProducto"));
 
-		pagDestino = "/productos/listaProductos.jsp";
+		pagDestino = "contenedor.jsp?accion=productos";
 	}
 	
 	public void cargarProducto(HttpServletRequest request, HttpServletResponse response) {
@@ -1159,7 +1159,7 @@ public class Servlet extends HttpServlet {
 			EmailUtils.sendMail(to, subject, body, signature);	
 		}
 		
-		pagDestino = "contenedor.jsp";
+		pagDestino = "contenedor.jsp?accion=reclamos";
 	}
 	
 	public void cargarReclamo(HttpServletRequest request, HttpServletResponse response) {
