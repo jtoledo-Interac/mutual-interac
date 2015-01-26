@@ -425,7 +425,7 @@ public class Servlet extends HttpServlet {
 		
 		mapaEntrada.put("usuario",usuario);		
 		mapaSalida = ejbRemoto.modificarUsuario(mapaEntrada);
-		pagDestino = "/usuarios/listaUsuarios.jsp";
+		pagDestino = "contenedor.jsp?accion=usuarios";
 	}
 	
 	public void eliminarUsuario(HttpServletRequest request, HttpServletResponse response) {
