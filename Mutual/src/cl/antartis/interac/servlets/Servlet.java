@@ -194,12 +194,12 @@ public class Servlet extends HttpServlet {
 					+link+ "<br/>Si tu no has solicitado cambio de contraseña ignora este email.<br/>";
 			
 			//TODO: Ivan:REVISAR sendMailHtml: arroja errores
-			/*if(EmailUtils.sendMailHtml(email, subject, body)){
+			if(EmailUtils.sendMailHtml(email, subject, body)){
 				this.pagDestino = "mensaje.jsp";
 			}
 			else{
 				this.pagDestino = "error.jsp";
-			}*/
+			}
 		}
 	}
 		
@@ -225,8 +225,8 @@ public class Servlet extends HttpServlet {
 	}
 	
 	public void verificaLinkContrasena(HttpServletRequest request, HttpServletResponse response){
-		this.pagDestino = "usuarios/cambiarContrasena.jsp";
 		
+		this.pagDestino = "usuarios/cambiarContrasena.jsp";
 	}
 	
 	/**********ORGANIGRAMA****************************************************************************/	
