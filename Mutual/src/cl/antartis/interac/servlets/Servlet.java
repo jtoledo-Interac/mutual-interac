@@ -181,20 +181,22 @@ public class Servlet extends HttpServlet {
 		
 		mapaEntrada.put("usuario", request.getParameter("_user"));
 		mapaSalida = ejbRemoto.recuperarContrasena(mapaEntrada);
-		
+		int id = (Integer)mapaSalida.get("id");
 		if((Boolean)mapaSalida.get("valido")){
 			Encriptador e = new Encriptador();
-			String link= request.getParameter("_user")+" "+new Date().toString();
+			String link= request.getParameter("_user")+" "+id+" "+new Date().getTime();
 			link = e.encriptar(link);
 			link = "<a href='"+ConfigUtils.loadProperties("dominio")+
-					"usuarios/cambiarContrasena.jsp?l="+link+"'>Recuperar contraseña.</a>";
+					"Servlet?accion=verificaLinkContrasena&l="+link+"'>Recuperar contraseña.</a>";
 			String email = (String)mapaSalida.get("email");
 			String subject = "Mutual - Recuperación de contraseña";
 			String body = "Recibimos una solicitud de cambio de contraseña. Para confirmar tu nueva contraseña haz click en el siguiente enlace: .<br/>"
-					+link+ "<br/>Si tu no has solicitado cambio de contraseña ignora este email.<br/>";
+					+link+ "<br/>Si tú no has solicitado cambio de contraseña ignora este email.<br/>";
 			
-			//TODO: Ivan:REVISAR sendMailHtml: arroja errores
 			if(EmailUtils.sendMailHtml(email, subject, body)){
+				request.setAttribute("msgHeader", "Recuperar contraseña");
+				request.setAttribute("msgBody", "Se ha enviado un link para recuperar su contraseña a su cuenta de correo electrónico " + email);
+				request.setAttribute("msgRedirect", "index.jsp");
 				this.pagDestino = "mensaje.jsp";
 			}
 			else{
@@ -225,10 +227,52 @@ public class Servlet extends HttpServlet {
 	}
 	
 	public void verificaLinkContrasena(HttpServletRequest request, HttpServletResponse response){
-		
-		this.pagDestino = "usuarios/cambiarContrasena.jsp";
+		Encriptador e = new Encriptador();
+		String l = request.getParameter("l");
+		String user = "";
+		Date fecha = null;
+		l = e.desencriptar(l);
+		String aux[] = l.split(" ");
+		user = aux[0];
+		int id = Integer.parseInt(aux[1]);
+		fecha = new Date(Long.parseLong(aux[2]));
+		log.info("Fecha: "+fecha);
+		log.info("Ahora: "+new Date());
+		int horas = Utils.diferenciaEnHoras(fecha);
+		if(horas <= Integer.parseInt(ConfigUtils.loadProperties("duracion_recovery")) ){
+			request.setAttribute("user", user);
+			request.setAttribute("id", id);
+			this.pagDestino = "usuarios/cambiarContrasena.jsp";
+		}
+		else{
+			request.setAttribute("msgHeader", "Link inválido");
+			request.setAttribute("msgBody", "El link que intenta utilizar ha expirado. Si desea reestablecer su contraseña, vuelva a solicitar el link a su correo electrónico.");
+			request.setAttribute("msgRedirect", "index.jsp");
+			this.pagDestino = "mensaje.jsp";
+		}
 	}
-	
+	public void actualizarContrasena(HttpServletRequest request, HttpServletResponse response){
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		Encriptador e = new Encriptador();
+		
+		mapaEntrada.put("id", request.getParameter("id"));
+		mapaEntrada.put("contrasena", e.encriptar(request.getParameter("nuevaContrasena")));
+		log.info(request.getParameter("nuevaContrasena"));
+		mapaSalida = ejbRemoto.actualizarContrasena(mapaEntrada);
+		
+		error = (Error)mapaSalida.get("error");
+		if(error.getNumError().equals("0")){
+			request.setAttribute("msgHeader", "Contraseña restablecida");
+			request.setAttribute("msgBody", "Su contraseña ha sido restablecida, inicie sesión con sus nuevos datos.");
+			request.setAttribute("msgRedirect", "index.jsp");
+			pagDestino = "mensaje.jsp";
+		}
+		else{
+			pagDestino = "error.jsp";
+		}
+		
+	}
 	/**********ORGANIGRAMA****************************************************************************/	
 	public void organigrama(HttpServletRequest request, HttpServletResponse response) 
 	{

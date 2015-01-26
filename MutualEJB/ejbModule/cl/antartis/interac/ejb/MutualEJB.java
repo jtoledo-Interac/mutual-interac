@@ -2359,50 +2359,57 @@ public class MutualEJB implements EJBRemoto {
 		
 		return mapaSalida;
 	}
-	public Map<String, Object> getEmailUsuario(Map<String, Object> mapaEntrada){
-		Map<String, Object> mapaSalida = null;
-		CallableStatement cStmt = null;
-		Error error = new Error();
-		String email ="";
-		try {
-			mapaSalida = new HashMap<String, Object>();
-
-			dbConeccion = interacDS.getConnection();
-			log.info("user: "+(String)mapaEntrada.get("user"));
-			cStmt = dbConeccion.prepareCall("{ call validar_usuario(?,?,?,?) }");
-			cStmt.setString(1, (String)mapaEntrada.get("user"));
-			cStmt.registerOutParameter(2, Types.VARCHAR);// email$
-			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
-			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
-
-			cStmt.execute();
-			email = cStmt.getString(2);
-			error.setNumError(cStmt.getString(3));
-			error.setMsjError(cStmt.getString(4));	
-			log.info("email: "+email);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.info("SQL Exception");
-			// controlar error sql, (de conexion, por ej)
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info("SQL Exception 2");
-		} finally {
-
-			try {
-				log.info("Cerrando la conexion");
-				dbConeccion.close();
-				cStmt.close();
-				dbConeccion = null;
-			} catch (SQLException e) {
-				log.info("Error al cerrar la conexion");
-				e.printStackTrace();
-			}
-		}
-		mapaSalida.put("email", email);
-		mapaSalida.put("error", error);
-		return mapaSalida;
-	}
+//	public Map<String, Object> getEmailUsuario(Map<String, Object> mapaEntrada){
+//		Map<String, Object> mapaSalida = null;
+//		CallableStatement cStmt = null;
+//		Error error = new Error();
+//		String email ="";
+//		try {
+//			mapaSalida = new HashMap<String, Object>();
+//
+//			dbConeccion = interacDS.getConnection();
+//			log.info("user: "+(String)mapaEntrada.get("user"));
+//			cStmt = dbConeccion.prepareCall("{ call validar_usuario(?,?,?,?,?) }");
+//			cStmt.setString(1, (String)mapaEntrada.get("user"));
+//			cStmt.registerOutParameter(2, Types.NUMERIC);// id?$
+//			cStmt.registerOutParameter(3, Types.VARCHAR);// email?$
+//			cStmt.registerOutParameter(4, Types.VARCHAR);// numerror$
+//			cStmt.registerOutParameter(5, Types.VARCHAR);// msjerror$
+//			
+//			
+//			log.info("validar usuario, "+(String)mapaEntrada.get("usuario"));
+//			cStmt.setString(1, (String)mapaEntrada.get("usuario"));
+//			
+//			cStmt.execute();
+//			
+//			cStmt.execute();
+//			email = cStmt.getString(2);
+//			error.setNumError(cStmt.getString(3));
+//			error.setMsjError(cStmt.getString(4));	
+//			log.info("email: "+email);
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//			log.info("SQL Exception");
+//			// controlar error sql, (de conexion, por ej)
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			log.info("SQL Exception 2");
+//		} finally {
+//
+//			try {
+//				log.info("Cerrando la conexion");
+//				dbConeccion.close();
+//				cStmt.close();
+//				dbConeccion = null;
+//			} catch (SQLException e) {
+//				log.info("Error al cerrar la conexion");
+//				e.printStackTrace();
+//			}
+//		}
+//		mapaSalida.put("email", email);
+//		mapaSalida.put("error", error);
+//		return mapaSalida;
+//	}
 	
 	public Map<String, Object> recuperarContrasena(Map<String, Object> mapaEntrada){
 		Map<String, Object> mapaSalida = null;
@@ -2417,29 +2424,31 @@ public class MutualEJB implements EJBRemoto {
 			
 			if((String)mapaEntrada.get("email")!=null){
 				log.info("validar email, "+email);
-				cStmt = dbConeccion.prepareCall("{ call validar_email(?,?,?,?) }");
+				cStmt = dbConeccion.prepareCall("{ call validar_email(?,?,?,?,?) }");
 				cStmt.setString(1, email);
-				cStmt.registerOutParameter(2, Types.BOOLEAN);// esvalido?$
-				cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
-				cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+				cStmt.registerOutParameter(2, Types.INTEGER);// id?$
+				cStmt.registerOutParameter(3, Types.BOOLEAN);// esvalido?$
+				cStmt.registerOutParameter(4, Types.VARCHAR);// numerror$
+				cStmt.registerOutParameter(5, Types.VARCHAR);// msjerror$
 				cStmt.execute();
 			}
 			else{
-				cStmt = dbConeccion.prepareCall("{ call validar_usuario(?,?,?,?) }");
+				cStmt = dbConeccion.prepareCall("{ call validar_usuario(?,?,?,?,?) }");
 				log.info("validar usuario, "+(String)mapaEntrada.get("usuario"));
 				cStmt.setString(1, (String)mapaEntrada.get("usuario"));
-				cStmt.registerOutParameter(2, Types.VARCHAR);// email?$
-				cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
-				cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+				cStmt.registerOutParameter(2, Types.INTEGER);// id?$
+				cStmt.registerOutParameter(3, Types.VARCHAR);// email?$
+				cStmt.registerOutParameter(4, Types.VARCHAR);// numerror$
+				cStmt.registerOutParameter(5, Types.VARCHAR);// msjerror$
 				cStmt.execute();
-				email = cStmt.getString(2);
+				email = cStmt.getString(3);
 			}
 			
-			error.setNumError(cStmt.getString(3));
-			error.setMsjError(cStmt.getString(4));
+			error.setNumError(cStmt.getString(4));
+			error.setMsjError(cStmt.getString(5));
 			
 			if (error.getNumError().equals("0")) {
-				
+				mapaSalida.put("id",cStmt.getInt(2));
 				mapaSalida.put("email", email);
 				mapaSalida.put("valido", true);
 				mapaSalida.put("error",error);
@@ -2463,6 +2472,53 @@ public class MutualEJB implements EJBRemoto {
 				e.printStackTrace();
 			}
 		}
+		return mapaSalida;
+	}
+
+	public Map<String, Object> actualizarContrasena(Map<String, Object> mapaEntrada){
+		Map<String, Object> mapaSalida = null;
+		CallableStatement cStmt = null;
+		Error error = new Error();
+		try {
+			log.info("Actualizar contraseña");
+			mapaSalida = new HashMap<String, Object>();
+			dbConeccion = interacDS.getConnection();
+			
+			cStmt = dbConeccion.prepareCall("{ call modificar_contrasena(?,?,?,?) }");
+			log.info("validar usuario, id:"+(String)mapaEntrada.get("id"));
+			cStmt.setInt(1, Integer.parseInt((String)(mapaEntrada.get("id"))));
+			cStmt.setString(2, (String)mapaEntrada.get("contrasena"));
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+			cStmt.execute();
+			
+			error.setNumError(cStmt.getString(3));
+			error.setMsjError(cStmt.getString(4));
+			
+			if (error.getNumError().equals("0")) {
+				mapaSalida.put("error",error);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+		
+		
 		return mapaSalida;
 	}
 }

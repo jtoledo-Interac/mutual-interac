@@ -1,42 +1,35 @@
--- Function: validar_email(character varying)
+CREATE OR REPLACE FUNCTION validar_email(
+	IN email_in character varying,
+	OUT id_out integer,
+	OUT flag boolean, 
+	OUT numerror character varying, 
+	OUT msjerror character varying
+) RETURNS record AS
 
-
-CREATE OR REPLACE FUNCTION 
-(
-  IN email_in character varying, 
-  OUT flag boolean, 
-  OUT numerror character varying, 
-  OUT msjerror character varying
-  )RETURNS record AS
-$BODY$
-     
-	declare xusu_semail varchar(100);     
-     
-  begin
-    numerror := '0';
-    msjerror := ' ';
-
-    select
-    email            
-    into
-		xusu_semail	
-            
-    from
-      usuario
-    where
-      (email) = email_in;
-	    
-    IF FOUND THEN	    
-      flag=TRUE;
-    ELSE
-  		flag=FALSE;
-  		numerror := '1';
-  		msjerror := 'Email no encontrado.';
-	    end if;
+$BODY$     
+	declare xusu_semail varchar(100);
+	declare xusu_idusuario integer;
 	
-  end;     
+	begin
+		numerror := '0';
+		msjerror := ' ';
+ 
+		select
+			email, idusuario   
+		into
+			xusu_semail, xusu_idusuario
+		from
+			usuario
+		where
+			(email) = email_in;
+		IF FOUND THEN
+			id_out := xusu_idusuario;
+			flag=TRUE;
+		ELSE
+			flag=FALSE;
+			numerror := '1';
+			msjerror := 'Email no encontrado.';
+		end if;
+	end;     
 $BODY$
-  LANGUAGE plpgsql VOLATILE
-  COST 100;
-ALTER FUNCTION validar_email(character varying)
-  OWNER TO postgres;
+LANGUAGE plpgsql
