@@ -2,8 +2,8 @@
 <%@ include file="declaraciones.jsp" %>
 <%@ include file="encabezado.jsp" %>
 
-<% 	out.println(request.getAttribute("msgHeader")); 
+<% 	out.println("<h2>" + request.getAttribute("msgHeader") + "</h2><hr>"); 
 	out.println(request.getAttribute("msgBody"));
 %>
 
-<a href="<%out.println(request.getAttribute("msgRedirect"));%>">OK :-)</a>
+<a href="${msgRedirect}">OK :-)</a>
