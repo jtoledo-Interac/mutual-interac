@@ -46,13 +46,13 @@ $BODY$
 
 begin
 
-       	numerror :='0';
+   	numerror :='0';
 	msjerror :=' ';
 
 	select 
-	email
-	into
-	xusu_semail
+		email
+		into
+		xusu_semail
 	from 
 		usuario
 	where

@@ -45,8 +45,7 @@ $BODY$
         if trim(xcod_prioridad$) = '' then
             xcod_prioridad := ' ';
         else
-            xcod_prioridad := upper(trim(xcod_prioridad$));
-           
+            xcod_prioridad := upper(trim(xcod_prioridad$));           
         end if;
 
         open reclamos for

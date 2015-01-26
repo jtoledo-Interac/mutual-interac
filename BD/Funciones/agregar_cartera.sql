@@ -6,8 +6,7 @@ create or replace function public.agregar_cartera
     out msjerror varchar
 ) returns record as
 
-$body$
-    
+$body$    
 
 	begin
 	

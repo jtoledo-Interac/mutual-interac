@@ -11,8 +11,7 @@ $body$
 
     --declare xid_documento$ bigint;
 
-	begin
-	
+	begin	
 		--xid_documento$ := nextval('seq_documento');
 		numerror := 0;
 		msjerror := '';

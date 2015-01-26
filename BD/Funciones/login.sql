@@ -32,15 +32,16 @@ $body$
         where
             upper(nomusuario) = upper(username) and  in_contrasena = contrasena;
 
-if found then
+        if found then
 		out_nombre := _nombre;
 		out_apellido_paterno := _apellido_paterno;
 		out_apellido_materno := _apellido_materno;
-    return;
-else
+        return;
+
+        else
         numerror := '1';
         msjerror := 'Datos de inicio de sesión inválidos.';
-end if;
-end;
+        end if;
+    end;
 $body$
 language 'plpgsql'
