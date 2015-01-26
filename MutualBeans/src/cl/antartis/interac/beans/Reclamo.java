@@ -13,19 +13,24 @@ public class Reclamo implements Serializable {
 	private String fonoSolicitante;
 	private String regionSolicitante;
 	private String codTipo;
+	private String desTipo;
 	private String codMotivo;
+	private String desMotivo;
 	private String codPrioridad;
+	private String desPrioridad;
 	private String codCartera;
 	private String fecIngreso;
 	private String glosa;
 	private String adjunto;
 	private String observaciones;
 	private String codEstado;
+	private String desEstado;
 	private String responsableIngreso;
 	private String responsableActual;
 	private String diasBandeja;
 	private String diasSistema;
 	private String codMedio;
+	private String desMedio;
 	private String fecRespuesta;
 
 	public Reclamo(){}
@@ -37,7 +42,8 @@ public class Reclamo implements Serializable {
 			String fecIngreso, String glosa, String adjunto,
 			String observaciones, String codEstado, String responsableIngreso,
 			String responsableActual, String diasBandeja, String diasSistema,
-			String codMedio, String fecRespuesta) {
+			String codMedio, String fecRespuesta,String desTipo, String desPrioridad,
+			String desMotivo,String desMedio,String desEstado) {
 		super();
 		this.idReclamo = idReclamo;
 		this.numAdherente = numAdherente;
@@ -46,19 +52,24 @@ public class Reclamo implements Serializable {
 		this.fonoSolicitante = fonoSolicitante;
 		this.regionSolicitante = regionSolicitante;
 		this.codTipo = codTipo;
+		this.desTipo = desTipo;
 		this.codMotivo = codMotivo;
+		this.desMotivo= desMotivo ;
 		this.codPrioridad = codPrioridad;
+		this.desPrioridad=desPrioridad;
 		this.codCartera = codCartera;
 		this.fecIngreso = fecIngreso;
 		this.glosa = glosa;
 		this.adjunto = adjunto;
 		this.observaciones = observaciones;
 		this.codEstado = codEstado;
+		this.desEstado=desEstado;		
 		this.responsableIngreso = responsableIngreso;
 		this.responsableActual = responsableActual;
 		this.diasBandeja = diasBandeja;
 		this.diasSistema = diasSistema;
 		this.codMedio = codMedio;
+		this.desMedio=desMedio;
 		this.fecRespuesta = fecRespuesta;
 	}
 
@@ -280,5 +291,45 @@ public class Reclamo implements Serializable {
 			"Código medio respuesta: "+ this.codMedio+"\n"+
 			"Fecha respuesta: "+ this.fecRespuesta+"\n\n";
 		return body;
+	}
+
+	public String getDesTipo() {
+		return desTipo;
+	}
+
+	public void setDesTipo(String desTipo) {
+		this.desTipo = desTipo;
+	}
+
+	public String getDesPrioridad() {
+		return desPrioridad;
+	}
+
+	public void setDesPrioridad(String desPrioridad) {
+		this.desPrioridad = desPrioridad;
+	}
+
+	public String getDesMotivo() {
+		return desMotivo;
+	}
+
+	public void setDesMotivo(String desMotivo) {
+		this.desMotivo = desMotivo;
+	}
+
+	public String getDesMedio() {
+		return desMedio;
+	}
+
+	public void setDesMedio(String desMedio) {
+		this.desMedio = desMedio;
+	}
+
+	public String getDesEstado() {
+		return desEstado;
+	}
+
+	public void setDesEstado(String desEstado) {
+		this.desEstado = desEstado;
 	}
 }

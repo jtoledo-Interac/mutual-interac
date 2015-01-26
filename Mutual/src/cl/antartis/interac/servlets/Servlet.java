@@ -1029,10 +1029,16 @@ public class Servlet extends HttpServlet {
 		reclamo.setIdReclamo(Utils.stringToNum(request.getParameter("id_reclamo")));
 		reclamo.setNumAdherente(request.getParameter("num_adherente"));
 		reclamo.setCodCartera(request.getParameter("codCartera"));
+		reclamo.setDiasBandeja(request.getParameter("diasBandeja"));
 		reclamo.setCodTipo(request.getParameter("codTipo"));
+		reclamo.setDesTipo(request.getParameter("desTipo"));
 		reclamo.setCodEstado(request.getParameter("codEstado"));
 		reclamo.setCodPrioridad(request.getParameter("codPrioridad"));
-		
+		reclamo.setDesPrioridad(request.getParameter("desPrioridad"));
+		reclamo.setDesMotivo(request.getParameter("desMotivo"));	
+		reclamo.setDesEstado(request.getParameter("desEstado"));
+		reclamo.setDesMedio(request.getParameter("desMedio"));
+			
 		mapaEntrada.put("reclamo",reclamo);
 		
 		mapaSalida = ejbRemoto.buscarReclamos(mapaEntrada);

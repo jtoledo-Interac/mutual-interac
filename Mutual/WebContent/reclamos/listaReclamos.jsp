@@ -12,18 +12,20 @@
 
 		$('#listadoReclamos').jqGrid(
 		{
+			
 		   	url: getUrlBuscarReclamos(),
+		   	
 			datatype: "xml",			
 			colNames : ['', 'Nº Adherente','Nombre Solicitante','Tipo','Motivo', 'Medio Respuesta', 'Estado', 'Prioridad','Dias Sistema','Dias Bandeja',''],
 			colModel : [
 						{name : 'idReclamo', index:'idReclamo', hidden : true},
 						{name : 'numAdherente', index:'numAdherente', width : 80, search : true, resizable : false, sortable : true},
 						{name : 'nombreSolicitante', index:'nombreSolicitante', width : 80, search : true, resizable : false, sortable : true},	
-						{name : 'codTipo', index:'codTipo', width : 80, search : true, resizable : false, sortable : true},	
-						{name : 'codMotivo', index:'codMotivo', width : 80, search : true, resizable : false, sortable : true},	
-						{name : 'codMedio', index:'codMedio', width : 80, search : true, resizable : false, sortable : true},
-						{name : 'codEstado', index:'codEstado', width : 80, search : true, resizable : false, sortable : true},
-						{name : 'codPrioridad', index:'codPrioridad', width : 80, search : true, resizable : false, sortable : true},
+						{name : 'desTipo', index:'desTipo', width : 80, search : true, resizable : false, sortable : true},	
+						{name : 'desMotivo', index:'desMotivo', width : 80, search : true, resizable : false, sortable : true},	
+						{name : 'desdMedio', index:'desMedio', width : 80, search : true, resizable : false, sortable : true},
+						{name : 'desEstado', index:'desEstado', width : 80, search : true, resizable : false, sortable : true},
+						{name : 'desPrioridad', index:'desPrioridad', width : 80, search : true, resizable : false, sortable : true},
 						{name : 'diasSistema', index:'diasSistema', width : 80, search : true, resizable : false, sortable : true},	
 						{name : 'diasBandeja', index:'diasBandeja', width : 80, search : true, resizable : false, sortable : true},	
 						{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
