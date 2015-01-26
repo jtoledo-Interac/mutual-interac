@@ -26,6 +26,7 @@ import cl.antartis.interac.beans.Motivo;
 import cl.antartis.interac.beans.Prioridad;
 import cl.antartis.interac.beans.Producto;
 import cl.antartis.interac.beans.Reclamo;
+import cl.antartis.interac.beans.Region;
 import cl.antartis.interac.beans.Tipo;
 import cl.antartis.interac.beans.Usuario;
 import cl.antartis.interac.beans.Sesion;
@@ -1908,12 +1909,14 @@ public class MutualEJB implements EJBRemoto {
 		ArrayList<Estado> listaEstados = null;
 		ArrayList<Medio> listaMedios = null;
 		ArrayList<Cartera> listaCarteras = null;
+		ArrayList<Region> listaRegiones = null;
 		Tipo tipo = null;
 		Motivo motivo = null;
 		Prioridad prioridad = null;
 		Estado estado = null;
 		Medio medio = null;
 		Cartera cartera = null;
+		Region region = null;
 		
 		String numError = "0";
 		String msjError = "";
@@ -1925,7 +1928,7 @@ public class MutualEJB implements EJBRemoto {
 
 			dbConeccion = interacDS.getConnection();
 
-			cStmt = dbConeccion.prepareCall("{ call buscar_par_reclamos(?,?,?,?,?,?,?,?) }");
+			cStmt = dbConeccion.prepareCall("{ call buscar_par_reclamos(?,?,?,?,?,?,?,?,?) }");
 			
 			cStmt.registerOutParameter(1, Types.OTHER);// cursor$
 			cStmt.registerOutParameter(2, Types.OTHER);// cursor$
@@ -1933,8 +1936,9 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.registerOutParameter(4, Types.OTHER);// cursor$
 			cStmt.registerOutParameter(5, Types.OTHER);// cursor$
 			cStmt.registerOutParameter(6, Types.OTHER);// cursor$
-			cStmt.registerOutParameter(7, Types.VARCHAR);// numerror$
-			cStmt.registerOutParameter(8, Types.VARCHAR);// msjerror$
+			cStmt.registerOutParameter(7, Types.OTHER);// cursos$
+			cStmt.registerOutParameter(8, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(9, Types.VARCHAR);// msjerror$
 
 			log.info("N¼ Parametros: "+ cStmt.getParameterMetaData().getParameterCount());
 			cStmt.execute();
@@ -1946,8 +1950,23 @@ public class MutualEJB implements EJBRemoto {
 			ResultSet rsCarteras = (ResultSet) cStmt.getObject(4);
 			ResultSet rsEstados = (ResultSet) cStmt.getObject(5);
 			ResultSet rsMedios = (ResultSet) cStmt.getObject(6);
-			numError = cStmt.getString(7);
-			msjError = cStmt.getString(8);
+			ResultSet rsRegiones = (ResultSet) cStmt.getObject(7);
+			numError = cStmt.getString(8);
+			msjError = cStmt.getString(9);
+			
+			listaRegiones = new ArrayList<Region>();
+			
+			if(rsRegiones != null){
+				while (rsRegiones.next()){
+					region = new Region();
+					region.setCodRegion(rsRegiones.getString("cod_region"));
+					System.out.println(rsRegiones.getString("cod_region"));
+					region.setDesRegion(rsRegiones.getString("des_region"));
+					System.out.println(rsRegiones.getString("des_region"));
+					listaRegiones.add(region);
+				}
+				rsRegiones.close();
+			}
 			
 			listaTipos = new ArrayList<Tipo>();
 
@@ -2069,6 +2088,7 @@ public class MutualEJB implements EJBRemoto {
 		mapaSalida.put("listaCarteras", listaCarteras);
 		mapaSalida.put("listaEstados", listaEstados);
 		mapaSalida.put("listaMedios", listaMedios);
+		mapaSalida.put("listaRegiones", listaRegiones);
 		mapaSalida.put("numError", numError);
 		mapaSalida.put("msjError", msjError);
 		

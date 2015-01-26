@@ -14,7 +14,12 @@
 	<input type="text" 		id="nombre_solicitante" 	name="nombre_solicitante"		placeholder="Nombre Solicitante" value="${reclamo.nombreSolicitante}">
 	<input type="text" 		id="email_solicitante" 		name="email_solicitante" 		placeholder="Email Solicitante" value="${reclamo.emailSolicitante}">
 	<input type="text" 		id="fono_solicitante" 		name="fono_solicitante" 		placeholder="Fono Solicitante" value="${reclamo.fonoSolicitante}">
-	<input type="text" 		id="region_solicitante" 	name="region_solicitante" 		placeholder="Region Solicitante" value="${reclamo.regionSolicitante}">
+	<select id="cod_region"	name="cod_region">
+	<option value="0" selected>Seleccione una región </option>
+	<c:forEach items="${requestScope.listaRegiones}" var="region">
+		<option value="${region.codRegion}" >${region.desRegion}</option>
+	</c:forEach>
+	</select>
 	
 	<select id="codCartera" name="codCartera">
 		<option value="" selected>Seleccione una cartera</option>

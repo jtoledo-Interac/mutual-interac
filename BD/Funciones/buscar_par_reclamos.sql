@@ -1,17 +1,10 @@
-create or replace function buscar_par_reclamos
-(
-    out tipos refcursor, 
-    out motivos refcursor,
-    out prioridades refcursor, 
-    out carteras refcursor, 
-    out estados refcursor, 
-    out medios_respuestas refcursor, 
-    out regiones refcursor,
-    out numerror character varying, 
-    out msjerror character varying
-)returns record as
+-- Function: buscar_par_reclamos()
 
-$body$
+-- DROP FUNCTION buscar_par_reclamos();
+
+CREATE OR REPLACE FUNCTION buscar_par_reclamos(OUT tipos refcursor, OUT motivos refcursor, OUT prioridades refcursor, OUT carteras refcursor, OUT estados refcursor, OUT medios_respuestas refcursor, OUT regiones refcursor, OUT numerror character varying, OUT msjerror character varying)
+  RETURNS record AS
+$BODY$
 begin
     
     begin
@@ -148,13 +141,13 @@ begin
         open regiones for
 
         select
-            reg_snombre,
-            reg_nidregion
+            cod_region,
+            des_region
                
          from 
             region
         order by
-            reg_snombre;
+            cod_region;
         
         exception
             when others then
@@ -163,8 +156,8 @@ begin
                 return; 
     end;
 end;
-$body$
-  language plpgsql volatile
-  cost 100;
-alter function buscar_par_reclamos()
-  owner to postgres;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+ALTER FUNCTION buscar_par_reclamos()
+  OWNER TO postgres;

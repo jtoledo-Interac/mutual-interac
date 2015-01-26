@@ -383,7 +383,7 @@ public class Servlet extends HttpServlet {
 		mapaEntrada.put("nIdUsuario", nIdUsuario);
 		
 		mapaSalida = ejbRemoto.cargarUsuario(mapaEntrada);
-		
+			
 		request.setAttribute("usuario", (Usuario)mapaSalida.get("usuario"));
 		request.setAttribute("listaComunas", mapaSalida.get("listaComunas"));
 		request.setAttribute("listaProvincias", mapaSalida.get("listaProvincias"));
@@ -1037,7 +1037,8 @@ public class Servlet extends HttpServlet {
 		request.setAttribute("listaTipos", mapaSalida.get("listaTipos"));
 		request.setAttribute("listaEstados", mapaSalida.get("listaEstados"));
 		request.setAttribute("listaPrioridades", mapaSalida.get("listaPrioridades"));
-
+		request.setAttribute("listaRegiones", mapaSalida.get("listaRegiones"));
+		
 		pagDestino = "contenedor.jsp";
 	}
 	
@@ -1057,7 +1058,8 @@ public class Servlet extends HttpServlet {
 		request.setAttribute("listaPrioridades", mapaSalida.get("listaPrioridades"));
 		request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
 		request.setAttribute("listaEstados", mapaSalida.get("listaEstados"));
-		request.setAttribute("listaMedios", mapaSalida.get("listaMedios"));	
+		request.setAttribute("listaMedios", mapaSalida.get("listaMedios"));
+		request.setAttribute("listaRegiones", mapaSalida.get("listaRegiones"));
 		pagDestino = "reclamos/agregaReclamo.jsp";
 	}
 	
@@ -1076,6 +1078,7 @@ public class Servlet extends HttpServlet {
 		request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
 		request.setAttribute("listaEstados", mapaSalida.get("listaEstados"));
 		request.setAttribute("listaMedios", mapaSalida.get("listaMedios"));
+		request.setAttribute("listaRegiones", mapaSalida.get("listaRegiones"));
 		
 		Reclamo reclamo = new Reclamo();
 		reclamo.setIdReclamo(Utils.stringToNum(request.getParameter("id_reclamo")));
@@ -1100,6 +1103,16 @@ public class Servlet extends HttpServlet {
 		
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		mapaSalida = ejbRemoto.buscarParametrosReclamo(mapaEntrada);
+		
+		request.setAttribute("listaTipos", mapaSalida.get("listaTipos"));
+		request.setAttribute("listaMotivos", mapaSalida.get("listaMotivos"));
+		request.setAttribute("listaPrioridades", mapaSalida.get("listaPrioridades"));
+		request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
+		request.setAttribute("listaEstados", mapaSalida.get("listaEstados"));
+		request.setAttribute("listaMedios", mapaSalida.get("listaMedios"));
+		request.setAttribute("listaRegiones", mapaSalida.get("listaRegiones"));
 		
 		Reclamo reclamo = new Reclamo();
 		
@@ -1140,15 +1153,6 @@ public class Servlet extends HttpServlet {
 			EmailUtils.sendMail(to, subject, body, signature);	
 		}
 		
-		mapaSalida = ejbRemoto.buscarParametrosReclamo(mapaEntrada);
-	
-		request.setAttribute("listaTipos", mapaSalida.get("listaTipos"));
-		request.setAttribute("listaMotivos", mapaSalida.get("listaMotivos"));
-		request.setAttribute("listaPrioridades", mapaSalida.get("listaPrioridades"));
-		request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
-		request.setAttribute("listaEstados", mapaSalida.get("listaEstados"));
-		request.setAttribute("listaMedios", mapaSalida.get("listaMedios"));
-
 		pagDestino = "contenedor.jsp";
 	}
 	
@@ -1165,6 +1169,7 @@ public class Servlet extends HttpServlet {
 		request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
 		request.setAttribute("listaEstados", mapaSalida.get("listaEstados"));
 		request.setAttribute("listaMedios", mapaSalida.get("listaMedios"));
+		request.setAttribute("listaRegiones", mapaSalida.get("listaRegiones"));
 		
 		String idReclamo = request.getParameter("idReclamo");
 

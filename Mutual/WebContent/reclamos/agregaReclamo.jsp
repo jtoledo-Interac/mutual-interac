@@ -13,8 +13,12 @@
 	<input type="text" 		id="nombre_solicitante" 	name="nombre_solicitante"		placeholder="nombre_solicitante">
 	<input type="text" 		id="email_solicitante" 		name="email_solicitante" 		placeholder="email_solicitante">
 	<input type="text" 		id="fono_solicitante" 		name="fono_solicitante" 		placeholder="fono_solicitante">
-	<input type="text" 		id="region_solicitante" 	name="region_solicitante" 		placeholder="region_solicitante">
-	
+	<select id="cod_region"	name="cod_region">
+	<option value="0" selected>Seleccione una región </option>
+	<c:forEach items="${requestScope.listaRegiones}" var="region">
+		<option value="${region.codRegion}" >${region.desRegion}</option>
+	</c:forEach>
+	</select>	
 	<select id="cod_tipo" name="cod_tipo">
 		<option value="0" selected>Seleccione un tipo</option>
 		<c:forEach items="${requestScope.listaTipos}" var="tipo">
