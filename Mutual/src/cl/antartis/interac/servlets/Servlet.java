@@ -773,6 +773,14 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 	
+		Empresa empresa = new Empresa();
+		empresa.setNumAdherente(request.getParameter("numAdherente"));
+		empresa.setNombre(request.getParameter("nomEmpresa"));
+		
+		log.info("Empresa:++" + empresa.getNumAdherente() + "\n" + empresa.getNombre());
+		
+		mapaEntrada.put("empresa", empresa);
+		
 		mapaSalida = ejbRemoto.buscarEmpresas(mapaEntrada);
 		log.info("N¼ Empresas: "+((ArrayList<Empresa>)mapaSalida.get("listaEmpresas")).size());
 		
