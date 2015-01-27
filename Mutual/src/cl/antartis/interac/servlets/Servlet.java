@@ -830,13 +830,13 @@ public class Servlet extends HttpServlet {
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 
 		empresa.setNombre(request.getParameter("nombre"));
-		empresa.setNumAdherente(request.getParameter("numAd"));
+		empresa.setNumAdherente(request.getParameter("numAdherente"));
 
 		mapaEntrada.put("empresa",empresa);
 		
 		mapaSalida = ejbRemoto.modificarEmpresa(mapaEntrada);
 
-		pagDestino = "/empresas/listaEmpresas.jsp";
+		pagDestino = "contenedor.jsp?accion=empresas";
 	} 
 	
 	public void eliminarEmpresa(HttpServletRequest request, HttpServletResponse response) {

@@ -1010,15 +1010,15 @@ public class MutualEJB implements EJBRemoto {
 
 			dbConeccion = interacDS.getConnection();
 
+			log.info("Nom Empresa:" + empresa.getNombre());
+			log.info("Num Adherente:" + empresa.getNumAdherente());
+			
 			cStmt = dbConeccion.prepareCall("{ call modificar_empresa(?,?,?,?) }");
-			cStmt.setString(1,empresa.getNombre());
-			cStmt.setString(2,empresa.getNumAdherente());
+			cStmt.setString(1,empresa.getNumAdherente());
+			cStmt.setString(2,empresa.getNombre());
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
-
-			
 			cStmt.execute();
-			
 			error.setNumError(cStmt.getString(3));
 			error.setMsjError(cStmt.getString(4));
 		
@@ -2165,7 +2165,7 @@ public class MutualEJB implements EJBRemoto {
 			while (rsEmpresa.next()) {
 				empresa = new Empresa();
 				empresa.setNombre(rsEmpresa.getString("nombre"));
-				empresa.setNumAdherente(rsEmpresa.getString("enp_nidencuesta"));
+				empresa.setNumAdherente(rsEmpresa.getString("num_adherente"));
 			}
 			
 			rsEmpresa.close();			
