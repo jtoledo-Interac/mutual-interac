@@ -808,9 +808,9 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		String numAd = request.getParameter("numAdherente");
+		String numAdherente = request.getParameter("numAdherente");
 		
-		mapaEntrada.put("numAd", numAd);
+		mapaEntrada.put("numAdherente", numAdherente);
 		
 		mapaSalida = ejbRemoto.cargarEmpresa(mapaEntrada);
 		
