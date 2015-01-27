@@ -28,11 +28,11 @@
 				root : "filas",
 				row: "fila",
 				repeatitems: false,
-				id: "codEmpresa"
+				id: "numAdherente"
 			},
 		   	pager: $('#pieEmpresa'),
 		   	pgtext : 'P&aacute;g: {0} de {1}', 
-		   	sortname: 'codEmpresa',
+		   	sortname: 'numAdherente',
 		    viewrecords: true,
 		    sortorder: "desc",
 		    caption:"Empresas",
@@ -192,7 +192,7 @@
 	{
 		var sData = "Servlet";
 		sData += '?accion=cargarEmpresa';
-		sData += '&nIdEmpresa='+id;
+		sData += '&numAdherente='+id;
 		return sData;
 	}
 

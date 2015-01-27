@@ -808,7 +808,7 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		String numAd = request.getParameter("idEmpresa");
+		String numAd = request.getParameter("numAdherente");
 		
 		mapaEntrada.put("numAd", numAd);
 		
