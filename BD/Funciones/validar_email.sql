@@ -1,11 +1,9 @@
-CREATE OR REPLACE FUNCTION validar_email(
-	IN email_in character varying,
-	OUT username_out character varying,
-	OUT flag boolean, 
-	OUT numerror character varying, 
-	OUT msjerror character varying
-) RETURNS record AS
+-- Function: validar_email(character varying)
 
+-- DROP FUNCTION validar_email(character varying);
+
+CREATE OR REPLACE FUNCTION validar_email(IN email_in character varying, OUT username_out character varying, OUT flag boolean, OUT numerror character varying, OUT msjerror character varying)
+  RETURNS record AS
 $BODY$     
 	declare xusu_semail varchar(100);
 	declare xusu_nomusuario varchar(100);
@@ -32,4 +30,7 @@ $BODY$
 		end if;
 	end;     
 $BODY$
-LANGUAGE plpgsql
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+ALTER FUNCTION validar_email(character varying)
+  OWNER TO postgres;
