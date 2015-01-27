@@ -10,12 +10,8 @@ public class Main {
 		String b;
 		Encriptador e = new Encriptador();
 		b = e.encriptar(a);
-		System.out.println(a);
-		System.out.println(b);
-		System.out.println(e.encriptar(a));
-		System.out.println(e.desencriptar(b));
+		System.out.println(e.desencriptar(""));
 		
-		System.out.println(new Date().toString());
 	}
 
 }
