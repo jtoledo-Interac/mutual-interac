@@ -38,10 +38,6 @@
 		if(!ok){
 			alert(msg);
 		}
-		else{
-			alert("Aquí se enviaría el formulario pero mejor no");
-			ok=false;
-		}
 		return ok;
 	}
 	
