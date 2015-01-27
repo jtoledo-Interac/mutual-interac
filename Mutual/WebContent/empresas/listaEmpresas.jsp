@@ -199,7 +199,7 @@
 	function getUrlEliminarEmpresa(nIdEmpresa){  
 		var sData = 'Servlet';
 		sData += '?accion=eliminarEmpresa';
-		sData += '&nIdEmpresa='+nIdEmpresa;
+		sData += '&numAdherente='+nIdEmpresa;
 		return sData;
     }
 </script>

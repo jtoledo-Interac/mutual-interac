@@ -789,8 +789,8 @@ public class Servlet extends HttpServlet {
 		
 		Empresa empresa = new Empresa();
 		
-		empresa.setNombre("nombreExp");
-		empresa.setNumAdherente("numAdherente");
+		empresa.setNombre(request.getParameter("nombre"));
+		empresa.setNumAdherente(request.getParameter("numAdherente"));
 
 		mapaEntrada.put("empresa",empresa);
 		
@@ -808,7 +808,7 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		String numAd = request.getParameter("numAd");
+		String numAd = request.getParameter("idEmpresa");
 		
 		mapaEntrada.put("numAd", numAd);
 		
@@ -844,13 +844,13 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		String numAd = request.getParameter("numAd");
+		String numAdherente = request.getParameter("numAdherente");
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 
-		log.info("Número de adherente: " + numAd);
+		log.info("Número de adherente: " + numAdherente);
 		
-		mapaEntrada.put("numAd", numAd);
+		mapaEntrada.put("numAdherente", numAdherente);
 		
 		mapaSalida = ejbRemoto.eliminarEmpresa(mapaEntrada);
 		

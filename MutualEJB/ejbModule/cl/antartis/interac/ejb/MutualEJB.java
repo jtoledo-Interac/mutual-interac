@@ -2084,10 +2084,13 @@ public class MutualEJB implements EJBRemoto {
 		String msjError = "";
 
 		try {
-			log.info("Buscar Parametros");
+			log.info("Agregar Empresa");
 			
 			empresa = (Empresa)mapaEntrada.get("empresa");
 
+			log.info("nombre:" + empresa.getNombre());
+			log.info("num_adherente: " + empresa.getNumAdherente());
+			
 			mapaSalida = new HashMap<String, Object>();
 
 			dbConeccion = interacDS.getConnection();
@@ -2258,23 +2261,23 @@ public class MutualEJB implements EJBRemoto {
 	public Map<String, Object> eliminarEmpresa(Map<String, Object> mapaEntrada) {
 		CallableStatement cStmt = null;
 		Map<String, Object> mapaSalida = null;
-		String numAd = "";
+		String numAdherente = "";
 		
 		Error error = new Error();
 		
 		try {
 			log.info("Eliminar usuario");
 
-			numAd = (String)mapaEntrada.get("numAd");
+			numAdherente = (String)mapaEntrada.get("numAdherente");
 			
-			log.info("Número de adherente: " + numAd);
+			log.info("Número de adherente: " + numAdherente);
 			
 			mapaSalida = new HashMap<String, Object>();
 
 			dbConeccion = interacDS.getConnection();
 
 			cStmt = dbConeccion.prepareCall("{ call eliminar_empresa(?,?,?) }");
-			cStmt.setString(1, numAd);
+			cStmt.setString(1, numAdherente);
 			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
 
