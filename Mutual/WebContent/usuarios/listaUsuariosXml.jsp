@@ -5,13 +5,13 @@
 <filas>
     <c:forEach items="${requestScope.listaUsuarios}" var="usuario">
         <fila>
-        	<idUsuario>${usuario.nIdUsuario}</idUsuario>
-        	<rut>${usuario.sRutFormat}</rut>
-        	<nombre>${usuario.sNombres} ${usuario.sApePaterno} ${usuario.sApeMaterno}</nombre>
-        	<nomUsuario>${usuario.sNomUsuario}</nomUsuario>
-        	<email>${usuario.sEmail}</email>
-        	<telefono>${usuario.sTelefono}</telefono>
-        	<celular>${usuario.sCelular}</celular>
+        	<idUsuario>${usuario.idUsuario}</idUsuario>
+        	<rut>${usuario.rutFormat}</rut>
+        	<nombre>${usuario.nombres} ${usuario.apePaterno} ${usuario.apeMaterno}</nombre>
+        	<nomUsuario>${usuario.nomUsuario}</nomUsuario>
+        	<email>${usuario.email}</email>
+        	<telefono>${usuario.telefono}</telefono>
+        	<celular>${usuario.celular}</celular>
         </fila>
      </c:forEach>
 </filas>

@@ -227,7 +227,7 @@
 	<div id="cargaReclamo" title="Editar Reclamo" style="display:none"></div>
 
 	<div class="filtros">		
-		<form id="formReclamo" action="Servlet" method="post">
+		<form id="formReclamo" action="Servlet" method="post" onSubmit="return validar_form(this)">
 			<input type="button" 	id="btnBuscar" 		name="btnBuscar" 	value="Buscar"/>
 			<input type="button" 	id="btnAgregar" 	name="btnAgregar" 	value="Agregar"/>
 			<input type="text" 		id="id_reclamo" 	name="id_reclamo"		placeholder="ID Reclamo">
