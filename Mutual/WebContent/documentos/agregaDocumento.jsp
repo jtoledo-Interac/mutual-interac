@@ -67,7 +67,7 @@
 	<td> <input type="text"		id="numAdherente" 	name="numAdherente"	placeholder="Nº Adherente" onkeypress="return valida_numeros(event)" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> </td>
 </tr>
 <tr>
-	<td> <input type="text"		id="descripcion" 	name="descripcion"	placeholder="Descripci&oacute;n" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> </td>
+	<td> <input type="text"		id="numFolio" 		name="numFolio"		placeholder="Nº Folio"	onkeypress="return valida_numeros(event)" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> </td>
 	<td> <input type="text"		id="fecCreacion" 	name="fecCreacion" 	placeholder="Fecha Creaci&oacute;n" class="fecha" readonly onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> </td>
 </tr>
 <tr>	
@@ -92,6 +92,8 @@
 			<option value="${area.codArea}" >${area.desArea}</option>
 		</c:forEach>
 	</select></td>
+		<td> <input type="text"		id="nombre" 	name="nombre"	placeholder="Nombre" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> </td>
+	
 </tr>
 <tr>
 	<td colspan="2"><input type="file" id="documento" name="documento" placeholder="Documento Adjunto" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">	</td>
