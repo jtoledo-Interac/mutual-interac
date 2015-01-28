@@ -178,6 +178,7 @@
 		var sData = "Servlet";
 		sData += "?accion=buscarEmpresas";
 		sData += "&nomEmpresa="+$('#nomEmpresa').val();
+		sData += "&numAdherente="+$('#numAdherente').val();
 		return sData;
 	}
 
