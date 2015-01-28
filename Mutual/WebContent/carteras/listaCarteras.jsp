@@ -191,14 +191,14 @@
 	{
 		var sData = "Servlet";
 		sData += '?accion=cargarCartera';
-		sData += '&nIdCartera='+id;
+		sData += '&codCartera='+id;
 		return sData;
 	}
 
-	function getUrlEliminarCartera(nIdCartera){  
+	function getUrlEliminarCartera(id){  
 		var sData = 'Servlet';
 		sData += '?accion=eliminarCartera';
-		sData += '&nIdCartera='+nIdCartera;
+		sData += '&codCartera='+id;
 		return sData;
     }
 </script>

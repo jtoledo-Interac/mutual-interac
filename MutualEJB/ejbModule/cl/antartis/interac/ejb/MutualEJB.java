@@ -751,9 +751,7 @@ public class MutualEJB implements EJBRemoto {
 		mapaSalida.put("cartera",cartera);
 		mapaSalida.put("error", error);
 		
-		return mapaSalida;		
-		
-		
+		return mapaSalida;
 	}
 
 	public Map<String, Object> modificarCartera(Map<String, Object> mapaEntrada) {
