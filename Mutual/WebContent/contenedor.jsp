@@ -107,7 +107,7 @@ $(function()
 		<p id="contNombre" style="float:right;"><% out.print("bienvenido(a): "+session.getAttribute("nombre") );	%></p>
 		<form id="logOut" action="Servlet" method="post">
 			<input type="hidden" id="accionLogOut" name="accion">
-			<span style="float:right;"><a href="#" id="cerrar">Cerrar Sesión</a></span>
+			<br/><span style="float:right;"><a href="#" id="cerrar">Cerrar Sesión</a></span>
 		</form>
 	</div>
 </div>

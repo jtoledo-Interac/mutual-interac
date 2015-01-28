@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Reclamo implements Serializable {
 
 	private static final long serialVersionUID = -4275537097136536953L;
-
+	
 	private long idReclamo;
 	private String numAdherente;
 	private String nombreSolicitante;
