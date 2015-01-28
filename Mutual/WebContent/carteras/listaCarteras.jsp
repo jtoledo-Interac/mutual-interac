@@ -92,7 +92,7 @@
 		    position: 'center',
 		    buttons: {
 				"Crear Cartera": function() {
-					//$('#formAgrega').submit();
+					$('#formAgrega').submit();
 				},
 				"Cancelar": function() {
 					$(this).dialog("close");
@@ -111,7 +111,7 @@
 		    position: 'center',
 		    buttons: {
 				"Editar Cartera": function() {
-					//$('#formEdita').submit();
+					$('#formEdita').submit();
 				},
 				"Cancelar": function() {
 					$(this).dialog("close");
@@ -189,10 +189,10 @@
 	
 	function getUrlCargarCartera(id)
 	{
-		/*var sData = "Servlet";
+		var sData = "Servlet";
 		sData += '?accion=cargarCartera';
 		sData += '&nIdCartera='+id;
-		return sData;*/
+		return sData;
 	}
 
 	function getUrlEliminarCartera(nIdCartera){  
