@@ -1,15 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>page for tests</title>
-</head>
-<body>
+<%@ include file="encabezado.jsp" %>
+
 <form action="Upload" method="post" enctype="multipart/form-data">
 	<input type="file" id="file" name="file" value=""/>
 	<input type="submit" />
 </form>
+
+<iframe src="http://docs.google.com/gview?url=/graficar.xls&embedded=true" style="width:550px; height:650px;" frameborder="0"></iframe>
+
 </body>
 </html>

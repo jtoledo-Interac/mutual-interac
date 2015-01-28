@@ -2,17 +2,20 @@ package cl.antartis.interac.servlets;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -25,13 +28,22 @@ public class Upload extends HttpServlet{
 	private static final long serialVersionUID = -224560897811693302L;
 	@EJB(mappedName = "interac/EJB")
 	private EJBRemoto ejbRemoto;
-
+	private String pagDestino = "";
+	
 	public Upload() {
 		super();
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		HttpServletRequest requestCopy =null;
+		HttpServletResponse responseCopy = null;
+		try {
+			requestCopy = (HttpServletRequest)BeanUtils.cloneBean(request);
+			responseCopy =(HttpServletResponse)BeanUtils.cloneBean(response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 
 		TreeMap<String, Object> query = new TreeMap<String, Object>();
@@ -67,8 +79,6 @@ public class Upload extends HttpServlet{
 					
 					//PRODUCCION
 					File archivo_server = new File("archivos/" + fileName);
-					File hola = new File("hola.hola");
-					hola.createNewFile();
 					if (item.isFormField()) {
 						String name = item.getFieldName();
 						String value = item.getString();
@@ -97,9 +107,18 @@ public class Upload extends HttpServlet{
 			Map tbl = request.getParameterMap();
 			query.putAll(tbl);
 		}
+		pagDestino="Servlet?accion=agregarDocumento";
+		System.out.println("Despachando a pag destino: "+pagDestino);
+		despacha(requestCopy, responseCopy, pagDestino);
 	}
 	
 	public static void main(String[] args) {
 		System.out.println(System.getProperty("user.home"));
+	}
+	
+	/**********DESPACHADOR**************************************************************************/
+	public void despacha(HttpServletRequest request, HttpServletResponse response, String destino) throws ServletException, IOException {
+		RequestDispatcher despachador = request.getRequestDispatcher(destino);
+		despachador.forward(request, response);
 	}
 }

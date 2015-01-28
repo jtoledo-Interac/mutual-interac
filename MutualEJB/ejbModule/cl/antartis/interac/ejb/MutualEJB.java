@@ -1609,6 +1609,7 @@ public class MutualEJB implements EJBRemoto {
 		Reclamo reclamo = null;
 		Error error = new Error();
 		
+		
 		try {
 			log.info("Agregar reclamo");
 			reclamo = (Reclamo)mapaEntrada.get("reclamo");

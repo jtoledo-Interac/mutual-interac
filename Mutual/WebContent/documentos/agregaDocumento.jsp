@@ -59,7 +59,7 @@
 	});
 </script>
 
-<form id="formAgrega" action="Servlet" method="post" onSubmit="return validar_form(this)">
+<form id="formAgrega" action="Upload" method="post" enctype="multipart/form-data" onSubmit="return validar_form(this)">
 <input type="hidden"	id="accion" 		name="accion" 		value="agregarDocumento">
 <table>
 <tr>
@@ -67,7 +67,7 @@
 	<td> <input type="text"		id="numAdherente" 	name="numAdherente"	placeholder="Nº Adherente" onkeypress="return valida_numeros(event)" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> </td>
 </tr>
 <tr>
-	<td> <input type="text"		id="numFolio" 		name="numFolio"		placeholder="Nº Folio"	onkeypress="return valida_numeros(event)" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> </td>
+	<td> <input type="text"		id="descripcion" 		name="descripcion"		placeholder="Descripción"	onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> </td>
 	<td> <input type="text"		id="fecCreacion" 	name="fecCreacion" 	placeholder="Fecha Creaci&oacute;n" class="fecha" readonly onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> </td>
 </tr>
 <tr>	
