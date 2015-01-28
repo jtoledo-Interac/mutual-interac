@@ -724,7 +724,7 @@ public class MutualEJB implements EJBRemoto {
 			while (rsCartera.next()) {
 				cartera = new Cartera();
 				cartera.setCodCartera(rsCartera.getString("cod_cartera"));
-				cartera.setDesCartera(rsCartera.getString("enp_nidencuesta"));
+				cartera.setDesCartera(rsCartera.getString("des_cartera"));
 			}
 			
 			rsCartera.close();			
