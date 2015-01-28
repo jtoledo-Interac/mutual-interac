@@ -637,7 +637,6 @@ public class MutualEJB implements EJBRemoto {
 		Cartera cartera = null;
 		String numError = "0";
 		String msjError = "";
-		long idDocumento = 0;
 		
 		try {
 			log.info("Agregar cartera");
@@ -871,8 +870,6 @@ public class MutualEJB implements EJBRemoto {
 		Error error = new Error();
 		Map<String, Object> mapaSalida = null;
 		Producto producto = new Producto();
-		String numError = "0";
-		String msjError = "";
 
 		try {
 			log.info("Buscar Produtos");
@@ -1854,9 +1851,6 @@ public class MutualEJB implements EJBRemoto {
 		Error error = new Error();
 		long idReclamo = 0;
 		
-		String numError = "0";
-		String msjError = "";
-		
 		try {
 			log.info("Eliminar reclamo");
 
@@ -2088,8 +2082,6 @@ public class MutualEJB implements EJBRemoto {
 		Error error = new Error();
 		Map<String, Object> mapaSalida = null;
 		Empresa empresa = new Empresa();
-		String numError = "0";
-		String msjError = "";
 
 		try {
 			log.info("Agregar Empresa");
