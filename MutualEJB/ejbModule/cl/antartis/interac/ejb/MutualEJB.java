@@ -1513,27 +1513,28 @@ public class MutualEJB implements EJBRemoto {
 
 			dbConeccion = interacDS.getConnection();
 
-			cStmt = dbConeccion.prepareCall("{ call buscar_reclamos(?,?,?,?,?,?,?,?,?) }");
+			cStmt = dbConeccion.prepareCall("{ call buscar_reclamos(?,?,?,?,?,?,?,?,?,?) }");
 			
 			reclamo = new Reclamo();
 			reclamo = (Reclamo)mapaEntrada.put("reclamo",reclamo);
-	
+			
 			cStmt.setString(1,reclamo.getNombreSolicitante());
 			cStmt.setString(2,reclamo.getNumAdherente());
 			cStmt.setString(3,reclamo.getCodCartera());
 			cStmt.setString(4,reclamo.getCodTipo());
 			cStmt.setString(5,reclamo.getCodEstado());
-			cStmt.setString(6,reclamo.getCodPrioridad());			
-			cStmt.registerOutParameter(7, Types.OTHER);// cursor$
-			cStmt.registerOutParameter(8, Types.VARCHAR);// numerror$
-			cStmt.registerOutParameter(9, Types.VARCHAR);// msjerror$
+			cStmt.setString(6,reclamo.getCodPrioridad());
+			cStmt.setLong(7,reclamo.getIdReclamo());
+			cStmt.registerOutParameter(8, Types.OTHER);// cursor$
+			cStmt.registerOutParameter(9, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(10, Types.VARCHAR);// msjerror$
 
 			
 			cStmt.execute();
 
-			ResultSet rs = (ResultSet) cStmt.getObject(7);
-			error.setNumError(cStmt.getString(8));
-			error.setMsjError(cStmt.getString(9));
+			ResultSet rs = (ResultSet) cStmt.getObject(8);
+			error.setNumError(cStmt.getString(9));
+			error.setMsjError(cStmt.getString(10));
 		
 			listaReclamos = new ArrayList<Reclamo>();
 

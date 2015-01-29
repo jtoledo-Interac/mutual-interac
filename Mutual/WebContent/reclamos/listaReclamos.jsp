@@ -188,6 +188,7 @@
 		var sData = "Servlet";
 		sData += "?accion=buscarReclamos";
 		sData += "&nombre_solicitante="+$('#nombre_solicitante').val();
+		sData += "&id_reclamo="+$('#id_reclamo').val();
 		sData += "&num_adherente="+$('#num_adherente').val();
 		sData += "&codCartera="+$('#codCartera').val();
 		sData += "&codTipo="+$('#codTipo').val();
@@ -230,8 +231,9 @@
 		<form id="formReclamo" action="Servlet" method="post">
 			<input type="button" 	id="btnBuscar" 		name="btnBuscar" 	value="Buscar"/>
 			<input type="button" 	id="btnAgregar" 	name="btnAgregar" 	value="Agregar"/>
-			<input type="text" 		id="nombre_solicitante" 	name="nombre_solicitante"		placeholder="Nombre Solicitante">
-			<input type="text" 		id="num_adherente" 	name="num_adherente"	placeholder="Nº Adherente">
+			<input type="text" 		id="id_reclamo" 	name="id_reclamo"	style= "width: 130px"	placeholder="ID Reclamo" >
+			<input type="text" 		id="nombre_solicitante"  name="nombre_solicitante"	style= "width: 130px"	placeholder="Nombre Solicitante">
+			<input type="text" 		id="num_adherente" 	name="num_adherente" style= "width: 130px"	placeholder="Nº Adherente">
 						
 			<select id="codCartera" name="codCartera">
 				<option value="" selected>Seleccione una cartera</option>
