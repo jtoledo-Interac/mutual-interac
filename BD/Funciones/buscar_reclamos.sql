@@ -1,12 +1,18 @@
--- Function: buscar_reclamos(numeric, character varying, character varying, character varying, character varying, character varying)
+create or replace function buscar_reclamos
+(
+        in "xnombre_solicitante$" character varying, 
+        in "xnum_adherente$" character varying, 
+        in "xcod_cartera$" character varying, 
+        in "xcod_tipo$" character varying, 
+        in "xcod_estado$" character varying, 
+        in "xcod_prioridad$" character varying, 
+        out reclamos refcursor, 
+        out numerror character varying, 
+        out msjerror character varying)
+  returns record as
+$body$
 
--- DROP FUNCTION buscar_reclamos(numeric, character varying, character varying, character varying, character varying, character varying);
-
-CREATE OR REPLACE FUNCTION buscar_reclamos(IN "xid_reclamo$" numeric, IN "xnum_adherente$" character varying, IN "xcod_cartera$" character varying, IN "xcod_tipo$" character varying, IN "xcod_estado$" character varying, IN "xcod_prioridad$" character varying, OUT reclamos refcursor, OUT numerror character varying, OUT msjerror character varying)
-  RETURNS record AS
-$BODY$
-
-    declare xid_reclamo numeric;
+    declare xnombre_solicitante varchar;
     declare xnum_adherente varchar;
     declare xcod_cartera varchar;
     declare xcod_tipo varchar;
@@ -17,7 +23,9 @@ $BODY$
         numerror := '0';
         msjerror := ' ';
 
-        --TODO: falta agregar filtro para ID Reclamo
+        
+         xnombre_solicitante := coalesce(upper(trim(xnombre_solicitante$)),'') || '%';
+
         if trim(xnum_adherente$) = '' then
             xnum_adherente := ' ';
         else
@@ -93,7 +101,7 @@ $BODY$
             inner join medios_respuesta me
                 on r.cod_medio_respuesta = me.cod_medio_respuesta 
         where
-            --(xid_reclamo =  ' ' or cast (id_reclamo as varchar) = xid_reclamo) and
+           upper(nombre_solicitante) like '%' || xnombre_solicitante ||'%' and
             (xnum_adherente =  ' ' or upper(trim(num_adherente)) = xnum_adherente) and
             (xcod_cartera =  ' ' or upper(trim(r.cod_cartera)) = xcod_cartera) and
             (xcod_tipo =  ' ' or upper(trim(r.cod_tipo)) = xcod_tipo) and
@@ -109,8 +117,8 @@ $BODY$
                 return; 
     end;
 
-$BODY$
-  LANGUAGE plpgsql VOLATILE
-  COST 100;
-ALTER FUNCTION buscar_reclamos(numeric, character varying, character varying, character varying, character varying, character varying)
-  OWNER TO postgres;
+$body$
+  language plpgsql volatile
+  cost 100;
+alter function buscar_reclamos(numeric, character varying, character varying, character varying, character varying, character varying)
+  owner to postgres;

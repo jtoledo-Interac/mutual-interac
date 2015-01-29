@@ -1095,7 +1095,7 @@ public class Servlet extends HttpServlet {
 		request.setAttribute("listaRegiones", mapaSalida.get("listaRegiones"));
 		
 		Reclamo reclamo = new Reclamo();
-		reclamo.setIdReclamo(Utils.stringToNum(request.getParameter("id_reclamo")));
+		reclamo.setNombreSolicitante(request.getParameter("nombre_solicitante"));
 		reclamo.setNumAdherente(request.getParameter("num_adherente"));
 		reclamo.setCodCartera(request.getParameter("codCartera"));
 		reclamo.setDiasBandeja(request.getParameter("diasBandeja"));
