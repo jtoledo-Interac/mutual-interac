@@ -2,7 +2,9 @@ package cl.antartis.interac.servlets;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +22,8 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.log4j.Logger;
 
 import cl.antartis.interac.beans.Documento;
 import cl.antartis.interac.ejb.interfaces.EJBRemoto;
@@ -30,6 +34,7 @@ public class Upload extends HttpServlet{
 	@EJB(mappedName = "interac/EJB")
 	private EJBRemoto ejbRemoto;
 	private String pagDestino = "";
+	private Logger log = Logger.getLogger(Upload.class);
 	
 	public Upload() {
 		super();
@@ -37,10 +42,8 @@ public class Upload extends HttpServlet{
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
-		
 		TreeMap<String, Object> query = new TreeMap<String, Object>();
-		String numFolio = request.getParameter("numFolio");
-		
+		HashMap<String, String> map = new HashMap<String, String>();
 		if (isMultipart) {
 			DiskFileItemFactory factory = new DiskFileItemFactory();
 			factory.setSizeThreshold(1000000);
@@ -58,10 +61,8 @@ public class Upload extends HttpServlet{
 				Iterator<FileItem> iter = items.iterator();
 				while (iter.hasNext()) {
 					FileItem item = (FileItem) iter.next();
-
-					fileName = item.getName();
 					fieldName = item.getFieldName();
-
+					fileName = item.getName();
 					System.out.println("fileName: " + fileName);
 					System.out.println("fieldName: " + fieldName);
 					System.out.println("Tamaño: " + items.size());
@@ -73,23 +74,25 @@ public class Upload extends HttpServlet{
 					//PRODUCCION
 					File archivo_server = new File("archivos/" + fileName);
 					if (item.isFormField()) {
-						String name = item.getFieldName();
-						String value = item.getString();
-						query.put(name, value);
-					} 
+						map.put(item.getFieldName(), item.getString());
+						log.info("fieldvalue = "+item.getString());
+					}
 					else // file object
 					{
+						String fieldname = item.getFieldName();
+		                String filename = FilenameUtils.getName(item.getName());
+		                InputStream filecontent = item.getInputStream();
 						System.out.println("No es form field");
-					}
-
-					try {
-						item.write(archivo_server); //escribe archivo en servidor
-						System.out.println("Nombre --> " + item.getName());
-						System.out.println("<br> Tipo --> "+ item.getContentType());
-						System.out.println("<br> Tamaño --> "+ (item.getSize() / 1240) + "KB");
-						System.out.println("<br>");
-					} catch (Exception e) {
-						e.printStackTrace();
+					
+						try {
+							item.write(archivo_server); //escribe archivo en servidor
+							System.out.println("Nombre --> " + item.getName());
+							System.out.println("<br> Tipo --> "+ item.getContentType());
+							System.out.println("<br> Tamaño --> "+ (item.getSize() / 1240) + "KB");
+							System.out.println("<br>");
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
 					}
 				}
 			} catch (FileUploadException e) {
@@ -102,6 +105,9 @@ public class Upload extends HttpServlet{
 		}
 		pagDestino="Servlet?accion=agregarDocumento";
 		System.out.println("Despachando a pag destino: "+pagDestino);
+		Documento d = new Documento(map);	
+		log.info(d.getDocumento());
+		request.setAttribute("documento",d);
 		despacha(request, response, pagDestino);
 	}
 	

@@ -63,6 +63,12 @@
 <input type="hidden"	id="accion" 		name="accion" 		value="agregarDocumento">
 <table>
 <tr>
+	<td colspan="2"><input type="file" id="documento" name="documento" placeholder="Documento Adjunto" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">	</td>
+</tr>
+</table>
+<br/>
+<table>
+<tr>
 	<td> <input type="text"		id="numFolio" 		name="numFolio"		placeholder="Nº Folio"	onkeypress="return valida_numeros(event)" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> </td>
 	<td> <input type="text"		id="numAdherente" 	name="numAdherente"	placeholder="Nº Adherente" onkeypress="return valida_numeros(event)" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> </td>
 </tr>
@@ -94,9 +100,6 @@
 	</select></td>
 		<td> <input type="text"		id="nombre" 	name="nombre"	placeholder="Nombre" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> </td>
 	
-</tr>
-<tr>
-	<td colspan="2"><input type="file" id="documento" name="documento" placeholder="Documento Adjunto" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">	</td>
 </tr>
 </table>
 </form>

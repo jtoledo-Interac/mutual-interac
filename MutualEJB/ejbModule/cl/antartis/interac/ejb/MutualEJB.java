@@ -1107,7 +1107,6 @@ public class MutualEJB implements EJBRemoto {
 					documento.setCodProducto(rs.getString("cod_producto"));
 					documento.setDesProducto(rs.getString("des_producto"));
 					documento.setDesArea(rs.getString("des_area"));
-					log.info(documento.getDocumento());
 					listaDocumentos.add(documento);
 				}
 				rs.close();

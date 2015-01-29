@@ -644,6 +644,7 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
+		/*
 		Documento documento = new Documento();
 		documento.setNombre(request.getParameter("nombre"));
 		documento.setNumFolio(request.getParameter("numFolio"));
@@ -652,7 +653,9 @@ public class Servlet extends HttpServlet {
 		documento.setCodArea(request.getParameter("codArea"));
 		documento.setCodCartera(request.getParameter("codCartera"));
 		documento.setCodProducto(request.getParameter("codProducto"));
-
+		*/
+		Documento documento = (Documento)request.getAttribute("documento");
+		log.info("lalaaall         "+documento.getDescripcion());
 		mapaEntrada.put("documento",documento);
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
