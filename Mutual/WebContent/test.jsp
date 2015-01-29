@@ -1,9 +1,11 @@
 <%@ include file="encabezado.jsp" %>
 
-<form action="Upload" method="post" enctype="multipart/form-data">
-	<input type="file" id="file" name="file" value=""/>
+
+<form action="Servlet" method="post">
+	<input type="hidden"  id="accion" name="accion" value="cargarArchivo"/>
+	<input type="file" id="rescatar" name="rescatar" value=""/>
+	<&
 	<input type="submit" />
-</form>
 
 <iframe src="http://docs.google.com/gview?url=/graficar.xls&embedded=true" style="width:550px; height:650px;" frameborder="0"></iframe>
 
