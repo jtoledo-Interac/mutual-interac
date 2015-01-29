@@ -157,7 +157,7 @@
 	
 	function eliminarDocumento(idDocumento)
 	{  
-   		jConfirm('¿ Confirma eliminar el Documento ?', 'Confirmación', function(res){
+   		jConfirm('¿Confirma eliminar el Documento?', 'Confirmación', function(res){
    			if (res == true){
   				ajaxCall(getUrlEliminarDocumento(idDocumento), function(){
   					jAlert("El Documento ha sido eliminada exitosamente");

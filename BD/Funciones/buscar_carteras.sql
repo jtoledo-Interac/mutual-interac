@@ -1,15 +1,19 @@
 create or replace function public.buscar_carteras
 (
+    in xnomcartera$ varchar,
     out carteras refcursor, 
     out numerror varchar, 
     out msjerror varchar
 ) returns record as
 
 $body$
+     declare xnomcartera varchar;
 
     begin
         numerror := '0';
         msjerror := ' ';
+
+        xnomcartera := coalesce(upper(trim(xnomcartera$)),'') || '%';
 
         open carteras for
 
@@ -18,8 +22,10 @@ $body$
             des_cartera
         from 
             cartera
-        order by
-            des_cartera;
+        where 
+            upper(des_cartera) like '%' || xnomcartera ||'%'
+         order by
+            cod_cartera;
         
         exception
             when others then

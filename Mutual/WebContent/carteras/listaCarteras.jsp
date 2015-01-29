@@ -78,6 +78,7 @@
 		{
 			buscarCarteras();
 		});
+	
 
 		$('#btnAgregar').click(function()
 		{
