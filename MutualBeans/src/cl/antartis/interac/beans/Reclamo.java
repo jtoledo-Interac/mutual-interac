@@ -268,28 +268,9 @@ public class Reclamo implements Serializable {
 	}
 	
 	public String getEmailBody(){
-		String body = "Ha ingresado un nuevo reclamo (codigo de reclamo: "+this.getIdReclamo()+
-			") detallado a continuación:\n"+
-			"Número adherente: "+ this.numAdherente+"\n"+
-			"Nombre solicitante: "+ this.nombreSolicitante+"\n"+
-			"Email solicitante: "+ this.emailSolicitante+"\n"+
-			"Fono solicitante: "+ this.fonoSolicitante+"\n"+
-			"Region solicitante: "+ this.regionSolicitante+"\n"+
-			"Código tipo: "+ this.codTipo+"\n"+
-			"Código motivo: "+ this.codMotivo+"\n"+
-			"Código prioridad: "+ this.codPrioridad+"\n"+
-			"Código cartera: "+ this.codCartera+"\n"+
-			"Fecha ingreso: "+ this.fecIngreso+"\n"+
-			"Glosa: "+ this.glosa+"\n"+
-			"Adjunto: "+ this.adjunto+"\n"+
-			"Observaciones: "+ this.observaciones+"\n"+
-			"Código estado: "+ this.codEstado+"\n"+
-			"Responsable ingreso: "+ this.responsableIngreso+"\n"+
-			"Responsable actual: "+ this.responsableActual+"\n"+
-			"Días bandeja: "+ this.diasBandeja+"\n"+
-			"Días sistema: "+ this.diasSistema+"\n"+
-			"Código medio respuesta: "+ this.codMedio+"\n"+
-			"Fecha respuesta: "+ this.fecRespuesta+"\n\n";
+		String body = "Ha ingresado un nuevo reclamo:\n"+
+			"ID de reclamo: "+this.getIdReclamo()+"\n"+
+			"Glosa: "+ this.glosa+"\n\n";
 		return body;
 	}
 

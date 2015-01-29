@@ -125,6 +125,7 @@ public class Servlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("nombre", usuario.getNombres()+" "+usuario.getApePaterno()+" "+usuario.getApeMaterno());
 			session.setAttribute("user",usuario);
+			session.setAttribute("usuario", usuario);
 			session.setMaxInactiveInterval(sessionTime);
 			
 			//setting cookie to expiry in 30 mins.
@@ -900,7 +901,6 @@ public class Servlet extends HttpServlet {
 			System.out.println("Se creo "+f.getAbsolutePath());
 		} catch (IOException e) {
 			System.out.println("no lo crea");
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		String pathIn = "graficar.xls";
@@ -1157,8 +1157,11 @@ public class Servlet extends HttpServlet {
 		mapaSalida = ejbRemoto.agregarReclamo(mapaEntrada);
 		
 		if(mapaSalida.get("reclamo")!=null){
+			HttpSession session = request.getSession();
+			
 			reclamo = (Reclamo)mapaSalida.get("reclamo");
-			String to = ConfigUtils.loadProperties("reclamos_user");
+			//String to = ConfigUtils.loadProperties("reclamos_user");
+			String to = ((Usuario)session.getAttribute("usuario")).getEmail();
 			String subject = "Nuevo reclamo("+reclamo.getIdReclamo()+")";
 			String body = reclamo.getEmailBody();
 			String signature = "Firma de mutual..";

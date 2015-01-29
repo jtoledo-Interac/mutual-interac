@@ -21,6 +21,7 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import cl.antartis.interac.beans.Documento;
 import cl.antartis.interac.ejb.interfaces.EJBRemoto;
 
 public class Upload extends HttpServlet{
@@ -35,19 +36,11 @@ public class Upload extends HttpServlet{
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpServletRequest requestCopy =null;
-		HttpServletResponse responseCopy = null;
-		try {
-			requestCopy = (HttpServletRequest)BeanUtils.cloneBean(request);
-			responseCopy =(HttpServletResponse)BeanUtils.cloneBean(response);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
-
+		
 		TreeMap<String, Object> query = new TreeMap<String, Object>();
-
+		String numFolio = request.getParameter("numFolio");
+		
 		if (isMultipart) {
 			DiskFileItemFactory factory = new DiskFileItemFactory();
 			factory.setSizeThreshold(1000000);
@@ -109,7 +102,7 @@ public class Upload extends HttpServlet{
 		}
 		pagDestino="Servlet?accion=agregarDocumento";
 		System.out.println("Despachando a pag destino: "+pagDestino);
-		despacha(requestCopy, responseCopy, pagDestino);
+		despacha(request, response, pagDestino);
 	}
 	
 	public static void main(String[] args) {

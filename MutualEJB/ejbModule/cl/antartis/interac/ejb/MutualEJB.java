@@ -575,23 +575,27 @@ public class MutualEJB implements EJBRemoto {
 
 			dbConeccion = interacDS.getConnection();
 
-			cStmt = dbConeccion.prepareCall("{ call login(?,?,?,?,?,?,?)}");
+			cStmt = dbConeccion.prepareCall("{ call login(?,?,?,?,?,?,?,?,?)}");
 			cStmt.setString(1, usuario.getNomUsuario());
 			cStmt.setString(2, usuario.getContrasena1());
-			cStmt.registerOutParameter(3, Types.VARCHAR);// nombre$
-			cStmt.registerOutParameter(4, Types.VARCHAR);// apellidoP$
-			cStmt.registerOutParameter(5, Types.VARCHAR);// apellidoM$
-			cStmt.registerOutParameter(6, Types.VARCHAR);
-			cStmt.registerOutParameter(7, Types.VARCHAR);
+			cStmt.registerOutParameter(3, Types.INTEGER);// id$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// email$
+			cStmt.registerOutParameter(5, Types.VARCHAR);// nombre$
+			cStmt.registerOutParameter(6, Types.VARCHAR);// apellidoP$
+			cStmt.registerOutParameter(7, Types.VARCHAR);// apellidoM$
+			cStmt.registerOutParameter(8, Types.VARCHAR);
+			cStmt.registerOutParameter(9, Types.VARCHAR);
 		
 			
 			log.info("["+usuario.getNomUsuario()+" - "+usuario.getContrasena1()+"]");
 			cStmt.execute();
-			usuario.setNombres(cStmt.getString(3));
-			usuario.setApePaterno(cStmt.getString(4));
-			usuario.setApeMaterno(cStmt.getString(5));
-			error.setNumError(cStmt.getString(6));
-			error.setMsjError(cStmt.getString(7));
+			usuario.setIdUsuario(cStmt.getInt(3));
+			usuario.setEmail(cStmt.getString(4));
+			usuario.setNombres(cStmt.getString(5));
+			usuario.setApePaterno(cStmt.getString(6));
+			usuario.setApeMaterno(cStmt.getString(7));
+			error.setNumError(cStmt.getString(8));
+			error.setMsjError(cStmt.getString(9));
 			mapaSalida.put("error", error);
 			mapaSalida.put("usuario",usuario);
 			log.info(error.getError()+"<----");
