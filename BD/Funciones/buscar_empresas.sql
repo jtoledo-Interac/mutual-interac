@@ -17,17 +17,15 @@ $body$
         numerror := '0';
 		msjerror := ' ';
 
+        xnombre := coalesce(upper(trim(xnombre$)),'') || '%';
+
         if trim(xnum_adherente$) = '' then
             xnum_adherente := ' ';
         else
             xnum_adherente := upper(trim(xnum_adherente$));
         end if;
 
-        if trim(xnombre$) = '' then
-            xnombre := ' ';
-        else
-            xnombre := upper(trim(xnombre$));
-        end if;
+     
 
 
         open empresas for
@@ -38,8 +36,9 @@ $body$
         from 
             empresa
         where
-            (xnum_adherente =  ' ' or upper(trim(num_adherente)) = xnum_adherente) and
-            (xnombre =  ' ' or upper(trim(nombre)) = xnombre) 
+             upper(nombre) like '%' || xnombre ||'%' and
+            (xnum_adherente =  ' ' or upper(trim(num_adherente)) = xnum_adherente) 
+            
         order by
             nombre;
         

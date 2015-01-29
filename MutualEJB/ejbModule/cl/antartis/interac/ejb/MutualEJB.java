@@ -504,20 +504,20 @@ public class MutualEJB implements EJBRemoto {
 
 			dbConeccion = interacDS.getConnection();
 
-			cStmt = dbConeccion.prepareCall("{ call buscar_productos(?,?,?) }");
+			cStmt = dbConeccion.prepareCall("{ call buscar_productos(?,?,?,?) }");
 			
 		
-			
-			cStmt.registerOutParameter(1, Types.OTHER);// cursor$
-			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
-			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
+			cStmt.setString(1,producto.getDesProducto());
+			cStmt.registerOutParameter(2, Types.OTHER);// cursor$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
 
 			
 			cStmt.execute();
 
-			ResultSet rs = (ResultSet) cStmt.getObject(1);
-			numError = cStmt.getString(2);
-			msjError = cStmt.getString(3);
+			ResultSet rs = (ResultSet) cStmt.getObject(2);
+			numError = cStmt.getString(3);
+			msjError = cStmt.getString(4);
 		
 			listaProductos = new ArrayList<Producto>();
 

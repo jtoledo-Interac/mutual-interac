@@ -26,7 +26,7 @@ $body$
 
         /*filtros*/
         xrut := coalesce(upper(trim(rut$)),'') || '%';
-        xnombres := '%' || coalesce(upper(trim(nombres$)),'') || '%';
+        xnombres := coalesce(upper(trim(nombres$)),'') || '%';
         xapepaterno := '%' || coalesce(upper(trim(apepaterno$)),'') || '%';
         xapematerno := '%' || coalesce(upper(trim(apematerno$)),'') || '%';
         xnomusuario := '%' || coalesce(upper(trim(nomusuario$)),'') || '%';
@@ -55,7 +55,7 @@ $body$
             usuario
         where
             rut like xrut and
-            upper(nombres) like xnombres and
+            upper(nombres) like '%' || xnombres ||'%' and
             upper(apepaterno) like xapepaterno and
             upper(apematerno) like xapematerno and
             upper(nomusuario) like xnomusuario

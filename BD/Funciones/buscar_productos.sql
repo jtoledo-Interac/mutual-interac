@@ -1,15 +1,17 @@
 create or replace function public.buscar_productos
 (
+    in xnomproducto$ varchar, 
     out productos refcursor, 
     out numerror varchar, 
     out msjerror varchar
 ) returns record as
 
 $body$
-
+        declare xnomproducto varchar;
     begin
+         xnomproducto := coalesce(upper(trim(xnomproducto$)),'') || '%';
         numerror := '0';
-		msjerror := ' ';
+        msjerror := ' ';
 
         open productos for
 
@@ -18,6 +20,8 @@ $body$
             des_producto
         from 
             producto
+        where
+             upper(des_producto) like '%' || xnomproducto ||'%' 
         order by
             des_producto;
         
@@ -25,7 +29,7 @@ $body$
             when others then
                 numerror := sqlstate;
                 msjerror := '[busca_productos] error al buscar productos(sql) ' ||sqlerrm;
-                return;	
+                return; 
     end;
 
 $body$
