@@ -1,17 +1,20 @@
 create or replace function buscar_reclamos
 (
-        in "xnombre_solicitante$" character varying, 
-        in "xnum_adherente$" character varying, 
-        in "xcod_cartera$" character varying, 
-        in "xcod_tipo$" character varying, 
-        in "xcod_estado$" character varying, 
-        in "xcod_prioridad$" character varying, 
-        out reclamos refcursor, 
-        out numerror character varying, 
-        out msjerror character varying)
+    in "xnombre_solicitante$" character varying, 
+    in "xnum_adherente$" character varying, 
+    in "xcod_cartera$" character varying, 
+    in "xcod_tipo$" character varying, 
+    in "xcod_estado$" character varying, 
+    in "xcod_prioridad$" character varying,
+     in "xid_reclamo$" numeric, 
+     out reclamos refcursor, 
+     out numerror character varying, 
+     out msjerror character varying
+)
   returns record as
 $body$
 
+    declare xid_reclamo numeric;
     declare xnombre_solicitante varchar;
     declare xnum_adherente varchar;
     declare xcod_cartera varchar;
@@ -24,7 +27,10 @@ $body$
         msjerror := ' ';
 
         
-         xnombre_solicitante := coalesce(upper(trim(xnombre_solicitante$)),'') || '%';
+        xnombre_solicitante := coalesce(upper(trim(xnombre_solicitante$)),'') || '%';
+    
+        xid_reclamo=xid_reclamo$;
+    
 
         if trim(xnum_adherente$) = '' then
             xnum_adherente := ' ';
@@ -55,7 +61,7 @@ $body$
         else
             xcod_prioridad := upper(trim(xcod_prioridad$));           
         end if;
-
+    
         open reclamos for
 
         select
@@ -101,14 +107,17 @@ $body$
             inner join medios_respuesta me
                 on r.cod_medio_respuesta = me.cod_medio_respuesta 
         where
-           upper(nombre_solicitante) like '%' || xnombre_solicitante ||'%' and
-            (xnum_adherente =  ' ' or upper(trim(num_adherente)) = xnum_adherente) and
+          upper(nombre_solicitante) like '%' || xnombre_solicitante ||'%' and
+           (xnum_adherente =  ' ' or upper(trim(num_adherente)) = xnum_adherente) and
             (xcod_cartera =  ' ' or upper(trim(r.cod_cartera)) = xcod_cartera) and
             (xcod_tipo =  ' ' or upper(trim(r.cod_tipo)) = xcod_tipo) and
             (xcod_estado =  ' ' or upper(trim(r.cod_estado)) = xcod_estado) and
-            (xcod_prioridad =  ' ' or upper(trim(r.cod_prioridad)) = xcod_prioridad) 
+            (xcod_prioridad =  ' ' or upper(trim(r.cod_prioridad)) = xcod_prioridad) and
+          (xid_reclamo = 0 or id_reclamo = xid_reclamo)
+        
           order by
-            id_reclamo;
+            id_reclamo;           
+             
     
         exception
             when others then
@@ -120,5 +129,5 @@ $body$
 $body$
   language plpgsql volatile
   cost 100;
-alter function buscar_reclamos(numeric, character varying, character varying, character varying, character varying, character varying)
+alter function buscar_reclamos(character varying, character varying, character varying, character varying, character varying, character varying, numeric)
   owner to postgres;
