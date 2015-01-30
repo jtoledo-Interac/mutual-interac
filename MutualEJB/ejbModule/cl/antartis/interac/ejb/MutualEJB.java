@@ -1010,9 +1010,6 @@ public class MutualEJB implements EJBRemoto {
 
 			dbConeccion = interacDS.getConnection();
 
-			log.info("Nom Empresa:" + empresa.getNombre());
-			log.info("Num Adherente:" + empresa.getNumAdherente());
-			
 			cStmt = dbConeccion.prepareCall("{ call modificar_empresa(?,?,?,?) }");
 			cStmt.setString(1,empresa.getNumAdherente());
 			cStmt.setString(2,empresa.getNombre());
