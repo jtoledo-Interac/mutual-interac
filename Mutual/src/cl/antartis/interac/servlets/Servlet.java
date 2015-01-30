@@ -366,7 +366,7 @@ public class Servlet extends HttpServlet {
 		
 		mapaEntrada.put("usuario",usuario);
 		
-		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		//log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
 		mapaSalida = ejbRemoto.agregarUsuario(mapaEntrada);
 		
@@ -416,13 +416,12 @@ public class Servlet extends HttpServlet {
 		usuario.setApePaterno(request.getParameter("sApePaterno"));
 		usuario.setApeMaterno(request.getParameter("sApeMaterno"));
 		usuario.setNomUsuario(request.getParameter("sNomUsuario"));
-		usuario.setContrasena1(e.encriptar(request.getParameter("sContrasena")));
 		usuario.setCodGenero(request.getParameter("sCodGenero"));
 		usuario.setFecNacimiento(request.getParameter("sFecNacimiento"));
 		usuario.setTelefono(request.getParameter("sTelefono"));
 		usuario.setCelular(request.getParameter("sCelular"));
 		usuario.setEmail(request.getParameter("sEmail"));
-
+		
 		log.info(usuario.getUsuario());
 		
 		mapaEntrada.put("usuario",usuario);		

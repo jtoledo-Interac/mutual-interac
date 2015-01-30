@@ -20,7 +20,7 @@
 				}
 				break;
 			case "select-one":
-				if(f.elements[i].selectedIndex<=0){
+				if(f.elements[i].selectedIndex<0){
 					f.elements[i].style.boxShadow = " 0 0 10px #FF0000";
 					ok = false;
 				}
@@ -46,24 +46,34 @@
 		formatRut();
 	});
 </script>
-	
+
 <form id="formEdita" action="Servlet" method="post" onSubmit="return validar_form(this)">
 	<input type="hidden"	id="accion" 		name="accion" 		value="modificarUsuario">
-	<input type="hidden" 	id="nIdUsuario" 	name="nIdUsuario"	value="${usuario.nIdUsuario}"	onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
-	<input type="text"		id="sRut" 			name="sRut" 		placeholder="Rut"	value="${usuario.sRutFormat}" class="rut2"	onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
-	<input type="hidden"	id="sDV" 			name="sDV" 			value="${usuario.sDV}"	onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
-	<input type="text" 		id="sNombres" 		name="sNombres"		placeholder="Nombres"	value="${usuario.sNombres}"	onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
-	<input type="text" 		id="sApePaterno" 	name="sApePaterno"	placeholder="Apellido Paterno" value="${usuario.sApePaterno}"	onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
-	<input type="text" 		id="sApeMaterno" 	name="sApeMaterno" 	placeholder="Apellido Materno" value="${usuario.sApeMaterno}"	onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
-	<input type="text" 		id="sNomUsuario" 	name="sNomUsuario"	placeholder="Nombre Usuario" value="${usuario.sNomUsuario}"	onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
-	<input type="password" 	id="sContrasena" 	name="sContrasena"  placeholder="Contrase&ntilde;a" value="${usuario.sContrasena}"	onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
-	<input type="password" 	id="sContrasena2" 	name="sContrasena2" placeholder="Reingrese Contrase&ntilde;a" value="${usuario.sContrasena}"	onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
-	<select id="sCodGenero" name="sCodGenero"	onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
-		<option value="M" <c:if test="${usuario.sCodGenero == 'M'}"> selected</c:if>>Masculino</option>
-		<option value="F" <c:if test="${usuario.sCodGenero == 'F'}"> selected</c:if>>Femenino</option>
-	</select>
-	<input type="text" 		id="sFecNacimiento" name="sFecNacimiento" 	placeholder="Fecha Nacimiento" value="${usuario.sFecNacimiento}" class="fecha" readonly onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
-	<input type="text" 		id="sTelefono" 		name="sTelefono"	placeholder="Telefono" value="${usuario.sTelefono}"	onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
-	<input type="text" 		id="sCelular" 		name="sCelular"		placeholder="Celular" value="${usuario.sCelular}"	onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
-	<input type="text" 		id="sEmail" 		name="sEmail"		placeholder="Email" value="${usuario.sEmail}"	onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
+	<input type="hidden" 	id="nIdUsuario" 	name="nIdUsuario"	value="${usuario.idUsuario}"	onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
+	<input type="hidden"	id="sDV" 			name="sDV" 			value="${usuario.dv}"	onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
+<table>
+<tr>	
+	<td> <input type="text"		id="sRut" 			name="sRut" 		placeholder="Rut"	value="${usuario.rut}" class="rut2"	onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> </td>
+	<td> <input type="text" 	id="sNombres" 		name="sNombres"		placeholder="Nombres"	value="${usuario.nombres}"	onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> </td>
+</tr>
+<tr>
+	<td> <input type="text" 		id="sApePaterno" 	name="sApePaterno"	placeholder="Apellido Paterno" value="${usuario.apePaterno}"	onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> </td>
+	<td> <input type="text" 		id="sApeMaterno" 	name="sApeMaterno" 	placeholder="Apellido Materno" value="${usuario.apeMaterno}"	onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> </td>
+</tr>
+<tr>
+	<td> <input type="text" 	id="sNomUsuario" 	name="sNomUsuario"	placeholder="Nombre Usuario" value="${usuario.nomUsuario}"	onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> </td>
+	<td> <select id="sCodGenero" name="sCodGenero"	onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
+		<option value="M" <c:if test="${usuario.codGenero == 'M'}"> selected</c:if>>Masculino</option>
+		<option value="F" <c:if test="${usuario.codGenero == 'F'}"> selected</c:if>>Femenino</option>
+	</select> </td>
+</tr>
+<tr>	
+	<td> <input type="text" 		id="sFecNacimiento" name="fecNacimiento" 	placeholder="Fecha Nacimiento" value="${usuario.fecNacimiento}" class="fecha" readonly onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> </td>
+	<td> <input type="text" 		id="sTelefono" 		name="sTelefono"	placeholder="Telefono" value="${usuario.telefono}"	onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> </td>
+</tr>
+<tr>
+	<td> <input type="text" 		id="sCelular" 		name="sCelular"		placeholder="Celular" value="${usuario.celular}"	onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> </td>
+	<td> <input type="text" 		id="sEmail" 		name="sEmail"		placeholder="Email" value="${usuario.email}"	onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> </td>
+</tr>
+</table>
 </form>

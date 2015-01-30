@@ -227,7 +227,7 @@ public class MutualEJB implements EJBRemoto {
 
 			dbConeccion = interacDS.getConnection();
 			
-			cStmt = dbConeccion.prepareCall("{ call modificar_usuario(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
+			cStmt = dbConeccion.prepareCall("{ call modificar_usuario(?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
 			cStmt.setLong(1, usuario.getIdUsuario());
 			cStmt.setString(2, usuario.getRut());
 			cStmt.setString(3, usuario.getDv());
@@ -235,14 +235,13 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(5, usuario.getApePaterno());
 			cStmt.setString(6, usuario.getApeMaterno());
 			cStmt.setString(7, usuario.getNomUsuario());
-			cStmt.setString(8, usuario.getContrasena1());
-			cStmt.setString(9, usuario.getCodGenero());
-			cStmt.setDate(10, Utils.stringToDate(usuario.getFecNacimiento()));
-			cStmt.setString(11, usuario.getTelefono());
-			cStmt.setString(12, usuario.getCelular());
-			cStmt.setString(13, usuario.getEmail());
-			cStmt.registerOutParameter(14, Types.VARCHAR);// numerror$
-			cStmt.registerOutParameter(15, Types.VARCHAR);// msjerror$
+			cStmt.setString(8, usuario.getCodGenero());
+			cStmt.setDate(9, Utils.stringToDate(usuario.getFecNacimiento()));
+			cStmt.setString(10, usuario.getTelefono());
+			cStmt.setString(11, usuario.getCelular());
+			cStmt.setString(12, usuario.getEmail());
+			cStmt.registerOutParameter(13, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(14, Types.VARCHAR);// msjerror$
 
 			
 			cStmt.execute();
