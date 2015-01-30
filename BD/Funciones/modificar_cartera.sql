@@ -1,6 +1,6 @@
 create or replace function public.modificar_cartera
 (
-    in xcod_cartera numeric,
+    in xcod_cartera varchar,
     in xdes_cartera varchar,
     out numerror varchar, 
     out msjerror varchar

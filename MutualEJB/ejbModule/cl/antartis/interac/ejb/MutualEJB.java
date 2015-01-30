@@ -527,6 +527,7 @@ public class MutualEJB implements EJBRemoto {
 					producto = new Producto();
 					producto.setCodProducto(rs.getString("cod_producto"));
 					producto.setDesProducto(rs.getString("des_producto"));
+					log.info(producto.getProducto());
 					listaProductos.add(producto);
 				}
 				rs.close();
@@ -714,6 +715,8 @@ public class MutualEJB implements EJBRemoto {
 			mapaSalida = new HashMap<String, Object>();
 
 			dbConeccion = interacDS.getConnection();
+			
+			System.out.println("COD CARTERA: " + (String)mapaEntrada.get("codCartera"));
 
 			cStmt = dbConeccion.prepareCall("{ call cargar_cartera(?,?,?,?) }");
 			cStmt.setString(1, (String)mapaEntrada.get("codCartera")); 
@@ -731,6 +734,7 @@ public class MutualEJB implements EJBRemoto {
 				cartera = new Cartera();
 				cartera.setCodCartera(rsCartera.getString("cod_cartera"));
 				cartera.setDesCartera(rsCartera.getString("des_cartera"));
+				log.info(cartera.getCartera());
 			}
 			
 			rsCartera.close();			
@@ -773,6 +777,8 @@ public class MutualEJB implements EJBRemoto {
 
 			mapaSalida = new HashMap<String, Object>();
 
+			log.info(cartera.getCartera());
+			
 			dbConeccion = interacDS.getConnection();
 
 			cStmt = dbConeccion.prepareCall("{ call modificar_cartera(?,?,?,?) }");
@@ -826,7 +832,7 @@ public class MutualEJB implements EJBRemoto {
 		try {
 			log.info("Eliminar cartera");
 
-			cod_cartera = (String)mapaEntrada.get("cod_cartera");
+			cod_cartera = (String)mapaEntrada.get("codCartera");
 			
 			log.info("cod_cartera: "+cod_cartera);
 			

@@ -188,12 +188,13 @@
 	}
 	
 	function getUrlCargarProducto(id)
-	{
-		var sData = "Servlet";
-		sData += '?accion=cargarProducto';
-		sData += '&codProducto='+id;
-		return sData;
-	}
+	 {
+	  var sData = "Servlet";
+	  sData += '?accion=cargarProducto';
+	  sData += '&codProducto='+id;
+	  console.log(sData);
+	  return sData;
+	 }
 
 	function getUrlEliminarProducto(id){  
 		var sData = 'Servlet';
