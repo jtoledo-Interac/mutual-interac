@@ -409,7 +409,7 @@ public class Servlet extends HttpServlet {
 		Encriptador e = new Encriptador();
 		
 		Usuario usuario = new Usuario();
-		usuario.setIdUsuario(Utils.stringToNum(request.getParameter("nIdUsuario")));
+		//usuario.setIdUsuario(Utils.stringToNum(request.getParameter("nIdUsuario")));
 		usuario.setRut(Utils.getRutSinDV(request.getParameter("sRut")));
 		usuario.setDv(request.getParameter("sDV"));
 		usuario.setNombres(request.getParameter("sNombres"));
@@ -651,7 +651,6 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		/*
 		Documento documento = new Documento();
 		documento.setNombre(request.getParameter("nombre"));
 		documento.setNumFolio(request.getParameter("numFolio"));
@@ -660,9 +659,7 @@ public class Servlet extends HttpServlet {
 		documento.setCodArea(request.getParameter("codArea"));
 		documento.setCodCartera(request.getParameter("codCartera"));
 		documento.setCodProducto(request.getParameter("codProducto"));
-		*/
-		Documento documento = (Documento)request.getAttribute("documento");
-		log.info("lalaaall         "+documento.getDescripcion());
+
 		mapaEntrada.put("documento",documento);
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
@@ -975,14 +972,16 @@ public class Servlet extends HttpServlet {
 		
 		Producto producto = new Producto();
 		producto.setDesProducto(request.getParameter("nomProducto"));
+		producto.setDesProducto(request.getParameter("codProducto"));
 
 		mapaEntrada.put("producto",producto);
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
-		mapaSalida = ejbRemoto.agregarCartera(mapaEntrada);
+		mapaSalida = ejbRemoto.agregarProducto(mapaEntrada);
 		
-		log.info("Cod Producto: "+mapaSalida.get("codProducto"));
+		log.info("Cod Producto: +++++++++++++++"+request.getParameter("nomProducto"));	
+		log.info("des Producto:+++++++++++ "+mapaSalida.get("desProducto"));
 
 		pagDestino = "contenedor.jsp?accion=productos";
 	}

@@ -877,12 +877,12 @@ public class MutualEJB implements EJBRemoto {
 			log.info("Buscar Produtos");
 			
 			producto = (Producto)mapaEntrada.get("producto");
-
+			
 			mapaSalida = new HashMap<String, Object>();
 
 			dbConeccion = interacDS.getConnection();
 
-			cStmt = dbConeccion.prepareCall("{ call agergaar_pructo(?,?,?,?) }"); //cambiar segun SP
+			cStmt = dbConeccion.prepareCall("{ call agregar_producto(?,?,?,?) }"); //cambiar segun SP
 			
 			cStmt.setString(1, producto.getCodProducto());// cursor$
 			cStmt.setString(2, producto.getDesProducto());// cursor$			
