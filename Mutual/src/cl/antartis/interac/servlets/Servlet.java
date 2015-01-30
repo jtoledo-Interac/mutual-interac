@@ -554,7 +554,7 @@ public class Servlet extends HttpServlet {
 		
 		mapaSalida = ejbRemoto.modificarCartera(mapaEntrada);
 
-		pagDestino = "/carteras/listaCarteras.jsp";
+		pagDestino = "contenedor.jsp?accion=carteras";
 	}
 	
 	public void eliminarCartera(HttpServletRequest request, HttpServletResponse response) {

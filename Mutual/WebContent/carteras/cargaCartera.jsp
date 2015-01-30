@@ -8,7 +8,7 @@
 </script>
 
 <form id="formEdita" action="Servlet" method="post">
-	<input type="hidden"	id="accion" 		name="accion" 		value="agregarCartera">
-	<input type="text" 		id="codCartera" 	name="codCartera"	value="${cartera.desCartera}">
+	<input type="hidden"	id="accion" 		name="accion" 		value="modificarCartera">
+	<input type="hidden" id="codCartera" name="codCartera" value="${cartera.codCartera}">
 	<input type="text" 		id="desCartera" 	name="desCartera"	placeholder="Nombre Cartera" value="${cartera.desCartera}">
 </form>
