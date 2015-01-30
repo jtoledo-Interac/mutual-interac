@@ -48,7 +48,7 @@
 				{
 					
 					var idFila = ids[i];
-					console.log(idFila);
+					console.log("IDFILA: "+idFila);
 					var btnEditar="";
 					btnEditar+= "<div id='btnEditar' onclick='editarProducto("+idFila+")'>";
 					btnEditar+= 	"<img title='editar' class='icono' src='img/btnEditar.png'>";
