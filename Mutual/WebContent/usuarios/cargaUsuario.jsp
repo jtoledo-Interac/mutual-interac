@@ -68,7 +68,7 @@
 	</select> </td>
 </tr>
 <tr>	
-	<td> <input type="text" 		id="sFecNacimiento" name="fecNacimiento" 	placeholder="Fecha Nacimiento" value="${usuario.fecNacimiento}" class="fecha" readonly onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> </td>
+	<td> <input type="text" 		id="sFecNacimiento" name="sFecNacimiento" 	placeholder="Fecha Nacimiento" value="${usuario.fecNacimiento}" class="fecha" readonly onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> </td>
 	<td> <input type="text" 		id="sTelefono" 		name="sTelefono"	placeholder="Telefono" value="${usuario.telefono}"	onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> </td>
 </tr>
 <tr>

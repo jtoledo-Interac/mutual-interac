@@ -20,7 +20,7 @@
 				}
 				break;
 			case "select-one":
-				if(f.elements[i].selectedIndex<=0){
+				if(f.elements[i].selectedIndex<0){
 					f.elements[i].style.boxShadow = " 0 0 10px #FF0000";
 					ok = false;
 				}

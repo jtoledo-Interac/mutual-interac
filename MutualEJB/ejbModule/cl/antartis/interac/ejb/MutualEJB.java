@@ -237,6 +237,8 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(7, usuario.getNomUsuario());
 			cStmt.setString(8, usuario.getCodGenero());
 			cStmt.setDate(9, Utils.stringToDate(usuario.getFecNacimiento()));
+			log.info("fecha antes -> "+usuario.getFecNacimiento());
+			log.info("fecha despues -> "+Utils.stringToDate(usuario.getFecNacimiento()));
 			cStmt.setString(10, usuario.getTelefono());
 			cStmt.setString(11, usuario.getCelular());
 			cStmt.setString(12, usuario.getEmail());
