@@ -654,12 +654,12 @@ public class MutualEJB implements EJBRemoto {
 
 			dbConeccion = interacDS.getConnection();
 
-			cStmt = dbConeccion.prepareCall("{ call agregar_cartera(?,?,?,?,?) }"); //falta SP, posibles cambios aqui
+			cStmt = dbConeccion.prepareCall("{ call agregar_cartera(?,?,?,?) }"); //falta SP, posibles cambios aqui
 			cStmt.setString(1, cartera.getCodCartera());
 			cStmt.setString(2, cartera.getDesCartera());
 			
-			cStmt.registerOutParameter(4, Types.VARCHAR);// numerror$
-			cStmt.registerOutParameter(5, Types.VARCHAR);// msjerror$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
 
 			
 			cStmt.execute();
@@ -2232,9 +2232,7 @@ public class MutualEJB implements EJBRemoto {
 				while (rs.next()) {
 					empresa = new Empresa();
 					empresa.setNombre(rs.getString("nombre"));
-					log.info("nombre empresa: " + rs.getString("nombre"));
 					empresa.setNumAdherente(rs.getString("num_adherente"));
-					log.info("numero adherente: " + rs.getString("num_adherente"));
 					listaEmpresas.add(empresa);
 				}
 				rs.close();
@@ -2324,7 +2322,8 @@ public class MutualEJB implements EJBRemoto {
 		CallableStatement cStmt = null;
 		Map<String, Object> mapaSalida = null;
 		Error error = new Error();
-		
+		String path = (String)mapaEntrada.get("path");
+		String[] ficheros = (String[])mapaEntrada.get("ficheros");		
 		try {
 			log.info("Subir Archivo");
 			
@@ -2332,16 +2331,18 @@ public class MutualEJB implements EJBRemoto {
 
 			dbConeccion = interacDS.getConnection();
 
-			cStmt = dbConeccion.prepareCall("{ call subir_archivo(?,?,?,?) }");
-			cStmt.setString(1, (String)mapaEntrada.get("path"));
-			cStmt.setString(2, (String)mapaEntrada.get("nombre"));
-			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
-			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
-
-			cStmt.execute();
-			
-			error.setNumError(cStmt.getString(3));
-			error.setMsjError(cStmt.getString(4));	
+			for(int i=0; i < ficheros.length; i++){
+				cStmt = dbConeccion.prepareCall("{ call subir_archivo(?,?,?,?) }");
+				cStmt.setString(1, path);
+				cStmt.setString(2, ficheros[i]);
+				cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+				cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+	
+				cStmt.execute();
+				
+				error.setNumError(cStmt.getString(3));
+				error.setMsjError(cStmt.getString(4));	
+			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

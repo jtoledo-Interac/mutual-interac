@@ -494,14 +494,22 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		log.info("Comuna: "+request.getParameter("nIdComuna"));
+		log.info("Comuna: "+request.getParameter("nombre"));
 		
 		Cartera cartera = new Cartera();
-		cartera.setDesCartera(request.getParameter("nomCartera"));
+		cartera.setDesCartera(request.getParameter("nombre"));
 
+		log.info("nomCartera: " + request.getParameter("nombre") );
+		
 		mapaEntrada.put("cartera",cartera);
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		mapaSalida = ejbRemoto.buscarParametros(mapaEntrada);
+		
+		ArrayList<Cartera> listaCarteras = (ArrayList<Cartera>)mapaSalida.get("listaCarteras");
+		
+		cartera.setCodCartera(Integer.toString(listaCarteras.size()+1));
 		
 		mapaSalida = ejbRemoto.agregarCartera(mapaEntrada);
 		
@@ -1271,16 +1279,19 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		
-		
-		String path = "";
-		path = request.getParameter("rescatar");
+		String path = "C:\\archivos";
+		//path = request.getParameter("rescatar");
 		System.out.println("xxxxxx");
 		System.out.println(path);
 		File archivo = new File(path);
+		String[] ficheros = archivo.list();
+		
+		for(int i=0;i < ficheros.length;i++){
+			System.out.println("+ F I L E S + : " + ficheros[i]);
+		}
 	
 		mapaEntrada.put("path", archivo.getAbsolutePath());
-		mapaEntrada.put("nombre", archivo.getName());
+		mapaEntrada.put("ficheros", ficheros);
 		
 		mapaSalida = ejbRemoto.subirArchivo(mapaEntrada);
 		
