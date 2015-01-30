@@ -4,7 +4,7 @@
 
 <script type="text/javascript"> 
 
-	var idProducto;
+	var codProducto;
 	var idFila = 0;
 	var numFilas = 10;
 	
@@ -46,8 +46,9 @@
 				
 				for (var i = 0; i < ids.length; i++)
 				{
+					
 					var idFila = ids[i];
-
+					console.log(idFila);
 					var btnEditar="";
 					btnEditar+= "<div id='btnEditar' onclick='editarProducto("+idFila+")'>";
 					btnEditar+= 	"<img title='editar' class='icono' src='img/btnEditar.png'>";
@@ -64,15 +65,14 @@
 			onSelectRow : function(rowId, status) 
 			{
 				idFila = rowId;
+				console.log("Paso aca: "+idFila);
 			},
 			ondblClickRow: function()
 			{
 				var fila = $('#listadoProductos').jqGrid('getRowData',idFila);
-				editarProducto(fila.idProducto);
+				//editarProducto(fila.codProducto);
 			},
 		}).navGrid('#pieProducto',{edit:false,add:false,del:false});	
-
-		formatRut();
 		
 		$('#btnBuscar').click(function()
 		{
@@ -141,18 +141,20 @@
 		});
 	}
 	
-	function editarProducto(idProducto)
+	function editarProducto(codProducto)
 	{
-		ajaxCall(getUrlCargarProducto(idProducto), function(response){
+		console.log("PRODUCTO: "+codProducto);
+		
+		ajaxCall(getUrlCargarProducto(codProducto), function(response){
 			$('#cargaProducto').html(response).dialog('open');
 		});
 	}
 	
-	function eliminarProducto(idProducto)
+	function eliminarProducto(codProducto)
 	{  
    		jConfirm('¿ Confirma eliminar el Producto ?', 'Confirmación', function(res){
    			if (res == true){
-  				ajaxCall(getUrlEliminarProducto(idProducto), function(){
+  				ajaxCall(getUrlEliminarProducto(codProducto), function(){
   					jAlert("El Producto ha sido eliminado exitosamente");
   					buscarProductos();
    				});
@@ -188,13 +190,13 @@
 	}
 	
 	function getUrlCargarProducto(id)
-	 {
-	  var sData = "Servlet";
-	  sData += '?accion=cargarProducto';
-	  sData += '&codProducto='+id;
-	  console.log(sData);
-	  return sData;
-	 }
+	{
+		var sData = "Servlet";
+		sData += '?accion=cargarProducto';
+		sData += '&codProducto='+id;
+		console.log(sData);
+		return sData;
+	}
 
 	function getUrlEliminarProducto(id){  
 		var sData = 'Servlet';

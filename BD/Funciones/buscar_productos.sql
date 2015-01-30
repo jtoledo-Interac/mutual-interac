@@ -9,7 +9,7 @@ create or replace function public.buscar_productos
 $body$
         declare xnomproducto varchar;
     begin
-         xnomproducto := coalesce(upper(trim(xnomproducto$)),'') || '%';
+        xnomproducto := coalesce(upper(trim(xnomproducto$)),'') || '%';
         numerror := '0';
         msjerror := ' ';
 
