@@ -51,15 +51,15 @@ $(function() {
 	<input type="hidden"	id="accion" 		name="accion" 		value="agregarEmpresa">
 	<input type="text"		id="nombre" 		name="nombre" 		placeholder="Nombre Empresa" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
 	
-	<select id="codCartera" name="codCartera" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
+	<!--  <select id="codCartera" name="codCartera" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
 		<option value="0" selected>Seleccione una cartera</option>
 		<c:forEach items="${requestScope.listaCarteras}" var="cartera">
 			<option value="${cartera.codCartera}" >${cartera.desCartera}</option>
 		</c:forEach>
-	</select>
-	
+	</select>-->
+	  
 	<input type="text" 		id="nombreExp" 		name="nombreExp"	placeholder="Nombre Experto" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
-	<input type="text" 		id="numAdherente" 	name="numAdherente"	placeholder="Nº Adherente" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
+	<!--<input type="text" 		id="numAdherente" 	name="numAdherente"	placeholder="Nº Adherente" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
 	<input type="text" 		id="razonSocial" 	name="razonSocial" 	placeholder="Razon Social" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
 	<input type="text" 		id="direccion" 		name="direccion"	placeholder="Direccion" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
 	<input type="text" 		id="nomRep" 		name="nomRep" 		placeholder="Nombre Representante" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
@@ -71,4 +71,4 @@ $(function() {
 	<input type="text" 		id="masaSUM" 		name="masaSUM" 	placeholder="Masa SUM" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
 
 	<input type="text" 		id="segmentacion" 	name="segmentacion" placeholder="Segmentacion" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
-</form>
+--></form>
