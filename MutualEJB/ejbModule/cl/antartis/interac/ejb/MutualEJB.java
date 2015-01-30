@@ -2214,9 +2214,6 @@ public class MutualEJB implements EJBRemoto {
 			
 			cStmt = dbConeccion.prepareCall("{ call buscar_empresas(?,?,?,?,?) }");
 			
-			log.info("Empresa Nombre: " + empresa.getNombre());
-			log.info("Num adherente: " + empresa.getNumAdherente());
-			
 			cStmt.setString(1, empresa.getNombre());
 			cStmt.setString(2, empresa.getNumAdherente());
 			cStmt.registerOutParameter(3, Types.OTHER);// cursor$
