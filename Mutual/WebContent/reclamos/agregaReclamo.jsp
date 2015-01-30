@@ -122,3 +122,5 @@
 	<input type="text" 		id="responsable_actual" 	name="responsable_actual" 	placeholder="responsable_actual" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">		
 	<input type="text" 		id="fec_respuesta" 			name="fec_respuesta" 		placeholder="fec_respuesta" class="fecha" readonly onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
 </form>
+
+<div id="agregaArchivo" title="Crear Archivo" style="display:none"></div>

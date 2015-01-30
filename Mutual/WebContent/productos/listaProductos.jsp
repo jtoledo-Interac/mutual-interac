@@ -191,14 +191,14 @@
 	{
 		var sData = "Servlet";
 		sData += '?accion=cargarProducto';
-		sData += '&nIdProducto='+id;
+		sData += '&codProducto='+id;
 		return sData;
 	}
 
-	function getUrlEliminarProducto(nIdProducto){  
+	function getUrlEliminarProducto(id){  
 		var sData = 'Servlet';
 		sData += '?accion=eliminarProducto';
-		sData += '&nIdProducto='+nIdProducto;
+		sData += '&codProducto='+id;
 		return sData;
     }
 </script>
