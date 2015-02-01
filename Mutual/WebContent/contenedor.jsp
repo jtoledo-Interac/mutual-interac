@@ -2,7 +2,6 @@
 <%@ include file="declaraciones.jsp" %>
 <%@ include file="encabezado.jsp" %>
 
-
 <%
 if( session.getAttribute("user")== null){
 	response.sendRedirect("login.jsp");
