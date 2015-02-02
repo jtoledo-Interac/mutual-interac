@@ -926,6 +926,9 @@ public class MutualEJB implements EJBRemoto {
 		log.info("Num Error: "+ error.getNumError());
 		log.info("Msj Error: "+ error.getMsjError());
 
+		mapaSalida.put("producto", producto);
+		mapaSalida.put("error", error);
+		
 		return mapaSalida;		
 		
 		
@@ -942,7 +945,7 @@ public class MutualEJB implements EJBRemoto {
 		try {
 			log.info("Cargar producto");
 
-			cod_producto = (String)mapaEntrada.get("cod_producto");
+			cod_producto = (String)mapaEntrada.get("codProducto");
 			
 			log.info("cod_producto: "+cod_producto);
 			
@@ -996,10 +999,6 @@ public class MutualEJB implements EJBRemoto {
 		mapaSalida.put("msjError", msjError);
 		
 		return mapaSalida;
-		
-		
-		
-		
 	}
 
 	public Map<String, Object> modificarEmpresa(Map<String, Object> mapaEntrada) {
@@ -1053,13 +1052,97 @@ public class MutualEJB implements EJBRemoto {
 	}
 	
 	public Map<String, Object> modificarProducto(Map<String, Object> mapaEntrada) {
-		// TODO Auto-generated method stub
-		return null;
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();;
+		Producto producto = null;
+		Error error = new Error();
+
+		try {
+			log.info("Modificar Producto");
+			
+			producto = (Producto)mapaEntrada.get("producto");
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call modificar_producto(?,?,?,?) }");
+			cStmt.setString(1,producto.getCodProducto());
+			cStmt.setString(2,producto.getDesProducto());
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+			cStmt.execute();
+			error.setNumError(cStmt.getString(3));
+			error.setMsjError(cStmt.getString(4));
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+
+		log.info("Num Error: "+ error.getNumError());
+		log.info("Msj Error: "+ error.getMsjError());
+		mapaSalida.put("error",error);
+		
+		return mapaSalida;
 	}
 
 	public Map<String, Object> eliminarProducto(Map<String, Object> mapaEntrada) {
-		// TODO Auto-generated method stub
-		return null;
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		String cod_producto = "";
+		Error error = new Error();
+		
+		try {
+			log.info("Eliminar cartera");
+			cod_producto = (String)mapaEntrada.get("codProducto");
+			log.info("cod_producto: "+cod_producto);
+			mapaSalida = new HashMap<String, Object>();
+			
+			dbConeccion = interacDS.getConnection();
+			cStmt = dbConeccion.prepareCall("{ call eliminar_PRODUCTO(?,?,?) }");
+			cStmt.setString(1, cod_producto);
+			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
+
+			cStmt.execute();
+			error.setNumError(cStmt.getString(2));
+			error.setMsjError(cStmt.getString(3));			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+		mapaSalida.put("error", error);
+		
+		return mapaSalida;
 	}
 
 	public Map<String, Object> buscarDocumentos(Map<String, Object> mapaEntrada) {

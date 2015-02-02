@@ -48,7 +48,7 @@ function validar_form(f){
 
 <form id="formAgrega" action="Servlet" method="post" onSubmit="return validar_form(this)">
 	<input type="hidden"	class="input"	id="accion" 		name="accion" 		value="agregarProducto">
-	<input type="text" 		id="desProducto" 		name="desProducto"		placeholder="Nombre Producto" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
-	 <input type="text" 		id="codProducto" 	name="codProducto"	placeholder="Codigo" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> 
+	<input type="text" 		id="desProducto" 	name="desProducto"		placeholder="Nombre Producto" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
+	<input type="text" 		id="codProducto" 	name="codProducto"		placeholder="Codigo" maxlength="5" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> 
 
 	</form>

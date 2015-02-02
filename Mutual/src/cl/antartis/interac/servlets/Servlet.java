@@ -971,17 +971,14 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
 		Producto producto = new Producto();
-		producto.setDesProducto(request.getParameter("nomProducto"));
-		producto.setDesProducto(request.getParameter("codProducto"));
+		producto.setDesProducto(request.getParameter("desProducto"));
+		producto.setCodProducto(request.getParameter("codProducto"));
 
 		mapaEntrada.put("producto",producto);
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
 		mapaSalida = ejbRemoto.agregarProducto(mapaEntrada);
-		
-		log.info("Cod Producto: +++++++++++++++"+request.getParameter("nomProducto"));	
-		log.info("des Producto:+++++++++++ "+mapaSalida.get("desProducto"));
 
 		pagDestino = "contenedor.jsp?accion=productos";
 	}
@@ -1001,7 +998,7 @@ public class Servlet extends HttpServlet {
 		
 		mapaSalida = ejbRemoto.cargarProducto(mapaEntrada);
 		
-		request.setAttribute("producto", (Cartera)mapaSalida.get("producto"));
+		request.setAttribute("producto", (Producto)mapaSalida.get("producto"));
 
 		pagDestino = "/productos/cargaProducto.jsp";
 	}
@@ -1021,8 +1018,13 @@ public class Servlet extends HttpServlet {
 		mapaEntrada.put("producto",producto);
 		
 		mapaSalida = ejbRemoto.modificarProducto(mapaEntrada);
-
-		pagDestino = "/productos/listaProductos.jsp";
+		if(((Error)mapaSalida.get("error")).getNumError().equals("0")){
+			
+			pagDestino = "contenedor.jsp?accion=productos";
+		}
+		else{
+			pagDestino = "error.jsp";
+		}
 	}
 	
 	public void eliminarProducto(HttpServletRequest request, HttpServletResponse response) {
@@ -1033,16 +1035,18 @@ public class Servlet extends HttpServlet {
 		String codProducto = request.getParameter("codProducto");
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
-
 		log.info("codProducto: "+codProducto);
 		
 		mapaEntrada.put("codProducto", codProducto);
-		
 		mapaSalida = ejbRemoto.eliminarProducto(mapaEntrada);
 		
-		request.setAttribute("producto", (Producto)mapaSalida.get("producto"));
-
-		pagDestino = "/productos/listaProductosXml.jsp";
+		if(((Error)mapaSalida.get("error")).getNumError().equals("0")){
+			
+			pagDestino = "contenedor.jsp?accion=productos";
+		}
+		else{
+			pagDestino = "error.jsp";
+		}
 	}
 	
 	/**********RECLAMOS****************************************************************************/	
