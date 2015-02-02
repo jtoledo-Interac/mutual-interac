@@ -242,14 +242,15 @@ $(function()
 						<%@ include file="medios/listaMedios.jsp" %>
 					</c:when>
 					
-						<%-- MOTIVOS --%>
+					 	<%-- MOTIVOS --%>
+					<%--
 					<c:when test="${param.accion eq 'motivos'}">
 						<%@ include file="motivos/listaMotivos.jsp" %>
 					</c:when>
-					
+					 -->
 						<%-- PRODUCTOS --%>
 					<c:when test="${param.accion eq 'prioridades'}">
-						<%@ include file="productos/listaPrioridades.jsp" %>
+						<%@ include file="prioridades/listaPrioridades.jsp" %>
 					</c:when>
 					
 						<%-- TIPOS --%>
