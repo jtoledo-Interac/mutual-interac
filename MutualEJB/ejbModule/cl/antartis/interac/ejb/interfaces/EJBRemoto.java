@@ -93,7 +93,9 @@ public interface EJBRemoto {
 	public Map<String, Object> modificarTipo(Map<String, Object> mapaEntrada);
 	
 	public Map<String, Object> agregarPrioridad(Map<String, Object> mapaEntrada);
-
+	
+	public Map<String, Object> buscarPrioridades(Map<String, Object> mapaEntrada);
+	
 	public Map<String, Object> cargarTipo(Map<String, Object> mapaEntrada);
 
 	public Map<String, Object> eliminarTipo(Map<String, Object> mapaEntrada);

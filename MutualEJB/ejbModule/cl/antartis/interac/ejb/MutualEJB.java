@@ -2967,4 +2967,67 @@ public class MutualEJB implements EJBRemoto {
 		
 		return mapaSalida;
 	}
+	
+	public Map<String, Object> buscarPrioridades(Map<String, Object> mapaEntrada) {
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		ArrayList<Prioridad> listaPrioridades = null;
+		Prioridad p = null;
+		Error error = new Error();
+		try {
+			log.info("Buscar Prioridades");
+			p = (Prioridad)mapaEntrada.get("prioridad");
+			mapaSalida = new HashMap<String, Object>();
+			dbConeccion = interacDS.getConnection();
+			cStmt = dbConeccion.prepareCall("{ call buscar_prioridades(?,?,?,?) }");
+			cStmt.setString(1, p.getDesPrioridad());
+			cStmt.registerOutParameter(2, Types.OTHER);// cursor$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$			
+			cStmt.execute();
+
+			ResultSet rs = (ResultSet) cStmt.getObject(2);
+			error.setNumError(cStmt.getString(3));
+			error.setMsjError(cStmt.getString(4));
+		
+			listaPrioridades = new ArrayList<Prioridad>();
+
+			if(rs !=null){
+				while (rs.next()) {
+					p= new Prioridad();
+					p.setCodPrioridad(rs.getString("cod_prioridad"));
+					log.info("codPrioridad: "+ p.getCodPrioridad());
+					p.setDesPrioridad(rs.getString("des_prioridad"));
+					log.info("desPrioridad: "+ p.getDesPrioridad());
+					listaPrioridades.add(p);
+				}
+				rs.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+
+		log.info("Num Error: "+error.getNumError());
+		log.info("Msj Error: "+error.getMsjError());
+		
+		mapaSalida.put("listaPrioridades",listaPrioridades);
+		mapaSalida.put("error", error);
+
+		return mapaSalida;
+	}
 }
