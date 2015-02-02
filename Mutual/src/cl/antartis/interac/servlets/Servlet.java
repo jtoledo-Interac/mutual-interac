@@ -478,6 +478,15 @@ public class Servlet extends HttpServlet {
 	
 		pagDestino = "tipos/agregaTipo.jsp";
 	}
+
+	public void crearMedio(HttpServletRequest request, HttpServletResponse response) 
+	{
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+	
+		pagDestino = "medios/agregaMedio.jsp";
+	}
 	
 	public void buscarCarteras(HttpServletRequest request, HttpServletResponse response) {
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
@@ -550,6 +559,27 @@ public class Servlet extends HttpServlet {
 		log.info("ID Cartera: "+mapaSalida.get("codCartera"));
 
 		pagDestino = "contenedor.jsp?accion=tipos";
+	}
+	
+	public void agregarMedio(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		Medio medio = new Medio();
+		medio.setCodMedio(request.getParameter("codMedio"));
+		medio.setDesMedio(request.getParameter("desMedio"));
+
+		log.info("desMedio: " + request.getParameter("desMedio") );
+		
+		mapaEntrada.put("medio",medio);
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		mapaSalida = ejbRemoto.agregarMedio(mapaEntrada);
+		
+		pagDestino = "contenedor.jsp?accion=medios";
 	}
 	
 	public void cargarCartera(HttpServletRequest request, HttpServletResponse response) {
@@ -671,6 +701,25 @@ public class Servlet extends HttpServlet {
 		pagDestino = "/tipos/listaTiposXml.jsp";
 	}
 	
+	public void eliminarMedio(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		String codMedio = request.getParameter("codMedio");
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+
+		log.info("codMedio: " + codMedio);
+		
+		mapaEntrada.put("codMedio", codMedio);
+		
+		mapaSalida = ejbRemoto.eliminarMedio(mapaEntrada);
+		
+		request.setAttribute("medio", (Medio)mapaSalida.get("medio"));
+
+		pagDestino = "/medios/listaMediosXml.jsp";
+	}
 	
 	/**********DOCUMENTOS****************************************************************************/	
 	public void documentos(HttpServletRequest request, HttpServletResponse response) 
@@ -1514,6 +1563,6 @@ public class Servlet extends HttpServlet {
 		
 		request.setAttribute("listaMedios", mapaSalida.get("listaMedios"));
 		
-		pagDestino = "/tipos/listaMediosXml.jsp";	
+		pagDestino = "/medios/listaMediosXml.jsp";	
 	}
 }

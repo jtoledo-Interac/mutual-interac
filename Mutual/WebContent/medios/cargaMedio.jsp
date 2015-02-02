@@ -48,7 +48,7 @@ $(function() {
 </script>
 	
 <form id="formEdita" action="Servlet" method="post" onSubmit="return validar_form(this)">
-	<input type="hidden"	id="accion" 		name="accion" 		value="modificarProducto" >
-	<input type="hidden" id="codProducto" name="codProducto" value="${producto.codProducto}">
-	<input type="text" 		id="desProducto" 	name="desProducto"	placeholder="Nombre Producto" value="${producto.desProducto}">
+	<input type="hidden"	id="accion" 		name="accion" 		value="modificarMedio" >
+	<input type="hidden" id="codMedio" name="codMedio" value="${medio.codMedio}">
+	<input type="text" 		id="desMedio" 	name="desMedio"	placeholder="Nombre Medio" value="${medio.desMedio}">
 </form>

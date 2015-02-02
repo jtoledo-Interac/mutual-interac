@@ -764,6 +764,66 @@ public class MutualEJB implements EJBRemoto {
 	
 	}
 
+	public Map<String, Object> agregarMedio(Map<String, Object> mapaEntrada) {
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		Medio medio = null;
+		String numError = "0";
+		String msjError = "";
+		
+		try {
+			log.info("Agregar tipo");
+
+			medio = (Medio)mapaEntrada.get("medio");
+			
+			log.info(medio.getMedio());
+			
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call agregar_medio(?,?,?,?) }"); //falta SP, posibles cambios aqui
+			cStmt.setString(1, medio.getCodMedio());
+			cStmt.setString(2, medio.getDesMedio());
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+
+			cStmt.execute();
+			
+			numError = cStmt.getString(3);
+			msjError = cStmt.getString(4);
+			
+			log.info("Num Error: "+numError);
+			log.info("Msj Error: "+msjError);
+	
+		}catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+			
+		}
+		finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+		
+		mapaSalida.put("numError", numError);
+		mapaSalida.put("msjError", msjError);
+			
+		return mapaSalida;
+	
+	}
+	
 	public Map<String, Object> cargarCartera(Map<String, Object> mapaEntrada) {
 		
 		CallableStatement cStmt = null;
@@ -1108,6 +1168,61 @@ public class MutualEJB implements EJBRemoto {
 	
 	}
 
+	public Map<String, Object> eliminarMedio(Map<String, Object> mapaEntrada) {
+		
+		
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		String cod_medio = "";
+		
+		String numError = "0";
+		String msjError = "";
+		
+		try {
+			log.info("Eliminar medio");
+
+			cod_medio = (String)mapaEntrada.get("codMedio");
+			
+			log.info("cod_medio: "+ cod_medio);
+			
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call eliminar_medio(?,?,?) }");
+			cStmt.setString(1, cod_medio);
+			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
+
+			cStmt.execute();
+			numError = cStmt.getString(2);
+			msjError = cStmt.getString(3);			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+		mapaSalida.put("numError", numError);
+		mapaSalida.put("msjError", msjError);
+		
+		return mapaSalida;
+	
+	}
+	
 	public Map<String, Object> agregarProducto(Map<String, Object> mapaEntrada) {
 	
 		CallableStatement cStmt = null;
@@ -2917,6 +3032,80 @@ public class MutualEJB implements EJBRemoto {
 		return mapaSalida;
 	}
 
+	public Map<String, Object> buscarMedios(Map<String, Object> mapaEntrada) {
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		ArrayList<Medio> listaMedios = null;
+		Medio medio = null;
+		String numError = "0";
+		String msjError = "";
+
+		try {
+			log.info("Buscar Medios");
+			
+			medio = (Medio)mapaEntrada.get("medio");
+
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call buscar_medios(?,?,?,?) }");
+			
+			cStmt.setString(1, medio.getDesMedio());
+			cStmt.registerOutParameter(2, Types.OTHER);// cursor$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+
+			
+			cStmt.execute();
+
+			ResultSet rs = (ResultSet) cStmt.getObject(2);
+			numError = cStmt.getString(3);
+			msjError = cStmt.getString(4);
+		
+			listaMedios = new ArrayList<Medio>();
+
+			if(rs !=null){
+				while (rs.next()) {
+					medio = new Medio();
+					medio.setCodMedio(rs.getString("cod_medio_respuesta"));
+					log.info("codMedio: "+ medio.getCodMedio());
+					medio.setDesMedio(rs.getString("des_medio_respuesta"));
+					log.info("desMedio: "+ medio.getDesMedio());
+					listaMedios.add(medio);
+				}
+				rs.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+
+		log.info("Num Error: "+numError);
+		log.info("Msj Error: "+msjError);
+		
+		mapaSalida.put("listaMedios",listaMedios);
+		mapaSalida.put("numError", numError);
+		mapaSalida.put("msjError", msjError);
+
+		return mapaSalida;
+	}
+	
 	/*  Prioridades */
 	public Map<String, Object> agregarPrioridad(Map<String, Object> mapaEntrada){
 		CallableStatement cStmt = null;

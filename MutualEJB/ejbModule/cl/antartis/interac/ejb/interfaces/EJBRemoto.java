@@ -99,4 +99,10 @@ public interface EJBRemoto {
 	public Map<String, Object> cargarTipo(Map<String, Object> mapaEntrada);
 
 	public Map<String, Object> eliminarTipo(Map<String, Object> mapaEntrada);
+
+	public Map<String, Object> buscarMedios(Map<String, Object> mapaEntrada);
+
+	public Map<String, Object> agregarMedio(Map<String, Object> mapaEntrada);
+
+	public Map<String, Object> eliminarMedio(Map<String, Object> mapaEntrada);
 }
