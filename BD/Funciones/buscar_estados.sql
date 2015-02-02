@@ -1,8 +1,15 @@
-CREATE OR REPLACE FUNCTION buscar_estados(OUT estados refcursor, OUT numerror character varying, OUT msjerror character varying)
-  RETURNS record AS
-$BODY$
+create or replace function public.buscar_estados
+(
+    in xnomestado$ varchar, 
+    out estados refcursor, 
+    out numerror varchar, 
+    out msjerror varchar
+) returns record as
 
+$body$
+        declare xnomestado varchar;
     begin
+        xnomestado := coalesce(upper(trim(xnomestado$)),'') || '%';
         numerror := '0';
         msjerror := ' ';
 
@@ -13,6 +20,8 @@ $BODY$
             des_estado
         from 
             estado
+        where
+             upper(des_estado) like '%' || xnomestado ||'%' 
         order by
             des_estado;
         
@@ -23,8 +32,5 @@ $BODY$
                 return; 
     end;
 
-$BODY$
-  LANGUAGE plpgsql VOLATILE
-  COST 100;
-ALTER FUNCTION buscar_estados()
-  OWNER TO postgres;
+$body$
+language 'plpgsql'
