@@ -469,6 +469,15 @@ public class Servlet extends HttpServlet {
 		pagDestino = "carteras/agregaCartera.jsp";
 	}
 	
+	public void crearTipo(HttpServletRequest request, HttpServletResponse response) 
+	{
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+	
+		pagDestino = "tipos/agregaTipo.jsp";
+	}
+	
 	public void buscarCarteras(HttpServletRequest request, HttpServletResponse response) {
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
 
@@ -525,17 +534,19 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		log.info("desTipo: "+request.getParameter("desTipo"));
-		
 		Tipo tipo = new Tipo();
-		tipo.setCodTipo(request.getParameter("desTipo"));
-		tipo.setDesTipo(request.getParameter("codTipo"));
-				
+		tipo.setCodTipo(request.getParameter("codTipo"));
+		tipo.setDesTipo(request.getParameter("desTipo"));
+
+		log.info("desTipo: " + request.getParameter("desTipo") );
+		
 		mapaEntrada.put("tipo",tipo);
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
 		mapaSalida = ejbRemoto.agregarTipo(mapaEntrada);
+		
+		log.info("ID Cartera: "+mapaSalida.get("codCartera"));
 
 		pagDestino = "contenedor.jsp?accion=tipos";
 	}
@@ -560,6 +571,26 @@ public class Servlet extends HttpServlet {
 		pagDestino = "/carteras/cargaCartera.jsp";
 	}
 	
+	public void cargarTipo(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		String codCartera = request.getParameter("codCartera");
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+
+		log.info("codCartera: "+codCartera);
+		
+		mapaEntrada.put("codCartera", codCartera);
+		
+		mapaSalida = ejbRemoto.cargarTipo(mapaEntrada);
+		
+		request.setAttribute("tipo", (Tipo)mapaSalida.get("tipo"));
+
+		pagDestino = "/carteras/cargaCartera.jsp";
+	}
+	
 	public void modificarCartera(HttpServletRequest request, HttpServletResponse response) {
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
 		
@@ -577,6 +608,26 @@ public class Servlet extends HttpServlet {
 		mapaSalida = ejbRemoto.modificarCartera(mapaEntrada);
 
 		pagDestino = "contenedor.jsp?accion=carteras";
+	}
+
+	public void modificarTipo(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		Tipo tipo = new Tipo();
+		
+		tipo.setCodTipo(request.getParameter("codTipo"));
+		tipo.setDesTipo(request.getParameter("desTipo"));
+
+		mapaEntrada.put("tipo",tipo);
+		
+		mapaSalida = ejbRemoto.modificarTipo(mapaEntrada);
+
+		pagDestino = "contenedor.jsp?accion=tipos";
 	}
 	
 	public void eliminarCartera(HttpServletRequest request, HttpServletResponse response) {
