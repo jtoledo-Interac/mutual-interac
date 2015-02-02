@@ -4,20 +4,20 @@
 
 <script type="text/javascript"> 
 
-	var codPrioridad;
+	var codMotivo;
 	var idFila = 0;
 	var numFilas = 10;
 	
 	$(function() {
 
-		$('#listadoPrioridades').jqGrid(
+		$('#listadoMotivos').jqGrid(
 		{
-		   	url: getUrlBuscarPrioridades(),
+		   	url: getUrlBuscarMotivos(),
 			datatype: "xml",
-			colNames : ['', 'Nombre Prioridad',''],
+			colNames : ['', 'Nombre Motivo',''],
 			colModel : [
-						{name : 'codPrioridad', index:'codPrioridad', hidden : true}, 
-						{name : 'desPrioridad', index:'desPrioridad', width : 80, search : true, resizable : false, sortable : true},				
+						{name : 'codMotivo', index:'codMotivo', hidden : true}, 
+						{name : 'desMotivo', index:'desMotivo', width : 80, search : true, resizable : false, sortable : true},				
 						{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
 						],
 		   	rowNum:10,
@@ -27,14 +27,14 @@
 				root : "filas",
 				row: "fila",
 				repeatitems: false,
-				id: "codPrioridad"
+				id: "codMotivo"
 			},
-		   	pager: $('#piePrioridad'),
+		   	pager: $('#pieMotivos'),
 		   	pgtext : 'P&aacute;g: {0} de {1}', 
-		   	sortname: 'codPrioridad',
+		   	sortname: 'codMotivos',
 		    viewrecords: true,
 		    sortorder: "desc",
-		    caption:"Prioridades",
+		    caption:"Motivos",
 		    hoverrows : true,
 		    multiselect : false,
 			onPaging: function(){
@@ -42,7 +42,7 @@
 			},
 			gridComplete: function()
 			{
-				var ids = $("#listadoPrioridades").getDataIDs();
+				var ids = $("#listadoMotivos").getDataIDs();
 				
 				for (var i = 0; i < ids.length; i++)
 				{
@@ -50,16 +50,16 @@
 					var idFila = ids[i];
 					console.log("IDFILA: "+idFila);
 					var btnEditar="";
-					btnEditar+= "<div id='btnEditar' onclick='editarPrioridad("+idFila+")'>";
+					btnEditar+= "<div id='btnEditar' onclick='editarMotivo("+idFila+")'>";
 					btnEditar+= 	"<img title='editar' class='icono' src='img/btnEditar.png'>";
 					btnEditar+= "</div>";
 					
 					var btnEliminar="";
-					btnEliminar+= "<div id='btnEliminar' onclick='eliminarPrioridad("+idFila+")'>";
+					btnEliminar+= "<div id='btnEliminar' onclick='eliminarMotivo("+idFila+")'>";
 					btnEliminar+= 	"<img title='eliminar' class='icono' src='img/btnEliminar.png'>";
 					btnEliminar+= "</div>";
 
-					$("#listadoPrioridad").setRowData(ids[i], {act : btnEditar + btnEliminar});
+					$("#listadoMotivos").setRowData(ids[i], {act : btnEditar + btnEliminar});
 				}
 			},
 			onSelectRow : function(rowId, status) 
@@ -69,29 +69,29 @@
 			},
 			ondblClickRow: function()
 			{
-				var fila = $('#listadoPrioridad').jqGrid('getRowData',idFila);
+				var fila = $('#listadoMotivos').jqGrid('getRowData',idFila);
 				//editarProducto(fila.codProducto);
 			},
-		}).navGrid('#piePrioridad',{edit:false,add:false,del:false});	
+		}).navGrid('#pieMotivo',{edit:false,add:false,del:false});	
 		
 		$('#btnBuscar').click(function()
 		{
-			buscarPrioridades();
+			buscarMotivos();
 		});
 
 		$('#btnAgregar').click(function()
 		{
-		    crearPrioridad();
+		    crearMotivo();
 		});
 		
-		$('#agregaPrioridad').dialog({
+		$('#agregaMotivo').dialog({
 			autoOpen: false,
 		    height: 500,
 		    width: 650,
 		    modal: true,
 		    position: 'center',
 		    buttons: {
-				"Crear Prioridad": function() {
+				"Crear Motivo": function() {
 					$('#formAgrega').submit();
 				},
 				"Cancelar": function() {
@@ -103,14 +103,14 @@
 			}
 		});
 		
-		$('#cargaPrioridad').dialog({
+		$('#cargaMotivo').dialog({
 			autoOpen: false,
 		    height: 500,
 		    width: 650,
 		    modal: true,
 		    position: 'center',
 		    buttons: {
-				"Editar Prioridad": function() {
+				"Editar Motivo": function() {
 					$('#formEdita').submit();
 				},
 				"Cancelar": function() {
@@ -134,38 +134,38 @@
 		return retorno;
 	}
 	
-	function crearPrioridad()
+	function crearMotivo()
 	{
-		ajaxCall(getUrlCrearPrioridad(), function(response){
-			$('#agregaPrioridad').html(response).dialog('open');
+		ajaxCall(getUrlCrearMotivo(), function(response){
+			$('#agregaMotivo').html(response).dialog('open');
 		});
 	}
 	
-	function editarPrioridad(codPrioridad)
+	function editarMotivo(codMotivo)
 	{
-		console.log("Prioridad: "+codPrioridad);
+		console.log("Motivo: "+codMotivo);
 		
-		ajaxCall(getUrlCargarPrioridad(codPrioridad), function(response){
-			$('#cargaPrioridad').html(response).dialog('open');
+		ajaxCall(getUrlCargarMotivo(codMotivo), function(response){
+			$('#cargaMotivo').html(response).dialog('open');
 		});
 	}
 	
-	function eliminarPrioridad(codPrioridad)
+	function eliminarMotivo(codMotivo)
 	{  
-   		jConfirm('¿ Confirma eliminar la Prioridad ?', 'Confirmación', function(res){
+   		jConfirm('¿ Confirma eliminar el Motivo ?', 'Confirmación', function(res){
    			if (res == true){
-  				ajaxCall(getUrlEliminarPrioridad(codPrioridad), function(){
-  					jAlert("La Prioridad ha sido eliminado exitosamente");
-  					buscarPrioridad();
+  				ajaxCall(getUrlEliminarMotivo(codMotivo), function(){
+  					jAlert("El Motivo ha sido eliminado exitosamente");
+  					buscarMotivos();
    				});
    			}
    		});
 	}
 	
-	function buscarPrioridades() 
+	function buscarMotivos() 
 	{		
-		$('#listadoPrioridades').jqGrid('setGridParam', {
-			url : getUrlBuscarPrioridades(),
+		$('#listadoMotivos').jqGrid('setGridParam', {
+			url : getUrlBuscarMotivos(),
 			page : 1,
 			rowNum : numFilas,
 			autoencode : false,
@@ -174,54 +174,54 @@
 		}).trigger("reloadGrid");
 	}
 
-	function getUrlBuscarPrioridades()
+	function getUrlBuscarMotivos()
 	{  
 		var sData = "Servlet";
-		sData += "?accion=buscarPrioridades";
-		sData += "&nomPrioridad="+$('#nomPrioridad').val();
+		sData += "?accion=buscarMotivos";
+		sData += "&nomMotivo="+$('#nomMotivo').val();
 		return sData;
 	}
 
-	function getUrlCrearPrioridad()
+	function getUrlCrearMotivo()
 	{
 		var sData = "Servlet";
-		sData += '?accion=crearPrioridad';
+		sData += '?accion=crearMotivo';
 		return sData;
 	}
 	
-	function getUrlCargarPrioridad(id)
+	function getUrlCargarMotivo(id)
 	{
 		var sData = "Servlet";
-		sData += '?accion=cargarPrioridad';
-		sData += '&codPrioridad='+id;
+		sData += '?accion=cargarMotivo';
+		sData += '&codMotivo='+id;
 		console.log(sData);
 		return sData;
 	}
 
-	function getUrlEliminarPrioridad(id){  
+	function getUrlEliminarMotivo(id){  
 		var sData = 'Servlet';
-		sData += '?accion=eliminarPrioridad';
-		sData += '&codPrioridad='+id;
+		sData += '?accion=eliminarMotivo';
+		sData += '&codMotivo='+id;
 		return sData;
     }
 </script>
 
 <div class="mantenedor">
 
-	<div id="agregaPrioridad" title="Crear Prioridad" style="display:none"></div>
+	<div id="agregaMotivo" title="Crear Motivo" style="display:none"></div>
 	
-	<div id="cargaPrioridad" title="Editar Prioridad" style="display:none"></div>
+	<div id="cargaMotivo" title="Editar Motivo" style="display:none"></div>
 
 	<div class="filtros">		
-		<form id="formPrioridad" action="Servlet" method="post">
+		<form id="formMotivo" action="Servlet" method="post">
 			<input type="button" 	id="btnBuscar" 		name="btnBuscar" 	value="Buscar"/>
 			<input type="button" 	id="btnAgregar" 	name="btnAgregar" 	value="Agregar"/>
-			<input type="text" 		id="nomPrioridad" 	name="nomPrioridad"	placeholder="Nombre Prioridad">
+			<input type="text" 		id="nomMotivo" 	name="nomMotivo"	placeholder="Nombre Motivo">
 		</form>
 	</div> 
 
-	<div id="listadoBusquedaPrioridades" class="listado">
-		<table id="listadoPrioridades"></table>
-		<div id="piePrioridad" class="pie"></div>
+	<div id="listadoBusquedaMotivos" class="listado">
+		<table id="listadoMotivos"></table>
+		<div id="pieMotivo" class="pie"></div>
 	</div>
 </div>

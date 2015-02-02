@@ -3,10 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <filas>
-    <c:forEach items="${requestScope.listaPrioridades}" var="prioridad">
+    <c:forEach items="${requestScope.listaMotivos}" var="motivo">
         <fila>
-        	<codPrioridad>${prioridad.codPrioridad}</codPrioridad>
-        	<desPrioridad>${prioridad.desPrioridad}</desPrioridad>
+        	<codMotivo>${motivo.codMotivo}</codMotivo>
+        	<desMotivo>${motivo.desMotivo}</desMotivo>
         </fila>
      </c:forEach>
 </filas>

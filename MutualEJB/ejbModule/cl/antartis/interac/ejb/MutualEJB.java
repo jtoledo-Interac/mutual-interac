@@ -3222,6 +3222,80 @@ public class MutualEJB implements EJBRemoto {
 		return mapaSalida;
 	}
 	
+	public Map<String, Object> buscarMotivos(Map<String, Object> mapaEntrada) {
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		ArrayList<Motivo> listaMotivos = null;
+		Motivo motivo = null;
+		String numError = "0";
+		String msjError = "";
+
+		try {
+			log.info("Buscar Motivos");
+			
+			motivo = (Motivo)mapaEntrada.get("motivo");
+
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call buscar_motivos(?,?,?,?) }");
+			
+			cStmt.setString(1, motivo.getDesMotivo());
+			cStmt.registerOutParameter(2, Types.OTHER);// cursor$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+
+			
+			cStmt.execute();
+
+			ResultSet rs = (ResultSet) cStmt.getObject(2);
+			numError = cStmt.getString(3);
+			msjError = cStmt.getString(4);
+		
+			listaMotivos = new ArrayList<Motivo>();
+
+			if(rs !=null){
+				while (rs.next()) {
+					motivo = new Motivo();
+					motivo.setCodMotivo(rs.getString("cod_motivo"));
+					log.info("codMedio: "+ motivo.getCodMotivo());
+					motivo.setDesMotivo(rs.getString("des_motivo"));
+					log.info("desMedio: "+ motivo.getDesMotivo());
+					listaMotivos.add(motivo);
+				}
+				rs.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+
+		log.info("Num Error: "+numError);
+		log.info("Msj Error: "+msjError);
+		
+		mapaSalida.put("listaMotivos",listaMotivos);
+		mapaSalida.put("numError", numError);
+		mapaSalida.put("msjError", msjError);
+
+		return mapaSalida;
+	}
+	
 	/*  Prioridades */
 	public Map<String, Object> agregarPrioridad(Map<String, Object> mapaEntrada){
 		CallableStatement cStmt = null;
