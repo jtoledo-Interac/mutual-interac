@@ -247,7 +247,7 @@ $(function()
 					<c:when test="${param.accion eq 'motivos'}">
 						<%@ include file="motivos/listaMotivos.jsp" %>
 					</c:when>
-					 -->
+					 --%>
 						<%-- PRODUCTOS --%>
 					<c:when test="${param.accion eq 'prioridades'}">
 						<%@ include file="prioridades/listaPrioridades.jsp" %>

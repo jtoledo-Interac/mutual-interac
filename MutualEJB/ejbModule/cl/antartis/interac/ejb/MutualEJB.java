@@ -2608,4 +2608,25 @@ public class MutualEJB implements EJBRemoto {
 		
 		return mapaSalida;
 	}
+	
+	/*  Prioridades */
+	public Map<String, Object> buscarPrioridad(Map<String, Object> mapaEntrada){
+		return null;
+	}
+
+	public Map<String, Object> agregarPrioridad(Map<String, Object> mapaEntrada){
+		return null;
+	}
+
+	public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada){
+		return null;
+	}
+
+	public Map<String, Object> modificarPrioridad(Map<String, Object> mapaEntrada){
+		return null;
+	}
+
+	public Map<String, Object> eliminarPrioridad(Map<String, Object> mapaEntrada){
+		return null;
+	}
 }

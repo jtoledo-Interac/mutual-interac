@@ -20,7 +20,7 @@ function validar_form(f){
 			}
 			break;
 		case "select-one":
-			if(f.elements[i].selectedIndex<=0){
+			if(f.elements[i].selectedIndex<0){
 				f.elements[i].style.boxShadow = " 0 0 10px #FF0000";
 				ok = false;
 			}
@@ -47,8 +47,7 @@ function validar_form(f){
 </script>
 
 <form id="formAgrega" action="Servlet" method="post" onSubmit="return validar_form(this)">
-	<input type="hidden"	class="input"	id="accion" 		name="accion" 		value="agregarProducto">
-	<input type="text" 		id="desProducto" 	name="desProducto"		placeholder="Nombre Producto" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
-	<input type="text" 		id="codProducto" 	name="codProducto"		placeholder="Codigo" maxlength="5" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> 
-
-	</form>
+	<input type="hidden"	class="input"	id="accion"	name="accion"	value="agregarPrioridad">
+	<input type="text"	id="desPrioridad"	name="desPrioridad"	placeholder="Nombre de la Prioridad" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
+	<input type="text"	id="codPrioridad" 	name="codPrioridad"	placeholder="Codigo" maxlength="5" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> 
+</form>

@@ -189,7 +189,7 @@ input[type=radio]:checked + label:before {
 .menu-lateral{
 	color: white;
 	width:10%;
-	height:250px;
+	height:400px;
 	float:left;
 	margin-left:1%;
 	margin-top:50px;

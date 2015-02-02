@@ -24,6 +24,7 @@ import org.apache.log4j.Logger;
 import cl.antartis.interac.beans.Cartera;
 import cl.antartis.interac.beans.Documento;
 import cl.antartis.interac.beans.Empresa;
+import cl.antartis.interac.beans.Prioridad;
 import cl.antartis.interac.beans.Producto;
 import cl.antartis.interac.beans.Reclamo;
 import cl.antartis.interac.beans.Usuario;
@@ -1299,4 +1300,27 @@ public class Servlet extends HttpServlet {
 		
 		pagDestino = "contenedor.jsp";
 	}
+	
+	
+	/***************PRIORIDAD************************************************/
+	public void agregarPrioridad(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		Prioridad p = new Prioridad();
+		p.setDesPrioridad(request.getParameter("desPrioridad"));
+		p.setCodPrioridad(request.getParameter("codPrioridad"));
+
+		mapaEntrada.put("producto",p);
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		mapaSalida = ejbRemoto.agregarPrioridad(mapaEntrada);
+
+		pagDestino = "contenedor.jsp?accion=prioridad";
+	}
+	
+	
 }
