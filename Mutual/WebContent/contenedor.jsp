@@ -15,6 +15,7 @@ $(function()
 		$('#accionLogOut').val("logOut");
 		$('#logOut').submit();
 	});
+	
 	$('#organigrama').click(function(){
 		$('.menu-item').removeClass('selected');
 		$('#organigrama li').addClass('selected');
@@ -155,6 +156,31 @@ $(function()
 
 <div class="contenedor">
 
+	<div id="menuwrapper">	
+	    <ul>
+	        <li><a href="#">Organigrama</a></li>
+	        <li><a href="#">Documentos</a></li>
+	        <li><a href="#">Empresas</a></li>
+			<li><a href="#">Reportes</a></li>
+			<li><a href="#">Reclamos</a></li>
+	        <li><a href="#">Graficos Prueba</a></li>
+	        <li><a href="#">Administraci&oacute;n</a>
+	        	<ul>
+	        		<li><a href="#">Tipos de Cartera</a></li>
+					<li><a href="#">Productos</a></li>
+	        		<li><a href="#">Usuarios</a></li>
+	        		<li><a href="#">Perfiles</a></li>
+	        		<li><a href="#">Estados Reclamo</a></li>
+					<li><a href="#">Medios</a></li>
+					<li><a href="#">Motivos Reclamo</a></li>
+					<li><a href="#">Prioridades</a></li>
+					<li><a href="#">Tipos</a></li>
+				</ul>
+	        </li>
+	    </ul>
+	</div>
+
+<!-- 
 	<div class="menu-lateral">
 		<ul class="lista-items">
 			<a href="#" id="organigrama"><li class="menu-item">ORGANIGRAMA</li></a>
@@ -162,7 +188,7 @@ $(function()
 			<a href="#" id="empresas"><li class="menu-item">EMPRESAS</li></a>
 			<a href="#" id="carteras"><li class="menu-item">CARTERAS</li></a>
 			<a href="#" id="productos"><li class="menu-item">PRODUCTOS</li></a>
-			<!--  <a href="#" id="reportes"><li class="menu-item">REPORTES</li></a>-->
+			<a href="#" id="reportes"><li class="menu-item">REPORTES</li></a>
 			<a href="#" id="usuarios"><li class="menu-item">USUARIOS</li></a>
 			<a href="#" id="reclamos"><li class="menu-item">RECLAMOS</li></a>
 			
@@ -172,17 +198,19 @@ $(function()
 			<a href="#" id="prioridades"><li class="menu-item">PRIORIDADES</li></a>
 			<a href="#" id="tipos"><li class="menu-item">TIPOS</li></a>
 			
-			<!-- <a href="#" id="perfiles"><li class="menu-item">PERFILES</li></a> -->
+			<a href="#" id="perfiles"><li class="menu-item">PERFILES</li></a>
 			<a href="#" id="grafico"> <li class="menu-item">gráfico prueba</li></a>
 		</ul>
 	</div>
 	
+	 -->	
 	<div class="principal">
 		<form id="formMantenedores" action="Servlet" method="post">
 			<input type="hidden" id="accion" name="accion">
 			
 			<div class="listas">
 				<c:choose>
+					<%-- LOGIN --%>
 					<c:when test="${param.accion eq 'login'}">	
 						<%@ include file="documentos/listaDocumentos.jsp" %>
 					</c:when>
@@ -232,32 +260,30 @@ $(function()
 						<%@ include file="productos/listaProductos.jsp" %>
 					</c:when>
 					
-						<%-- ESTADOS --%>
+					<%-- ESTADOS --%>
 					<c:when test="${param.accion eq 'estados'}">
 						<%@ include file="estados/listaEstados.jsp" %>
 					</c:when>
 					
-						<%-- MEDIOS --%>
+					<%-- MEDIOS --%>
 					<c:when test="${param.accion eq 'medios'}">
 						<%@ include file="medios/listaMedios.jsp" %>
 					</c:when>
 					
-					 	<%-- MOTIVOS --%>
-					<%--
+					<%-- MOTIVOS --%>
 					<c:when test="${param.accion eq 'motivos'}">
 						<%@ include file="motivos/listaMotivos.jsp" %>
 					</c:when>
-					 --%>
-						<%-- PRIORIDADES --%>
+					
+					<%-- PRIORIDADES --%>
 					<c:when test="${param.accion eq 'prioridades'}">
 						<%@ include file="prioridades/listaPrioridades.jsp" %>
 					</c:when>
 					
-						<%-- TIPOS --%>
+					<%-- TIPOS --%>
 					<c:when test="${param.accion eq 'tipos'}">
 						<%@ include file="tipos/listaTipos.jsp" %>
 					</c:when>
-	
 					
 					<%-- EMPRESAS --%>
 					<c:when test="${param.accion eq 'empresas'}">
