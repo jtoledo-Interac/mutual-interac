@@ -20,7 +20,7 @@ function validar_form(f){
 			}
 			break;
 		case "select-one":
-			if(f.elements[i].selectedIndex<=0){
+			if(f.elements[i].selectedIndex<0){
 				f.elements[i].style.boxShadow = " 0 0 10px #FF0000";
 				ok = false;
 			}
@@ -48,7 +48,7 @@ $(function() {
 </script>
 	
 <form id="formEdita" action="Servlet" method="post" onSubmit="return validar_form(this)">
-	<input type="hidden"	id="accion" 		name="accion" 		value="modificarProducto" >
-	<input type="hidden" id="codProducto" name="codProducto" value="${producto.codProducto}">
-	<input type="text" 		id="desProducto" 	name="desProducto"	placeholder="Nombre Producto" value="${producto.desProducto}">
+	<input type="hidden"	id="accion" 		name="accion" 		value="modificarPrioridad" >
+	<input type="hidden" id="codPrioridad" name="codPrioridad" value="${prioridad.codPrioridad}">
+	<input type="text" 		id="desPrioridad" 	name="desPrioridad"	placeholder="Nombre Prioridad" value="${prioridad.desPrioridad}">
 </form>
