@@ -622,6 +622,26 @@ public class Servlet extends HttpServlet {
 		pagDestino = "/tipos/cargaTipo.jsp";
 	}
 	
+	public void cargarMedio(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		String codMedio = request.getParameter("codMedio");
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+
+		log.info("codMedio: "+codMedio);
+		
+		mapaEntrada.put("codMedio", codMedio);
+		
+		mapaSalida = ejbRemoto.cargarMedio(mapaEntrada);
+		
+		request.setAttribute("medio", (Medio)mapaSalida.get("medio"));
+
+		pagDestino = "/medios/cargaMedio.jsp";
+	}
+	
 	public void modificarCartera(HttpServletRequest request, HttpServletResponse response) {
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
 		
@@ -659,6 +679,26 @@ public class Servlet extends HttpServlet {
 		mapaSalida = ejbRemoto.modificarTipo(mapaEntrada);
 
 		pagDestino = "contenedor.jsp?accion=tipos";
+	}
+	
+	public void modificarMedio(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		Medio medio = new Medio();
+		
+		medio.setCodMedio(request.getParameter("codMedio"));
+		medio.setDesMedio(request.getParameter("desMedio"));
+
+		mapaEntrada.put("medio",medio);
+		
+		mapaSalida = ejbRemoto.modificarMedio(mapaEntrada);
+
+		pagDestino = "contenedor.jsp?accion=medios";
 	}
 	
 	public void eliminarCartera(HttpServletRequest request, HttpServletResponse response) {

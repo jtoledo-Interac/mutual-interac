@@ -105,4 +105,8 @@ public interface EJBRemoto {
 	public Map<String, Object> agregarMedio(Map<String, Object> mapaEntrada);
 
 	public Map<String, Object> eliminarMedio(Map<String, Object> mapaEntrada);
+
+	public Map<String, Object> cargarMedio(Map<String, Object> mapaEntrada); 
+
+	public Map<String, Object> modificarMedio(Map<String, Object> mapaEntrada);
 }
