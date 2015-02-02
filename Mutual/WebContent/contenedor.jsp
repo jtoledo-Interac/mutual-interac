@@ -86,6 +86,48 @@ $(function()
 		$('#accion').val("perfiles");
 		$('#formMantenedores').submit();
 	});
+	
+	
+	$('#estados').click(function(){
+		$('.menu-item').removeClass('selected');
+		$('#estados li').addClass('selected');
+		
+		$('#accion').val("estados");
+		$('#formMantenedores').submit();
+	});
+	
+	$('#medios').click(function(){
+		$('.menu-item').removeClass('selected');
+		$('#medios li').addClass('selected');
+		
+		$('#accion').val("medios");
+		$('#formMantenedores').submit();
+	});
+	
+	$('#motivos').click(function(){
+		$('.menu-item').removeClass('selected');
+		$('#motivos li').addClass('selected');
+		
+		$('#accion').val("motivos");
+		$('#formMantenedores').submit();
+	});
+	
+	$('#prioridades').click(function(){
+		$('.menu-item').removeClass('selected');
+		$('#prioridades li').addClass('selected');
+		
+		$('#accion').val("prioridades");
+		$('#formMantenedores').submit();
+	});
+	
+	$('#tipos').click(function(){
+		$('.menu-item').removeClass('selected');
+		$('#tipos li').addClass('selected');
+		
+		$('#accion').val("tipos");
+		$('#formMantenedores').submit();
+	});
+	
 	$('#grafico').click(function(){
 		$('.menu-item').removeClass('selected');
 		$('#grafico li').addClass('selected');
@@ -123,6 +165,13 @@ $(function()
 			<!--  <a href="#" id="reportes"><li class="menu-item">REPORTES</li></a>-->
 			<a href="#" id="usuarios"><li class="menu-item">USUARIOS</li></a>
 			<a href="#" id="reclamos"><li class="menu-item">RECLAMOS</li></a>
+			
+			<a href="#" id="estados"><li class="menu-item">ESTADOS</li></a>
+			<a href="#" id="medios"><li class="menu-item">MEDIOS</li></a>
+			<a href="#" id="motivos"><li class="menu-item">MOTIVOS</li></a>
+			<a href="#" id="prioridades"><li class="menu-item">PRIORIDADES</li></a>
+			<a href="#" id="tipos"><li class="menu-item">TIPOS</li></a>
+			
 			<!-- <a href="#" id="perfiles"><li class="menu-item">PERFILES</li></a> -->
 			<a href="#" id="grafico"> <li class="menu-item">gráfico prueba</li></a>
 		</ul>
@@ -182,6 +231,32 @@ $(function()
 					<c:when test="${param.accion eq 'productos'}">
 						<%@ include file="productos/listaProductos.jsp" %>
 					</c:when>
+					
+						<%-- ESTADOS --%>
+					<c:when test="${param.accion eq 'estados'}">
+						<%@ include file="estados/listaEstados.jsp" %>
+					</c:when>
+					
+						<%-- MEDIOS --%>
+					<c:when test="${param.accion eq 'medios'}">
+						<%@ include file="medios/listaMedios.jsp" %>
+					</c:when>
+					
+						<%-- MOTIVOS --%>
+					<c:when test="${param.accion eq 'motivos'}">
+						<%@ include file="motivos/listaMotivos.jsp" %>
+					</c:when>
+					
+						<%-- PRODUCTOS --%>
+					<c:when test="${param.accion eq 'prioridades'}">
+						<%@ include file="productos/listaPrioridades.jsp" %>
+					</c:when>
+					
+						<%-- TIPOS --%>
+					<c:when test="${param.accion eq 'tipos'}">
+						<%@ include file="tipos/listaTipos.jsp" %>
+					</c:when>
+	
 					
 					<%-- EMPRESAS --%>
 					<c:when test="${param.accion eq 'empresas'}">
