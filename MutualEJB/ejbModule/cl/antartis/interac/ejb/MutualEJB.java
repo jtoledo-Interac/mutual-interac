@@ -3511,4 +3511,307 @@ public class MutualEJB implements EJBRemoto {
 
 		return mapaSalida;
 	}
+	/****************estados************************/
+	
+	
+	public Map<String, Object> agregarEstado(Map<String, Object> mapaEntrada) {
+		
+		CallableStatement cStmt = null;
+		Error error = new Error();
+		Map<String, Object> mapaSalida = null;
+		Estado estado = new Estado();
+
+		try {
+			log.info("Buscar Produtos");
+			
+			estado = (Estado)mapaEntrada.get("estado");
+			
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call agregar_estado(?,?,?,?) }"); //cambiar segun SP
+			
+			cStmt.setString(1, estado.getCodEstado());// cursor$
+			cStmt.setString(2, estado.getDesEstado());// cursor$			
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+
+			
+			cStmt.execute();
+
+			error.setNumError(cStmt.getString(3));
+			error.setMsjError(cStmt.getString(4));
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+
+		log.info("Num Error: "+ error.getNumError());
+		log.info("Msj Error: "+ error.getMsjError());
+
+		mapaSalida.put("estado", estado);
+		mapaSalida.put("error", error);
+		
+		return mapaSalida;		
+		
+		
+	}
+
+	public Map<String, Object> cargarEstado(Map<String, Object> mapaEntrada) {
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		String  cod_estado = "";
+		Estado estado = null;
+		String numError = "0";
+		String msjError = "";
+		
+		try {
+			log.info("Cargar estado");
+
+			cod_estado = (String)mapaEntrada.get("codEstado");
+			
+			log.info("cod_estado: "+cod_estado);
+			
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call cargar_estado(?,?,?,?) }");
+			cStmt.setString(1, cod_estado);
+			cStmt.registerOutParameter(2, Types.OTHER);// documento$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+
+			cStmt.execute();
+			ResultSet rs = (ResultSet) cStmt.getObject(2);
+			numError = cStmt.getString(3);
+			msjError = cStmt.getString(4);
+			
+			while (rs.next()) {
+				
+				estado= new Estado();
+				estado.setCodEstado(rs.getString("cod_estado"));
+				estado.setDesEstado(rs.getString("des_estado"));
+			}
+			
+			rs.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+
+		//log.info(documento.getDocumento());
+		mapaSalida.put("estado",estado);
+		mapaSalida.put("numError", numError);
+		mapaSalida.put("msjError", msjError);
+		
+		return mapaSalida;
+	}
+
+	
+	public Map<String, Object> modificarEstado(Map<String, Object> mapaEntrada) {
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();;
+		Estado estado = null;
+		Error error = new Error();
+
+		try {
+			log.info("Modificar Estado");
+			
+			estado = (Estado)mapaEntrada.get("estado");
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call modificar_estado(?,?,?,?) }");
+			cStmt.setString(1,estado.getCodEstado());
+			cStmt.setString(2,estado.getDesEstado());
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+			cStmt.execute();
+			error.setNumError(cStmt.getString(3));
+			error.setMsjError(cStmt.getString(4));
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+
+		log.info("Num Error: "+ error.getNumError());
+		log.info("Msj Error: "+ error.getMsjError());
+		mapaSalida.put("error",error);
+		
+		return mapaSalida;
+	}
+
+	public Map<String, Object> eliminarEstado(Map<String, Object> mapaEntrada) {
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		String cod_estado = "";
+		Error error = new Error();
+		
+		try {
+			log.info("Eliminar cartera");
+			cod_estado = (String)mapaEntrada.get("codEstado");
+			log.info("cod_estado: "+cod_estado);
+			mapaSalida = new HashMap<String, Object>();
+			
+			dbConeccion = interacDS.getConnection();
+			cStmt = dbConeccion.prepareCall("{ call eliminar_Estado(?,?,?) }");
+			cStmt.setString(1, cod_estado);
+			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
+
+			cStmt.execute();
+			error.setNumError(cStmt.getString(2));
+			error.setMsjError(cStmt.getString(3));			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+		mapaSalida.put("error", error);
+		
+		return mapaSalida;
+	}
+
+
+	public Map<String, Object> buscarEstados(Map<String, Object> mapaEntrada) {
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		ArrayList<Estado> listaEstados = null;
+		Estado estado = null;
+		String numError = "0";
+		String msjError = "";
+
+		try {
+			log.info("Buscar Estados");
+			
+			estado = (Estado)mapaEntrada.get("estado");
+
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call buscar_estados(?,?,?,?) }");
+			
+		
+			cStmt.setString(1,estado.getDesEstado());
+			cStmt.registerOutParameter(2, Types.OTHER);// cursor$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+
+			
+			cStmt.execute();
+
+			ResultSet rs = (ResultSet) cStmt.getObject(2);
+			numError = cStmt.getString(3);
+			msjError = cStmt.getString(4);
+		
+			listaEstados = new ArrayList<Estado>();
+
+			if(rs !=null){
+				while (rs.next()) {
+					estado = new Estado();
+					estado.setCodEstado(rs.getString("cod_estado"));
+					estado.setDesEstado(rs.getString("des_estado"));
+					log.info(estado.getEstado());
+					listaEstados.add(estado);
+				}
+				rs.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+
+		log.info("Num Error: "+numError);
+		log.info("Msj Error: "+msjError);
+		
+		mapaSalida.put("listaEstados",listaEstados);
+		mapaSalida.put("numError", numError);
+		mapaSalida.put("msjError", msjError);
+
+		return mapaSalida;
+	}
+	
+	
+	
+/**********************************/	
 }

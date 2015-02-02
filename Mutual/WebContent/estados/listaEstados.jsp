@@ -4,20 +4,20 @@
 
 <script type="text/javascript"> 
 
-	var codProducto;
+	var codEstado;
 	var idFila = 0;
 	var numFilas = 10;
 	
 	$(function() {
 
-		$('#listadoProductos').jqGrid(
+		$('#listadoEstados').jqGrid(
 		{
-		   	url: getUrlBuscarProductos(),
+		   	url: getUrlBuscarEstados(),
 			datatype: "xml",
-			colNames : ['', 'Nombre Producto',''],
+			colNames : ['', 'Nombre Estado',''],
 			colModel : [
-						{name : 'codProducto', index:'codProducto', hidden : true}, 
-						{name : 'desProducto', index:'desProducto', width : 80, search : true, resizable : false, sortable : true},				
+						{name : 'codEstado', index:'codEstado', hidden : true}, 
+						{name : 'desEstado', index:'desEstado', width : 80, search : true, resizable : false, sortable : true},				
 						{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
 						],
 		   	rowNum:10,
@@ -27,14 +27,14 @@
 				root : "filas",
 				row: "fila",
 				repeatitems: false,
-				id: "codProducto"
+				id: "codEstado"
 			},
-		   	pager: $('#pieProducto'),
+		   	pager: $('#pieEstado'),
 		   	pgtext : 'P&aacute;g: {0} de {1}', 
-		   	sortname: 'codProducto',
+		   	sortname: 'codEstado',
 		    viewrecords: true,
 		    sortorder: "desc",
-		    caption:"Productos",
+		    caption:"Estados",
 		    hoverrows : true,
 		    multiselect : false,
 			onPaging: function(){
@@ -42,7 +42,7 @@
 			},
 			gridComplete: function()
 			{
-				var ids = $("#listadoProductos").getDataIDs();
+				var ids = $("#listadoEstados").getDataIDs();
 				
 				for (var i = 0; i < ids.length; i++)
 				{
@@ -50,16 +50,16 @@
 					var idFila = ids[i];
 					console.log("IDFILA: "+idFila);
 					var btnEditar="";
-					btnEditar+= "<div id='btnEditar' onclick='editarProducto("+idFila+")'>";
+					btnEditar+= "<div id='btnEditar' onclick='editarEstado("+idFila+")'>";
 					btnEditar+= 	"<img title='editar' class='icono' src='img/btnEditar.png'>";
 					btnEditar+= "</div>";
 					
 					var btnEliminar="";
-					btnEliminar+= "<div id='btnEliminar' onclick='eliminarProducto("+idFila+")'>";
+					btnEliminar+= "<div id='btnEliminar' onclick='eliminarEstado("+idFila+")'>";
 					btnEliminar+= 	"<img title='eliminar' class='icono' src='img/btnEliminar.png'>";
 					btnEliminar+= "</div>";
 
-					$("#listadoProductos").setRowData(ids[i], {act : btnEditar + btnEliminar});
+					$("#listadoEstados").setRowData(ids[i], {act : btnEditar + btnEliminar});
 				}
 			},
 			onSelectRow : function(rowId, status) 
@@ -69,29 +69,29 @@
 			},
 			ondblClickRow: function()
 			{
-				var fila = $('#listadoProductos').jqGrid('getRowData',idFila);
-				//editarProducto(fila.codProducto);
+				var fila = $('#listadoEstados').jqGrid('getRowData',idFila);
+				
 			},
-		}).navGrid('#pieProducto',{edit:false,add:false,del:false});	
+		}).navGrid('#pieEstado',{edit:false,add:false,del:false});	
 		
 		$('#btnBuscar').click(function()
 		{
-			buscarProductos();
+			buscarEstados();
 		});
 
 		$('#btnAgregar').click(function()
 		{
-		    crearProducto();
+		    crearEstado();
 		});
 		
-		$('#agregaProducto').dialog({
+		$('#agregaEstado').dialog({
 			autoOpen: false,
 		    height: 500,
 		    width: 650,
 		    modal: true,
 		    position: 'center',
 		    buttons: {
-				"Crear Producto": function() {
+				"Crear Estado": function() {
 					$('#formAgrega').submit();
 				},
 				"Cancelar": function() {
@@ -103,14 +103,14 @@
 			}
 		});
 		
-		$('#cargaProducto').dialog({
+		$('#cargaEstado').dialog({
 			autoOpen: false,
 		    height: 500,
 		    width: 650,
 		    modal: true,
 		    position: 'center',
 		    buttons: {
-				"Editar Producto": function() {
+				"Editar Estado": function() {
 					$('#formEdita').submit();
 				},
 				"Cancelar": function() {
@@ -134,38 +134,38 @@
 		return retorno;
 	}
 	
-	function crearProducto()
+	function crearEstado()
 	{
-		ajaxCall(getUrlCrearProducto(), function(response){
-			$('#agregaProducto').html(response).dialog('open');
+		ajaxCall(getUrlCrearEstado(), function(response){
+			$('#agregaEstado').html(response).dialog('open');
 		});
 	}
 	
-	function editarProducto(codProducto)
+	function editarEstado(codEstado)
 	{
-		console.log("PRODUCTO: "+codProducto);
+		console.log("ESTADO: "+codEstado);
 		
-		ajaxCall(getUrlCargarProducto(codProducto), function(response){
-			$('#cargaProducto').html(response).dialog('open');
+		ajaxCall(getUrlCargarEstado(codEstado), function(response){
+			$('#cargaEstado').html(response).dialog('open');
 		});
 	}
 	
-	function eliminarProducto(codProducto)
+	function eliminarEstado(codEstado)
 	{  
-   		jConfirm('¿ Confirma eliminar el Producto ?', 'Confirmación', function(res){
+   		jConfirm('¿ Confirma eliminar el Estado ?', 'Confirmación', function(res){
    			if (res == true){
-  				ajaxCall(getUrlEliminarProducto(codProducto), function(){
-  					jAlert("El Producto ha sido eliminado exitosamente");
-  					buscarProductos();
+  				ajaxCall(getUrlEliminarEstado(codEstado), function(){
+  					jAlert("El Estado ha sido eliminado exitosamente");
+  					buscarEstados();
    				});
    			}
    		});
 	}
 	
-	function buscarProductos() 
+	function buscarEstados() 
 	{		
-		$('#listadoProductos').jqGrid('setGridParam', {
-			url : getUrlBuscarProductos(),
+		$('#listadoEstados').jqGrid('setGridParam', {
+			url : getUrlBuscarEstados(),
 			page : 1,
 			rowNum : numFilas,
 			autoencode : false,
@@ -174,54 +174,54 @@
 		}).trigger("reloadGrid");
 	}
 
-	function getUrlBuscarProductos()
+	function getUrlBuscarEstados()
 	{  
 		var sData = "Servlet";
-		sData += "?accion=buscarProductos";
-		sData += "&nomProducto="+$('#nomProducto').val();
+		sData += "?accion=buscarEstados";
+		sData += "&nomEstado="+$('#nomEstado').val();
 		return sData;
 	}
 
-	function getUrlCrearProducto()
+	function getUrlCrearEstado()
 	{
 		var sData = "Servlet";
-		sData += '?accion=crearProducto';
+		sData += '?accion=crearEstado';
 		return sData;
 	}
 	
-	function getUrlCargarProducto(id)
+	function getUrlCargarEstado(id)
 	{
 		var sData = "Servlet";
-		sData += '?accion=cargarProducto';
-		sData += '&codProducto='+id;
+		sData += '?accion=cargarEstado';
+		sData += '&codEstado='+id;
 		console.log(sData);
 		return sData;
 	}
 
-	function getUrlEliminarProducto(id){  
+	function getUrlEliminarEstado(id){  
 		var sData = 'Servlet';
-		sData += '?accion=eliminarProducto';
-		sData += '&codProducto='+id;
+		sData += '?accion=eliminarEstado';
+		sData += '&codEstado='+id;
 		return sData;
     }
 </script>
 
 <div class="mantenedor">
 
-	<div id="agregaProducto" title="Crear Producto" style="display:none"></div>
+	<div id="agregaEstado" title="Crear Estado" style="display:none"></div>
 	
-	<div id="cargaProducto" title="Editar Producto" style="display:none"></div>
+	<div id="cargaEstado" title="Editar Estado" style="display:none"></div>
 
 	<div class="filtros">		
-		<form id="formProducto" action="Servlet" method="post">
+		<form id="formEstado" action="Servlet" method="post">
 			<input type="button" 	id="btnBuscar" 		name="btnBuscar" 	value="Buscar"/>
 			<input type="button" 	id="btnAgregar" 	name="btnAgregar" 	value="Agregar"/>
-			<input type="text" 		id="nomProducto" 	name="nomProducto"	placeholder="Nombre Producto">
+			<input type="text" 		id="nomEstado" 	name="nomEstado"	placeholder="Nombre Estado">
 		</form>
 	</div> 
 
-	<div id="listadoBusquedaProductos" class="listado">
-		<table id="listadoProductos"></table>
-		<div id="pieProducto" class="pie"></div>
+	<div id="listadoBusquedaEstados" class="listado">
+		<table id="listadoEstados"></table>
+		<div id="pieEstado" class="pie"></div>
 	</div>
 </div>

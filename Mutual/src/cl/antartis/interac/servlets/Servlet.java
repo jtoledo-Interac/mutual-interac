@@ -24,6 +24,7 @@ import org.apache.log4j.Logger;
 import cl.antartis.interac.beans.Cartera;
 import cl.antartis.interac.beans.Documento;
 import cl.antartis.interac.beans.Empresa;
+import cl.antartis.interac.beans.Estado;
 import cl.antartis.interac.beans.Medio;
 import cl.antartis.interac.beans.Motivo;
 import cl.antartis.interac.beans.Prioridad;
@@ -1784,4 +1785,129 @@ public class Servlet extends HttpServlet {
 		
 		pagDestino = "/medios/listaMediosXml.jsp";	
 	}
+	/**********************************Estados*******************************************/
+	
+	public void estados(HttpServletRequest request, HttpServletResponse response) 
+	{
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+
+		pagDestino = "contenedor.jsp";
+	}
+		public void crearEstado(HttpServletRequest request, HttpServletResponse response) 
+		{
+			String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+			
+			log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+			pagDestino = "estados/agregaEstado.jsp";
+		}
+	
+	public void buscarEstados(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+	
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		Estado estado = new Estado();
+		estado.setDesEstado(request.getParameter("nomEstado"));
+		
+		mapaEntrada.put("estado",estado);
+		
+		mapaSalida = ejbRemoto.buscarEstados(mapaEntrada);
+		
+		request.setAttribute("listaEstados", mapaSalida.get("listaEstados"));
+		
+		pagDestino = "/estados/listaEstadosXml.jsp";	
+	}
+
+	public void agregarEstado(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		Estado estado = new Estado(); 
+		estado.setDesEstado(request.getParameter("desEstado"));
+		estado.setCodEstado(request.getParameter("codEstado"));
+
+		mapaEntrada.put("estado",estado);
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		mapaSalida = ejbRemoto.agregarEstado(mapaEntrada);
+
+		pagDestino = "contenedor.jsp?accion=estados";
+	}
+	
+	public void cargarEstado(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		String codEstado = request.getParameter("codEstado");
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+
+		log.info("codEstado: "+codEstado);
+		
+		mapaEntrada.put("codEstado", codEstado);
+		
+		mapaSalida = ejbRemoto.cargarEstado(mapaEntrada);
+		
+		request.setAttribute("estado", (Estado)mapaSalida.get("estado"));
+
+		pagDestino = "/estados/cargaEstado.jsp";
+	}
+	
+	public void modificarEstado(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		Estado estado = new Estado();
+		estado.setCodEstado(request.getParameter("codEstado"));
+		estado.setDesEstado(request.getParameter("desEstado"));
+
+		mapaEntrada.put("estado",estado);
+		
+		mapaSalida = ejbRemoto.modificarEstado(mapaEntrada);
+		if(((Error)mapaSalida.get("error")).getNumError().equals("0")){
+			
+			pagDestino = "contenedor.jsp?accion=estados";
+		}
+		else{
+			pagDestino = "error.jsp";
+		}
+	}
+	
+	public void eliminarEstado(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		String codEstado = request.getParameter("codEstado");
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		log.info("codEstado: "+codEstado);
+		
+		mapaEntrada.put("codEstado", codEstado);
+		mapaSalida = ejbRemoto.eliminarEstado(mapaEntrada);
+		
+		if(((Error)mapaSalida.get("error")).getNumError().equals("0")){
+			
+			pagDestino = "contenedor.jsp?accion=estados";
+		}
+		else{
+			pagDestino = "error.jsp";
+		}
+	}
+	
+	
 }
