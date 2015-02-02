@@ -14,6 +14,7 @@ begin
         open producto  for
 
             select
+                cod_producto,
                 des_producto                
             from 
                 producto             
