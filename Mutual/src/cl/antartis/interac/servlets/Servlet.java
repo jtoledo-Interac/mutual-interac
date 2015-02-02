@@ -1325,6 +1325,15 @@ public class Servlet extends HttpServlet {
 	
 	
 	/***************PRIORIDAD************************************************/
+	public void prioridades(HttpServletRequest request, HttpServletResponse response) 
+	{
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+
+		pagDestino = "contenedor.jsp";
+	}
+	
 	public void agregarPrioridad(HttpServletRequest request, HttpServletResponse response) {
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
 		

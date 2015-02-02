@@ -4,20 +4,20 @@
 
 <script type="text/javascript"> 
 
-	var codProducto;
+	var codPrioridad;
 	var idFila = 0;
 	var numFilas = 10;
 	
 	$(function() {
 
-		$('#listadoProductos').jqGrid(
+		$('#listadoPrioridades').jqGrid(
 		{
-		   	url: getUrlBuscarProductos(),
+		   	url: getUrlBuscarPrioridades(),
 			datatype: "xml",
-			colNames : ['', 'Nombre Producto',''],
+			colNames : ['', 'Nombre Prioridad',''],
 			colModel : [
-						{name : 'codProducto', index:'codProducto', hidden : true}, 
-						{name : 'desProducto', index:'desProducto', width : 80, search : true, resizable : false, sortable : true},				
+						{name : 'codPrioridad', index:'codPrioridad', hidden : true}, 
+						{name : 'desPrioridad', index:'desPrioridad', width : 80, search : true, resizable : false, sortable : true},				
 						{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
 						],
 		   	rowNum:10,
@@ -27,14 +27,14 @@
 				root : "filas",
 				row: "fila",
 				repeatitems: false,
-				id: "codProducto"
+				id: "codPrioridad"
 			},
-		   	pager: $('#pieProducto'),
+		   	pager: $('#piePrioridad'),
 		   	pgtext : 'P&aacute;g: {0} de {1}', 
-		   	sortname: 'codProducto',
+		   	sortname: 'codPrioridad',
 		    viewrecords: true,
 		    sortorder: "desc",
-		    caption:"Productos",
+		    caption:"Prioridades",
 		    hoverrows : true,
 		    multiselect : false,
 			onPaging: function(){
@@ -42,7 +42,7 @@
 			},
 			gridComplete: function()
 			{
-				var ids = $("#listadoProductos").getDataIDs();
+				var ids = $("#listadoPrioridades").getDataIDs();
 				
 				for (var i = 0; i < ids.length; i++)
 				{
@@ -50,16 +50,16 @@
 					var idFila = ids[i];
 					console.log("IDFILA: "+idFila);
 					var btnEditar="";
-					btnEditar+= "<div id='btnEditar' onclick='editarProducto("+idFila+")'>";
+					btnEditar+= "<div id='btnEditar' onclick='editarPrioridad("+idFila+")'>";
 					btnEditar+= 	"<img title='editar' class='icono' src='img/btnEditar.png'>";
 					btnEditar+= "</div>";
 					
 					var btnEliminar="";
-					btnEliminar+= "<div id='btnEliminar' onclick='eliminarProducto("+idFila+")'>";
+					btnEliminar+= "<div id='btnEliminar' onclick='eliminarPrioridad("+idFila+")'>";
 					btnEliminar+= 	"<img title='eliminar' class='icono' src='img/btnEliminar.png'>";
 					btnEliminar+= "</div>";
 
-					$("#listadoProductos").setRowData(ids[i], {act : btnEditar + btnEliminar});
+					$("#listadoPrioridad").setRowData(ids[i], {act : btnEditar + btnEliminar});
 				}
 			},
 			onSelectRow : function(rowId, status) 
@@ -69,29 +69,29 @@
 			},
 			ondblClickRow: function()
 			{
-				var fila = $('#listadoProductos').jqGrid('getRowData',idFila);
+				var fila = $('#listadoPrioridad').jqGrid('getRowData',idFila);
 				//editarProducto(fila.codProducto);
 			},
-		}).navGrid('#pieProducto',{edit:false,add:false,del:false});	
+		}).navGrid('#piePrioridad',{edit:false,add:false,del:false});	
 		
 		$('#btnBuscar').click(function()
 		{
-			buscarProductos();
+			buscarPrioridades();
 		});
 
 		$('#btnAgregar').click(function()
 		{
-		    crearProducto();
+		    crearPrioridad();
 		});
 		
-		$('#agregaProducto').dialog({
+		$('#agregaPrioridad').dialog({
 			autoOpen: false,
 		    height: 500,
 		    width: 650,
 		    modal: true,
 		    position: 'center',
 		    buttons: {
-				"Crear Producto": function() {
+				"Crear Prioridad": function() {
 					$('#formAgrega').submit();
 				},
 				"Cancelar": function() {
@@ -103,14 +103,14 @@
 			}
 		});
 		
-		$('#cargaProducto').dialog({
+		$('#cargaPrioridad').dialog({
 			autoOpen: false,
 		    height: 500,
 		    width: 650,
 		    modal: true,
 		    position: 'center',
 		    buttons: {
-				"Editar Producto": function() {
+				"Editar Prioridad": function() {
 					$('#formEdita').submit();
 				},
 				"Cancelar": function() {
@@ -134,38 +134,38 @@
 		return retorno;
 	}
 	
-	function crearProducto()
+	function crearPrioridad()
 	{
-		ajaxCall(getUrlCrearProducto(), function(response){
-			$('#agregaProducto').html(response).dialog('open');
+		ajaxCall(getUrlCrearPrioridad(), function(response){
+			$('#agregaPrioridad').html(response).dialog('open');
 		});
 	}
 	
-	function editarProducto(codProducto)
+	function editarPrioridad(codPrioridad)
 	{
-		console.log("PRODUCTO: "+codProducto);
+		console.log("Prioridad: "+codPrioridad);
 		
-		ajaxCall(getUrlCargarProducto(codProducto), function(response){
-			$('#cargaProducto').html(response).dialog('open');
+		ajaxCall(getUrlCargarPrioridad(codPrioridad), function(response){
+			$('#cargaPrioridad').html(response).dialog('open');
 		});
 	}
 	
-	function eliminarProducto(codProducto)
+	function eliminarPrioridad(codPrioridad)
 	{  
-   		jConfirm('¿ Confirma eliminar el Producto ?', 'Confirmación', function(res){
+   		jConfirm('¿ Confirma eliminar la Prioridad ?', 'Confirmación', function(res){
    			if (res == true){
-  				ajaxCall(getUrlEliminarProducto(codProducto), function(){
-  					jAlert("El Producto ha sido eliminado exitosamente");
-  					buscarProductos();
+  				ajaxCall(getUrlEliminarPrioridad(codPrioridad), function(){
+  					jAlert("La Prioridad ha sido eliminado exitosamente");
+  					buscarPrioridad();
    				});
    			}
    		});
 	}
 	
-	function buscarProductos() 
+	function buscarPrioridades() 
 	{		
-		$('#listadoProductos').jqGrid('setGridParam', {
-			url : getUrlBuscarProductos(),
+		$('#listadoPrioridades').jqGrid('setGridParam', {
+			url : getUrlBuscarPrioridades(),
 			page : 1,
 			rowNum : numFilas,
 			autoencode : false,
@@ -174,54 +174,54 @@
 		}).trigger("reloadGrid");
 	}
 
-	function getUrlBuscarProductos()
+	function getUrlBuscarPrioridades()
 	{  
 		var sData = "Servlet";
-		sData += "?accion=buscarProductos";
-		sData += "&nomProducto="+$('#nomProducto').val();
+		sData += "?accion=buscarPrioridades";
+		sData += "&nomPrioridad="+$('#nomPrioridad').val();
 		return sData;
 	}
 
-	function getUrlCrearProducto()
+	function getUrlCrearPrioridad()
 	{
 		var sData = "Servlet";
-		sData += '?accion=crearProducto';
+		sData += '?accion=crearPrioridad';
 		return sData;
 	}
 	
-	function getUrlCargarProducto(id)
+	function getUrlCargarPrioridad(id)
 	{
 		var sData = "Servlet";
-		sData += '?accion=cargarProducto';
-		sData += '&codProducto='+id;
+		sData += '?accion=cargarPrioridad';
+		sData += '&codPrioridad='+id;
 		console.log(sData);
 		return sData;
 	}
 
-	function getUrlEliminarProducto(id){  
+	function getUrlEliminarPrioridad(id){  
 		var sData = 'Servlet';
-		sData += '?accion=eliminarProducto';
-		sData += '&codProducto='+id;
+		sData += '?accion=eliminarPrioridad';
+		sData += '&codPrioridad='+id;
 		return sData;
     }
 </script>
 
 <div class="mantenedor">
 
-	<div id="agregaProducto" title="Crear Producto" style="display:none"></div>
+	<div id="agregaPrioridad" title="Crear Prioridad" style="display:none"></div>
 	
-	<div id="cargaProducto" title="Editar Producto" style="display:none"></div>
+	<div id="cargaPrioridad" title="Editar Prioridad" style="display:none"></div>
 
 	<div class="filtros">		
-		<form id="formProducto" action="Servlet" method="post">
+		<form id="formPrioridad" action="Servlet" method="post">
 			<input type="button" 	id="btnBuscar" 		name="btnBuscar" 	value="Buscar"/>
 			<input type="button" 	id="btnAgregar" 	name="btnAgregar" 	value="Agregar"/>
-			<input type="text" 		id="nomProducto" 	name="nomProducto"	placeholder="Nombre Producto">
+			<input type="text" 		id="nomPrioridad" 	name="nomPrioridad"	placeholder="Nombre Prioridad">
 		</form>
 	</div> 
 
-	<div id="listadoBusquedaProductos" class="listado">
-		<table id="listadoProductos"></table>
-		<div id="pieProducto" class="pie"></div>
+	<div id="listadoBusquedaPrioridades" class="listado">
+		<table id="listadoPrioridades"></table>
+		<div id="piePrioridad" class="pie"></div>
 	</div>
 </div>
