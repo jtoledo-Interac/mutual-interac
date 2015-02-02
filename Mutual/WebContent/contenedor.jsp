@@ -16,126 +16,6 @@ $(function()
 		$('#logOut').submit();
 	});
 	
-	$('#organigrama').click(function(){
-		$('.menu-item').removeClass('selected');
-		$('#organigrama li').addClass('selected');
-		
-		$('#accion').val("organigrama");
-		$('#formMantenedores').submit();
-	});
-
-	$('#documentos').click(function(){
-		$('.menu-item').removeClass('selected');
-		$('#documentos li').addClass('selected');
-		
-		$('#accion').val("documentos");
-		$('#formMantenedores').submit();
-	});
-	
-	$('#empresas').click(function(){
-		$('.menu-item').removeClass('selected');
-		$('#empresas li').addClass('selected');
-		
-		$('#accion').val("empresas");
-		$('#formMantenedores').submit();
-	});
-	
-	$('#carteras').click(function(){
-		$('.menu-item').removeClass('selected');
-		$('#carteras li').addClass('selected');
-		
-		$('#accion').val("carteras");
-		$('#formMantenedores').submit();
-	});
-	
-	$('#productos').click(function(){
-		$('.menu-item').removeClass('selected');
-		$('#productos li').addClass('selected');
-		
-		$('#accion').val("productos");
-		$('#formMantenedores').submit();
-	});
-	
-	$('#reportes').click(function(){
-		$('.menu-item').removeClass('selected');
-		$('#reportes li').addClass('selected');
-		
-		$('#accion').val("reportes");
-		$('#formMantenedores').submit();
-	});
-	
-	$('#usuarios').click(function(){
-		$('.menu-item').removeClass('selected');
-		$('#usuarios li').addClass('selected');
-		
-		$('#accion').val("usuarios");
-		$('#formMantenedores').submit();
-	});
-	
-	$('#reclamos').click(function(){
-		$('.menu-item').removeClass('selected');
-		$('#reclamos li').addClass('selected');
-		
-		$('#accion').val("reclamos");
-		$('#formMantenedores').submit();
-	});
-	
-	$('#perfiles').click(function(){
-		$('.menu-item').removeClass('selected');
-		$('#perfiles li').addClass('selected');
-		
-		$('#accion').val("perfiles");
-		$('#formMantenedores').submit();
-	});
-	
-	
-	$('#estados').click(function(){
-		$('.menu-item').removeClass('selected');
-		$('#estados li').addClass('selected');
-		
-		$('#accion').val("estados");
-		$('#formMantenedores').submit();
-	});
-	
-	$('#medios').click(function(){
-		$('.menu-item').removeClass('selected');
-		$('#medios li').addClass('selected');
-		
-		$('#accion').val("medios");
-		$('#formMantenedores').submit();
-	});
-	
-	$('#motivos').click(function(){
-		$('.menu-item').removeClass('selected');
-		$('#motivos li').addClass('selected');
-		
-		$('#accion').val("motivos");
-		$('#formMantenedores').submit();
-	});
-	
-	$('#prioridades').click(function(){
-		$('.menu-item').removeClass('selected');
-		$('#prioridades li').addClass('selected');
-		
-		$('#accion').val("prioridades");
-		$('#formMantenedores').submit();
-	});
-	
-	$('#tipos').click(function(){
-		$('.menu-item').removeClass('selected');
-		$('#tipos li').addClass('selected');
-		
-		$('#accion').val("tipos");
-		$('#formMantenedores').submit();
-	});
-	
-	$('#grafico').click(function(){
-		$('.menu-item').removeClass('selected');
-		$('#grafico li').addClass('selected');
-		
-		$('#accion').val("graficar");
-		$('#formMantenedores').submit();
-	});
 });
 </script>
 
@@ -158,52 +38,28 @@ $(function()
 
 	<div id="menuwrapper">	
 	    <ul>
-	        <li><a href="#">Organigrama</a></li>
-	        <li><a href="#">Documentos</a></li>
-	        <li><a href="#">Empresas</a></li>
-			<li><a href="#">Reportes</a></li>
-			<li><a href="#">Reclamos</a></li>
-	        <li><a href="#">Graficos Prueba</a></li>
+	        <li><a href="Servlet?accion=organigrama">Organigrama</a></li>
+	        <li><a href="Servlet?accion=documentos">Documentos</a></li>
+	        <li><a href="Servlet?accion=empresas">Empresas</a></li>
+			<li><a href="Servlet?accion=reportes">Reportes</a></li>
+			<li><a href="Servlet?accion=reclamos">Reclamos</a></li>
+	        <li><a href="Servlet?accion=grafico">Graficos Prueba</a></li>
 	        <li><a href="#">Administraci&oacute;n</a>
 	        	<ul>
-	        		<li><a href="#">Tipos de Cartera</a></li>
-					<li><a href="#">Productos</a></li>
-	        		<li><a href="#">Usuarios</a></li>
-	        		<li><a href="#">Perfiles</a></li>
-	        		<li><a href="#">Estados Reclamo</a></li>
-					<li><a href="#">Medios</a></li>
-					<li><a href="#">Motivos Reclamo</a></li>
-					<li><a href="#">Prioridades</a></li>
-					<li><a href="#">Tipos</a></li>
+	        		<li><a href="Servlet?accion=tipos">Tipos de Cartera</a></li>
+					<li><a href="Servlet?accion=productos">Productos</a></li>
+	        		<li><a href="Servlet?accion=usuarios">Usuarios</a></li>
+	        		<li><a href="Servlet?accion=perfiles">Perfiles</a></li>
+	        		<li><a href="Servlet?accion=estados">Estados Reclamo</a></li>
+					<li><a href="Servlet?accion=medios">Medios</a></li>
+					<li><a href="Servlet?accion=motivos">Motivos Reclamo</a></li>
+					<li><a href="Servlet?accion=prioridades">Prioridades</a></li>
+					<li><a href="Servlet?accion=tipos">Tipos</a></li>
 				</ul>
 	        </li>
 	    </ul>
 	</div>
 
-<!-- 
-	<div class="menu-lateral">
-		<ul class="lista-items">
-			<a href="#" id="organigrama"><li class="menu-item">ORGANIGRAMA</li></a>
-			<a href="#" id="documentos"><li class="menu-item">DOCUMENTOS</li></a>
-			<a href="#" id="empresas"><li class="menu-item">EMPRESAS</li></a>
-			<a href="#" id="carteras"><li class="menu-item">CARTERAS</li></a>
-			<a href="#" id="productos"><li class="menu-item">PRODUCTOS</li></a>
-			<a href="#" id="reportes"><li class="menu-item">REPORTES</li></a>
-			<a href="#" id="usuarios"><li class="menu-item">USUARIOS</li></a>
-			<a href="#" id="reclamos"><li class="menu-item">RECLAMOS</li></a>
-			
-			<a href="#" id="estados"><li class="menu-item">ESTADOS</li></a>
-			<a href="#" id="medios"><li class="menu-item">MEDIOS</li></a>
-			<a href="#" id="motivos"><li class="menu-item">MOTIVOS</li></a>
-			<a href="#" id="prioridades"><li class="menu-item">PRIORIDADES</li></a>
-			<a href="#" id="tipos"><li class="menu-item">TIPOS</li></a>
-			
-			<a href="#" id="perfiles"><li class="menu-item">PERFILES</li></a>
-			<a href="#" id="grafico"> <li class="menu-item">gráfico prueba</li></a>
-		</ul>
-	</div>
-	
-	 -->	
 	<div class="principal">
 		<form id="formMantenedores" action="Servlet" method="post">
 			<input type="hidden" id="accion" name="accion">
@@ -248,6 +104,11 @@ $(function()
 					<%-- USUARIOS --%>
 					<c:when test="${param.accion eq 'usuarios'}">
 						<%@ include file="usuarios/listaUsuarios.jsp" %>
+					</c:when>
+					
+					<%-- PERFILES --%>
+					<c:when test="${param.accion eq 'perfiles'}">
+						<%@ include file="perfiles/listaPerfiles.jsp" %>
 					</c:when>
 					
 					<%-- CARTERAS --%>

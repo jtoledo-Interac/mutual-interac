@@ -4,11 +4,19 @@ body {
     font-size:12px;
 }
 
+#menuwrapper{
+    width: 100px;
+    float: left;
+    margin-top: 85px;
+    margin-left: 5px;
+}
+
 /* We remove the margin, padding, and list style of UL and LI components */
 #menuwrapper ul, #menuwrapper ul li{
     margin:0;
     padding:0;
     list-style:none;
+    z-index: 9999;
 }
 
 /* We apply background color and border bottom white and width to 150px */
@@ -38,6 +46,7 @@ body {
 #menuwrapper ul li ul{
     position:absolute;
     display:none;
+    z-index: 9999;
 }
 
 /* When user has hovered the li item, we show the ul list by applying display:block, note: 150px is the individual menu width.  */
@@ -50,6 +59,7 @@ body {
 /* we apply different background color to 2nd level menu items*/
 #menuwrapper ul li ul li{
     background-color:#cae25a;
+    z-index: 9999;
 }
 
 /* We change the background color for the level 2 submenu when hovering the menu */

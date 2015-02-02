@@ -450,6 +450,156 @@ public class Servlet extends HttpServlet {
 
 		pagDestino = "/usuarios/listaUsuariosXml.jsp";
 	}
+
+	/**********PERFILES****************************************************************************/	
+	public void perfiles(HttpServletRequest request, HttpServletResponse response) 
+	{
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+
+		pagDestino = "contenedor.jsp";
+	}
+	
+	public void crearPerfil(HttpServletRequest request, HttpServletResponse response) 
+	{
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+	
+		pagDestino = "perfiles/agregaPerfil.jsp";
+	}
+
+	
+	public void buscarPerfiles(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+	
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		Usuario usuario = new Usuario();
+		usuario.setRut(Utils.getRutSinDV(request.getParameter("sRut")));
+		usuario.setDv(request.getParameter("sDV"));
+		usuario.setNombres(request.getParameter("sNombres"));
+		usuario.setApePaterno(request.getParameter("sApePaterno"));
+		usuario.setApeMaterno(request.getParameter("sApeMaterno"));
+		usuario.setNomUsuario(request.getParameter("sNomUsuario"));
+		
+		mapaEntrada.put("usuario",usuario);
+		
+		mapaSalida = ejbRemoto.buscarUsuarios(mapaEntrada);
+		
+		request.setAttribute("listaUsuarios", mapaSalida.get("listaUsuarios"));
+		
+		pagDestino = "/usuarios/listaUsuariosXml.jsp";	
+	}
+
+	public void agregarPerfil(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		log.info("Comuna: "+request.getParameter("nIdComuna"));
+		
+		Usuario usuario = new Usuario();
+		usuario.setRut(Utils.getRutSinDV(request.getParameter("sRut")));
+		usuario.setDv(request.getParameter("sDV"));
+		usuario.setNombres(request.getParameter("sNombres"));
+		usuario.setApePaterno(request.getParameter("sApePaterno"));
+		usuario.setApeMaterno(request.getParameter("sApeMaterno"));
+		usuario.setNomUsuario(request.getParameter("sNomUsuario"));
+		usuario.setContrasena1(request.getParameter("sContrasena"));
+		usuario.setCodGenero(request.getParameter("sCodGenero"));
+		usuario.setFecNacimiento(request.getParameter("sFecNacimiento"));
+		usuario.setTelefono(request.getParameter("sTelefono"));
+		usuario.setCelular(request.getParameter("sCelular"));
+		usuario.setEmail(request.getParameter("sEmail"));
+		
+		mapaEntrada.put("usuario",usuario);
+		
+		//log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		mapaSalida = ejbRemoto.agregarUsuario(mapaEntrada);
+		
+		log.info("ID Usuario: "+mapaSalida.get("nIdUsuario"));
+
+		pagDestino = "contenedor.jsp?accion=usuarios";
+	}
+	
+	public void cargarUPerfil(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		long nIdUsuario = Utils.stringToNum(request.getParameter("nIdUsuario"));
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+
+		log.info("nIdUsuario: "+nIdUsuario);
+		
+		mapaEntrada.put("nIdUsuario", nIdUsuario);
+		
+		mapaSalida = ejbRemoto.cargarUsuario(mapaEntrada);
+			
+		request.setAttribute("usuario", (Usuario)mapaSalida.get("usuario"));
+		request.setAttribute("listaComunas", mapaSalida.get("listaComunas"));
+		request.setAttribute("listaProvincias", mapaSalida.get("listaProvincias"));
+		request.setAttribute("listaRegiones", mapaSalida.get("listaRegiones"));
+
+		pagDestino = "/perfiles/cargaPerfil.jsp";
+	}
+	
+	public void modificaPerfil(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		Encriptador e = new Encriptador();
+		
+		Usuario usuario = new Usuario();
+		//usuario.setIdUsuario(Utils.stringToNum(request.getParameter("nIdUsuario")));
+		usuario.setRut(Utils.getRutSinDV(request.getParameter("sRut")));
+		usuario.setDv(request.getParameter("sDV"));
+		usuario.setNombres(request.getParameter("sNombres"));
+		usuario.setApePaterno(request.getParameter("sApePaterno"));
+		usuario.setApeMaterno(request.getParameter("sApeMaterno"));
+		usuario.setNomUsuario(request.getParameter("sNomUsuario"));
+		usuario.setCodGenero(request.getParameter("sCodGenero"));
+		usuario.setFecNacimiento(request.getParameter("sFecNacimiento"));
+		usuario.setTelefono(request.getParameter("sTelefono"));
+		usuario.setCelular(request.getParameter("sCelular"));
+		usuario.setEmail(request.getParameter("sEmail"));
+		
+		log.info(usuario.getUsuario());
+		
+		mapaEntrada.put("usuario",usuario);		
+		mapaSalida = ejbRemoto.modificarUsuario(mapaEntrada);
+		pagDestino = "contenedor.jsp?accion=usuarios";
+	}
+	
+	public void eliminarPerfil(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		long idUsuario = Utils.stringToNum(request.getParameter("nIdUsuario"));
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+
+		log.info("idUsuario: "+idUsuario);
+		
+		mapaEntrada.put("idUsuario", idUsuario);
+		
+		mapaSalida = ejbRemoto.eliminarUsuario(mapaEntrada);
+
+		pagDestino = "/usuarios/listaUsuariosXml.jsp";
+	}
 	
 	
 	/**********CARTERAS****************************************************************************/	
@@ -1506,7 +1656,6 @@ public class Servlet extends HttpServlet {
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 				
 		pagDestino = "prioridades/agregaPrioridad.jsp";
-		
 	}
 	
 	public void agregarPrioridad(HttpServletRequest request, HttpServletResponse response) {

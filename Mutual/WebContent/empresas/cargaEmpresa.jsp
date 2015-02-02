@@ -49,6 +49,6 @@
 	
 <form id="formEdita" action="Servlet" method="post" onSubmit="return validar_form(this)">
 	<input type="hidden"	id="accion" 		name="accion" 		value="modificarEmpresa">
-	<input type="text" 	id="nombre" 	name="nombre"	value="${empresa.nombre}" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
-	<input type="text" 		id="numAdherente" 	name="numAdherente"	value="${empresa.numAdherente}" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
+	<input type="text" 		id="nombre" 		name="nombre"		value="${empresa.nombre}" 		placeholder="Nombre Empresa" 	onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
+	<input type="text" 		id="numAdherente" 	name="numAdherente"	value="${empresa.numAdherente}" placeholder="Nº Adherente"		onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
 </form>

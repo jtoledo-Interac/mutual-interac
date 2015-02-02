@@ -14,14 +14,15 @@ $(function()
 {
 	$("#btnLogin").click(function()
 	{
-		$('#formLogin').attr('action','Servlet?accion=login')
 		$('#formLogin').submit();
 	});
 });
 </script>
 
 <div id="contenedor">
-	<form id="formLogin" method="post">		
+	<form id="formLogin" action="Servlet" method="post">
+		<input type="hidden"	id="accion" 		name="accion" 		value="login">	
+		
 		<div class="centrado" style="width:270px;">
 			<img src="img/logo-mutual.png" style="width:270px;margin-top:30px;">
 		</div>
