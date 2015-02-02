@@ -27,6 +27,7 @@ import cl.antartis.interac.beans.Empresa;
 import cl.antartis.interac.beans.Prioridad;
 import cl.antartis.interac.beans.Producto;
 import cl.antartis.interac.beans.Reclamo;
+import cl.antartis.interac.beans.Tipo;
 import cl.antartis.interac.beans.Usuario;
 import cl.antartis.interac.beans.Error;
 import cl.antartis.interac.ejb.interfaces.EJBRemoto;
@@ -516,6 +517,27 @@ public class Servlet extends HttpServlet {
 		log.info("ID Cartera: "+mapaSalida.get("codCartera"));
 
 		pagDestino = "contenedor.jsp?accion=carteras";
+	}
+	
+	public void agregarTipo(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		log.info("desTipo: "+request.getParameter("desTipo"));
+		
+		Tipo tipo = new Tipo();
+		tipo.setCodTipo(request.getParameter("desTipo"));
+		tipo.setDesTipo(request.getParameter("codTipo"));
+				
+		mapaEntrada.put("tipo",tipo);
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		mapaSalida = ejbRemoto.agregarTipo(mapaEntrada);
+
+		pagDestino = "contenedor.jsp?accion=tipos";
 	}
 	
 	public void cargarCartera(HttpServletRequest request, HttpServletResponse response) {
@@ -1322,5 +1344,32 @@ public class Servlet extends HttpServlet {
 		pagDestino = "contenedor.jsp?accion=prioridad";
 	}
 	
+	public void tipos(HttpServletRequest request, HttpServletResponse response) 
+	{
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+
+		pagDestino = "contenedor.jsp";
+	}
 	
+	public void buscarTipos(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+	
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		Tipo tipo = new Tipo();
+		tipo.setDesTipo(request.getParameter("nomTipo"));
+		
+		mapaEntrada.put("tipo",tipo);
+		
+		mapaSalida = ejbRemoto.buscarTipos(mapaEntrada);
+		
+		request.setAttribute("listaTipos", mapaSalida.get("listaTipos"));
+		
+		pagDestino = "/tipos/listaTiposXml.jsp";	
+	}
 }

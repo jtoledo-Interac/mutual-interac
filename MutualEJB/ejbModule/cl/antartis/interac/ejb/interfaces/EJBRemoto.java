@@ -85,15 +85,8 @@ public interface EJBRemoto {
 	public Map<String, Object> actualizarContrasena(Map<String, Object> mapaEntrada);
 	
 	public Map<String, Object> recuperarUsername(Map<String, Object> mapaEntrada);
+
+	public Map<String, Object> agregarTipo(Map<String, Object> mapaEntrada);
 	
-	/*  Prioridades */
-	public Map<String, Object> buscarPrioridad(Map<String, Object> mapaEntrada);
-
-	public Map<String, Object> agregarPrioridad(Map<String, Object> mapaEntrada);
-
-	public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada);
-
-	public Map<String, Object> modificarPrioridad(Map<String, Object> mapaEntrada);
-
-	public Map<String, Object> eliminarPrioridad(Map<String, Object> mapaEntrada);
+	public Map<String, Object> buscarTipos(Map<String, Object> mapaEntrada);
 }

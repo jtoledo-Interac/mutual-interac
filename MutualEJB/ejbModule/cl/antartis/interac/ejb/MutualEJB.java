@@ -700,6 +700,69 @@ public class MutualEJB implements EJBRemoto {
 		return mapaSalida;
 	
 	}
+	
+	public Map<String, Object> agregarTipo(Map<String, Object> mapaEntrada) {
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		Tipo tipo = null;
+		String numError = "0";
+		String msjError = "";
+		
+		try {
+			log.info("Agregar tipo");
+
+			tipo = (Tipo)mapaEntrada.get("tipo");
+			
+			log.info(tipo.getTipo());
+			
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call agregar_tipo(?,?,?,?) }"); //falta SP, posibles cambios aqui
+			cStmt.setString(1, tipo.getCodTipo());
+			cStmt.setString(2, tipo.getDesTipo());
+			
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+
+			
+			cStmt.execute();
+			
+	
+			numError = cStmt.getString(3);
+			msjError = cStmt.getString(4);
+			
+			log.info("Num Error: "+numError);
+			log.info("Msj Error: "+msjError);
+	
+		}catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+			
+		}
+		finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+		
+		mapaSalida.put("numError", numError);
+		mapaSalida.put("msjError", msjError);
+			
+		return mapaSalida;
+	
+	}
 
 	public Map<String, Object> cargarCartera(Map<String, Object> mapaEntrada) {
 		
@@ -2609,24 +2672,79 @@ public class MutualEJB implements EJBRemoto {
 		return mapaSalida;
 	}
 	
-	/*  Prioridades */
-	public Map<String, Object> buscarPrioridad(Map<String, Object> mapaEntrada){
-		return null;
+	public Map<String, Object> buscarTipos(Map<String, Object> mapaEntrada) {
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		ArrayList<Tipo> listaTipos = null;
+		Tipo tipo = null;
+		String numError = "0";
+		String msjError = "";
+
+		try {
+			log.info("Buscar Tipos");
+			
+			tipo = (Tipo)mapaEntrada.get("tipo");
+
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call buscar_tipos(?,?,?,?) }");
+			
+			cStmt.setString(1, tipo.getDesTipo());
+			cStmt.registerOutParameter(2, Types.OTHER);// cursor$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+
+			
+			cStmt.execute();
+
+			ResultSet rs = (ResultSet) cStmt.getObject(2);
+			numError = cStmt.getString(3);
+			msjError = cStmt.getString(4);
+		
+			listaTipos = new ArrayList<Tipo>();
+
+			if(rs !=null){
+				while (rs.next()) {
+					tipo = new Tipo();
+					tipo.setCodTipo(rs.getString("cod_tipo"));
+					log.info("codTipo: "+ tipo.getCodTipo());
+					tipo.setDesTipo(rs.getString("des_tipo"));
+					log.info("desTipo: "+ tipo.getDesTipo());
+					listaTipos.add(tipo);
+				}
+				rs.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+
+		log.info("Num Error: "+numError);
+		log.info("Msj Error: "+msjError);
+		
+		mapaSalida.put("listaTipos",listaTipos);
+		mapaSalida.put("numError", numError);
+		mapaSalida.put("msjError", msjError);
+
+		return mapaSalida;
 	}
 
-	public Map<String, Object> agregarPrioridad(Map<String, Object> mapaEntrada){
-		return null;
-	}
-
-	public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada){
-		return null;
-	}
-
-	public Map<String, Object> modificarPrioridad(Map<String, Object> mapaEntrada){
-		return null;
-	}
-
-	public Map<String, Object> eliminarPrioridad(Map<String, Object> mapaEntrada){
-		return null;
-	}
+	
 }
