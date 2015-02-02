@@ -576,19 +576,19 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		String codCartera = request.getParameter("codCartera");
+		String codTipo = request.getParameter("codTipo");
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 
-		log.info("codCartera: "+codCartera);
+		log.info("codCartera: "+codTipo);
 		
-		mapaEntrada.put("codCartera", codCartera);
+		mapaEntrada.put("codTipo", codTipo);
 		
 		mapaSalida = ejbRemoto.cargarTipo(mapaEntrada);
 		
 		request.setAttribute("tipo", (Tipo)mapaSalida.get("tipo"));
 
-		pagDestino = "/carteras/cargaCartera.jsp";
+		pagDestino = "/tipos/cargaTipo.jsp";
 	}
 	
 	public void modificarCartera(HttpServletRequest request, HttpServletResponse response) {
@@ -648,6 +648,26 @@ public class Servlet extends HttpServlet {
 		request.setAttribute("cartera", (Usuario)mapaSalida.get("cartera"));
 
 		pagDestino = "/carteras/listaCarterasXml.jsp";
+	}
+	
+	public void eliminarTipo(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		String codTipo = request.getParameter("codTipo");
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+
+		log.info("codTipo: " + codTipo);
+		
+		mapaEntrada.put("codTipo", codTipo);
+		
+		mapaSalida = ejbRemoto.eliminarTipo(mapaEntrada);
+		
+		request.setAttribute("tipo", (Tipo)mapaSalida.get("tipo"));
+
+		pagDestino = "/tipos/listaTiposXml.jsp";
 	}
 	
 	
