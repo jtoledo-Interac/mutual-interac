@@ -24,6 +24,7 @@ import org.apache.log4j.Logger;
 import cl.antartis.interac.beans.Cartera;
 import cl.antartis.interac.beans.Documento;
 import cl.antartis.interac.beans.Empresa;
+import cl.antartis.interac.beans.Medio;
 import cl.antartis.interac.beans.Prioridad;
 import cl.antartis.interac.beans.Producto;
 import cl.antartis.interac.beans.Reclamo;
@@ -1432,6 +1433,15 @@ public class Servlet extends HttpServlet {
 
 		pagDestino = "contenedor.jsp";
 	}
+
+	public void medios(HttpServletRequest request, HttpServletResponse response) 
+	{
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+
+		pagDestino = "contenedor.jsp";
+	}
 	
 	public void buscarTipos(HttpServletRequest request, HttpServletResponse response) {
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
@@ -1451,5 +1461,25 @@ public class Servlet extends HttpServlet {
 		request.setAttribute("listaTipos", mapaSalida.get("listaTipos"));
 		
 		pagDestino = "/tipos/listaTiposXml.jsp";	
+	}
+	
+	public void buscarMedios(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+	
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		Medio medio = new Medio();
+		medio.setDesMedio(request.getParameter("nomMedio"));
+		
+		mapaEntrada.put("medio",medio);
+		
+		mapaSalida = ejbRemoto.buscarMedios(mapaEntrada);
+		
+		request.setAttribute("listaMedios", mapaSalida.get("listaMedios"));
+		
+		pagDestino = "/tipos/listaMediosXml.jsp";	
 	}
 }
