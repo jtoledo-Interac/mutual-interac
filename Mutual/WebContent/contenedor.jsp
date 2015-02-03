@@ -43,7 +43,7 @@ $(function()
 	        <li><a href="Servlet?accion=empresas">Empresas</a></li>
 			<li><a href="Servlet?accion=reportes">Reportes</a></li>
 			<li><a href="Servlet?accion=reclamos">Reclamos</a></li>
-	        <li><a href="Servlet?accion=grafico">Graficos Prueba</a></li>
+	        <li><a href="Servlet?accion=graficar">Graficos Prueba</a></li>
 	        <li><a href="#">Administraci&oacute;n</a>
 	        	<ul>
 	        		<li><a href="Servlet?accion=tipos">Tipos de Cartera</a></li>
