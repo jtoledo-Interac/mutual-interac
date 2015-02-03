@@ -47,7 +47,7 @@ function validar_form(f){
 </script>
 
 <form id="formAgrega" action="Servlet" method="post" onSubmit="return validar_form(this)">
-	<input type="hidden"	class="input"	id="accion"	name="accion"	value="agregarPrioridad">
-	<input type="text"	id="desPrioridad"	name="desPrioridad"	placeholder="Nombre de la Prioridad" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
-	<input type="text"	id="codPrioridad" 	name="codPrioridad"	placeholder="Codigo" maxlength="5" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> 
+	<input type="hidden"	class="input"	id="accion"	name="accion"	value="agregarMotivo">
+	<input type="text"	id="desMotivo"	name="desMotivo"	placeholder="Nombre del Motivo" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
+	<input type="text"	id="codMotivo" 	name="codMotivo"	placeholder="Codigo" maxlength="5" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> 
 </form>

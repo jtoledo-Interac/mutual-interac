@@ -763,6 +763,69 @@ public class MutualEJB implements EJBRemoto {
 		return mapaSalida;
 	
 	}
+	
+	public Map<String, Object> agregarMotivo(Map<String, Object> mapaEntrada) {
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		Motivo motivo = null;
+		String numError = "0";
+		String msjError = "";
+		
+		try {
+			log.info("Agregar motivo");
+
+			motivo = (Motivo)mapaEntrada.get("motivo");
+			
+			log.info(motivo.getMotivo());
+			
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call agregar_motivo(?,?,?,?) }"); //falta SP, posibles cambios aqui
+			cStmt.setString(1, motivo.getCodMotivo());
+			cStmt.setString(2, motivo.getDesMotivo());
+			
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+
+			
+			cStmt.execute();
+			
+	
+			numError = cStmt.getString(3);
+			msjError = cStmt.getString(4);
+			
+			log.info("Num Error: "+numError);
+			log.info("Msj Error: "+msjError);
+	
+		}catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+			
+		}
+		finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+		
+		mapaSalida.put("numError", numError);
+		mapaSalida.put("msjError", msjError);
+			
+		return mapaSalida;
+	
+	}
 
 	public Map<String, Object> agregarMedio(Map<String, Object> mapaEntrada) {
 		CallableStatement cStmt = null;
@@ -948,6 +1011,66 @@ public class MutualEJB implements EJBRemoto {
 		return mapaSalida;
 	}
 	
+	public Map<String, Object> cargarMotivo(Map<String, Object> mapaEntrada) {
+		
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		Motivo motivo = new Motivo();
+		Error error = new Error();
+		
+		try {
+			log.info("Cargar motivos");
+						
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+			
+			cStmt = dbConeccion.prepareCall("{ call cargar_motivo(?,?,?,?) }");
+			cStmt.setString(1, (String)mapaEntrada.get("codMotivo")); 
+			cStmt.registerOutParameter(2, Types.OTHER);// carteras$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+
+			cStmt.execute();
+			
+			ResultSet rsCartera = (ResultSet) cStmt.getObject(2);
+			error.setNumError(cStmt.getString(3));
+			error.setMsjError(cStmt.getString(4));
+						
+			while (rsCartera.next()) {
+				motivo = new Motivo();
+				motivo.setCodMotivo(rsCartera.getString("cod_motivo"));
+				motivo.setDesMotivo(rsCartera.getString("des_motivo"));
+				log.info(motivo.getMotivo());
+			}
+			
+			rsCartera.close();			
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+		mapaSalida.put("motivo",motivo);
+		mapaSalida.put("error", error);
+		
+		return mapaSalida;
+	}
+	
 	public Map<String, Object> cargarMedio(Map<String, Object> mapaEntrada) {
 		
 		CallableStatement cStmt = null;
@@ -1119,6 +1242,61 @@ public class MutualEJB implements EJBRemoto {
 		return mapaSalida;
 	}
 	
+	public Map<String, Object> modificarMotivo(Map<String, Object> mapaEntrada) {
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		Motivo motivo = null;
+		Error error = new Error();
+
+		try {
+			log.info("Modificar motivo");
+			
+			motivo = (Motivo)mapaEntrada.get("motivo");
+
+			mapaSalida = new HashMap<String, Object>();
+
+			log.info(motivo.getMotivo());
+			
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call modificar_motivo(?,?,?,?) }");
+			cStmt.setString(1,motivo.getCodMotivo());
+			cStmt.setString(2,motivo.getDesMotivo());
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+
+			
+			cStmt.execute();
+			
+			error.setNumError(cStmt.getString(3));
+			error.setMsjError(cStmt.getString(4));
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+
+		log.info("Num Error: "+ error.getNumError());
+		log.info("Msj Error: "+ error.getMsjError());
+
+		return mapaSalida;
+	}
+	
 	public Map<String, Object> modificarMedio(Map<String, Object> mapaEntrada) {
 		CallableStatement cStmt = null;
 		Map<String, Object> mapaSalida = null;
@@ -1252,6 +1430,61 @@ public class MutualEJB implements EJBRemoto {
 
 			cStmt = dbConeccion.prepareCall("{ call eliminar_tipo(?,?,?) }");
 			cStmt.setString(1, cod_tipo);
+			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
+
+			cStmt.execute();
+			numError = cStmt.getString(2);
+			msjError = cStmt.getString(3);			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+		mapaSalida.put("numError", numError);
+		mapaSalida.put("msjError", msjError);
+		
+		return mapaSalida;
+	
+	}
+	
+	public Map<String, Object> eliminarMotivo(Map<String, Object> mapaEntrada) {
+		
+		
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		String cod_motivo = "";
+		
+		String numError = "0";
+		String msjError = "";
+		
+		try {
+			log.info("Eliminar tipo");
+
+			cod_motivo = (String)mapaEntrada.get("codMotivo");
+			
+			log.info("cod_motivo: "+ cod_motivo);
+			
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call eliminar_motivo(?,?,?) }");
+			cStmt.setString(1, cod_motivo);
 			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
 

@@ -630,6 +630,15 @@ public class Servlet extends HttpServlet {
 	
 		pagDestino = "tipos/agregaTipo.jsp";
 	}
+	
+	public void crearMotivo(HttpServletRequest request, HttpServletResponse response) 
+	{
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+	
+		pagDestino = "motivos/agregaMotivo.jsp";
+	}
 
 	public void crearMedio(HttpServletRequest request, HttpServletResponse response) 
 	{
@@ -712,6 +721,28 @@ public class Servlet extends HttpServlet {
 
 		pagDestino = "contenedor.jsp?accion=tipos";
 	}
+
+	public void agregarMotivo(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		Motivo motivo = new Motivo();
+		motivo.setCodMotivo(request.getParameter("codMotivo"));
+		motivo.setDesMotivo(request.getParameter("desMotivo"));
+
+		log.info("desTipo: " + request.getParameter("desTipo") );
+		
+		mapaEntrada.put("motivo",motivo);
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		mapaSalida = ejbRemoto.agregarMotivo(mapaEntrada);
+		
+		pagDestino = "contenedor.jsp?accion=motivos";
+	}
+
 	
 	public void agregarMedio(HttpServletRequest request, HttpServletResponse response) {
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
@@ -773,6 +804,26 @@ public class Servlet extends HttpServlet {
 
 		pagDestino = "/tipos/cargaTipo.jsp";
 	}
+
+	public void cargarMotivo(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		String codMotivo = request.getParameter("codMotivo");
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+
+		log.info("codTipo: " + codMotivo);
+		
+		mapaEntrada.put("codMotivo", codMotivo);
+		
+		mapaSalida = ejbRemoto.cargarMotivo(mapaEntrada);
+		
+		request.setAttribute("motivo", (Motivo)mapaSalida.get("motivo"));
+
+		pagDestino = "/motivos/cargaMotivo.jsp";
+	}
 	
 	public void cargarMedio(HttpServletRequest request, HttpServletResponse response) {
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();		
@@ -833,6 +884,26 @@ public class Servlet extends HttpServlet {
 		pagDestino = "contenedor.jsp?accion=tipos";
 	}
 	
+	public void modificarMotivo(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		Motivo motivo = new Motivo();
+		
+		motivo.setCodMotivo(request.getParameter("codMotivo"));
+		motivo.setDesMotivo(request.getParameter("desMotivo"));
+
+		mapaEntrada.put("motivo",motivo);
+		
+		mapaSalida = ejbRemoto.modificarMotivo(mapaEntrada);
+
+		pagDestino = "contenedor.jsp?accion=motivos";
+	}
+	
 	public void modificarMedio(HttpServletRequest request, HttpServletResponse response) {
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
 		
@@ -891,6 +962,26 @@ public class Servlet extends HttpServlet {
 		request.setAttribute("tipo", (Tipo)mapaSalida.get("tipo"));
 
 		pagDestino = "/tipos/listaTiposXml.jsp";
+	}
+	
+	public void eliminarMotivo(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		String codMotivo = request.getParameter("codMotivo");
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+
+		log.info("codMotivo: " + codMotivo);
+		
+		mapaEntrada.put("codMotivo", codMotivo);
+		
+		mapaSalida = ejbRemoto.eliminarMotivo(mapaEntrada);
+		
+		request.setAttribute("motivo", (Motivo)mapaSalida.get("motivo"));
+
+		pagDestino = "/motivoss/listaMotivosXml.jsp";
 	}
 	
 	public void eliminarMedio(HttpServletRequest request, HttpServletResponse response) {

@@ -123,4 +123,13 @@ public interface EJBRemoto {
 	public Map<String, Object> buscarEstados(Map<String, Object> mapaEntrada);
 
 	public Map<String, Object> agregarEstado(Map<String, Object> mapaEntrada);
+
+	public Map<String, Object> cargarMotivo(Map<String, Object> mapaEntrada);
+
+	public Map<String, Object> modificarMotivo(Map<String, Object> mapaEntrada);
+
+	public Map<String, Object> agregarMotivo(Map<String, Object> mapaEntrada);
+
+	public Map<String, Object> eliminarMotivo(Map<String, Object> mapaEntrada);
+
 }
