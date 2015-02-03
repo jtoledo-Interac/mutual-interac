@@ -1416,7 +1416,7 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
 		String codProducto = request.getParameter("codProducto");
-		
+		log.info("parametro entrada servlet cargar producto"+request.getParameter("codProducto"));
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 
 		log.info("codProducto: "+codProducto);

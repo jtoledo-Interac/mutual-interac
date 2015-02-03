@@ -44,7 +44,7 @@ $(function()
 			<li><a href="Servlet?accion=reportes">Reportes</a></li>
 			<li><a href="Servlet?accion=reclamos">Reclamos</a></li>
 	        <li><a href="Servlet?accion=grafico">Graficos Prueba</a></li>
-	        <li><a href="#">Administraci&oacute;n</a>
+	        <li><a href="#">Administración</a>  <li>
 	        	<ul>
 	        		<li><a href="Servlet?accion=tipos">Tipos de Cartera</a></li>
 					<li><a href="Servlet?accion=productos">Productos</a></li>
@@ -135,7 +135,7 @@ $(function()
 					
 					<%-- MOTIVOS --%>
 					<c:when test="${param.accion eq 'motivos'}">
-						<%@ include file="motivos/listaMotivos.jsp" %>
+					<%@ include file="motivos/listaMotivos.jsp" %> 
 					</c:when>
 					
 					<%-- PRIORIDADES --%>

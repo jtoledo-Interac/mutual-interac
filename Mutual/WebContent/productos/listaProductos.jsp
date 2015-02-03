@@ -29,9 +29,9 @@
 				repeatitems: false,
 				id: "codProducto"
 			},
-		   	pager: $('#pieProducto'),
+		   	pager: $('#pieProductos'),
 		   	pgtext : 'P&aacute;g: {0} de {1}', 
-		   	sortname: 'codProducto',
+		   	sortname: 'codProductos',
 		    viewrecords: true,
 		    sortorder: "desc",
 		    caption:"Productos",
@@ -143,7 +143,7 @@
 	
 	function editarProducto(codProducto)
 	{
-		console.log("PRODUCTO: "+codProducto);
+		console.log("TIPO: "+codProducto);
 		
 		ajaxCall(getUrlCargarProducto(codProducto), function(response){
 			$('#cargaProducto').html(response).dialog('open');
