@@ -9,6 +9,7 @@
 	var numFilas = 10;
 	
 	$(function() {
+
 		$('#listadoPrioridades').jqGrid(
 		{
 		   	url: getUrlBuscarPrioridades(),
@@ -30,7 +31,7 @@
 			},
 		   	pager: $('#piePrioridades'),
 		   	pgtext : 'P&aacute;g: {0} de {1}', 
-		   	sortname: 'codPrioridad',
+		   	sortname: 'codPrioridades',
 		    viewrecords: true,
 		    sortorder: "desc",
 		    caption:"Prioridades",
@@ -45,7 +46,6 @@
 				
 				for (var i = 0; i < ids.length; i++)
 				{
-					
 					var idFila = ids[i];
 					console.log("IDFILA: "+idFila);
 					var btnEditar="";
@@ -64,12 +64,11 @@
 			onSelectRow : function(rowId, status) 
 			{
 				idFila = rowId;
-				console.log("1: "+idFila);
+				console.log("Paso aca: "+idFila);
 			},
 			ondblClickRow: function()
 			{
 				var fila = $('#listadoPrioridades').jqGrid('getRowData',idFila);
-				//editarProducto(fila.codProducto);
 			},
 		}).navGrid('#piePrioridad',{edit:false,add:false,del:false});	
 		
@@ -142,7 +141,7 @@
 	
 	function editarPrioridad(codPrioridad)
 	{
-		console.log("prioridad: "+codPrioridad);
+		console.log("Prioridad: "+codPrioridad);
 		
 		ajaxCall(getUrlCargarPrioridad(codPrioridad), function(response){
 			$('#cargaPrioridad').html(response).dialog('open');
@@ -150,12 +149,11 @@
 	}
 	
 	function eliminarPrioridad(codPrioridad)
-	{
-		console.log("2: "+codPrioridad);
-   		jConfirm('¿ Confirma eliminar el Prioridad ?', 'Confirmación', function(res){
+	{  
+   		jConfirm('¿ Confirma eliminar la Prioridad ?', 'Confirmación', function(res){
    			if (res == true){
   				ajaxCall(getUrlEliminarPrioridad(codPrioridad), function(){
-  					jAlert("El Prioridad ha sido eliminado exitosamente");
+  					jAlert("El Tipo ha sido eliminado exitosamente");
   					buscarPrioridades();
    				});
    			}
@@ -164,7 +162,7 @@
 	
 	function buscarPrioridades() 
 	{		
-		$('#listadoPrioridades').jqGrid('setGridParam', {
+		$('#listadoTipos').jqGrid('setGridParam', {
 			url : getUrlBuscarPrioridades(),
 			page : 1,
 			rowNum : numFilas,

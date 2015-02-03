@@ -132,4 +132,8 @@ public interface EJBRemoto {
 
 	public Map<String, Object> eliminarMotivo(Map<String, Object> mapaEntrada);
 
+	public Map<String, Object> modificarPrioridad(Map<String, Object> mapaEntrada);
+
+	public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada);
+
 }

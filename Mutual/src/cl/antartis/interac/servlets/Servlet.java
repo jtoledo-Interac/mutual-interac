@@ -904,6 +904,19 @@ public class Servlet extends HttpServlet {
 		pagDestino = "contenedor.jsp?accion=motivos";
 	}
 	
+	public void modificarPrioridad(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		Prioridad p= new Prioridad();
+		p.setCodPrioridad(request.getParameter("codPrioridad"));
+		p.setDesPrioridad(request.getParameter("desPrioridad"));
+		mapaEntrada.put("prioridad",p);
+		ejbRemoto.modificarPrioridad(mapaEntrada);
+		pagDestino = "contenedor.jsp?accion=prioridades";
+	}
+	
 	public void modificarMedio(HttpServletRequest request, HttpServletResponse response) {
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
 		
@@ -962,6 +975,20 @@ public class Servlet extends HttpServlet {
 		request.setAttribute("tipo", (Tipo)mapaSalida.get("tipo"));
 
 		pagDestino = "/tipos/listaTiposXml.jsp";
+	}
+	
+	public void eliminarPrioridad(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		String codPrioridad = request.getParameter("codPrioridad");
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		log.info("codPrioridad: " + codPrioridad);
+		
+		mapaEntrada.put("codPrioridad", codPrioridad);
+		mapaSalida = ejbRemoto.eliminarPrioridad(mapaEntrada);
+		pagDestino = "contenedor.jsp?accion=prioridades";
 	}
 	
 	public void eliminarMotivo(HttpServletRequest request, HttpServletResponse response) {
@@ -1430,6 +1457,21 @@ public class Servlet extends HttpServlet {
 		pagDestino = "/productos/cargaProducto.jsp";
 	}
 	
+	public void cargarPrioridad(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		String codPrioridad = request.getParameter("codPrioridad");
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		log.info("codPrioridad: "+codPrioridad);
+		mapaEntrada.put("codPrioridad", codPrioridad);
+		
+		mapaSalida = ejbRemoto.cargarPrioridad(mapaEntrada);
+		request.setAttribute("prioridad", (Prioridad)mapaSalida.get("prioridad"));
+		pagDestino = "/prioridades/cargaPrioridad.jsp";
+	}
+	
 	public void modificarProducto(HttpServletRequest request, HttpServletResponse response) {
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
 		
@@ -1760,13 +1802,13 @@ public class Servlet extends HttpServlet {
 		p.setDesPrioridad(request.getParameter("desPrioridad"));
 		p.setCodPrioridad(request.getParameter("codPrioridad"));
 
-		mapaEntrada.put("producto",p);
+		mapaEntrada.put("prioridad",p);
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
 		mapaSalida = ejbRemoto.agregarPrioridad(mapaEntrada);
 
-		pagDestino = "contenedor.jsp?accion=prioridad";
+		pagDestino = "contenedor.jsp?accion=prioridades";
 	}
 	
 	public void buscarPrioridades(HttpServletRequest request, HttpServletResponse response) {
@@ -1786,7 +1828,7 @@ public class Servlet extends HttpServlet {
 		
 		request.setAttribute("listaPrioridades", mapaSalida.get("listaPrioridades"));
 		
-		pagDestino = "/tipos/listaPrioridadesXml.jsp";	
+		pagDestino = "/prioridades/listaPrioridadesXml.jsp";	
 	}
 	
 	

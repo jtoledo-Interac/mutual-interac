@@ -3580,23 +3580,23 @@ public class MutualEJB implements EJBRemoto {
 		return mapaSalida;
 	}
 	
-	public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
+public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 		
 		CallableStatement cStmt = null;
 		Map<String, Object> mapaSalida = null;
-		Tipo tipo = new Tipo();
+		Prioridad p = new Prioridad();
 		
 		Error error = new Error();
 		
 		try {
-			log.info("Cargar tipos");
+			log.info("Cargar prioridades");
 						
 			mapaSalida = new HashMap<String, Object>();
 
 			dbConeccion = interacDS.getConnection();
 			
-			cStmt = dbConeccion.prepareCall("{ call cargar_tipo(?,?,?,?) }");
-			cStmt.setString(1, (String)mapaEntrada.get("codTipo")); 
+			cStmt = dbConeccion.prepareCall("{ call cargar_prioridad(?,?,?,?) }");
+			cStmt.setString(1, (String)mapaEntrada.get("codPrioridad")); 
 			cStmt.registerOutParameter(2, Types.OTHER);// carteras$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
@@ -3608,10 +3608,10 @@ public class MutualEJB implements EJBRemoto {
 			error.setMsjError(cStmt.getString(4));
 						
 			while (rsCartera.next()) {
-				tipo = new Tipo();
-				tipo.setCodTipo(rsCartera.getString("cod_tipo"));
-				tipo.setDesTipo(rsCartera.getString("des_tipo"));
-				log.info(tipo.getTipo());
+				p = new Prioridad();
+				p.setCodPrioridad(rsCartera.getString("cod_prioridad"));
+				p.setDesPrioridad(rsCartera.getString("des_prioridad"));
+				log.info(p.getPrioridad());
 			}
 			
 			rsCartera.close();			
@@ -3635,7 +3635,7 @@ public class MutualEJB implements EJBRemoto {
 				e.printStackTrace();
 			}
 		}
-		mapaSalida.put("tipo",tipo);
+		mapaSalida.put("prioridad",p);
 		mapaSalida.put("error", error);
 		
 		return mapaSalida;
@@ -4040,6 +4040,59 @@ public class MutualEJB implements EJBRemoto {
 		mapaSalida.put("listaEstados",listaEstados);
 		mapaSalida.put("numError", numError);
 		mapaSalida.put("msjError", msjError);
+
+		return mapaSalida;
+	}
+
+	public Map<String, Object> modificarPrioridad(Map<String, Object> mapaEntrada) {
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		Prioridad p = null;
+		Error error = new Error();
+
+		try {
+			log.info("Modificar prioridad");
+			
+			p = (Prioridad)mapaEntrada.get("prioridad");
+
+			mapaSalida = new HashMap<String, Object>();
+
+			log.info(p.getPrioridad());
+			
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call modificar_prioridad(?,?,?,?) }");
+			cStmt.setString(1,p.getCodPrioridad());
+			cStmt.setString(2,p.getDesPrioridad());
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+			cStmt.execute();
+			
+			error.setNumError(cStmt.getString(3));
+			error.setMsjError(cStmt.getString(4));
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+
+		log.info("Num Error: "+ error.getNumError());
+		log.info("Msj Error: "+ error.getMsjError());
 
 		return mapaSalida;
 	}
