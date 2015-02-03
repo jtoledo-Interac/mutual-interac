@@ -29,9 +29,9 @@
 				repeatitems: false,
 				id: "codProducto"
 			},
-		   	pager: $('#pieProductos'),
+		   	pager: $('#pieProducto'),
 		   	pgtext : 'P&aacute;g: {0} de {1}', 
-		   	sortname: 'codProductos',
+		   	sortname: 'codProducto',
 		    viewrecords: true,
 		    sortorder: "desc",
 		    caption:"Productos",
