@@ -12,7 +12,6 @@ if( session.getAttribute("user")== null){
 $(function()
 {	
 	$('#cerrar').click(function(){
-		$('#accionLogOut').val("logOut");
 		$('#logOut').submit();
 	});
 	
@@ -46,7 +45,7 @@ $(function()
 	        <li><a href="Servlet?accion=graficar">Graficos Prueba</a></li>
 	        <li><a href="#">Administraci&oacute;n</a>
 	        	<ul>
-	        		<li><a href="Servlet?accion=tipos">Tipos de Cartera</a></li>
+	        		<li><a href="Servlet?accion=carteras">Tipos de Cartera</a></li>
 					<li><a href="Servlet?accion=productos">Productos</a></li>
 	        		<li><a href="Servlet?accion=usuarios">Usuarios</a></li>
 	        		<li><a href="Servlet?accion=perfiles">Perfiles</a></li>
