@@ -272,10 +272,10 @@ public class Servlet extends HttpServlet {
 	public void actualizarContrasena(HttpServletRequest request, HttpServletResponse response){
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
-		Encriptador e = new Encriptador();
+		Encriptador encript = new Encriptador();
 		
 		mapaEntrada.put("id", request.getParameter("id"));
-		mapaEntrada.put("contrasena", e.encriptar(request.getParameter("nuevaContrasena")));
+		mapaEntrada.put("contrasena", encript.encriptar(request.getParameter("nuevaContrasena")));
 		log.info(request.getParameter("nuevaContrasena"));
 		mapaSalida = ejbRemoto.actualizarContrasena(mapaEntrada);
 		
@@ -349,7 +349,7 @@ public class Servlet extends HttpServlet {
 
 	public void agregarUsuario(HttpServletRequest request, HttpServletResponse response) {
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
-		
+		Encriptador encriptador = new Encriptador();
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
@@ -362,7 +362,8 @@ public class Servlet extends HttpServlet {
 		usuario.setApePaterno(request.getParameter("sApePaterno"));
 		usuario.setApeMaterno(request.getParameter("sApeMaterno"));
 		usuario.setNomUsuario(request.getParameter("sNomUsuario"));
-		usuario.setContrasena1(request.getParameter("sContrasena"));
+		//TODO: Revisar pass1 y pass2 que sean iguales
+		usuario.setContrasena1(encriptador.encriptar(request.getParameter("sContrasena1")));
 		usuario.setCodGenero(request.getParameter("sCodGenero"));
 		usuario.setFecNacimiento(request.getParameter("sFecNacimiento"));
 		usuario.setTelefono(request.getParameter("sTelefono"));
