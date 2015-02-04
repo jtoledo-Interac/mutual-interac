@@ -20,9 +20,11 @@ $(function()
 </script>
 
 <div class="banner">
+
 	<div class="logo-banner">
 		
 	</div>
+	
 	<div class="info-user">
 		<br />
 		

@@ -18,7 +18,7 @@
 ">
 			<span>Ingrese archivo excel a procesar: </span>
 			<input type="file" id="documento" name="documento" placeholder="Documento Adjunto">
-			<input type="button" id="btnCargar" class="boton" value="Generar Reporte">
+			<input type="button" id="btnCargar" class="boton" value="Generar">
 		</div>
 	</div>
 </form>
