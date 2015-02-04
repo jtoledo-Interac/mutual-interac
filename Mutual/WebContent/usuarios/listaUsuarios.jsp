@@ -96,6 +96,7 @@
 		    modal: true,
 		    position: 'center',
 		    buttons: {
+				"Crear Usuario": function() {
 					$('#formAgrega').submit();
 				},
 				"Cancelar": function() {
