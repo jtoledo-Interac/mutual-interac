@@ -93,7 +93,7 @@
 		    position: 'center',
 		    buttons: {
 				"Crear Empresa": function() {
-					$('#formAgrega').submit();
+					$('#formAgrega .submit').click();
 				},
 				"Cancelar": function() {
 					$(this).dialog("close");

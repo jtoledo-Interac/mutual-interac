@@ -1,46 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 
-<script type="text/javascript">
-	function validar_form(f){
-		var ok = true;
-		var msg = "Debe ingresar todos los campos.";
-		for (i = 0; i < f.elements.length; i++) { 
-			switch(f.elements[i].type){
-			case "text":
-				if(f.elements[i].value.length==0){
-					f.elements[i].style.bordeColor= "#FF0000";
-					f.elements[i].style.boxShadow = " 0 0 10px #FF0000";
-					ok = false;
-				}
-				break;
-			case "password":
-				if(f.elements[i].value.length==0){
-					f.elements[i].style.boxShadow = " 0 0 10px #FF0000";
-					ok = false;
-				}
-				break;
-			case "select-one":
-				if(f.elements[i].selectedIndex<0){
-					f.elements[i].style.boxShadow = " 0 0 10px #FF0000";
-					ok = false;
-				}
-				break;
-			case "file":
-				if(f.elements[i].value.length==0){
-					f.elements[i].style.boxShadow = " 0 0 10px #FF0000";
-					ok = false;
-				}
-				break;
-			default:
-				break;
-			}
-		}
-		if(!ok){
-			alert(msg);
-		}
-		return ok;
-	}
-	
+<script type="text/javascript">	
 	function valida_numeros(e){
 	    tecla = (document.all) ? e.keyCode : e.which;
 	    //Tecla de retroceso para borrar, siempre la permite
@@ -59,49 +19,48 @@
 	});
 </script>
 
-<form id="formAgrega" action="Upload" method="post" enctype="multipart/form-data" onSubmit="return validar_form(this)">
-<input type="hidden"	id="accion" 		name="accion" 		value="agregarDocumento">
+<form id="formAgrega" action="Upload" method="post" enctype="multipart/form-data">
+<input type="hidden" id="accion" name="accion" value="agregarDocumento">
+<input type="submit" class="submit" style="display:none;">
 <table>
 <tr>
-	<td colspan="2"><input type="file" id="documento" name="documento" placeholder="Documento Adjunto" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">	</td>
+	<td colspan="2"><input type="file" required id="documento" class="validar" name="documento" placeholder="Documento Adjunto"></td>
 </tr>
 </table>
 <br/>
 <table>
 <tr>
-	<td> <input type="text"		id="numFolio" 		name="numFolio"		placeholder="Nº Folio"	onkeypress="return valida_numeros(event)" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> </td>
-	<td> <input type="text"		id="numAdherente" 	name="numAdherente"	placeholder="Nº Adherente" onkeypress="return valida_numeros(event)" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> </td>
+	<td> <input type="text"	id="numFolio" required name="numFolio" placeholder="Nº Folio"	onkeypress="return valida_numeros(event)"> </td>
+	<td> <input type="text"	id="numAdherente" required name="numAdherente"	placeholder="Nº Adherente" onkeypress="return valida_numeros(event)"> </td>
 </tr>
 <tr>
-	<td> <input type="text"		id="descripcion" 		name="descripcion"		placeholder="Descripción"	onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> </td>
-	<td> <input type="text"		id="fecCreacion" 	name="fecCreacion" 	placeholder="Fecha Creaci&oacute;n" class="fecha" readonly onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> </td>
+	<td> <input type="text"	id="descripcion" required name="descripcion" placeholder="Descripción"> </td>
+	<td> <input type="text" id="fecCreacion" required name="fecCreacion" placeholder="Fecha Creaci&oacute;n" class="fecha"> </td>
 </tr>
 <tr>	
-	<td><select id="codCartera" name="codCartera" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
-		<option value="0" selected>Seleccione una cartera</option>
+	<td><select id="codCartera" required name="codCartera">
+		<option value="0" disabled selected>Seleccione una cartera</option>
 		<c:forEach items="${requestScope.listaCarteras}" var="cartera">
 			<option value="${cartera.codCartera}" >${cartera.desCartera}</option>
 		</c:forEach>
 	</select> </td>
 	
-	<td><select id="codProducto" name="codProducto" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
-		<option value="0" selected>Seleccione un producto</option>
+	<td><select id="codProducto" required name="codProducto">
+		<option value="0" disabled selected>Seleccione un producto</option>
 		<c:forEach items="${requestScope.listaProductos}" var="producto">
 			<option value="${producto.codProducto}" >${producto.desProducto}</option>
 		</c:forEach>
 	</select> </td>	
 </tr>
 <tr>
-	<td><select id="codArea" name="codArea" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
-		<option value="0" selected>Seleccione un área</option>
+	<td><select id="codArea" required name="codArea">
+		<option value="0" disabled selected>Seleccione un área</option>
 		<c:forEach items="${requestScope.listaAreas}" var="area">
 			<option value="${area.codArea}" >${area.desArea}</option>
 		</c:forEach>
 	</select></td>
-		<td> <input type="text"		id="nombre" 	name="nombre"	placeholder="Nombre" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'"> </td>
+		<td> <input type="text"	id="nombre"	required name="nombre" placeholder="Nombre" > </td>
 	
 </tr>
 </table>
 </form>
-</body>
-</html>

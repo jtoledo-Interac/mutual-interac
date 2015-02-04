@@ -40,6 +40,7 @@ a:visited {text-decoration:none;color:#ffffff;}
 a:active {text-decoration:none;color:#ffffff;} 
 a:hover {text-decoration:none;color:#06FFFF;} 
 
+
 input:-webkit-autofill {
     -webkit-box-shadow:0 0 0 50px white inset;
     -webkit-text-fill-color: #333;
@@ -48,25 +49,14 @@ input:-webkit-autofill {
 input:-webkit-autofill:focus {
     -webkit-box-shadow: 0 0 0 50px white inset;
     -webkit-text-fill-color: #333;
-} 
-
-/*input {
-    border: 2px solid #dadada;
-    border-radius: 7px;
-}*/
+}
 
 input:focus { 
     outline: none;
     border-color: #9ecaed;
     box-shadow: 0 0 10px #9ecaed;
 }
-/*
-input:blur { 
-    outline: none;
-    border-color: #9ecaed;
-    box-shadow: none;
-}
-*/
+
 .centrado{
 	margin-left:auto;
 	margin-right:auto;
@@ -165,7 +155,7 @@ input[type=radio]:checked + label:before {
 
 .banner{
 	background: #98cb00;
-	width:100%;
+	width: 100%;
 	height: 100px;
 }
 
@@ -695,3 +685,11 @@ input[type=radio]:checked + label:before {
 	height: 500px;
 	border-radius: 10px 10px;
 }
+
+/*
+.validar:focus{ 
+    outline: none;
+    border-color: #9ecaed;
+    box-shadow: 0 0 10px #9ecaed;
+}
+*/
