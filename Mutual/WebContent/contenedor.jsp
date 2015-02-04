@@ -12,6 +12,7 @@ if( session.getAttribute("user")== null){
 $(function()
 {	
 	$('#cerrar').click(function(){
+		$('#accionLogOut').val("logOut");
 		$('#logOut').submit();
 	});
 	
