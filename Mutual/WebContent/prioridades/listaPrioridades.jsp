@@ -212,9 +212,9 @@
 
 	<div class="filtros">		
 		<form id="formPrioridad" action="Servlet" method="post">
-			<input type="button" 	id="btnBuscar" 		name="btnBuscar" 	value="Buscar"/>
-			<input type="button" 	id="btnAgregar" 	name="btnAgregar" 	value="Agregar"/>
-			<input type="text" 		id="nomPrioridad" 	name="nomPrioridad"	placeholder="Nombre Prioridad">
+			<input type="button" 	id="btnBuscar" 		name="btnBuscar" 	value="Buscar" class="boton"/>
+			<input type="button" 	id="btnAgregar" 	name="btnAgregar" 	value="Agregar" class="boton"/>
+			<input type="text" 		id="nomPrioridad" 	name="nomPrioridad"	placeholder="Nombre Prioridad" class="text">
 		</form>
 	</div> 
 

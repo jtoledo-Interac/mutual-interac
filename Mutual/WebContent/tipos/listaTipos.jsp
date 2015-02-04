@@ -214,9 +214,9 @@
 
 	<div class="filtros">		
 		<form id="formTipo" action="Servlet" method="post">
-			<input type="button" 	id="btnBuscar" 		name="btnBuscar" 	value="Buscar"/>
-			<input type="button" 	id="btnAgregar" 	name="btnAgregar" 	value="Agregar"/>
-			<input type="text" 		id="nomTipo" 	name="nomTipo"	placeholder="Nombre Tipo">
+			<input type="button" 	id="btnBuscar" 		name="btnBuscar" 	value="Buscar" class="boton"/>
+			<input type="button" 	id="btnAgregar" 	name="btnAgregar" 	value="Agregar" class="boton"/>
+			<input type="text" 		id="nomTipo" 	name="nomTipo"	placeholder="Nombre Tipo" class="text">
 		</form>
 	</div> 
 

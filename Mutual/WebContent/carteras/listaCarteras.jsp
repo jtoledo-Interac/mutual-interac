@@ -212,9 +212,9 @@
 
 	<div class="filtros">		
 		<form id="formCartera" action="Servlet" method="post">
-			<input type="button" 	id="btnBuscar" 		name="btnBuscar" 	value="Buscar"/>
-			<input type="button" 	id="btnAgregar" 	name="btnAgregar" 	value="Agregar"/>
-			<input type="text" 		id="nomCartera" 	name="nomCartera"	placeholder="Nombre Cartera">
+			<input type="button" 	id="btnBuscar" 		name="btnBuscar" 	value="Buscar" class="boton"/>
+			<input type="button" 	id="btnAgregar" 	name="btnAgregar" 	value="Agregar" class="boton"/>
+			<input type="text" 		id="nomCartera" 	name="nomCartera"	placeholder="Nombre Cartera" class="text">
 		</form>
 	</div> 
 

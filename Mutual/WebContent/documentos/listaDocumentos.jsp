@@ -225,27 +225,27 @@
 		<form id="formDocumento" action="Servlet" method="post">
 			<input type="button" 	id="btnBuscar" 		name="btnBuscar" 	class="boton" value="Buscar"/>
 			<input type="button" 	id="btnAgregar" 	name="btnAgregar" 	class="boton" value="Agregar"/>
-			<input type="text" 		id="numAdherente" 	name="numAdherente"	placeholder="Nº Adherente">
-			<input type="text" 		id="numFolio" 		name="numFolio"		placeholder="Nº Folio">
-			<input type="text" 		id="nombre" 		name="nombre"		placeholder="Nombre Documento">
+			<input type="text" 		id="numAdherente" 	name="numAdherente"	placeholder="Nº Adherente" class="text">
+			<input type="text" 		id="numFolio" 		name="numFolio"		placeholder="Nº Folio" class="text">
+			<input type="text" 		id="nombre" 		name="nombre"		placeholder="Nombre Documento" class="text">
 			
 			
 						
-			<select id="codCartera" name="codCartera">
-				<option value="" selected>Seleccione una cartera</option>
+			<select id="codCartera" name="codCartera" class="select" >
+				<option value="" selected>Seleccione una cartera </option>
 				<c:forEach items="${requestScope.listaCarteras}" var="cartera">
 					<option value="${cartera.codCartera}" >${cartera.desCartera}</option>
 				</c:forEach>
 			</select> 
 			
-			<select id="codProducto" name="codProducto">
+			<select id="codProducto" name="codProducto" class="select">
 				<option value="" selected>Seleccione un producto</option>
 				<c:forEach items="${requestScope.listaProductos}" var="producto">
 					<option value="${producto.codProducto}" >${producto.desProducto}</option>
 				</c:forEach>
 			</select>
 			
-			<select id="codArea" name="codArea">
+			<select id="codArea" name="codArea" class="select">
 				<option value="" selected>Seleccione un área</option>
 				<c:forEach items="${requestScope.listaAreas}" var="area">
 					<option value="${area.codArea}" >${area.desArea}</option>

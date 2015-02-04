@@ -213,10 +213,10 @@
 
 	<div class="filtros">		
 		<form id="formEmpresa" action="Servlet" method="post">
-			<input type="button" 	id="btnBuscar" 		name="btnBuscar" 	value="Buscar"/>
-			<input type="button" 	id="btnAgregar" 	name="btnAgregar" 	value="Agregar"/>
-			<input type="text" 		id="nomEmpresa" 	name="nomEmpresa"	placeholder="Nombre Empresa">
-			<input type="text" 		id="numAdherente" 	name="numAdherente"	placeholder="Nº Adherente">
+			<input type="button" 	id="btnBuscar" 		name="btnBuscar" 	value="Buscar" class="boton"/>
+			<input type="button" 	id="btnAgregar" 	name="btnAgregar" 	value="Agregar" class="boton"/>
+			<input type="text" 		id="nomEmpresa" 	name="nomEmpresa"	placeholder="Nombre Empresa" class="text">
+			<input type="text" 		id="numAdherente" 	name="numAdherente"	placeholder="Nº Adherente" class="text">
 		</form>
 	</div> 
 

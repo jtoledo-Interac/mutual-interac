@@ -229,33 +229,33 @@
 
 	<div class="filtros">		
 		<form id="formReclamo" action="Servlet" method="post">
-			<input type="button" 	id="btnBuscar" 		name="btnBuscar" 	value="Buscar"/>
-			<input type="button" 	id="btnAgregar" 	name="btnAgregar" 	value="Agregar"/>
-			<input type="text" 		id="id_reclamo" 	name="id_reclamo"	style= "width: 130px"	placeholder="ID Reclamo" >
-			<input type="text" 		id="nombre_solicitante"  name="nombre_solicitante"	style= "width: 130px"	placeholder="Nombre Solicitante">
-			<input type="text" 		id="num_adherente" 	name="num_adherente" style= "width: 130px"	placeholder="Nº Adherente">
+			<input type="button" 	id="btnBuscar" 		name="btnBuscar" 	value="Buscar" class="boton"/>
+			<input type="button" 	id="btnAgregar" 	name="btnAgregar" 	value="Agregar" class="boton"/>
+			<input type="text" 		id="id_reclamo" 	name="id_reclamo"		placeholder="ID Reclamo" class="text" >
+			<input type="text" 		id="nombre_solicitante"  name="nombre_solicitante"		placeholder="Nombre Solicitante" class="text">
+			<input type="text" 		id="num_adherente" 	name="num_adherente" 	placeholder="Nº Adherente" class="text">
 						
-			<select id="codCartera" name="codCartera">
+			<select id="codCartera" name="codCartera" class="select">
 				<option value="" selected>Seleccione una cartera</option>
 				<c:forEach items="${requestScope.listaCarteras}" var="cartera">
 					<option value="${cartera.codCartera}" >${cartera.desCartera}</option>
 				</c:forEach>
 			</select> 
-			<select id="codTipo" name="codTipo">
+			<select id="codTipo" name="codTipo" class="select">
 				<option value="" selected>Seleccione un tipo</option>
 				<c:forEach items="${requestScope.listaTipos}" var="tipo">
 					<option value="${tipo.codTipo}" >${tipo.desTipo}</option>
 				</c:forEach>
 			</select>
 			
-			<select id="codEstado" name="codEstado">
+			<select id="codEstado" name="codEstado" class="select">
 				<option value="" selected>Seleccione un estado</option>
 				<c:forEach items="${requestScope.listaEstados}" var="estado">
 					<option value="${estado.codEstado}" >${estado.desEstado}</option>
 				</c:forEach>
 			</select>
 			
-			<select id="codPrioridad" name="codPrioridad">
+			<select id="codPrioridad" name="codPrioridad" class="select">
 				<option value="" selected>Seleccione una prioridad</option>
 				<c:forEach items="${requestScope.listaPrioridades}" var="prioridad">
 					<option value="${prioridad.codPrioridad}">${prioridad.desPrioridad}</option>

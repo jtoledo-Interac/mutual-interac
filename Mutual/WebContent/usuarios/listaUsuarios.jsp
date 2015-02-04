@@ -220,14 +220,14 @@
 
 	<div class="filtros">		
 		<form id="formUsuario" action="Servlet" method="post">
-			<input type="button" 	id="btnBuscar" 		name="btnBuscar" 	value="Buscar"/>
-			<input type="button" 	id="btnAgregar" 	name="btnAgregar" 	value="Agregar"/>
-			<input type="text"		id="sRut" 			name="sRut" 		placeholder="Rut" class="rut2">
+			<input type="button" 	id="btnBuscar" 		name="btnBuscar" 	value="Buscar" class="boton"/>
+			<input type="button" 	id="btnAgregar" 	name="btnAgregar" 	value="Agregar" class="boton"/>
+			<input type="text"		id="sRut" 			name="sRut" 		placeholder="Rut" class="text" class="rut2" >
 			<input type="hidden"	id="sDV" 			name="sDV">
-			<input type="text" 		id="sNombres" 		name="sNombres"		placeholder="Nombres">
-			<input type="text" 		id="sApePaterno" 	name="sApePaterno"	placeholder="Apellido Paterno">
-			<input type="text" 		id="sApeMaterno" 	name="sApeMaterno" 	placeholder="Apellido Materno">
-			<input type="text" 		id="sNomUsuario" 	name="sNomUsuario"	placeholder="Nombre Usuario">
+			<input type="text" 		id="sNombres" 		name="sNombres"		placeholder="Nombres" class="text">
+			<input type="text" 		id="sApePaterno" 	name="sApePaterno"	placeholder="Apellido Paterno" class="text">
+			<input type="text" 		id="sApeMaterno" 	name="sApeMaterno" 	placeholder="Apellido Materno" class="text">
+			<input type="text" 		id="sNomUsuario" 	name="sNomUsuario"	placeholder="Nombre Usuario" class="text">
 		</form>
 	</div> 
 
