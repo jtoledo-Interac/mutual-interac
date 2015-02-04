@@ -40,7 +40,12 @@ $(function()
 	        <li><a href="Servlet?accion=organigrama">Organigrama</a></li>
 	        <li><a href="Servlet?accion=documentos">Documentos</a></li>
 	        <li><a href="Servlet?accion=empresas">Empresas</a></li>
-			<li><a href="Servlet?accion=reportes">Reportes</a></li>
+			<li><a href="#">Reportes</a>
+				<ul>
+					<li><a href="Servlet?accion=repAccidentados">Reporte Accdidentados</a></li>
+					<li><a href="Servlet?accion=repDias">Reporte D&iacute;as Perdidos</a></li>
+				</ul>
+			</li>
 			<li><a href="Servlet?accion=reclamos">Reclamos</a></li>
 	        <li><a href="Servlet?accion=graficar">Graficos Prueba</a></li>
 	        <li><a href="#">Administraci&oacute;n</a>
