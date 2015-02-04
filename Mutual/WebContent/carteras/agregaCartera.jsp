@@ -9,5 +9,6 @@
 
 <form id="formAgrega" action="Servlet" method="post">
 	<input type="hidden"	id="accion" 		name="accion" 		value="agregarCartera">
-	<input type="text" 		id="nombre" 		name="nombre"		placeholder="Nombre Cartera">
+	<input type="submit" class="submit" style="display:none;">
+	<input type="text" 		id="nombre" 	required		name="nombre"		placeholder="Nombre Cartera">
 </form>

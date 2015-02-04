@@ -103,7 +103,7 @@
 		    position: 'center',
 		    buttons: {
 				"Crear Reclamo": function() {
-					$('#formAgrega').submit();
+					$('#formAgrega .submit').click();
 				},
 				"Cancelar": function() {
 					$(this).dialog("close");

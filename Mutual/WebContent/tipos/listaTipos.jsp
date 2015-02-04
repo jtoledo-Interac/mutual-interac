@@ -92,7 +92,7 @@
 		    position: 'center',
 		    buttons: {
 				"Crear Tipo": function() {
-					$('#formAgrega').submit();
+					$('#formAgrega .submit').click();
 				},
 				"Cancelar": function() {
 					$(this).dialog("close");

@@ -90,7 +90,7 @@
 		    position: 'center',
 		    buttons: {
 				"Crear Prioridad": function() {
-					$('#formAgrega').submit();
+					$('#formAgrega .submit').click();
 				},
 				"Cancelar": function() {
 					$(this).dialog("close");

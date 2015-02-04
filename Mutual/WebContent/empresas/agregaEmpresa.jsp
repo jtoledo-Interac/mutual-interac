@@ -7,7 +7,7 @@ $(function() {
 	});
 </script>
 
-<form id="formAgrega" action="Servlet" method="post" onSubmit="return validar_form(this)">
+<form id="formAgrega" action="Servlet" method="post">
 	<input type="hidden"	id="accion" 		name="accion" 		value="agregarEmpresa">
 	<input type="text"		id="nombre" 		name="nombre" 		placeholder="Nombre Empresa" required>
 	<input type="submit" class="submit" style="display:none;">
