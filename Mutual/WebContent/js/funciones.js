@@ -81,8 +81,7 @@ function setDatePicker()
 			dateFormat: 'dd/mm/yy',
 			changeMonth: true,
 			changeYear: true,
-			yearRange: "1980:2014",
-			defaultDate: new Date()
+			yearRange: "1980:2020"
 		});
 	});
 }

@@ -75,7 +75,7 @@
 		</c:forEach>
 	</select> 
 
-	<input type="text" 		id="fec_ingreso" 			name="fec_ingreso" 			placeholder="fec_ingreso" class="fecha" readonly required>
+	<input type="text" 		id="fec_ingreso" 			name="fec_ingreso" 			placeholder="fec_ingreso" class="fecha" required>
 	<input type="text" 		id="glosa" 					name="glosa" 				placeholder="glosa" required>
 	<input type="text" 		id="adjunto" 				name="adjunto" 				placeholder="adjunto" required>
 	<input type="text" 		id="observaciones" 			name="observaciones" 		placeholder="observaciones" required>

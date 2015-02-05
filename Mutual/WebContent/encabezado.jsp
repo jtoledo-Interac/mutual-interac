@@ -17,7 +17,7 @@
 		<script type="text/javascript" src="js/jquery-ui.min.js"></script> 
 		<!-- <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>-->
 		<script type="text/javascript" src="js/jq.ui.datepicker-es.js"></script>
-		<script type="text/javascript" src="js/jquery.Rut.min.js"></script> 
+		<!-- <script type="text/javascript" src="js/jquery.Rut.min.js"></script>  --> 
 		<script type="text/javascript" src="js/jquery.alerts.mod.js"></script>       
         <script type="text/javascript" src="js/jquery.jqGrid.min.js"></script>  
 		<script type="text/javascript" src="js/grid.locale-es.js"></script>

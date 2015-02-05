@@ -20,17 +20,17 @@
 						{name : 'nombre', index:'desEmpresa', width : 300, search : true, resizable : false, sortable : true},				
 						{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
 						],
-		   	rowNum:100,
+		   	rowNum:10,
 		   	height: 450,
 		   	autowidth: true,
-		   	rowList:[100,200,300],
+		   	rowList:[10,50,100,200,500],
 			xmlReader: {
 				root : "filas",
 				row: "fila",
 				repeatitems: false,
 				id: "numAdherente"
 			},
-		   	pager: $('#pieEmpresa'),
+		   	pager: '#pieEmpresa',
 		   	pgtext : 'P&aacute;g: {0} de {1}', 
 		   	sortname: 'numAdherente',
 		    viewrecords: true,
@@ -38,9 +38,6 @@
 		    caption:"Empresas",
 		    hoverrows : true,
 		    multiselect : false,
-			onPaging: function(){
-
-			},
 			gridComplete: function()
 			{
 				var ids = $("#listadoEmpresas").getDataIDs();
