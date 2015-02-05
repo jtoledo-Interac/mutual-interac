@@ -16,7 +16,7 @@
 	<input type="text" 		id="sApePaterno" 	name="sApePaterno"	placeholder="Apellido Paterno"	required>
 	<input type="text" 		id="sApeMaterno" 	name="sApeMaterno" 	placeholder="Apellido Materno"	required>
 	<input type="text" 		id="sNomUsuario" 	name="sNomUsuario"	placeholder="Nombre Usuario"	required>
-	<input type="password" 	id="sContrasena1" 	name="sContrasena1" placeholder="Contrase&ntilde;a"	required pattern="[\w]{6,}" title="Mínimo 6 caracteres.">
+	<input type="password" 	id="sContrasena1" 	name="sContrasena1" placeholder="Contrase&ntilde;a"	required pattern="[\w]{6,}" title="Mínimo 6 caracteres." onchange="formAgrega.sContrasena2.pattern = this.value;">
 	<input type="password" 	id="sContrasena2" 	name="sContrasena2" placeholder="Reingrese Contrase&ntilde;a" required pattern="[\w]{6,}" title="Las contraseñas deben ser iguales.">
 	<select id="sCodGenero" name="sCodGenero"	required>
 		<option value="M">Masculino</option>
