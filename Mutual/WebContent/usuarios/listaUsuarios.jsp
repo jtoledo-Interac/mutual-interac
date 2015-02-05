@@ -97,7 +97,7 @@
 		    position: 'center',
 		    buttons: {
 				"Crear Usuario": function() {
-					$('#formAgrega').submit();
+					$('#formAgrega .submit').click();
 				},
 				"Cancelar": function() {
 					$(this).dialog("close");

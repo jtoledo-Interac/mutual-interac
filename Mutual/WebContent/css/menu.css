@@ -58,7 +58,7 @@ body {
 
 /* we apply different background color to 2nd level menu items*/
 #menuwrapper ul li ul li{
-    background-color:#cae25a;
+    background-color:#99CC00;
     z-index: 9999;
 }
 
