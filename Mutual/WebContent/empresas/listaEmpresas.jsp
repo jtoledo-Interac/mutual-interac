@@ -70,8 +70,6 @@
 				editarEmpresa(fila.idEmpresa);
 			},
 		}).navGrid('#pieEmpresa',{edit:false,add:false,del:false});	
-
-		formatRut();
 		
 		$('#btnBuscar').click(function()
 		{
@@ -164,7 +162,7 @@
 		$('#listadoEmpresas').jqGrid('setGridParam', {
 			url : getUrlBuscarEmpresas(),
 			page : 1,
-			rowNum : 100,
+			rowNum : 10,
 			autoencode : false,
 			mtype : 'POST',
 			datatype : 'xml',
