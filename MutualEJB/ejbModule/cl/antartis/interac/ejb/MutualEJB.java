@@ -2301,7 +2301,7 @@ public class MutualEJB implements EJBRemoto {
 
 			dbConeccion = interacDS.getConnection();
 
-			cStmt = dbConeccion.prepareCall("{ call buscar_reclamos(?,?,?,?,?,?,?,?,?,?) }");
+			cStmt = dbConeccion.prepareCall("{ call buscar_reclamos_paginacion(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
 			
 			reclamo = new Reclamo();
 			reclamo = (Reclamo)mapaEntrada.put("reclamo",reclamo);

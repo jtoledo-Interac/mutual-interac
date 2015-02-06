@@ -176,7 +176,7 @@
 		$('#listadoReclamos').jqGrid('setGridParam', {
 			url : getUrlBuscarReclamos(),
 			page : 1,
-			rowNum : numFilas,
+			rowNum : 20,
 			autoencode : false,
 			mtype : 'POST',
 			datatype : 'xml',

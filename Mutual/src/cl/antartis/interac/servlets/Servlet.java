@@ -1567,6 +1567,9 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		log.info("Página: " + request.getParameter("page"));
+		log.info("Filas: " + request.getParameter("rows"));
 	
 		mapaSalida = ejbRemoto.buscarParametrosReclamo(mapaEntrada);
 		request.setAttribute("listaTipos", mapaSalida.get("listaTipos"));
@@ -1576,7 +1579,6 @@ public class Servlet extends HttpServlet {
 		request.setAttribute("listaEstados", mapaSalida.get("listaEstados"));
 		request.setAttribute("listaMedios", mapaSalida.get("listaMedios"));
 		request.setAttribute("listaRegiones", mapaSalida.get("listaRegiones"));
-		
 		
 		Reclamo reclamo = new Reclamo();
 		reclamo.setIdReclamo(Utils.stringToNum(request.getParameter("id_reclamo")));
