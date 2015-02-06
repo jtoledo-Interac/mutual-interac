@@ -78,6 +78,15 @@ input:focus {
 	transform:rotate(180deg);
 }
 
+.select2-results .select2-highlighted {
+    background: #505050;
+    color: #99CC00;
+}
+
+.select2-search { background-color: #505050; }
+
+.select2-search input { background-color: #505050; }
+
 .video{
 	width: 2084px;
 	height: 2266px;

@@ -23,7 +23,7 @@
 		<script type="text/javascript" src="js/grid.locale-es.js"></script>
 		<script type="text/javascript" src="js/funciones.js"></script>
 		<script type="text/javascript" src="js/Chart.js"></script>
-		
+		<script type="text/javascript" src="js/select2.min.js"></script>
 		<!-- js graficos -->
 		<script type="text/javascript" src="js/amcharts.js"></script>
 		<script type="text/javascript" src="js/serial.js"></script>

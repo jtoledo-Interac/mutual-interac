@@ -1,7 +1,9 @@
 <%@ include file="../declaraciones.jsp" %>
 <%@ include file="../encabezado.jsp" %>
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
-
+<script type="text/javascript">
+  $('select').select2();
+</script>
 <script type="text/javascript"> 
 
 	var idEmpresa;
