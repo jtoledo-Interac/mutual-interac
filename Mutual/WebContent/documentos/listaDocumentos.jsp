@@ -26,9 +26,9 @@
 						{name : 'fecCreacion', index:'fecCreacion', width : 80, search : true, resizable : false, sortable : true},				
 						{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
 						],		
-		   	rowNum:20,
-		   	height: 450,
-		   	autowidth: true,
+		   	rowNum: numeroDeFilas,
+		   	height: altoGrilla,
+		   	width: anchoGrilla,
 		   	rowList:[10,20,30],
 			xmlReader: {
 				root : "filas",
@@ -39,6 +39,7 @@
 		   	pager: $('#pieDocumento'),
 		   	pgtext : 'P&aacute;g: {0} de {1}', 
 		   	sortname: 'codDocumento',
+		   	loadonce:true,
 		    viewrecords: true,
 		    sortorder: "desc",
 		    caption:"Documentos",

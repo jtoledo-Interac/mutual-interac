@@ -20,9 +20,9 @@
 						{name : 'nombre', index:'desEmpresa', width : 300, search : true, resizable : false, sortable : true},				
 						{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
 						],
-		   	rowNum:10,
-		   	height: 450,
-		   	autowidth: true,
+		   	rowNum: numeroDeFilas,
+		   	height: altoGrilla,
+		   	width: anchoGrilla,
 		   	rowList:[10,50,100,200,500],
 			xmlReader: {
 				root : "filas",

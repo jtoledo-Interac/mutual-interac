@@ -30,9 +30,9 @@
 						{name : 'diasBandeja', index:'diasBandeja', width : 80, search : true, resizable : false, sortable : true},	
 						{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
 						],		
-		   	rowNum:20,
-		   	height: 450,
-		   	autowidth: true,
+		   	rowNum: numeroDeFilas,
+		   	height: altoGrilla,
+		   	width: anchoGrilla,
 		   	rowList:[10,20,30],
 			xmlReader: {
 				root : "filas",

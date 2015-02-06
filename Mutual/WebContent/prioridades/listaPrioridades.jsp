@@ -20,8 +20,9 @@
 						{name : 'desPrioridad', index:'desPrioridad', width : 80, search : true, resizable : false, sortable : true},				
 						{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
 						],
-		   	rowNum:10,
-		   	autowidth: true,
+		   	rowNum: numeroDeFilas,
+		   	height: altoGrilla,
+		   	width: anchoGrilla,
 		   	rowList:[10,20,30],
 			xmlReader: {
 				root : "filas",
