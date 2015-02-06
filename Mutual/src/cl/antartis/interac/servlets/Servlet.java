@@ -1871,6 +1871,8 @@ public class Servlet extends HttpServlet {
 		Tipo tipo = new Tipo();
 		tipo.setDesTipo(request.getParameter("nomTipo"));
 		
+		log.info("[[ROW]]: " + request.getParameter("rowNum"));
+		
 		mapaEntrada.put("tipo",tipo);
 		
 		mapaSalida = ejbRemoto.buscarTipos(mapaEntrada);

@@ -34,6 +34,7 @@
 		   	pgtext : 'P&aacute;g: {0} de {1}', 
 		   	sortname: 'numAdherente',
 		    viewrecords: true,
+		    loadonce:true,
 		    sortorder: "desc",
 		    caption:"Empresas",
 		    hoverrows : true,
