@@ -1,14 +1,14 @@
 create or replace function buscar_tipos_prueba
 (
-    in "xnomtipo$" character varying, 
-    in "ordenarpor$" character varying, 
-    in "orden$" character varying, 
-    in "pagactual$" numeric, 
-    in "canregxpag$" numeric, 
+    in xnomtipo$ character varying, 
+    in ordenarpor$ character varying, 
+    in orden$ character varying, 
+    in pagactual$ numeric, 
+    in canregxpag$ numeric, 
     out tipos refcursor, 
     out numerror character varying, 
     out msjerror character varying,
-    out "totalregistros$" numeric
+    out totalregistros$ numeric
 )returns record as
 
 $body$
