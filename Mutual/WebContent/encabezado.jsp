@@ -10,6 +10,7 @@
         <link type="text/css" rel="stylesheet" media="screen" href="css/jquery-ui.min.css">
         <link type="text/css" rel="stylesheet" media="screen" href="css/jquery.alerts.css">
         <link type="text/css" rel="stylesheet" media="screen" href="css/menu.css"/>
+        <link type="text/css" rel="stylesheet" media="screen" href="css/select2.css"/>
 	
 		<!-- JQUERY JS -->
 		<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script> 
