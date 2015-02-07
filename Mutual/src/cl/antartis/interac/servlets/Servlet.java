@@ -791,7 +791,7 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		String idTipo = request.getParameter("idTipo");
+		Long idTipo = Long.parseLong(request.getParameter("idTipo"));
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 
