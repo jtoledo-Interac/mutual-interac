@@ -1588,18 +1588,17 @@ public class MutualEJB implements EJBRemoto {
 
 			dbConeccion = interacDS.getConnection();
 
-			cStmt = dbConeccion.prepareCall("{ call agregar_producto(?,?,?,?) }"); //cambiar segun SP
-			
-			cStmt.setLong(1, producto.getIdProducto());// cursor$
-			cStmt.setString(2, producto.getDesProducto());// cursor$			
-			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
-			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+			cStmt = dbConeccion.prepareCall("{ call agregar_producto(?,?,?) }"); //cambiar segun SP
+			int i=1;
+			cStmt.setString(i++, producto.getDesProducto());// cursor$			
+			cStmt.registerOutParameter(i++, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(i++, Types.VARCHAR);// msjerror$
 
 			
 			cStmt.execute();
 
-			error.setNumError(cStmt.getString(3));
-			error.setMsjError(cStmt.getString(4));
+			error.setNumError(cStmt.getString(2));
+			error.setMsjError(cStmt.getString(3));
 
 		} catch (SQLException e) {
 			e.printStackTrace();

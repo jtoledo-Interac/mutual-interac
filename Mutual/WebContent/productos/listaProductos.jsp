@@ -5,7 +5,6 @@
   $('select').select2();
 </script>
 <script type="text/javascript"> 
-
 	var idProducto;
 	var idFila = 0;
 	var numFilas = 10;

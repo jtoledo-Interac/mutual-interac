@@ -195,7 +195,7 @@
 		sData += "&numFolio="+$('#numFolio').val();
 		sData += "&numAdherente="+$('#numAdherente').val();
 		sData += "&codCartera="+$('#codCartera').val();
-		sData += "&codProducto="+$('#codProducto').val();
+		sData += "&idProducto="+$('#idProducto').val();
 		sData += "&codArea="+$('#codArea').val();
 		return sData;
 	}
@@ -246,10 +246,10 @@
 				</c:forEach>
 			</select> 
 			
-			<select id="codProducto" name="codProducto" class="select">
+			<select id="idProducto" name="idProducto" class="select">
 				<option value="" selected>Seleccione un producto</option>
 				<c:forEach items="${requestScope.listaProductos}" var="producto">
-					<option value="${producto.codProducto}" >${producto.desProducto}</option>
+					<option value="${producto.idProducto}" >${producto.desProducto}</option>
 				</c:forEach>
 			</select>
 			

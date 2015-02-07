@@ -1427,7 +1427,6 @@ public class Servlet extends HttpServlet {
 		
 		Producto producto = new Producto();
 		producto.setDesProducto(request.getParameter("desProducto"));
-		producto.setIdProducto(Long.parseLong(request.getParameter("idProducto")));
 
 		mapaEntrada.put("producto",producto);
 		
