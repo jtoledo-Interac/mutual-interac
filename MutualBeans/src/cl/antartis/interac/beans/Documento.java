@@ -15,7 +15,16 @@ public class Documento implements Serializable {
 	private String desArea;
 	private String codCartera;
 	private String desCartera;
-	private String codProducto;
+	
+	public Long getIdProducto() {
+		return idProducto;
+	}
+
+	public void setIdProducto(Long idProducto) {
+		this.idProducto = idProducto;
+	}
+
+	private Long idProducto;
 	private String desProducto;
 	private String fecCreacion;
 
@@ -31,7 +40,7 @@ public class Documento implements Serializable {
 		if(map.containsKey("desArea")) desArea = (String)map.get("desArea") ;
 		if(map.containsKey("codCartera")) codCartera = (String)map.get("codCartera") ;
 		if(map.containsKey("desCartera")) desCartera = (String)map.get("desCartera") ;
-		if(map.containsKey("codProducto")) codProducto = (String)map.get("codProducto") ;
+		if(map.containsKey("idProducto")) idProducto = (Long)map.get("idProducto") ;
 		if(map.containsKey("desProducto")) desProducto = (String)map.get("desProducto") ;
 		if(map.containsKey("fecCreacion")) fecCreacion = (String)map.get("fecCreacion") ;
 	}
@@ -116,14 +125,6 @@ public class Documento implements Serializable {
 		this.codCartera = codCartera;
 	}
 
-	public String getCodProducto() {
-		return codProducto;
-	}
-
-	public void setCodProducto(String codProducto) {
-		this.codProducto = codProducto;
-	}
-
 	public String getFecCreacion() {
 		return fecCreacion;
 	}
@@ -143,7 +144,7 @@ public class Documento implements Serializable {
 		documento += "\ndesArea" + this.desArea;
 		documento += "\ncodCartera" + this.codCartera;
 		documento += "\ndesCartera" + this.desCartera;
-		documento += "\ncodProducto" + this.codProducto;
+		documento += "\ncodProducto" + this.idProducto;
 		documento += "\ndesProducto" + this.desProducto;
 		documento += "\nfecCreacion" + this.fecCreacion;
 

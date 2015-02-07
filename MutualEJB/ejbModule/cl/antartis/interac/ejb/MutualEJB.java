@@ -525,7 +525,7 @@ public class MutualEJB implements EJBRemoto {
 			if(rs !=null){
 				while (rs.next()) {
 					producto = new Producto();
-					producto.setCodProducto(rs.getString("cod_producto"));
+					producto.setIdProducto(rs.getLong("id_producto"));
 					producto.setDesProducto(rs.getString("des_producto"));
 					log.info(producto.getProducto());
 					listaProductos.add(producto);
@@ -1590,7 +1590,7 @@ public class MutualEJB implements EJBRemoto {
 
 			cStmt = dbConeccion.prepareCall("{ call agregar_producto(?,?,?,?) }"); //cambiar segun SP
 			
-			cStmt.setString(1, producto.getCodProducto());// cursor$
+			cStmt.setLong(1, producto.getIdProducto());// cursor$
 			cStmt.setString(2, producto.getDesProducto());// cursor$			
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
@@ -1635,7 +1635,7 @@ public class MutualEJB implements EJBRemoto {
 	public Map<String, Object> cargarProducto(Map<String, Object> mapaEntrada) {
 		CallableStatement cStmt = null;
 		Map<String, Object> mapaSalida = null;
-		String  cod_producto = "";
+		Long id_producto;
 		Producto producto = null;
 		String numError = "0";
 		String msjError = "";
@@ -1643,16 +1643,16 @@ public class MutualEJB implements EJBRemoto {
 		try {
 			log.info("Cargar producto");
 
-			cod_producto = (String)mapaEntrada.get("codProducto");
+			id_producto = (Long)mapaEntrada.get("idProducto");
 			
-			log.info("cod_producto: "+cod_producto);
+			log.info("id_producto: "+id_producto);
 			
 			mapaSalida = new HashMap<String, Object>();
 
 			dbConeccion = interacDS.getConnection();
 
 			cStmt = dbConeccion.prepareCall("{ call cargar_producto(?,?,?,?) }");
-			cStmt.setString(1, cod_producto);
+			cStmt.setLong(1, id_producto);
 			cStmt.registerOutParameter(2, Types.OTHER);// documento$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
@@ -1665,7 +1665,7 @@ public class MutualEJB implements EJBRemoto {
 			while (rs.next()) {
 				
 				producto= new Producto();
-				producto.setCodProducto(rs.getString("cod_producto"));
+				producto.setIdProducto(rs.getLong("id_producto"));
 				producto.setDesProducto(rs.getString("des_producto"));
 			}
 			
@@ -1763,7 +1763,7 @@ public class MutualEJB implements EJBRemoto {
 			dbConeccion = interacDS.getConnection();
 
 			cStmt = dbConeccion.prepareCall("{ call modificar_producto(?,?,?,?) }");
-			cStmt.setString(1,producto.getCodProducto());
+			cStmt.setLong(1,producto.getIdProducto());
 			cStmt.setString(2,producto.getDesProducto());
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
@@ -1801,18 +1801,18 @@ public class MutualEJB implements EJBRemoto {
 	public Map<String, Object> eliminarProducto(Map<String, Object> mapaEntrada) {
 		CallableStatement cStmt = null;
 		Map<String, Object> mapaSalida = null;
-		String cod_producto = "";
+		Long id_producto;
 		Error error = new Error();
 		
 		try {
 			log.info("Eliminar cartera");
-			cod_producto = (String)mapaEntrada.get("codProducto");
-			log.info("cod_producto: "+cod_producto);
+			id_producto = (Long)mapaEntrada.get("idProducto");
+			log.info("id_producto: "+id_producto);
 			mapaSalida = new HashMap<String, Object>();
 			
 			dbConeccion = interacDS.getConnection();
 			cStmt = dbConeccion.prepareCall("{ call eliminar_PRODUCTO(?,?,?) }");
-			cStmt.setString(1, cod_producto);
+			cStmt.setLong(1, id_producto);
 			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
 
@@ -1865,7 +1865,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(2,documento.getNumFolio());
 			cStmt.setString(3,documento.getNumAdherente());
 			cStmt.setString(4,documento.getCodCartera());
-			cStmt.setString(5,documento.getCodProducto());
+			cStmt.setLong(5,documento.getIdProducto());
 			cStmt.setString(6,documento.getCodArea());
 			cStmt.registerOutParameter(7, Types.OTHER);// cursor$
 			cStmt.registerOutParameter(8, Types.VARCHAR);// numerror$
@@ -1889,7 +1889,7 @@ public class MutualEJB implements EJBRemoto {
 					documento.setNumAdherente(rs.getString("num_adherente"));
 					documento.setCodCartera(rs.getString("cod_cartera"));
 					documento.setDesCartera(rs.getString("des_cartera"));
-					documento.setCodProducto(rs.getString("cod_producto"));
+					documento.setIdProducto(Long.parseLong(rs.getString("id_producto")));
 					documento.setDesProducto(rs.getString("des_producto"));
 					documento.setDesArea(rs.getString("des_area"));
 					listaDocumentos.add(documento);
@@ -1951,7 +1951,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(3, documento.getNumAdherente());
 			cStmt.setString(4, documento.getDescripcion());
 			cStmt.setString(5, documento.getCodCartera());
-			cStmt.setString(6, documento.getCodProducto());
+			cStmt.setLong(6, documento.getIdProducto());
 			cStmt.setString(7, documento.getCodArea());
 			cStmt.registerOutParameter(8, Types.BIGINT);// nidusuario$
 			cStmt.registerOutParameter(9, Types.VARCHAR);// numerror$
@@ -2031,7 +2031,7 @@ public class MutualEJB implements EJBRemoto {
 				documento.setNumAdherente(rs.getString("num_adherente"));
 				documento.setDescripcion(rs.getString("descripcion"));
 				documento.setCodCartera(rs.getString("cod_cartera"));
-				documento.setCodProducto(rs.getString("cod_producto"));
+				documento.setIdProducto(Long.parseLong(rs.getString("id_producto")));
 				documento.setCodArea(rs.getString("cod_area"));
 				documento.setFecCreacion(Utils.formateaFecha(rs.getString("fec_creacion")));
 			}
@@ -2091,7 +2091,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(4, documento.getNumAdherente());
 			cStmt.setString(5, documento.getDescripcion());
 			cStmt.setString(6, documento.getCodCartera());
-			cStmt.setString(7, documento.getCodProducto());
+			cStmt.setLong(7, documento.getIdProducto());
 			cStmt.setString(8, documento.getCodArea());
 			cStmt.registerOutParameter(9, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(10, Types.VARCHAR);// msjerror$
@@ -2237,7 +2237,7 @@ public class MutualEJB implements EJBRemoto {
 			if(rsProductos !=null){
 				while (rsProductos.next()) {
 					producto = new Producto();
-					producto.setCodProducto(rsProductos.getString("cod_producto"));
+					producto.setIdProducto(rsProductos.getLong("id_producto"));
 					producto.setDesProducto(rsProductos.getString("des_producto"));
 					listaProductos.add(producto);
 				}

@@ -1088,7 +1088,7 @@ public class Servlet extends HttpServlet {
 		documento.setNumFolio(request.getParameter("numFolio"));
 		documento.setNumAdherente(request.getParameter("numAdherente"));
 		documento.setCodCartera(request.getParameter("codCartera"));
-		documento.setCodProducto(request.getParameter("codProducto"));
+		documento.setIdProducto(Long.parseLong(request.getParameter("idProducto")));
 		documento.setCodArea(request.getParameter("codArea"));
 		
 		mapaEntrada.put("documento", documento);
@@ -1113,7 +1113,7 @@ public class Servlet extends HttpServlet {
 		documento.setDescripcion(request.getParameter("descripcion"));
 		documento.setCodArea(request.getParameter("codArea"));
 		documento.setCodCartera(request.getParameter("codCartera"));
-		documento.setCodProducto(request.getParameter("codProducto"));
+		documento.setIdProducto(Long.parseLong(request.getParameter("idProducto")));
 
 		mapaEntrada.put("documento",documento);
 		
@@ -1174,7 +1174,7 @@ public class Servlet extends HttpServlet {
 		documento.setDescripcion(request.getParameter("descripcion"));
 		documento.setCodArea(request.getParameter("codArea"));
 		documento.setCodCartera(request.getParameter("codCartera"));
-		documento.setCodProducto(request.getParameter("codProducto"));
+		documento.setIdProducto(Long.parseLong(request.getParameter("idProducto")));
 		
 		mapaEntrada.put("documento",documento);
 		
@@ -1268,7 +1268,7 @@ public class Servlet extends HttpServlet {
 		
 		mapaSalida = ejbRemoto.agregarEmpresa(mapaEntrada);
 		
-		log.info("Cod Producto: "+mapaSalida.get("codProducto"));
+		log.info("Cod Producto: "+mapaSalida.get("idProducto"));
 
 		pagDestino = "contenedor.jsp?accion=empresas";
 	}
@@ -1427,7 +1427,7 @@ public class Servlet extends HttpServlet {
 		
 		Producto producto = new Producto();
 		producto.setDesProducto(request.getParameter("desProducto"));
-		producto.setCodProducto(request.getParameter("codProducto"));
+		producto.setIdProducto(Long.parseLong(request.getParameter("idProducto")));
 
 		mapaEntrada.put("producto",producto);
 		
@@ -1443,13 +1443,13 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		String codProducto = request.getParameter("codProducto");
-		log.info("parametro entrada servlet cargar producto"+request.getParameter("codProducto"));
+		Long idProducto = Long.parseLong(request.getParameter("idProducto"));
+		log.info("parametro entrada servlet cargar producto"+request.getParameter("idProducto"));
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 
-		log.info("codProducto: "+codProducto);
+		log.info("idProducto: "+idProducto);
 		
-		mapaEntrada.put("codProducto", codProducto);
+		mapaEntrada.put("idProducto", idProducto);
 		
 		mapaSalida = ejbRemoto.cargarProducto(mapaEntrada);
 		
@@ -1482,7 +1482,7 @@ public class Servlet extends HttpServlet {
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
 		Producto producto = new Producto();
-		producto.setCodProducto(request.getParameter("codProducto"));
+		producto.setIdProducto(Long.parseLong(request.getParameter("idProducto")));
 		producto.setDesProducto(request.getParameter("desProducto"));
 
 		mapaEntrada.put("producto",producto);
@@ -1502,12 +1502,12 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		String codProducto = request.getParameter("codProducto");
+		Long idProducto = Long.parseLong(request.getParameter("idProducto"));
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
-		log.info("codProducto: "+codProducto);
+		log.info("idProducto: "+idProducto);
 		
-		mapaEntrada.put("codProducto", codProducto);
+		mapaEntrada.put("idProducto", idProducto);
 		mapaSalida = ejbRemoto.eliminarProducto(mapaEntrada);
 		
 		if(((Error)mapaSalida.get("error")).getNumError().equals("0")){

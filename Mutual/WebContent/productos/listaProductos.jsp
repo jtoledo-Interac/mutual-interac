@@ -6,7 +6,7 @@
 </script>
 <script type="text/javascript"> 
 
-	var codProducto;
+	var idProducto;
 	var idFila = 0;
 	var numFilas = 10;
 	
@@ -18,7 +18,7 @@
 			datatype: "xml",
 			colNames : ['', 'Nombre Producto',''],
 			colModel : [
-						{name : 'codProducto', index:'codProducto', hidden : true}, 
+						{name : 'idProducto', index:'idProducto', hidden : true}, 
 						{name : 'desProducto', index:'desProducto', width : 80, search : true, resizable : false, sortable : true},				
 						{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
 						],
@@ -28,20 +28,20 @@
 		   	rowList:[10,20,30],
 			xmlReader: {
 				root : "filas",
-				row: "fila",
+				row	: "fila",
 				repeatitems: false,
-				id: "codProducto"
+				id: "idProducto"
 			},
 		   	pager: $('#pieProducto'),
 		   	pgtext : 'P&aacute;g: {0} de {1}', 
-		   	sortname: 'codProducto',
+		   	sortname: 'idProducto',
 		    viewrecords: true,
 		    sortorder: "desc",
 		    caption:"Productos",
 		    hoverrows : true,
 		    multiselect : false,
 			onPaging: function(){
-
+				
 			},
 			gridComplete: function()
 			{
@@ -53,12 +53,12 @@
 					var idFila = ids[i];
 					console.log("IDFILA: "+idFila);
 					var btnEditar="";
-					btnEditar+= "<div id='btnEditar' onclick='editarProducto("+idFila+")'>";
+					btnEditar+= "<div id='btnEditar' onclick='editarProducto("+ids[i]+")'>";
 					btnEditar+= 	"<img title='editar' class='icono' src='img/btnEditar.png'>";
 					btnEditar+= "</div>";
 					
 					var btnEliminar="";
-					btnEliminar+= "<div id='btnEliminar' onclick='eliminarProducto("+idFila+")'>";
+					btnEliminar+= "<div id='btnEliminar' onclick='eliminarProducto("+ids[i]+")'>";
 					btnEliminar+= 	"<img title='eliminar' class='icono' src='img/btnEliminar.png'>";
 					btnEliminar+= "</div>";
 
@@ -68,12 +68,12 @@
 			onSelectRow : function(rowId, status) 
 			{
 				idFila = rowId;
-				console.log("Paso aca: "+idFila);
+				console.log("[onSelectRow] idFila: "+idFila);
 			},
 			ondblClickRow: function()
 			{
 				var fila = $('#listadoProductos').jqGrid('getRowData',idFila);
-				//editarProducto(fila.codProducto);
+				editarProducto(fila.idProducto);
 			},
 		}).navGrid('#pieProducto',{edit:false,add:false,del:false});	
 		
@@ -144,20 +144,19 @@
 		});
 	}
 	
-	function editarProducto(codProducto)
+	function editarProducto(idProducto)
 	{
-		console.log("TIPO: "+codProducto);
-		
-		ajaxCall(getUrlCargarProducto(codProducto), function(response){
+		console.log(idProducto);
+		ajaxCall(getUrlCargarProducto(idProducto), function(response){
 			$('#cargaProducto').html(response).dialog('open');
 		});
 	}
 	
-	function eliminarProducto(codProducto)
+	function eliminarProducto(idProducto)
 	{  
    		jConfirm('¿ Confirma eliminar el Producto ?', 'Confirmación', function(res){
    			if (res == true){
-  				ajaxCall(getUrlEliminarProducto(codProducto), function(){
+  				ajaxCall(getUrlEliminarProducto(idProducto), function(){
   					jAlert("El Producto ha sido eliminado exitosamente");
   					buscarProductos();
    				});
@@ -194,17 +193,18 @@
 	
 	function getUrlCargarProducto(id)
 	{
+		console.log("[getUrlCargarProducto] id: "+id);
 		var sData = "Servlet";
 		sData += '?accion=cargarProducto';
-		sData += '&codProducto='+id;
-		console.log(sData);
+		sData += '&idProducto='+id;
+		console.log("[editarProducto] "+sData);
 		return sData;
 	}
 
 	function getUrlEliminarProducto(id){  
 		var sData = 'Servlet';
 		sData += '?accion=eliminarProducto';
-		sData += '&codProducto='+id;
+		sData += '&idProducto='+id;
 		return sData;
     }
 </script>

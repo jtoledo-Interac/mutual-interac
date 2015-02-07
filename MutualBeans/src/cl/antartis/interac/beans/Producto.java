@@ -5,15 +5,19 @@ import java.io.Serializable;
 public class Producto implements Serializable {
 
 	private static final long serialVersionUID = 2650105806288959430L;
-	private String codProducto;
+	private long  idProducto;
 	private String desProducto;
-
-	public String getCodProducto() {
-		return codProducto;
+	
+	public long getIdProducto() {
+		return idProducto;
 	}
 
-	public void setCodProducto(String codProducto) {
-		this.codProducto = codProducto;
+	public void setIdProducto(long idProducto) {
+		this.idProducto = idProducto;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	public String getDesProducto() {
@@ -26,7 +30,7 @@ public class Producto implements Serializable {
 
 	public String getProducto() {
 		String producto = "\nDATOS DE Producto:";
-		producto += "\ncodProducto: " + this.codProducto;
+		producto += "\nidProducto: " + this.idProducto;
 		producto += "\ndesProducto: " + this.desProducto;
 		return producto;
 	}
