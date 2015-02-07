@@ -707,7 +707,7 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
 		Tipo tipo = new Tipo();
-		tipo.setCodTipo(request.getParameter("codTipo"));
+		tipo.setIdTipo(Long.parseLong(request.getParameter("idTipo")));
 		tipo.setDesTipo(request.getParameter("desTipo"));
 
 		log.info("desTipo: " + request.getParameter("desTipo") );
@@ -791,13 +791,13 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		String codTipo = request.getParameter("codTipo");
+		String idTipo = request.getParameter("idTipo");
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 
-		log.info("codCartera: "+codTipo);
+		log.info("codCartera: "+idTipo);
 		
-		mapaEntrada.put("codTipo", codTipo);
+		mapaEntrada.put("idTipo", idTipo);
 		
 		mapaSalida = ejbRemoto.cargarTipo(mapaEntrada);
 		
@@ -815,7 +815,7 @@ public class Servlet extends HttpServlet {
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 
-		log.info("codTipo: " + codMotivo);
+		log.info("idTipo: " + codMotivo);
 		
 		mapaEntrada.put("codMotivo", codMotivo);
 		
@@ -875,7 +875,7 @@ public class Servlet extends HttpServlet {
 		
 		Tipo tipo = new Tipo();
 		
-		tipo.setCodTipo(request.getParameter("codTipo"));
+		tipo.setIdTipo(Long.parseLong(request.getParameter("idTipo")));
 		tipo.setDesTipo(request.getParameter("desTipo"));
 
 		mapaEntrada.put("tipo",tipo);
@@ -963,13 +963,13 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		String codTipo = request.getParameter("codTipo");
+		String idTipo = request.getParameter("idTipo");
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 
-		log.info("codTipo: " + codTipo);
+		log.info("idTipo: " + idTipo);
 		
-		mapaEntrada.put("codTipo", codTipo);
+		mapaEntrada.put("idTipo", idTipo);
 		
 		mapaSalida = ejbRemoto.eliminarTipo(mapaEntrada);
 		
@@ -1585,7 +1585,7 @@ public class Servlet extends HttpServlet {
 		reclamo.setNumAdherente(request.getParameter("num_adherente"));
 		reclamo.setCodCartera(request.getParameter("codCartera"));
 		reclamo.setDiasBandeja(request.getParameter("diasBandeja"));
-		reclamo.setCodTipo(request.getParameter("codTipo"));
+		reclamo.setIdTipo(Long.parseLong(request.getParameter("idTipo")));
 		reclamo.setCodEstado(request.getParameter("codEstado"));
 		reclamo.setCodPrioridad(request.getParameter("codPrioridad"));
 					
@@ -1621,7 +1621,7 @@ public class Servlet extends HttpServlet {
 		reclamo.setEmailSolicitante(request.getParameter("email_solicitante") );
 		reclamo.setFonoSolicitante(request.getParameter("fono_solicitante") );
 		reclamo.setRegionSolicitante(request.getParameter("region_solicitante") );
-		reclamo.setCodTipo(request.getParameter("cod_tipo"));
+		reclamo.setIdTipo(Long.parseLong(request.getParameter("cod_tipo")));
 		reclamo.setCodMotivo(request.getParameter("cod_motivo"));
 		reclamo.setCodPrioridad(request.getParameter("cod_prioridad"));
 		reclamo.setCodCartera(request.getParameter("cod_cartera"));
@@ -1709,7 +1709,7 @@ public class Servlet extends HttpServlet {
 		reclamo.setEmailSolicitante(request.getParameter("email_solicitante") );
 		reclamo.setFonoSolicitante(request.getParameter("fono_solicitante") );
 		reclamo.setRegionSolicitante(request.getParameter("region_solicitante") );
-		reclamo.setCodTipo(request.getParameter("cod_tipo"));
+		reclamo.setIdTipo(Long.parseLong(request.getParameter("cod_tipo")));
 		reclamo.setCodMotivo(request.getParameter("cod_motivo"));
 		reclamo.setCodPrioridad(request.getParameter("cod_prioridad"));
 		reclamo.setCodCartera(request.getParameter("cod_cartera"));

@@ -5,15 +5,15 @@ import java.io.Serializable;
 public class Tipo implements Serializable {
 
 	private static final long serialVersionUID = 2036592118735551615L;
-	private String codTipo;
+	private Long idTipo;
 	private String desTipo;
 
-	public String getCodTipo() {
-		return codTipo;
+	public Long getIdTipo() {
+		return idTipo;
 	}
 
-	public void setCodTipo(String codTipo) {
-		this.codTipo = codTipo;
+	public void setIdTipo(Long codTipo) {
+		this.idTipo = codTipo;
 	}
 
 	public String getDesTipo() {
@@ -26,7 +26,7 @@ public class Tipo implements Serializable {
 	public String getTipo() {
 		String tipo = "\nDATOS DE Tipo:";
 		
-		tipo += "\ncodcodTipo: "+this.codTipo;  
+		tipo += "\ncodcodTipo: "+this.idTipo;  
 		tipo += "\ndesTipo: "+this.desTipo;
 
 		return tipo;

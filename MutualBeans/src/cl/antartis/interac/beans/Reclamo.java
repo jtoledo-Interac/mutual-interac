@@ -12,7 +12,7 @@ public class Reclamo implements Serializable {
 	private String emailSolicitante;
 	private String fonoSolicitante;
 	private String regionSolicitante;
-	private String codTipo;
+	private Long idTipo;
 	private String desTipo;
 	private String codMotivo;
 	private String desMotivo;
@@ -37,7 +37,7 @@ public class Reclamo implements Serializable {
 	
 	public Reclamo(long idReclamo, String numAdherente,
 			String nombreSolicitante, String emailSolicitante,
-			String fonoSolicitante, String regionSolicitante, String codTipo,
+			String fonoSolicitante, String regionSolicitante, Long idTipo,
 			String codMotivo, String codPrioridad, String codCartera,
 			String fecIngreso, String glosa, String adjunto,
 			String observaciones, String codEstado, String responsableIngreso,
@@ -51,7 +51,7 @@ public class Reclamo implements Serializable {
 		this.emailSolicitante = emailSolicitante;
 		this.fonoSolicitante = fonoSolicitante;
 		this.regionSolicitante = regionSolicitante;
-		this.codTipo = codTipo;
+		this.idTipo = idTipo;
 		this.desTipo = desTipo;
 		this.codMotivo = codMotivo;
 		this.desMotivo= desMotivo ;
@@ -121,12 +121,12 @@ public class Reclamo implements Serializable {
 		this.regionSolicitante = regionSolicitante;
 	}
 
-	public String getCodTipo() {
-		return codTipo;
+	public Long getIdTipo() {
+		return idTipo;
 	}
 
-	public void setCodTipo(String codTipo) {
-		this.codTipo = codTipo;
+	public void setIdTipo(Long idTipo) {
+		this.idTipo = idTipo;
 	}
 
 	public String getCodMotivo() {
@@ -249,7 +249,7 @@ public class Reclamo implements Serializable {
 		reclamo += "\nemailSolicitante" +this.emailSolicitante;
 		reclamo += "\nfonoSolicitante" +this.fonoSolicitante;
 		reclamo += "\nregionSolicitante" +this.regionSolicitante;
-		reclamo += "\ncodTipo" +this.codTipo;
+		reclamo += "\nidTipo" +this.idTipo;
 		reclamo += "\ncodMotivo" +this.codMotivo;
 		reclamo += "\ncodPrioridad" +this.codPrioridad;
 		reclamo += "\ncodCartera" +this.codCartera;

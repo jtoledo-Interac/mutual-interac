@@ -2,11 +2,11 @@
 <%@ include file="../encabezado.jsp" %>
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 <script type="text/javascript">
-  $('select').select2();
+  //$('select').select2();
 </script>
 <script type="text/javascript"> 
 
-	var codTipo;
+	var idTipo;
 	var idFila = 0;
 	var numFilas = 10;
 	
@@ -18,7 +18,7 @@
 			datatype: "xml",
 			colNames : ['', 'Nombre Tipo',''],
 			colModel : [
-						{name : 'codTipo', index:'codTipo', hidden : true}, 
+						{name : 'idTipo', index:'idTipo', hidden : true}, 
 						{name : 'desTipo', index:'desTipo', width : 80, search : true, resizable : false, sortable : true},				
 						{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
 						],
@@ -30,7 +30,7 @@
 				root : "filas",
 				row: "fila",
 				repeatitems: false,
-				id: "codTipo"
+				id: "idTipo"
 			},
 		   	pager: $('#pieTipos'),
 		   	pgtext : 'P&aacute;g: {0} de {1}', 
@@ -144,20 +144,20 @@
 		});
 	}
 	
-	function editarTipo(codTipo)
+	function editarTipo(idTipo)
 	{
-		console.log("TIPO: "+codTipo);
+		console.log("TIPO: "+idTipo);
 		
-		ajaxCall(getUrlCargarTipo(codTipo), function(response){
+		ajaxCall(getUrlCargarTipo(idTipo), function(response){
 			$('#cargaTipo').html(response).dialog('open');
 		});
 	}
 	
-	function eliminarTipo(codTipo)
+	function eliminarTipo(idTipo)
 	{  
    		jConfirm('¿ Confirma eliminar el Tipo ?', 'Confirmación', function(res){
    			if (res == true){
-  				ajaxCall(getUrlEliminarTipo(codTipo), function(){
+  				ajaxCall(getUrlEliminarTipo(idTipo), function(){
   					jAlert("El Tipo ha sido eliminado exitosamente");
   					buscarTipos();
    				});
@@ -196,7 +196,7 @@
 	{
 		var sData = "Servlet";
 		sData += '?accion=cargarTipo';
-		sData += '&codTipo='+id;
+		sData += '&idTipo='+id;
 		console.log(sData);
 		return sData;
 	}
@@ -204,7 +204,7 @@
 	function getUrlEliminarTipo(id){  
 		var sData = 'Servlet';
 		sData += '?accion=eliminarTipo';
-		sData += '&codTipo='+id;
+		sData += '&idTipo='+id;
 		return sData;
     }
 </script>

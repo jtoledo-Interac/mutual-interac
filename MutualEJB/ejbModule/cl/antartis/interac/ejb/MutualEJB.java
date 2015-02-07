@@ -720,7 +720,7 @@ public class MutualEJB implements EJBRemoto {
 			dbConeccion = interacDS.getConnection();
 
 			cStmt = dbConeccion.prepareCall("{ call agregar_tipo(?,?,?,?) }"); //falta SP, posibles cambios aqui
-			cStmt.setString(1, tipo.getCodTipo());
+			cStmt.setLong(1, tipo.getIdTipo());
 			cStmt.setString(2, tipo.getDesTipo());
 			
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
@@ -966,7 +966,7 @@ public class MutualEJB implements EJBRemoto {
 			dbConeccion = interacDS.getConnection();
 			
 			cStmt = dbConeccion.prepareCall("{ call cargar_tipo(?,?,?,?) }");
-			cStmt.setString(1, (String)mapaEntrada.get("codTipo")); 
+			cStmt.setLong(1,(Long)mapaEntrada.get("idTipo")); 
 			cStmt.registerOutParameter(2, Types.OTHER);// carteras$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
@@ -979,7 +979,7 @@ public class MutualEJB implements EJBRemoto {
 						
 			while (rsCartera.next()) {
 				tipo = new Tipo();
-				tipo.setCodTipo(rsCartera.getString("cod_tipo"));
+				tipo.setIdTipo(Long.parseLong(rsCartera.getString("id_tipo")));
 				tipo.setDesTipo(rsCartera.getString("des_tipo"));
 				log.info(tipo.getTipo());
 			}
@@ -1205,7 +1205,7 @@ public class MutualEJB implements EJBRemoto {
 			dbConeccion = interacDS.getConnection();
 
 			cStmt = dbConeccion.prepareCall("{ call modificar_tipo(?,?,?,?) }");
-			cStmt.setString(1,tipo.getCodTipo());
+			cStmt.setLong(1,tipo.getIdTipo());
 			cStmt.setString(2,tipo.getDesTipo());
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
@@ -1408,11 +1408,9 @@ public class MutualEJB implements EJBRemoto {
 	}
 	
 	public Map<String, Object> eliminarTipo(Map<String, Object> mapaEntrada) {
-		
-		
 		CallableStatement cStmt = null;
 		Map<String, Object> mapaSalida = null;
-		String cod_tipo = "";
+		Long id_tipo;
 		
 		String numError = "0";
 		String msjError = "";
@@ -1420,16 +1418,16 @@ public class MutualEJB implements EJBRemoto {
 		try {
 			log.info("Eliminar tipo");
 
-			cod_tipo = (String)mapaEntrada.get("codTipo");
-			
-			log.info("cod_tipo: "+ cod_tipo);
+			id_tipo = Long.parseLong((String)mapaEntrada.get("idTipo"));
+			log.info("idtipo: "+id_tipo);
+			log.info("id_tipo: "+ id_tipo);
 			
 			mapaSalida = new HashMap<String, Object>();
 
 			dbConeccion = interacDS.getConnection();
 
 			cStmt = dbConeccion.prepareCall("{ call eliminar_tipo(?,?,?) }");
-			cStmt.setString(1, cod_tipo);
+			cStmt.setLong(1, id_tipo);
 			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
 
@@ -1459,7 +1457,6 @@ public class MutualEJB implements EJBRemoto {
 		mapaSalida.put("msjError", msjError);
 		
 		return mapaSalida;
-	
 	}
 	
 	public Map<String, Object> eliminarMotivo(Map<String, Object> mapaEntrada) {
@@ -2308,14 +2305,13 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(1,reclamo.getNombreSolicitante());
 			cStmt.setString(2,reclamo.getNumAdherente());
 			cStmt.setString(3,reclamo.getCodCartera());
-			cStmt.setString(4,reclamo.getCodTipo());
+			cStmt.setLong(4,reclamo.getIdTipo());
 			cStmt.setString(5,reclamo.getCodEstado());
 			cStmt.setString(6,reclamo.getCodPrioridad());
 			cStmt.setLong(7,reclamo.getIdReclamo());
 			cStmt.registerOutParameter(8, Types.OTHER);// cursor$
 			cStmt.registerOutParameter(9, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(10, Types.VARCHAR);// msjerror$
-
 			
 			cStmt.execute();
 
@@ -2336,7 +2332,7 @@ public class MutualEJB implements EJBRemoto {
 	                reclamo.setEmailSolicitante(rs.getString("email_solicitante"));
 	                reclamo.setFonoSolicitante(rs.getString("fono_solicitante"));
 	                reclamo.setRegionSolicitante(rs.getString("region_solicitante"));
-	                reclamo.setCodTipo(rs.getString("cod_tipo"));
+	                reclamo.setIdTipo(Long.parseLong(rs.getString("id_tipo")));
 					reclamo.setDesTipo(rs.getString("des_tipo"));
 	                reclamo.setCodMotivo(rs.getString("cod_motivo"));
 					reclamo.setDesMotivo(rs.getString("des_motivo"));
@@ -2413,7 +2409,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(3, reclamo.getEmailSolicitante());
 			cStmt.setString(4, reclamo.getFonoSolicitante());
 			cStmt.setString(5, reclamo.getRegionSolicitante());
-			cStmt.setString(6, reclamo.getCodTipo());
+			cStmt.setLong(6, reclamo.getIdTipo());
 			cStmt.setString(7, reclamo.getCodMotivo());
 			cStmt.setString(8, reclamo.getCodPrioridad());
 			cStmt.setString(9, reclamo.getCodCartera());
@@ -2509,7 +2505,7 @@ public class MutualEJB implements EJBRemoto {
                 reclamo.setEmailSolicitante(rs.getString("email_solicitante") );
                 reclamo.setFonoSolicitante(rs.getString("fono_solicitante") );
                 reclamo.setRegionSolicitante(rs.getString("region_solicitante") );
-                reclamo.setCodTipo(rs.getString("cod_tipo"));
+                reclamo.setIdTipo(Long.parseLong(rs.getString("id_tipo")));
                 reclamo.setCodMotivo(rs.getString("cod_motivo"));
                 reclamo.setCodPrioridad(rs.getString("cod_prioridad"));
                 reclamo.setCodCartera(rs.getString("cod_cartera"));
@@ -2579,7 +2575,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(4, reclamo.getEmailSolicitante());
 			cStmt.setString(5, reclamo.getFonoSolicitante());
 			cStmt.setString(6, reclamo.getRegionSolicitante());
-			cStmt.setString(7, reclamo.getCodTipo());
+			cStmt.setLong(7, reclamo.getIdTipo());
 			cStmt.setString(8, reclamo.getCodMotivo());
 			cStmt.setString(9, reclamo.getCodPrioridad());
 			cStmt.setString(10, reclamo.getCodCartera());
@@ -2762,7 +2758,7 @@ public class MutualEJB implements EJBRemoto {
 			if(rsTipos !=null){
 				while (rsTipos.next()) {
 					tipo = new Tipo();
-					tipo.setCodTipo(rsTipos.getString("cod_tipo"));
+					tipo.setIdTipo(Long.parseLong(rsTipos.getString("id_tipo")));
 					tipo.setDesTipo(rsTipos.getString("des_tipo"));
 					listaTipos.add(tipo);
 				}
@@ -3342,8 +3338,8 @@ public class MutualEJB implements EJBRemoto {
 			if(rs !=null){
 				while (rs.next()) {
 					tipo = new Tipo();
-					tipo.setCodTipo(rs.getString("cod_tipo"));
-					log.info("codTipo: "+ tipo.getCodTipo());
+					tipo.setIdTipo(Long.parseLong(rs.getString("id_tipo")));
+					log.info("idTipo: "+ tipo.getIdTipo());
 					tipo.setDesTipo(rs.getString("des_tipo"));
 					log.info("desTipo: "+ tipo.getDesTipo());
 					listaTipos.add(tipo);
