@@ -1,6 +1,6 @@
 create or replace function public.modificar_producto
 (
-    in xcod_producto varchar,
+    in xid_producto numeric,
     in xnombre varchar,
     out numerror varchar, 
     out msjerror varchar
@@ -17,7 +17,7 @@ $body$
         set 
             des_producto = xnombre
         where
-            cod_producto = xcod_producto;
+            id_producto = xid_producto;
 
         exception
             when others then

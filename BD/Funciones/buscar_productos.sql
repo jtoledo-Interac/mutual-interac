@@ -16,7 +16,7 @@ $body$
         open productos for
 
         select
-            cod_producto,
+            id_producto,
             des_producto
         from 
             producto

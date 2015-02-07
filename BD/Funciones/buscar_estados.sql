@@ -16,7 +16,7 @@ $body$
         open estados for
 
         select
-            cod_estado,
+            id_estado,
             des_estado
         from 
             estado

@@ -1,6 +1,6 @@
 create or replace function public.cargar_producto
 (
-    in xcod_producto varchar, 
+    in xid_producto numeric, 
     out producto  refcursor,
     out numerror varchar, 
     out msjerror varchar
@@ -14,12 +14,12 @@ begin
         open producto  for
 
             select
-                cod_producto,
+                id_producto,
                 des_producto                
             from 
                 producto             
                 where
-                cod_producto = xcod_producto; 
+                id_producto = xid_producto; 
 
             exception
                 when others then

@@ -1,6 +1,6 @@
 create or replace function public.agregar_tipo
 (
-	in xcod_tipo varchar,
+	in xid_tipo numeric,
 	in xdes_tipo varchar,
     out numerror varchar, 
     out msjerror varchar
@@ -15,12 +15,12 @@ $body$
 
 		insert into tipo
 		(
-			cod_tipo,
+			id_tipo,
 			des_tipo
 		)
         values
 		(
-			xcod_tipo,
+			xid_tipo,
 			xdes_tipo
 		);
 

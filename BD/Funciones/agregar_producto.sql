@@ -1,36 +1,34 @@
-create or replace function public.agregar_producto
-(
-	in xcod_producto varchar,
-	in xdes_producto varchar,
-    out numerror varchar, 
-    out msjerror varchar
-) returns record as
+	create or replace function public.agregar_producto
+	(
+		
+		in xdes_producto varchar,
+	    out numerror varchar, 
+	    out msjerror varchar
+	) returns record as
 
-$body$  
+	$body$  
 
-	begin
-	
-		numerror := 0;
-		msjerror := '';
+		begin
+		
+			numerror := 0;
+			msjerror := '';
 
-		insert into producto
-		(
-			cod_producto,
-			des_producto
-		)
-        values
-		(
-			xcod_producto,
-			xdes_producto
-		);
+			insert into producto
+			(				
+				des_producto
+			)
+	        values
+			(				
+				xdes_producto
+			);
 
-        return;
+	        return;
 
-		exception
-			when others then
-				numerror := sqlstate;
-				msjerror := '[agregar_producto] error al crear producto(sql) ' ||sqlerrm;
-				return;	
-	end;
-$body$
-language 'plpgsql'
+			exception
+				when others then
+					numerror := sqlstate;
+					msjerror := '[agregar_producto] error al crear producto(sql) ' ||sqlerrm;
+					return;	
+		end;
+	$body$
+	language 'plpgsql'

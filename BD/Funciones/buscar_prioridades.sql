@@ -16,7 +16,7 @@ $body$
         open prioridades for
 
         select
-            cod_prioridad,
+            id_prioridad,
             des_prioridad
         from 
             prioridad

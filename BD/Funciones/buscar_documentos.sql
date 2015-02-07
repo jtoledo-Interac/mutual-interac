@@ -4,7 +4,7 @@ create or replace function public.buscar_documentos
     in xnum_folio$ varchar,
     in xnum_adherente$ varchar,
     in xcod_cartera$ varchar,
-    in xcod_producto$ varchar,
+    in xid_producto$ numeric,
     in xcod_area$ varchar,
     out documentos refcursor, 
     out numerror varchar, 
@@ -17,7 +17,7 @@ $body$
     declare xnum_folio varchar;
     declare xnum_adherente varchar;
     declare xcod_cartera varchar;
-    declare xcod_producto varchar;
+    declare xid_producto numeric;
     declare xcod_area varchar;
 
     begin
@@ -36,10 +36,10 @@ $body$
             xcod_cartera := upper(trim(xcod_cartera$));
         end if;
 
-        if trim(xcod_producto$) = '' then
-            xcod_producto := ' ';
+        if trim(xid_producto$) = '' then
+            xid_producto := ' ';
         else
-            xcod_producto := upper(trim(xcod_producto$));
+            xid_producto := upper(trim(xid_producto$));
         end if;
 
         if trim(xcod_area$) = '' then
@@ -58,7 +58,7 @@ $body$
             descripcion,
             d.cod_cartera as cod_cartera,
             c.des_cartera as des_cartera,
-            d.cod_producto as cod_producto,
+            d.id_producto as id_producto,
             p.des_producto as des_producto,
             d.cod_area as cod_area,
             a.des_area as des_area,
@@ -70,13 +70,13 @@ $body$
         inner join cartera as c 
             on d.cod_cartera = c.cod_cartera
         inner join producto as p 
-            on d.cod_producto = p.cod_producto
+            on d.id_producto = p.id_producto
         where
             upper(d.nombre) like '%' || xnombre ||'%' and
             upper(d.num_folio) like xnum_folio and
             upper(d.num_adherente) like xnum_adherente and
             (xcod_cartera =  ' ' or upper(d.cod_cartera) = xcod_cartera) and
-            (xcod_producto =  ' ' or upper(d.cod_producto) = xcod_producto) and
+            (xid_producto =  ' ' or upper(d.id_producto) = xid_producto) and
             (xcod_area =  ' ' or upper(d.cod_area) = xcod_area)
         order by
             id_documento;

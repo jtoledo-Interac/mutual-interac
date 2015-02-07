@@ -1,6 +1,7 @@
+	
 create or replace function public.eliminar_producto
 (
-    in xcod_producto varchar,
+    in xid_producto numeric,
     out numerror varchar, 
     out msjerror varchar
 ) returns record as
@@ -14,7 +15,7 @@ $body$
 		delete from
             producto
         where
-            cod_producto = xcod_producto;
+            id_producto = xid_producto;
 
 		exception
 			when others then

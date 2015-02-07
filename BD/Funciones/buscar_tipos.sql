@@ -16,7 +16,7 @@ $body$
         open tipos for
 
         select
-            cod_tipo,
+            id_tipo,
             des_tipo
         from 
             tipo

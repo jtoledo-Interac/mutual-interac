@@ -1,6 +1,6 @@
 create or replace function public.modificar_estado
 (
-    in xcod_estado varchar,
+    in xid_estado numeric,
     in xnombre varchar,
     out numerror varchar, 
     out msjerror varchar
@@ -17,7 +17,7 @@ $body$
         set 
             des_estado = xnombre
         where
-            cod_estado = xcod_estado;
+            id_estado = xid_estado;
 
         exception
             when others then

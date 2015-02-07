@@ -1,6 +1,6 @@
 create or replace function public.eliminar_tipo
 (
-    in xcod_tipo varchar,
+    in xid_tipo numeric,
     out numerror varchar, 
     out msjerror varchar
 ) returns record as
@@ -14,7 +14,7 @@ $body$
 		delete from
             tipo
         where
-            cod_tipo = xcod_tipo;
+            id_tipo = xid_tipo;
 
 		exception
 			when others then

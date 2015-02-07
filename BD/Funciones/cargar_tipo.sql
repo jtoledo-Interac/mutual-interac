@@ -1,6 +1,6 @@
 create or replace function public.cargar_tipo
 (
-    in xcod_tipo varchar, 
+    in xid_tipo numeric, 
     out tipo  refcursor,
     out numerror varchar, 
     out msjerror varchar
@@ -14,12 +14,12 @@ begin
         open tipo  for
 
             select
-                cod_tipo,
+                id_tipo,
                 des_tipo                
             from 
                 tipo             
                 where
-                cod_tipo = xcod_tipo; 
+                id_tipo = xid_tipo; 
 
             exception
                 when others then

@@ -1,6 +1,6 @@
 create or replace function public.eliminar_prioridad
 (
-    in xcod_prioridad varchar,
+    in xid_prioridad numeric,
     out numerror varchar, 
     out msjerror varchar
 ) returns record as
@@ -14,7 +14,7 @@ $body$
 		delete from
             prioridad
         where
-            cod_prioridad = xcod_prioridad;
+            id_prioridad = xid_prioridad;
 
 		exception
 			when others then

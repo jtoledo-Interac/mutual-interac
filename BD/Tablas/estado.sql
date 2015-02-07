@@ -1,6 +1,6 @@
 CREATE TABLE public.estado (
-    cod_estado  	varchar(5) NOT NULL,
+    id_estado  	serial NOT NULL,
     des_estado		varchar(200) NULL,
-    primary key(cod_estado)
+    primary key(id_estado)
 )
 GO

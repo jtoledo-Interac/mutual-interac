@@ -1,6 +1,6 @@
 create or replace function public.modificar_prioridad
 (
-    in xcod_prioridad varchar,
+    in xid_prioridad numeric,
     in xnombre varchar,
     out numerror varchar, 
     out msjerror varchar
@@ -17,7 +17,7 @@ $body$
         set 
             des_prioridad = xnombre
         where
-            cod_prioridad = xcod_prioridad;
+            id_prioridad = xid_prioridad;
 
         exception
             when others then

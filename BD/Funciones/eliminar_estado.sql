@@ -1,6 +1,6 @@
 create or replace function public.eliminar_estado
 (
-    in xcod_estado varchar,
+    in xid_estado numeric,
     out numerror varchar, 
     out msjerror varchar
 ) returns record as
@@ -14,7 +14,7 @@ $body$
 		delete from
             estado
         where
-            cod_estado = xcod_estado;
+            id_estado = xid_estado;
 
 		exception
 			when others then

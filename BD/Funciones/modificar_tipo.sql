@@ -1,6 +1,6 @@
 create or replace function public.modificar_tipo
 (
-    in xcod_tipo varchar,
+    in xid_tipo numeric,
     in xnombre varchar,
     out numerror varchar, 
     out msjerror varchar
@@ -17,7 +17,7 @@ $body$
         set 
             des_tipo = xnombre
         where
-            cod_tipo = xcod_tipo;
+            id_tipo = xid_tipo;
 
         exception
             when others then

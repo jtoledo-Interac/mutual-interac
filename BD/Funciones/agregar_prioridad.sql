@@ -1,6 +1,6 @@
 create or replace function public.agregar_prioridad
 (
-	in xcod_prioridad varchar,
+	in xid_prioridad numeric,
 	in xdes_prioridad varchar,
     out numerror varchar, 
     out msjerror varchar
@@ -15,12 +15,12 @@ $body$
 
 		insert into prioridad
 		(
-			cod_prioridad,
+			id_prioridad,
 			des_prioridad
 		)
         values
 		(
-			xcod_prioridad,
+			xid_prioridad,
 			xdes_prioridad
 		);
 

@@ -1,6 +1,6 @@
 create or replace function public.cargar_estado
 (
-    in xcod_estado varchar, 
+    in xid_estado numeric, 
     out estado  refcursor,
     out numerror varchar, 
     out msjerror varchar
@@ -14,12 +14,12 @@ begin
         open estado  for
 
             select
-                cod_estado,
+                id_estado,
                 des_estado                
             from 
                 estado             
                 where
-                cod_estado = xcod_estado; 
+                id_estado = xid_estado; 
 
             exception
                 when others then

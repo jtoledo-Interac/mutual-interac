@@ -1,6 +1,6 @@
 CREATE TABLE public.prioridad (
-    cod_prioridad  	varchar(5) NOT NULL,
+    id_prioridad  	serial NOT NULL,
     des_prioridad	varchar(200) NULL,
-    primary key(cod_prioridad)
+    primary key(id_prioridad)
 )
 GO

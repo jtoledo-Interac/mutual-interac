@@ -1,6 +1,6 @@
 create or replace function public.agregar_estado
 (
-	in xcod_estado varchar,
+	in xid_estado numeric,
 	in xdes_estado varchar,
     out numerror varchar, 
     out msjerror varchar
@@ -15,12 +15,12 @@ $body$
 
 		insert into estado
 		(
-			cod_estado,
+			id_estado,
 			des_estado
 		)
         values
 		(
-			xcod_estado,
+			xid_estado,
 			xdes_estado
 		);
 
