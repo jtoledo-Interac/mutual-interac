@@ -31,7 +31,7 @@ public class Reclamo implements Serializable {
 	private String glosa;
 	private String adjunto;
 	private String observaciones;
-	private String codEstado;
+	private Long idEstado;
 	private String desEstado;
 	private String responsableIngreso;
 	private String responsableActual;
@@ -48,7 +48,7 @@ public class Reclamo implements Serializable {
 			String fonoSolicitante, String regionSolicitante, Long idTipo,
 			Long idMotivo, Long idPrioridad, Long idCartera,
 			String fecIngreso, String glosa, String adjunto,
-			String observaciones, String codEstado, String responsableIngreso,
+			String observaciones, Long idEstado, String responsableIngreso,
 			String responsableActual, String diasBandeja, String diasSistema,
 			String codMedio, String fecRespuesta,String desTipo, String desPrioridad,
 			String desMotivo,String desMedio,String desEstado) {
@@ -70,7 +70,7 @@ public class Reclamo implements Serializable {
 		this.glosa = glosa;
 		this.adjunto = adjunto;
 		this.observaciones = observaciones;
-		this.codEstado = codEstado;
+		this.idEstado = idEstado;
 		this.desEstado=desEstado;		
 		this.responsableIngreso = responsableIngreso;
 		this.responsableActual = responsableActual;
@@ -177,12 +177,12 @@ public class Reclamo implements Serializable {
 		this.observaciones = observaciones;
 	}
 
-	public String getCodEstado() {
-		return codEstado;
+	public Long getIdEstado() {
+		return this.idEstado;
 	}
 
-	public void setCodEstado(String codEstado) {
-		this.codEstado = codEstado;
+	public void setIdEstado(Long idEstado) {
+		this.idEstado = idEstado;
 	}
 
 	public String getResponsableIngreso() {
@@ -249,7 +249,7 @@ public class Reclamo implements Serializable {
 		reclamo += "\nglosa" +this.glosa;
 		reclamo += "\nadjunto" +this.adjunto;
 		reclamo += "\nobservaciones" +this.observaciones;
-		reclamo += "\ncodEstado" +this.codEstado;
+		reclamo += "\nidEstado" +this.idEstado;
 		reclamo += "\nresponsableIngreso" +this.responsableIngreso;
 		reclamo += "\nresponsableActual" +this.responsableActual;
 		reclamo += "\ndiasBandeja" +this.diasBandeja;

@@ -2297,7 +2297,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(2,reclamo.getNumAdherente());
 			cStmt.setLong(3,reclamo.getIdCartera());
 			cStmt.setLong(4,reclamo.getIdTipo());
-			cStmt.setString(5,reclamo.getCodEstado());
+			cStmt.setLong(5,reclamo.getIdEstado());
 			cStmt.setLong(6,reclamo.getIdPrioridad());
 			cStmt.setLong(7,reclamo.getIdReclamo());
 			cStmt.registerOutParameter(8, Types.OTHER);// cursor$
@@ -2334,7 +2334,7 @@ public class MutualEJB implements EJBRemoto {
 	                reclamo.setGlosa(rs.getString("glosa"));
 	                reclamo.setAdjunto(rs.getString("adjunto"));
 	                reclamo.setObservaciones(rs.getString("observaciones"));
-	                reclamo.setCodEstado(rs.getString("cod_estado"));
+	                reclamo.setIdEstado(Utils.stringToNum(rs.getString("id_estado")));
 					reclamo.setDesEstado(rs.getString("des_estado"));
 	                reclamo.setResponsableIngreso(rs.getString("responsable_ingreso"));
 	                reclamo.setResponsableActual(rs.getString("responsable_actual"));
@@ -2408,7 +2408,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(11, reclamo.getGlosa());
 			cStmt.setString(12, reclamo.getAdjunto());
 			cStmt.setString(13, reclamo.getObservaciones());
-			cStmt.setString(14, reclamo.getCodEstado());
+			cStmt.setLong(14, reclamo.getIdEstado());
 			cStmt.setString(15, reclamo.getResponsableIngreso());
 			cStmt.setString(16, reclamo.getResponsableActual());
 			cStmt.setString(17, reclamo.getDiasBandeja());
@@ -2504,7 +2504,7 @@ public class MutualEJB implements EJBRemoto {
                 reclamo.setGlosa(rs.getString("glosa"));
                 reclamo.setAdjunto(rs.getString("adjunto"));
                 reclamo.setObservaciones(rs.getString("observaciones"));
-                reclamo.setCodEstado(rs.getString("cod_estado"));
+                reclamo.setIdEstado(Utils.stringToNum(rs.getString("id_estado")));
                 reclamo.setResponsableIngreso(rs.getString("responsable_ingreso"));
                 reclamo.setResponsableActual(rs.getString("responsable_actual"));
                 reclamo.setDiasBandeja(rs.getString("dias_bandeja") );
@@ -2574,7 +2574,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(12, reclamo.getGlosa());
 			cStmt.setString(13, reclamo.getAdjunto());
 			cStmt.setString(14, reclamo.getObservaciones());
-			cStmt.setString(15, reclamo.getCodEstado());
+			cStmt.setLong(15, reclamo.getIdEstado());
 			cStmt.setString(16, reclamo.getResponsableIngreso());
 			cStmt.setString(17, reclamo.getResponsableActual());
 			cStmt.setString(18, reclamo.getDiasBandeja());
@@ -2797,7 +2797,7 @@ public class MutualEJB implements EJBRemoto {
 			if(rsEstados != null){
 				while (rsEstados.next()){
 					estado = new Estado();
-					estado.setIdEstado(rsEstados.getLong("cod_estado"));
+					estado.setIdEstado(rsEstados.getLong("id_estado"));
 					estado.setDesEstado(rsEstados.getString("des_estado"));
 					listaEstados.add(estado);
 				}
@@ -3795,7 +3795,7 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 	public Map<String, Object> cargarEstado(Map<String, Object> mapaEntrada) {
 		CallableStatement cStmt = null;
 		Map<String, Object> mapaSalida = null;
-		String  cod_estado = "";
+		Long id_estado;
 		Estado estado = null;
 		String numError = "0";
 		String msjError = "";
@@ -3803,16 +3803,16 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 		try {
 			log.info("Cargar estado");
 
-			cod_estado = (String)mapaEntrada.get("codEstado");
+			id_estado = (Long)mapaEntrada.get("idEstado");
 			
-			log.info("cod_estado: "+cod_estado);
+			log.info("id_estado: "+id_estado);
 			
 			mapaSalida = new HashMap<String, Object>();
 
 			dbConeccion = interacDS.getConnection();
 
 			cStmt = dbConeccion.prepareCall("{ call cargar_estado(?,?,?,?) }");
-			cStmt.setString(1, cod_estado);
+			cStmt.setLong(1, id_estado);
 			cStmt.registerOutParameter(2, Types.OTHER);// documento$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
@@ -3825,7 +3825,7 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 			while (rs.next()) {
 				
 				estado= new Estado();
-				estado.setIdEstado(rs.getLong("cod_estado"));
+				estado.setIdEstado(rs.getLong("id_estado"));
 				estado.setDesEstado(rs.getString("des_estado"));
 			}
 			
@@ -3912,18 +3912,18 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 	public Map<String, Object> eliminarEstado(Map<String, Object> mapaEntrada) {
 		CallableStatement cStmt = null;
 		Map<String, Object> mapaSalida = null;
-		String cod_estado = "";
+		Long id_estado;
 		Error error = new Error();
 		
 		try {
 			log.info("Eliminar cartera");
-			cod_estado = (String)mapaEntrada.get("codEstado");
-			log.info("cod_estado: "+cod_estado);
+			id_estado = (Long)mapaEntrada.get("idEstado");
+			log.info("id_estado: "+id_estado);
 			mapaSalida = new HashMap<String, Object>();
 			
 			dbConeccion = interacDS.getConnection();
 			cStmt = dbConeccion.prepareCall("{ call eliminar_Estado(?,?,?) }");
-			cStmt.setString(1, cod_estado);
+			cStmt.setLong(1, id_estado);
 			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
 

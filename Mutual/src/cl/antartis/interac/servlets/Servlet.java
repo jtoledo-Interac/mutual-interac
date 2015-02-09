@@ -348,7 +348,6 @@ public class Servlet extends HttpServlet {
 	}
 
 	public void agregarUsuario(HttpServletRequest request, HttpServletResponse response) {
-		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
 		Encriptador encriptador = new Encriptador();
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
@@ -408,8 +407,6 @@ public class Servlet extends HttpServlet {
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
 		
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
-		Map<String, Object> mapaSalida = new HashMap<String, Object>();
-		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
 		Encriptador e = new Encriptador();
@@ -431,7 +428,6 @@ public class Servlet extends HttpServlet {
 		log.info(usuario.getUsuario());
 		
 		mapaEntrada.put("usuario",usuario);		
-		mapaSalida = ejbRemoto.modificarUsuario(mapaEntrada);
 		pagDestino = "contenedor.jsp?accion=usuarios";
 	}
 	
@@ -1580,7 +1576,7 @@ public class Servlet extends HttpServlet {
 		reclamo.setIdCartera(Utils.stringToNum(request.getParameter("idCartera")));
 		reclamo.setDiasBandeja(request.getParameter("diasBandeja"));
 		reclamo.setIdTipo(Long.parseLong(request.getParameter("idTipo")));
-		reclamo.setCodEstado(request.getParameter("codEstado"));
+		reclamo.setIdEstado(Utils.stringToNum(request.getParameter("idEstado")));
 		reclamo.setIdPrioridad(Utils.stringToNum(request.getParameter("idPrioridad")));
 					
 		mapaEntrada.put("reclamo",reclamo);
@@ -1623,7 +1619,7 @@ public class Servlet extends HttpServlet {
 		reclamo.setGlosa(request.getParameter("glosa"));
 		reclamo.setAdjunto(request.getParameter("adjunto"));
 		reclamo.setObservaciones(request.getParameter("observaciones"));
-		reclamo.setCodEstado(request.getParameter("cod_estado"));
+		reclamo.setIdEstado(Utils.stringToNum(request.getParameter("id_estado")));
 		reclamo.setResponsableIngreso(request.getParameter("responsable_ingreso"));
 		reclamo.setResponsableActual(request.getParameter("responsable_actual"));
 		reclamo.setDiasBandeja("");
@@ -1711,7 +1707,7 @@ public class Servlet extends HttpServlet {
 		reclamo.setGlosa(request.getParameter("glosa"));
 		reclamo.setAdjunto(request.getParameter("adjunto"));
 		reclamo.setObservaciones(request.getParameter("observaciones"));
-		reclamo.setCodEstado(request.getParameter("cod_estado"));
+		reclamo.setIdEstado(Utils.stringToNum(request.getParameter("cod_estado")));
 		reclamo.setResponsableIngreso(request.getParameter("responsable_ingreso"));
 		reclamo.setResponsableActual(request.getParameter("responsable_actual"));
 		reclamo.setDiasBandeja("");
@@ -1925,8 +1921,8 @@ public class Servlet extends HttpServlet {
 
 		pagDestino = "contenedor.jsp";
 	}
-		public void crearEstado(HttpServletRequest request, HttpServletResponse response) 
-		{
+	
+	public void crearEstado(HttpServletRequest request, HttpServletResponse response) {
 			String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
 			
 			log.info("[Metodo: " + nombreMetodo + "] Iniciando");
@@ -1956,20 +1952,15 @@ public class Servlet extends HttpServlet {
 
 	public void agregarEstado(HttpServletRequest request, HttpServletResponse response) {
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
-		
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
-		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
 		Estado estado = new Estado(); 
 		estado.setDesEstado(request.getParameter("desEstado"));
-		estado.setIdEstado(Utils.stringToNum(request.getParameter("codEstado")));
-
 		mapaEntrada.put("estado",estado);
-		
+		ejbRemoto.agregarEstado(mapaEntrada);
+		 
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
-		mapaSalida = ejbRemoto.agregarEstado(mapaEntrada);
-
 		pagDestino = "contenedor.jsp?accion=estados";
 	}
 	
@@ -1978,13 +1969,13 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		String codEstado = request.getParameter("codEstado");
+		Long idEstado = Utils.stringToNum(request.getParameter("idEstado"));
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 
-		log.info("codEstado: "+codEstado);
+		log.info("idEstado: "+idEstado);
 		
-		mapaEntrada.put("codEstado", codEstado);
+		mapaEntrada.put("idEstado", idEstado);
 		
 		mapaSalida = ejbRemoto.cargarEstado(mapaEntrada);
 		
@@ -2002,7 +1993,7 @@ public class Servlet extends HttpServlet {
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
 		Estado estado = new Estado();
-		estado.setIdEstado(Utils.stringToNum(request.getParameter("codEstado")));
+		estado.setIdEstado(Utils.stringToNum(request.getParameter("idEstado")));
 		estado.setDesEstado(request.getParameter("desEstado"));
 
 		mapaEntrada.put("estado",estado);
@@ -2022,12 +2013,12 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		String codEstado = request.getParameter("codEstado");
+		Long idEstado = Utils.stringToNum(request.getParameter("idEstado"));
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
-		log.info("codEstado: "+codEstado);
+		log.info("idEstado: "+idEstado);
 		
-		mapaEntrada.put("codEstado", codEstado);
+		mapaEntrada.put("idEstado", idEstado);
 		mapaSalida = ejbRemoto.eliminarEstado(mapaEntrada);
 		
 		if(((Error)mapaSalida.get("error")).getNumError().equals("0")){

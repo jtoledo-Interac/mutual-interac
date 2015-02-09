@@ -3,12 +3,12 @@
 	<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 	
 	<script type="text/javascript">
- 	 $('select').select2();
+ 	 //$('select').select2();
 	</script>
 	
 	<script type="text/javascript"> 
 	
-		var codEstado;
+		var idEstado;
 		var idFila = 0;
 		var numFilas = 10;
 		
@@ -20,7 +20,7 @@
 				datatype: "xml",
 				colNames : ['', 'Nombre Estado',''],
 				colModel : [
-							{name : 'codEstado', index:'codEstado', hidden : true}, 
+							{name : 'idEstado', index:'idEstado', hidden : true}, 
 							{name : 'desEstado', index:'desEstado', width : 80, search : true, resizable : false, sortable : true},				
 							{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
 							],
@@ -32,11 +32,11 @@
 					root : "filas",
 					row: "fila",
 					repeatitems: false,
-					id: "codEstado"
+					id: "idEstado"
 				},
 			   	pager: $('#pieEstado'),
 			   	pgtext : 'P&aacute;g: {0} de {1}', 
-			   	sortname: 'codEstado',
+			   	sortname: 'idEstado',
 			    viewrecords: true,
 			    sortorder: "desc",
 			    caption:"Estados",
@@ -117,7 +117,7 @@
 			    position: 'center',
 			    buttons: {
 					"Editar Estado": function() {
-						$('#formEdita').submit();
+						$('#formEdita .submit').click();
 					},
 					"Cancelar": function() {
 						$(this).dialog("close");
@@ -147,20 +147,20 @@
 			});
 		}
 		
-		function editarEstado(codEstado)
+		function editarEstado(idEstado)
 		{
-			console.log("ESTADO: "+codEstado);
+			console.log("ESTADO: "+idEstado);
 			
-			ajaxCall(getUrlCargarEstado(codEstado), function(response){
+			ajaxCall(getUrlCargarEstado(idEstado), function(response){
 				$('#cargaEstado').html(response).dialog('open');
 			});
 		}
 		
-		function eliminarEstado(codEstado)
+		function eliminarEstado(idEstado)
 		{  
 	   		jConfirm('¿ Confirma eliminar el Estado ?', 'Confirmación', function(res){
 	   			if (res == true){
-	  				ajaxCall(getUrlEliminarEstado(codEstado), function(){
+	  				ajaxCall(getUrlEliminarEstado(idEstado), function(){
 	  					jAlert("El Estado ha sido eliminado exitosamente");
 	  					buscarEstados();
 	   				});
@@ -199,7 +199,7 @@
 		{
 			var sData = "Servlet";
 			sData += '?accion=cargarEstado';
-			sData += '&codEstado='+id;
+			sData += '&idEstado='+id;
 			console.log(sData);
 			return sData;
 		}
@@ -207,7 +207,7 @@
 		function getUrlEliminarEstado(id){  
 			var sData = 'Servlet';
 			sData += '?accion=eliminarEstado';
-			sData += '&codEstado='+id;
+			sData += '&idEstado='+id;
 			return sData;
 	    }
 	</script>

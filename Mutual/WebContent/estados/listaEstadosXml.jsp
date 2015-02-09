@@ -5,7 +5,7 @@
 <filas>
     <c:forEach items="${requestScope.listaEstados}" var="estado">
         <fila>
-        	<codEstado>${estado.codEstado}</codEstado>
+        	<idEstado>${estado.idEstado}</idEstado>
         	<desEstado>${estado.desEstado}</desEstado>
         </fila>
      </c:forEach>
