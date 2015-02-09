@@ -1854,7 +1854,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(1,documento.getNombre());
 			cStmt.setString(2,documento.getNumFolio());
 			cStmt.setString(3,documento.getNumAdherente());
-			cStmt.setString(4,documento.getCodCartera());
+			cStmt.setLong(4,documento.getIdCartera());
 			cStmt.setLong(5,documento.getIdProducto());
 			cStmt.setString(6,documento.getCodArea());
 			cStmt.registerOutParameter(7, Types.OTHER);// cursor$
@@ -1877,7 +1877,7 @@ public class MutualEJB implements EJBRemoto {
 					documento.setNombre(rs.getString("nombre"));
 					documento.setNumFolio(rs.getString("num_folio"));
 					documento.setNumAdherente(rs.getString("num_adherente"));
-					documento.setCodCartera(rs.getString("cod_cartera"));
+					documento.setIdCartera(Utils.stringToNum(rs.getString("id_cartera")));
 					documento.setDesCartera(rs.getString("des_cartera"));
 					documento.setIdProducto(Long.parseLong(rs.getString("id_producto")));
 					documento.setDesProducto(rs.getString("des_producto"));
@@ -1940,7 +1940,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(2, documento.getNumFolio());
 			cStmt.setString(3, documento.getNumAdherente());
 			cStmt.setString(4, documento.getDescripcion());
-			cStmt.setString(5, documento.getCodCartera());
+			cStmt.setLong(5, documento.getIdCartera());
 			cStmt.setLong(6, documento.getIdProducto());
 			cStmt.setString(7, documento.getCodArea());
 			cStmt.registerOutParameter(8, Types.BIGINT);// nidusuario$
@@ -2020,7 +2020,7 @@ public class MutualEJB implements EJBRemoto {
 				documento.setNumFolio(rs.getString("num_folio"));
 				documento.setNumAdherente(rs.getString("num_adherente"));
 				documento.setDescripcion(rs.getString("descripcion"));
-				documento.setCodCartera(rs.getString("cod_cartera"));
+				documento.setIdCartera(Utils.stringToNum(rs.getString("id_cartera")));
 				documento.setIdProducto(Long.parseLong(rs.getString("id_producto")));
 				documento.setCodArea(rs.getString("cod_area"));
 				documento.setFecCreacion(Utils.formateaFecha(rs.getString("fec_creacion")));
@@ -2080,7 +2080,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(3, documento.getNumFolio());
 			cStmt.setString(4, documento.getNumAdherente());
 			cStmt.setString(5, documento.getDescripcion());
-			cStmt.setString(6, documento.getCodCartera());
+			cStmt.setLong(6, documento.getIdCartera());
 			cStmt.setLong(7, documento.getIdProducto());
 			cStmt.setString(8, documento.getCodArea());
 			cStmt.registerOutParameter(9, Types.VARCHAR);// numerror$
@@ -2300,7 +2300,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(2,reclamo.getNumAdherente());
 			cStmt.setString(3,reclamo.getCodCartera());
 			cStmt.setLong(4,reclamo.getIdTipo());
-			cStmt.setString(5,reclamo.getCodEstado());
+			cStmt.setLong(5,reclamo.getIdEstado());
 			cStmt.setString(6,reclamo.getCodPrioridad());
 			cStmt.setLong(7,reclamo.getIdReclamo());
 			cStmt.registerOutParameter(8, Types.OTHER);// cursor$
@@ -2337,7 +2337,7 @@ public class MutualEJB implements EJBRemoto {
 	                reclamo.setGlosa(rs.getString("glosa"));
 	                reclamo.setAdjunto(rs.getString("adjunto"));
 	                reclamo.setObservaciones(rs.getString("observaciones"));
-	                reclamo.setCodEstado(rs.getString("cod_estado"));
+	                reclamo.setIdEstado(Utils.stringToNum(rs.getString("id_estado")));
 					reclamo.setDesEstado(rs.getString("des_estado"));
 	                reclamo.setResponsableIngreso(rs.getString("responsable_ingreso"));
 	                reclamo.setResponsableActual(rs.getString("responsable_actual"));
@@ -2411,7 +2411,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(11, reclamo.getGlosa());
 			cStmt.setString(12, reclamo.getAdjunto());
 			cStmt.setString(13, reclamo.getObservaciones());
-			cStmt.setString(14, reclamo.getCodEstado());
+			cStmt.setLong(14, reclamo.getIdEstado());
 			cStmt.setString(15, reclamo.getResponsableIngreso());
 			cStmt.setString(16, reclamo.getResponsableActual());
 			cStmt.setString(17, reclamo.getDiasBandeja());
@@ -2507,7 +2507,7 @@ public class MutualEJB implements EJBRemoto {
                 reclamo.setGlosa(rs.getString("glosa"));
                 reclamo.setAdjunto(rs.getString("adjunto"));
                 reclamo.setObservaciones(rs.getString("observaciones"));
-                reclamo.setCodEstado(rs.getString("cod_estado"));
+                reclamo.setIdEstado(Utils.stringToNum(rs.getString("id_estado")));
                 reclamo.setResponsableIngreso(rs.getString("responsable_ingreso"));
                 reclamo.setResponsableActual(rs.getString("responsable_actual"));
                 reclamo.setDiasBandeja(rs.getString("dias_bandeja") );
@@ -2577,7 +2577,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(12, reclamo.getGlosa());
 			cStmt.setString(13, reclamo.getAdjunto());
 			cStmt.setString(14, reclamo.getObservaciones());
-			cStmt.setString(15, reclamo.getCodEstado());
+			cStmt.setLong(15, reclamo.getIdEstado());
 			cStmt.setString(16, reclamo.getResponsableIngreso());
 			cStmt.setString(17, reclamo.getResponsableActual());
 			cStmt.setString(18, reclamo.getDiasBandeja());

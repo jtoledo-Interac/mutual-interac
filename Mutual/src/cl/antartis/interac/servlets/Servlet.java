@@ -1081,7 +1081,7 @@ public class Servlet extends HttpServlet {
 		documento.setNombre(request.getParameter("nombre"));
 		documento.setNumFolio(request.getParameter("numFolio"));
 		documento.setNumAdherente(request.getParameter("numAdherente"));
-		documento.setCodCartera(request.getParameter("codCartera"));
+		documento.setIdCartera(Utils.stringToNum(request.getParameter("codCartera")));
 		documento.setIdProducto(Long.parseLong(request.getParameter("idProducto")));
 		documento.setCodArea(request.getParameter("codArea"));
 		
@@ -1106,7 +1106,7 @@ public class Servlet extends HttpServlet {
 		documento.setNumAdherente(request.getParameter("numAdherente"));
 		documento.setDescripcion(request.getParameter("descripcion"));
 		documento.setCodArea(request.getParameter("codArea"));
-		documento.setCodCartera(request.getParameter("codCartera"));
+		documento.setIdCartera(Utils.stringToNum(request.getParameter("idCartera")));
 		documento.setIdProducto(Long.parseLong(request.getParameter("idProducto")));
 
 		mapaEntrada.put("documento",documento);
@@ -1167,7 +1167,7 @@ public class Servlet extends HttpServlet {
 		documento.setNumAdherente(request.getParameter("numAdherente"));
 		documento.setDescripcion(request.getParameter("descripcion"));
 		documento.setCodArea(request.getParameter("codArea"));
-		documento.setCodCartera(request.getParameter("codCartera"));
+		documento.setIdCartera(Utils.stringToNum(request.getParameter("idCartera")));
 		documento.setIdProducto(Long.parseLong(request.getParameter("idProducto")));
 		
 		mapaEntrada.put("documento",documento);
@@ -1580,7 +1580,7 @@ public class Servlet extends HttpServlet {
 		reclamo.setCodCartera(request.getParameter("codCartera"));
 		reclamo.setDiasBandeja(request.getParameter("diasBandeja"));
 		reclamo.setIdTipo(Long.parseLong(request.getParameter("idTipo")));
-		reclamo.setCodEstado(request.getParameter("codEstado"));
+		reclamo.setIdEstado(Utils.stringToNum(request.getParameter("idEstado")));
 		reclamo.setCodPrioridad(request.getParameter("codPrioridad"));
 					
 		mapaEntrada.put("reclamo",reclamo);
@@ -1623,7 +1623,7 @@ public class Servlet extends HttpServlet {
 		reclamo.setGlosa(request.getParameter("glosa"));
 		reclamo.setAdjunto(request.getParameter("adjunto"));
 		reclamo.setObservaciones(request.getParameter("observaciones"));
-		reclamo.setCodEstado(request.getParameter("cod_estado"));
+		reclamo.setIdEstado(Utils.stringToNum(request.getParameter("id_estado")));
 		reclamo.setResponsableIngreso(request.getParameter("responsable_ingreso"));
 		reclamo.setResponsableActual(request.getParameter("responsable_actual"));
 		reclamo.setDiasBandeja("");
@@ -1711,7 +1711,7 @@ public class Servlet extends HttpServlet {
 		reclamo.setGlosa(request.getParameter("glosa"));
 		reclamo.setAdjunto(request.getParameter("adjunto"));
 		reclamo.setObservaciones(request.getParameter("observaciones"));
-		reclamo.setCodEstado(request.getParameter("cod_estado"));
+		reclamo.setIdEstado(Utils.stringToNum(request.getParameter("cod_estado")));
 		reclamo.setResponsableIngreso(request.getParameter("responsable_ingreso"));
 		reclamo.setResponsableActual(request.getParameter("responsable_actual"));
 		reclamo.setDiasBandeja("");

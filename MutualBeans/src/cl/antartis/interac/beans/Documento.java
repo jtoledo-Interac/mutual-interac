@@ -13,7 +13,7 @@ public class Documento implements Serializable {
 	private String descripcion;
 	private String codArea;
 	private String desArea;
-	private String codCartera;
+	private Long idCartera;
 	private String desCartera;
 	
 	public Long getIdProducto() {
@@ -38,7 +38,7 @@ public class Documento implements Serializable {
 		if(map.containsKey("descripcion")) descripcion = (String)map.get("descripcion") ;
 		if(map.containsKey("codArea")) codArea = (String)map.get("codArea") ;
 		if(map.containsKey("desArea")) desArea = (String)map.get("desArea") ;
-		if(map.containsKey("codCartera")) codCartera = (String)map.get("codCartera") ;
+		if(map.containsKey("codCartera")) idCartera = (Long)map.get("codCartera") ;
 		if(map.containsKey("desCartera")) desCartera = (String)map.get("desCartera") ;
 		if(map.containsKey("idProducto")) idProducto = (Long)map.get("idProducto") ;
 		if(map.containsKey("desProducto")) desProducto = (String)map.get("desProducto") ;
@@ -109,8 +109,8 @@ public class Documento implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public String getCodCartera() {
-		return codCartera;
+	public Long getIdCartera() {
+		return idCartera;
 	}
 
 	public String getCodArea() {
@@ -121,8 +121,8 @@ public class Documento implements Serializable {
 		this.codArea = codArea;
 	}
 
-	public void setCodCartera(String codCartera) {
-		this.codCartera = codCartera;
+	public void setIdCartera(Long idCartera) {
+		this.idCartera = idCartera;
 	}
 
 	public String getFecCreacion() {
@@ -142,7 +142,7 @@ public class Documento implements Serializable {
 		documento += "\ndescripcion" + this.descripcion;
 		documento += "\ncodArea" + this.codArea;
 		documento += "\ndesArea" + this.desArea;
-		documento += "\ncodCartera" + this.codCartera;
+		documento += "\ncodCartera" + this.idCartera;
 		documento += "\ndesCartera" + this.desCartera;
 		documento += "\ncodProducto" + this.idProducto;
 		documento += "\ndesProducto" + this.desProducto;
