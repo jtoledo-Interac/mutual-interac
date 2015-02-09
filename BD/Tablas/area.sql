@@ -1,6 +1,6 @@
 CREATE TABLE public.area (
-    cod_area  	varchar(5) NOT NULL,
+    id_area  	serial,
     des_area	varchar(200) NULL,
-    primary key(cod_area)
+    primary key(id_area)
 )
 GO

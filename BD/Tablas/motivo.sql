@@ -1,6 +1,5 @@
 CREATE TABLE public.motivo (
-    cod_motivo  	varchar(5) NOT NULL,
+    id_motivo  	serial,
     des_motivo		varchar(200) NULL,
-    primary key(cod_motivo)
+    primary key(id_motivo)
 )
-GO

@@ -3,4 +3,3 @@ CREATE TABLE public.estado (
     des_estado		varchar(200) NULL,
     primary key(id_estado)
 )
-GO

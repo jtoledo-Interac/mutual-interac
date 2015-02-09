@@ -1,6 +1,5 @@
 CREATE TABLE public.cartera (
-    cod_cartera   	varchar(5) NOT NULL,
+    id_cartera   	serial,
     des_cartera		varchar(200) NULL,
-    primary key(cod_cartera)
+    primary key(id_cartera)
 )
-GO
