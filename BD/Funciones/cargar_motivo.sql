@@ -1,6 +1,6 @@
 create or replace function public.cargar_motivo
 (
-    in xcod_motivo varchar, 
+    in xid_motivo numeric, 
     out motivo  refcursor,
     out numerror varchar, 
     out msjerror varchar
@@ -14,12 +14,12 @@ begin
         open motivo  for
 
             select
-                cod_motivo,
+                id_motivo,
                 des_motivo                
             from 
                 motivo             
                 where
-                cod_motivo = xcod_motivo; 
+                id_motivo = xid_motivo; 
 
             exception
                 when others then

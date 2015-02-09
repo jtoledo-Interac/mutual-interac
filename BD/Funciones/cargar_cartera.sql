@@ -1,6 +1,6 @@
 create or replace function public.cargar_cartera
 (
-    in xcod_cartera varchar, 
+    in xid_cartera numeric, 
     out carteras refcursor,
     out numerror varchar, 
     out msjerror varchar
@@ -14,12 +14,12 @@ begin
         open carteras for
 
             select
-                cod_cartera,
+                id_cartera,
                 des_cartera
             from 
                 cartera
             where
-                cod_cartera = xcod_cartera;
+                id_cartera = xid_cartera;
 
             exception
                 when others then

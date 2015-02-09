@@ -1,6 +1,6 @@
 create or replace function public.cargar_medio
 (
-    in xcod_medio varchar, 
+    in xid_medio numeric, 
     out medios  refcursor,
     out numerror varchar, 
     out msjerror varchar
@@ -14,12 +14,12 @@ begin
         open medios for
 
             select
-                cod_medio_respuesta,
+                id_medio_respuesta,
                 des_medio_respuesta                
             from 
                 medios_respuesta             
                 where
-                cod_medio_respuesta = xcod_medio; 
+                    id_medio_respuesta = xid_medio; 
 
             exception
                 when others then

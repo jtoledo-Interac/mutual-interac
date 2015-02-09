@@ -16,7 +16,7 @@ begin
         open carteras for
 
         select
-            cod_cartera,
+            id_cartera,
             des_cartera
         from 
             cartera

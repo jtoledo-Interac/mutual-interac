@@ -1,6 +1,6 @@
 create or replace function public.modificar_cartera
 (
-    in xcod_cartera varchar,
+    in xid_cartera numeric,
     in xdes_cartera varchar,
     out numerror varchar, 
     out msjerror varchar
@@ -17,7 +17,7 @@ $body$
         set 
             des_cartera = xdes_cartera
         where
-            cod_cartera = xcod_cartera;
+            id_cartera = xid_cartera;
 
         exception
             when others then

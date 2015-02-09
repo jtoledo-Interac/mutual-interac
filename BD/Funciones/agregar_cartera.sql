@@ -1,6 +1,5 @@
 create or replace function public.agregar_cartera
 (
-	in xcod_cartera varchar,
 	in xdes_cartera varchar,
     out numerror varchar, 
     out msjerror varchar
@@ -14,13 +13,11 @@ $body$
 		msjerror := '';
 
 		insert into cartera
-		(
-			cod_cartera,
+		(			
 			des_cartera
 		)
         values
-		(
-			xcod_cartera,
+		(			
 			xdes_cartera
 		);
 

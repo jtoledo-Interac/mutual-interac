@@ -18,14 +18,14 @@ $body$
         open carteras for
 
         select
-            cod_cartera,
+            id_cartera,
             des_cartera
         from 
             cartera
         where 
             upper(des_cartera) like '%' || xnomcartera ||'%'
          order by
-            cod_cartera;
+            id_cartera;
         
         exception
             when others then

@@ -1,6 +1,6 @@
 create or replace function public.eliminar_motivo
 (
-    in xcod_motivo varchar,
+    in xid_motivo numeric,
     out numerror varchar, 
     out msjerror varchar
 ) returns record as
@@ -14,7 +14,7 @@ $body$
 		delete from
             motivo
         where
-            cod_motivo = xcod_motivo;
+            id_motivo = xid_motivo;
 
 		exception
 			when others then

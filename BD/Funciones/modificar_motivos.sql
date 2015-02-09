@@ -1,6 +1,6 @@
 create or replace function public.modificar_motivo
 (
-    in xcod_motivo varchar,
+    in xid_motivo numeric,
     in xnombre varchar,
     out numerror varchar, 
     out msjerror varchar
@@ -17,7 +17,7 @@ $body$
         set 
             des_motivo = xnombre
         where
-            cod_motivo = xcod_motivo;
+            id_motivo = xid_motivo;
 
         exception
             when others then

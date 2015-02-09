@@ -16,7 +16,7 @@ $body$
         open motivos for
 
         select
-            cod_motivo,
+            id_motivo,
             des_motivo
         from 
             motivo

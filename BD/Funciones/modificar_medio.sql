@@ -1,6 +1,6 @@
 create or replace function public.modificar_medio
 (
-    in xcod_medio varchar,
+    in xid_medio numeric,
     in xmedio varchar,
     out numerror varchar, 
     out msjerror varchar
@@ -17,7 +17,7 @@ $body$
         set 
             des_medio_respuesta = xmedio
         where
-            cod_medio_respuesta = xcod_medio;
+            id_medio_respuesta = xidd_medio;
 
         exception
             when others then

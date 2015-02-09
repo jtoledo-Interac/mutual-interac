@@ -1,6 +1,5 @@
 create or replace function public.agregar_medio
 (
-	in xcod_medio varchar,
 	in xdes_medio varchar,
     out numerror varchar, 
     out msjerror varchar
@@ -15,12 +14,10 @@ $body$
 
 		insert into medios_respuesta
 		(
-			cod_medio_respuesta,
 			des_medio_respuesta
 		)
         values
 		(
-			xcod_medio,
 			xdes_medio
 		);
 

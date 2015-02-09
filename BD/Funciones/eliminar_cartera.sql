@@ -1,6 +1,6 @@
 create or replace function public.eliminar_cartera
 (
-    in xcod_cartera numeric,
+    in xid_cartera numeric,
     out numerror varchar, 
     out msjerror varchar
 ) returns record as
@@ -14,7 +14,7 @@ $body$
 		delete from
             cartera
         where
-            cod_cartera = xcod_cartera;
+            id_cartera = xid_cartera;
 
 		exception
 			when others then

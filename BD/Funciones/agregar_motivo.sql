@@ -1,6 +1,5 @@
 create or replace function public.agregar_motivo
-(
-	in xcod_motivo varchar,
+(	
 	in xdes_motivo varchar,
     out numerror varchar, 
     out msjerror varchar
@@ -14,13 +13,11 @@ $body$
 		msjerror := '';
 
 		insert into motivo
-		(
-			cod_motivo,
+		(			
 			des_motivo
 		)
         values
-		(
-			xcod_motivo,
+		(			
 			xdes_motivo
 		);
 

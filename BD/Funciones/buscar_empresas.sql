@@ -1,7 +1,7 @@
 create or replace function public.buscar_empresas
 (
-    in xnombre$ varchar
-    in xnum_adherente$ varchar
+    in xnombre$ varchar,
+    in xnum_adherente$ varchar,
     out empresas refcursor, 
     out numerror varchar, 
     out msjerror varchar

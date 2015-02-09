@@ -1,6 +1,6 @@
 create or replace function public.cargar_empresa
 (
-    in xnum_adherente numeric, 
+    in id_empresa numeric, 
     out empresas refcursor,
     out numerror varchar, 
     out msjerror varchar
@@ -15,6 +15,7 @@ begin
 
             select
                 num_adherente,
+                id_empresa,
                 nombre
             from 
                 empresa

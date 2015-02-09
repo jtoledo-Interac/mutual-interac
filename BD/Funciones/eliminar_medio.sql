@@ -1,6 +1,6 @@
 create or replace function public.eliminar_medio
 (
-    in xcod_medio varchar,
+    in xid_medio numeric,
     out numerror varchar, 
     out msjerror varchar
 ) returns record as
@@ -14,7 +14,7 @@ $body$
 		delete from
             medios_respuesta
         where
-            cod_medio_respuesta = xcod_medio;
+            id_medio_respuesta = xid_medio;
 
 		exception
 			when others then
