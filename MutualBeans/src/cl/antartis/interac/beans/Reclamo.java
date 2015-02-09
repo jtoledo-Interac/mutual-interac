@@ -14,7 +14,7 @@ public class Reclamo implements Serializable {
 	private String regionSolicitante;
 	private Long idTipo;
 	private String desTipo;
-	private String codMotivo;
+	private Long idMotivo;
 	private String desMotivo;
 	private String codPrioridad;
 	private String desPrioridad;
@@ -53,7 +53,7 @@ public class Reclamo implements Serializable {
 		this.regionSolicitante = regionSolicitante;
 		this.idTipo = idTipo;
 		this.desTipo = desTipo;
-		this.codMotivo = codMotivo;
+		this.idMotivo = idMotivo;
 		this.desMotivo= desMotivo ;
 		this.codPrioridad = codPrioridad;
 		this.desPrioridad=desPrioridad;
@@ -129,12 +129,12 @@ public class Reclamo implements Serializable {
 		this.idTipo = idTipo;
 	}
 
-	public String getCodMotivo() {
-		return codMotivo;
+	public Long getIdMotivo() {
+		return idMotivo;
 	}
 
-	public void setCodMotivo(String codMotivo) {
-		this.codMotivo = codMotivo;
+	public void setIdMotivo(Long idMotivo) {
+		this.idMotivo = idMotivo;
 	}
 
 	public String getCodPrioridad() {
@@ -250,7 +250,7 @@ public class Reclamo implements Serializable {
 		reclamo += "\nfonoSolicitante" +this.fonoSolicitante;
 		reclamo += "\nregionSolicitante" +this.regionSolicitante;
 		reclamo += "\nidTipo" +this.idTipo;
-		reclamo += "\ncodMotivo" +this.codMotivo;
+		reclamo += "\nidMotivo" +this.idMotivo;
 		reclamo += "\ncodPrioridad" +this.codPrioridad;
 		reclamo += "\ncodCartera" +this.codCartera;
 		reclamo += "\nfecIngreso" +this.fecIngreso;

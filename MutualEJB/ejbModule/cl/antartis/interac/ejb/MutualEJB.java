@@ -781,18 +781,16 @@ public class MutualEJB implements EJBRemoto {
 			dbConeccion = interacDS.getConnection();
 
 			cStmt = dbConeccion.prepareCall("{ call agregar_motivo(?,?,?,?) }"); //falta SP, posibles cambios aqui
-			cStmt.setString(1, motivo.getCodMotivo());
-			cStmt.setString(2, motivo.getDesMotivo());
-			
-			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
-			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+			cStmt.setString(1, motivo.getDesMotivo());			
+			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
 
 			
 			cStmt.execute();
 			
 	
-			numError = cStmt.getString(3);
-			msjError = cStmt.getString(4);
+			numError = cStmt.getString(2);
+			msjError = cStmt.getString(3);
 			
 			log.info("Num Error: "+numError);
 			log.info("Msj Error: "+msjError);
@@ -1024,7 +1022,7 @@ public class MutualEJB implements EJBRemoto {
 			dbConeccion = interacDS.getConnection();
 			
 			cStmt = dbConeccion.prepareCall("{ call cargar_motivo(?,?,?,?) }");
-			cStmt.setString(1, (String)mapaEntrada.get("codMotivo")); 
+			cStmt.setString(1, (String)mapaEntrada.get("idMotivo")); 
 			cStmt.registerOutParameter(2, Types.OTHER);// carteras$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
@@ -1037,7 +1035,7 @@ public class MutualEJB implements EJBRemoto {
 						
 			while (rsCartera.next()) {
 				motivo = new Motivo();
-				motivo.setCodMotivo(rsCartera.getString("cod_motivo"));
+				motivo.setIdMotivo(Utils.stringToNum(rsCartera.getString("cod_motivo")));
 				motivo.setDesMotivo(rsCartera.getString("des_motivo"));
 				log.info(motivo.getMotivo());
 			}
@@ -1258,7 +1256,7 @@ public class MutualEJB implements EJBRemoto {
 			dbConeccion = interacDS.getConnection();
 
 			cStmt = dbConeccion.prepareCall("{ call modificar_motivo(?,?,?,?) }");
-			cStmt.setString(1,motivo.getCodMotivo());
+			cStmt.setLong(1,motivo.getIdMotivo());
 			cStmt.setString(2,motivo.getDesMotivo());
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
@@ -1470,7 +1468,7 @@ public class MutualEJB implements EJBRemoto {
 		try {
 			log.info("Eliminar tipo");
 
-			cod_motivo = (String)mapaEntrada.get("codMotivo");
+			cod_motivo = (String)mapaEntrada.get("idMotivo");
 			
 			log.info("cod_motivo: "+ cod_motivo);
 			
@@ -2332,7 +2330,7 @@ public class MutualEJB implements EJBRemoto {
 	                reclamo.setRegionSolicitante(rs.getString("region_solicitante"));
 	                reclamo.setIdTipo(Long.parseLong(rs.getString("id_tipo")));
 					reclamo.setDesTipo(rs.getString("des_tipo"));
-	                reclamo.setCodMotivo(rs.getString("cod_motivo"));
+	                reclamo.setIdMotivo(Utils.stringToNum(rs.getString("id_motivo")));
 					reclamo.setDesMotivo(rs.getString("des_motivo"));
 	                reclamo.setCodPrioridad(rs.getString("cod_prioridad"));
 					reclamo.setDesPrioridad(rs.getString("des_prioridad"));
@@ -2408,7 +2406,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(4, reclamo.getFonoSolicitante());
 			cStmt.setString(5, reclamo.getRegionSolicitante());
 			cStmt.setLong(6, reclamo.getIdTipo());
-			cStmt.setString(7, reclamo.getCodMotivo());
+			cStmt.setLong(7, reclamo.getIdMotivo());
 			cStmt.setString(8, reclamo.getCodPrioridad());
 			cStmt.setString(9, reclamo.getCodCartera());
 			cStmt.setDate(10, Utils.stringToDate(reclamo.getFecIngreso()));
@@ -2504,7 +2502,7 @@ public class MutualEJB implements EJBRemoto {
                 reclamo.setFonoSolicitante(rs.getString("fono_solicitante") );
                 reclamo.setRegionSolicitante(rs.getString("region_solicitante") );
                 reclamo.setIdTipo(Long.parseLong(rs.getString("id_tipo")));
-                reclamo.setCodMotivo(rs.getString("cod_motivo"));
+                reclamo.setIdMotivo(Utils.stringToNum(rs.getString("id_motivo")));
                 reclamo.setCodPrioridad(rs.getString("cod_prioridad"));
                 reclamo.setCodCartera(rs.getString("cod_cartera"));
                 reclamo.setFecIngreso(Utils.formateaFecha(rs.getString("fec_ingreso")));
@@ -2574,7 +2572,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(5, reclamo.getFonoSolicitante());
 			cStmt.setString(6, reclamo.getRegionSolicitante());
 			cStmt.setLong(7, reclamo.getIdTipo());
-			cStmt.setString(8, reclamo.getCodMotivo());
+			cStmt.setLong(8, reclamo.getIdReclamo());
 			cStmt.setString(9, reclamo.getCodPrioridad());
 			cStmt.setString(10, reclamo.getCodCartera());
 			cStmt.setDate(11, Utils.stringToDate(reclamo.getFecIngreso()));
@@ -2768,7 +2766,7 @@ public class MutualEJB implements EJBRemoto {
 			if(rsMotivos !=null){
 				while (rsMotivos.next()) {
 					motivo = new Motivo();
-					motivo.setCodMotivo(rsMotivos.getString("cod_motivo"));
+					motivo.setIdMotivo(Utils.stringToNum(rsMotivos.getString("id_motivo")));
 					motivo.setDesMotivo(rsMotivos.getString("des_motivo"));
 					listaMotivos.add(motivo);
 				}
@@ -3484,8 +3482,9 @@ public class MutualEJB implements EJBRemoto {
 			if(rs !=null){
 				while (rs.next()) {
 					motivo = new Motivo();
-					motivo.setCodMotivo(rs.getString("cod_motivo"));
-					log.info("codMedio: "+ motivo.getCodMotivo());
+					
+					motivo.setIdMotivo(Utils.stringToNum(rs.getString("id_motivo")));
+					log.info("codMedio: "+ motivo.getIdMotivo());
 					motivo.setDesMotivo(rs.getString("des_motivo"));
 					log.info("desMedio: "+ motivo.getDesMotivo());
 					listaMotivos.add(motivo);
