@@ -707,7 +707,6 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
 		Tipo tipo = new Tipo();
-		tipo.setIdTipo(Long.parseLong(request.getParameter("idTipo")));
 		tipo.setDesTipo(request.getParameter("desTipo"));
 
 		log.info("desTipo: " + request.getParameter("desTipo") );
