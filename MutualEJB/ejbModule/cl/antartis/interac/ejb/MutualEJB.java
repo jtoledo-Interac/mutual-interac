@@ -778,7 +778,7 @@ public class MutualEJB implements EJBRemoto {
 
 			dbConeccion = interacDS.getConnection();
 
-			cStmt = dbConeccion.prepareCall("{ call agregar_motivo(?,?,?,?) }"); //falta SP, posibles cambios aqui
+			cStmt = dbConeccion.prepareCall("{ call agregar_motivo(?,?,?) }"); //falta SP, posibles cambios aqui
 			cStmt.setString(1, motivo.getDesMotivo());			
 			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
@@ -1020,7 +1020,7 @@ public class MutualEJB implements EJBRemoto {
 			dbConeccion = interacDS.getConnection();
 			
 			cStmt = dbConeccion.prepareCall("{ call cargar_motivo(?,?,?,?) }");
-			cStmt.setString(1, (String)mapaEntrada.get("idMotivo")); 
+			cStmt.setLong(1, (Long)mapaEntrada.get("idMotivo")); 
 			cStmt.registerOutParameter(2, Types.OTHER);// carteras$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
@@ -1033,7 +1033,7 @@ public class MutualEJB implements EJBRemoto {
 						
 			while (rsCartera.next()) {
 				motivo = new Motivo();
-				motivo.setIdMotivo(Utils.stringToNum(rsCartera.getString("cod_motivo")));
+				motivo.setIdMotivo(rsCartera.getLong("id_motivo"));
 				motivo.setDesMotivo(rsCartera.getString("des_motivo"));
 				log.info(motivo.getMotivo());
 			}
@@ -1458,24 +1458,24 @@ public class MutualEJB implements EJBRemoto {
 		
 		CallableStatement cStmt = null;
 		Map<String, Object> mapaSalida = null;
-		String cod_motivo = "";
+		Long id_motivo;
 		
 		String numError = "0";
 		String msjError = "";
 		
 		try {
-			log.info("Eliminar tipo");
+			log.info("Eliminar motivo");
 
-			cod_motivo = (String)mapaEntrada.get("idMotivo");
+			id_motivo = (Long)mapaEntrada.get("idMotivo");
 			
-			log.info("cod_motivo: "+ cod_motivo);
+			log.info("id_motivo: "+ id_motivo);
 			
 			mapaSalida = new HashMap<String, Object>();
 
 			dbConeccion = interacDS.getConnection();
 
 			cStmt = dbConeccion.prepareCall("{ call eliminar_motivo(?,?,?) }");
-			cStmt.setString(1, cod_motivo);
+			cStmt.setLong(1, id_motivo);
 			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
 

@@ -805,13 +805,13 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		String codMotivo = request.getParameter("codMotivo");
+		Long idMotivo = Utils.stringToNum(request.getParameter("idMotivo"));
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 
-		log.info("idTipo: " + codMotivo);
+		log.info("idMotivo: " + idMotivo);
 		
-		mapaEntrada.put("codMotivo", codMotivo);
+		mapaEntrada.put("idMotivo", idMotivo);
 		
 		mapaSalida = ejbRemoto.cargarMotivo(mapaEntrada);
 		
@@ -991,13 +991,13 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		String codMotivo = request.getParameter("codMotivo");
+		Long idMotivo = Utils.stringToNum(request.getParameter("idMotivo"));
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 
-		log.info("codMotivo: " + codMotivo);
+		log.info("idMotivo: " + idMotivo);
 		
-		mapaEntrada.put("codMotivo", codMotivo);
+		mapaEntrada.put("idMotivo", idMotivo);
 		
 		mapaSalida = ejbRemoto.eliminarMotivo(mapaEntrada);
 		

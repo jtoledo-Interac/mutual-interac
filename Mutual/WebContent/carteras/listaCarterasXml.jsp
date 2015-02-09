@@ -5,7 +5,7 @@
 <filas>
     <c:forEach items="${requestScope.listaCarteras}" var="cartera">
         <fila>
-        	<codCartera>${cartera.codCartera}</codCartera>
+        	<idCartera>${cartera.idCartera}</idCartera>
         	<desCartera>${cartera.desCartera}</desCartera>
         </fila>
      </c:forEach>
