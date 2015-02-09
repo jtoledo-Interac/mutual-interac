@@ -912,7 +912,7 @@ public class MutualEJB implements EJBRemoto {
 						
 			while (rsCartera.next()) {
 				cartera = new Cartera();
-				cartera.setIdCartera(Utils.stringToNum(rsCartera.getString("cod_cartera")));
+				cartera.setIdCartera(Utils.stringToNum(rsCartera.getString("idCartera")));
 				cartera.setDesCartera(rsCartera.getString("des_cartera"));
 				log.info(cartera.getCartera());
 			}
@@ -1351,7 +1351,7 @@ public class MutualEJB implements EJBRemoto {
 		
 		CallableStatement cStmt = null;
 		Map<String, Object> mapaSalida = null;
-		String cod_cartera = "";
+		Long id_cartera = null;
 		
 		String numError = "0";
 		String msjError = "";
@@ -1359,16 +1359,16 @@ public class MutualEJB implements EJBRemoto {
 		try {
 			log.info("Eliminar cartera");
 
-			cod_cartera = (String)mapaEntrada.get("codCartera");
+			id_cartera = Utils.stringToNum((String)mapaEntrada.get("codCartera"));
 			
-			log.info("cod_cartera: "+cod_cartera);
+			log.info("cod_cartera: "+id_cartera);
 			
 			mapaSalida = new HashMap<String, Object>();
 
 			dbConeccion = interacDS.getConnection();
 
 			cStmt = dbConeccion.prepareCall("{ call eliminar_cartera(?,?,?) }");
-			cStmt.setString(1, cod_cartera);
+			cStmt.setLong(1, id_cartera);
 			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
 
