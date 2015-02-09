@@ -19,8 +19,8 @@ begin
                 num_folio,
                 num_adherente,
                 descripcion,
-                cod_cartera,
-                cod_producto,
+                id_cartera,
+                id_producto,
                 cod_area,
                 fec_creacion
             from 

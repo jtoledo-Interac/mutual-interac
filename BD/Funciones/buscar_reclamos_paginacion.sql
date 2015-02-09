@@ -2,11 +2,11 @@ create or replace function buscar_reclamos_paginacion
 (
     in "xnombre_solicitante$" character varying, 
     in "xnum_adherente$" character varying, 
-    in "xcod_cartera$" character varying, 
-    in "xcod_tipo$" character varying, 
-    in "xcod_estado$" character varying, 
-    in "xcod_prioridad$" character varying,
-    in "xid_reclamo$" numeric, 
+    in xid_cartera$ numeric, 
+    in xid_tipo$ numeric, 
+    in xid_estado$ numeric, 
+    in xid_prioridad$ numeric,
+    in xid_reclamo$ numeric, 
     in ordenarpor$ character varying, 
     in orden$ character varying, 
     in pagactual$ numeric, 
@@ -22,10 +22,10 @@ $body$
     declare xid_reclamo numeric;
     declare xnombre_solicitante varchar;
     declare xnum_adherente varchar;
-    declare xcod_cartera varchar;
-    declare xcod_tipo varchar;
-    declare xcod_estado varchar;
-    declare xcod_prioridad varchar;
+    declare xid_cartera numeric;
+    declare xid_tipo numeric;
+    declare xid_estado numeric;
+    declare xid_prioridad numeric;
     declare  xncantregdesde$ numeric;
     declare  xncantreghasta$ numeric;
     declare  xordenarpor$  varchar;
@@ -48,29 +48,7 @@ $body$
             xnum_adherente := upper(trim(xnum_adherente$));
         end if;
 
-        if trim(xcod_cartera$) = '' then
-            xcod_cartera := ' ';
-        else
-            xcod_cartera := upper(trim(xcod_cartera$));
-        end if;
 
-         if trim(xcod_tipo$) = '' then
-            xcod_tipo := ' ';
-        else
-            xcod_tipo := upper(trim(xcod_tipo$));
-        end if;
-
-        if trim(xcod_estado$) = '' then
-            xcod_estado := ' ';
-        else
-            xcod_estado := upper(trim(xcod_estado$));
-        end if;
-
-        if trim(xcod_prioridad$) = '' then
-            xcod_prioridad := ' ';
-        else
-            xcod_prioridad := upper(trim(xcod_prioridad$));           
-        end if;
     
        begin        
             select 
@@ -86,48 +64,48 @@ $body$
                     email_solicitante,
                     fono_solicitante,
                     region_solicitante,
-                    r.cod_tipo as cod_tipo,
+                    r.id_tipo as id_tipo,
                     t.des_tipo as des_tipo,
-                    r.cod_motivo as cod_motivo,
+                    r.id_motivo as id_motivo,
                     m.des_motivo as des_motivo,
-                    r.cod_prioridad as cod_prioridad,
+                    r.id_prioridad as id_prioridad,
                     p.des_prioridad as des_prioridad,
-                    r.cod_cartera as cod_cartera,
+                    r.id_cartera as id_cartera,
                     c.des_cartera as des_cartera,
                     fec_ingreso,
                     glosa,
                     adjunto,
                     observaciones,
-                    r.cod_estado as cod_estado,
+                    r.id_estado as id_estado,
                     e.des_estado as des_estado,
                     responsable_ingreso,
                     responsable_actual,
                     dias_bandeja,
                     dias_sistema,
-                    r.cod_medio_respuesta as cod_medio_respuesta,
+                    r.id_medio_respuesta as id_medio_respuesta,
                     me.des_medio_respuesta as des_medio_respuesta,
                     fec_respuesta
                 from 
                     reclamo r
                     inner join tipo as t
-                        on r.cod_tipo = t.cod_tipo
+                        on r.id_tipo = t.id_tipo
                     inner join motivo as m
-                        on r.cod_motivo = m.cod_motivo
+                        on r.id_motivo = m.id_motivo
                     inner join prioridad as p
-                        on r.cod_prioridad = p.cod_prioridad
+                        on r.id_prioridad = p.id_prioridad
                     inner join cartera as c
-                        on r.cod_cartera = c.cod_cartera
+                        on r.id_cartera = c.id_cartera
                     inner join estado as e
-                        on r.cod_estado = e.cod_estado
+                        on r.id_estado = e.id_estado
                     inner join medios_respuesta me
-                        on r.cod_medio_respuesta = me.cod_medio_respuesta 
+                        on r.id_medio_respuesta = me.id_medio_respuesta 
                 where
                   upper(nombre_solicitante) like '%' || xnombre_solicitante ||'%' and
-                   (xnum_adherente =  ' ' or upper(trim(num_adherente)) = xnum_adherente) and
-                    (xcod_cartera =  ' ' or upper(trim(r.cod_cartera)) = xcod_cartera) and
-                    (xcod_tipo =  ' ' or upper(trim(r.cod_tipo)) = xcod_tipo) and
-                    (xcod_estado =  ' ' or upper(trim(r.cod_estado)) = xcod_estado) and
-                    (xcod_prioridad =  ' ' or upper(trim(r.cod_prioridad)) = xcod_prioridad) and
+                   (xnum_adherente =  ' ' or num_adherente = xnum_adherente) and
+                    (xid_cartera = 0 or c.id_cartera = xid_cartera) and
+                    (xid_tipo = 0 or r.id_tipo = xid_tipo) and
+                    (xid_estado =  0 or r.id_estado = xid_estado) and
+                    (xid_prioridad = 0 or r.id_prioridad = xid_prioridad) and
                   (xid_reclamo = 0 or id_reclamo = xid_reclamo)
                 
             )as subrutina;          
@@ -171,48 +149,48 @@ $body$
                         email_solicitante,
                         fono_solicitante,
                         region_solicitante,
-                        r.cod_tipo as cod_tipo,
+                        r.id_tipo as id_tipo,
                         t.des_tipo as des_tipo,
-                        r.cod_motivo as cod_motivo,
+                        r.id_motivo as id_motivo,
                         m.des_motivo as des_motivo,
-                        r.cod_prioridad as cod_prioridad,
+                        r.id_prioridad as id_prioridad,
                         p.des_prioridad as des_prioridad,
-                        r.cod_cartera as cod_cartera,
+                        r.id_cartera as id_cartera,
                         c.des_cartera as des_cartera,
                         fec_ingreso,
                         glosa,
                         adjunto,
                         observaciones,
-                        r.cod_estado as cod_estado,
+                        r.id_estado as id_estado,
                         e.des_estado as des_estado,
                         responsable_ingreso,
                         responsable_actual,
                         dias_bandeja,
                         dias_sistema,
-                        r.cod_medio_respuesta as cod_medio_respuesta,
+                        r.id_medio_respuesta as id_medio_respuesta,
                         me.des_medio_respuesta as des_medio_respuesta,
                         fec_respuesta
                     from 
                        reclamo r
                         inner join tipo as t
-                            on r.cod_tipo = t.cod_tipo
+                            on r.id_tipo = t.id_tipo
                         inner join motivo as m
-                            on r.cod_motivo = m.cod_motivo
+                            on r.id_motivo = m.id_motivo
                         inner join prioridad as p
-                            on r.cod_prioridad = p.cod_prioridad
+                            on r.id_prioridad = p.id_prioridad
                         inner join cartera as c
-                            on r.cod_cartera = c.cod_cartera
+                            on r.id_cartera = c.id_cartera
                         inner join estado as e
-                            on r.cod_estado = e.cod_estado
+                            on r.id_estado = e.id_estado
                         inner join medios_respuesta me
-                            on r.cod_medio_respuesta = me.cod_medio_respuesta 
+                            on r.id_medio_respuesta = me.id_medio_respuesta 
                     where
                         upper(nombre_solicitante) like '%' || xnombre_solicitante ||'%' and
                         (xnum_adherente =  ' ' or upper(trim(num_adherente)) = xnum_adherente) and
-                        (xcod_cartera =  ' ' or upper(trim(r.cod_cartera)) = xcod_cartera) and
-                        (xcod_tipo =  ' ' or upper(trim(r.cod_tipo)) = xcod_tipo) and
-                        (xcod_estado =  ' ' or upper(trim(r.cod_estado)) = xcod_estado) and
-                        (xcod_prioridad =  ' ' or upper(trim(r.cod_prioridad)) = xcod_prioridad) and
+                        (xid_cartera =   0 or r.id_cartera = xid_cartera) and
+                        (xid_tipo =      0 or r.id_tipo = xid_tipo) and
+                        (xid_estado =    0 or r.id_estado = xid_estado) and
+                        (xid_prioridad = 0 or r.id_prioridad = xid_prioridad) and
                         (xid_reclamo = 0 or id_reclamo = xid_reclamo)
                     order by
                         nombre_solicitante

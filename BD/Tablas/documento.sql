@@ -5,10 +5,9 @@ create table public.documento
 	num_folio       varchar(100) null,
 	num_adherente   varchar(100) null,
 	descripcion   	varchar(1000) null,
-	cod_cartera   	varchar(100) null,
-	cod_producto   	varchar(100) null,
+	id_cartera   	numeric null,
+	id_producto   	numeric null,
 	cod_area    	varchar(100) null,
 	fec_creacion  	timestamp null,
 	primary key(id_documento)
 )
-GO
