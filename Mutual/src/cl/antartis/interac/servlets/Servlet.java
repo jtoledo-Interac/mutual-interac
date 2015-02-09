@@ -729,7 +729,6 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
 		Motivo motivo = new Motivo();
-		motivo.setCodMotivo(request.getParameter("codMotivo"));
 		motivo.setDesMotivo(request.getParameter("desMotivo"));
 
 		log.info("desTipo: " + request.getParameter("desTipo") );
@@ -894,7 +893,7 @@ public class Servlet extends HttpServlet {
 		
 		Motivo motivo = new Motivo();
 		
-		motivo.setCodMotivo(request.getParameter("codMotivo"));
+		motivo.setIdMotivo(Utils.stringToNum(request.getParameter("idMotivo")));
 		motivo.setDesMotivo(request.getParameter("desMotivo"));
 
 		mapaEntrada.put("motivo",motivo);
@@ -1620,8 +1619,8 @@ public class Servlet extends HttpServlet {
 		reclamo.setEmailSolicitante(request.getParameter("email_solicitante") );
 		reclamo.setFonoSolicitante(request.getParameter("fono_solicitante") );
 		reclamo.setRegionSolicitante(request.getParameter("region_solicitante") );
-		reclamo.setIdTipo(Long.parseLong(request.getParameter("cod_tipo")));
-		reclamo.setCodMotivo(request.getParameter("cod_motivo"));
+		reclamo.setIdTipo(Utils.stringToNum(request.getParameter("id_tipo")));
+		reclamo.setIdMotivo(Utils.stringToNum(request.getParameter("id_motivo")));
 		reclamo.setCodPrioridad(request.getParameter("cod_prioridad"));
 		reclamo.setCodCartera(request.getParameter("cod_cartera"));
 		reclamo.setFecIngreso(request.getParameter("fec_ingreso"));
@@ -1708,8 +1707,8 @@ public class Servlet extends HttpServlet {
 		reclamo.setEmailSolicitante(request.getParameter("email_solicitante") );
 		reclamo.setFonoSolicitante(request.getParameter("fono_solicitante") );
 		reclamo.setRegionSolicitante(request.getParameter("region_solicitante") );
-		reclamo.setIdTipo(Long.parseLong(request.getParameter("cod_tipo")));
-		reclamo.setCodMotivo(request.getParameter("cod_motivo"));
+		reclamo.setIdTipo(Utils.stringToNum(request.getParameter("id_tipo")));
+		reclamo.setIdMotivo(Utils.stringToNum(request.getParameter("id_motivo")));
 		reclamo.setCodPrioridad(request.getParameter("cod_prioridad"));
 		reclamo.setCodCartera(request.getParameter("cod_cartera"));
 		reclamo.setFecIngreso(request.getParameter("fec_ingreso"));
