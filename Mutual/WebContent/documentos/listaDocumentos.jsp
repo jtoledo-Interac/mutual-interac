@@ -232,10 +232,10 @@
 			
 			
 						
-			<select id="codCartera" name="codCartera" class="select" >
+			<select id="idCartera" name="idCartera" class="select" >
 				<option value="" selected>Seleccione una cartera </option>
 				<c:forEach items="${requestScope.listaCarteras}" var="cartera">
-					<option value="${cartera.codCartera}" >${cartera.desCartera}</option>
+					<option value="${cartera.idCartera}" >${cartera.desCartera}</option>
 				</c:forEach>
 			</select> 
 			

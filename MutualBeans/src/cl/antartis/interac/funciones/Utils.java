@@ -373,6 +373,7 @@ public class Utils {
 
 	public static Long stringToNum(String numero)
 	{
+		if(numero == null) return new Long(0);
 		return numero.isEmpty()?0:Long.parseLong(numero);	
 	}
 	

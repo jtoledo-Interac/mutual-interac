@@ -5,8 +5,8 @@ create or replace function public.modificar_documento
     in xnum_folio varchar,
     in xnum_adherente varchar,
     in xdescripcion varchar,
-    in xid_cartera varchar,
-    in xid_producto varchar,
+    in xid_cartera numeric,
+    in xid_producto numeric,
     in xcod_area varchar,
     out numerror varchar, 
     out msjerror varchar

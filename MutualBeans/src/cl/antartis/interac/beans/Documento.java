@@ -3,6 +3,8 @@ package cl.antartis.interac.beans;
 import java.io.Serializable;
 import java.util.HashMap;
 
+import cl.antartis.interac.funciones.Utils;
+
 public class Documento implements Serializable {
 
 	private static final long serialVersionUID = 3764757332350720257L;
@@ -46,9 +48,9 @@ public class Documento implements Serializable {
 		if(map.containsKey("descripcion")) descripcion = (String)map.get("descripcion") ;
 		if(map.containsKey("codArea")) codArea = (String)map.get("codArea") ;
 		if(map.containsKey("desArea")) desArea = (String)map.get("desArea") ;
-		if(map.containsKey("idCartera")) idCartera = (Long)map.get("idCartera") ;
+		if(map.containsKey("idCartera")) idCartera = Utils.stringToNum((String)map.get("idCartera"));
 		if(map.containsKey("desCartera")) desCartera = (String)map.get("desCartera") ;
-		if(map.containsKey("idProducto")) idProducto = (Long)map.get("idProducto") ;
+		if(map.containsKey("idProducto")) idProducto = Utils.stringToNum((String)map.get("idProducto"));
 		if(map.containsKey("desProducto")) desProducto = (String)map.get("desProducto") ;
 		if(map.containsKey("fecCreacion")) fecCreacion = (String)map.get("fecCreacion") ;
 	}

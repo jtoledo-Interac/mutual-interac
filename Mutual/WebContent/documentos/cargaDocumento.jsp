@@ -84,24 +84,24 @@
 				readonly onfocus="this.style.boxShadow='0 0 10px #9ecaed'"
 				onblur="this.style.boxShadow='none'"></td>
 
-			<td><select id="codCartera" name="codCartera"
+			<td><select id="idCartera" name="idCartera"
 				onfocus="this.style.boxShadow='0 0 10px #9ecaed'"
 				onblur="this.style.boxShadow='none'">
 					<option value="" selected>Seleccione una cartera</option>
 					<c:forEach items="${requestScope.listaCarteras}" var="cartera">
-						<option value="${cartera.codCartera}"
-							<c:if test='${documento.codCartera == cartera.codCartera}'> selected</c:if>>${cartera.desCartera}</option>
+						<option value="${cartera.idCartera}"
+							<c:if test='${documento.idCartera == cartera.idCartera}'> selected</c:if>>${cartera.desCartera}</option>
 					</c:forEach>
 			</select></td>
 		</tr>
 		<tr>
-			<td><select id="codProducto" name="codProducto"
+			<td><select id="idProducto" name="idProducto"
 				onfocus="this.style.boxShadow='0 0 10px #9ecaed'"
 				onblur="this.style.boxShadow='none'">
 					<option value="" selected>Seleccione un producto</option>
 					<c:forEach items="${requestScope.listaProductos}" var="producto">
-						<option value="${producto.codProducto}"
-							<c:if test='${documento.codProducto == producto.codProducto}'> selected</c:if>>${producto.desProducto}</option>
+						<option value="${producto.idProducto}"
+							<c:if test='${documento.idProducto == producto.idProducto}'> selected</c:if>>${producto.idProducto}</option>
 					</c:forEach>
 			</select></td>
 

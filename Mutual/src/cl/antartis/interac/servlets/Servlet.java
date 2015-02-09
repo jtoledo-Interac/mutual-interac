@@ -1073,13 +1073,17 @@ public class Servlet extends HttpServlet {
 		request.setAttribute("listaProductos", mapaSalida.get("listaProductos"));
 		request.setAttribute("listaAreas", mapaSalida.get("listaAreas"));
 		
+		log.info("y acá??");
+		
 		Documento documento = new Documento();
 		documento.setNombre(request.getParameter("nombre"));
 		documento.setNumFolio(request.getParameter("numFolio"));
 		documento.setNumAdherente(request.getParameter("numAdherente"));
 		documento.setIdCartera(Utils.stringToNum(request.getParameter("idCartera")));
-		documento.setIdProducto(Long.parseLong(request.getParameter("idProducto")));
+		documento.setIdProducto(Utils.stringToNum(request.getParameter("idProducto")));
 		documento.setCodArea(request.getParameter("codArea"));
+		
+		log.info("llegó acá");
 		
 		mapaEntrada.put("documento", documento);
 		
@@ -1096,15 +1100,8 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		Documento documento = new Documento();
-		documento.setNombre(request.getParameter("nombre"));
-		documento.setNumFolio(request.getParameter("numFolio"));
-		documento.setNumAdherente(request.getParameter("numAdherente"));
-		documento.setDescripcion(request.getParameter("descripcion"));
-		documento.setCodArea(request.getParameter("codArea"));
-		documento.setIdCartera(Utils.stringToNum(request.getParameter("idCartera")));
-		documento.setIdProducto(Long.parseLong(request.getParameter("idProducto")));
-
+		Documento documento = (Documento)request.getAttribute("documento");
+		
 		mapaEntrada.put("documento",documento);
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");

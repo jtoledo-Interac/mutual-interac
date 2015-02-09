@@ -1876,7 +1876,7 @@ public class MutualEJB implements EJBRemoto {
 					documento.setNumAdherente(rs.getString("num_adherente"));
 					documento.setIdCartera(rs.getLong("id_cartera"));
 					documento.setDesCartera(rs.getString("des_cartera"));
-					documento.setIdProducto(Long.parseLong(rs.getString("id_producto")));
+					documento.setIdProducto(rs.getLong("id_producto"));
 					documento.setDesProducto(rs.getString("des_producto"));
 					documento.setDesArea(rs.getString("des_area"));
 					listaDocumentos.add(documento);

@@ -3,7 +3,7 @@ create or replace function public.buscar_documentos
     in xnombre$ varchar,
     in xnum_folio$ varchar,
     in xnum_adherente$ varchar,
-    in xid_cartera$ varchar,
+    in xid_cartera$ numeric,
     in xid_producto$ numeric,
     in xcod_area$ varchar,
     out documentos refcursor, 
@@ -56,7 +56,7 @@ $body$
         from 
             documento d 
         inner join area as a 
-            on d.id_area = a.id_area
+            on d.cod_area = a.cod_area
         inner join cartera as c 
             on d.id_cartera = c.id_cartera
         inner join producto as p 

@@ -38,17 +38,17 @@
 	<td> <input type="text" id="fecCreacion" required name="fecCreacion" placeholder="Fecha Creaci&oacute;n" class="fecha"> </td>
 </tr>
 <tr>	
-	<td><select id="codCartera" required name="codCartera">
+	<td><select id="idCartera" required name="idCartera">
 		<option value="0" disabled selected>Seleccione una cartera</option>
 		<c:forEach items="${requestScope.listaCarteras}" var="cartera">
-			<option value="${cartera.codCartera}" >${cartera.desCartera}</option>
+			<option value="${cartera.idCartera}" >${cartera.desCartera}</option>
 		</c:forEach>
 	</select> </td>
 	
-	<td><select id="codProducto" required name="codProducto">
+	<td><select id="idProducto" required name="idProducto">
 		<option value="0" disabled selected>Seleccione un producto</option>
 		<c:forEach items="${requestScope.listaProductos}" var="producto">
-			<option value="${producto.codProducto}" >${producto.desProducto}</option>
+			<option value="${producto.idProducto}" >${producto.desProducto}</option>
 		</c:forEach>
 	</select> </td>	
 </tr>
