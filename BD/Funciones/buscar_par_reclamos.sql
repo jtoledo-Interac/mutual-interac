@@ -22,7 +22,7 @@ begin
         open tipos for
 
         select
-            cod_tipo,
+            id_tipo,
             des_tipo
         from 
             tipo
@@ -43,7 +43,7 @@ begin
         open motivos for
 
         select
-            cod_motivo,
+            id_motivo,
             des_motivo
         from 
             motivo
@@ -64,7 +64,7 @@ begin
         open prioridades for
 
         select
-            cod_prioridad,
+            id_prioridad,
             des_prioridad
         from 
             prioridad
@@ -85,7 +85,7 @@ begin
         open carteras for
 
         select
-            cod_cartera,
+            id_cartera,
             des_cartera
         from 
             cartera
@@ -106,7 +106,7 @@ begin
         open estados for
 
         select
-            cod_estado,
+            id_estado,
             des_estado
         from 
             estado
@@ -128,7 +128,7 @@ begin
         open medios_respuestas for
 
         select
-            cod_medio_respuesta,
+            id_medio_respuesta,
             des_medio_respuesta
         from 
             medios_respuesta

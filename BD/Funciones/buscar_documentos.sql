@@ -1,16 +1,16 @@
-create or replace function public.buscar_documentos
+create or replace function buscar_documentos
 (
-    in xnombre$ varchar,
-    in xnum_folio$ varchar,
-    in xnum_adherente$ varchar,
-    in xid_cartera$ numeric,
-    in xid_producto$ numeric,
-    in xcod_area$ varchar,
-    out documentos refcursor, 
-    out numerror varchar, 
-    out msjerror varchar
-) returns record as
-
+    in "xnombre$" character varying, 
+    in "xnum_folio$" character varying, 
+    in "xnum_adherente$" character varying, 
+    in "xid_cartera$" numeric, 
+    in "xid_producto$" numeric, 
+    in "xcod_area$" character varying,
+     out documentos refcursor, 
+     out numerror character varying, 
+     out msjerror character varying
+)
+  returns record as
 $body$
 
     declare xnombre varchar;
@@ -29,8 +29,10 @@ $body$
         xnombre := coalesce(upper(trim(xnombre$)),'') || '%';
         xnum_folio := '%' || coalesce(upper(trim(xnum_folio$)),'') || '%';
         xnum_adherente := '%' || coalesce(upper(trim(xnum_adherente$)),'') || '%';
-
-       
+        xid_cartera := xid_cartera$;
+        xid_producto := xid_producto$;
+        
+    
 
         if trim(xcod_area$) = '' then
             xcod_area := ' ';
@@ -61,8 +63,8 @@ $body$
             on d.id_cartera = c.id_cartera
         inner join producto as p 
             on d.id_producto = p.id_producto
-        where
-            upper(d.nombre) like '%' || xnombre ||'%' and
+where
+            upper(d.nombre) like '%' || xnombre ||'%'         and
             upper(d.num_folio) like xnum_folio and
             upper(d.num_adherente) like xnum_adherente and
             (xid_cartera = 0  or d.id_cartera = xid_cartera) and
@@ -79,4 +81,7 @@ $body$
     end;
 
 $body$
-language 'plpgsql'
+  language plpgsql volatile
+  cost 100;
+alter function buscar_documentos(character varying, character varying, character varying, numeric, numeric, character varying)
+  owner to postgres;

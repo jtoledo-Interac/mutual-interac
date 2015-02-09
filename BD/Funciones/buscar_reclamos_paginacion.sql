@@ -40,7 +40,10 @@ $body$
         xordenarpor$ := upper(trim(ordenarpor$));
         xorden$      := upper(trim(orden$));
         xid_reclamo=xid_reclamo$;
-    
+        xid_cartera=xid_cartera$;
+        xid_tipo=xid_tipo$;
+        xid_estado=xid_estado$;
+        xid_prioridad=xid_prioridad$;
 
         if trim(xnum_adherente$) = '' then
             xnum_adherente := ' ';

@@ -16,14 +16,14 @@ $body$
         open medios for
 
         select
-            id_medio,
-            des_medio
+            id_medio_respuesta,
+            des_medio_respuesta
         from 
-            medio_respuesta
+            medios_respuesta
         where
-             upper(des_medio) like '%' || xnommedio ||'%'                  
+             upper(des_medio_respuesta) like '%' || xnommedio ||'%'                  
         order by
-            des_medio;
+            des_medio_respuesta;
         
         exception
             when others then

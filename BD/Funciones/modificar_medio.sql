@@ -17,7 +17,7 @@ $body$
         set 
             des_medio_respuesta = xmedio
         where
-            id_medio_respuesta = xidd_medio;
+            id_medio_respuesta = xid_medio;
 
         exception
             when others then
