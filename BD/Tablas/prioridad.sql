@@ -3,4 +3,3 @@ CREATE TABLE public.prioridad (
     des_prioridad	varchar(200) NULL,
     primary key(id_prioridad)
 )
-GO

@@ -4,8 +4,8 @@ create or replace function public.agregar_documento
 	in xnum_folio varchar,
 	in xnum_adherente varchar,
 	in xdescripcion varchar,
-	in xcod_cartera varchar,
-	in xcod_producto varchar,
+	in xid_cartera numeric,
+	in xid_producto numeric,
 	in xcod_area varchar,
     out xid_documento bigint, 
     out numerror varchar, 
@@ -29,8 +29,8 @@ $body$
 			num_folio,
 			num_adherente,
 			descripcion,
-			cod_cartera,
-			cod_producto,
+			id_cartera,
+			id_producto,
 			cod_area,
 			fec_creacion
 		)
@@ -41,8 +41,8 @@ $body$
 			xnum_folio,
 			xnum_adherente,
 			xdescripcion,
-			xcod_cartera,
-			xcod_producto,
+			xid_cartera,
+			xid_producto,
 			xcod_area,
 			now()
 		);

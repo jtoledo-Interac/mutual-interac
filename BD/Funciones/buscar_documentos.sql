@@ -3,7 +3,7 @@ create or replace function public.buscar_documentos
     in xnombre$ varchar,
     in xnum_folio$ varchar,
     in xnum_adherente$ varchar,
-    in xcod_cartera$ varchar,
+    in xid_cartera$ varchar,
     in xid_producto$ numeric,
     in xcod_area$ varchar,
     out documentos refcursor, 
@@ -16,7 +16,7 @@ $body$
     declare xnombre varchar;
     declare xnum_folio varchar;
     declare xnum_adherente varchar;
-    declare xcod_cartera varchar;
+    declare xid_cartera numeric;
     declare xid_producto numeric;
     declare xcod_area varchar;
 
@@ -30,17 +30,7 @@ $body$
         xnum_folio := '%' || coalesce(upper(trim(xnum_folio$)),'') || '%';
         xnum_adherente := '%' || coalesce(upper(trim(xnum_adherente$)),'') || '%';
 
-        if trim(xcod_cartera$) = '' then
-            xcod_cartera := ' ';
-        else
-            xcod_cartera := upper(trim(xcod_cartera$));
-        end if;
-
-        if trim(xid_producto$) = '' then
-            xid_producto := ' ';
-        else
-            xid_producto := upper(trim(xid_producto$));
-        end if;
+       
 
         if trim(xcod_area$) = '' then
             xcod_area := ' ';
@@ -56,7 +46,7 @@ $body$
             num_folio,
             num_adherente,
             descripcion,
-            d.cod_cartera as cod_cartera,
+            d.id_cartera as id_cartera,
             c.des_cartera as des_cartera,
             d.id_producto as id_producto,
             p.des_producto as des_producto,
@@ -66,17 +56,17 @@ $body$
         from 
             documento d 
         inner join area as a 
-            on d.cod_area = a.cod_area
+            on d.id_area = a.id_area
         inner join cartera as c 
-            on d.cod_cartera = c.cod_cartera
+            on d.id_cartera = c.id_cartera
         inner join producto as p 
             on d.id_producto = p.id_producto
         where
             upper(d.nombre) like '%' || xnombre ||'%' and
             upper(d.num_folio) like xnum_folio and
             upper(d.num_adherente) like xnum_adherente and
-            (xcod_cartera =  ' ' or upper(d.cod_cartera) = xcod_cartera) and
-            (xid_producto =  ' ' or upper(d.id_producto) = xid_producto) and
+            (xid_cartera = 0  or d.id_cartera = xid_cartera) and
+            (xid_producto = 0 or d.id_producto = xid_producto) and
             (xcod_area =  ' ' or upper(d.cod_area) = xcod_area)
         order by
             id_documento;
