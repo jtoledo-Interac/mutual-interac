@@ -742,7 +742,7 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
 		Medio medio = new Medio();
-		medio.setCodMedio(request.getParameter("codMedio"));
+		medio.setIdMedio(Utils.stringToNum(request.getParameter("idMedio")));
 		medio.setDesMedio(request.getParameter("desMedio"));
 
 		log.info("desMedio: " + request.getParameter("desMedio") );
@@ -821,13 +821,13 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		String codMedio = request.getParameter("codMedio");
+		Long idMedio = Utils.stringToNum(request.getParameter("idMedio"));
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 
-		log.info("codMedio: "+codMedio);
+		log.info("idMedio: "+idMedio);
 		
-		mapaEntrada.put("codMedio", codMedio);
+		mapaEntrada.put("idMedio", idMedio);
 		
 		mapaSalida = ejbRemoto.cargarMedio(mapaEntrada);
 		
@@ -918,7 +918,7 @@ public class Servlet extends HttpServlet {
 		
 		Medio medio = new Medio();
 		
-		medio.setCodMedio(request.getParameter("codMedio"));
+		medio.setIdMedio(Utils.stringToNum(request.getParameter("idMedio")));
 		medio.setDesMedio(request.getParameter("desMedio"));
 
 		mapaEntrada.put("medio",medio);
@@ -1007,13 +1007,13 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		String codMedio = request.getParameter("codMedio");
+		Long idMedio = Utils.stringToNum(request.getParameter("idMedio"));
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 
-		log.info("codMedio: " + codMedio);
+		log.info("idMedio: " + idMedio);
 		
-		mapaEntrada.put("codMedio", codMedio);
+		mapaEntrada.put("idMedio", idMedio);
 		
 		mapaSalida = ejbRemoto.eliminarMedio(mapaEntrada);
 		
@@ -1621,7 +1621,7 @@ public class Servlet extends HttpServlet {
 		reclamo.setResponsableActual(request.getParameter("responsable_actual"));
 		reclamo.setDiasBandeja("");
 		reclamo.setDiasSistema("");
-		reclamo.setCodMedio(request.getParameter("cod_medio_respuesta"));
+		reclamo.setIdMedio(Utils.stringToNum(request.getParameter("id_medio_respuesta")));
 		reclamo.setFecRespuesta(request.getParameter("fec_respuesta") );
 
 		mapaEntrada.put("reclamo",reclamo);
@@ -1709,7 +1709,7 @@ public class Servlet extends HttpServlet {
 		reclamo.setResponsableActual(request.getParameter("responsable_actual"));
 		reclamo.setDiasBandeja("");
 		reclamo.setDiasSistema("");
-		reclamo.setCodMedio(request.getParameter("cod_medio_respuesta"));
+		reclamo.setIdMedio(Utils.stringToNum(request.getParameter("cod_medio_respuesta")));
 		reclamo.setFecRespuesta(request.getParameter("fec_respuesta") );
 
 		mapaEntrada.put("reclamo",reclamo);		

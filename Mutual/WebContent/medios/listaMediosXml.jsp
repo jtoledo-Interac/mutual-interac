@@ -5,7 +5,7 @@
 <filas>
     <c:forEach items="${requestScope.listaMedios}" var="medio">
         <fila>
-        	<codMedio>${medio.codMedio}</codMedio>
+        	<idMedio>${medio.idMedio}</idMedio>
         	<desMedio>${medio.desMedio}</desMedio>
         </fila>
      </c:forEach>

@@ -3,12 +3,12 @@
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 
 <script type="text/javascript">
-  $('select').select2();
+  //$('select').select2();
 </script>
 
 <script type="text/javascript"> 
 
-	var codMedio;
+	var idMedio;
 	var idFila = 0;
 	var numFilas = 10;
 	
@@ -20,21 +20,23 @@
 			datatype: "xml",
 			colNames : ['', 'Nombre Medio',''],
 			colModel : [
-						{name : 'codMedio', index:'codMedio', hidden : true}, 
+						{name : 'idMedio', index:'idMedio', hidden : true}, 
 						{name : 'desMedio', index:'desMedio', width : 80, search : true, resizable : false, sortable : true},				
 						{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
 						],
-		   	rowNum:10,
+		   	rowNum: numeroDeFilas,
+		   	height: altoGrilla,
+		   	width: anchoGrilla,
 		   	rowList:[10,20,30],
 			xmlReader: {
 				root : "filas",
 				row: "fila",
 				repeatitems: false,
-				id: "codMedio"
+				id: "idMedio"
 			},
 		   	pager: $('#pieMedio'),
 		   	pgtext : 'P&aacute;g: {0} de {1}', 
-		   	sortname: 'codMedio',
+		   	sortname: 'idMedio',
 		    viewrecords: true,
 		    sortorder: "desc",
 		    caption:"Medios",
@@ -114,7 +116,7 @@
 		    position: 'center',
 		    buttons: {
 				"Editar Medio": function() {
-					$('#formEdita').submit();
+					$('#formEdita .submit').click();
 				},
 				"Cancelar": function() {
 					$(this).dialog("close");
@@ -144,20 +146,20 @@
 		});
 	}
 	
-	function editarMedio(codMedio)
+	function editarMedio(idMedio)
 	{
-		console.log("Medio: "+codMedio);
+		console.log("Medio: "+idMedio);
 		
-		ajaxCall(getUrlCargarMedio(codMedio), function(response){
+		ajaxCall(getUrlCargarMedio(idMedio), function(response){
 			$('#cargaMedio').html(response).dialog('open');
 		});
 	}
 	
-	function eliminarMedio(codMedio)
+	function eliminarMedio(idMedio)
 	{  
    		jConfirm('¿ Confirma eliminar el Medio ?', 'Confirmación', function(res){
    			if (res == true){
-  				ajaxCall(getUrlEliminarMedio(codMedio), function(){
+  				ajaxCall(getUrlEliminarMedio(idMedio), function(){
   					jAlert("El Medio ha sido eliminado exitosamente");
   					buscarMedios();
    				});
@@ -196,7 +198,7 @@
 	{
 		var sData = "Servlet";
 		sData += '?accion=cargarMedio';
-		sData += '&codMedio='+id;
+		sData += '&idMedio='+id;
 		console.log(sData);
 		return sData;
 	}
@@ -204,7 +206,7 @@
 	function getUrlEliminarMedio(id){  
 		var sData = 'Servlet';
 		sData += '?accion=eliminarMedio';
-		sData += '&codMedio='+id;
+		sData += '&idMedio='+id;
 		return sData;
     }
 </script>

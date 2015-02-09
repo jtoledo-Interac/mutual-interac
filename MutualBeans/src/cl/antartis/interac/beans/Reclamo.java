@@ -37,7 +37,7 @@ public class Reclamo implements Serializable {
 	private String responsableActual;
 	private String diasBandeja;
 	private String diasSistema;
-	private String codMedio;
+	private Long idMedio;
 	private String desMedio;
 	private String fecRespuesta;
 
@@ -50,7 +50,7 @@ public class Reclamo implements Serializable {
 			String fecIngreso, String glosa, String adjunto,
 			String observaciones, Long idEstado, String responsableIngreso,
 			String responsableActual, String diasBandeja, String diasSistema,
-			String codMedio, String fecRespuesta,String desTipo, String desPrioridad,
+			Long idMedio, String fecRespuesta,String desTipo, String desPrioridad,
 			String desMotivo,String desMedio,String desEstado) {
 		super();
 		this.idReclamo = idReclamo;
@@ -76,7 +76,7 @@ public class Reclamo implements Serializable {
 		this.responsableActual = responsableActual;
 		this.diasBandeja = diasBandeja;
 		this.diasSistema = diasSistema;
-		this.codMedio = codMedio;
+		this.setIdMedio(idMedio);
 		this.desMedio=desMedio;
 		this.fecRespuesta = fecRespuesta;
 	}
@@ -217,14 +217,6 @@ public class Reclamo implements Serializable {
 		this.diasSistema = diasSistema;
 	}
 
-	public String getCodMedio() {
-		return codMedio;
-	}
-
-	public void setCodMedio(String codMedio) {
-		this.codMedio = codMedio;
-	}
-
 	public String getFecRespuesta() {
 		return fecRespuesta;
 	}
@@ -254,7 +246,7 @@ public class Reclamo implements Serializable {
 		reclamo += "\nresponsableActual" +this.responsableActual;
 		reclamo += "\ndiasBandeja" +this.diasBandeja;
 		reclamo += "\ndiasSistema" +this.diasSistema;
-		reclamo += "\ncodMedio" +this.codMedio;
+		reclamo += "\ncodMedio" +this.idMedio;
 		reclamo += "\nfecRespuesta" +this.fecRespuesta;	
 		return reclamo;
 	}
@@ -312,5 +304,13 @@ public class Reclamo implements Serializable {
 
 	public void setIdPrioridad(Long idPrioridad) {
 		this.idPrioridad = idPrioridad;
+	}
+
+	public Long getIdMedio() {
+		return idMedio;
+	}
+
+	public void setIdMedio(Long idMedio) {
+		this.idMedio = idMedio;
 	}
 }
