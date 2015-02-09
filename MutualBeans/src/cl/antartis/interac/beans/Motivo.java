@@ -5,15 +5,15 @@ import java.io.Serializable;
 public class Motivo implements Serializable {
 
 	private static final long serialVersionUID = 2036592118735551615L;
-	private String codMotivo;
+	private Long idMotivo;
 	private String desMotivo;
-
-	public String getCodMotivo() {
-		return codMotivo;
+	
+	public Long getIdMotivo() {
+		return idMotivo;
 	}
 
-	public void setCodMotivo(String codMotivo) {
-		this.codMotivo = codMotivo;
+	public void setIdMotivo(Long idMotivo) {
+		this.idMotivo = idMotivo;
 	}
 
 	public String getDesMotivo() {
@@ -27,7 +27,7 @@ public class Motivo implements Serializable {
 	public String getMotivo() {
 		String motivo = "\nDATOS DE Motivo:";
 		
-		motivo += "\ncodMotivo: "+this.codMotivo;  
+		motivo += "\ncodMotivo: "+this.idMotivo;  
 		motivo += "\nmdesMotivo: "+this.desMotivo;
 
 		return motivo;
