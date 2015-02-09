@@ -5,16 +5,9 @@ import java.io.Serializable;
 public class Cartera implements Serializable {
 
 	private static final long serialVersionUID = 5013610931946807970L;
-	private String codCartera;
+	private Long idCartera;
 	private String desCartera;
 
-	public String getCodCartera() {
-		return codCartera;
-	}
-
-	public void setCodCartera(String codCartera) {
-		this.codCartera = codCartera;
-	}
 
 	public String getDesCartera() {
 		return desCartera;
@@ -26,8 +19,16 @@ public class Cartera implements Serializable {
 
 	public String getCartera() {
 		String cartera = "\nDATOS DE Cartera:";
-		cartera += "\ncodCartera: " + this.codCartera;
+		cartera += "\nidCartera: " + this.idCartera;
 		cartera += "\ndesCartera: " + this.desCartera;
 		return cartera;
+	}
+
+	public Long getIdCartera() {
+		return idCartera;
+	}
+
+	public void setIdCartera(Long idCartera) {
+		this.idCartera = idCartera;
 	}
 }

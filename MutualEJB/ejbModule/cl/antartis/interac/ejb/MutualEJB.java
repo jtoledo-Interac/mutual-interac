@@ -452,7 +452,7 @@ public class MutualEJB implements EJBRemoto {
 			if(rs !=null){
 				while (rs.next()) {
 					cartera = new Cartera();
-					cartera.setCodCartera(rs.getString("cod_cartera"));
+					cartera.setIdCartera(Utils.stringToNum(rs.getString("id_cartera")));
 					cartera.setDesCartera(rs.getString("des_cartera"));
 					listaCarteras.add(cartera);
 				}
@@ -657,18 +657,16 @@ public class MutualEJB implements EJBRemoto {
 			dbConeccion = interacDS.getConnection();
 
 			cStmt = dbConeccion.prepareCall("{ call agregar_cartera(?,?,?,?) }"); //falta SP, posibles cambios aqui
-			cStmt.setString(1, cartera.getCodCartera());
-			cStmt.setString(2, cartera.getDesCartera());
-			
-			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
-			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+			cStmt.setString(1, cartera.getDesCartera());
+			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
 
 			
 			cStmt.execute();
 			
 	
-			numError = cStmt.getString(3);
-			msjError = cStmt.getString(4);
+			numError = cStmt.getString(2);
+			msjError = cStmt.getString(3);
 			
 			log.info("Num Error: "+numError);
 			log.info("Msj Error: "+msjError);
@@ -914,7 +912,7 @@ public class MutualEJB implements EJBRemoto {
 						
 			while (rsCartera.next()) {
 				cartera = new Cartera();
-				cartera.setCodCartera(rsCartera.getString("cod_cartera"));
+				cartera.setIdCartera(Utils.stringToNum(rsCartera.getString("cod_cartera")));
 				cartera.setDesCartera(rsCartera.getString("des_cartera"));
 				log.info(cartera.getCartera());
 			}
@@ -1146,7 +1144,7 @@ public class MutualEJB implements EJBRemoto {
 			dbConeccion = interacDS.getConnection();
 
 			cStmt = dbConeccion.prepareCall("{ call modificar_cartera(?,?,?,?) }");
-			cStmt.setString(1,cartera.getCodCartera());
+			cStmt.setLong(1,cartera.getIdCartera());
 			cStmt.setString(2,cartera.getDesCartera());
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
@@ -2217,7 +2215,7 @@ public class MutualEJB implements EJBRemoto {
 			if(rsCarteras !=null){
 				while (rsCarteras.next()) {
 					cartera = new Cartera();
-					cartera.setCodCartera(rsCarteras.getString("cod_cartera"));
+					cartera.setIdCartera(Utils.stringToNum(rsCarteras.getString("id_cartera")));
 					cartera.setDesCartera(rsCarteras.getString("des_cartera"));
 					listaCarteras.add(cartera);
 				}
@@ -2790,7 +2788,7 @@ public class MutualEJB implements EJBRemoto {
 			if(rsCarteras != null){
 				while (rsCarteras.next()){
 					cartera = new Cartera();
-					cartera.setCodCartera(rsCarteras.getString("cod_cartera"));
+					cartera.setIdCartera(Utils.stringToNum(rsCarteras.getString("id_cartera")));
 					cartera.setDesCartera(rsCarteras.getString("des_cartera"));
 					listaCarteras.add(cartera);
 				}

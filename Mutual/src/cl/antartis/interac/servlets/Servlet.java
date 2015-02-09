@@ -689,10 +689,6 @@ public class Servlet extends HttpServlet {
 		
 		mapaSalida = ejbRemoto.buscarParametros(mapaEntrada);
 		
-		ArrayList<Cartera> listaCarteras = (ArrayList<Cartera>)mapaSalida.get("listaCarteras");
-		
-		cartera.setCodCartera(Integer.toString(listaCarteras.size()+1));
-		
 		mapaSalida = ejbRemoto.agregarCartera(mapaEntrada);
 		
 		log.info("ID Cartera: "+mapaSalida.get("codCartera"));
@@ -853,7 +849,7 @@ public class Servlet extends HttpServlet {
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
 		Cartera cartera = new Cartera();
-		cartera.setCodCartera(request.getParameter("codCartera"));
+		cartera.setIdCartera(Utils.stringToNum(request.getParameter("idCartera")));
 		cartera.setDesCartera(request.getParameter("desCartera"));
 
 		mapaEntrada.put("cartera",cartera);
