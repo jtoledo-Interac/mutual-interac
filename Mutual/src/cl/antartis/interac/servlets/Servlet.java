@@ -742,7 +742,6 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
 		Medio medio = new Medio();
-		medio.setIdMedio(Utils.stringToNum(request.getParameter("idMedio")));
 		medio.setDesMedio(request.getParameter("desMedio"));
 
 		log.info("desMedio: " + request.getParameter("desMedio") );

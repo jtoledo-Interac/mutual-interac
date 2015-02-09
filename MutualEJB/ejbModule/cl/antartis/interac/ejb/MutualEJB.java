@@ -1077,7 +1077,7 @@ public class MutualEJB implements EJBRemoto {
 			dbConeccion = interacDS.getConnection();
 			
 			cStmt = dbConeccion.prepareCall("{ call cargar_medio(?,?,?,?) }");
-			cStmt.setString(1, (String)mapaEntrada.get("idMedio")); 
+			cStmt.setLong(1, (Long)mapaEntrada.get("idMedio")); 
 			cStmt.registerOutParameter(2, Types.OTHER);// carteras$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
@@ -1090,7 +1090,7 @@ public class MutualEJB implements EJBRemoto {
 						
 			while (rsCartera.next()) {
 				medio = new Medio();
-				medio.setIdMedio(rsCartera.getLong("cod_medio_respuesta"));
+				medio.setIdMedio(rsCartera.getLong("id_medio_respuesta"));
 				medio.setDesMedio(rsCartera.getString("des_medio_respuesta"));
 				log.info(medio.getMedio());
 			}
@@ -1509,7 +1509,7 @@ public class MutualEJB implements EJBRemoto {
 		
 		CallableStatement cStmt = null;
 		Map<String, Object> mapaSalida = null;
-		String cod_medio = "";
+		Long id_medio;
 		
 		String numError = "0";
 		String msjError = "";
@@ -1517,16 +1517,16 @@ public class MutualEJB implements EJBRemoto {
 		try {
 			log.info("Eliminar medio");
 
-			cod_medio = (String)mapaEntrada.get("idMedio");
+			id_medio = (Long)mapaEntrada.get("idMedio");
 			
-			log.info("cod_medio: "+ cod_medio);
+			log.info("id_medio: "+ id_medio);
 			
 			mapaSalida = new HashMap<String, Object>();
 
 			dbConeccion = interacDS.getConnection();
 
 			cStmt = dbConeccion.prepareCall("{ call eliminar_medio(?,?,?) }");
-			cStmt.setString(1, cod_medio);
+			cStmt.setLong(1, id_medio);
 			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
 

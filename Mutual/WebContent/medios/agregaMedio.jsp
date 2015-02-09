@@ -15,5 +15,4 @@
 	<input type="hidden"	class="input"	id="accion" 		name="accion" 		value="agregarMedio">
 	<input type="submit" class="submit" style="display:none;">
 	<input type="text" 		id="desMedio" 	name="desMedio"		placeholder="Nombre Medio" required>
-	<input type="text" 		id="idMedio" 	name="idMedio"		placeholder="Codigo" maxlength="5" required> 
 </form>
