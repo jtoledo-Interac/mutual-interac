@@ -4,7 +4,7 @@
 
 <script type="text/javascript"> 
 
-	var codMotivo;
+	var idMotivo;
 	var idFila = 0;
 	var numFilas = 10;
 	
@@ -16,7 +16,7 @@
 			datatype: "xml",
 			colNames : ['', 'Nombre Motivo',''],
 			colModel : [
-						{name : 'codMotivo', index:'codMotivo', hidden : true}, 
+						{name : 'idMotivo', index:'idMotivo', hidden : true}, 
 						{name : 'desMotivo', index:'desMotivo', width : 80, search : true, resizable : false, sortable : true},				
 						{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
 						],
@@ -30,11 +30,11 @@
 				root : "filas",
 				row: "fila",
 				repeatitems: false,
-				id: "codMotivo"
+				id: "idMotivo"
 			},
 		   	pager: $('#pieMotivos'),
 		   	pgtext : 'P&aacute;g: {0} de {1}', 
-		   	sortname: 'codMotivos',
+		   	sortname: 'idMotivos',
 		    viewrecords: true,
 		    sortorder: "desc",
 		    caption:"Motivos",
@@ -144,20 +144,20 @@
 		});
 	}
 	
-	function editarMotivo(codMotivo)
+	function editarMotivo(idMotivo)
 	{
-		console.log("Motivo: "+codMotivo);
+		console.log("Motivo: "+idMotivo);
 		
-		ajaxCall(getUrlCargarMotivo(codMotivo), function(response){
+		ajaxCall(getUrlCargarMotivo(idMotivo), function(response){
 			$('#cargaMotivo').html(response).dialog('open');
 		});
 	}
 	
-	function eliminarMotivo(codMotivo)
+	function eliminarMotivo(idMotivo)
 	{  
    		jConfirm('¿ Confirma eliminar el Motivo ?', 'Confirmación', function(res){
    			if (res == true){
-  				ajaxCall(getUrlEliminarMotivo(codMotivo), function(){
+  				ajaxCall(getUrlEliminarMotivo(idMotivo), function(){
   					jAlert("El Motivo ha sido eliminado exitosamente");
   					buscarMotivos();
    				});
@@ -196,7 +196,7 @@
 	{
 		var sData = "Servlet";
 		sData += '?accion=cargarMotivo';
-		sData += '&codMotivo='+id;
+		sData += '&idMotivo='+id;
 		console.log(sData);
 		return sData;
 	}
@@ -204,7 +204,7 @@
 	function getUrlEliminarMotivo(id){  
 		var sData = 'Servlet';
 		sData += '?accion=eliminarMotivo';
-		sData += '&codMotivo='+id;
+		sData += '&idMotivo='+id;
 		return sData;
     }
 </script>
