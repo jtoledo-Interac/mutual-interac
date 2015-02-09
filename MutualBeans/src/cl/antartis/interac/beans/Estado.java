@@ -5,19 +5,19 @@ import java.io.Serializable;
 public class Estado implements Serializable {
 
 	private static final long serialVersionUID = 2036592118735551615L;
-	private String codEstado;
+	private Long idEstado;
 	private String desEstado;
-
-	public String getCodEstado() {
-		return codEstado;
-	}
-
-	public void setCodEstado(String codEstado) {
-		this.codEstado = codEstado;
-	}
 
 	public String getDesEstado() {
 		return desEstado;
+	}
+
+	public Long getIdEstado() {
+		return idEstado;
+	}
+
+	public void setIdEstado(Long idEstado) {
+		this.idEstado = idEstado;
 	}
 
 	public void setDesEstado(String desEstado) {
@@ -25,14 +25,10 @@ public class Estado implements Serializable {
 	}
 	public String getEstado(){
 		String estado = "\nDATOS DE Estado:";
-		estado += "\ncodEstado: "+this.codEstado;  
+		estado += "\nidEstado: "+this.idEstado;  
 		estado += "\ndesEstado: "+this.desEstado;
 		
 		return estado;
-	}
-	
-	
-		
-	
+	}	
 
 }

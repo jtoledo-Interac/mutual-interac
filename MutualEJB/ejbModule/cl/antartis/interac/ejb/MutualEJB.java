@@ -2800,7 +2800,7 @@ public class MutualEJB implements EJBRemoto {
 			if(rsEstados != null){
 				while (rsEstados.next()){
 					estado = new Estado();
-					estado.setCodEstado(rsEstados.getString("cod_estado"));
+					estado.setIdEstado(rsEstados.getLong("id_estado"));
 					estado.setDesEstado(rsEstados.getString("des_estado"));
 					listaEstados.add(estado);
 				}
@@ -3753,12 +3753,11 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 
 			dbConeccion = interacDS.getConnection();
 
-			cStmt = dbConeccion.prepareCall("{ call agregar_estado(?,?,?,?) }"); //cambiar segun SP
+			cStmt = dbConeccion.prepareCall("{ call agregar_estado(?,?,?) }"); //cambiar segun SP
 			
-			cStmt.setString(1, estado.getCodEstado());// cursor$
-			cStmt.setString(2, estado.getDesEstado());// cursor$			
-			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
-			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+			cStmt.setString(1, estado.getDesEstado());// cursor$			
+			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
 
 			
 			cStmt.execute();
@@ -3800,7 +3799,7 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 	public Map<String, Object> cargarEstado(Map<String, Object> mapaEntrada) {
 		CallableStatement cStmt = null;
 		Map<String, Object> mapaSalida = null;
-		String  cod_estado = "";
+		Long id_estado = null;
 		Estado estado = null;
 		String numError = "0";
 		String msjError = "";
@@ -3808,16 +3807,16 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 		try {
 			log.info("Cargar estado");
 
-			cod_estado = (String)mapaEntrada.get("codEstado");
+			id_estado = Utils.stringToNum((String)mapaEntrada.get("idEstado"));
 			
-			log.info("cod_estado: "+cod_estado);
+			log.info("id_estado: "+id_estado);
 			
 			mapaSalida = new HashMap<String, Object>();
 
 			dbConeccion = interacDS.getConnection();
 
 			cStmt = dbConeccion.prepareCall("{ call cargar_estado(?,?,?,?) }");
-			cStmt.setString(1, cod_estado);
+			cStmt.setLong(1, id_estado);
 			cStmt.registerOutParameter(2, Types.OTHER);// documento$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
@@ -3830,7 +3829,7 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 			while (rs.next()) {
 				
 				estado= new Estado();
-				estado.setCodEstado(rs.getString("cod_estado"));
+				estado.setIdEstado(rs.getLong("id_estado"));
 				estado.setDesEstado(rs.getString("des_estado"));
 			}
 			
@@ -3879,7 +3878,7 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 			dbConeccion = interacDS.getConnection();
 
 			cStmt = dbConeccion.prepareCall("{ call modificar_estado(?,?,?,?) }");
-			cStmt.setString(1,estado.getCodEstado());
+			cStmt.setLong(1,estado.getIdEstado());
 			cStmt.setString(2,estado.getDesEstado());
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
@@ -3997,7 +3996,7 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 			if(rs !=null){
 				while (rs.next()) {
 					estado = new Estado();
-					estado.setCodEstado(rs.getString("cod_estado"));
+					estado.setIdEstado(rs.getLong("id_estado"));
 					estado.setDesEstado(rs.getString("des_estado"));
 					log.info(estado.getEstado());
 					listaEstados.add(estado);

@@ -1963,7 +1963,6 @@ public class Servlet extends HttpServlet {
 		
 		Estado estado = new Estado(); 
 		estado.setDesEstado(request.getParameter("desEstado"));
-		estado.setCodEstado(request.getParameter("codEstado"));
 
 		mapaEntrada.put("estado",estado);
 		
@@ -1979,13 +1978,13 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		String codEstado = request.getParameter("codEstado");
+		Long idEstado = Utils.stringToNum(request.getParameter("codEstado"));
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 
-		log.info("codEstado: "+codEstado);
+		log.info("idEstado: " + idEstado);
 		
-		mapaEntrada.put("codEstado", codEstado);
+		mapaEntrada.put("idEstado", idEstado);
 		
 		mapaSalida = ejbRemoto.cargarEstado(mapaEntrada);
 		
@@ -2003,7 +2002,7 @@ public class Servlet extends HttpServlet {
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
 		Estado estado = new Estado();
-		estado.setCodEstado(request.getParameter("codEstado"));
+		estado.setIdEstado(Utils.stringToNum(request.getParameter("iddEstado")));
 		estado.setDesEstado(request.getParameter("desEstado"));
 
 		mapaEntrada.put("estado",estado);
