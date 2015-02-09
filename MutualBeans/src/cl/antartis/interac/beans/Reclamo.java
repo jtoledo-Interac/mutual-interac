@@ -16,14 +16,22 @@ public class Reclamo implements Serializable {
 	private String desTipo;
 	private Long idMotivo;
 	private String desMotivo;
-	private String codPrioridad;
+	private Long idPrioridad;
 	private String desPrioridad;
-	private String codCartera;
+	private Long idCartera;
+	public Long getIdCartera() {
+		return idCartera;
+	}
+
+	public void setIdCartera(Long idCartera) {
+		this.idCartera = idCartera;
+	}
+
 	private String fecIngreso;
 	private String glosa;
 	private String adjunto;
 	private String observaciones;
-	private Long idEstado;
+	private String codEstado;
 	private String desEstado;
 	private String responsableIngreso;
 	private String responsableActual;
@@ -38,7 +46,7 @@ public class Reclamo implements Serializable {
 	public Reclamo(long idReclamo, String numAdherente,
 			String nombreSolicitante, String emailSolicitante,
 			String fonoSolicitante, String regionSolicitante, Long idTipo,
-			String codMotivo, String codPrioridad, String codCartera,
+			Long idMotivo, Long idPrioridad, Long idCartera,
 			String fecIngreso, String glosa, String adjunto,
 			String observaciones, String codEstado, String responsableIngreso,
 			String responsableActual, String diasBandeja, String diasSistema,
@@ -55,14 +63,14 @@ public class Reclamo implements Serializable {
 		this.desTipo = desTipo;
 		this.idMotivo = idMotivo;
 		this.desMotivo= desMotivo ;
-		this.codPrioridad = codPrioridad;
+		this.idPrioridad = idPrioridad;
 		this.desPrioridad=desPrioridad;
-		this.codCartera = codCartera;
+		this.idCartera = idCartera;
 		this.fecIngreso = fecIngreso;
 		this.glosa = glosa;
 		this.adjunto = adjunto;
 		this.observaciones = observaciones;
-		this.idEstado = idEstado;
+		this.codEstado = codEstado;
 		this.desEstado=desEstado;		
 		this.responsableIngreso = responsableIngreso;
 		this.responsableActual = responsableActual;
@@ -137,22 +145,6 @@ public class Reclamo implements Serializable {
 		this.idMotivo = idMotivo;
 	}
 
-	public String getCodPrioridad() {
-		return codPrioridad;
-	}
-
-	public void setCodPrioridad(String codPrioridad) {
-		this.codPrioridad = codPrioridad;
-	}
-
-	public String getCodCartera() {
-		return codCartera;
-	}
-
-	public void setCodCartera(String codCartera) {
-		this.codCartera = codCartera;
-	}
-
 	public String getFecIngreso() {
 		return fecIngreso;
 	}
@@ -185,12 +177,12 @@ public class Reclamo implements Serializable {
 		this.observaciones = observaciones;
 	}
 
-	public Long getIdEstado() {
-		return idEstado;
+	public String getCodEstado() {
+		return codEstado;
 	}
 
-	public void setCodEstado(Long idEstado) {
-		this.idEstado = idEstado;
+	public void setCodEstado(String codEstado) {
+		this.codEstado = codEstado;
 	}
 
 	public String getResponsableIngreso() {
@@ -251,13 +243,13 @@ public class Reclamo implements Serializable {
 		reclamo += "\nregionSolicitante" +this.regionSolicitante;
 		reclamo += "\nidTipo" +this.idTipo;
 		reclamo += "\nidMotivo" +this.idMotivo;
-		reclamo += "\ncodPrioridad" +this.codPrioridad;
-		reclamo += "\ncodCartera" +this.codCartera;
+		reclamo += "\nidPrioridad" +this.idPrioridad;
+		reclamo += "\nidCartera" +this.idCartera;
 		reclamo += "\nfecIngreso" +this.fecIngreso;
 		reclamo += "\nglosa" +this.glosa;
 		reclamo += "\nadjunto" +this.adjunto;
 		reclamo += "\nobservaciones" +this.observaciones;
-		reclamo += "\ncodEstado" +this.idEstado;
+		reclamo += "\ncodEstado" +this.codEstado;
 		reclamo += "\nresponsableIngreso" +this.responsableIngreso;
 		reclamo += "\nresponsableActual" +this.responsableActual;
 		reclamo += "\ndiasBandeja" +this.diasBandeja;
@@ -313,9 +305,12 @@ public class Reclamo implements Serializable {
 	public void setDesEstado(String desEstado) {
 		this.desEstado = desEstado;
 	}
-	
-	public void setIdEstado(Long idEstado) {
-		this.idEstado = idEstado;
+
+	public Long getIdPrioridad() {
+		return idPrioridad;
 	}
 
+	public void setIdPrioridad(Long idPrioridad) {
+		this.idPrioridad = idPrioridad;
+	}
 }

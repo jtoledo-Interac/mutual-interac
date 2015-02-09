@@ -895,11 +895,8 @@ public class MutualEJB implements EJBRemoto {
 			mapaSalida = new HashMap<String, Object>();
 
 			dbConeccion = interacDS.getConnection();
-			
-			System.out.println("ID CARTERA: " + Utils.stringToNum((String)mapaEntrada.get("codCartera")));
-
 			cStmt = dbConeccion.prepareCall("{ call cargar_cartera(?,?,?,?) }");
-			cStmt.setLong(1, Utils.stringToNum((String)mapaEntrada.get("codCartera"))); 
+			cStmt.setLong(1, (Long)mapaEntrada.get("idCartera")); 
 			cStmt.registerOutParameter(2, Types.OTHER);// carteras$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
@@ -912,7 +909,7 @@ public class MutualEJB implements EJBRemoto {
 						
 			while (rsCartera.next()) {
 				cartera = new Cartera();
-				cartera.setIdCartera(rsCartera.getLong("idCartera"));
+				cartera.setIdCartera(rsCartera.getLong("id_cartera"));
 				cartera.setDesCartera(rsCartera.getString("des_cartera"));
 				log.info(cartera.getCartera());
 			}
@@ -1359,7 +1356,7 @@ public class MutualEJB implements EJBRemoto {
 		try {
 			log.info("Eliminar cartera");
 
-			id_cartera = Utils.stringToNum((String)mapaEntrada.get("codCartera"));
+			id_cartera = Utils.stringToNum((String)mapaEntrada.get("idCartera"));
 			
 			log.info("cod_cartera: "+id_cartera);
 			
@@ -1877,7 +1874,7 @@ public class MutualEJB implements EJBRemoto {
 					documento.setNombre(rs.getString("nombre"));
 					documento.setNumFolio(rs.getString("num_folio"));
 					documento.setNumAdherente(rs.getString("num_adherente"));
-					documento.setIdCartera(Utils.stringToNum(rs.getString("id_cartera")));
+					documento.setIdCartera(rs.getLong("id_cartera"));
 					documento.setDesCartera(rs.getString("des_cartera"));
 					documento.setIdProducto(Long.parseLong(rs.getString("id_producto")));
 					documento.setDesProducto(rs.getString("des_producto"));
@@ -2298,10 +2295,10 @@ public class MutualEJB implements EJBRemoto {
 			
 			cStmt.setString(1,reclamo.getNombreSolicitante());
 			cStmt.setString(2,reclamo.getNumAdherente());
-			cStmt.setString(3,reclamo.getCodCartera());
+			cStmt.setLong(3,reclamo.getIdCartera());
 			cStmt.setLong(4,reclamo.getIdTipo());
-			cStmt.setLong(5,reclamo.getIdEstado());
-			cStmt.setString(6,reclamo.getCodPrioridad());
+			cStmt.setString(5,reclamo.getCodEstado());
+			cStmt.setLong(6,reclamo.getIdPrioridad());
 			cStmt.setLong(7,reclamo.getIdReclamo());
 			cStmt.registerOutParameter(8, Types.OTHER);// cursor$
 			cStmt.registerOutParameter(9, Types.VARCHAR);// numerror$
@@ -2330,14 +2327,14 @@ public class MutualEJB implements EJBRemoto {
 					reclamo.setDesTipo(rs.getString("des_tipo"));
 	                reclamo.setIdMotivo(Utils.stringToNum(rs.getString("id_motivo")));
 					reclamo.setDesMotivo(rs.getString("des_motivo"));
-	                reclamo.setCodPrioridad(rs.getString("cod_prioridad"));
+	                reclamo.setIdPrioridad(rs.getLong("id_prioridad"));
 					reclamo.setDesPrioridad(rs.getString("des_prioridad"));
-	                reclamo.setCodCartera(rs.getString("cod_cartera"));
+	                reclamo.setIdCartera(rs.getLong("id_cartera"));
 	                reclamo.setFecIngreso(Utils.formateaFecha(rs.getString("fec_ingreso")));
 	                reclamo.setGlosa(rs.getString("glosa"));
 	                reclamo.setAdjunto(rs.getString("adjunto"));
 	                reclamo.setObservaciones(rs.getString("observaciones"));
-	                reclamo.setIdEstado(Utils.stringToNum(rs.getString("id_estado")));
+	                reclamo.setCodEstado(rs.getString("cod_estado"));
 					reclamo.setDesEstado(rs.getString("des_estado"));
 	                reclamo.setResponsableIngreso(rs.getString("responsable_ingreso"));
 	                reclamo.setResponsableActual(rs.getString("responsable_actual"));
@@ -2405,13 +2402,13 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(5, reclamo.getRegionSolicitante());
 			cStmt.setLong(6, reclamo.getIdTipo());
 			cStmt.setLong(7, reclamo.getIdMotivo());
-			cStmt.setString(8, reclamo.getCodPrioridad());
-			cStmt.setString(9, reclamo.getCodCartera());
+			cStmt.setLong(8, reclamo.getIdPrioridad());
+			cStmt.setLong(9, reclamo.getIdCartera());
 			cStmt.setDate(10, Utils.stringToDate(reclamo.getFecIngreso()));
 			cStmt.setString(11, reclamo.getGlosa());
 			cStmt.setString(12, reclamo.getAdjunto());
 			cStmt.setString(13, reclamo.getObservaciones());
-			cStmt.setLong(14, reclamo.getIdEstado());
+			cStmt.setString(14, reclamo.getCodEstado());
 			cStmt.setString(15, reclamo.getResponsableIngreso());
 			cStmt.setString(16, reclamo.getResponsableActual());
 			cStmt.setString(17, reclamo.getDiasBandeja());
@@ -2501,13 +2498,13 @@ public class MutualEJB implements EJBRemoto {
                 reclamo.setRegionSolicitante(rs.getString("region_solicitante") );
                 reclamo.setIdTipo(Long.parseLong(rs.getString("id_tipo")));
                 reclamo.setIdMotivo(Utils.stringToNum(rs.getString("id_motivo")));
-                reclamo.setCodPrioridad(rs.getString("cod_prioridad"));
-                reclamo.setCodCartera(rs.getString("cod_cartera"));
+                reclamo.setIdPrioridad(rs.getLong("id_prioridad"));
+                reclamo.setIdCartera(Utils.stringToNum(rs.getString("id_cartera")));
                 reclamo.setFecIngreso(Utils.formateaFecha(rs.getString("fec_ingreso")));
                 reclamo.setGlosa(rs.getString("glosa"));
                 reclamo.setAdjunto(rs.getString("adjunto"));
                 reclamo.setObservaciones(rs.getString("observaciones"));
-                reclamo.setIdEstado(Utils.stringToNum(rs.getString("id_estado")));
+                reclamo.setCodEstado(rs.getString("cod_estado"));
                 reclamo.setResponsableIngreso(rs.getString("responsable_ingreso"));
                 reclamo.setResponsableActual(rs.getString("responsable_actual"));
                 reclamo.setDiasBandeja(rs.getString("dias_bandeja") );
@@ -2571,13 +2568,13 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(6, reclamo.getRegionSolicitante());
 			cStmt.setLong(7, reclamo.getIdTipo());
 			cStmt.setLong(8, reclamo.getIdReclamo());
-			cStmt.setString(9, reclamo.getCodPrioridad());
-			cStmt.setString(10, reclamo.getCodCartera());
+			cStmt.setLong(9, reclamo.getIdPrioridad());
+			cStmt.setLong(10, reclamo.getIdCartera());
 			cStmt.setDate(11, Utils.stringToDate(reclamo.getFecIngreso()));
 			cStmt.setString(12, reclamo.getGlosa());
 			cStmt.setString(13, reclamo.getAdjunto());
 			cStmt.setString(14, reclamo.getObservaciones());
-			cStmt.setLong(15, reclamo.getIdEstado());
+			cStmt.setString(15, reclamo.getCodEstado());
 			cStmt.setString(16, reclamo.getResponsableIngreso());
 			cStmt.setString(17, reclamo.getResponsableActual());
 			cStmt.setString(18, reclamo.getDiasBandeja());
@@ -2776,7 +2773,7 @@ public class MutualEJB implements EJBRemoto {
 			if(rsPrioridades !=null){
 				while (rsPrioridades.next()) {
 					prioridad = new Prioridad();
-					prioridad.setCodPrioridad(rsPrioridades.getString("cod_prioridad"));
+					prioridad.setIdPrioridad(rsPrioridades.getLong("id_prioridad"));
 					prioridad.setDesPrioridad(rsPrioridades.getString("des_prioridad"));
 					listaPrioridades.add(prioridad);
 				}
@@ -2800,7 +2797,7 @@ public class MutualEJB implements EJBRemoto {
 			if(rsEstados != null){
 				while (rsEstados.next()){
 					estado = new Estado();
-					estado.setIdEstado(rsEstados.getLong("id_estado"));
+					estado.setCodEstado(rsEstados.getString("cod_estado"));
 					estado.setDesEstado(rsEstados.getString("des_estado"));
 					listaEstados.add(estado);
 				}
@@ -3531,15 +3528,14 @@ public class MutualEJB implements EJBRemoto {
 			mapaSalida = new HashMap<String, Object>();
 			
 			dbConeccion = interacDS.getConnection();
-			cStmt = dbConeccion.prepareCall("{ call agregar_prioridad(?,?,?,?) }");
-			cStmt.setString(1, p.getCodPrioridad());
-			cStmt.setString(2, p.getDesPrioridad());
-			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
-			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+			cStmt = dbConeccion.prepareCall("{ call agregar_prioridad(?,?,?) }");
+			cStmt.setString(1, p.getDesPrioridad());
+			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
 			cStmt.execute();
 
-			error.setNumError(cStmt.getString(3));
-			error.setMsjError(cStmt.getString(4));
+			error.setNumError(cStmt.getString(2));
+			error.setMsjError(cStmt.getString(3));
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -3586,7 +3582,7 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 			dbConeccion = interacDS.getConnection();
 			
 			cStmt = dbConeccion.prepareCall("{ call cargar_prioridad(?,?,?,?) }");
-			cStmt.setString(1, (String)mapaEntrada.get("codPrioridad")); 
+			cStmt.setLong(1, (Long)mapaEntrada.get("idPrioridad")); 
 			cStmt.registerOutParameter(2, Types.OTHER);// carteras$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
@@ -3599,7 +3595,7 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 						
 			while (rsCartera.next()) {
 				p = new Prioridad();
-				p.setCodPrioridad(rsCartera.getString("cod_prioridad"));
+				p.setIdPrioridad(rsCartera.getLong("id_prioridad"));
 				p.setDesPrioridad(rsCartera.getString("des_prioridad"));
 				log.info(p.getPrioridad());
 			}
@@ -3634,18 +3630,18 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 	public Map<String, Object> eliminarPrioridad(Map<String, Object> mapaEntrada){
 		CallableStatement cStmt = null;
 		Map<String, Object> mapaSalida = null;
-		String cod_prioridad = "";
+		Long id_prioridad;
 		Error error = new Error();
 		
 		try {
 			log.info("Eliminar Prioridad");
-			cod_prioridad = (String)mapaEntrada.get("codPrioridad");
-			log.info("cod_prioridad: "+ cod_prioridad);
+			id_prioridad = (Long)mapaEntrada.get("idPrioridad");
+			log.info("id_prioridad: "+ id_prioridad);
 			mapaSalida = new HashMap<String, Object>();
 			
 			dbConeccion = interacDS.getConnection();
 			cStmt = dbConeccion.prepareCall("{ call eliminar_prioridad(?,?,?) }");
-			cStmt.setString(1, cod_prioridad);
+			cStmt.setLong(1, id_prioridad);
 			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
 			cStmt.execute();
@@ -3701,7 +3697,7 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 			if(rs !=null){
 				while (rs.next()) {
 					p= new Prioridad();
-					p.setCodPrioridad(rs.getString("cod_prioridad"));
+					p.setIdPrioridad(rs.getLong("id_prioridad"));
 					p.setDesPrioridad(rs.getString("des_prioridad"));
 					listaPrioridades.add(p);
 				}
@@ -3753,11 +3749,12 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 
 			dbConeccion = interacDS.getConnection();
 
-			cStmt = dbConeccion.prepareCall("{ call agregar_estado(?,?,?) }"); //cambiar segun SP
+			cStmt = dbConeccion.prepareCall("{ call agregar_estado(?,?,?,?) }"); //cambiar segun SP
 			
-			cStmt.setString(1, estado.getDesEstado());// cursor$			
-			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
-			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
+			cStmt.setString(1, estado.getCodEstado());// cursor$
+			cStmt.setString(2, estado.getDesEstado());// cursor$			
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
 
 			
 			cStmt.execute();
@@ -3799,7 +3796,7 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 	public Map<String, Object> cargarEstado(Map<String, Object> mapaEntrada) {
 		CallableStatement cStmt = null;
 		Map<String, Object> mapaSalida = null;
-		Long id_estado = null;
+		String  cod_estado = "";
 		Estado estado = null;
 		String numError = "0";
 		String msjError = "";
@@ -3807,16 +3804,16 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 		try {
 			log.info("Cargar estado");
 
-			id_estado = Utils.stringToNum((String)mapaEntrada.get("idEstado"));
+			cod_estado = (String)mapaEntrada.get("codEstado");
 			
-			log.info("id_estado: "+id_estado);
+			log.info("cod_estado: "+cod_estado);
 			
 			mapaSalida = new HashMap<String, Object>();
 
 			dbConeccion = interacDS.getConnection();
 
 			cStmt = dbConeccion.prepareCall("{ call cargar_estado(?,?,?,?) }");
-			cStmt.setLong(1, id_estado);
+			cStmt.setString(1, cod_estado);
 			cStmt.registerOutParameter(2, Types.OTHER);// documento$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
@@ -3829,7 +3826,7 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 			while (rs.next()) {
 				
 				estado= new Estado();
-				estado.setIdEstado(rs.getLong("id_estado"));
+				estado.setCodEstado(rs.getString("cod_estado"));
 				estado.setDesEstado(rs.getString("des_estado"));
 			}
 			
@@ -3878,7 +3875,7 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 			dbConeccion = interacDS.getConnection();
 
 			cStmt = dbConeccion.prepareCall("{ call modificar_estado(?,?,?,?) }");
-			cStmt.setLong(1,estado.getIdEstado());
+			cStmt.setString(1,estado.getCodEstado());
 			cStmt.setString(2,estado.getDesEstado());
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
@@ -3996,7 +3993,7 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 			if(rs !=null){
 				while (rs.next()) {
 					estado = new Estado();
-					estado.setIdEstado(rs.getLong("id_estado"));
+					estado.setCodEstado(rs.getString("cod_estado"));
 					estado.setDesEstado(rs.getString("des_estado"));
 					log.info(estado.getEstado());
 					listaEstados.add(estado);
@@ -4051,7 +4048,7 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 			dbConeccion = interacDS.getConnection();
 
 			cStmt = dbConeccion.prepareCall("{ call modificar_prioridad(?,?,?,?) }");
-			cStmt.setString(1,p.getCodPrioridad());
+			cStmt.setLong(1,p.getIdPrioridad());
 			cStmt.setString(2,p.getDesPrioridad());
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$

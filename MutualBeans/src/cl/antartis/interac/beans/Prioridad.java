@@ -5,17 +5,19 @@ import java.io.Serializable;
 public class Prioridad implements Serializable {
 
 	private static final long serialVersionUID = 2036592118735551615L;
-	private String codPrioridad;
+	private Long idPrioridad;
+	
+	public Long getIdPrioridad() {
+		return idPrioridad;
+	}
+
+	public void setIdPrioridad(Long idPrioridad) {
+		this.idPrioridad = idPrioridad;
+	}
+
 	private String desPrioridad;
 
-	public String getCodPrioridad() {
-		return codPrioridad;
-	}
-
-	public void setCodPrioridad(String codPrioridad) {
-		this.codPrioridad = codPrioridad;
-	}
-
+	
 	public String getDesPrioridad() {
 		return desPrioridad;
 	}
@@ -27,7 +29,7 @@ public class Prioridad implements Serializable {
 	public String getPrioridad() {
 		String prioridad = "\nDATOS DE Prioridad:";
 		
-		prioridad += "\ncodPrioridad: "+this.codPrioridad;  
+		prioridad += "\nidPrioridad: "+this.idPrioridad;  
 		prioridad += "\ndesPrioridad: "+this.desPrioridad;
 
 		return prioridad;

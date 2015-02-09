@@ -8,7 +8,7 @@
 
 <script type="text/javascript"> 
 
-	var codPrioridad;
+	var idPrioridad;
 	var idFila = 0;
 	var numFilas = 10;
 	
@@ -20,7 +20,7 @@
 			datatype: "xml",
 			colNames : ['', 'Nombre Prioridad',''],
 			colModel : [
-						{name : 'codPrioridad', index:'codPrioridad', hidden : true}, 
+						{name : 'idPrioridad', index:'idPrioridad', hidden : true}, 
 						{name : 'desPrioridad', index:'desPrioridad', width : 80, search : true, resizable : false, sortable : true},				
 						{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
 						],
@@ -32,11 +32,11 @@
 				root : "filas",
 				row: "fila",
 				repeatitems: false,
-				id: "codPrioridad"
+				id: "idPrioridad"
 			},
 		   	pager: $('#piePrioridades'),
 		   	pgtext : 'P&aacute;g: {0} de {1}', 
-		   	sortname: 'codPrioridades',
+		   	sortname: 'idPrioridades',
 		    viewrecords: true,
 		    sortorder: "desc",
 		    caption:"Prioridades",
@@ -114,7 +114,7 @@
 		    position: 'center',
 		    buttons: {
 				"Editar Prioridad": function() {
-					$('#formEdita').submit();
+					$('#formEdita .submit').click();
 				},
 				"Cancelar": function() {
 					$(this).dialog("close");
@@ -144,20 +144,20 @@
 		});
 	}
 	
-	function editarPrioridad(codPrioridad)
+	function editarPrioridad(idPrioridad)
 	{
-		console.log("Prioridad: "+codPrioridad);
+		console.log("Prioridad: "+idPrioridad);
 		
-		ajaxCall(getUrlCargarPrioridad(codPrioridad), function(response){
+		ajaxCall(getUrlCargarPrioridad(idPrioridad), function(response){
 			$('#cargaPrioridad').html(response).dialog('open');
 		});
 	}
 	
-	function eliminarPrioridad(codPrioridad)
+	function eliminarPrioridad(idPrioridad)
 	{  
    		jConfirm('¿ Confirma eliminar la Prioridad ?', 'Confirmación', function(res){
    			if (res == true){
-  				ajaxCall(getUrlEliminarPrioridad(codPrioridad), function(){
+  				ajaxCall(getUrlEliminarPrioridad(idPrioridad), function(){
   					jAlert("El Tipo ha sido eliminado exitosamente");
   					buscarPrioridades();
    				});
@@ -196,7 +196,7 @@
 	{
 		var sData = "Servlet";
 		sData += '?accion=cargarPrioridad';
-		sData += '&codPrioridad='+id;
+		sData += '&idPrioridad='+id;
 		console.log(sData);
 		return sData;
 	}
@@ -204,7 +204,7 @@
 	function getUrlEliminarPrioridad(id){  
 		var sData = 'Servlet';
 		sData += '?accion=eliminarPrioridad';
-		sData += '&codPrioridad='+id;
+		sData += '&idPrioridad='+id;
 		return sData;
     }
 </script>

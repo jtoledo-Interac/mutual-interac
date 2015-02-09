@@ -5,7 +5,7 @@
 <filas>
     <c:forEach items="${requestScope.listaPrioridades}" var="prioridad">
         <fila>
-        	<codPrioridad>${prioridad.codPrioridad}</codPrioridad>
+        	<idPrioridad>${prioridad.idPrioridad}</idPrioridad>
         	<desPrioridad>${prioridad.desPrioridad}</desPrioridad>
         </fila>
      </c:forEach>

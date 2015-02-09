@@ -16,7 +16,7 @@
 			datatype: "xml",
 			colNames : ['', 'Nombre Cartera',''],
 			colModel : [
-						{name : 'codCartera', index:'codCartera', hidden : true}, 
+						{name : 'idCartera', index:'idCartera', hidden : true}, 
 						{name : 'desCartera', index:'desCartera', width : 80, search : true, resizable : false, sortable : true},				
 						{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
 						],
@@ -27,11 +27,11 @@
 				root : "filas",
 				row: "fila",
 				repeatitems: false,
-				id: "codCartera"
+				id: "idCartera"
 			},
 		   	pager: $('#pieCartera'),
 		   	pgtext : 'P&aacute;g: {0} de {1}', 
-		   	sortname: 'codCartera',
+		   	sortname: 'idCartera',
 		    viewrecords: true,
 		    sortorder: "desc",
 		    caption:"Carteras",
@@ -112,7 +112,7 @@
 		    position: 'center',
 		    buttons: {
 				"Editar Cartera": function() {
-					$('#formEdita').submit();
+					$('#formEdita .submit').click();
 				},
 				"Cancelar": function() {
 					$(this).dialog("close");
@@ -192,14 +192,14 @@
 	{
 		var sData = "Servlet";
 		sData += '?accion=cargarCartera';
-		sData += '&codCartera='+id;
+		sData += '&idCartera='+id;
 		return sData;
 	}
 
 	function getUrlEliminarCartera(id){  
 		var sData = 'Servlet';
 		sData += '?accion=eliminarCartera';
-		sData += '&codCartera='+id;
+		sData += '&idCartera='+id;
 		return sData;
     }
 </script>
