@@ -2287,7 +2287,7 @@ public class MutualEJB implements EJBRemoto {
 
 			dbConeccion = interacDS.getConnection();
 
-			cStmt = dbConeccion.prepareCall("{ call buscar_reclamos_paginacion(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
+			cStmt = dbConeccion.prepareCall("{ call buscar_reclamos(?,?,?,?,?,?,?,?,?,?) }");
 			
 			reclamo = new Reclamo();
 			reclamo = (Reclamo)mapaEntrada.put("reclamo",reclamo);
@@ -2322,9 +2322,9 @@ public class MutualEJB implements EJBRemoto {
 	                reclamo.setEmailSolicitante(rs.getString("email_solicitante"));
 	                reclamo.setFonoSolicitante(rs.getString("fono_solicitante"));
 	                reclamo.setRegionSolicitante(rs.getString("region_solicitante"));
-	                reclamo.setIdTipo(Long.parseLong(rs.getString("id_tipo")));
+	                reclamo.setIdTipo(rs.getLong("id_tipo"));
 					reclamo.setDesTipo(rs.getString("des_tipo"));
-	                reclamo.setIdMotivo(Utils.stringToNum(rs.getString("id_motivo")));
+	                reclamo.setIdMotivo(rs.getLong("id_motivo"));
 					reclamo.setDesMotivo(rs.getString("des_motivo"));
 	                reclamo.setIdPrioridad(rs.getLong("id_prioridad"));
 					reclamo.setDesPrioridad(rs.getString("des_prioridad"));
@@ -2333,7 +2333,7 @@ public class MutualEJB implements EJBRemoto {
 	                reclamo.setGlosa(rs.getString("glosa"));
 	                reclamo.setAdjunto(rs.getString("adjunto"));
 	                reclamo.setObservaciones(rs.getString("observaciones"));
-	                reclamo.setIdEstado(Utils.stringToNum(rs.getString("id_estado")));
+	                reclamo.setIdEstado(rs.getLong("id_estado"));
 					reclamo.setDesEstado(rs.getString("des_estado"));
 	                reclamo.setResponsableIngreso(rs.getString("responsable_ingreso"));
 	                reclamo.setResponsableActual(rs.getString("responsable_actual"));
@@ -2714,11 +2714,9 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.registerOutParameter(7, Types.OTHER);// cursos$
 			cStmt.registerOutParameter(8, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(9, Types.VARCHAR);// msjerror$
-
 			
 			cStmt.execute();
 
-			
 			ResultSet rsTipos = (ResultSet) cStmt.getObject(1);
 			ResultSet rsMotivos = (ResultSet) cStmt.getObject(2);
 			ResultSet rsPrioridades = (ResultSet) cStmt.getObject(3);
@@ -2737,6 +2735,7 @@ public class MutualEJB implements EJBRemoto {
 					region.setCodRegion(rsRegiones.getString("cod_region"));
 					region.setDesRegion(rsRegiones.getString("des_region"));
 					listaRegiones.add(region);
+					log.info("REGIONES: " + region.getRegion());
 				}
 				rsRegiones.close();
 			}
@@ -2751,6 +2750,7 @@ public class MutualEJB implements EJBRemoto {
 					tipo.setIdTipo(Long.parseLong(rsTipos.getString("id_tipo")));
 					tipo.setDesTipo(rsTipos.getString("des_tipo"));
 					listaTipos.add(tipo);
+					log.info("TIPOS: " + tipo.getTipo());
 				}
 				rsTipos.close();
 			}
@@ -2763,6 +2763,7 @@ public class MutualEJB implements EJBRemoto {
 					motivo.setIdMotivo(Utils.stringToNum(rsMotivos.getString("id_motivo")));
 					motivo.setDesMotivo(rsMotivos.getString("des_motivo"));
 					listaMotivos.add(motivo);
+					log.info("MOTIVOS: " + tipo.getTipo());
 				}
 				rsMotivos.close();
 			}
@@ -2775,6 +2776,7 @@ public class MutualEJB implements EJBRemoto {
 					prioridad.setIdPrioridad(rsPrioridades.getLong("id_prioridad"));
 					prioridad.setDesPrioridad(rsPrioridades.getString("des_prioridad"));
 					listaPrioridades.add(prioridad);
+					log.info("PRIORIDADES: " + prioridad.getPrioridad());
 				}
 				rsPrioridades.close();
 			}
@@ -2787,6 +2789,7 @@ public class MutualEJB implements EJBRemoto {
 					cartera.setIdCartera(Utils.stringToNum(rsCarteras.getString("id_cartera")));
 					cartera.setDesCartera(rsCarteras.getString("des_cartera"));
 					listaCarteras.add(cartera);
+					log.info("CARTERAS: " + cartera.getCartera());
 				}
 				rsCarteras.close();
 			}
@@ -2799,6 +2802,7 @@ public class MutualEJB implements EJBRemoto {
 					estado.setIdEstado(rsEstados.getLong("id_estado"));
 					estado.setDesEstado(rsEstados.getString("des_estado"));
 					listaEstados.add(estado);
+					log.info(estado.getEstado());
 				}
 				rsEstados.close();
 			}
@@ -2811,6 +2815,7 @@ public class MutualEJB implements EJBRemoto {
 					medio.setDesMedio(rsMedios.getString("des_medio_respuesta"));
 					medio.setIdMedio(rsMedios.getLong("id_medio_respuesta"));
 					listaMedios.add(medio);
+					log.info(medio.getMedio());
 				}
 				rsMedios.close();
 			}

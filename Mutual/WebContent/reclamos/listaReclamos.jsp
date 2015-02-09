@@ -44,7 +44,7 @@
 			},
 		   	pager: $('#pieReclamo'),
 		   	pgtext : 'P&aacute;g: {0} de {1}', 
-		   	sortname: 'codReclamo',
+		   	sortname: 'idReclamo',
 		    viewrecords: true,
 		    sortorder: "desc",
 		    caption:"Reclamos",
@@ -192,10 +192,10 @@
 		sData += "&nombre_solicitante="+$('#nombre_solicitante').val();
 		sData += "&id_reclamo="+$('#id_reclamo').val();
 		sData += "&num_adherente="+$('#num_adherente').val();
-		sData += "&codCartera="+$('#codCartera').val();
-		sData += "&codTipo="+$('#codTipo').val();
-		sData += "&codEstado="+$('#codEstado').val();
-		sData += "&codPrioridad="+$('#codPrioridad').val();
+		sData += "&idCartera="+$('#idCartera').val();
+		sData += "&idTipo="+$('#idTipo').val();
+		sData += "&idEstado="+$('#idEstado').val();
+		sData += "&idPrioridad="+$('#idPrioridad').val();
 		
 		return sData;
 	}
@@ -237,30 +237,30 @@
 			<input type="text" 		id="nombre_solicitante"  name="nombre_solicitante"		placeholder="Nombre Solicitante" class="text">
 			<input type="text" 		id="num_adherente" 	name="num_adherente" 	placeholder="Nº Adherente" class="text">
 						
-			<select id="codCartera" name="codCartera" class="select">
+			<select id="idCartera" name="idCartera" class="select">
 				<option value="" selected>Seleccione una cartera</option>
 				<c:forEach items="${requestScope.listaCarteras}" var="cartera">
-					<option value="${cartera.codCartera}" >${cartera.desCartera}</option>
+					<option value="${cartera.idCartera}" >${cartera.desCartera}</option>
 				</c:forEach>
 			</select> 
-			<select id="codTipo" name="codTipo" class="select">
+			<select id="idTipo" name="idTipo" class="select">
 				<option value="" selected>Seleccione un tipo</option>
 				<c:forEach items="${requestScope.listaTipos}" var="tipo">
-					<option value="${tipo.codTipo}" >${tipo.desTipo}</option>
+					<option value="${tipo.idTipo}" >${tipo.desTipo}</option>
 				</c:forEach>
 			</select>
 			
-			<select id="codEstado" name="codEstado" class="select">
+			<select id="idEstado" name="idEstado" class="select">
 				<option value="" selected>Seleccione un estado</option>
 				<c:forEach items="${requestScope.listaEstados}" var="estado">
-					<option value="${estado.codEstado}" >${estado.desEstado}</option>
+					<option value="${estado.idEstado}" >${estado.desEstado}</option>
 				</c:forEach>
 			</select>
 			
-			<select id="codPrioridad" name="codPrioridad" class="select">
+			<select id="idPrioridad" name="idPrioridad" class="select">
 				<option value="" selected>Seleccione una prioridad</option>
 				<c:forEach items="${requestScope.listaPrioridades}" var="prioridad">
-					<option value="${prioridad.codPrioridad}">${prioridad.desPrioridad}</option>
+					<option value="${prioridad.idPrioridad}">${prioridad.desPrioridad}</option>
 				</c:forEach>
 			</select>
 		</form>

@@ -1571,7 +1571,7 @@ public class Servlet extends HttpServlet {
 		reclamo.setNumAdherente(request.getParameter("num_adherente"));
 		reclamo.setIdCartera(Utils.stringToNum(request.getParameter("idCartera")));
 		reclamo.setDiasBandeja(request.getParameter("diasBandeja"));
-		reclamo.setIdTipo(Long.parseLong(request.getParameter("idTipo")));
+		reclamo.setIdTipo(Utils.stringToNum(request.getParameter("idTipo")));
 		reclamo.setIdEstado(Utils.stringToNum(request.getParameter("idEstado")));
 		reclamo.setIdPrioridad(Utils.stringToNum(request.getParameter("idPrioridad")));
 					
