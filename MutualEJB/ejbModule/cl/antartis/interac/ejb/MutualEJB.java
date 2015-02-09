@@ -452,7 +452,7 @@ public class MutualEJB implements EJBRemoto {
 			if(rs !=null){
 				while (rs.next()) {
 					cartera = new Cartera();
-					cartera.setIdCartera(Utils.stringToNum(rs.getString("id_cartera")));
+					cartera.setIdCartera(rs.getLong("id_cartera"));
 					cartera.setDesCartera(rs.getString("des_cartera"));
 					listaCarteras.add(cartera);
 				}
@@ -656,7 +656,7 @@ public class MutualEJB implements EJBRemoto {
 
 			dbConeccion = interacDS.getConnection();
 
-			cStmt = dbConeccion.prepareCall("{ call agregar_cartera(?,?,?,?) }"); //falta SP, posibles cambios aqui
+			cStmt = dbConeccion.prepareCall("{ call agregar_cartera(?,?,?) }"); //falta SP, posibles cambios aqui
 			cStmt.setString(1, cartera.getDesCartera());
 			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
@@ -896,10 +896,10 @@ public class MutualEJB implements EJBRemoto {
 
 			dbConeccion = interacDS.getConnection();
 			
-			System.out.println("COD CARTERA: " + (String)mapaEntrada.get("codCartera"));
+			System.out.println("ID CARTERA: " + Utils.stringToNum((String)mapaEntrada.get("codCartera")));
 
 			cStmt = dbConeccion.prepareCall("{ call cargar_cartera(?,?,?,?) }");
-			cStmt.setString(1, (String)mapaEntrada.get("codCartera")); 
+			cStmt.setLong(1, Utils.stringToNum((String)mapaEntrada.get("codCartera"))); 
 			cStmt.registerOutParameter(2, Types.OTHER);// carteras$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
@@ -912,7 +912,7 @@ public class MutualEJB implements EJBRemoto {
 						
 			while (rsCartera.next()) {
 				cartera = new Cartera();
-				cartera.setIdCartera(Utils.stringToNum(rsCartera.getString("idCartera")));
+				cartera.setIdCartera(rsCartera.getLong("idCartera"));
 				cartera.setDesCartera(rsCartera.getString("des_cartera"));
 				log.info(cartera.getCartera());
 			}
