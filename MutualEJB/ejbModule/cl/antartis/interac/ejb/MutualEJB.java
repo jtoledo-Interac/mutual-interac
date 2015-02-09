@@ -719,19 +719,17 @@ public class MutualEJB implements EJBRemoto {
 
 			dbConeccion = interacDS.getConnection();
 
-			cStmt = dbConeccion.prepareCall("{ call agregar_tipo(?,?,?,?) }"); //falta SP, posibles cambios aqui
-			cStmt.setLong(1, tipo.getIdTipo());
-			cStmt.setString(2, tipo.getDesTipo());
-			
-			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
-			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+			cStmt = dbConeccion.prepareCall("{ call agregar_tipo(?,?,?) }");
+			cStmt.setString(1, tipo.getDesTipo());
+			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
 
 			
 			cStmt.execute();
 			
 	
-			numError = cStmt.getString(3);
-			msjError = cStmt.getString(4);
+			numError = cStmt.getString(2);
+			msjError = cStmt.getString(3);
 			
 			log.info("Num Error: "+numError);
 			log.info("Msj Error: "+msjError);
