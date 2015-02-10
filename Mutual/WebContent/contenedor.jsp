@@ -51,19 +51,26 @@ $(function()
 			</li>
 			<li><a href="Servlet?accion=reclamos">Reclamos</a></li>
 	        <li><a href="Servlet?accion=graficar">Graficos Prueba</a></li>
-	        <li><a href="#">Administraci&oacute;n</a>
-	        	<ul>
-	        		<li><a href="Servlet?accion=carteras">Tipos de Cartera</a></li>
-					<li><a href="Servlet?accion=productos">Productos</a></li>
-	        		<li><a href="Servlet?accion=usuarios">Usuarios</a></li>
-	        		<li><a href="Servlet?accion=perfiles">Perfiles</a></li>
-	        		<li><a href="Servlet?accion=estados">Estados Reclamo</a></li>
-					<li><a href="Servlet?accion=medios">Medios</a></li>
-					<li><a href="Servlet?accion=motivos">Motivos Reclamo</a></li>
-					<li><a href="Servlet?accion=prioridades">Prioridades</a></li>
-					<li><a href="Servlet?accion=tipos">Tipos</a></li>
-				</ul>
-	        </li>
+	        <%
+				java.util.ArrayList<String> p = (java.util.ArrayList<String>)session.getAttribute("perfiles");
+				
+				String menuAdmin="";
+				menuAdmin += "<li><a href='#'>Administraci&oacute;n</a>";
+				menuAdmin += "<ul>";
+				menuAdmin += "	<li><a href='Servlet?accion=carteras'>Tipos de Cartera</a></li>";
+				menuAdmin += "	<li><a href='Servlet?accion=productos'>Productos</a></li>";
+				menuAdmin += "	<li><a href='Servlet?accion=usuarios'>Usuarios</a></li>";
+				menuAdmin += "	<li><a href='Servlet?accion=perfiles'>Perfiles</a></li>";
+				menuAdmin += "	<li><a href='Servlet?accion=estados'>Estados Reclamo</a></li>";
+				menuAdmin += "	<li><a href='Servlet?accion=medios'>Medios</a></li>";
+				menuAdmin += "	<li><a href='Servlet?accion=motivos'>Motivos Reclamo</a></li>";
+				menuAdmin += "	<li><a href='Servlet?accion=prioridades'>Prioridades</a></li>";
+				menuAdmin += "	<li><a href='Servlet?accion=tipos'>Tipos</a></li>";
+				menuAdmin += "</ul>";
+				menuAdmin += "</li>";
+				
+				if(p.contains("admin"))out.print(menuAdmin);
+			%>
 	    </ul>
 	</div>
 

@@ -95,11 +95,13 @@ public class Servlet extends HttpServlet {
 	}
 	
 	/**********SESION******************************************************************************/
+	@SuppressWarnings("unchecked")
 	public void login(HttpServletRequest request, HttpServletResponse response) {
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
 		
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		ArrayList<String> perfiles = new ArrayList<String>();
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
 		Encriptador encriptador = new Encriptador();
@@ -118,6 +120,7 @@ public class Servlet extends HttpServlet {
 		
 		error = (Error)mapaSalida.get("error");
 		usuario = (Usuario)mapaSalida.get("usuario");
+		perfiles = (ArrayList<String>)mapaSalida.get("perfiles");
 		
 		log.info("Num Error: "+error.getNumError());
 		log.info("Msj Error: "+error.getMsjError());
@@ -126,11 +129,11 @@ public class Servlet extends HttpServlet {
 			System.out.println(ConfigUtils.loadProperties("sessionTime"));
 			int sessionTime = Integer.parseInt(ConfigUtils.loadProperties("sessionTime"));
 			
-			
 			//setting session to expiry in 30 mins.
 			HttpSession session = request.getSession();
 			session.setAttribute("nombre", usuario.getNombres()+" "+usuario.getApePaterno()+" "+usuario.getApeMaterno());
 			session.setAttribute("user",usuario);
+			session.setAttribute("perfiles", perfiles);
 			session.setMaxInactiveInterval(sessionTime);
 			
 			//setting cookie to expiry in 30 mins.

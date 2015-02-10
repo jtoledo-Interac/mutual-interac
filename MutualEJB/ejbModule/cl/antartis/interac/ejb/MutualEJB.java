@@ -448,7 +448,6 @@ public class MutualEJB implements EJBRemoto {
 			msjError = cStmt.getString(4);
 		
 			listaCarteras = new ArrayList<Cartera>();
-
 			if(rs !=null){
 				while (rs.next()) {
 					cartera = new Cartera();
@@ -566,6 +565,7 @@ public class MutualEJB implements EJBRemoto {
 	public Map<String, Object> logIn(Map<String, Object> mapaEntrada) {
 		CallableStatement cStmt = null;
 		Map<String, Object> mapaSalida = null;
+		ArrayList<String> perfiles = null;
 		Usuario usuario = null;
 		Error error = new Error();
 
@@ -587,10 +587,9 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.registerOutParameter(7, Types.VARCHAR);// apellidoM$
 			cStmt.registerOutParameter(8, Types.VARCHAR);
 			cStmt.registerOutParameter(9, Types.VARCHAR);
-		
-			
 			log.info("["+usuario.getNomUsuario()+" - "+usuario.getContrasena1()+"]");
 			cStmt.execute();
+			
 			usuario.setIdUsuario(cStmt.getInt(3));
 			usuario.setEmail(cStmt.getString(4));
 			usuario.setNombres(cStmt.getString(5));
@@ -598,6 +597,7 @@ public class MutualEJB implements EJBRemoto {
 			usuario.setApeMaterno(cStmt.getString(7));
 			error.setNumError(cStmt.getString(8));
 			error.setMsjError(cStmt.getString(9));
+			
 			mapaSalida.put("error", error);
 			mapaSalida.put("usuario",usuario);
 			log.info(error.getError()+"<----");
@@ -618,8 +618,46 @@ public class MutualEJB implements EJBRemoto {
 				log.info("Error al cerrar la conexion");
 				e.printStackTrace();
 			}
+			finally{
+				mapaSalida.put("error", error);
+			}
 		}
 		
+		//rescata los perfiles del usuario.
+		
+		try {
+			dbConeccion = interacDS.getConnection();
+			cStmt = dbConeccion.prepareCall("{ call buscar_perfiles_usuario(?,?,?,?)}");
+			cStmt.setLong(1, usuario.getIdUsuario());
+			cStmt.registerOutParameter(2, Types.OTHER);// rs
+			cStmt.registerOutParameter(3, Types.VARCHAR);// err
+			cStmt.registerOutParameter(4, Types.VARCHAR);// err
+			cStmt.execute();
+			
+			ResultSet rs = (ResultSet) cStmt.getObject(2);
+			perfiles = new ArrayList<String>();
+			if(rs !=null){
+				while (rs.next()) {
+					perfiles.add(rs.getString("des_perfil"));
+				}
+				rs.close();
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			try{
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+				mapaSalida.put("error", error);
+			}
+			catch(Exception e){
+				mapaSalida.put("error", error);
+			}
+		}
+		mapaSalida.put("perfiles", perfiles);	
 		return mapaSalida;
 	}
 
