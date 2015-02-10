@@ -158,7 +158,7 @@
    		jConfirm('¿ Confirma eliminar la Prioridad ?', 'Confirmación', function(res){
    			if (res == true){
   				ajaxCall(getUrlEliminarPrioridad(idPrioridad), function(){
-  					jAlert("El Tipo ha sido eliminado exitosamente");
+  					jAlert("La prioridad ha sido eliminada exitosamente");
   					buscarPrioridades();
    				});
    			}

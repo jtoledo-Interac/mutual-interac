@@ -113,7 +113,7 @@
 		    position: 'center',
 		    buttons: {
 				"Editar Producto": function() {
-					$('#formEdita').submit();
+					$('#formEdita .submit').click();
 				},
 				"Cancelar": function() {
 					$(this).dialog("close");

@@ -978,7 +978,8 @@ public class Servlet extends HttpServlet {
 		
 		mapaEntrada.put("idPrioridad", idPrioridad);
 		mapaSalida = ejbRemoto.eliminarPrioridad(mapaEntrada);
-		pagDestino = "contenedor.jsp?accion=prioridades";
+		request.setAttribute("prioridad", (Prioridad)mapaSalida.get("prioridad"));
+		pagDestino = "prioridades/listaPrioridadesXml.jsp";
 	}
 	
 	public void eliminarMotivo(HttpServletRequest request, HttpServletResponse response) {
@@ -998,7 +999,7 @@ public class Servlet extends HttpServlet {
 		
 		request.setAttribute("motivo", (Motivo)mapaSalida.get("motivo"));
 
-		pagDestino = "/motivoss/listaMotivosXml.jsp";
+		pagDestino = "/motivos/listaMotivosXml.jsp";
 	}
 	
 	public void eliminarMedio(HttpServletRequest request, HttpServletResponse response) {
@@ -1497,7 +1498,7 @@ public class Servlet extends HttpServlet {
 		
 		if(((Error)mapaSalida.get("error")).getNumError().equals("0")){
 			
-			pagDestino = "contenedor.jsp?accion=productos";
+			pagDestino = "productos/listaProductosXml.jsp";
 		}
 		else{
 			pagDestino = "error.jsp";
@@ -2019,7 +2020,7 @@ public class Servlet extends HttpServlet {
 		
 		if(((Error)mapaSalida.get("error")).getNumError().equals("0")){
 			
-			pagDestino = "contenedor.jsp?accion=estados";
+			pagDestino = "/estados/listaEstadosXml.jsp";
 		}
 		else{
 			pagDestino = "error.jsp";

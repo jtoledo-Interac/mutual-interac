@@ -114,7 +114,7 @@
 		    position: 'center',
 		    buttons: {
 				"Editar Tipo": function() {
-					$('#formEdita').submit();
+					$('#formEdita .submit').click();
 				},
 				"Cancelar": function() {
 					$(this).dialog("close");
