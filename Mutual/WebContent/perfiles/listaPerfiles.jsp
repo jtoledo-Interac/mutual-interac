@@ -1,30 +1,23 @@
 <%@ include file="../declaraciones.jsp" %>
 <%@ include file="../encabezado.jsp" %>
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
-<script type="text/javascript">
-  $('select').select2();
-</script>
+
 <script type="text/javascript"> 
 
-	var idUsuario;
+	var idPerfil;
 	var idFila = 0;
 	var numFilas = 10;
 	
 	$(function() {
 
-		$('#listadoUsuarios').jqGrid(
+		$('#listadoPerfiles').jqGrid(
 		{
-		   	url: getUrlBuscarUsuarios(),
+		   	url: getUrlBuscarPerfiles(),
 			datatype: "xml",
-			colNames : ['', 'Rut', 'Nombre', 'Nombre Usuario', 'Email', 'Telefono', 'Celular',''],
+			colNames : ['', 'Nombre Perfil',''],
 			colModel : [
-						{name : 'idUsuario', index:'idUsuario', hidden : true}, 
-						{name : 'rut', index : 'rut', width : 80, resizable : false, sortable : true},
-						{name : 'nombre', index : 'nombre', width : 150, resizable : false, sortable : true},
-						{name : 'nomUsuario', index:'nomUsuario', width : 80, search : true, resizable : false, sortable : true},				
-						{name : 'email', index:'email', width: 150, resizable: false, sortable: true},
-						{name : 'telefono', index:'telefono', width: 80, resizable: false, sortable: true},
-						{name : 'celular', index:'celular', width: 80, resizable: false, sortable: true},
+						{name : 'idPerfil', index:'idPerfil', hidden : true}, 
+						{name : 'nombrePerfil', index : 'nombrePerfil', width : 80, resizable : false, sortable : true},
 						{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
 						],
 		   	rowNum: numeroDeFilas,
@@ -35,14 +28,14 @@
 				root : "filas",
 				row: "fila",
 				repeatitems: false,
-				id: "idUsuario"
+				id: "idPerfil"
 			},
-		   	pager: $('#pieUsuario'),
+		   	pager: $('#piePerfil'),
 		   	pgtext : 'P&aacute;g: {0} de {1}', 
-		   	sortname: 'idUsuario',
+		   	sortname: 'idPerfil',
 		    viewrecords: true,
 		    sortorder: "desc",
-		    caption:"Usuarios",
+		    caption:"Perfiles",
 		    hoverrows : true,
 		    multiselect : false,
 			onPaging: function(){
@@ -50,23 +43,23 @@
 			},
 			gridComplete: function()
 			{
-				var ids = $("#listadoUsuarios").getDataIDs();
+				var ids = $("#listadoPerfiles").getDataIDs();
 				
 				for (var i = 0; i < ids.length; i++)
 				{
 					var idFila = ids[i];
 
 					var btnEditar="";
-					btnEditar+= "<div id='btnEditar' onclick='editarUsuario("+idFila+")'>";
+					btnEditar+= "<div id='btnEditar' onclick='editarPerfil("+idFila+")'>";
 					btnEditar+= 	"<img title='editar' class='icono' src='img/btnEditar.png'>";
 					btnEditar+= "</div>";
 					
 					var btnEliminar="";
-					btnEliminar+= "<div id='btnEliminar' onclick='eliminarUsuario("+idFila+")'>";
+					btnEliminar+= "<div id='btnEliminar' onclick='eliminarPerfil("+idFila+")'>";
 					btnEliminar+= 	"<img title='eliminar' class='icono' src='img/btnEliminar.png'>";
 					btnEliminar+= "</div>";
 
-					$("#listadoUsuarios").setRowData(ids[i], {act : btnEditar + btnEliminar});
+					$("#listadoPerfiles").setRowData(ids[i], {act : btnEditar + btnEliminar});
 				}
 			},
 			onSelectRow : function(rowId, status) 
@@ -75,31 +68,31 @@
 			},
 			ondblClickRow: function()
 			{
-				var fila = $('#listadoUsuarios').jqGrid('getRowData',idFila);
-				editarUsuario(fila.idUsuario);
+				var fila = $('#listadoPerfiles').jqGrid('getRowData',idFila);
+				editarUsuario(fila.idPerfil);
 			},
-		}).navGrid('#pieUsuario',{edit:false,add:false,del:false});	
+		}).navGrid('#piePerfil',{edit:false,add:false,del:false});	
 
 		formatRut();
 		
 		$('#btnBuscar').click(function()
 		{
-			buscarUsuarios();
+			buscarPerfiles();
 		});
 
 		$('#btnAgregar').click(function()
 		{
-		    crearUsuario();
+		    crearPerfil();
 		});
 		
-		$('#agregaUsuario').dialog({
+		$('#agregaPerfil').dialog({
 			autoOpen: false,
 		    height: 500,
 		    width: 650,
 		    modal: true,
 		    position: 'center',
 		    buttons: {
-				"Crear Usuario": function() {
+				"Crear Perfil": function() {
 					$('#formAgrega').submit();
 				},
 				"Cancelar": function() {
@@ -111,14 +104,14 @@
 			}
 		});
 		
-		$('#cargaUsuario').dialog({
+		$('#cargaPerfil').dialog({
 			autoOpen: false,
 		    height: 500,
 		    width: 650,
 		    modal: true,
 		    position: 'center',
 		    buttons: {
-				"Editar Usuario": function() {
+				"Editar Perfil": function() {
 					$('#formEdita').submit();
 				},
 				"Cancelar": function() {
@@ -142,35 +135,35 @@
 		return retorno;
 	}
 	
-	function crearUsuario()
+	function crearPerfil()
 	{
-		ajaxCall(getUrlCrearUsuario(), function(response){
-			$('#agregaUsuario').html(response).dialog('open');
+		ajaxCall(getUrlCrearPerfil(), function(response){
+			$('#agregaPerfil').html(response).dialog('open');
 		});
 	}
 	
 	function editarUsuario(idUsuario)
 	{
-		ajaxCall(getUrlCargarUsuario(idUsuario), function(response){
-			$('#cargaUsuario').html(response).dialog('open');
+		ajaxCall(getUrlCargarPerfil(idPerfil), function(response){
+			$('#cargaPerfil').html(response).dialog('open');
 		});
 	}
 	
-	function eliminarUsuario(idUsuario)
+	function eliminarPerfil(idPerfil)
 	{  
-   		jConfirm('¿ Confirma eliminar al usuario ?', 'Confirmación', function(res){
+   		jConfirm('¿ Confirma eliminar el perfil ?', 'Confirmación', function(res){
    			if (res == true){
-  				ajaxCall(getUrlEliminarUsuario(idUsuario), function(){
-  					jAlert("El usuario ha sido eliminado exitosamente");
-  					buscarUsuarios();
+  				ajaxCall(getUrlEliminarPerfil(idPerfil), function(){
+  					jAlert("El perfil ha sido eliminado exitosamente");
+  					buscarPerfiles();
    				});
    			}
    		});
 	}
 	
-	function buscarUsuarios() 
+	function buscarPerfiles() 
 	{		
-		$('#listadoUsuarios').jqGrid('setGridParam', {
+		$('#listadoPerfiles').jqGrid('setGridParam', {
 			url : getUrlBuscarUsuarios(),
 			page : 1,
 			rowNum : numFilas,
@@ -180,62 +173,53 @@
 		}).trigger("reloadGrid");
 	}
 
-	function getUrlBuscarUsuarios()
+	function getUrlBuscarPerfiles()
 	{  
 		var sData = "Servlet";
-		sData += "?accion=buscarUsuarios";
-		sData += "&sRut="+$('#sRut').val();
-		sData += "&sNombres="+$('#sNombres').val();
-		sData += "&sApePaterno="+$('#sApePaterno').val();
-		sData += "&sApeMaterno="+$('#sApeMaterno').val();
-		sData += "&sNomUsuario="+$('#sNomUsuario').val();
+		sData += "?accion=buscarPerfiles";
+		sData += "&pNombres="+$('#pNombres').val();
 		return sData;
 	}
 
-	function getUrlCrearUsuario()
+	function getUrlCrearPerfil()
 	{
 		var sData = "Servlet";
-		sData += '?accion=crearUsuario';
+		sData += '?accion=crearPerfil';
 		return sData;
 	}
 	
-	function getUrlCargarUsuario(id)
+	function getUrlCargarPerfil(id)
 	{
 		var sData = "Servlet";
-		sData += '?accion=cargarUsuario';
-		sData += '&nIdUsuario='+id;
+		sData += '?accion=cargarPerfil';
+		sData += '&nidPerfil='+id;
 		return sData;
 	}
 
-	function getUrlEliminarUsuario(nIdUsuario){  
+	function getUrlEliminarPerfil(idPerfil){  
 		var sData = 'Servlet';
-		sData += '?accion=eliminarUsuario';
-		sData += '&nIdUsuario='+nIdUsuario;
+		sData += '?accion=eliminarPerfil';
+		sData += '&idPerfil='+idPerfil;
 		return sData;
     }
 </script>
 
 <div class="mantenedor">
 
-	<div id="agregaUsuario" title="Crear usuario" style="display:none"></div>
+	<div id="agregaPerfil" title="Crear perfil" style="display:none"></div>
 	
-	<div id="cargaUsuario" title="Editar usuario" style="display:none"></div>
+	<div id="cargaPerfil" title="Editar perfil" style="display:none"></div>
 
 	<div class="filtros">		
 		<form id="formUsuario" action="Servlet" method="post">
 			<input type="button" 	id="btnBuscar" 		name="btnBuscar" 	value="Buscar"/>
 			<input type="button" 	id="btnAgregar" 	name="btnAgregar" 	value="Agregar"/>
-			<input type="text"		id="sRut" 			name="sRut" 		placeholder="Rut" class="rut2">
-			<input type="hidden"	id="sDV" 			name="sDV">
-			<input type="text" 		id="sNombres" 		name="sNombres"		placeholder="Nombres">
-			<input type="text" 		id="sApePaterno" 	name="sApePaterno"	placeholder="Apellido Paterno">
-			<input type="text" 		id="sApeMaterno" 	name="sApeMaterno" 	placeholder="Apellido Materno">
-			<input type="text" 		id="sNomUsuario" 	name="sNomUsuario"	placeholder="Nombre Usuario">
+			<input type="text" 		id="pNombres" 		name="pNombres"		placeholder="Nombres">
 		</form>
 	</div> 
 
-	<div id="listadoBusquedaUsuarios" class="listado">
-		<table id="listadoUsuarios"></table>
-		<div id="pieUsuario" class="pie"></div>
+	<div id="listadoBusquedaPerfiles" class="listado">
+		<table id="listadoPerfiles"></table>
+		<div id="piePerfil" class="pie"></div>
 	</div>
 </div>

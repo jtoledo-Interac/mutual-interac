@@ -3,15 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <filas>
-    <c:forEach items="${requestScope.listaUsuarios}" var="usuario">
+    <c:forEach items="${requestScope.listaPerfiles}" var="perfil">
         <fila>
-        	<idUsuario>${usuario.idUsuario}</idUsuario>
-        	<rut>${usuario.rutFormat}</rut>
-        	<nombre>${usuario.nombres} ${usuario.apePaterno} ${usuario.apeMaterno}</nombre>
-        	<nomUsuario>${usuario.nomUsuario}</nomUsuario>
-        	<email>${usuario.email}</email>
-        	<telefono>${usuario.telefono}</telefono>
-        	<celular>${usuario.celular}</celular>
+        	<idPerfil>${perfil.idPerfil}</idPerfil>
+        	<desPerfil>${perfil.desPerfil}</desPerfil>
         </fila>
      </c:forEach>
 </filas>

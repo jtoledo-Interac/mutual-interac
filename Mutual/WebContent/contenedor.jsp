@@ -114,11 +114,9 @@ $(function()
 					</c:when>
 					
 					<%-- PERFILES --%>
-					<%--
 					<c:when test="${param.accion eq 'perfiles'}">
 						<%@ include file="perfiles/listaPerfiles.jsp" %>
 					</c:when>
-					--%>
 					
 					<%-- CARTERAS --%>
 					<c:when test="${param.accion eq 'carteras'}">
