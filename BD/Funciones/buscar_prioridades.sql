@@ -10,7 +10,7 @@ $body$
         declare xnomprioridad varchar;
     begin
         xnomprioridad := coalesce(upper(trim(xnomprioridad$)),'') || '%';
-        numerror := '0';
+        numerror := 0;
         msjerror := ' ';
 
         open prioridades for

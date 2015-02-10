@@ -9,7 +9,8 @@ create or replace function public.cargar_estado
 $body$
 
 begin
-    
+    numerror := 0;
+    msjerror := ' ';
     begin
         open estado  for
 

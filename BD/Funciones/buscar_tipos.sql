@@ -10,7 +10,7 @@ $body$
         declare xnomtipo varchar;
     begin
         xnomtipo := coalesce(upper(trim(xnomtipo$)),'') || '%';
-        numerror := '0';
+        numerror := 0;
         msjerror := ' ';
 
         open tipos for

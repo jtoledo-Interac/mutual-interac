@@ -9,7 +9,8 @@ create or replace function public.cargar_perfil
 $body$
 
 begin
-    
+    numerror := 0;
+    msjerror := ' ';
     begin
         open perfil for
 

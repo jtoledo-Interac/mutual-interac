@@ -20,7 +20,7 @@ $body$
 	declare _apellido_materno	varchar(100);
 	
     begin
-        numerror := '0';
+        numerror := 0;
         msjerror := ' ';
 
         select

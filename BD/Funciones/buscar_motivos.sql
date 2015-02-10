@@ -10,7 +10,7 @@ $body$
         declare xnommotivo varchar;
     begin
         xnommotivo := coalesce(upper(trim(xnommotivo$)),'') || '%';
-        numerror := '0';
+        numerror := 0;
         msjerror := ' ';
 
         open motivos for

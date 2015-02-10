@@ -9,7 +9,8 @@ create or replace function public.cargar_producto
 $body$
 
 begin
-    
+    numerror := 0;
+    msjerror := ' ';
     begin
         open producto  for
 

@@ -9,7 +9,8 @@ create or replace function public.cargar_reclamo
 $body$
 
 begin
-    
+    numerror := 0;
+    msjerror := ' ';
     begin
         open reclamos for
 

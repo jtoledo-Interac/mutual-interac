@@ -10,7 +10,7 @@ $body$
      declare xnomcartera varchar;
 
     begin
-        numerror := '0';
+        numerror := 0;
         msjerror := ' ';
 
         xnomcartera := coalesce(upper(trim(xnomcartera$)),'') || '%';

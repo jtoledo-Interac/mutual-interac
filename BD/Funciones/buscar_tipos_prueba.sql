@@ -21,7 +21,7 @@ $body$
 
     begin
         xnomtipo := coalesce(upper(trim(xnomtipo$)),'') || '%';
-        numerror := '0';
+        numerror := 0;
         msjerror := ' ';
         begin        
             select 

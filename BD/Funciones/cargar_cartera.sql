@@ -9,6 +9,8 @@ create or replace function public.cargar_cartera
 $body$
 
 begin
+    numerror := 0;
+    msjerror := ' ';
     
     begin
         open carteras for

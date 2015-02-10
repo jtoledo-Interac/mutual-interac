@@ -8,8 +8,8 @@ create or replace function buscar_regiones
 $body$
 
     begin
-        numerror := '0';
-  msjerror := ' ';
+        numerror := 0;
+        msjerror := ' ';
 
         open regiones for
 

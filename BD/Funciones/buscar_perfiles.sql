@@ -12,7 +12,7 @@ $body$
 
     begin
 
-        numerror := '0';
+        numerror := 0;
 		msjerror := ' ';
 
         xnombre := coalesce(upper(trim(xnombre$)),'') || '%';   

@@ -10,7 +10,7 @@ create or replace function public.buscar_parametros
 $body$
 begin
     begin
-        numerror := '0';
+        numerror := 0;
         msjerror := ' ';
 
         open carteras for

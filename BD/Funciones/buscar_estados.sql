@@ -10,7 +10,7 @@ $body$
         declare xnomestado varchar;
     begin
         xnomestado := coalesce(upper(trim(xnomestado$)),'') || '%';
-        numerror := '0';
+        numerror := 0;
         msjerror := ' ';
 
         open estados for

@@ -9,7 +9,8 @@ create or replace function public.cargar_medio_respuesta
 $body$
 
 begin
-    
+    numerror := 0;
+    msjerror := ' ';
     begin
         open medio_respuesta  for
 

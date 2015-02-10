@@ -10,7 +10,7 @@ $body$
         declare xnommedio varchar;
     begin
         xnommedio := coalesce(upper(trim(xnommedio$)),'') || '%';
-        numerror := '0';
+        numerror := 0;
         msjerror := ' ';
 
         open medios for

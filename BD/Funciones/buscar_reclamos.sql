@@ -24,7 +24,7 @@ $body$
     declare xid_prioridad numeric;
 
     begin
-        numerror := '0';
+        numerror := 0;
         msjerror := ' ';
 
         

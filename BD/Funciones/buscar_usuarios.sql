@@ -21,7 +21,7 @@ $body$
     declare xnomusuario varchar;
 
     begin
-        numerror := '0';
+        numerror := 0;
         msjerror := ' ';
 
         /*filtros*/

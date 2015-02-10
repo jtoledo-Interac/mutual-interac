@@ -9,7 +9,8 @@ create or replace function public.cargar_usuario
 $body$
 
 begin
-    
+    numerror := 0;
+    msjerror := ' ';
     begin
         open usuarios for
 

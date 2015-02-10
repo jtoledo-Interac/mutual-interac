@@ -9,7 +9,8 @@ create or replace function public.cargar_prioridad
 $body$
 
 begin
-    
+    numerror := 0;
+    msjerror := ' ';
     begin
         open prioridad  for
 

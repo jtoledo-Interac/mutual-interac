@@ -10,7 +10,7 @@ $body$
         declare xnommedios_respuesta varchar;
     begin
         xnommedios_respuesta := coalesce(upper(trim(xnommedios_respuesta$)),'') || '%';
-        numerror := '0';
+        numerror := 0;
         msjerror := ' ';
 
         open medios_respuestas for

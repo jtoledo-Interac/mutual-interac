@@ -9,7 +9,8 @@ create or replace function public.cargar_motivo
 $body$
 
 begin
-    
+    numerror := 0;
+    msjerror := ' ';
     begin
         open motivo  for
 

@@ -10,7 +10,7 @@ $body$
         declare xnomproducto varchar;
     begin
         xnomproducto := coalesce(upper(trim(xnomproducto$)),'') || '%';
-        numerror := '0';
+        numerror := 0;
         msjerror := ' ';
 
         open productos for
