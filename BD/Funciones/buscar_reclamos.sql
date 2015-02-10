@@ -1,7 +1,19 @@
 
-CREATE OR REPLACE FUNCTION buscar_reclamos(IN "xnombre_solicitante$" character varying, IN "xnum_adherente$" character varying, IN "xid_cartera$" numeric, IN "xid_tipo$" numeric, IN "xid_estado$" numeric, IN "xid_prioridad$" numeric, IN "xid_reclamo$" numeric, OUT reclamos refcursor, OUT numerror character varying, OUT msjerror character varying)
-  RETURNS record AS
-$BODY$
+create or replace function buscar_reclamos
+(
+    in "xnombre_solicitante$" character varying, 
+    in "xnum_adherente$" character varying, 
+    in "xid_cartera$" numeric, 
+    in "xid_tipo$" numeric, 
+    in "xid_estado$" numeric, 
+    in "xid_prioridad$" numeric, 
+    in "xid_reclamo$" numeric, 
+    out reclamos refcursor, 
+    out numerror character varying, 
+    out msjerror character varying
+)
+  returns record as
+$body$
 
     declare xid_reclamo numeric;
     declare xnombre_solicitante varchar;
@@ -81,12 +93,12 @@ $BODY$
                 on r.id_medio_respuesta = me.id_medio_respuesta         
       where
           upper(nombre_solicitante) like '%' || xnombre_solicitante ||'%'            and
-(xnum_adherente =  ' ' or upper(trim(num_adherente)) = xnum_adherente)and
+            (xnum_adherente =  ' ' or upper(trim(num_adherente)) = xnum_adherente)and
             (xid_cartera =   0 or r.id_cartera = xid_cartera) and
             (xid_tipo =      0 or r.id_tipo = xid_tipo) and
             (xid_estado =    0 or r.id_estado = xid_estado) and
             (xid_prioridad = 0 or r.id_prioridad = xid_prioridad) and
-          (xid_reclamo = 0 or id_reclamo = xid_reclamo)
+            (xid_reclamo =   0 or id_reclamo = xid_reclamo)
         
           order by
             id_reclamo;           
@@ -99,6 +111,6 @@ $BODY$
                 return; 
     end;
 
-$BODY$
-  LANGUAGE plpgsql VOLATILE
+$body$
+  language plpgsql volatile
   
