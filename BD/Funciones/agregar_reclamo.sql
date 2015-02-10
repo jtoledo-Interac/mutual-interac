@@ -1,31 +1,7 @@
-create or replace function public.agregar_reclamo
-(
-	in xnum_adherente varchar,
-	in xnombre_solicitante varchar,
-	in xemail_solicitante varchar,
-	in xfono_solicitante varchar,
-	in xregion_solicitante varchar,
-	in xid_tipo numeric,
-	in xid_motivo numeric,
-	in xid_prioridad numeric,
-	in xid_cartera numeric,
-	in xfec_ingreso timestamp,
-	in xglosa varchar,
-	in xadjunto varchar,
-	in xobservaciones varchar,
-	in xid_estado numeric,
-	in xresponsable_ingreso varchar,
-	in xresponsable_actual varchar,	
-	in xdias_bandeja varchar,
-	in xdias_sistema varchar,
-	in xid_medio_respuesta numeric,
-	in xfec_respuesta timestamp,
-    out xid_reclamo bigint, 
-    out numerror varchar, 
-    out msjerror varchar
-) returns record as
 
-$body$
+CREATE OR REPLACE FUNCTION agregar_reclamo(IN xnum_adherente character varying, IN xnombre_solicitante character varying, IN xemail_solicitante character varying, IN xfono_solicitante character varying, IN xregion_solicitante character varying, IN xid_tipo numeric, IN xid_motivo numeric, IN xid_prioridad numeric, IN xid_cartera numeric, IN xfec_ingreso timestamp without time zone, IN xglosa character varying, IN xadjunto character varying, IN xobservaciones character varying, IN xid_estado numeric, IN xresponsable_ingreso character varying, IN xresponsable_actual character varying, IN xdias_bandeja character varying, IN xdias_sistema character varying, IN xid_medio_respuesta numeric, IN xfec_respuesta timestamp without time zone, OUT xid_reclamo bigint, OUT numerror character varying, OUT msjerror character varying)
+  RETURNS record AS
+$BODY$
 
     declare xid_reclamo$ bigint;
 
@@ -93,5 +69,6 @@ $body$
 				msjerror := '[agregar_reclamo] error al crear reclamo(sql) ' ||sqlerrm;
 				return;	
 	end;
-$body$
-language 'plpgsql'
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;

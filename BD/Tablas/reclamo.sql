@@ -1,27 +1,32 @@
-create table public.reclamo
-( 
-	id_reclamo integer not null,
-	num_adherente varchar(100) null,
-	nombre_solicitante varchar(100) null,
-	email_solicitante varchar(100) null,
-	fono_solicitante varchar(1000) null,
-	region_solicitante varchar(100) null,
-	id_tipo numeric null,
-	id_motivo numeric null,
-	id_prioridad numeric null,
-	id_cartera numeric null,
-	fec_ingreso timestamp null,
-	glosa varchar(2000) null,
-	adjunto varchar(100) null,
-	observaciones varchar(1000) null,
-	id_estado varchar(100) null,
-	responsable_ingreso varchar(100) null,
-	responsable_actual varchar(100) null,
-	dias_bandeja integer null,
-	dias_sistema integer null,
-	id_medio_respuesta numeric null,
-	fec_respuesta timestamp null,
-	primary key(id_reclamo)
+
+
+CREATE TABLE reclamo
+(
+  id_reclamo integer NOT NULL,
+  num_adherente character varying(100),
+  nombre_solicitante character varying(100),
+  email_solicitante character varying(100),
+  fono_solicitante character varying(1000),
+  region_solicitante character varying(100),
+  id_tipo numeric,
+  id_motivo numeric,
+  id_prioridad numeric,
+  id_cartera numeric,
+  fec_ingreso timestamp without time zone,
+  glosa character varying(2000),
+  adjunto character varying(100),
+  observaciones character varying(1000),
+  responsable_ingreso character varying(100),
+  responsable_actual character varying(100),
+  id_medio_respuesta numeric,
+  fec_respuesta timestamp without time zone,
+  id_estado numeric,
+  dias_bandeja character varying(50),
+  dias_sistema character varying(50),
+  CONSTRAINT reclamo_pkey PRIMARY KEY (id_reclamo)
 )
-
-
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE reclamo
+  OWNER TO postgres;
