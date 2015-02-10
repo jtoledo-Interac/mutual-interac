@@ -463,6 +463,12 @@ input[type=radio]:checked + label:before {
 	border-radius: 8px 8px 8px 8px;
 }
 
+.inputRut{
+	width: 100px;
+}
+.inputDV{
+	width: 40px;
+}
 
 .sub-title{
 	width: 100%;

@@ -9,11 +9,11 @@
 	<table>
 		<tr>
 			<td>Escriba su nueva contraseña</td>
-			<td><input type="password" name="nuevaContrasena"/></td>
+			<td><input type="password" name="nuevaContrasena" required pattern="[\w]{6,}" title="Mínimo 6 caracteres." onchange="formAgrega.nuevaContrasena2.pattern = this.value;" /></td>
 		</tr>
 		<tr>
 			<td>Vuelva a escribir su contraseña</td>
-			<td><input type="password" name="nuevaContrasena2"/></td>
+			<td><input type="password" name="nuevaContrasena2" required pattern="[\w]{6,}" title="Las contraseñas deben ser iguales."/></td>
 		</tr>
 		<tr>
 			<td colspan="2"> <input type="submit" /> </td>
