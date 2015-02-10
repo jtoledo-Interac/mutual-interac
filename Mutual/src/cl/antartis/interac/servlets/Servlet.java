@@ -1070,10 +1070,11 @@ public class Servlet extends HttpServlet {
 		mapaSalida = ejbRemoto.buscarParametros(mapaEntrada);
 		
 		request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
+		
 		request.setAttribute("listaProductos", mapaSalida.get("listaProductos"));
 		request.setAttribute("listaAreas", mapaSalida.get("listaAreas"));
 		
-		log.info("y acá??");
+	
 		
 		Documento documento = new Documento();
 		documento.setNombre(request.getParameter("nombre"));
@@ -1083,12 +1084,11 @@ public class Servlet extends HttpServlet {
 		documento.setIdProducto(Utils.stringToNum(request.getParameter("idProducto")));
 		documento.setCodArea(request.getParameter("codArea"));
 		
-		log.info("llegó acá");
+		
 		
 		mapaEntrada.put("documento", documento);
 		
 		mapaSalida = ejbRemoto.buscarDocumentos(mapaEntrada);
-		
 		request.setAttribute("listaDocumentos", mapaSalida.get("listaDocumentos"));
 	
 		pagDestino = "/documentos/listaDocumentosXml.jsp";	

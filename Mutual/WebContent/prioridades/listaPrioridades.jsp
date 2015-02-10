@@ -167,7 +167,7 @@
 	
 	function buscarPrioridades() 
 	{		
-		$('#listadoTipos').jqGrid('setGridParam', {
+		$('#listadoPrioridades').jqGrid('setGridParam', {
 			url : getUrlBuscarPrioridades(),
 			page : 1,
 			rowNum : numFilas,

@@ -187,7 +187,7 @@
 		sData += "&nombre="+$('#nombre').val();
 		sData += "&numFolio="+$('#numFolio').val();
 		sData += "&numAdherente="+$('#numAdherente').val();
-		sData += "&codCartera="+$('#codCartera').val();
+		sData += "&idCartera="+$('#idCartera').val();
 		sData += "&idProducto="+$('#idProducto').val();
 		sData += "&codArea="+$('#codArea').val();
 		return sData;

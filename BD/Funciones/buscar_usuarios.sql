@@ -26,7 +26,7 @@ $body$
 
         /*filtros*/
         xrut := coalesce(upper(trim(rut$)),'') || '%';
-        xnombres := coalesce(upper(trim(nombres$)),'') || '%';
+        xnombres    := '%' ||coalesce(upper(trim(nombres$)),'') || '%';
         xapepaterno := '%' || coalesce(upper(trim(apepaterno$)),'') || '%';
         xapematerno := '%' || coalesce(upper(trim(apematerno$)),'') || '%';
         xnomusuario := '%' || coalesce(upper(trim(nomusuario$)),'') || '%';
