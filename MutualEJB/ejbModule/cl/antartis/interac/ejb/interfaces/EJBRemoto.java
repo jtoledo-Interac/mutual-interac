@@ -136,4 +136,11 @@ public interface EJBRemoto {
 
 	public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada);
 
+	public Map<String, Object> agregarPerfil(Map<String, Object> mapaEntrada);
+
+	public Map<String, Object> cargarPerfil(Map<String, Object> mapaEntrada);
+
+	public Map<String, Object> eliminarPerfil(Map<String, Object> mapaEntrada);
+	
+	public Map<String, Object> modificarPerfil(Map<String, Object> mapaEntrada);
 }

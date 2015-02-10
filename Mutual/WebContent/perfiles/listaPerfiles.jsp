@@ -16,7 +16,7 @@
 			datatype: "xml",
 			colNames : ['', 'Nombre Perfil',''],
 			colModel : [
-						{name : 'idPerfil', index:'idPerfil', hidden : true}, 
+						{name : 'idPerfil', index:'idPerfil', hidden : false}, 
 						{name : 'desPerfil', index : 'desPerfil', width : 80, resizable : false, sortable : true},
 						{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
 						],
@@ -69,7 +69,7 @@
 			ondblClickRow: function()
 			{
 				var fila = $('#listadoPerfiles').jqGrid('getRowData',idFila);
-				editarUsuario(fila.idPerfil);
+				editarPerfil(fila.idPerfil);
 			},
 		}).navGrid('#piePerfil',{edit:false,add:false,del:false});	
 
@@ -142,7 +142,7 @@
 		});
 	}
 	
-	function editarUsuario(idUsuario)
+	function editarPerfil(idPerfil)
 	{
 		ajaxCall(getUrlCargarPerfil(idPerfil), function(response){
 			$('#cargaPerfil').html(response).dialog('open');
@@ -164,7 +164,7 @@
 	function buscarPerfiles() 
 	{		
 		$('#listadoPerfiles').jqGrid('setGridParam', {
-			url : getUrlBuscarUsuarios(),
+			url : getUrlBuscarPerfiles(),
 			page : 1,
 			rowNum : numFilas,
 			autoencode : false,
@@ -192,7 +192,7 @@
 	{
 		var sData = "Servlet";
 		sData += '?accion=cargarPerfil';
-		sData += '&nidPerfil='+id;
+		sData += '&idPerfil='+id;
 		return sData;
 	}
 
@@ -211,7 +211,7 @@
 	<div id="cargaPerfil" title="Editar perfil" style="display:none"></div>
 
 	<div class="filtros">		
-		<form id="formUsuario" action="Servlet" method="post">
+		<form id="formPerfil" action="Servlet" method="post">
 			<input type="button" 	id="btnBuscar" 		name="btnBuscar" 	value="Buscar"/>
 			<input type="button" 	id="btnAgregar" 	name="btnAgregar" 	value="Agregar"/>
 			<input type="text" 		id="pNombres" 		name="pNombres"		placeholder="Nombres">

@@ -537,32 +537,15 @@ if(error == null) error = new Error();
 	}
 
 	public void agregarPerfil(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
-		
-		log.info("Comuna: "+request.getParameter("nIdComuna"));
-		
-		Usuario usuario = new Usuario();
-		usuario.setRut(Utils.getRutSinDV(request.getParameter("sRut")));
-		usuario.setDv(request.getParameter("sDV"));
-		usuario.setNombres(request.getParameter("sNombres"));
-		usuario.setApePaterno(request.getParameter("sApePaterno"));
-		usuario.setApeMaterno(request.getParameter("sApeMaterno"));
-		usuario.setNomUsuario(request.getParameter("sNomUsuario"));
-		usuario.setContrasena1(request.getParameter("sContrasena"));
-		usuario.setCodGenero(request.getParameter("sCodGenero"));
-		usuario.setFecNacimiento(request.getParameter("sFecNacimiento"));
-		usuario.setTelefono(request.getParameter("sTelefono"));
-		usuario.setCelular(request.getParameter("sCelular"));
-		usuario.setEmail(request.getParameter("sEmail"));
-		
-		mapaEntrada.put("usuario",usuario);
-		
-		//log.info("[Metodo: " + nombreMetodo + "] Iniciando");
-		
-		mapaSalida = ejbRemoto.agregarUsuario(mapaEntrada);
-		
-		log.info("ID Usuario: "+mapaSalida.get("nIdUsuario"));
+		Perfil perfil = new Perfil(); 
+		perfil.setDesPerfil(request.getParameter("desPerfil"));
+		mapaEntrada.put("perfil",perfil);
+		mapaSalida = ejbRemoto.agregarPerfil(mapaEntrada);
+		 
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
 		error = (Error)mapaSalida.get("error");
 		if(error == null) error = new Error();
@@ -570,7 +553,7 @@ if(error == null) error = new Error();
 			pagDestino = "error.jsp";
 		}
 		else{
-			pagDestino = "contenedor.jsp?accion=usuarios";
+			pagDestino = "contenedor.jsp?accion=perfiles";
 		}
 	}
 	
@@ -644,22 +627,21 @@ if(error == null) error = new Error();
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		long idUsuario = Utils.stringToNum(request.getParameter("nIdUsuario"));
+		Long idPerfil = Utils.stringToNum(request.getParameter("idPerfil"));
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
-
-		log.info("idUsuario: "+idUsuario);
+		log.info("idPerfil: "+idPerfil);
 		
-		mapaEntrada.put("idUsuario", idUsuario);
+		mapaEntrada.put("idPerfil", idPerfil);
+		mapaSalida = ejbRemoto.eliminarPerfil(mapaEntrada);
 		
-		mapaSalida = ejbRemoto.eliminarUsuario(mapaEntrada);
 		error = (Error)mapaSalida.get("error");
 		if(error == null) error = new Error();
 		if(!error.getNumError().equals("0")){
 			pagDestino = "error.jsp";
 		}
 		else{
-			pagDestino = "/usuarios/listaUsuariosXml.jsp";
+			pagDestino = "perfiles/listaPerfilesXml.jsp";
 		}
 	}
 	
@@ -2332,6 +2314,31 @@ if(error == null) error = new Error();
 		}
 	}
 	
+	public void cargarPerfil(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		Long idPerfil = Utils.stringToNum(request.getParameter("idPerfil"));
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+
+		log.info("idPerfil: "+idPerfil);
+		
+		mapaEntrada.put("idPerfil", idPerfil);
+		
+		mapaSalida = ejbRemoto.cargarPerfil(mapaEntrada);
+		error = (Error)mapaSalida.get("error");
+		if(error == null) error = new Error();
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{
+			request.setAttribute("perfil", (Perfil)mapaSalida.get("perfil"));
+			pagDestino = "/perfiles/cargaPerfil.jsp";
+		}
+	}
+	
 	public void modificarEstado(HttpServletRequest request, HttpServletResponse response) {
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
 		
@@ -2350,6 +2357,29 @@ if(error == null) error = new Error();
 		if(((Error)mapaSalida.get("error")).getNumError().equals("0")){
 			
 			pagDestino = "contenedor.jsp?accion=estados";
+		}
+		else{
+			pagDestino = "error.jsp";
+		}
+	}
+	
+	public void modificarPerfil(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		Perfil perfil = new Perfil();
+		perfil.setIdPerfil(Utils.stringToNum(request.getParameter("idPerfil")));
+		perfil.setDesPerfil(request.getParameter("desPerfil"));
+
+		mapaEntrada.put("perfil",perfil);
+		
+		mapaSalida = ejbRemoto.modificarPerfil(mapaEntrada);
+		if(((Error)mapaSalida.get("error")).getNumError().equals("0")){
+			pagDestino = "contenedor.jsp?accion=perfiles";
 		}
 		else{
 			pagDestino = "error.jsp";

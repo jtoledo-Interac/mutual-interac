@@ -3859,6 +3859,61 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 		
 		
 	}
+	
+	public Map<String, Object> agregarPerfil(Map<String, Object> mapaEntrada) {
+		
+		CallableStatement cStmt = null;
+		Error error = new Error();
+		Map<String, Object> mapaSalida = null;
+		Perfil perfil = new Perfil();
+
+		try {
+			log.info("Agregar Perfil");
+			
+			perfil = (Perfil)mapaEntrada.get("perfil");
+			
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call agregar_perfil(?,?,?) }"); //cambiar segun SP
+			
+			cStmt.setString(1, perfil.getDesPerfil());// cursor$			
+			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
+
+			cStmt.execute();
+
+			error.setNumError(cStmt.getString(2));
+			error.setMsjError(cStmt.getString(3));
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+
+		log.info("Num Error: "+ error.getNumError());
+		log.info("Msj Error: "+ error.getMsjError());
+		
+		mapaSalida.put("error", error);
+		
+		return mapaSalida;			
+	}
 
 	public Map<String, Object> cargarEstado(Map<String, Object> mapaEntrada) {
 		CallableStatement cStmt = null;
@@ -3927,6 +3982,72 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 		return mapaSalida;
 	}
 
+	public Map<String, Object> cargarPerfil(Map<String, Object> mapaEntrada) {
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		Long id_perfil;
+		Perfil perfil = null;
+		String numError = "0";
+		String msjError = "";
+		
+		try {
+			log.info("Cargar perfil");
+
+			id_perfil = (Long)mapaEntrada.get("idPerfil");
+			
+			log.info("id_estado: "+id_perfil);
+			
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call cargar_perfil(?,?,?,?) }");
+			cStmt.setLong(1, id_perfil);
+			cStmt.registerOutParameter(2, Types.OTHER);// documento$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+
+			cStmt.execute();
+			ResultSet rs = (ResultSet) cStmt.getObject(2);
+			numError = cStmt.getString(3);
+			msjError = cStmt.getString(4);
+			
+			while (rs.next()) {
+				
+				perfil = new Perfil();
+				perfil.setIdPerfil(rs.getLong("id_perfil"));
+				perfil.setDesPerfil(rs.getString("des_perfil"));
+			}
+			
+			rs.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+
+		//log.info(documento.getDocumento());
+		mapaSalida.put("perfil",perfil);
+		mapaSalida.put("numError", numError);
+		mapaSalida.put("msjError", msjError);
+		
+		return mapaSalida;
+	}
 	
 	public Map<String, Object> modificarEstado(Map<String, Object> mapaEntrada) {
 		CallableStatement cStmt = null;
@@ -3944,6 +4065,55 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 			cStmt = dbConeccion.prepareCall("{ call modificar_estado(?,?,?,?) }");
 			cStmt.setLong(1,estado.getIdEstado());
 			cStmt.setString(2,estado.getDesEstado());
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+			cStmt.execute();
+			error.setNumError(cStmt.getString(3));
+			error.setMsjError(cStmt.getString(4));
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+
+		log.info("Num Error: "+ error.getNumError());
+		log.info("Msj Error: "+ error.getMsjError());
+		mapaSalida.put("error",error);
+		
+		return mapaSalida;
+	}
+	
+	public Map<String, Object> modificarPerfil(Map<String, Object> mapaEntrada) {
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();;
+		Perfil perfil = null;
+		Error error = new Error();
+
+		try {
+			log.info("Modificar Perfil");
+			
+			perfil = (Perfil)mapaEntrada.get("perfil");
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call modificar_perfil(?,?,?,?) }");
+			cStmt.setLong(1,perfil.getIdPerfil());
+			cStmt.setString(2,perfil.getDesPerfil());
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
 			cStmt.execute();
@@ -4022,7 +4192,51 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 		return mapaSalida;
 	}
 
+	public Map<String, Object> eliminarPerfil(Map<String, Object> mapaEntrada) {
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		Long id_perfil;
+		Error error = new Error();
+		
+		try {
+			log.info("Eliminar Perfil");
+			id_perfil = (Long)mapaEntrada.get("idPerfil");
+			log.info("id_perfil: "+id_perfil);
+			mapaSalida = new HashMap<String, Object>();
+			
+			dbConeccion = interacDS.getConnection();
+			cStmt = dbConeccion.prepareCall("{ call eliminar_perfil(?,?,?) }");
+			cStmt.setLong(1, id_perfil);
+			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
 
+			cStmt.execute();
+			error.setNumError(cStmt.getString(2));
+			error.setMsjError(cStmt.getString(3));			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+		mapaSalida.put("error", error);
+		
+		return mapaSalida;
+	}
+	
 	public Map<String, Object> buscarEstados(Map<String, Object> mapaEntrada) {
 		CallableStatement cStmt = null;
 		Map<String, Object> mapaSalida = null;
