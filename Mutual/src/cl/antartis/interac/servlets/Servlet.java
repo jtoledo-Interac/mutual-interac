@@ -1607,7 +1607,7 @@ public class Servlet extends HttpServlet {
 		reclamo.setNombreSolicitante(request.getParameter("nombre_solicitante") );
 		reclamo.setEmailSolicitante(request.getParameter("email_solicitante") );
 		reclamo.setFonoSolicitante(request.getParameter("fono_solicitante") );
-		reclamo.setRegionSolicitante(request.getParameter("region_solicitante") );
+		reclamo.setRegionSolicitante(request.getParameter("cod_region") );
 		reclamo.setIdTipo(Utils.stringToNum(request.getParameter("id_tipo")));
 		reclamo.setIdMotivo(Utils.stringToNum(request.getParameter("id_motivo")));
 		reclamo.setIdPrioridad(Utils.stringToNum(request.getParameter("id_prioridad")));
@@ -1695,7 +1695,7 @@ public class Servlet extends HttpServlet {
 		reclamo.setNombreSolicitante(request.getParameter("nombre_solicitante") );
 		reclamo.setEmailSolicitante(request.getParameter("email_solicitante") );
 		reclamo.setFonoSolicitante(request.getParameter("fono_solicitante") );
-		reclamo.setRegionSolicitante(request.getParameter("region_solicitante") );
+		reclamo.setRegionSolicitante(request.getParameter("cod_region") );
 		reclamo.setIdTipo(Utils.stringToNum(request.getParameter("id_tipo")));
 		reclamo.setIdMotivo(Utils.stringToNum(request.getParameter("id_motivo")));
 		reclamo.setIdPrioridad(Utils.stringToNum(request.getParameter("id_prioridad")));
@@ -1704,12 +1704,12 @@ public class Servlet extends HttpServlet {
 		reclamo.setGlosa(request.getParameter("glosa"));
 		reclamo.setAdjunto(request.getParameter("adjunto"));
 		reclamo.setObservaciones(request.getParameter("observaciones"));
-		reclamo.setIdEstado(Utils.stringToNum(request.getParameter("cod_estado")));
+		reclamo.setIdEstado(Utils.stringToNum(request.getParameter("id_estado")));
 		reclamo.setResponsableIngreso(request.getParameter("responsable_ingreso"));
 		reclamo.setResponsableActual(request.getParameter("responsable_actual"));
 		reclamo.setDiasBandeja("");
 		reclamo.setDiasSistema("");
-		reclamo.setIdMedio(Utils.stringToNum(request.getParameter("cod_medio_respuesta")));
+		reclamo.setIdMedio(Utils.stringToNum(request.getParameter("id_medio_respuesta")));
 		reclamo.setFecRespuesta(request.getParameter("fec_respuesta") );
 
 		mapaEntrada.put("reclamo",reclamo);		

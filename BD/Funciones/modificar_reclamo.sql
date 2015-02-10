@@ -1,6 +1,6 @@
 create or replace function public.modificar_reclamo
 (
-	in xid_reclamo integer,
+	in xid_reclamo numeric,
 	in xnum_adherente varchar,
 	in xnombre_solicitante varchar,
 	in xemail_solicitante varchar,
@@ -10,7 +10,7 @@ create or replace function public.modificar_reclamo
 	in xid_motivo numeric,
 	in xid_prioridad numeric,
 	in xid_cartera numeric,
-	in xfec_ingreso varchar,
+	in xfec_ingreso timestamp,
 	in xglosa varchar,
 	in xadjunto varchar,
 	in xobservaciones varchar,
@@ -20,7 +20,7 @@ create or replace function public.modificar_reclamo
 	in xdias_bandeja varchar,
 	in xdias_sistema varchar,
 	in xid_medio_respuesta numeric,
-	in xfec_respuesta varchar,
+	in xfec_respuesta timestamp,
     out numerror varchar, 
     out msjerror varchar
 ) returns record as
