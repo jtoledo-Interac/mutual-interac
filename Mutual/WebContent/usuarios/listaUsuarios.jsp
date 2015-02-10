@@ -119,7 +119,7 @@
 		    position: 'center',
 		    buttons: {
 				"Editar Usuario": function() {
-					$('#formEdita').submit();
+					$('#formEdita .submit').click();
 				},
 				"Cancelar": function() {
 					$(this).dialog("close");

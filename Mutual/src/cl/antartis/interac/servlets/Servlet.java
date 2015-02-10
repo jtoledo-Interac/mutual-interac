@@ -427,10 +427,11 @@ if(error == null) error = new Error();
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
 		
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
 		Usuario usuario = new Usuario();
-		//usuario.setIdUsuario(Utils.stringToNum(request.getParameter("nIdUsuario")));
+		usuario.setIdUsuario(Utils.stringToNum(request.getParameter("nIdUsuario")));
 		usuario.setRut(Utils.getRutSinDV(request.getParameter("sRut")));
 		usuario.setDv(request.getParameter("sDV"));
 		usuario.setNombres(request.getParameter("sNombres"));
@@ -445,8 +446,16 @@ if(error == null) error = new Error();
 		
 		log.info(usuario.getUsuario());
 		mapaEntrada.put("usuario",usuario);
+		mapaSalida = ejbRemoto.modificarUsuario(mapaEntrada);
 		
-		pagDestino = "contenedor.jsp?accion=usuarios";
+		error = (Error)mapaSalida.get("error");
+		if(error == null) error = new Error();
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{
+			pagDestino = "contenedor.jsp?accion=usuarios";
+		}
 	}
 	
 	public void eliminarUsuario(HttpServletRequest request, HttpServletResponse response) {

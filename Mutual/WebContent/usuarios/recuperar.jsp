@@ -52,7 +52,7 @@
 		<label for = "op2">He olvidado mi nombre de usuario</label> <br/>
 		<div id="2">
 			Ingresa tu correo electrónico asociado a tu cuenta de Interac: 
-			<input type="email" id="email" name ="email" placeholder="correo@mail.com" required/>
+			<input type="email" id="email" name ="email" placeholder="correo@mail.com"/>
 		</div>
 		<input type="submit" id="btnContinuar" value="Continuar"/>
 	</form>

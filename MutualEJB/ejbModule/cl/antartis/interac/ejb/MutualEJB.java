@@ -215,8 +215,7 @@ public class MutualEJB implements EJBRemoto {
 		CallableStatement cStmt = null;
 		Map<String, Object> mapaSalida = null;
 		Usuario usuario = null;
-		String numError = "0";
-		String msjError = "";
+		Error error = new Error();
 		
 		try {
 			log.info("Modificar usuario");
@@ -226,7 +225,7 @@ public class MutualEJB implements EJBRemoto {
 			mapaSalida = new HashMap<String, Object>();
 
 			dbConeccion = interacDS.getConnection();
-			
+			log.info("Usuario antes de la query: \n"+usuario.getUsuario());
 			cStmt = dbConeccion.prepareCall("{ call modificar_usuario(?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
 			cStmt.setLong(1, usuario.getIdUsuario());
 			cStmt.setString(2, usuario.getRut());
@@ -237,8 +236,6 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(7, usuario.getNomUsuario());
 			cStmt.setString(8, usuario.getCodGenero());
 			cStmt.setDate(9, Utils.stringToDate(usuario.getFecNacimiento()));
-			log.info("fecha antes -> "+usuario.getFecNacimiento());
-			log.info("fecha despues -> "+Utils.stringToDate(usuario.getFecNacimiento()));
 			cStmt.setString(10, usuario.getTelefono());
 			cStmt.setString(11, usuario.getCelular());
 			cStmt.setString(12, usuario.getEmail());
@@ -248,20 +245,21 @@ public class MutualEJB implements EJBRemoto {
 			
 			cStmt.execute();
 			
-			numError = cStmt.getString(14);
-			msjError = cStmt.getString(15);
+			error.setNumError(cStmt.getString(13));
+			error.setMsjError(cStmt.getString(14));
 			
-			log.info("Num Error: "+numError);
-			log.info("Msj Error: "+msjError);
+			log.info("Num Error: "+error.getNumError());
+			log.info("Msj Error: "+error.getMsjError());
 	
 		}catch (SQLException e) {
 			e.printStackTrace();
 			log.info("SQL Exception");
+			error.setNumError("1");
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.info("SQL Exception 2");
+			error.setNumError("1");
 		} finally {
-
 			try {
 				log.info("Cerrando la conexion");
 				dbConeccion.close();
@@ -270,11 +268,12 @@ public class MutualEJB implements EJBRemoto {
 			} catch (SQLException e) {
 				log.info("Error al cerrar la conexion");
 				e.printStackTrace();
+				error.setNumError("1");
+			}
+			finally{
+				mapaSalida.put("error", error);
 			}
 		}
-		
-		mapaSalida.put("numError", numError);
-		mapaSalida.put("msjError", msjError);
 		
 		return mapaSalida;
 	}
