@@ -17,7 +17,7 @@
 			colNames : ['', 'Nombre Perfil',''],
 			colModel : [
 						{name : 'idPerfil', index:'idPerfil', hidden : true}, 
-						{name : 'nombrePerfil', index : 'nombrePerfil', width : 80, resizable : false, sortable : true},
+						{name : 'desPerfil', index : 'desPerfil', width : 80, resizable : false, sortable : true},
 						{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
 						],
 		   	rowNum: numeroDeFilas,

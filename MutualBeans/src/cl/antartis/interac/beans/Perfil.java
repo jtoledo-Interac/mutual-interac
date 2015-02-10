@@ -21,4 +21,11 @@ public class Perfil implements Serializable {
 		this.desPerfil = desPerfil;
 	}
 	
+	public String getPerfil(){
+		String perfil = "DATOS DE PERFIL\n" ;
+		perfil+="idPerfil: " + this.idPerfil;
+		perfil+="desPerfil: " + this.desPerfil;
+		return perfil;
+	}
+	
 }

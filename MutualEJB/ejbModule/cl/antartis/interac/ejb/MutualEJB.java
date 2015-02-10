@@ -660,6 +660,7 @@ public class MutualEJB implements EJBRemoto {
 					perfil = new Perfil();
 					perfil.setIdPerfil(rs.getLong("id_perfil"));
 					perfil.setDesPerfil(rs.getString("des_perfil"));
+					log.info("prfl: " + perfil.getPerfil());
 					listaPerfiles.add(perfil);
 				}
 				rs.close();

@@ -532,7 +532,7 @@ if(error == null) error = new Error();
 		}
 		else{
 			request.setAttribute("listaPerfiles", mapaSalida.get("listaPerfiles"));
-			pagDestino = "/usuarios/listaPerfilesXml.jsp";
+			pagDestino = "/perfiles/listaPerfilesXml.jsp";
 		}
 	}
 
