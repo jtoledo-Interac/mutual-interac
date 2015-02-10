@@ -23,6 +23,7 @@ import cl.antartis.interac.beans.Error;
 import cl.antartis.interac.beans.Estado;
 import cl.antartis.interac.beans.Medio;
 import cl.antartis.interac.beans.Motivo;
+import cl.antartis.interac.beans.Perfil;
 import cl.antartis.interac.beans.Prioridad;
 import cl.antartis.interac.beans.Producto;
 import cl.antartis.interac.beans.Reclamo;
@@ -623,8 +624,73 @@ public class MutualEJB implements EJBRemoto {
 	}
 
 	public Map<String, Object> buscarPerfiles(Map<String, Object> mapaEntrada) {
-		// TODO Auto-generated method stub
-		return null;
+		log.info("siquiera llega acá????");
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		ArrayList<Perfil> listaPerfiles = null;
+		Perfil perfil = null;
+		Error error = new Error();
+
+		try {
+			log.info("Buscar Perfiles");
+			
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			perfil = (Perfil)mapaEntrada.get("perfil");
+			
+			cStmt = dbConeccion.prepareCall("{ call buscar_perfiles(?,?,?,?) }");
+			
+			cStmt.setString(1, perfil.getDesPerfil());
+			cStmt.registerOutParameter(2, Types.OTHER);// cursor$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+
+			cStmt.execute();
+
+			ResultSet rs = (ResultSet) cStmt.getObject(2);
+			error.setNumError(cStmt.getString(3));
+			error.setMsjError(cStmt.getString(4));
+		
+			listaPerfiles = new ArrayList<Perfil>();
+
+			if(rs !=null){
+				while (rs.next()) {
+					perfil = new Perfil();
+					perfil.setIdPerfil(rs.getLong("id_perfil"));
+					perfil.setDesPerfil(rs.getString("des_perfil"));
+					listaPerfiles.add(perfil);
+				}
+				rs.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+
+		log.info("Num Error: "+ error.getNumError());
+		log.info("Msj Error: "+ error.getMsjError());
+		
+		mapaSalida.put("listaPerfiles",listaPerfiles);
+		mapaSalida.put("error", error);
+
+		return mapaSalida;
 	}
 
 	public Map<String, Object> validarSesion(Map<String, Object> mapaEntrada) {

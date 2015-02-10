@@ -27,6 +27,7 @@ import cl.antartis.interac.beans.Empresa;
 import cl.antartis.interac.beans.Estado;
 import cl.antartis.interac.beans.Medio;
 import cl.antartis.interac.beans.Motivo;
+import cl.antartis.interac.beans.Perfil;
 import cl.antartis.interac.beans.Prioridad;
 import cl.antartis.interac.beans.Producto;
 import cl.antartis.interac.beans.Reclamo;
@@ -510,25 +511,28 @@ if(error == null) error = new Error();
 	
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
-		Usuario usuario = new Usuario();
-		usuario.setRut(Utils.getRutSinDV(request.getParameter("sRut")));
-		usuario.setDv(request.getParameter("sDV"));
-		usuario.setNombres(request.getParameter("sNombres"));
-		usuario.setApePaterno(request.getParameter("sApePaterno"));
-		usuario.setApeMaterno(request.getParameter("sApeMaterno"));
-		usuario.setNomUsuario(request.getParameter("sNomUsuario"));
+		Perfil perfil = new Perfil();
 		
-		mapaEntrada.put("usuario",usuario);
+		log.info("!!!");
 		
-		mapaSalida = ejbRemoto.buscarUsuarios(mapaEntrada);
+		perfil.setDesPerfil(request.getParameter("pNombres"));
+		
+		log.info("!!55!");
+		
+		mapaEntrada.put("perfil", perfil);
+		
+		log.info("3232");
+		
+		mapaSalida = ejbRemoto.buscarPerfiles(mapaEntrada);
+		
 		error = (Error)mapaSalida.get("error");
 		if(error == null) error = new Error();
 		if(!error.getNumError().equals("0")){
 			pagDestino = "error.jsp";
 		}
 		else{
-			request.setAttribute("listaUsuarios", mapaSalida.get("listaUsuarios"));
-			pagDestino = "/usuarios/listaUsuariosXml.jsp";
+			request.setAttribute("listaPerfiles", mapaSalida.get("listaPerfiles"));
+			pagDestino = "/usuarios/listaPerfilesXml.jsp";
 		}
 	}
 
@@ -2373,6 +2377,5 @@ if(error == null) error = new Error();
 		else{
 			pagDestino = "estados/listaEstadosXml.jsp";
 		}
-	}	
-	
+	}
 }
