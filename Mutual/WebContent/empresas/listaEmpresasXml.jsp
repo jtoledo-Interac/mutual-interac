@@ -7,7 +7,7 @@
         <fila>
      		
             <numAdherente>${empresa.numAdherente}</numAdherente> 
-              <idEmpresa>${empresa.idEmpresa}</idEmpresa> 
+            <idEmpresa>${empresa.idEmpresa}</idEmpresa> 
         	<nombre>${empresa.nombre}</nombre>
         </fila>
      </c:forEach>

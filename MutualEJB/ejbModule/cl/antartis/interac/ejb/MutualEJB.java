@@ -1804,14 +1804,17 @@ public class MutualEJB implements EJBRemoto {
 
 			dbConeccion = interacDS.getConnection();
 
-			cStmt = dbConeccion.prepareCall("{ call modificar_empresa(?,?,?,?) }");
-			cStmt.setString(1,empresa.getNumAdherente());
-			cStmt.setString(2,empresa.getNombre());
-			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
-			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+			log.info(empresa.getEmpresa());
+			
+			cStmt = dbConeccion.prepareCall("{ call modificar_empresa(?,?,?,?,?) }");
+			cStmt.setLong(1,empresa.getIdEmpresa());
+			cStmt.setString(2,empresa.getNumAdherente());
+			cStmt.setString(3,empresa.getNombre());
+			cStmt.registerOutParameter(4, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(5, Types.VARCHAR);// msjerror$
 			cStmt.execute();
-			error.setNumError(cStmt.getString(3));
-			error.setMsjError(cStmt.getString(4));
+			error.setNumError(cStmt.getString(4));
+			error.setMsjError(cStmt.getString(5));
 		
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -3046,9 +3049,9 @@ public class MutualEJB implements EJBRemoto {
 			while (rsEmpresa.next()) {
 				empresa = new Empresa();
 				empresa.setIdEmpresa(rsEmpresa.getLong("id_empresa"));
-				
 				empresa.setNombre(rsEmpresa.getString("nombre"));
 				empresa.setNumAdherente(rsEmpresa.getString("num_adherente"));
+				log.info(empresa.getEmpresa());
 			}
 		
 			rsEmpresa.close();			
@@ -3113,10 +3116,9 @@ public class MutualEJB implements EJBRemoto {
 			if(rs !=null){
 				while (rs.next()) {
 					empresa = new Empresa();
+					empresa.setIdEmpresa(rs.getLong("id_empresa"));
 					empresa.setNombre(rs.getString("nombre"));
 					empresa.setNumAdherente(rs.getString("num_adherente"));
-				
-					
 					listaEmpresas.add(empresa);
 				}
 				rs.close();
@@ -3157,7 +3159,7 @@ public class MutualEJB implements EJBRemoto {
 		Error error = new Error();
 		
 		try {
-			log.info("Eliminar usuario");
+			log.info("Eliminar Empresa");
 			id_empresa = (Long)mapaEntrada.get("idEmpresa");
 			
 			log.info("id empresa: " + id_empresa);

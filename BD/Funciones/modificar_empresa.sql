@@ -21,7 +21,7 @@ $body$
             num_adherente = xnum_adherente
 
         where
-            id_empressa = xid_empressa;
+            id_empresa = xid_empressa;
 
         exception
             when others then

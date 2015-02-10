@@ -1485,8 +1485,8 @@ if(error == null) error = new Error();
 
 		Long idEmpresa = Utils.stringToNum(request.getParameter("idEmpresa"));
 
+		log.info("idEmpresa :" + idEmpresa);
 		
-	 
 		mapaEntrada.put("idEmpresa", idEmpresa);
 		mapaSalida = ejbRemoto.cargarEmpresa(mapaEntrada);
 		error = (Error) mapaSalida.get("error");
@@ -1512,6 +1512,7 @@ if(error == null) error = new Error();
 
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 
+		empresa.setIdEmpresa(Utils.stringToNum(request.getParameter("idEmpresa")));
 		empresa.setNombre(request.getParameter("nombre"));
 		empresa.setNumAdherente(request.getParameter("numAdherente"));
 

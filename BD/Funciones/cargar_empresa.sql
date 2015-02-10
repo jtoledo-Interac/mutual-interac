@@ -12,6 +12,9 @@ begin
     numerror := 0;
     msjerror := ' ';
     begin
+
+        numerror := 0;
+        msjerror := '';
         open empresas for
 
             select

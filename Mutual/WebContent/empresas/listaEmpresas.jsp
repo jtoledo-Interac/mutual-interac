@@ -31,7 +31,7 @@
 				root : "filas",
 				row: "fila",
 				repeatitems: false,
-				id: "	"
+				id: "idEmpresa"
 			},
 		   	pager: '#pieEmpresa',
 		   	pgtext : 'P&aacute;g: {0} de {1}', 
@@ -199,7 +199,7 @@
 	function getUrlEliminarEmpresa(nIdEmpresa){  
 		var sData = 'Servlet';
 		sData += '?accion=eliminarEmpresa';
-		sData += '&numAdherente='+nIdEmpresa;
+		sData += '&idEmpresa='+nIdEmpresa;
 		return sData;
     }
 </script>
