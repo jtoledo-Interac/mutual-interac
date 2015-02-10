@@ -39,7 +39,7 @@ $(function()
 					}
 				}
 			%>
-			<a href="#" id="registrar"><span>Registrar Cuenta</span></a>
+			<!-- <a href="#" id="registrar"><span>Registrar Cuenta</span></a> -->
 			<br>
 			<a href="usuarios/recuperar.jsp"><span style="color:grey">No puedo acceder a mi cuenta &#128546</span>
 			</a>
