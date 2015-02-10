@@ -3115,23 +3115,21 @@ public class MutualEJB implements EJBRemoto {
 	public Map<String, Object> eliminarEmpresa(Map<String, Object> mapaEntrada) {
 		CallableStatement cStmt = null;
 		Map<String, Object> mapaSalida = null;
-		String numAdherente = "";
-		
+		Long id_empresa;		
 		Error error = new Error();
 		
 		try {
 			log.info("Eliminar usuario");
-
-			numAdherente = (String)mapaEntrada.get("numAdherente");
+			id_empresa = (Long)mapaEntrada.get("idEmpresa");
 			
-			log.info("Número de adherente: " + numAdherente);
+			log.info("id empresa: " + id_empresa);
 			
 			mapaSalida = new HashMap<String, Object>();
 
 			dbConeccion = interacDS.getConnection();
 
 			cStmt = dbConeccion.prepareCall("{ call eliminar_empresa(?,?,?) }");
-			cStmt.setString(1, numAdherente);
+			cStmt.setLong(1, id_empresa);
 			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
 

@@ -1,6 +1,6 @@
 create or replace function public.eliminar_empresa
 (
-    in xnum_adherente numeric,
+    in xid_empresa numeric,
     out numerror varchar, 
     out msjerror varchar
 ) returns record as
@@ -14,7 +14,7 @@ $body$
 		delete from
             empresa
         where
-            num_adherente = xnum_adherente;
+            id_empresa = xid_empresa;
 
 		exception
 			when others then

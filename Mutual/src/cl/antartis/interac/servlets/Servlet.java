@@ -1532,13 +1532,13 @@ if(error == null) error = new Error();
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 
-		String numAdherente = request.getParameter("numAdherente");
+		Long idEmpresa = Utils.stringToNum(request.getParameter("idEmpresa"));
 
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 
-		log.info("Número de adherente: " + numAdherente);
+		log.info("id empresas: " + idEmpresa);
 
-		mapaEntrada.put("numAdherente", numAdherente);
+		mapaEntrada.put("idEmpresa", idEmpresa);
 
 		mapaSalida = ejbRemoto.eliminarEmpresa(mapaEntrada);
 		error = (Error) mapaSalida.get("error");
