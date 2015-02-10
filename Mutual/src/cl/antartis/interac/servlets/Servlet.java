@@ -377,7 +377,13 @@ public class Servlet extends HttpServlet {
 		
 		log.info("ID Usuario: "+mapaSalida.get("nIdUsuario"));
 
-		pagDestino = "contenedor.jsp?accion=usuarios";
+		Error error = (Error)mapaSalida.get("error");
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{
+			pagDestino = "contenedor.jsp?accion=usuarios";
+		}
 	}
 	
 	public void cargarUsuario(HttpServletRequest request, HttpServletResponse response) {
@@ -495,8 +501,6 @@ public class Servlet extends HttpServlet {
 	}
 
 	public void agregarPerfil(HttpServletRequest request, HttpServletResponse response) {
-		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
-		
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
@@ -523,8 +527,14 @@ public class Servlet extends HttpServlet {
 		mapaSalida = ejbRemoto.agregarUsuario(mapaEntrada);
 		
 		log.info("ID Usuario: "+mapaSalida.get("nIdUsuario"));
-
-		pagDestino = "contenedor.jsp?accion=usuarios";
+		
+		Error error = (Error)mapaSalida.get("error");
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{
+			pagDestino = "contenedor.jsp?accion=usuarios";
+		}
 	}
 	
 	public void cargarUPerfil(HttpServletRequest request, HttpServletResponse response) {
@@ -660,10 +670,14 @@ public class Servlet extends HttpServlet {
 		mapaEntrada.put("cartera",cartera);
 		
 		mapaSalida = ejbRemoto.buscarCarteras(mapaEntrada);
-		
-		request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
-		
-		pagDestino = "/carteras/listaCarterasXml.jsp";	
+		Error error = (Error)mapaSalida.get("error");
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{	
+			request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
+			pagDestino = "/carteras/listaCarterasXml.jsp";
+		}
 	}
 
 	public void agregarCartera(HttpServletRequest request, HttpServletResponse response) {
@@ -689,7 +703,13 @@ public class Servlet extends HttpServlet {
 		
 		log.info("ID Cartera: "+mapaSalida.get("idCartera"));
 
-		pagDestino = "contenedor.jsp?accion=carteras";
+		Error error = (Error)mapaSalida.get("error");
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{
+			pagDestino = "contenedor.jsp?accion=carteras";
+		}
 	}
 	
 	public void agregarTipo(HttpServletRequest request, HttpServletResponse response) {
@@ -710,8 +730,14 @@ public class Servlet extends HttpServlet {
 		mapaSalida = ejbRemoto.agregarTipo(mapaEntrada);
 		
 		log.info("ID Cartera: "+mapaSalida.get("idCartera"));
-
-		pagDestino = "contenedor.jsp?accion=tipos";
+		
+		Error error = (Error)mapaSalida.get("error");
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{
+			pagDestino = "contenedor.jsp?accion=tipos";
+		}
 	}
 
 	public void agregarMotivo(HttpServletRequest request, HttpServletResponse response) {
@@ -731,7 +757,13 @@ public class Servlet extends HttpServlet {
 		
 		mapaSalida = ejbRemoto.agregarMotivo(mapaEntrada);
 		
-		pagDestino = "contenedor.jsp?accion=motivos";
+		Error error = (Error)mapaSalida.get("error");
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{
+			pagDestino = "contenedor.jsp?accion=motivos";
+		}
 	}
 
 	
@@ -752,7 +784,13 @@ public class Servlet extends HttpServlet {
 		
 		mapaSalida = ejbRemoto.agregarMedio(mapaEntrada);
 		
-		pagDestino = "contenedor.jsp?accion=medios";
+		Error error = (Error)mapaSalida.get("error");
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{
+			pagDestino = "contenedor.jsp?accion=medios";
+		}
 	}
 	
 	public void cargarCartera(HttpServletRequest request, HttpServletResponse response) {
@@ -1115,8 +1153,14 @@ public class Servlet extends HttpServlet {
 		request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
 		request.setAttribute("listaProductos", mapaSalida.get("listaProductos"));
 		request.setAttribute("listaAreas", mapaSalida.get("listaAreas"));
-
-		pagDestino = "contenedor.jsp?accion=documentos";
+		
+		Error error = (Error)mapaSalida.get("error");
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{
+			pagDestino = "contenedor.jsp?accion=documentos";
+		}
 	}
 	
 	public void cargarDocumento(HttpServletRequest request, HttpServletResponse response) {
@@ -1257,7 +1301,13 @@ public class Servlet extends HttpServlet {
 		
 		log.info("Cod Producto: "+mapaSalida.get("idProducto"));
 
-		pagDestino = "contenedor.jsp?accion=empresas";
+		Error error = (Error)mapaSalida.get("error");
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{
+			pagDestino = "contenedor.jsp?accion=empresas";
+		}
 	}
 	
 	public void cargarEmpresa(HttpServletRequest request, HttpServletResponse response) {
@@ -1420,8 +1470,14 @@ public class Servlet extends HttpServlet {
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
 		mapaSalida = ejbRemoto.agregarProducto(mapaEntrada);
-
-		pagDestino = "contenedor.jsp?accion=productos";
+		
+		Error error = (Error)mapaSalida.get("error");
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{
+			pagDestino = "contenedor.jsp?accion=productos";
+		}
 	}
 	
 	public void cargarProducto(HttpServletRequest request, HttpServletResponse response) {
@@ -1640,7 +1696,13 @@ public class Servlet extends HttpServlet {
 			EmailUtils.sendMail(to, subject, body, signature);	
 		}
 		
-		pagDestino = "contenedor.jsp?accion=reclamos";
+		Error error = (Error)mapaSalida.get("error");
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{
+			pagDestino = "contenedor.jsp?accion=reclamos";
+		}
 	}
 	
 	public void cargarReclamo(HttpServletRequest request, HttpServletResponse response) {
@@ -1795,8 +1857,14 @@ public class Servlet extends HttpServlet {
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
 		mapaSalida = ejbRemoto.agregarPrioridad(mapaEntrada);
-
-		pagDestino = "contenedor.jsp?accion=prioridades";
+		
+		Error error = (Error)mapaSalida.get("error");
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{
+			pagDestino = "contenedor.jsp?accion=prioridades";
+		}
 	}
 	
 	public void buscarPrioridades(HttpServletRequest request, HttpServletResponse response) {
@@ -1950,15 +2018,21 @@ public class Servlet extends HttpServlet {
 	public void agregarEstado(HttpServletRequest request, HttpServletResponse response) {
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
-		
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		Estado estado = new Estado(); 
 		estado.setDesEstado(request.getParameter("desEstado"));
 		mapaEntrada.put("estado",estado);
-		ejbRemoto.agregarEstado(mapaEntrada);
+		mapaSalida = ejbRemoto.agregarEstado(mapaEntrada);
 		 
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
-		pagDestino = "contenedor.jsp?accion=estados";
+		Error error = (Error)mapaSalida.get("error");
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{
+			pagDestino = "contenedor.jsp?accion=estados";
+		}
 	}
 	
 	public void cargarEstado(HttpServletRequest request, HttpServletResponse response) {
