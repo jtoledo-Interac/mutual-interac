@@ -8,7 +8,7 @@
 
 	var idEmpresa;
 	var idFila = 0;
-	var numFilas = 10;
+	var numFilas = 15;
 	
 	$(function() {
 
@@ -16,8 +16,9 @@
 		{
 		   	url: getUrlBuscarEmpresas(),
 			datatype: "xml",
-			colNames : ['Nº Adherente', 'Nombre Empresa',''],
-			colModel : [
+			colNames : [ '', 'Nº Adherente', 'Nombre Empresa', '' ],
+			colModel : [						
+						{name : 'idEmpresa', index:'idEmpresa', hidden : true}, 
 						{name : 'numAdherente', index:'numAdherente', width : 110}, 
 						{name : 'nombre', index:'desEmpresa', width : 300, search : true, resizable : false, sortable : true},				
 						{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
@@ -30,7 +31,7 @@
 				root : "filas",
 				row: "fila",
 				repeatitems: false,
-				id: "numAdherente"
+				id: "	"
 			},
 		   	pager: '#pieEmpresa',
 		   	pgtext : 'P&aacute;g: {0} de {1}', 
@@ -48,7 +49,7 @@
 				for (var i = 0; i < ids.length; i++)
 				{
 					var idFila = ids[i];
-
+						
 					var btnEditar="";
 					btnEditar+= "<div id='btnEditar' onclick='editarEmpresa("+idFila+")'>";
 					btnEditar+= 	"<img title='editar' class='icono' src='img/btnEditar.png'>";
@@ -191,7 +192,7 @@
 	{
 		var sData = "Servlet";
 		sData += '?accion=cargarEmpresa';
-		sData += '&numAdherente='+id;
+		sData += '&idEmpresa='+id;
 		return sData;
 	}
 

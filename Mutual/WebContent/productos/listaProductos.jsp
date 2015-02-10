@@ -16,7 +16,7 @@
 		   	url: getUrlBuscarProductos(),
 			datatype: "xml",
 			colNames : ['', 'Nombre Producto',''],
-			colModel : [
+			colModel : [			            
 						{name : 'idProducto', index:'idProducto', hidden : true}, 
 						{name : 'desProducto', index:'desProducto', width : 80, search : true, resizable : false, sortable : true},				
 						{name : 'act',index:'act', width : 30, resizable:false,sortable : true}

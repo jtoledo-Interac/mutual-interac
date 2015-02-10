@@ -1,6 +1,8 @@
+DROP FUNCTION modificar_empresa(numeric, character varying);
 create or replace function public.modificar_empresa
 (
-    in xnum_adherente numeric,
+    in xid_empressa numeric,
+    in xnum_adherente varchar,
     in xnombre varchar,
     out numerror varchar, 
     out msjerror varchar
@@ -15,9 +17,11 @@ $body$
         update 
             empresa
         set 
-            nombre = xnombre
+            nombre = xnombre,
+            num_adherente = xnum_adherente
+
         where
-            num_adherente = xnum_adherente;
+            id_empressa = xid_empressa;
 
         exception
             when others then

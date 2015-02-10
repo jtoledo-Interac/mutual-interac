@@ -22,7 +22,7 @@ $body$
 		)
         values
 		(
-			xnum_adherente$,
+			xnum_adherente,
 			xnombre
 		);
 

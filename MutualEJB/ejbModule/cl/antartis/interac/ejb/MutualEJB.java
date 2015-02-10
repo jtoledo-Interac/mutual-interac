@@ -2981,20 +2981,20 @@ public class MutualEJB implements EJBRemoto {
 		CallableStatement cStmt = null;
 		Map<String, Object> mapaSalida = null;
 		Empresa empresa = new Empresa();
-		String numAdherente = null;
 		
+		Long id_empresa;
 		Error error = new Error();
 		
 		try {
 			log.info("Cargar empresas");
 						
-			numAdherente = (String)mapaEntrada.get("numAdherente");
+			
 			mapaSalida = new HashMap<String, Object>();
-
+			id_empresa = (Long)mapaEntrada.get("idEmpresa");
 			dbConeccion = interacDS.getConnection();
-
+				
 			cStmt = dbConeccion.prepareCall("{ call cargar_empresa(?,?,?,?) }");
-			cStmt.setString(1, numAdherente);
+			cStmt.setLong(1, id_empresa);; 
 			cStmt.registerOutParameter(2, Types.OTHER);// empresas$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
@@ -3004,13 +3004,15 @@ public class MutualEJB implements EJBRemoto {
 			ResultSet rsEmpresa = (ResultSet) cStmt.getObject(2);
 			error.setNumError(cStmt.getString(3));
 			error.setMsjError(cStmt.getString(4));
-						
+				
 			while (rsEmpresa.next()) {
 				empresa = new Empresa();
+				empresa.setIdEmpresa(rsEmpresa.getLong("id_empresa"));
+				
 				empresa.setNombre(rsEmpresa.getString("nombre"));
 				empresa.setNumAdherente(rsEmpresa.getString("num_adherente"));
 			}
-			
+		
 			rsEmpresa.close();			
 
 		} catch (SQLException e) {
@@ -3075,6 +3077,8 @@ public class MutualEJB implements EJBRemoto {
 					empresa = new Empresa();
 					empresa.setNombre(rs.getString("nombre"));
 					empresa.setNumAdherente(rs.getString("num_adherente"));
+				
+					
 					listaEmpresas.add(empresa);
 				}
 				rs.close();

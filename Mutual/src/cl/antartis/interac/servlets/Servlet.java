@@ -1380,158 +1380,173 @@ if(error == null) error = new Error();
 	}
 	
 	/**********EMPRESAS****************************************************************************/	
-	public void empresas(HttpServletRequest request, HttpServletResponse response) 
-	{
-		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
-		
+	public void empresas(HttpServletRequest request,
+			HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0]
+				.getMethodName();
+
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 
 		pagDestino = "contenedor.jsp";
 	}
-	
-	public void crearEmpresa(HttpServletRequest request, HttpServletResponse response) 
-	{
-		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
-		
+
+	public void crearEmpresa(HttpServletRequest request,
+			HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0]
+				.getMethodName();
+
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
-		
+
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
-		
+
 		mapaSalida = ejbRemoto.buscarParametros(mapaEntrada);
-		error = (Error)mapaSalida.get("error");
-		if(error == null) error = new Error();
-		if(!error.getNumError().equals("0")){
+		error = (Error) mapaSalida.get("error");
+		if (error == null)
+			error = new Error();
+		if (!error.getNumError().equals("0")) {
 			pagDestino = "error.jsp";
-		}
-		else{
-			request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
-			request.setAttribute("listaProductos", mapaSalida.get("listaProductos"));
+		} else {
+			request.setAttribute("listaCarteras",
+					mapaSalida.get("listaCarteras"));
+			request.setAttribute("listaProductos",
+					mapaSalida.get("listaProductos"));
 			request.setAttribute("listaAreas", mapaSalida.get("listaAreas"));
-		
+
 			pagDestino = "empresas/agregaEmpresa.jsp";
 		}
 	}
-	
-	public void buscarEmpresas(HttpServletRequest request, HttpServletResponse response) {
+
+	public void buscarEmpresas(HttpServletRequest request,
+			HttpServletResponse response) {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
-	
+
 		Empresa empresa = new Empresa();
 		empresa.setNumAdherente(request.getParameter("numAdherente"));
 		empresa.setNombre(request.getParameter("nomEmpresa"));
-		
-		log.info("Empresa:++" + empresa.getNumAdherente() + "\n" + empresa.getNombre());
-		
+		//empresa.setIdEmpresa(request.getParameter("idEmpresa"));
+
+		log.info("Empresa:++" + empresa.getNumAdherente() + "\n"
+				+ empresa.getNombre());
+
 		mapaEntrada.put("empresa", empresa);
-		
+
 		mapaSalida = ejbRemoto.buscarEmpresas(mapaEntrada);
-		error = (Error)mapaSalida.get("error");
-		if(error == null) error = new Error();
-		if(!error.getNumError().equals("0")){
+		error = (Error) mapaSalida.get("error");
+		if (error == null)
+			error = new Error();
+		if (!error.getNumError().equals("0")) {
 			pagDestino = "error.jsp";
-		}
-		else{
-			request.setAttribute("listaEmpresas", mapaSalida.get("listaEmpresas"));
+		} else {
+			request.setAttribute("listaEmpresas",mapaSalida.get("listaEmpresas"));
 			pagDestino = "/empresas/listaEmpresasXml.jsp";
 		}
 	}
 
-	public void agregarEmpresa(HttpServletRequest request, HttpServletResponse response) {
-		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
-		
+	public void agregarEmpresa(HttpServletRequest request,
+			HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0]
+				.getMethodName();
+
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
-		
+
 		Empresa empresa = new Empresa();
-		
+
 		empresa.setNombre(request.getParameter("nombre"));
 		empresa.setNumAdherente(request.getParameter("numAdherente"));
 
-		mapaEntrada.put("empresa",empresa);
-		
-		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
-		
-		mapaSalida = ejbRemoto.agregarEmpresa(mapaEntrada);
-		
-		log.info("Cod Producto: "+mapaSalida.get("idProducto"));
+		mapaEntrada.put("empresa", empresa);
 
-error = (Error)mapaSalida.get("error");
-if(error == null) error = new Error();
-		if(!error.getNumError().equals("0")){
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+
+		mapaSalida = ejbRemoto.agregarEmpresa(mapaEntrada);
+
+		log.info("Cod empresa: " + mapaSalida.get("idEmpresa"));
+
+		error = (Error) mapaSalida.get("error");
+		if (error == null)
+			error = new Error();
+		if (!error.getNumError().equals("0")) {
 			pagDestino = "error.jsp";
-		}
-		else{
+		} else {
 			pagDestino = "contenedor.jsp?accion=empresas";
 		}
 	}
-	
-	public void cargarEmpresa(HttpServletRequest request, HttpServletResponse response) {
+
+	public void cargarEmpresa(HttpServletRequest request,
+			HttpServletResponse response) {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+
+		Long idEmpresa = Utils.stringToNum(request.getParameter("idEmpresa"));
+
 		
-		String numAdherente = request.getParameter("numAdherente");
-		
-		mapaEntrada.put("numAdherente", numAdherente);
-		
+	 
+		mapaEntrada.put("idEmpresa", idEmpresa);
 		mapaSalida = ejbRemoto.cargarEmpresa(mapaEntrada);
-		error = (Error)mapaSalida.get("error");
-		if(error == null) error = new Error();
-		if(!error.getNumError().equals("0")){
+		error = (Error) mapaSalida.get("error");
+		if (error == null)
+			error = new Error();
+		if(!error.getNumError().equals("0")) {
 			pagDestino = "error.jsp";
-		}
-		else{
-			request.setAttribute("empresa", (Empresa)mapaSalida.get("empresa"));
+		} else {
+			request.setAttribute("empresa", (Empresa) mapaSalida.get("empresa"));
 			pagDestino = "/empresas/cargaEmpresa.jsp";
 		}
 	}
-	
-	public void modificarEmpresa(HttpServletRequest request, HttpServletResponse response) {
-		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
-		
+
+	public void modificarEmpresa(HttpServletRequest request,
+			HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0]
+				.getMethodName();
+
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
-		
+
 		Empresa empresa = new Empresa();
-		
+
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 
 		empresa.setNombre(request.getParameter("nombre"));
 		empresa.setNumAdherente(request.getParameter("numAdherente"));
 
-		mapaEntrada.put("empresa",empresa);
-		
+		mapaEntrada.put("empresa", empresa);
+
 		mapaSalida = ejbRemoto.modificarEmpresa(mapaEntrada);
-		error = (Error)mapaSalida.get("error");
-		if(error == null) error = new Error();
-		if(!error.getNumError().equals("0")){
+		error = (Error) mapaSalida.get("error");
+		if (error == null)
+			error = new Error();
+		if (!error.getNumError().equals("0")) {
 			pagDestino = "error.jsp";
-		}
-		else{
+		} else {
 			pagDestino = "contenedor.jsp?accion=empresas";
 		}
-	} 
-	
-	public void eliminarEmpresa(HttpServletRequest request, HttpServletResponse response) {
-		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();		
+	}
+
+	public void eliminarEmpresa(HttpServletRequest request,
+			HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0]
+				.getMethodName();
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
-		
+
 		String numAdherente = request.getParameter("numAdherente");
-		
+
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 
 		log.info("Número de adherente: " + numAdherente);
-		
+
 		mapaEntrada.put("numAdherente", numAdherente);
-		
+
 		mapaSalida = ejbRemoto.eliminarEmpresa(mapaEntrada);
-		error = (Error)mapaSalida.get("error");
-		if(error == null) error = new Error();
-		if(!error.getNumError().equals("0")){
+		error = (Error) mapaSalida.get("error");
+		if (error == null)
+			error = new Error();
+		if (!error.getNumError().equals("0")) {
 			pagDestino = "error.jsp";
-		}
-		else{
+		} else {
 			pagDestino = "/empresas/listaEmpresasXml.jsp";
 		}
 	}

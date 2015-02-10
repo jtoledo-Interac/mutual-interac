@@ -1,6 +1,6 @@
 create or replace function public.cargar_empresa
 (
-    in id_empresa numeric, 
+    in xid_empresa numeric, 
     out empresas refcursor,
     out numerror varchar, 
     out msjerror varchar
@@ -20,7 +20,7 @@ begin
             from 
                 empresa
             where
-                num_adherente = xnum_adherente;
+                id_empresa = xid_empresa;
 
             exception
                 when others then

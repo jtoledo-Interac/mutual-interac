@@ -31,6 +31,7 @@ $body$
         open empresas for
 
         select
+            id_empresa,
             num_adherente,
             nombre
         from 
