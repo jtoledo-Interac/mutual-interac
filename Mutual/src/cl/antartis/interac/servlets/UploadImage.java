@@ -35,7 +35,7 @@ public class UploadImage extends HttpServlet{
 	@EJB(mappedName = "interac/EJB")
 	private EJBRemoto ejbRemoto;
 	private String pagDestino = "";
-	private Logger log = Logger.getLogger(Upload.class);
+	private Logger log = Logger.getLogger(UploadImage.class);
 	
 	public UploadImage() {
 		super();
@@ -73,7 +73,11 @@ public class UploadImage extends HttpServlet{
 					//File archivo_server = new File("C://interac/imagenes.war/" + fileName);
 					
 					//PRODUCCION
-					File archivo_server = new File("img/user/" + fieldName + ".jpg");
+					String relativeWebPath = "WebContent/img/user";
+					String absoluteFilePath = getServletContext().getRealPath(relativeWebPath);
+					System.out.println("CAMINOOO: " + absoluteFilePath);
+					File archivo_server = new File(absoluteFilePath, fieldName + ".jpg");
+					//info.log("CAMINOOO: " + filePath + "/img/user/ "+ fieldName + ".jpg");
 					if (item.isFormField()) {
 						map.put(item.getFieldName(), item.getString());
 						log.info("fieldvalue = "+item.getString());

@@ -63,6 +63,7 @@ public class Upload extends HttpServlet{
 					FileItem item = (FileItem) iter.next();
 					fieldName = item.getFieldName();
 					fileName = item.getName();
+					String pathh = getServletContext().getRealPath("");
 					System.out.println("fileName: " + fileName);
 					System.out.println("fieldName: " + fieldName);
 					System.out.println("Tamaño: " + items.size());
@@ -72,7 +73,7 @@ public class Upload extends HttpServlet{
 					//File archivo_server = new File("C://interac/imagenes.war/" + fileName);
 					
 					//PRODUCCION
-					File archivo_server = new File("archivos/" + fileName);
+					File archivo_server = new File(pathh + fileName + ".jpg");
 					if (item.isFormField()) {
 						map.put(item.getFieldName(), item.getString());
 						log.info("fieldvalue = "+item.getString());

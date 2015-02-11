@@ -37,7 +37,7 @@ $(function()
 		</td>
 		<td>
 			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		 	<img src="/img/user/${sessionScope.user.idUsuario}.jpg"> 
+		 	<img src="/img/user/carita.jpg"> 
 		</td>
 		</tr>
 		</table>
