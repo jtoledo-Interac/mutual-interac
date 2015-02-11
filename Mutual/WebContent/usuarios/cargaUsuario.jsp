@@ -1,5 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
-<%@incllude file="perfil_admin.jsp" %>
 <script type="text/javascript">
   //$('select').select2();
 </script>

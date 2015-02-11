@@ -22,7 +22,6 @@ $(function()
 <div class="banner">
 
 	<div class="logo-banner">
-		
 	</div>
 	
 	<div class="info-user">
@@ -38,7 +37,7 @@ $(function()
 		</td>
 		<td>
 			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		 	<img src="img/user/${sessionScope.user.idUsuario}.jpg" onerror="if (this.src != 'img/user/default.jpg') this.src = 'img/user/default.jpg';"> 
+		 	<img src="/img/user/${sessionScope.user.idUsuario}.jpg" onerror="if (this.src != 'img/user/default.jpg') this.src = 'img/user/default.jpg';"> 
 		</td>
 		</tr>
 		</table>
