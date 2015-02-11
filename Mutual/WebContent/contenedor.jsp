@@ -27,12 +27,21 @@ $(function()
 	
 	<div class="info-user">
 		<br />
-		
-		<p id="contNombre" style="float:right;"><% out.print("bienvenido(a): "+session.getAttribute("nombre") );	%></p>
-		<form id="logOut" action="Servlet" method="post">
-			<input type="hidden" id="accionLogOut" name="accion">
-			<br/><span style="float:right;"><a href="#" id="cerrar">Cerrar Sesión</a></span>
-		</form>
+		<table>
+		<tr>
+		<td>
+			<p id="contNombre" style="float:right;"><% out.print(session.getAttribute("nombre") );	%></p>
+			<form id="logOut" action="Servlet" method="post">
+				<input type="hidden" id="accionLogOut" name="accion">
+				<br/><span style="float:right;"><a href="#" id="cerrar">Cerrar Sesión</a></span>
+			</form>
+		</td>
+		<td>
+			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 	<img src="img/user/${sessionScope.user.idUsuario}.jpg" onerror="if (this.src != 'img/user/default.jpg') this.src = 'img/user/default.jpg';"> 
+		</td>
+		</tr>
+		</table>
 	</div>
 </div>
 

@@ -64,7 +64,7 @@ public class Servlet extends HttpServlet {
 			log.info("Accion service: "+accion);
 			
 			HttpSession session = request.getSession();
-			if( session.getAttribute("user")== null && !accion.equals("login")){
+			if( session == null && !accion.equals("login")){
 				despacha(request, response, "login.jsp");
 			}
 			
