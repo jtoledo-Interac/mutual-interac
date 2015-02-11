@@ -62,16 +62,15 @@ public class Servlet extends HttpServlet {
 			log.info("Service controller");
 			String accion = request.getParameter("accion");
 			log.info("Accion service: "+accion);
-			MethodUtils.invokeMethod(this, accion, new Object[]{request,response});
-
-			//TODO: controlar sesion y error cuando servlet no llama ejb
-			//request.setAttribute("sesion", sesion);
-			request.setAttribute("error", error);
-			//request.setAttribute("perfiles", perfiles);
 			
-			//if(!error.getNumError().equals("0")){
-				//pagDestino = "error.jsp";
-			//}
+			HttpSession session = request.getSession();
+			if( session.getAttribute("user")== null && !accion.equals("login")){
+				despacha(request, response, "login.jsp");
+			}
+			
+			MethodUtils.invokeMethod(this, accion, new Object[]{request,response});
+			 
+			request.setAttribute("error", error);
 			
 			log.info("Despachando a pag destino: "+pagDestino);
 			despacha(request, response, pagDestino);
