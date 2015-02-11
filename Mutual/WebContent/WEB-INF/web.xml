@@ -29,6 +29,17 @@
 		<url-pattern>/Upload</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<display-name>UploadImage</display-name>
+		<servlet-name>UploadImage</servlet-name>
+		<servlet-class>cl.antartis.interac.servlets.UploadImage</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UploadImage</servlet-name>
+		<url-pattern>/UploadImage</url-pattern>
+	</servlet-mapping>
+
+
 	<jsp-config>
 		<taglib>
 			<taglib-uri>http://java.sun.com/jstl/core</taglib-uri>

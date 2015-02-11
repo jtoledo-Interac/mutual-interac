@@ -1,6 +1,9 @@
 package cl.antartis.interac.beans;
 
 import java.io.Serializable;
+import java.util.HashMap;
+
+import cl.antartis.interac.funciones.Utils;
 
 public class Usuario implements Serializable {
 
@@ -26,6 +29,29 @@ public class Usuario implements Serializable {
 	private String indVigencia;
 	private String host;
 
+	
+	public Usuario(HashMap map){
+		if(map.containsKey("nIdUsuario")) idUsuario = Utils.stringToNum((String)map.get("idUsuario"));
+		if(map.containsKey("sRut")) rut = (String)map.get("sRut") ;
+		if(map.containsKey("sDV")) dv  = (String)map.get("sDV") ;
+		if(map.containsKey("sNombres")) nombres = (String)map.get("sNombres") ;
+		if(map.containsKey("sApePaterno")) apePaterno = (String)map.get("sApePaterno") ;
+		if(map.containsKey("sApeMaterno")) apeMaterno = (String)map.get("sApeMaterno") ;
+		if(map.containsKey("sNomUsuario")) nomUsuario = (String)map.get("sNomUsuario") ;
+		if(map.containsKey("sContrasena1")) contrasena1 = ((String)map.get("sContrasena1"));
+		if(map.containsKey("sContrasena2")) contrasena2 = (String)map.get("sContrasena2") ;
+		if(map.containsKey("sCodGenero")) codGenero = (String)map.get("codGenero");
+		if(map.containsKey("sFecNacimiento")) fecNacimiento = (String)map.get("sFecNacimiento") ;
+		if(map.containsKey("sTelefono")) telefono = (String)map.get("sTelefono") ;
+		if(map.containsKey("sCelular")) celular = (String)map.get("sCelular") ;
+		if(map.containsKey("sEmail")) email = (String)map.get("sEmail") ;
+		if(map.containsKey("sTelefono")) telefono = (String)map.get("sTelefono") ;
+	}
+	
+	public Usuario(){
+		
+	}
+	
 	public long getIdUsuario() {
 		return idUsuario;
 	}

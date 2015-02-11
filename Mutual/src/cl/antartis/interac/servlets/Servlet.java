@@ -433,20 +433,7 @@ if(error == null) error = new Error();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
-		Usuario usuario = new Usuario();
-		usuario.setIdUsuario(Utils.stringToNum(request.getParameter("nIdUsuario")));
-		usuario.setRut(Utils.getRutSinDV(request.getParameter("sRut")));
-		usuario.setDv(request.getParameter("sDV"));
-		usuario.setNombres(request.getParameter("sNombres"));
-		usuario.setApePaterno(request.getParameter("sApePaterno"));
-		usuario.setApeMaterno(request.getParameter("sApeMaterno"));
-		usuario.setNomUsuario(request.getParameter("sNomUsuario"));
-		usuario.setCodGenero(request.getParameter("sCodGenero"));
-		usuario.setFecNacimiento(request.getParameter("sFecNacimiento"));
-		usuario.setTelefono(request.getParameter("sTelefono"));
-		usuario.setCelular(request.getParameter("sCelular"));
-		usuario.setEmail(request.getParameter("sEmail"));
-		
+		Usuario usuario = (Usuario) request.getAttribute("usuario");
 		log.info(usuario.getUsuario());
 		mapaEntrada.put("usuario",usuario);
 		mapaSalida = ejbRemoto.modificarUsuario(mapaEntrada);

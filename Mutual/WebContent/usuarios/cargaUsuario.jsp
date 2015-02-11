@@ -9,10 +9,10 @@
 		formatRut();
 	});
 </script>
-
-<form id="formEdita" action="Servlet" method="post" onSubmit="return validar_form(this)">
+<form id="formEdita" action="UploadImage" method="post" onSubmit="return validar_form(this)" enctype="multipart/form-data">
 	<input type="submit" class="submit" style="display:none;">
 	<input type="hidden"	id="accion" 		name="accion" 		value="modificarUsuario">
+	<input type="file" required id="${usuario.idUsuario}" class="validar" name="${usuario.idUsuario}" placeholder="Documento Adjunto">
 	<input type="hidden" 	id="nIdUsuario" 	name="nIdUsuario"	value="${usuario.idUsuario}">
 	<table class="centrado">
 	<tr>
