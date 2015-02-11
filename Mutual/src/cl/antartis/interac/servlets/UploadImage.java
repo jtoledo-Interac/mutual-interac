@@ -73,7 +73,7 @@ public class UploadImage extends HttpServlet{
 					//File archivo_server = new File("C://interac/imagenes.war/" + fileName);
 					
 					//PRODUCCION
-					String relativeWebPath = "WebContent/img/user";
+					String relativeWebPath = "img/user";
 					String absoluteFilePath = getServletContext().getRealPath(relativeWebPath);
 					System.out.println("CAMINOOO: " + absoluteFilePath);
 					File archivo_server = new File(absoluteFilePath, fieldName + ".jpg");

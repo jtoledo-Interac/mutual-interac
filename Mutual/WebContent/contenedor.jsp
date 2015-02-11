@@ -37,7 +37,8 @@ $(function()
 		</td>
 		<td>
 			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		 	<img src="/img/user/${sessionScope.user.idUsuario}.jpg"  onerror="if (this.src != 'img/user/default.jpg') this.src = 'img/user/default.jpg';"> 
+			 <script>alert("/img/user/${sessionScope.user.idUsuario}.jpg");</script>
+		 	<img src="/img/user/usuario_${sessionScope.user.idUsuario}.jpg"  onerror="if (this.src != 'img/user/default.jpg') this.src = 'img/user/default.jpg';"> 
 		</td>
 		</tr>
 		</table>
