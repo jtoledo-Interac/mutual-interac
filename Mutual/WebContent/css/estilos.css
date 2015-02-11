@@ -242,6 +242,7 @@ input[type=radio]:checked + label:before {
 	border-radius: 20px;
 	-webkit-border-radius: 150px;
 	-moz-border-radius: 150px;
+	/*sombra*/
 	box-shadow: 0 0 4px rgba(0, 0, 0, .8);
 	-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, .8);
 	-moz-box-shadow: 0 0 4px rgba(0, 0, 0, .8);
