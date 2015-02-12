@@ -64,14 +64,15 @@ public class Servlet extends HttpServlet {
 			log.info("Accion service: "+accion);
 			
 			HttpSession session = request.getSession();
-			if( session == null && !accion.equals("login")){
-				despacha(request, response, "login.jsp");
+			if(accion==null) pagDestino = "login.jsp";
+			else{
+				if( session.getAttribute("user") == null && !accion.equals("login")){
+					pagDestino = "login.jsp";
+				}else{
+					MethodUtils.invokeMethod(this, accion, new Object[]{request,response});
+				}
 			}
-			
-			MethodUtils.invokeMethod(this, accion, new Object[]{request,response});
-			 
 			request.setAttribute("error", error);
-			
 			log.info("Despachando a pag destino: "+pagDestino);
 			despacha(request, response, pagDestino);
 
@@ -1452,7 +1453,7 @@ if(error == null) error = new Error();
 
 		mapaSalida = ejbRemoto.agregarEmpresa(mapaEntrada);
 
-		log.info("Cod empresa: " + mapaSalida.get("idEmpresa"));
+		//	log.info("id empresa: " + mapaSalida.get("idEmpresa"));
 
 		error = (Error) mapaSalida.get("error");
 		if (error == null)
@@ -1942,7 +1943,7 @@ if(error == null) error = new Error();
 		
 		mapaSalida = ejbRemoto.cargarReclamo(mapaEntrada);
 		request.setAttribute("reclamo", (Reclamo)mapaSalida.get("reclamo"));
-
+		
 		mapaSalida = ejbRemoto.buscarParametrosReclamo(mapaEntrada);
 		error = (Error)mapaSalida.get("error");
 		if(error == null) error = new Error();

@@ -2616,7 +2616,7 @@ public class MutualEJB implements EJBRemoto {
                 reclamo.setResponsableActual(rs.getString("responsable_actual"));
                 reclamo.setDiasBandeja(rs.getString("dias_bandeja") );
                 reclamo.setDiasSistema(rs.getString("dias_sistema") );
-                reclamo.setIdMedio(rs.getLong("cod_medio_respuesta"));
+                reclamo.setIdMedio(rs.getLong("id_medio_respuesta"));
 			}
 			
 			rs.close();

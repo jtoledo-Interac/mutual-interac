@@ -30,14 +30,14 @@
 	<select id="cod_region"	name="cod_region" >
 	<option value="0" selected>Seleccione una región </option>
 	<c:forEach items="${requestScope.listaRegiones}" var="region">
-		<option value="${region.codRegion}" >${region.desRegion}</option>
+		<option value="${region.codRegion}" <c:if test='${reclamo.regionSolicitante == region.codRegion}'> selected</c:if>>${region.desRegion} </option>
 	</c:forEach>
 	</select>
 	
 	<select id="idCartera" name="idCartera" >
 		<option value="" selected>Seleccione una cartera</option>
 		<c:forEach items="${requestScope.listaCarteras}" var="cartera">
-			<option value="${cartera.idCartera}" <c:if test='${documento.idCartera == cartera.idCartera}'> selected</c:if>>${cartera.desCartera}</option>
+			<option value="${cartera.idCartera}" <c:if test='${reclamo.idCartera == cartera.idCartera}'> selected</c:if>>${cartera.desCartera}</option>
 		</c:forEach>
 	</select> 
 	
@@ -84,8 +84,6 @@
 	</select> 
 
 	<input type="text" 		id="fec_ingreso" 			name="fec_ingreso" 			placeholder="Fecha Ingreso" class="fecha" value="${reclamo.fecIngreso}" readonly onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
-	<input type="text" 		id="glosa" 					name="glosa" 				placeholder="Glosa" value="${reclamo.glosa}" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
-	<input type="text" 		id="adjunto" 				name="adjunto" 				placeholder="Adjunto" value="${reclamo.adjunto}" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
 	<input type="text" 		id="observaciones" 			name="observaciones" 		placeholder="Observaciones" value="${reclamo.observaciones}" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">
 	<input type="text" 		id="responsable_ingreso" 	name="responsable_ingreso" 	placeholder="Responsable Ingreso" value="${reclamo.responsableIngreso}" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">			
 	<input type="text" 		id="responsable_actual" 	name="responsable_actual" 	placeholder="Responsable Actual" value="${reclamo.responsableActual}" onfocus="this.style.boxShadow='0 0 10px #9ecaed'" onblur="this.style.boxShadow='none'">		

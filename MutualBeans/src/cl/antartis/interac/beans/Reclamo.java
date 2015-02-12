@@ -19,14 +19,6 @@ public class Reclamo implements Serializable {
 	private Long idPrioridad;
 	private String desPrioridad;
 	private Long idCartera;
-	public Long getIdCartera() {
-		return idCartera;
-	}
-
-	public void setIdCartera(Long idCartera) {
-		this.idCartera = idCartera;
-	}
-
 	private String fecIngreso;
 	private String glosa;
 	private String adjunto;
@@ -81,6 +73,14 @@ public class Reclamo implements Serializable {
 		this.fecRespuesta = fecRespuesta;
 	}
 
+	public Long getIdCartera() {
+		return idCartera;
+	}
+
+	public void setIdCartera(Long idCartera) {
+		this.idCartera = idCartera;
+	}
+	
 	public long getIdReclamo() {
 		return idReclamo;
 	}

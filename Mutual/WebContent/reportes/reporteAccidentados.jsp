@@ -11,7 +11,7 @@
 	<div class="reportes">
 	<h3 style="
     margin-left: 20px;
-    margin-top: 10px;">Reporte Dias Perdidos</h3>
+    margin-top: 10px;">Reporte Accidentados</h3>
 		<div style="
     margin-left: 20px;
     margin-top: 20px;
