@@ -37,10 +37,14 @@ $(function()
 		</td>
 		<td>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		 	<img src="/img/user/usuario_${sessionScope.user.idUsuario}.jpg">
 		 	<!--
+		 	<img src="/img/user/usuario_${sessionScope.user.idUsuario}.jpg">
 		 	<img src="/img/user/usuario_${sessionScope.user.idUsuario}.jpg"  onerror="if (this.src != 'img/user/default.jpg') this.src = 'img/user/default.jpg';">
-		 	--> 
+		 	<img <% %>>
+		 	-->
+		 	
+		 	<img src="img/user/usuario_${sessionScope.user.idUsuario}.jpg"  onerror="if (this.src != 'img/user/default.jpg') this.src = 'img/user/default.jpg';">
+		 	 
 		</td>
 		</tr>
 		</table>
