@@ -3,21 +3,18 @@ package cl.antartis.interac.servlets;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -25,15 +22,11 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.log4j.Logger;
 
-import cl.antartis.interac.beans.Documento;
 import cl.antartis.interac.beans.Usuario;
-import cl.antartis.interac.ejb.interfaces.EJBRemoto;
 
 public class UploadImage extends HttpServlet{
 	
 	private static final long serialVersionUID = 8679793548134407867L;
-	@EJB(mappedName = "interac/EJB")
-	private EJBRemoto ejbRemoto;
 	private String pagDestino = "";
 	private Logger log = Logger.getLogger(UploadImage.class);
 	
