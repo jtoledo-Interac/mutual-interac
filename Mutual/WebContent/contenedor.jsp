@@ -52,7 +52,6 @@ function getUrlCargarUsuario(id)
 	var sData = "Servlet";
 	sData += '?accion=cargarUsuario';
 	sData += '&nIdUsuario='+id;
-	sData += '&flag='+flag;
 	return sData;
 }
 </script>

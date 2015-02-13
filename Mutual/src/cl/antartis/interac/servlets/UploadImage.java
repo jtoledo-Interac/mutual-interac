@@ -48,7 +48,6 @@ public class UploadImage extends HttpServlet{
 
 			String fileName = "";
 			String fieldName = "";
-
 			try {
 
 				List<FileItem> items = upload.parseRequest(request);
@@ -62,7 +61,7 @@ public class UploadImage extends HttpServlet{
 					System.out.println("fieldName: " + fieldName);
 					System.out.println("Tamaño: " + items.size());
 					System.out.println("Nombre: " + items.get(0).getName());
-
+					
 					//DESARROLLO
 					//File archivo_server = new File("C://interac/imagenes.war/" + fileName);
 					
