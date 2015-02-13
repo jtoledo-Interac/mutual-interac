@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.TreeMap;
 
 import javax.servlet.RequestDispatcher;
@@ -66,10 +67,12 @@ public class UploadImage extends HttpServlet{
 					//File archivo_server = new File("C://interac/imagenes.war/" + fileName);
 					
 					//PRODUCCION
-					String relativeWebPath = "img/user";
-					String absoluteFilePath = getServletContext().getRealPath(relativeWebPath);
+					Properties props = System.getProperties();
+					String absoluteFilePath = props.getProperty("jboss.server.home.dir") + File.separator + "deploy/Mutual.war/img/user";
+					File prueba = new File(absoluteFilePath);
+					if (!prueba.isDirectory()) prueba.mkdirs();
 					System.out.println("CAMINOOO: " + absoluteFilePath);
-					File archivo_server = new File(absoluteFilePath, fieldName + ".jpg");
+					File archivo_server = new File(absoluteFilePath,"usuario_" + fieldName + ".jpg");
 					//info.log("CAMINOOO: " + filePath + "/img/user/ "+ fieldName + ".jpg");
 					if (item.isFormField()) {
 						map.put(item.getFieldName(), item.getString());
