@@ -16,7 +16,41 @@ $(function()
 		$('#logOut').submit();
 	});
 	
+	$('#cargaUsuario').dialog({
+		autoOpen: false,
+	    height: 500,
+	    width: 650,
+	    modal: true,
+	    position: 'center',
+	    buttons: {
+			"Editar Usuario": function() {
+				$('#formEdita .submit').click();
+			},
+			"Cancelar": function() {
+				$(this).dialog("close");
+		    }
+	    },
+		close: function() {
+			$('#formEdita input').val(''); //limpia Data
+		}
+	});
+	
 });
+
+function editarUsuario(idUsuario)
+{
+	ajaxCall(getUrlCargarUsuario(idUsuario), function(response){
+		$('#cargaUsuario').html(response).dialog('open');
+	});
+}
+
+function getUrlCargarUsuario(id)
+{
+	var sData = "Servlet";
+	sData += '?accion=cargarUsuario';
+	sData += '&nIdUsuario='+id;
+	return sData;
+}
 </script>
 
 <div class="banner">
@@ -43,13 +77,15 @@ $(function()
 		 	<img <% %>>
 		 	-->
 		 	
-		 	<img src="img/user/usuario_${sessionScope.user.idUsuario}.jpg"  onerror="if (this.src != 'img/user/default.jpg') this.src = 'img/user/default.jpg';">
+		 	<a href="#"><img src="img/user/usuario_${sessionScope.user.idUsuario}.jpg"  onerror="if (this.src != 'img/user/default.jpg') this.src = 'img/user/default.jpg';" onclick='editarUsuario("${sessionScope.user.idUsuario}")'></a>
 		 	
 		</td>
 		</tr>
 		</table>
 	</div>
 </div>
+
+<div id="cargaUsuario" title="Editar usuario" style="display:none"></div>
 
 <div class="contenedor">
 

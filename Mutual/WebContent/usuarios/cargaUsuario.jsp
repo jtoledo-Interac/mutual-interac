@@ -11,7 +11,6 @@
 <form id="formEdita" action="UploadImage" method="post" onSubmit="return validar_form(this)" enctype="multipart/form-data">
 	<input type="submit" class="submit" style="display:none;">
 	<input type="hidden"	id="accion" 		name="accion" 		value="modificarUsuario">
-	<input type="file" required id="${usuario.idUsuario}" class="validar" name="${usuario.idUsuario}" placeholder="Documento Adjunto" accept="image/*">
 	<input type="hidden" 	id="nIdUsuario" 	name="nIdUsuario"	value="${usuario.idUsuario}">
 	<table class="centrado">
 	<tr>
@@ -59,6 +58,12 @@
 	<tr>
 		<td> Email </td><td>:</td>
 		<td><input type="email" 		id="sEmail" 		name="sEmail"			placeholder="user@mail.com"	value="${usuario.email}"	required></td>
+	</tr>
+	<tr>
+		<td> Imagen de Perfil </td><td>:</td>
+		<td>
+			<input type="file" required id="${usuario.idUsuario}" class="validar" name="${usuario.idUsuario}" placeholder="Documento Adjunto" accept="image/*">
+		</td>
 	</tr>
 	</table>
 </form>
