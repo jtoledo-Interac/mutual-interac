@@ -45,7 +45,6 @@ public class UploadImage extends HttpServlet{
 			File repository = new File(System.getProperty("user.home"));
 			factory.setRepository(repository);
 			ServletFileUpload upload = new ServletFileUpload(factory);
-
 			String fileName = "";
 			String fieldName = "";
 			try {

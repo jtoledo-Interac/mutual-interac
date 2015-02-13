@@ -1142,7 +1142,7 @@ if(error == null) error = new Error();
 		else{
 			request.setAttribute("motivo", (Motivo)mapaSalida.get("motivo"));
 	
-			pagDestino = "/motivos/listaMotivosXml.jsp";
+			pagDestino = "contenedor.jsp";
 		}
 	}
 	
