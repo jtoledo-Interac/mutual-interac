@@ -450,7 +450,8 @@ if(error == null) error = new Error();
 			pagDestino = "error.jsp";
 		}
 		else{
-			pagDestino = "contenedor.jsp?accion=usuarios";
+			if(request.getParameter("flag").equals("1")) pagDestino = "contenedor.jsp";
+			else pagDestino = "contenedor.jsp?accion=usuarios";
 		}
 	}
 	

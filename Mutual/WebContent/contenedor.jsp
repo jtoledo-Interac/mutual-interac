@@ -9,6 +9,9 @@ if( session.getAttribute("user")== null){
 %>
 
 <script type="text/javascript">
+
+var flag = 1;
+
 $(function()
 {	
 	$('#cerrar').click(function(){
@@ -49,6 +52,7 @@ function getUrlCargarUsuario(id)
 	var sData = "Servlet";
 	sData += '?accion=cargarUsuario';
 	sData += '&nIdUsuario='+id;
+	sData += '&flag='+flag;
 	return sData;
 }
 </script>
