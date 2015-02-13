@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -57,6 +58,10 @@ public class Servlet extends HttpServlet {
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	    Properties props = System.getProperties();  
+	    String jbossServerHomeUrl = props.getProperty( "jboss.server.home.url");  
+	    log.info("<<<<<<<"+jbossServerHomeUrl+">>>>>");
 		
 		try {
 			log.info("Service controller");
