@@ -20,4 +20,12 @@ public class MainDAO {
             em = factory.createEntityManager();
         }
     }
+
+    public void beginTransaction() {
+        em.getTransaction().begin();;
+    }
+
+    public void commitTransaction() {
+        em.getTransaction().commit();
+    }
 }

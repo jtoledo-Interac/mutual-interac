@@ -19,30 +19,36 @@ public class UploaderMain {
     public static void main(String[] args) {
         UploaderMain uploaderMain = new UploaderMain();
         uploaderMain.subirArchivo(PropertyReader.get("pathLectura"), null);
+        System.err.println("TERMINE!");
     }
 
     public void subirArchivo(String ruta, String area) {
         File subirRuta = new File(ruta);
         DocumentoDAO documentoDAO = new DocumentoDAO();
         for (File f : subirRuta.listFiles()) {
-            if (f.isFile()) {
-                if (area == null) return; // archivos sin área ignorar
-                Documento d = new Documento();
-                d.setNombre(f.getName());
-                d.setCodArea(area);
-                d.setFecCreacion(new Date());
-                d.setIdCartera(Integer.parseInt(PropertyReader.get("carteraPorDefecto")));
-                documentoDAO.guardarArchivo(d);
-                Path origen = Paths.get(f.getAbsolutePath());
-                Path destino = Paths.get(PropertyReader.get("pathUpload") + d.getIdDocumento());
-                d.setRuta(PropertyReader.get("pathUpload") + d.getIdDocumento());
-                documentoDAO.guardarArchivo(d);
+            System.err.println("LLEGA: " + f.getName() + " AREA: " + area);
+            if (f.isFile() && area != null) {
                 try {
-                    Files.move(origen, destino);
+                    documentoDAO.beginTransaction();
+                    Documento d = new Documento();
+                    d.setNombre(f.getName());
+                    d.setCodArea(area);
+                    d.setFecCreacion(new Date());
+                    d.setIdCartera(Integer.parseInt(PropertyReader.get("carteraPorDefecto")));
+                    documentoDAO.guardarArchivo(d);
+                    System.err.println("SE HA GUARDADO: "+d.getNombre()+" ID: "+d.getIdDocumento());
+                    Path origen = Paths.get(f.getAbsolutePath());
+                    File temp = new File(PropertyReader.get("pathUpload") + d.getIdDocumento());
+                    temp.createNewFile();
+                    Path destino = Paths.get(PropertyReader.get("pathUpload") + d.getIdDocumento());
+                    d.setRuta(PropertyReader.get("pathUpload") + d.getIdDocumento());
+                    documentoDAO.guardarArchivo(d);
+                    Files.copy(origen, destino);
+                    documentoDAO.commitTransaction();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            } else subirArchivo(f.getAbsolutePath(), f.getName());
+            } else if (f.isDirectory()) subirArchivo(f.getAbsolutePath(), f.getName());
         }
     }
 
