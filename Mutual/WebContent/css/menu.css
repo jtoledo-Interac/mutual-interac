@@ -21,7 +21,7 @@ body {
 
 /* We apply background color and border bottom white and width to 150px */
 #menuwrapper ul li{
-    background-color:#99CC00;
+    background-color:#ABC237;
     border-bottom:solid 1px white;
     width:150px;
     cursor:pointer;
@@ -58,7 +58,7 @@ body {
 
 /* we apply different background color to 2nd level menu items*/
 #menuwrapper ul li ul li{
-    background-color:#99CC00;
+    background-color:#ABC237;
     z-index: 9999;
 }
 
