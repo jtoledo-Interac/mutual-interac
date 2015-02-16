@@ -49,44 +49,33 @@
 
 <form id="formEdita" action="Servlet" method="post"
 	onSubmit="return validar_form(this)">
-	<table>
+	<input type="hidden" id="accion" name="accion"  value="modificarDocumento" >
+	<input type="hidden" id="idDocumento" name="idDocumento" value="${documento.idDocumento }">
+	<table class="centrado">
 		<tr>
-			<td><input type="hidden" id="accion" name="accion"
-				value="modificarDocumento"
-				onfocus="this.style.boxShadow='0 0 10px #9ecaed'"
-				onblur="this.style.boxShadow='none'"></td>
-			<td><input type="hidden" id="idDocumento" name="idDocumento"
-				value="${documento.idDocumento }"></td>
+			<td> Nombre </td><td> : </td>
+			<td><input type="text" id="nombre" name="nombre" placeholder="Nombre Documento" value="${documento.nombre}"></td>
 		</tr>
 		<tr>
-			<td><input type="text" id="nombre" name="nombre"
-				placeholder="Nombre Documento" value="${documento.nombre}"
-				onfocus="this.style.boxShadow='0 0 10px #9ecaed'"
-				onblur="this.style.boxShadow='none'"></td>
-			<td><input type="text" id="numFolio" name="numFolio"
-				placeholder="Nº Folio" value="${documento.numFolio}"
-				onfocus="this.style.boxShadow='0 0 10px #9ecaed'"
-				onblur="this.style.boxShadow='none'"></td>
+			<td> Número Folio </td><td> : </td>
+			<td><input type="text" id="numFolio" name="numFolio" placeholder="Nº Folio" value="${documento.numFolio}"></td>
 		</tr>
 		<tr>
-			<td><input type="text" id="numAdherente" name="numAdherente"
-				placeholder="Nº Adherente" value="${documento.numAdherente}"
-				onfocus="this.style.boxShadow='0 0 10px #9ecaed'"
-				onblur="this.style.boxShadow='none'"></td>
-			<td><input type="text" id="descripcion" name="descripcion"
-				placeholder="Descripci&oacute;n" value="${documento.descripcion}"
-				onfocus="this.style.boxShadow='0 0 10px #9ecaed'"
-				onblur="this.style.boxShadow='none'"></td>
+			<td> Número Adherente </td><td> : </td>
+			<td><input type="text" id="numAdherente" name="numAdherente" placeholder="Nº Adherente" value="${documento.numAdherente}"></td>
 		</tr>
 		<tr>
-			<td><input type="text" id="fecCreacion" name="fecCreacion"
-				placeholder="Fecha Creaci&oacute;n" class="fecha" value="11/12/2014"
-				readonly onfocus="this.style.boxShadow='0 0 10px #9ecaed'"
-				onblur="this.style.boxShadow='none'"></td>
-
-			<td><select id="idCartera" name="idCartera"
-				onfocus="this.style.boxShadow='0 0 10px #9ecaed'"
-				onblur="this.style.boxShadow='none'">
+			<td> Descripción </td><td> : </td>
+			<td><input type="text" id="descripcion" name="descripcion" placeholder="Descripci&oacute;n" value="${documento.descripcion}"></td>
+		</tr>
+		<tr>
+			<td> Fecha de creación </td><td> : </td>
+			<td><input type="text" id="fecCreacion" name="fecCreacion" placeholder="Fecha Creaci&oacute;n" class="fecha" value="11/12/2014" readonly>
+			</td>
+		</tr>
+		<tr>
+			<td> Cartera </td><td> : </td>
+			<td><select id="idCartera" name="idCartera">
 					<option value="" selected>Seleccione una cartera</option>
 					<c:forEach items="${requestScope.listaCarteras}" var="cartera">
 						<option value="${cartera.idCartera}"
@@ -95,19 +84,18 @@
 			</select></td>
 		</tr>
 		<tr>
-			<td><select id="idProducto" name="idProducto"
-				onfocus="this.style.boxShadow='0 0 10px #9ecaed'"
-				onblur="this.style.boxShadow='none'">
+			<td> Producto </td><td> : </td>
+			<td><select id="idProducto" name="idProducto">
 					<option value="" selected>Seleccione un producto</option>
 					<c:forEach items="${requestScope.listaProductos}" var="producto">
 						<option value="${producto.idProducto}"
 							<c:if test='${documento.idProducto == producto.idProducto}'> selected</c:if>>${producto.idProducto}</option>
 					</c:forEach>
 			</select></td>
-
-			<td><select id="codArea" name="codArea"
-				onfocus="this.style.boxShadow='0 0 10px #9ecaed'"
-				onblur="this.style.boxShadow='none'">
+		</tr>
+		<tr>
+			<td> Área </td><td> : </td>
+			<td><select id="codArea" name="codArea" >
 					<option value="" selected>Seleccione un area</option>
 					<c:forEach items="${requestScope.listaAreas}" var="area">
 						<option value="${area.codArea}"

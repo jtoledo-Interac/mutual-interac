@@ -59,6 +59,7 @@ function getUrlCargarUsuario(id)
 <div class="banner">
 
 	<div class="logo-banner">
+		
 	</div>
 	
 	<div class="info-user">
@@ -106,7 +107,7 @@ function getUrlCargarUsuario(id)
 			<li><a href="Servlet?accion=reclamos">Reclamos</a></li>
 	        <li><a href="Servlet?accion=graficar">Graficos Prueba</a></li>
 	        <%
-				java.util.ArrayList<String> p = (java.util.ArrayList<String>)session.getAttribute("perfiles");
+				java.util.ArrayList<String> perfiles = (java.util.ArrayList<String>)session.getAttribute("perfiles");
 				
 				String menuAdmin="";
 				menuAdmin += "<li><a href='#'>Administraci&oacute;n</a>";
@@ -123,7 +124,7 @@ function getUrlCargarUsuario(id)
 				menuAdmin += "</ul>";
 				menuAdmin += "</li>";
 				
-				if(p.contains("admin"))out.print(menuAdmin);
+				if(perfiles.contains("admin"))out.print(menuAdmin);
 			%>
 	    </ul>
 	</div>
