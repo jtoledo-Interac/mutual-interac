@@ -101,6 +101,14 @@ input:focus {
 	height:50%;
 }
 
+.linea{
+	background-color: #ABC237;
+	width:97%;
+	height: 10px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
 .btnOpinar{
 	margin-left: 600px;
 	margin-top: 407px;

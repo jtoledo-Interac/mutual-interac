@@ -55,6 +55,9 @@ function getUrlCargarUsuario(id)
 	return sData;
 }
 </script>
+<div class="linea">
+</div>
+
 
 <div class="banner">
 
