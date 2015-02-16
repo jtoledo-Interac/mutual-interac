@@ -163,10 +163,58 @@ input[type=radio]:checked + label:before {
 }
 
 .banner{
-	background: #98cb00;
-	width: 100%;
+	background: #FFFFFF;
+	width: 97%;
+	margin-left:auto;
+	margin-right:auto;
 	height: 100px;
 }
+.banner-left{
+	background: #FFFFFF;
+	float:left;
+	margin: 0 auto;
+	width: 30%;
+	height: 100px;
+}
+.banner-center{
+	background: #FFFFFF;
+	float:left;
+	margin: 0 auto;
+	width: 48%;
+	height: 100px; 
+}
+.banner-center a{
+	color: #000000;
+}
+.banner-center table{
+	float:right;
+	margin-top:auto;
+	margin-bottom:auto;
+}
+.banner-center img{	
+	width: 40px;
+	height: 40px;
+	border-radius: 20px;
+	-webkit-border-radius: 150px;
+	-moz-border-radius: 150px;
+	/*sombra*/
+	box-shadow: 0 0 4px rgba(0, 0, 0, .8);
+	-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, .8);
+	-moz-box-shadow: 0 0 4px rgba(0, 0, 0, .8);
+}
+
+.banner-right{
+	background: #FFFFFF;
+	float:left;
+	margin: 0 auto;
+	width: 22%;
+	height: 100px;
+}
+.banner-right img{
+	float:right;
+	height:100%;
+}
+
 
 .footer{
 	background: #98cb00;
@@ -225,23 +273,43 @@ input[type=radio]:checked + label:before {
 }
 
 .logo-banner{
+	border-style: solid;
+    border-color: #ff0000;
 	float:left;
-	width: 30%;
+	margin: 0 auto;
+	width: 33.333%; 
 }
 
 .logo-banner img{
-	width: 160px;
+	width: 200px;
 	margin-left: 20px;
 }
 
-.info-user{
-	float:right;
-	width: 70%;
-	height:80px;
-	color: white;
-	margin-top: 20px;
-	margin-right: 20px;
+.logo-mutual{
+	border-style: solid;
+    border-color: #0000ff;
+	float:left;
+	margin: 0 auto;
+	width: 33.333%; 
 }
+.logo-mutual img{
+	width:50%;
+}
+.info-user{
+	border-style: solid;
+    border-color: #00ff00;
+    float:left;
+	margin: 0 auto;
+	width: 33.333%;
+	margin-left:auto;
+	margin-right:auto;
+	height:80px;
+	color: black
+}
+.info-user a{
+	color: #000000;
+}
+
 .info-user table{
 	float:right;
 }
@@ -716,11 +784,3 @@ input[type=radio]:checked + label:before {
 	height: 500px;
 	border-radius: 10px 10px;
 }
-
-/*
-.validar:focus{ 
-    outline: none;
-    border-color: #9ecaed;
-    box-shadow: 0 0 10px #9ecaed;
-}
-*/

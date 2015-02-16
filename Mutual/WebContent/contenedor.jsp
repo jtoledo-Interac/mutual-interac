@@ -55,19 +55,15 @@ function getUrlCargarUsuario(id)
 	return sData;
 }
 </script>
-<div class="linea">
-</div>
-
+<div class="linea"> </div>
 
 <div class="banner">
-
-	<div class="logo-banner">
-		
+	<div class="banner-left">
+		<img src="img/logo_siac.png" height="100%">
 	</div>
-	
-	<div class="info-user">
-		<br />
-		<table>
+	<div class="banner-center">
+	<br>
+	<table>
 		<tr>
 		<td>
 			<p id="contNombre" style="float:right;"><% out.print(session.getAttribute("nombre") );	%></p>
@@ -88,14 +84,16 @@ function getUrlCargarUsuario(id)
 		 	
 		</td>
 		</tr>
-		</table>
+	</table>
+	</div>
+	<div class="banner-right">
+		<img src="img/mutual_logo.png">
 	</div>
 </div>
 
 <div id="cargaUsuario" title="Editar usuario" style="display:none"></div>
 
 <div class="contenedor">
-
 	<div id="menuwrapper">	
 	    <ul>
 	        <li><a href="Servlet?accion=organigrama">Organigrama</a></li>
@@ -104,7 +102,7 @@ function getUrlCargarUsuario(id)
 			<li><a href="#">Reportes</a>
 				<ul>
 					<li><a href="Servlet?accion=repAccidentados">Accidentados</a></li>
-					<li><a href="Servlet?accion=repDias">D&iacute;as Perdidos</a></li>
+						<li><a href="Servlet?accion=repDias">D&iacute;as Perdidos</a></li>
 				</ul>
 			</li>
 			<li><a href="Servlet?accion=reclamos">Reclamos</a></li>
