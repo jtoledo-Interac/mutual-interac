@@ -62,7 +62,7 @@
 	<tr>
 		<td> Imagen de Perfil </td><td>:</td>
 		<td>
-			<input type="file" required id="${usuario.idUsuario}" class="validar" name="${usuario.idUsuario}" placeholder="Documento Adjunto" accept="image/*">
+			<input type="file" id="${usuario.idUsuario}" class="validar" name="${usuario.idUsuario}" placeholder="Documento Adjunto" accept="image/*">
 		</td>
 	</tr>
 	</table>
