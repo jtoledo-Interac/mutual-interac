@@ -97,9 +97,6 @@
 		<td> Fecha de ingreso </td><td>:</td><td><input type="text" 		id="fec_ingreso" 			name="fec_ingreso" 			placeholder="fec_ingreso" class="fecha" required> </td>
 	</tr>
 	<tr>
-		<td> Glosa </td><td>:</td><td><input type="text" 		id="glosa" 					name="glosa" 				placeholder="glosa" required> </td>
-	</tr>
-	<tr>
 		<td> Adjunto </td><td>:</td><td><input type="text" 		id="adjunto" 				name="adjunto" 				placeholder="adjunto" required> </td>
 	</tr>
 	<tr>
@@ -113,6 +110,9 @@
 	</tr>
 	<tr>
 		<td> Fecha de respuesta </td><td>:</td><td><input type="text" 		id="fec_respuesta" 			name="fec_respuesta" 		placeholder="fec_respuesta" class="fecha" readonly required> </td>
+	</tr>
+	<tr>
+		<td> Glosa </td><td>:</td><td><textarea rows="3" cols="50"	id="glosa"	name="glosa"	placeholder="glosa"	maxlength="2000" required> </textarea></td>
 	</tr>
 </table>
 </form>

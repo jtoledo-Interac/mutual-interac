@@ -230,7 +230,7 @@ input[type=radio]:checked + label:before {
 }
 
 .contenedor{
-	height:750px;
+	height:485px;
 }
 
 .menu-lateral{
@@ -268,61 +268,8 @@ input[type=radio]:checked + label:before {
 	width: 88%;
 	height:650px;
 	float:right;
-	margin-top:50px;
+	margin-top:0px;
 	margin-bottom:50px;
-}
-
-.logo-banner{
-	border-style: solid;
-    border-color: #ff0000;
-	float:left;
-	margin: 0 auto;
-	width: 33.333%; 
-}
-
-.logo-banner img{
-	width: 200px;
-	margin-left: 20px;
-}
-
-.logo-mutual{
-	border-style: solid;
-    border-color: #0000ff;
-	float:left;
-	margin: 0 auto;
-	width: 33.333%; 
-}
-.logo-mutual img{
-	width:50%;
-}
-.info-user{
-	border-style: solid;
-    border-color: #00ff00;
-    float:left;
-	margin: 0 auto;
-	width: 33.333%;
-	margin-left:auto;
-	margin-right:auto;
-	height:80px;
-	color: black
-}
-.info-user a{
-	color: #000000;
-}
-
-.info-user table{
-	float:right;
-}
-.info-user img{	
-	width: 40px;
-	height: 40px;
-	border-radius: 20px;
-	-webkit-border-radius: 150px;
-	-moz-border-radius: 150px;
-	/*sombra*/
-	box-shadow: 0 0 4px rgba(0, 0, 0, .8);
-	-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, .8);
-	-moz-box-shadow: 0 0 4px rgba(0, 0, 0, .8);
 }
 
 .contenido{
@@ -360,6 +307,8 @@ input[type=radio]:checked + label:before {
 	width: 1000px;
 	vertical-align: center;
 }
+
+.form 
 
 .flechas-cont{
 	width: 1000px;
@@ -783,4 +732,8 @@ input[type=radio]:checked + label:before {
 	border: 1px solid;
 	height: 500px;
 	border-radius: 10px 10px;
+}
+
+.form{
+	
 }

@@ -116,5 +116,8 @@
 	<tr>
 		<td> Fecha de respuesta </td> <td>:</td><td><input type="text" 		id="fec_respuesta" 			name="fec_respuesta" 		placeholder="Feha Respuesta" class="fecha" value="${reclamo.fecRespuesta}" readonly required> </td>
 	</tr>
+	<tr>
+		<td> Glosa </td><td>:</td><td><textarea rows="3" cols="50"	id="glosa"	name="glosa"	placeholder="glosa"	maxlength="2000" required>${reclamo.glosa}</textarea></td>
+	</tr>
 	</table>
 </form>
