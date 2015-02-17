@@ -735,6 +735,9 @@ input[type=radio]:checked + label:before {
 	border-radius: 10px 10px;
 }
 
-.form{
-	
+#formAgrega input[type=text], formEdita input[type=text]{
+	width:250px;
+}
+#formAgrega select, #formEdita select {
+	width:252px;
 }
