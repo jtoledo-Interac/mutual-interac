@@ -270,7 +270,7 @@ input[type=radio]:checked + label:before {
 	
 	float:right;
 	margin-top:0px;
-	margin-bottom:50px;
+	margin-bottom:45px;
 }
 
 .contenido{
