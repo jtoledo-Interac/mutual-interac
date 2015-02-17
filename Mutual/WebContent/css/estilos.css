@@ -184,7 +184,7 @@ input[type=radio]:checked + label:before {
 	height: 100px; 
 }
 .banner-center a{
-	color: #000000;
+	color: #8d8d8d;
 }
 .banner-center table{
 	float:right;

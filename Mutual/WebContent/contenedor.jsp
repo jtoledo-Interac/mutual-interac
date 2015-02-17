@@ -66,7 +66,7 @@ function getUrlCargarUsuario(id)
 	<table>
 		<tr>
 		<td>
-			<p id="contNombre" style="float:right;"><% out.print(session.getAttribute("nombre") );	%></p>
+			<p id="contNombre" style="float:right;color: #8d8d8d;"><% out.print(session.getAttribute("nombre") );	%></p>
 			<form id="logOut" action="Servlet" method="post">
 				<input type="hidden" id="accionLogOut" name="accion">
 				<br/><span style="float:right;"><a href="#" id="cerrar">Cerrar Sesión</a></span>
