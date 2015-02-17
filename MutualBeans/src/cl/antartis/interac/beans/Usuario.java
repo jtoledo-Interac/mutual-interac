@@ -31,7 +31,7 @@ public class Usuario implements Serializable {
 
 	
 	public Usuario(HashMap map){
-		if(map.containsKey("nIdUsuario")) idUsuario = Utils.stringToNum((String)map.get("idUsuario"));
+		if(map.containsKey("nIdUsuario")) idUsuario = Utils.stringToNum((String)map.get("nIdUsuario"));
 		if(map.containsKey("sRut")) rut = (String)map.get("sRut") ;
 		if(map.containsKey("sDV")) dv  = (String)map.get("sDV") ;
 		if(map.containsKey("sNombres")) nombres = (String)map.get("sNombres") ;
