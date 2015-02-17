@@ -217,9 +217,9 @@ input[type=radio]:checked + label:before {
 
 
 .footer{
-	background: #98cb00;
+	background: #ABC237; 
 	width:100%;
-	height:70px;
+	height:48px;
 }
 
 .texto-footer{
@@ -266,7 +266,8 @@ input[type=radio]:checked + label:before {
 
 .principal{
 	width: 88%;
-	height:650px;
+	height:485;
+	
 	float:right;
 	margin-top:0px;
 	margin-bottom:50px;
