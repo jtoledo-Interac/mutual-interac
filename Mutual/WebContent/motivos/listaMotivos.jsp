@@ -219,7 +219,7 @@
 		<form id="formMotivo" action="Servlet" method="post">
 			<input type="button" 	id="btnBuscar" 		name="btnBuscar" 	value="Buscar" class="boton"/>
 			<input type="button" 	id="btnAgregar" 	name="btnAgregar" 	value="Agregar" class="boton"/>
-			<input type="text" 		id="nomMotivo" 	name="nomMotivo"	placeholder="Nombre Motivo" class="text">
+			<input type="text" 		id="nomMotivo"	name="nomMotivo"	placeholder="Nombre Motivo" class="text">
 		</form>
 	</div> 
 

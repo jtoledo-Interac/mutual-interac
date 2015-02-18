@@ -510,7 +510,7 @@ input[type=radio]:checked + label:before {
 }
 
 .inputRut{
-	width: 100px;
+	width: 200px;
 }
 .inputDV{
 	width: 40px;
@@ -738,8 +738,14 @@ input[type=radio]:checked + label:before {
 	border-radius: 10px 10px;
 }
 
-#formAgrega input, #formEdita input{
+#formAgrega input , #formEdita input{
 	width:250px;
+}
+#formAgrega #sRut, #formEdita #sRut{
+	width:200px;
+}
+#formAgrega #sDV, #formEdita #sDV{
+	width:34px;
 }
 #formAgrega select, #formEdita select {
 	width:252px;

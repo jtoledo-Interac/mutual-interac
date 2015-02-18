@@ -43,11 +43,11 @@ import cl.antartis.interac.funciones.FileUtils;
 import cl.antartis.interac.funciones.Utils;
 
 public class Servlet extends HttpServlet {
-
 	private static final long serialVersionUID = 24805145326056582L;
 	private Logger log = Logger.getLogger(Servlet.class);
 	private String pagDestino = "";
 	private Error error = null;
+	ArrayList<String> permitidosSinLogin = new ArrayList<String>();
 	//private Perfil perfiles = null; //TODO
 	
 	@EJB(mappedName = "mutual/EJB")
@@ -58,11 +58,14 @@ public class Servlet extends HttpServlet {
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 	    Properties props = System.getProperties();  
 	    String jbossServerHomeUrl = props.getProperty( "jboss.server.home.url");  
 	    log.info("<<<<<<<"+jbossServerHomeUrl+">>>>>");
-		
+	    permitidosSinLogin.add("login");
+	    permitidosSinLogin.add("recuperar");
+	    permitidosSinLogin.add("verificaLinkContrasena");
+	    permitidosSinLogin.add("actualizarContrasena");
+	    
 		try {
 			log.info("Service controller");
 			String accion = request.getParameter("accion");
@@ -71,7 +74,7 @@ public class Servlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			if(accion==null) pagDestino = "login.jsp";
 			else{
-				if( session.getAttribute("user") == null && !accion.equals("login")){
+				if( session.getAttribute("user") == null && !permitidosSinLogin.contains(accion)){
 					pagDestino = "login.jsp";
 				}else{
 					MethodUtils.invokeMethod(this, accion, new Object[]{request,response});
@@ -183,6 +186,7 @@ public class Servlet extends HttpServlet {
 	
 	public void recuperar(HttpServletRequest request, HttpServletResponse response){
 		String opcion = request.getParameter("op");
+		log.info("rec");
 		log.info(opcion);
 		log.info(request.getParameter("_user"));
 		if(opcion.equals("op1")){
@@ -225,6 +229,7 @@ public class Servlet extends HttpServlet {
 	}
 	
 	public void recuperarUsuario(HttpServletRequest request, HttpServletResponse response){
+		log.info("Entra a "+new Object(){}.getClass().getEnclosingMethod().getName());
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
