@@ -8,9 +8,36 @@
 		setDatePicker();
 		formatRut();
 	});
+	
+	function validarRut() {
+		var numero = document.formAgrega.sRut.value;
+		alert(numero);
+		var dv = document.formAgrega.sDv.value;
+		var dv2=0;
+		alert(nuevo_numero);
+		console.log(nuevo_numero);
+		for(i=0,j=2,suma=0; i < nuevo_numero.length; i++, ((j==7) ? j=2 : j++)) {
+			suma += (parseInt(nuevo_numero.charAt(i)) * j);	
+		}
+		n_dv = 11 - (suma % 11);
+		dv2 = ((n_dv == 11) ? 0 : ((n_dv == 10) ? "K" : n_dv));
+		if(dv2 == dv) return true;
+		return false;
+	}
+	
+	function getDV(numero) {
+		nuevo_numero = numero.toString().reverse();
+		alert(nuevo_numero);
+		console.log(nuevo_numero);
+		for(i=0,j=2,suma=0; i < nuevo_numero.length; i++, ((j==7) ? j=2 : j++)) {
+			suma += (parseInt(nuevo_numero.charAt(i)) * j);	
+		}
+		n_dv = 11 - (suma % 11);
+		return ((n_dv == 11) ? 0 : ((n_dv == 10) ? "K" : n_dv));
+	}
 </script>
 
-<form id="formAgrega" action="Servlet" method="post">
+<form id="formAgrega" name="formAgrega" action="Servlet" method="post" onSubmit="return validarRut()">
 	<input type="submit" class="submit" style="display:none;">
 	<input type="hidden"	id="accion" 		name="accion" 		value="agregarUsuario">
 	

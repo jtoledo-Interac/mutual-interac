@@ -229,8 +229,6 @@
 			<input type="text" 		id="numAdherente" 	name="numAdherente"	placeholder="Nº Adherente" class="text">
 			<input type="text" 		id="numFolio" 		name="numFolio"		placeholder="Nº Folio" class="text">
 			<input type="text" 		id="nombre" 		name="nombre"		placeholder="Nombre Documento" class="text">
-			
-			
 						
 			<select id="idCartera" name="idCartera" class="select" >
 				<option value="" selected>Seleccione una cartera </option>

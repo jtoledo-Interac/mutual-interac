@@ -11,7 +11,7 @@
        		<nombre>${documento.nombre}</nombre>
        		<desCartera>${documento.desCartera}</desCartera>
        		<desProducto>${documento.desProducto}</desProducto>
-       		<fecCreacion>12/12/2014</fecCreacion>
+       		<fecCreacion>${documento.fecCreacion}</fecCreacion>
        		<desArea>${documento.desArea}</desArea>
        </fila>
 	</c:forEach>

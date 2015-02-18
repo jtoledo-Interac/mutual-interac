@@ -16,6 +16,9 @@ public class Documento implements Serializable {
 	private String codArea;
 	private String desArea;
 	private Long idCartera;
+	private Long idProducto;
+	private String desProducto;
+	private String fecCreacion;
 	public Long getIdCartera() {
 		return idCartera;
 	}
@@ -33,12 +36,6 @@ public class Documento implements Serializable {
 	public void setIdProducto(Long idProducto) {
 		this.idProducto = idProducto;
 	}
-
-	private Long idProducto;
-	private String desProducto;
-	private String fecCreacion;
-
-	
 	public Documento(){}
 	
 	public Documento(HashMap map){

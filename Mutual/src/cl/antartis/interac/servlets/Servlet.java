@@ -1336,6 +1336,7 @@ if(error == null) error = new Error();
 		documento.setCodArea(request.getParameter("codArea"));
 		documento.setIdCartera(Utils.stringToNum(request.getParameter("idCartera")));
 		documento.setIdProducto(Long.parseLong(request.getParameter("idProducto")));
+		documento.setFecCreacion(request.getParameter("fecCreacion"));
 		
 		mapaEntrada.put("documento",documento);
 		

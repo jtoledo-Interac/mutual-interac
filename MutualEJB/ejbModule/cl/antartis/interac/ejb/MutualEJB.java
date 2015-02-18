@@ -1985,6 +1985,7 @@ public class MutualEJB implements EJBRemoto {
 					documento.setIdProducto(rs.getLong("id_producto"));
 					documento.setDesProducto(rs.getString("des_producto"));
 					documento.setDesArea(rs.getString("des_area"));
+					documento.setFecCreacion(rs.getString("fec_creacion"));
 					listaDocumentos.add(documento);
 				}
 				rs.close();

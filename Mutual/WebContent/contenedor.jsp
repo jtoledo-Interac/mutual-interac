@@ -87,7 +87,7 @@ function getUrlCargarUsuario(id)
 	</table>
 	</div>
 	<div class="banner-right">
-		<img src="img/mutual_logo.png">
+		<img src="img/mutual_logo2.png">
 	</div>
 </div>
 

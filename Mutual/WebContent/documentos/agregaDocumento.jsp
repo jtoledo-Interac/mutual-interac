@@ -38,9 +38,6 @@
 <tr>
 	<td> Descripción </td><td> : </td><td> <input type="text"	id="descripcion" required name="descripcion" placeholder="Descripción"> </td>
 </tr>
-<tr>
-	<td> Fecha de creación </td><td> : </td><td> <input type="text" id="fecCreacion" required name="fecCreacion" placeholder="Fecha Creaci&oacute;n" class="fecha"> </td>
-</tr>
 <tr>	
 	<td> Cartera </td><td> : </td>
 	<td><select id="idCartera" required name="idCartera">

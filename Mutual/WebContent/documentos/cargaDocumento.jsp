@@ -69,11 +69,6 @@
 			<td><input type="text" id="descripcion" name="descripcion" placeholder="Descripci&oacute;n" value="${documento.descripcion}"></td>
 		</tr>
 		<tr>
-			<td> Fecha de creación </td><td> : </td>
-			<td><input type="text" id="fecCreacion" name="fecCreacion" placeholder="Fecha Creaci&oacute;n" class="fecha" value="11/12/2014" readonly>
-			</td>
-		</tr>
-		<tr>
 			<td> Cartera </td><td> : </td>
 			<td><select id="idCartera" name="idCartera">
 					<option value="" selected>Seleccione una cartera</option>
