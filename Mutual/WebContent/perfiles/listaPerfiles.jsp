@@ -16,7 +16,7 @@
 			datatype: "xml",
 			colNames : ['', 'Nombre Perfil',''],
 			colModel : [
-						{name : 'idPerfil', index:'idPerfil', hidden : false}, 
+						{name : 'idPerfil', index:'idPerfil', hidden : true}, 
 						{name : 'desPerfil', index : 'desPerfil', width : 80, resizable : false, sortable : true},
 						{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
 						],

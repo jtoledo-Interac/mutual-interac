@@ -20,19 +20,25 @@ $body$
     declare xid_producto numeric;
     declare xcod_area varchar;
 
-    begin
+   begin
         numerror := 0;
         msjerror := ' ';
 
 
         /*filtros*/
-        xnombre := coalesce(upper(trim(xnombre$)),'') || '%';
-        xnum_folio := '%' || coalesce(upper(trim(xnum_folio$)),'') || '%';
-        xnum_adherente := '%' || coalesce(upper(trim(xnum_adherente$)),'') || '%';
+        xnombre := '%' || coalesce(upper(trim(xnombre$)),'') || '%';
+        xnum_folio :=  coalesce(upper(trim(xnum_folio$)),'')   ;
+        xnum_adherente :=  coalesce(upper(trim(xnum_adherente$)),'')   ;
         xid_cartera := xid_cartera$;
-        xid_producto := xid_producto$;
-        
+        xid_producto := xid_producto$;        
     
+        if trim(xnum_folio$) = '' then
+            xnum_folio := ' ';
+            end if;
+            
+        if trim(xnum_adherente$) = '' then
+            xnum_adherente := ' ';
+            end if;            
 
         if trim(xcod_area$) = '' then
             xcod_area := ' ';
@@ -63,10 +69,10 @@ $body$
             on d.id_cartera = c.id_cartera
         inner join producto as p 
             on d.id_producto = p.id_producto
-where
+        where
             upper(d.nombre) like '%' || xnombre ||'%'         and
-            upper(d.num_folio) like xnum_folio and
-            upper(d.num_adherente) like xnum_adherente and
+            (xnum_folio = ' ' or upper(d.num_folio) = xnum_folio) and
+            (xnum_adherente = ' ' or upper(d.num_adherente) = xnum_adherente) and
             (xid_cartera = 0  or d.id_cartera = xid_cartera) and
             (xid_producto = 0 or d.id_producto = xid_producto) and
             (xcod_area =  ' ' or upper(d.cod_area) = xcod_area)
@@ -79,6 +85,7 @@ where
                 msjerror := '[busca_documentos] error al buscar documentos(sql) ' ||sqlerrm;
                 return; 
     end;
+
 
 $body$
   language plpgsql volatile

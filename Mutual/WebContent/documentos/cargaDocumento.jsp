@@ -84,7 +84,7 @@
 					<option value="" selected>Seleccione un producto</option>
 					<c:forEach items="${requestScope.listaProductos}" var="producto">
 						<option value="${producto.idProducto}"
-							<c:if test='${documento.idProducto == producto.idProducto}'> selected</c:if>>${producto.idProducto}</option>
+							<c:if test='${documento.idProducto == producto.idProducto}'> selected</c:if>>${producto.desProducto}</option>
 					</c:forEach>
 			</select></td>
 		</tr>

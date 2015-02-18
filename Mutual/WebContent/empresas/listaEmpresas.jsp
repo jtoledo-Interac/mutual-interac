@@ -111,7 +111,7 @@
 		    position: 'center',
 		    buttons: {
 				"Editar Empresa": function() {
-					$('#formEdita').submit();
+					$('#formEdita .submit').click();
 				},
 				"Cancelar": function() {
 					$(this).dialog("close");

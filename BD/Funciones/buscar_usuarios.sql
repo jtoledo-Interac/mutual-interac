@@ -25,7 +25,7 @@ $body$
         msjerror := ' ';
 
         /*filtros*/
-        xrut := coalesce(upper(trim(rut$)),'') || '%';
+        xrut := '%' || coalesce(upper(trim(rut$)),'') || '%';
         xnombres    := '%' ||coalesce(upper(trim(nombres$)),'') || '%';
         xapepaterno := '%' || coalesce(upper(trim(apepaterno$)),'') || '%';
         xapematerno := '%' || coalesce(upper(trim(apematerno$)),'') || '%';
