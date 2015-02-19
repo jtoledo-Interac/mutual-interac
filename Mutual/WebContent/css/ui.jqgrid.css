@@ -161,4 +161,4 @@ a.g-menu-item, a.soptclass, a.clearsearchclass { cursor: pointer; }
     box-sizing: border-box;
 } 
 
-.ui-state-highlight { background: green}
+.my-highlight { color: green; }
