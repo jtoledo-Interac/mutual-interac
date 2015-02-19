@@ -52,10 +52,7 @@
 	<input type="hidden"	id="accion"	name="accion"	value="agregarReclamo">
 <table class="centrado">
 	<tr>
-		<td> B prueba </td><td>:</td><td><input type="button" value="hola" id="btnSeleccionar"></td>
-	</tr>
-	<tr>
-		<td> Número de adherente </td><td>:</td><td><input type="text" 		id="num_adherente" 			name="num_adherente"			placeholder="Nº Adherente" onkeypress="return valida_numeros(event)" required> </td>
+		<td> Número de adherente </td><td>:</td><td><input type="text" 		id="num_adherente" 			name="num_adherente"			placeholder="Nº Adherente" onkeypress="return valida_numeros(event)" required>  <input type="button" value="Buscar" id="btnSeleccionar"></td>
 	</tr>
 	<tr>
 		<td> Nombre solicitante </td><td>:</td><td><input type="text" 		id="nombre_solicitante" 	name="nombre_solicitante"		placeholder="nombre_solicitante"  required> </td>

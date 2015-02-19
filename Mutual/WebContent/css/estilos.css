@@ -741,6 +741,12 @@ input[type=radio]:checked + label:before {
 #formAgrega input , #formEdita input{
 	width:250px;
 }
+#formAgrega #num_adherente{
+	width:190px;
+}
+#formAgrega #btnSeleccionar{
+	width:58px;
+}
 #formAgrega #sRut, #formEdita #sRut{
 	width:200px;
 }
