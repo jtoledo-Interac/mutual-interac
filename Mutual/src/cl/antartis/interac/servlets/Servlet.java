@@ -668,6 +668,33 @@ if(error == null) error = new Error();
 		pagDestino = "reclamos/seleccionarEmpresa.jsp";
 	}
 	
+	public void seleccionarEmpresas(HttpServletRequest request, HttpServletResponse response) 
+	{
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+
+		Empresa empresa = new Empresa();
+		empresa.setNumAdherente(request.getParameter("numAdherente"));
+		empresa.setNombre(request.getParameter("nomEmpresa"));
+		//empresa.setIdEmpresa(request.getParameter("idEmpresa"));
+
+		log.info("Empresa:++" + empresa.getNumAdherente() + "\n"
+				+ empresa.getNombre());
+
+		mapaEntrada.put("empresa", empresa);
+
+		mapaSalida = ejbRemoto.buscarEmpresas(mapaEntrada);
+		error = (Error) mapaSalida.get("error");
+		if (error == null)
+			error = new Error();
+		if (!error.getNumError().equals("0")) {
+			pagDestino = "error.jsp";
+		} else {
+			request.setAttribute("listaEmpresas",mapaSalida.get("listaEmpresas"));
+			pagDestino = "/reclamos/listaEmpresasXml.jsp";
+		}
+	}
+	
 	public void crearTipo(HttpServletRequest request, HttpServletResponse response) 
 	{
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
