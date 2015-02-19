@@ -13,8 +13,8 @@
 	
 	$('#seleccionarEmpresa').dialog({
 		autoOpen: false,
-	    height: 400,
-	    width: 600,
+	    height: 390,
+	    width: 425,
 	    modal: true,
 	    position: 'center',
 	    buttons: {

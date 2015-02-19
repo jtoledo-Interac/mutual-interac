@@ -21,8 +21,8 @@
 						{name : 'act',index:'act', width : 30, resizable:false,sortable : true, hidden: true}
 						],
 		   	rowNum: numeroDeFilas,
-		   	height: altoGrilla,
-		   	width: anchoGrilla,
+		   	//height: altoGrilla,
+		   	//width: anchoGrilla,
 		   	rowList:[10,50,100,200,500],
 			xmlReader: {
 				root : "filas",
@@ -42,7 +42,6 @@
 			gridComplete: function()
 			{
 				var ids = $("#listadoEmpresas").getDataIDs();
-				
 				for (var i = 0; i < ids.length; i++)
 				{
 					var idFila = ids[i];
@@ -59,6 +58,8 @@
 
 					$("#listadoEmpresas").setRowData(ids[i], {act : btnEditar + btnEliminar});
 				}
+
+				$('#listadoEmpresas').jqGrid('setGridWidth', $(this).parent().width());
 			},
 			onSelectRow : function(rowId, status) 
 			{
