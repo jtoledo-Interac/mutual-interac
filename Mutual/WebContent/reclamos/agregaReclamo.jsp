@@ -7,8 +7,7 @@
 	});
 	$('#btnSeleccionar').click(function()
 	{
-		alert(1);
-	    seleccionarEmpresa();
+		seleccionarEmpresa();
 	});
 	
 	$('#seleccionarEmpresa').dialog({
@@ -16,30 +15,17 @@
 	    height: 390,
 	    width: 425,
 	    modal: true,
-	    position: 'center',
-	    buttons: {
-			"Ok": function() {
-				$('#formEdita .submit').click();
-			},
-			"Cancelar": function() {
-				$(this).dialog("close");
-		    }
-	    },
-		close: function() {
-			$('#formEdita input').val(''); //limpia Data
-		}
+	    position: 'center'
 	});
 	
 	function seleccionarEmpresa()
 	{
-		alert(2);
 		ajaxCall(getUrlSeleccionarEmpresa(), function(response){
 			$('#seleccionarEmpresa').html(response).dialog('open');
 		});
 	}
 	function getUrlSeleccionarEmpresa()
 	{	
-		alert(3);
 		var sData = "Servlet";
 		sData += '?accion=seleccionarEmpresa';
 		return sData;
