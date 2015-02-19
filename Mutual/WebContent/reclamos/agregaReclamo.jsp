@@ -5,13 +5,55 @@
 		setDatePicker();
 		formatRut();
 	});
+	$('#btnSeleccionar').click(function()
+	{
+		alert(1);
+	    seleccionarEmpresa();
+	});
+	
+	$('#seleccionarEmpresa').dialog({
+		autoOpen: false,
+	    height: 250,
+	    width: 325,
+	    modal: true,
+	    position: 'center',
+	    buttons: {
+			"Ok": function() {
+				$('#formEdita .submit').click();
+			},
+			"Cancelar": function() {
+				$(this).dialog("close");
+		    }
+	    },
+		close: function() {
+			$('#formEdita input').val(''); //limpia Data
+		}
+	});
+	
+	function seleccionarEmpresa()
+	{
+		alert(2);
+		ajaxCall(getUrlSeleccionarEmpresa(), function(response){
+			$('#seleccionarEmpresa').html(response).dialog('open');
+		});
+	}
+	function getUrlSeleccionarEmpresa()
+	{	
+		alert(3);
+		var sData = "Servlet";
+		sData += '?accion=seleccionarEmpresa';
+		return sData;
+	}
 </script>
 
-
+<div id="seleccionarEmpresa" title="Seleccionar Empresa" style="display:none"></div>
 <form id="formAgrega" action="Servlet" method="post">
 	<input type="submit" class="submit" style="display:none;">
 	<input type="hidden"	id="accion"	name="accion"	value="agregarReclamo">
 <table class="centrado">
+	<tr>
+		<td> B prueba </td><td>:</td><td><input type="button" value="hola" id="btnSeleccionar"></td>
+	</tr>
 	<tr>
 		<td> Número de adherente </td><td>:</td><td><input type="text" 		id="num_adherente" 			name="num_adherente"			placeholder="Nº Adherente" onkeypress="return valida_numeros(event)" required> </td>
 	</tr>

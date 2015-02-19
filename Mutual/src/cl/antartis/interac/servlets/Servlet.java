@@ -158,7 +158,7 @@ public class Servlet extends HttpServlet {
 			pagDestino = "contenedor.jsp";
 		}
 		else{
-			System.out.println("Debería mandar a login.");
+			System.out.println("Deberï¿½a mandar a login.");
 			pagDestino = "login.jsp";
 		}
 	}
@@ -210,15 +210,15 @@ public class Servlet extends HttpServlet {
 			String link= request.getParameter("_user")+" "+id+" "+new Date().getTime();
 			link = e.encriptar(link);
 			link = "<a href='"+ConfigUtils.loadProperties("dominio")+
-					"Servlet?accion=verificaLinkContrasena&l="+link+"'>Recuperar contraseña.</a>";
+					"Servlet?accion=verificaLinkContrasena&l="+link+"'>Recuperar contraseï¿½a.</a>";
 			String email = (String)mapaSalida.get("email");
-			String subject = "Mutual - Recuperación de contraseña";
-			String body = "Recibimos una solicitud de cambio de contraseña. Para confirmar tu nueva contraseña haz click en el siguiente enlace: .<br/>"
-					+link+ "<br/>Si tú no has solicitado cambio de contraseña ignora este email.<br/>";
+			String subject = "Mutual - Recuperaciï¿½n de contraseï¿½a";
+			String body = "Recibimos una solicitud de cambio de contraseï¿½a. Para confirmar tu nueva contraseï¿½a haz click en el siguiente enlace: .<br/>"
+					+link+ "<br/>Si tï¿½ no has solicitado cambio de contraseï¿½a ignora este email.<br/>";
 			
 			if(EmailUtils.sendMailHtml(email, subject, body)){
-				request.setAttribute("msgHeader", "Recuperar contraseña");
-				request.setAttribute("msgBody", "Se ha enviado un link para recuperar su contraseña a su cuenta de correo electrónico " + email);
+				request.setAttribute("msgHeader", "Recuperar contraseï¿½a");
+				request.setAttribute("msgBody", "Se ha enviado un link para recuperar su contraseï¿½a a su cuenta de correo electrï¿½nico " + email);
 				request.setAttribute("msgRedirect", "index.jsp");
 				this.pagDestino = "mensaje.jsp";
 			}
@@ -240,13 +240,13 @@ public class Servlet extends HttpServlet {
 			String user = (String)mapaSalida.get("user");
 			
 			String email = request.getParameter("email");
-			String subject = "Mutual - Recuperación de nombre de usuario";
+			String subject = "Mutual - Recuperaciï¿½n de nombre de usuario";
 			String body = "Hemos recibido una solicitud para recuperar su nombre de usuario.<br>Su nombre de usuario es: "
 					+ user;
 			
 			if(EmailUtils.sendMailHtml(email, subject, body)){
-				request.setAttribute("msgHeader", "¡Éxito!");
-				request.setAttribute("msgBody", "Se ha envíado un mail con su nombre de usuario.");
+				request.setAttribute("msgHeader", "ï¿½ï¿½xito!");
+				request.setAttribute("msgBody", "Se ha envï¿½ado un mail con su nombre de usuario.");
 				request.setAttribute("msgRedirect", "index.jsp");
 				this.pagDestino = "mensaje.jsp";
 			}
@@ -279,8 +279,8 @@ public class Servlet extends HttpServlet {
 			this.pagDestino = "usuarios/cambiarContrasena.jsp";
 		}
 		else{
-			request.setAttribute("msgHeader", "Link inválido");
-			request.setAttribute("msgBody", "El link que intenta utilizar ha expirado. Si desea reestablecer su contraseña, vuelva a solicitar el link a su correo electrónico.");
+			request.setAttribute("msgHeader", "Link invï¿½lido");
+			request.setAttribute("msgBody", "El link que intenta utilizar ha expirado. Si desea reestablecer su contraseï¿½a, vuelva a solicitar el link a su correo electrï¿½nico.");
 			request.setAttribute("msgRedirect", "index.jsp");
 			this.pagDestino = "mensaje.jsp";
 		}
@@ -298,8 +298,8 @@ public class Servlet extends HttpServlet {
 		
 		error = (Error)mapaSalida.get("error");
 		if(error.getNumError().equals("0")){
-			request.setAttribute("msgHeader", "Contraseña restablecida");
-			request.setAttribute("msgBody", "Su contraseña ha sido restablecida, inicie sesión con sus nuevos datos.");
+			request.setAttribute("msgHeader", "Contraseï¿½a restablecida");
+			request.setAttribute("msgBody", "Su contraseï¿½a ha sido restablecida, inicie sesiï¿½n con sus nuevos datos.");
 			request.setAttribute("msgRedirect", "index.jsp");
 			pagDestino = "mensaje.jsp";
 		}
@@ -659,6 +659,13 @@ if(error == null) error = new Error();
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		pagDestino = "carteras/agregaCartera.jsp";
+	}
+	
+	public void seleccionarEmpresa(HttpServletRequest request, HttpServletResponse response) 
+	{
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		pagDestino = "reclamos/seleccionarEmpresa.jsp";
 	}
 	
 	public void crearTipo(HttpServletRequest request, HttpServletResponse response) 
@@ -1829,7 +1836,7 @@ if(error == null) error = new Error();
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
-		log.info("Página: " + request.getParameter("page"));
+		log.info("Pï¿½gina: " + request.getParameter("page"));
 		log.info("Filas: " + request.getParameter("rows"));
 	
 		mapaSalida = ejbRemoto.buscarParametrosReclamo(mapaEntrada);
