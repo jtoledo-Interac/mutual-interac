@@ -217,7 +217,7 @@ input[type=radio]:checked + label:before {
 
 
 .footer{
-	margin-bottom: 0;
+	float:botoom;
 	background: #ABC237; 
 	width:100%;
 	height:48px;
