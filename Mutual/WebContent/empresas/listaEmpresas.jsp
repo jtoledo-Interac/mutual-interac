@@ -66,6 +66,7 @@
 			onSelectRow : function(rowId, status) 
 			{
 				idFila = rowId;
+				$(this).closest('.ui-dialog-content').dialog('close');
 			},
 			ondblClickRow: function()
 			{

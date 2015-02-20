@@ -6,6 +6,7 @@
 	var idEmpresa;
 	var idFila = 0;
 	var numFilas = 15;
+	var resp = "0";
 	
 	$(function() {
 

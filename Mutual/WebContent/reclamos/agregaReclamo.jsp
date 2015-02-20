@@ -15,13 +15,19 @@
 	    height: 390,
 	    width: 425,
 	    modal: true,
-	    position: 'center'
+	    closeOnEscape: true,
+	    position: 'center',
+	    close: function() {
+			$('#formAgrega #num_adherente').val($('#listadoEmpresas').jqGrid('getCell',idFila,'numAdherente'));
+		}
 	});
 	
 	function seleccionarEmpresa()
-	{
+	{ 
+		var emp = "hola";
 		ajaxCall(getUrlSeleccionarEmpresa(), function(response){
-			$('#seleccionarEmpresa').html(response).dialog('open');
+			emp = $('#seleccionarEmpresa').html(response).dialog('open');
+			alert(emp);
 		});
 	}
 	function getUrlSeleccionarEmpresa()
