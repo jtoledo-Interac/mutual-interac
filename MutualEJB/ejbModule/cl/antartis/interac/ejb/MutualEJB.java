@@ -4386,6 +4386,55 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 		return mapaSalida;
 	}
 	
+	public Map<String, Object> modificarCategoriaLink(Map<String, Object> mapaEntrada) {
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();;
+		CategoriaLink categoriaLink = new CategoriaLink();
+		Error error = new Error();
+
+		try {
+			log.info("Modificar Estado");
+			
+			categoriaLink = (CategoriaLink)mapaEntrada.get("categoriaLink");
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call modificar_categoria_link(?,?,?,?) }");
+			cStmt.setLong(1,categoriaLink.getIdCategoriaLink());
+			cStmt.setString(2, categoriaLink.getDesCategoriaLink());
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+			cStmt.execute();
+			error.setNumError(cStmt.getString(3));
+			error.setMsjError(cStmt.getString(4));
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+
+		log.info("Num Error: "+ error.getNumError());
+		log.info("Msj Error: "+ error.getMsjError());
+		mapaSalida.put("error",error);
+		
+		return mapaSalida;
+	}
+	
 	public Map<String, Object> modificarPerfil(Map<String, Object> mapaEntrada) {
 		CallableStatement cStmt = null;
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();;

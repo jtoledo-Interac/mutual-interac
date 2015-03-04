@@ -1136,6 +1136,26 @@ if(error == null) error = new Error();
 			pagDestino = "contenedor.jsp?accion=motivos";
 		}
 	}
+
+	public void modificarCategoriaLink(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		CategoriaLink categoriaLink= new CategoriaLink();
+		categoriaLink.setIdCategoriaLink(Utils.stringToNum(request.getParameter("idCategoriaLink")));
+		categoriaLink.setDesCategoriaLink(request.getParameter("desCategoriaLink"));
+		mapaEntrada.put("categoriaLink", categoriaLink);
+		mapaSalida = ejbRemoto.modificarCategoriaLink(mapaEntrada);
+		error = (Error)mapaSalida.get("error");
+		if(error == null) error = new Error();
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{
+			pagDestino = "contenedor.jsp?accion=categorias";
+		}
+	}
 	
 	public void modificarPrioridad(HttpServletRequest request, HttpServletResponse response) {
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
