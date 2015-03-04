@@ -749,7 +749,7 @@ public class MutualEJB implements EJBRemoto {
 
 			categoriaLink = (CategoriaLink)mapaEntrada.get("categoriaLink");
 			
-			cStmt = dbConeccion.prepareCall("{ call buscar_perfiles(?,?,?,?) }"); //TODO: esto
+			cStmt = dbConeccion.prepareCall("{ call buscar_links(?,?,?,?) }"); //TODO: esto
 			
 			cStmt.setString(1, categoriaLink.getDesCategoriaLink());
 			cStmt.registerOutParameter(2, Types.OTHER);// cursor$

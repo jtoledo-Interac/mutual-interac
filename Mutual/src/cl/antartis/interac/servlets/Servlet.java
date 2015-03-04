@@ -712,6 +712,15 @@ if(error == null) error = new Error();
 		pagDestino = "tipos/agregaTipo.jsp";
 	}
 	
+	public void crearCategoriaLink(HttpServletRequest request, HttpServletResponse response) 
+	{
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+	
+		pagDestino = "categoria_link/agregaCategoria.jsp";
+	}
+	
 	public void crearMotivo(HttpServletRequest request, HttpServletResponse response) 
 	{
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
@@ -842,6 +851,35 @@ if(error == null) error = new Error();
 		}
 	}
 
+	public void agregarCategoriaLink(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		Tipo tipo = new Tipo();
+		tipo.setDesTipo(request.getParameter("desTipo"));
+
+		log.info("desTipo: " + request.getParameter("desTipo") );
+		
+		mapaEntrada.put("tipo",tipo);
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		mapaSalida = ejbRemoto.agregarTipo(mapaEntrada);
+		
+		log.info("ID Cartera: "+mapaSalida.get("idCartera"));
+		
+		error = (Error)mapaSalida.get("error");
+		if(error == null) error = new Error();
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{
+			pagDestino = "contenedor.jsp?accion=tipos";
+		}
+	}
+	
 	public void agregarMotivo(HttpServletRequest request, HttpServletResponse response) {
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
 		
