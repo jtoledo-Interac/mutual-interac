@@ -34,7 +34,7 @@
 			},
 		   	pager: $('#pieCategorias'),
 		   	pgtext : 'P&aacute;g: {0} de {1}', 
-		   	sortname: 'codCategorias',
+		   	sortname: 'idCategoriaLink',
 		    viewrecords: true,
 		    sortorder: "desc",
 		    caption:"Categorias de links de interés",

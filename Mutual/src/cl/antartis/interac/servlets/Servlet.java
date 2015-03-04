@@ -785,7 +785,7 @@ if(error == null) error = new Error();
 		}
 		else{	
 			request.setAttribute("listaCategoriasLink", mapaSalida.get("listaCategoriasLink"));
-			pagDestino = "/carteras/listaCategoriaXml.jsp";
+			pagDestino = "/categoria_link/listaCategoriaXml.jsp";
 		}
 	}
 
