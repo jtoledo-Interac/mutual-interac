@@ -23,6 +23,7 @@ import org.apache.commons.beanutils.MethodUtils;
 import org.apache.log4j.Logger;
 
 import cl.antartis.interac.beans.Cartera;
+import cl.antartis.interac.beans.CategoriaLink;
 import cl.antartis.interac.beans.Documento;
 import cl.antartis.interac.beans.Empresa;
 import cl.antartis.interac.beans.Estado;
@@ -653,6 +654,13 @@ if(error == null) error = new Error();
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		pagDestino = "contenedor.jsp";
 	}
+
+	public void categorias(HttpServletRequest request, HttpServletResponse response) 
+	{
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		pagDestino = "contenedor.jsp";
+	}
 	
 	public void crearCartera(HttpServletRequest request, HttpServletResponse response) 
 	{
@@ -744,6 +752,31 @@ if(error == null) error = new Error();
 		else{	
 			request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
 			pagDestino = "/carteras/listaCarterasXml.jsp";
+		}
+	}
+	
+	public void buscarCategorias(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+	
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		CategoriaLink categoriaLink = new CategoriaLink();
+		categoriaLink.setDesCategoriaLink("desCategoriaLink");
+		
+		mapaEntrada.put("categoriaLink",categoriaLink);
+		
+		mapaSalida = ejbRemoto.buscarCarteras(mapaEntrada);
+		error = (Error)mapaSalida.get("error");
+		if(error == null) error = new Error();
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{	
+			request.setAttribute("listaCategoriasLink", mapaSalida.get("listaCategoriasLink"));
+			pagDestino = "/carteras/listaCategoriaXml.jsp";
 		}
 	}
 

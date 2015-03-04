@@ -7,7 +7,7 @@ public class CategoriaLink implements Serializable {
 	private static final long serialVersionUID = 4699641704357902050L;
 
 	private String idCategoriaLink;
-	private String desCategoriaoLink;
+	private String desCategoriaLink;
 	
 	public String getIdCategoriaLink() {
 		return idCategoriaLink;
@@ -15,12 +15,11 @@ public class CategoriaLink implements Serializable {
 	public void setIdCategoriaLink(String idCategoriaLink) {
 		this.idCategoriaLink = idCategoriaLink;
 	}
-	public String getDesCategoriaoLink() {
-		return desCategoriaoLink;
+	public String getDesCategoriaLink() {
+		return desCategoriaLink;
 	}
-	public void setDesCategoriaoLink(String desCategoriaoLink) {
-		this.desCategoriaoLink = desCategoriaoLink;
+	public void setDesCategoriaLink(String desCategoriaLink) {
+		this.desCategoriaLink = desCategoriaLink;
 	}
-	
 	
 }
