@@ -149,4 +149,6 @@ public interface EJBRemoto {
 	public Map<String, Object> eliminarCategoriaLink(Map<String, Object> mapaEntrada);
 
 	public Map<String, Object> cargarCategoriaLink(Map<String, Object> mapaEntrada); 
+
+	public Map<String, Object> agregarCategoriaLink(Map<String, Object> mapaEntrada);
 }

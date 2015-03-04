@@ -2212,6 +2212,60 @@ public class MutualEJB implements EJBRemoto {
 		return mapaSalida;
 	}
 
+	public Map<String, Object> agregarCategoriaLink(Map<String, Object> mapaEntrada) {
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		CategoriaLink categoriaLink = null;
+		String numError = "0";
+		String msjError = "";
+		long idCategoriaLink = 0;
+		Error error = new Error();
+		
+		try {
+			log.info("Agregar categoria link");
+			
+			categoriaLink = (CategoriaLink)mapaEntrada.get("categoriaLink");
+			mapaSalida = new HashMap<String, Object>();
+			
+			dbConeccion = interacDS.getConnection();
+			cStmt = dbConeccion.prepareCall("{ call agregar_tipo_link(?,?,?) }");
+			cStmt.setString(1, categoriaLink.getDesCategoriaLink());
+			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
+			cStmt.execute();
+
+			error.setNumError(cStmt.getString(2));
+			error.setMsjError(cStmt.getString(3));
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+
+		log.info("Num Error: "+ error.getNumError());
+		log.info("Msj Error: "+ error.getMsjError());
+
+		mapaSalida.put("categoriaLink", categoriaLink);
+		mapaSalida.put("error", error);
+		
+		return mapaSalida;
+	}
+	
 	public Map<String, Object> cargarDocumento(Map<String, Object> mapaEntrada) {
 		CallableStatement cStmt = null;
 		Map<String, Object> mapaSalida = null;

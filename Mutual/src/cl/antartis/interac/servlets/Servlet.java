@@ -851,24 +851,24 @@ if(error == null) error = new Error();
 		}
 	}
 
-	public void agregarCategoriaLink(HttpServletRequest request, HttpServletResponse response) {
+	public void agregarCategoria(HttpServletRequest request, HttpServletResponse response) {
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
 		
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		Tipo tipo = new Tipo();
-		tipo.setDesTipo(request.getParameter("desTipo"));
-
-		log.info("desTipo: " + request.getParameter("desTipo") );
+		CategoriaLink categoriaLink = new CategoriaLink();
+		categoriaLink.setDesCategoriaLink(request.getParameter("desCategoriaLink"));
 		
-		mapaEntrada.put("tipo",tipo);
+		log.info("desCategoriaLink: " + request.getParameter("desCategoriaLink") );
+		
+		mapaEntrada.put("categoriaLink", categoriaLink);
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
-		mapaSalida = ejbRemoto.agregarTipo(mapaEntrada);
+		mapaSalida = ejbRemoto.agregarCategoriaLink(mapaEntrada);
 		
-		log.info("ID Cartera: "+mapaSalida.get("idCartera"));
+		log.info("ID Categoria Link: "+mapaSalida.get("idCategoriaLink"));
 		
 		error = (Error)mapaSalida.get("error");
 		if(error == null) error = new Error();
@@ -876,7 +876,7 @@ if(error == null) error = new Error();
 			pagDestino = "error.jsp";
 		}
 		else{
-			pagDestino = "contenedor.jsp?accion=tipos";
+			pagDestino = "contenedor.jsp?accion=categorias";
 		}
 	}
 	
