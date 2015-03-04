@@ -141,6 +141,7 @@ function getUrlCargarUsuario(id)
 				</ul>
 			</li> -->
 			<li><a href="Servlet?accion=reclamos">Reclamos</a></li>
+			<li><a href="Servlet?accion=links">Links de interés</a></li>
 	        <!-- <li><a href="Servlet?accion=graficar">Graficos Prueba</a></li> -->
 	        <%
 				java.util.ArrayList<String> perfiles = (java.util.ArrayList<String>)session.getAttribute("perfiles");
@@ -157,6 +158,7 @@ function getUrlCargarUsuario(id)
 				menuAdmin += "	<li><a href='Servlet?accion=motivos'>Motivos Reclamo</a></li>";
 				menuAdmin += "	<li><a href='Servlet?accion=prioridades'>Prioridades</a></li>";
 				menuAdmin += "	<li><a href='Servlet?accion=tipos'>Tipos de Reclamo</a></li>";
+				menuAdmin += "	<li><a href='Servlet?accion=categorias'>Cateegoría Link de interés </a></li>";
 				menuAdmin += "</ul>";
 				menuAdmin += "</li>";
 				
@@ -326,7 +328,17 @@ function getUrlCargarUsuario(id)
 					<%-- MANUAL --%>
 					<c:when test="${param.accion eq 'manual'}">
 						<%@ include file="manual/manual.jsp" %>
-					</c:when>					
+					</c:when>		
+					
+					<%-- CATEGORIA LINNK DE INTERÉS --%>
+					<c:when test="${param.accion eq 'categorias'}">
+						<%@ include file="categoria_link/listaCategoria.jsp" %>
+					</c:when>
+					
+					<%-- CATEGORIA LINNK DE INTERÉS --%>
+					<c:when test="${param.accion eq 'links'}">
+						<%@ include file="link/listaLinks.jsp" %>
+					</c:when>								
 					<c:otherwise></c:otherwise>
 				</c:choose>
 			</div>

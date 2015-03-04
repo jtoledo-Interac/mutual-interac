@@ -3,10 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <filas>
-    <c:forEach items="${requestScope.listaCategoriasLink}" var="categoriaLink">
+    <c:forEach items="${requestScope.listaTipos}" var="tipo">
         <fila>
-        	<idTipo>${categoriaLink.idCategoriaLink}</idTipo>
-        	<desTipo>${categoriaLink.desCategoriaLink}</desTipo>
+        	<idTipo>${tipo.idTipo}</idTipo>
+        	<desTipo>${tipo.desTipo}</desTipo>
         </fila>
      </c:forEach>
 </filas>
