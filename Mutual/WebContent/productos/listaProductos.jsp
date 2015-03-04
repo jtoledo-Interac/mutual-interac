@@ -15,7 +15,7 @@
 		{
 		   	url: getUrlBuscarProductos(),
 			datatype: "xml",
-			colNames : ['', 'Nombre Producto',''],
+			colNames : ['', 'Tipo Documento',''],
 			colModel : [			            
 						{name : 'idProducto', index:'idProducto', hidden : true}, 
 						{name : 'desProducto', index:'desProducto', width : 80, search : true, resizable : false, sortable : true},				
@@ -36,7 +36,7 @@
 		   	sortname: 'idProducto',
 		    viewrecords: true,
 		    sortorder: "desc",
-		    caption:"Productos",
+		    caption:"Tipos de Documentos",
 		    hoverrows : true,
 		    multiselect : false,
 			onPaging: function(){
@@ -153,7 +153,7 @@
 	
 	function eliminarProducto(idProducto)
 	{  
-   		jConfirm('¿ Confirma eliminar el Producto ?', 'Confirmación', function(res){
+   		jConfirm('¿ Confirma eliminar el Tipo de Documento ?', 'Confirmación', function(res){
    			if (res == true){
   				ajaxCall(getUrlEliminarProducto(idProducto), function(){
   					jAlert("El Producto ha sido eliminado exitosamente");
@@ -218,7 +218,7 @@
 		<form id="formProducto" action="Servlet" method="post">
 			<input type="button" 	id="btnBuscar" 		name="btnBuscar" 	value="Buscar" class="boton"/>
 			<input type="button" 	id="btnAgregar" 	name="btnAgregar" 	value="Agregar" class="boton"/>
-			<input type="text" 		id="nomProducto" 	name="nomProducto"	placeholder="Nombre Producto"class="text">
+			<input type="text" 		id="nomProducto" 	name="nomProducto"	placeholder="Tipo Documento"class="text">
 		</form>
 	</div> 
 

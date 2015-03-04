@@ -1209,6 +1209,132 @@ if(error == null) error = new Error();
 		else
 			pagDestino = "/medios/listaMediosXml.jsp";
 	}
+
+	public void invalideces(HttpServletRequest request, HttpServletResponse response) 
+	{
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		mapaSalida = ejbRemoto.buscarParametros(mapaEntrada);
+		error = (Error)mapaSalida.get("error");
+		if(error == null) error = new Error();
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{
+			request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
+			request.setAttribute("listaProductos", mapaSalida.get("listaProductos"));
+			request.setAttribute("listaAreas", mapaSalida.get("listaAreas"));
+			request.setAttribute("title", "Invalideces");
+	
+			pagDestino = "contenedor.jsp";
+		}
+	}
+	
+	public void sami(HttpServletRequest request, HttpServletResponse response) 
+	{
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		mapaSalida = ejbRemoto.buscarParametros(mapaEntrada);
+		error = (Error)mapaSalida.get("error");
+		if(error == null) error = new Error();
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{
+			request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
+			request.setAttribute("listaProductos", mapaSalida.get("listaProductos"));
+			request.setAttribute("listaAreas", mapaSalida.get("listaAreas"));
+			request.setAttribute("title", "SAMI");
+	
+			pagDestino = "contenedor.jsp";
+		}
+	}
+	
+	public void fatales(HttpServletRequest request, HttpServletResponse response) 
+	{
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		mapaSalida = ejbRemoto.buscarParametros(mapaEntrada);
+		error = (Error)mapaSalida.get("error");
+		if(error == null) error = new Error();
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{
+			request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
+			request.setAttribute("listaProductos", mapaSalida.get("listaProductos"));
+			request.setAttribute("listaAreas", mapaSalida.get("listaAreas"));
+			request.setAttribute("title", "Fatales");
+	
+			pagDestino = "contenedor.jsp";
+		}
+	}
+	
+	public void prodCartera(HttpServletRequest request, HttpServletResponse response) 
+	{
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		mapaSalida = ejbRemoto.buscarParametros(mapaEntrada);
+		error = (Error)mapaSalida.get("error");
+		if(error == null) error = new Error();
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{
+			request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
+			request.setAttribute("listaProductos", mapaSalida.get("listaProductos"));
+			request.setAttribute("listaAreas", mapaSalida.get("listaAreas"));
+			request.setAttribute("title", "Productos Cartera");
+	
+			pagDestino = "contenedor.jsp";
+		}
+	}
+	
+	public void planesTrabajo(HttpServletRequest request, HttpServletResponse response) 
+	{
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		mapaSalida = ejbRemoto.buscarParametros(mapaEntrada);
+		error = (Error)mapaSalida.get("error");
+		if(error == null) error = new Error();
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{
+			request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
+			request.setAttribute("listaProductos", mapaSalida.get("listaProductos"));
+			request.setAttribute("listaAreas", mapaSalida.get("listaAreas"));
+			request.setAttribute("title", "Planes de Trabajo");
+	
+			pagDestino = "contenedor.jsp";
+		}
+	}
+	
 	
 	/**********DOCUMENTOS****************************************************************************/	
 	public void documentos(HttpServletRequest request, HttpServletResponse response) 
@@ -1230,6 +1356,7 @@ if(error == null) error = new Error();
 			request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
 			request.setAttribute("listaProductos", mapaSalida.get("listaProductos"));
 			request.setAttribute("listaAreas", mapaSalida.get("listaAreas"));
+			request.setAttribute("title", "Documentos de Trabajo");
 	
 			pagDestino = "contenedor.jsp";
 		}

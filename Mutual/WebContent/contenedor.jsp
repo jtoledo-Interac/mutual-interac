@@ -97,16 +97,51 @@ function getUrlCargarUsuario(id)
 	<div id="menuwrapper">	
 	    <ul>
 	        <li><a href="Servlet?accion=organigrama">Organigrama</a></li>
+	        <li><a href="#">Carteras</a>
+	        	<ul>
+					<li><a href="#">Transporte P&uacute;blico</a>
+						<ul>
+							<li><a href="Servlet?accion=prodCartera">Productos</a></li>
+							<li><a href="Servlet?accion=planesTrabajo">Planes de Trabajo</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Telecomunicaciones y Energ&iacute;a</a>
+						<ul>
+							<li><a href="Servlet?accion=prodCartera">Productos</a></li>
+							<li><a href="Servlet?accion=planesTrabajo">Planes de Trabajo</a></li>
+						</ul>
+					</li>
+					<li><a href="#"> Administraci&oacute;n y Transporte de Carga</a>
+						<ul>
+							<li><a href="Servlet?accion=prodCartera">Productos</a></li>
+							<li><a href="Servlet?accion=planesTrabajo">Planes de Trabajo</a></li>
+						</ul>
+					</li>
+					<li><a href="#"> Transporte de Personas y Bienes</a>
+						<ul>
+							<li><a href="Servlet?accion=prodCartera">Productos</a></li>
+							<li><a href="Servlet?accion=planesTrabajo">Planes de Trabajo</a></li>
+						</ul>
+					</li>
+				</ul>
+	        </li>
+	       	<li><a href="#">Gestion Interna</a>
+	        	<ul>
+					<li><a href="Servlet?accion=invalideces">Invalideces</a></li>
+					<li><a href="Servlet?accion=sami">SAMI</a></li>
+					<li><a href="Servlet?accion=fatales"> Fatales</a></li>
+				</ul>
+	        </li>
 	        <li><a href="Servlet?accion=documentos">Documentos</a></li>
 	        <li><a href="Servlet?accion=empresas">Empresas</a></li>
-			<li><a href="#">Reportes</a>
+			<!-- <li><a href="#">Reportes</a>
 				<ul>
 					<li><a href="Servlet?accion=repAccidentados">Accidentados</a></li>
-						<li><a href="Servlet?accion=repDias">D&iacute;as Perdidos</a></li>
+					<li><a href="Servlet?accion=repDias">D&iacute;as Perdidos</a></li>
 				</ul>
-			</li>
+			</li> -->
 			<li><a href="Servlet?accion=reclamos">Reclamos</a></li>
-	        <li><a href="Servlet?accion=graficar">Graficos Prueba</a></li>
+	        <!-- <li><a href="Servlet?accion=graficar">Graficos Prueba</a></li> -->
 	        <%
 				java.util.ArrayList<String> perfiles = (java.util.ArrayList<String>)session.getAttribute("perfiles");
 				
@@ -114,14 +149,14 @@ function getUrlCargarUsuario(id)
 				menuAdmin += "<li><a href='#'>Administraci&oacute;n</a>";
 				menuAdmin += "<ul>";
 				menuAdmin += "	<li><a href='Servlet?accion=carteras'>Tipos de Cartera</a></li>";
-				menuAdmin += "	<li><a href='Servlet?accion=productos'>Productos</a></li>";
+				menuAdmin += "	<li><a href='Servlet?accion=productos'>Tipos de Documento</a></li>";
 				menuAdmin += "	<li><a href='Servlet?accion=usuarios'>Usuarios</a></li>";
 				menuAdmin += "	<li><a href='Servlet?accion=perfiles'>Perfiles</a></li>";
 				menuAdmin += "	<li><a href='Servlet?accion=estados'>Estados Reclamo</a></li>";
 				menuAdmin += "	<li><a href='Servlet?accion=medios'>Medios</a></li>";
 				menuAdmin += "	<li><a href='Servlet?accion=motivos'>Motivos Reclamo</a></li>";
 				menuAdmin += "	<li><a href='Servlet?accion=prioridades'>Prioridades</a></li>";
-				menuAdmin += "	<li><a href='Servlet?accion=tipos'>Tipos</a></li>";
+				menuAdmin += "	<li><a href='Servlet?accion=tipos'>Tipos de Reclamo</a></li>";
 				menuAdmin += "</ul>";
 				menuAdmin += "</li>";
 				
@@ -153,6 +188,31 @@ function getUrlCargarUsuario(id)
 					
 					<%-- DOCUMENTOS --%>
 					<c:when test="${param.accion eq 'documentos'}">
+						<%@ include file="documentos/listaDocumentos.jsp" %>
+					</c:when>
+					
+					<%-- INVALIDECES --%>
+					<c:when test="${param.accion eq 'invalideces'}">
+						<%@ include file="documentos/listaDocumentos.jsp" %>
+					</c:when>
+					
+					<%-- SAMI --%>
+					<c:when test="${param.accion eq 'sami'}">
+						<%@ include file="documentos/listaDocumentos.jsp" %>
+					</c:when>
+					
+					<%-- FATALES --%>
+					<c:when test="${param.accion eq 'fatales'}">
+						<%@ include file="documentos/listaDocumentos.jsp" %>
+					</c:when>
+					
+					<%-- PRODUCTOS CARTERA --%>
+					<c:when test="${param.accion eq 'prodCartera'}">
+						<%@ include file="documentos/listaDocumentos.jsp" %>
+					</c:when>
+					
+					<%-- PLANES TRABAJO --%>
+					<c:when test="${param.accion eq 'planesTrabajo'}">
 						<%@ include file="documentos/listaDocumentos.jsp" %>
 					</c:when>
 					

@@ -12,5 +12,5 @@
 <form id="formAgrega" action="Servlet" method="post">
 	<input type="hidden"	class="input"	id="accion" 		name="accion" 		value="agregarTipo">
 	<input type="submit" class="submit" style="display:none;">
-	<input type="text" 		id="desTipo" 	name="desTipo"		placeholder="Nombre Tipo" required="required">
+	<input type="text" 		id="desTipo" 	name="desTipo"		placeholder="Nombre Tipo Reclamo" required="required">
 </form>

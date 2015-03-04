@@ -79,9 +79,9 @@
 			</select></td>
 		</tr>
 		<tr>
-			<td> Producto </td><td> : </td>
+			<td> Tipo Documento </td><td> : </td>
 			<td><select id="idProducto" name="idProducto">
-					<option value="" selected>Seleccione un producto</option>
+					<option value="" selected>Seleccione un tipo documento</option>
 					<c:forEach items="${requestScope.listaProductos}" var="producto">
 						<option value="${producto.idProducto}"
 							<c:if test='${documento.idProducto == producto.idProducto}'> selected</c:if>>${producto.desProducto}</option>

@@ -37,7 +37,7 @@
 		   	sortname: 'codTipos',
 		    viewrecords: true,
 		    sortorder: "desc",
-		    caption:"Tipos",
+		    caption:"Tipos de Reclamo",
 		    hoverrows : true,
 		    multiselect : false,
 			onPaging: function(){

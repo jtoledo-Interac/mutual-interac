@@ -10,7 +10,7 @@
 //******************************************************************************
 
 
-var anchoGrilla = 900;
+var anchoGrilla = 1024;
 var altoGrilla = 350;
 var numeroDeFilas = 15;
 

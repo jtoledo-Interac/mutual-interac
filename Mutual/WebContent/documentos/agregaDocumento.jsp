@@ -48,9 +48,9 @@
 	</select> </td>
 </tr>
 <tr>
-	<td> Producto </td><td> : </td>
+	<td> Tipo Documento </td><td> : </td>
 	<td><select id="idProducto" required name="idProducto">
-		<option value="0" disabled selected>Seleccione un producto</option>
+		<option value="0" disabled selected>Seleccione un tipo documento</option>
 		<c:forEach items="${requestScope.listaProductos}" var="producto">
 			<option value="${producto.idProducto}" >${producto.desProducto}</option>
 		</c:forEach>

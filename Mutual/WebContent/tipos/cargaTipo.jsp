@@ -11,6 +11,6 @@ $(function() {
 <form id="formEdita" action="Servlet" method="post" onSubmit="return validar_form(this)">
 	<input type="submit" class="submit" style="display:none;">
 	<input type="hidden"	id="accion" 		name="accion" 		value="modificarTipo" >
-	<input type="hidden" id="idTipo" name="idTipo" value="${tipo.idTipo}">
-	<input type="text" 		id="desTipo" 	name="desTipo"	placeholder="Nombre Tipo" value="${tipo.desTipo}">
+	<input type="hidden" 	id="idTipo" 		name="idTipo" 	value="${tipo.idTipo}">
+	<input type="text" 		id="desTipo" 		name="desTipo"	placeholder="Nombre Tipo Reclamo" value="${tipo.desTipo}">
 </form>

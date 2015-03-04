@@ -14,7 +14,7 @@
 		{
 		   	url: getUrlBuscarDocumentos(),
 			datatype: "xml",			
-			colNames : ['', 'Nº Adherente','Nº Folio','Nombre Documento','Cartera', 'Tipo Producto', 'Area', 'Fecha Creación',''],
+			colNames : ['', 'Nº Adherente','Nº Folio','Nombre Documento','Cartera', 'Tipo Documento', 'Area', 'Fecha Creación',''],
 			colModel : [
 						{name : 'idDocumento', index:'idDocumento', hidden : true},
 						{name : 'numAdherente', index:'numAdherente', width : 80, search : true, resizable : false, sortable : true},
@@ -42,7 +42,7 @@
 		   	loadonce:true,
 		    viewrecords: true,
 		    sortorder: "desc",
-		    caption:"Documentos",
+		    caption:"${title}",
 		    hoverrows : true,
 		    multiselect : false,
 			onPaging: function(){
@@ -238,7 +238,7 @@
 			</select> 
 			
 			<select id="idProducto" name="idProducto" class="select">
-				<option value="" selected>Seleccione un producto</option>
+				<option value="" selected>Seleccione un tipo documento</option>
 				<c:forEach items="${requestScope.listaProductos}" var="producto">
 					<option value="${producto.idProducto}" >${producto.desProducto}</option>
 				</c:forEach>
