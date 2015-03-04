@@ -1,4 +1,4 @@
-create or replace function public.agregar_link
+create or replace function public.agregar_tipo_link
 (
 	in xdes_link varchar,
     out numerror varchar, 

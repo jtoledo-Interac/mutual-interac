@@ -1,4 +1,4 @@
-create or replace function public.buscar_links
+create or replace function public.buscar_tipo_links
 (
     in xnomlink$ varchar, 
     out links refcursor, 
