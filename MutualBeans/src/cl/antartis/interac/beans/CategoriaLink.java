@@ -6,13 +6,13 @@ public class CategoriaLink implements Serializable {
 
 	private static final long serialVersionUID = 4699641704357902050L;
 
-	private String idCategoriaLink;
+	private Long idCategoriaLink;
 	private String desCategoriaLink;
 	
-	public String getIdCategoriaLink() {
+	public Long getIdCategoriaLink() {
 		return idCategoriaLink;
 	}
-	public void setIdCategoriaLink(String idCategoriaLink) {
+	public void setIdCategoriaLink(Long idCategoriaLink) {
 		this.idCategoriaLink = idCategoriaLink;
 	}
 	public String getDesCategoriaLink() {

@@ -17,6 +17,7 @@ import org.apache.log4j.Logger;
 
 import cl.antartis.interac.beans.Area;
 import cl.antartis.interac.beans.Cartera;
+import cl.antartis.interac.beans.CategoriaLink;
 import cl.antartis.interac.beans.Documento;
 import cl.antartis.interac.beans.Empresa;
 import cl.antartis.interac.beans.Error;
@@ -727,6 +728,75 @@ public class MutualEJB implements EJBRemoto {
 		log.info("Msj Error: "+ error.getMsjError());
 		
 		mapaSalida.put("listaPerfiles",listaPerfiles);
+		mapaSalida.put("error", error);
+
+		return mapaSalida;
+	}
+	
+	public Map<String, Object> buscarCategoriasLink(Map<String, Object> mapaEntrada) {
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		ArrayList<CategoriaLink> listaCategoriasLink = null;
+		CategoriaLink categoriaLink = null;
+		Error error = new Error();
+
+		try {
+			log.info("Buscar Categorías Link");
+			
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			categoriaLink = (CategoriaLink)mapaEntrada.get("categoriaLink");
+			
+			cStmt = dbConeccion.prepareCall("{ call buscar_perfiles(?,?,?,?) }"); //TODO: esto
+			
+			cStmt.setString(1, categoriaLink.getDesCategoriaLink());
+			cStmt.registerOutParameter(2, Types.OTHER);// cursor$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+
+			cStmt.execute();
+
+			ResultSet rs = (ResultSet) cStmt.getObject(2);
+			error.setNumError(cStmt.getString(3));
+			error.setMsjError(cStmt.getString(4));
+		
+			listaCategoriasLink = new ArrayList<CategoriaLink>();
+
+			if(rs !=null){
+				while (rs.next()) {
+					categoriaLink = new CategoriaLink();
+					categoriaLink.setIdCategoriaLink(rs.getLong("id_tipo_link"));
+					categoriaLink.setDesCategoriaLink(rs.getString("des_tipo_link"));
+					listaCategoriasLink.add(categoriaLink);
+				}
+				rs.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+
+		log.info("Num Error: "+ error.getNumError());
+		log.info("Msj Error: "+ error.getMsjError());
+		
+		mapaSalida.put("listaCategoriasLink", listaCategoriasLink);
 		mapaSalida.put("error", error);
 
 		return mapaSalida;

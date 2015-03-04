@@ -6,25 +6,41 @@ public class Link implements Serializable {
 
 	private static final long serialVersionUID = -6446179858112814345L;
 
-	private String idLinks;
-	private String url;
-	private String des;
-	public String getIdLinks() {
-		return idLinks;
+	private String idLink;
+	private String urlLink;
+	private String desLink;
+	private String idCategoriaLink;
+	private String desCategoriaLink;
+	public String getIdLink() {
+		return idLink;
 	}
-	public void setIdLinks(String idLinks) {
-		this.idLinks = idLinks;
+	public void setIdLink(String idLink) {
+		this.idLink = idLink;
 	}
-	public String getUrl() {
-		return url;
+	public String getUrlLink() {
+		return urlLink;
 	}
-	public void setUrl(String url) {
-		this.url = url;
+	public void setUrlLink(String urlLink) {
+		this.urlLink = urlLink;
 	}
-	public String getDes() {
-		return des;
+	public String getDesLink() {
+		return desLink;
 	}
-	public void setDes(String des) {
-		this.des = des;
+	public void setDesLink(String desLink) {
+		this.desLink = desLink;
 	}
+	public String getIdCategoriaLink() {
+		return idCategoriaLink;
+	}
+	public void setIdCategoriaLink(String idCategoriaLink) {
+		this.idCategoriaLink = idCategoriaLink;
+	}
+	public String getDesCategoriaLink() {
+		return desCategoriaLink;
+	}
+	public void setDesCategoriaLink(String desCategoriaLink) {
+		this.desCategoriaLink = desCategoriaLink;
+	}
+	
+	
 }

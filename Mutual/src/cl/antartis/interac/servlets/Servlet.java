@@ -768,7 +768,7 @@ if(error == null) error = new Error();
 		
 		mapaEntrada.put("categoriaLink",categoriaLink);
 		
-		mapaSalida = ejbRemoto.buscarCarteras(mapaEntrada);
+		mapaSalida = ejbRemoto.buscarCategoriasLink(mapaEntrada);
 		error = (Error)mapaSalida.get("error");
 		if(error == null) error = new Error();
 		if(!error.getNumError().equals("0")){
