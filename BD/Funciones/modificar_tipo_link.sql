@@ -1,7 +1,7 @@
-create or replace function public.modificar_medio
+create or replace function public.modificar_tipo_link
 (
-    in xid_medio numeric,
-    in xmedio varchar,
+    in xid_tipo_link numeric,
+    in xdes_tipo_link varchar,
     out numerror varchar, 
     out msjerror varchar
 ) returns record as
@@ -13,11 +13,11 @@ $body$
         msjerror := '';
 
         update 
-            medios_respuesta
+           tipo_link
         set 
-            des_medio_respuesta = xmedio
+            des_tipo_link = xdes_tipo_link
         where
-            id_medio_respuesta = xid_medio;
+            id_tipo_link = xid_tipo_link;
 
         exception
             when others then
