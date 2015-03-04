@@ -773,7 +773,7 @@ if(error == null) error = new Error();
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
 		CategoriaLink categoriaLink = new CategoriaLink();
-		categoriaLink.setDesCategoriaLink("desCategoriaLink");
+		categoriaLink.setDesCategoriaLink(request.getParameter("desCategoriaLink"));
 		
 		mapaEntrada.put("categoriaLink",categoriaLink);
 		
