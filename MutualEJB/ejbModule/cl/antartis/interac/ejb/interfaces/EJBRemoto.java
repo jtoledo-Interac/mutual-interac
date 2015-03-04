@@ -145,4 +145,8 @@ public interface EJBRemoto {
 	public Map<String, Object> modificarPerfil(Map<String, Object> mapaEntrada);
 
 	public Map<String, Object> buscarCategoriasLink(Map<String, Object> mapaEntrada);
+
+	public Map<String, Object> eliminarCategoriaLink(Map<String, Object> mapaEntrada);
+
+	public Map<String, Object> cargarCategoriaLink(Map<String, Object> mapaEntrada); 
 }

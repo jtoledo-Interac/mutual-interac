@@ -712,7 +712,7 @@ if(error == null) error = new Error();
 		pagDestino = "tipos/agregaTipo.jsp";
 	}
 	
-	public void crearCategoriaLink(HttpServletRequest request, HttpServletResponse response) 
+	public void crearCategoria(HttpServletRequest request, HttpServletResponse response) 
 	{
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
 		
@@ -957,6 +957,31 @@ if(error == null) error = new Error();
 		else{
 			request.setAttribute("cartera", (Cartera)mapaSalida.get("cartera"));
 			pagDestino = "/carteras/cargaCartera.jsp";
+		}
+	}
+	
+	public void cargarCategoriaLink(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		Long idCategoriaLink = Utils.stringToNum(request.getParameter("idCategoriaLink"));
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+
+		log.info("idCartera: "+idCategoriaLink);
+		
+		mapaEntrada.put("idCategoriaLink", idCategoriaLink);
+		
+		mapaSalida = ejbRemoto.cargarCategoriaLink(mapaEntrada);
+		error = (Error)mapaSalida.get("error");
+		if(error == null) error = new Error();
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{
+			request.setAttribute("categoriaLink", (CategoriaLink)mapaSalida.get("categoriaLink"));
+			pagDestino = "/categoria_link/cargaCategoria.jsp";
 		}
 	}
 	
@@ -1227,6 +1252,28 @@ if(error == null) error = new Error();
 		else{
 			request.setAttribute("prioridad", (Prioridad)mapaSalida.get("prioridad"));
 			pagDestino = "prioridades/listaPrioridadesXml.jsp";
+		}
+	}
+	
+	public void eliminarCategoriaLink(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		Long idCategoriaLink = Utils.stringToNum(request.getParameter("idCategoriaLink"));
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		log.info("idCategoriaLInk: " + idCategoriaLink);
+		
+		mapaEntrada.put("idCategoriaLink", idCategoriaLink);
+		mapaSalida = ejbRemoto.eliminarCategoriaLink(mapaEntrada);
+		error = (Error)mapaSalida.get("error");
+		if(error == null) error = new Error();
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{
+			request.setAttribute("categoriaLink", (CategoriaLink)mapaSalida.get("categoriaLink"));
+			pagDestino = "categoria_link/listaCategoriaXml.jsp";
 		}
 	}
 	
