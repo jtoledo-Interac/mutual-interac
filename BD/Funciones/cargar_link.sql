@@ -17,7 +17,8 @@ begin
             select
                 id_link,
                 url_link,
-                des_link               
+                des_link,
+                id_tipo_link               
             from 
                 link       
                 where

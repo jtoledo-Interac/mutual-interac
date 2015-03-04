@@ -18,13 +18,15 @@ $body$
         select
             id_link,     
             url_link,
+            des_link,
             r.id_tipo_link as id_tipo_link,
-            m.des_tipo_link as des_tipo_link,
-            des_link
+            m.des_tipo_link as des_tipo_link
+            
         from 
             link r
-            inner join tipo_link as t
-                on r.id_tipo_link = t.id_tipo_link
+            inner join tipo_link as m
+                on r.id_tipo_link = m.id_tipo_link
+
         where
               (xid_tipo_link =      0 or r.id_tipo = xid_tipo_link)          
         order by
