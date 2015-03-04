@@ -1,6 +1,6 @@
 create or replace function public.agregar_tipo_link
 (
-	in xdes_link varchar,
+	in xdes_tipo_link varchar,
     out numerror varchar, 
     out msjerror varchar
 ) returns record as

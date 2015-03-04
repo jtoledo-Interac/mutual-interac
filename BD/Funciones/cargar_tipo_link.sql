@@ -15,10 +15,10 @@ begin
         open tipo_links for
 
             select
-                id tipo_link,
-                des tipo_link                
+                id_tipo_link,
+                des_tipo_link                
             from 
-                tipo_links_respuesta             
+                tipo_link
                 where
                     id_tipo_link = xid_tipo_link; 
 
