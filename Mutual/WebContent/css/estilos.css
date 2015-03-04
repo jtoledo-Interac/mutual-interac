@@ -83,7 +83,7 @@ input:focus {
 	width: 2084px;
 	height: 2266px;
 	margin-left: -531px;
-	margin-top: -265px;
+	margin-right: -265px;
 	position: absolute;
 }
 
@@ -730,6 +730,12 @@ input[type=radio]:checked + label:before {
     background-color: #ABC237;	
 }
 
+.manual{
+	width: 800px;
+	margin-top: 10px;
+	margin-left: auto;
+	margin-right: auto;
+}
 
 .reportes{
 	width: 900px;

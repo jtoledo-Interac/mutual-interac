@@ -162,7 +162,19 @@ function getUrlCargarUsuario(id)
 				
 				if(perfiles.contains("admin"))out.print(menuAdmin);
 			%>
+			<br/>
+			<li><a href="#">Vídeos tutoriales</a>
+				<ul>
+					<li><a href="Servlet?accion=ayuda&v=1"> Documentos </a></li>
+					<li><a href="Servlet?accion=ayuda&v=2"> Empresas </a></li>
+					<li><a href="Servlet?accion=ayuda&v=3"> Reclamo </a></li>
+					<li><a href="Servlet?accion=ayuda&v=4"> Usuario</a></li>
+					<li><a href="Servlet?accion=ayuda&v=5"> Módulos de Administración</a></li>
+				</ul>
+			</li>
+			<li><a href="Servlet?accion=manual">Descargar Manual</a></li>
 	    </ul>
+	    
 	</div>
 
 	<div class="principal">
@@ -305,6 +317,16 @@ function getUrlCargarUsuario(id)
 					<c:when test="${param.accion eq 'modificarReclamo'}">
 						<%@ include file="reclamos/listaReclamos.jsp" %>
 					</c:when>
+					
+					<%-- AYUDA --%>
+					<c:when test="${param.accion eq 'ayuda'}">
+						<%@ include file="video/showVideo.jsp" %>
+					</c:when>
+					
+					<%-- MANUAL --%>
+					<c:when test="${param.accion eq 'manual'}">
+						<%@ include file="manual/manual.jsp" %>
+					</c:when>					
 					<c:otherwise></c:otherwise>
 				</c:choose>
 			</div>

@@ -11,10 +11,8 @@
 	
 	function validarRut() {
 		var numero = document.formAgrega.sRut.value;
-		alert(numero);
 		var dv = document.formAgrega.sDv.value;
 		var dv2=0;
-		alert(nuevo_numero);
 		console.log(nuevo_numero);
 		for(i=0,j=2,suma=0; i < nuevo_numero.length; i++, ((j==7) ? j=2 : j++)) {
 			suma += (parseInt(nuevo_numero.charAt(i)) * j);	
@@ -27,7 +25,6 @@
 	
 	function getDV(numero) {
 		nuevo_numero = numero.toString().reverse();
-		alert(nuevo_numero);
 		console.log(nuevo_numero);
 		for(i=0,j=2,suma=0; i < nuevo_numero.length; i++, ((j==7) ? j=2 : j++)) {
 			suma += (parseInt(nuevo_numero.charAt(i)) * j);	

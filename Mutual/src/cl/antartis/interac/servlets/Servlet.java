@@ -2586,4 +2586,33 @@ if(error == null) error = new Error();
 			pagDestino = "estados/listaEstadosXml.jsp";
 		}
 	}
+	
+	public void ayuda(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		switch(Integer.parseInt(request.getParameter("v"))){
+			case 1:
+				request.setAttribute("video", "documento");
+				break;
+			case 2:
+				request.setAttribute("video", "empresa");
+				break;
+			case 3:
+				request.setAttribute("video", "reclamo");
+				break;
+			case 4:
+				request.setAttribute("video", "usuario");
+				break;
+			case 5:
+				request.setAttribute("video", "administracion");
+				break;
+		}
+		pagDestino = "contenedor.jsp";
+	}
+	
+	public void manual(HttpServletRequest request, HttpServletResponse response){
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		pagDestino = "contenedor.jsp";
+	}
 }
