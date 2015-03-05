@@ -1,6 +1,7 @@
 create or replace function public.buscar_links
 (
-    in xid_tipo_link$ numeric, 
+    in xid_tipo_link$ numeric,
+    in xdes_link$ varchar,
     out links refcursor, 
     out numerror varchar, 
     out msjerror varchar
@@ -8,10 +9,12 @@ create or replace function public.buscar_links
 
 $body$
         declare xid_tipo_link numeric;
+        declare xdes_link varchar;
     begin
         
         numerror := 0;
         msjerror := ' ';
+        xdes_link := coalesce(upper(trim(xdes_link$)),'');
         xid_tipo_link=xid_tipo_link$;
         open links for
 
@@ -28,7 +31,8 @@ $body$
                 on r.id_tipo_link = m.id_tipo_link
 
         where
-              (xid_tipo_link =      0 or r.id_tipo = xid_tipo_link)          
+                upper(des_link) like '%' || xdes_link ||'%' and
+              (xid_tipo_link =      0 or r.id_tipo_link = xid_tipo_link)          
         order by
             des_tipo_link;
         
