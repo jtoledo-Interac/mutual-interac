@@ -2826,8 +2826,8 @@ public class MutualEJB implements EJBRemoto {
 			if(rsLinks !=null){
 				while (rsLinks.next()) {
 					categoriaLink = new CategoriaLink();
-					categoriaLink.setIdCategoriaLink(rsLinks.getLong("id_categoria_"));
-					categoriaLink.setDesCategoriaLink(rsLinks.getString(""));
+					categoriaLink.setIdCategoriaLink(rsLinks.getLong("id_tipo_link"));
+					categoriaLink.setDesCategoriaLink(rsLinks.getString("des_tipo_link"));
 					listaCategoriasLink.add(categoriaLink);
 				}
 				rsLinks.close();
