@@ -1653,13 +1653,14 @@ public class MutualEJB implements EJBRemoto {
 			mapaSalida = new HashMap<String, Object>();
 
 			dbConeccion = interacDS.getConnection();
-
+			
+			// idLink, desLink, idCategoriaLink, url 
 			cStmt = dbConeccion.prepareCall("{ call modificar_link(?,?,?,?,?) }");
 			cStmt.setLong(1, link.getIdLink());
 			cStmt.setString(2,link.getUrlLink());
 			cStmt.setLong(3, link.getIdCategoriaLink());
-			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
-			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(5, Types.VARCHAR);// msjerror$
 
 			
 			cStmt.execute();
