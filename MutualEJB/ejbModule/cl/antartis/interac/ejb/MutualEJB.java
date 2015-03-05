@@ -22,6 +22,7 @@ import cl.antartis.interac.beans.Documento;
 import cl.antartis.interac.beans.Empresa;
 import cl.antartis.interac.beans.Error;
 import cl.antartis.interac.beans.Estado;
+import cl.antartis.interac.beans.Link;
 import cl.antartis.interac.beans.Medio;
 import cl.antartis.interac.beans.Motivo;
 import cl.antartis.interac.beans.Perfil;
@@ -997,6 +998,65 @@ public class MutualEJB implements EJBRemoto {
 	
 	}
 
+	public Map<String, Object> agregarLink(Map<String, Object> mapaEntrada) {
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		Link link = null;
+		String numError = "0";
+		String msjError = "";
+		
+		try {
+			log.info("Agregar link");
+
+			link = (Link)mapaEntrada.get("link");
+						
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call agregar_link(?,?,?,?,?) }"); //falta SP, posibles cambios aqui
+			cStmt.setString(1, link.getDesLink());
+			cStmt.setString(2, link.getUrlLink());
+			cStmt.setLong(3, link.getIdCategoriaLink());
+			cStmt.registerOutParameter(4, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(5, Types.VARCHAR);// msjerror$
+
+			cStmt.execute();
+			
+			numError = cStmt.getString(4);
+			msjError = cStmt.getString(5);
+			
+			log.info("Num Error: "+numError);
+			log.info("Msj Error: "+msjError);
+	
+		}catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+			
+		}
+		finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+		
+		mapaSalida.put("numError", numError);
+		mapaSalida.put("msjError", msjError);
+			
+		return mapaSalida;
+	
+	}
+	
 	public Map<String, Object> agregarMedio(Map<String, Object> mapaEntrada) {
 		CallableStatement cStmt = null;
 		Map<String, Object> mapaSalida = null;
@@ -1111,6 +1171,66 @@ public class MutualEJB implements EJBRemoto {
 			}
 		}
 		mapaSalida.put("cartera",cartera);
+		mapaSalida.put("error", error);
+		
+		return mapaSalida;
+	}
+	
+	public Map<String, Object> cargarLink(Map<String, Object> mapaEntrada) {
+		
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		Link link = new Link();
+		
+		Error error = new Error();
+		
+		try {
+			log.info("Cargar links");
+						
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+			cStmt = dbConeccion.prepareCall("{ call cargar_link(?,?,?,?) }");
+			cStmt.setLong(1, (Long)mapaEntrada.get("idLink")); 
+			cStmt.registerOutParameter(2, Types.OTHER);// carteras$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+
+			cStmt.execute();
+			
+			ResultSet rsLink = (ResultSet) cStmt.getObject(2);
+			error.setNumError(cStmt.getString(3));
+			error.setMsjError(cStmt.getString(4));
+						
+			while (rsLink.next()) {
+				link = new Link();
+				link.setIdLink(rsLink.getLong("id_link"));
+				link.setDesLink(rsLink.getString("des_link"));
+				link.setIdCategoriaLink(rsLink.getLong("id_categoria_link"));
+			}
+			
+			rsLink.close();			
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+		mapaSalida.put("link",link);
 		mapaSalida.put("error", error);
 		
 		return mapaSalida;
@@ -4644,6 +4764,81 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 		log.info("Msj Error: "+msjError);
 		
 		mapaSalida.put("listaEstados",listaEstados);
+		mapaSalida.put("numError", numError);
+		mapaSalida.put("msjError", msjError);
+
+		return mapaSalida;
+	}
+	
+	public Map<String, Object> buscarLinks(Map<String, Object> mapaEntrada) {
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		ArrayList<Link> listaLinks = null;
+		Link link = null;
+		String numError = "0";
+		String msjError = "";
+
+		try {
+			log.info("Buscar Estados");
+			
+			link = (Link)mapaEntrada.get("link");
+
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call buscar_links(?,?,?,?) }");
+			
+		
+			cStmt.setString(1,link.getDesLink());
+			cStmt.registerOutParameter(2, Types.OTHER);// cursor$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+
+			
+			cStmt.execute();
+
+			ResultSet rs = (ResultSet) cStmt.getObject(2);
+			numError = cStmt.getString(3);
+			msjError = cStmt.getString(4);
+		
+			listaLinks = new ArrayList<Link>();
+
+			if(rs !=null){
+				while (rs.next()) {
+					link = new Link();
+					link.setIdLink(rs.getLong("id_link"));
+					link.setDesLink(rs.getString("des_link"));
+					link.setIdCategoriaLink(rs.getLong("id_categoria_link"));
+					link.setDesCategoriaLink(rs.getString("des_categoria_link"));
+					listaLinks.add(link);
+				}
+				rs.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+
+		log.info("Num Error: "+numError);
+		log.info("Msj Error: "+msjError);
+		
+		mapaSalida.put("listaLinks",listaLinks);
 		mapaSalida.put("numError", numError);
 		mapaSalida.put("msjError", msjError);
 

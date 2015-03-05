@@ -670,6 +670,13 @@ if(error == null) error = new Error();
 		pagDestino = "carteras/agregaCartera.jsp";
 	}
 	
+	public void crearLink(HttpServletRequest request, HttpServletResponse response) 
+	{
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		pagDestino = "link/agregaLink.jsp";
+	}
+	
 	public void seleccionarEmpresa(HttpServletRequest request, HttpServletResponse response) 
 	{
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
@@ -909,6 +916,35 @@ if(error == null) error = new Error();
 		}
 	}
 
+	public void agregarLink(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		Link link = new Link();
+		link.setDesLink(request.getParameter("desLink"));
+		link.setUrlLink(request.getParameter("urlLink"));
+		link.setDesCategoriaLink(request.getParameter("desCategoriaLink"));
+		link.setIdCategoriaLink(Utils.stringToNum(request.getParameter("idCategoriaLink")));
+		
+		log.info("desLink: " + request.getParameter("desLink") );
+		
+		mapaEntrada.put("link",link);
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		mapaSalida = ejbRemoto.agregarLink(mapaEntrada);
+		
+		error = (Error)mapaSalida.get("error");
+		if(error == null) error = new Error();
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{
+			pagDestino = "contenedor.jsp?accion=links";
+		}
+	}
 	
 	public void agregarMedio(HttpServletRequest request, HttpServletResponse response) {
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
@@ -2551,7 +2587,7 @@ if(error == null) error = new Error();
 		
 		mapaEntrada.put("link",link);
 		
-		mapaSalida = ejbRemoto.buscarMotivos(mapaEntrada);
+		mapaSalida = ejbRemoto.buscarLinks(mapaEntrada);
 		error = (Error)mapaSalida.get("error");
 		if(error == null) error = new Error();
 		if(!error.getNumError().equals("0")){
@@ -2672,6 +2708,31 @@ if(error == null) error = new Error();
 		else{
 			request.setAttribute("estado", (Estado)mapaSalida.get("estado"));
 			pagDestino = "/estados/cargaEstado.jsp";
+		}
+	}
+	
+	public void cargarLink(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		Long idLink = Utils.stringToNum(request.getParameter("idLink"));
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+
+		log.info("idLink: "+ idLink);
+		
+		mapaEntrada.put("idLink", idLink);
+		
+		mapaSalida = ejbRemoto.cargarLink(mapaEntrada);
+		error = (Error)mapaSalida.get("error");
+		if(error == null) error = new Error();
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{
+			request.setAttribute("link", (Link)mapaSalida.get("link"));
+			pagDestino = "/link/cargaLink.jsp";
 		}
 	}
 	

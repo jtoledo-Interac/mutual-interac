@@ -153,4 +153,11 @@ public interface EJBRemoto {
 	public Map<String, Object> agregarCategoriaLink(Map<String, Object> mapaEntrada);
 	
 	public Map<String, Object> modificarCategoriaLink(Map<String, Object> mapaEntrada);
+
+	public Map<String, Object> buscarLinks(Map<String, Object> mapaEntrada);
+
+	public Map<String, Object> agregarLink(Map<String, Object> mapaEntrada);
+
+	public Map<String, Object> cargarLink(Map<String, Object> mapaEntrada);
+
 }
