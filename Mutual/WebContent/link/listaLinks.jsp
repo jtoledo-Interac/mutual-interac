@@ -6,20 +6,23 @@
 </script>
 <script type="text/javascript"> 
 
-	var idTipo;
+	var idLink;
 	var idFila = 0;
 	var numFilas = 10;
 	
 	$(function() {
 
-		$('#listadoTipos').jqGrid(
+		$('#listadoLinks').jqGrid(
 		{
-		   	url: getUrlBuscarTipos(),
+		   	url: getUrlBuscarLinks(),
 			datatype: "xml",
-			colNames : ['', 'Nombre Tipo',''],
+			colNames : ['', '', 'URL', 'Nombre Link', 'Categoría link' ,''],
 			colModel : [
-						{name : 'idTipo', index:'idTipo', hidden : true}, 
-						{name : 'desTipo', index:'desTipo', width : 80, search : true, resizable : false, sortable : true},				
+						{name : 'idLink', index:'idLink', hidden : true},
+						{name : 'idCategoriaLink', index:'idCategoriaLink', hidden : true},
+						{name : 'urlLink', index:'urlLink', width : 80, search : true, resizable : false, sortable : true},
+						{name : 'desLink', index:'desLink', width : 80, search : true, resizable : false, sortable : true},
+						{name : 'desCategriaLink', index:'desCategoriaLink', width : 80, search : true, resizable : false, sortable : true},
 						{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
 						],
 		   	rowNum: numeroDeFilas,
@@ -30,14 +33,14 @@
 				root : "filas",
 				row: "fila",
 				repeatitems: false,
-				id: "idTipo"
+				id: "idLink"
 			},
-		   	pager: $('#pieTipos'),
+		   	pager: $('#pieLinks'),
 		   	pgtext : 'P&aacute;g: {0} de {1}', 
-		   	sortname: 'codTipos',
+		   	sortname: 'codLinks',
 		    viewrecords: true,
 		    sortorder: "desc",
-		    caption:"Tipos de Reclamo",
+		    caption:"Links de Reclamo",
 		    hoverrows : true,
 		    multiselect : false,
 			onPaging: function(){
@@ -45,7 +48,7 @@
 			},
 			gridComplete: function()
 			{
-				var ids = $("#listadoTipos").getDataIDs();
+				var ids = $("#listadoLinks").getDataIDs();
 				
 				for (var i = 0; i < ids.length; i++)
 				{
@@ -53,16 +56,16 @@
 					var idFila = ids[i];
 					console.log("IDFILA: "+idFila);
 					var btnEditar="";
-					btnEditar+= "<div id='btnEditar' onclick='editarTipo("+idFila+")'>";
+					btnEditar+= "<div id='btnEditar' onclick='editarLink("+idFila+")'>";
 					btnEditar+= 	"<img title='editar' class='icono' src='img/btnEditar.png'>";
 					btnEditar+= "</div>";
 					
 					var btnEliminar="";
-					btnEliminar+= "<div id='btnEliminar' onclick='eliminarTipo("+idFila+")'>";
+					btnEliminar+= "<div id='btnEliminar' onclick='eliminarLink("+idFila+")'>";
 					btnEliminar+= 	"<img title='eliminar' class='icono' src='img/btnEliminar.png'>";
 					btnEliminar+= "</div>";
 
-					$("#listadoTipos").setRowData(ids[i], {act : btnEditar + btnEliminar});
+					$("#listadoLinks").setRowData(ids[i], {act : btnEditar + btnEliminar});
 				}
 			},
 			onSelectRow : function(rowId, status) 
@@ -72,29 +75,29 @@
 			},
 			ondblClickRow: function()
 			{
-				var fila = $('#listadoTipos').jqGrid('getRowData',idFila);
+				var fila = $('#listadoLinks').jqGrid('getRowData',idFila);
 				//editarProducto(fila.codProducto);
 			},
-		}).navGrid('#pieTipo',{edit:false,add:false,del:false});	
+		}).navGrid('#pieLink',{edit:false,add:false,del:false});	
 		
 		$('#btnBuscar').click(function()
 		{
-			buscarTipos();
+			buscarLinks();
 		});
 
 		$('#btnAgregar').click(function()
 		{
-		    crearTipo();
+		    crearLink();
 		});
 		
-		$('#agregaTipo').dialog({
+		$('#agregaLink').dialog({
 			autoOpen: false,
 		    height: 500,
 		    width: 650,
 		    modal: true,
 		    position: 'center',
 		    buttons: {
-				"Crear Tipo": function() {
+				"Crear Link": function() {
 					$('#formAgrega .submit').click();
 				},
 				"Cancelar": function() {
@@ -106,14 +109,14 @@
 			}
 		});
 		
-		$('#cargaTipo').dialog({
+		$('#cargaLink').dialog({
 			autoOpen: false,
 		    height: 500,
 		    width: 650,
 		    modal: true,
 		    position: 'center',
 		    buttons: {
-				"Editar Tipo": function() {
+				"Editar Link": function() {
 					$('#formEdita .submit').click();
 				},
 				"Cancelar": function() {
@@ -137,38 +140,38 @@
 		return retorno;
 	}
 	
-	function crearTipo()
+	function crearLink()
 	{
-		ajaxCall(getUrlCrearTipo(), function(response){
-			$('#agregaTipo').html(response).dialog('open');
+		ajaxCall(getUrlCrearLink(), function(response){
+			$('#agregaLink').html(response).dialog('open');
 		});
 	}
 	
-	function editarTipo(idTipo)
+	function editarLink(idLink)
 	{
-		console.log("TIPO: "+idTipo);
+		console.log("Link: "+idLink);
 		
-		ajaxCall(getUrlCargarTipo(idTipo), function(response){
-			$('#cargaTipo').html(response).dialog('open');
+		ajaxCall(getUrlCargarLink(idLink), function(response){
+			$('#cargaLink').html(response).dialog('open');
 		});
 	}
 	
-	function eliminarTipo(idTipo)
+	function eliminarLink(idLink)
 	{  
-   		jConfirm('¿ Confirma eliminar el Tipo ?', 'Confirmación', function(res){
+   		jConfirm('¿ Confirma eliminar el Link ?', 'Confirmación', function(res){
    			if (res == true){
-  				ajaxCall(getUrlEliminarTipo(idTipo), function(){
-  					jAlert("El Tipo ha sido eliminado exitosamente");
-  					buscarTipos();
+  				ajaxCall(getUrlEliminarLink(idLink), function(){
+  					jAlert("El Link ha sido eliminado exitosamente");
+  					buscarLinks();
    				});
    			}
    		});
 	}
 	
-	function buscarTipos() 
+	function buscarLinks() 
 	{		
-		$('#listadoTipos').jqGrid('setGridParam', {
-			url : getUrlBuscarTipos(),
+		$('#listadoLinks').jqGrid('setGridParam', {
+			url : getUrlBuscarLinks(),
 			page : 1,
 			rowNum : numFilas,
 			autoencode : false,
@@ -177,54 +180,54 @@
 		}).trigger("reloadGrid");
 	}
 
-	function getUrlBuscarTipos()
+	function getUrlBuscarLinks()
 	{  
 		var sData = "Servlet";
-		sData += "?accion=buscarTipos";
-		sData += "&nomTipo="+$('#nomTipo').val();
+		sData += "?accion=buscarLinks";
+		sData += "&nomLink="+$('#nomLink').val();
 		return sData;
 	}
 
-	function getUrlCrearTipo()
+	function getUrlCrearLink()
 	{
 		var sData = "Servlet";
-		sData += '?accion=crearTipo';
+		sData += '?accion=crearLink';
 		return sData;
 	}
 	
-	function getUrlCargarTipo(id)
+	function getUrlCargarLink(id)
 	{
 		var sData = "Servlet";
-		sData += '?accion=cargarTipo';
-		sData += '&idTipo='+id;
+		sData += '?accion=cargarLink';
+		sData += '&idLink='+id;
 		console.log(sData);
 		return sData;
 	}
 
-	function getUrlEliminarTipo(id){  
+	function getUrlEliminarLink(id){  
 		var sData = 'Servlet';
-		sData += '?accion=eliminarTipo';
-		sData += '&idTipo='+id;
+		sData += '?accion=eliminarLink';
+		sData += '&idLink='+id;
 		return sData;
     }
 </script>
 
 <div class="mantenedor">
 
-	<div id="agregaTipo" title="Crear Tipo" style="display:none"></div>
+	<div id="agregaLink" title="Crear Link" style="display:none"></div>
 	
-	<div id="cargaTipo" title="Editar Tipo" style="display:none"></div>
+	<div id="cargaLink" title="Editar Link" style="display:none"></div>
 
 	<div class="filtros">		
-		<form id="formTipo" action="Servlet" method="post">
+		<form id="formLink" action="Servlet" method="post">
 			<input type="button" 	id="btnBuscar" 		name="btnBuscar" 	value="Buscar" class="boton"/>
 			<input type="button" 	id="btnAgregar" 	name="btnAgregar" 	value="Agregar" class="boton"/>
-			<input type="text" 		id="nomTipo" 	name="nomTipo"	placeholder="Nombre Tipo" class="text">
+			<input type="text" 		id="nomLink" 	name="nomLink"	placeholder="Nombre Link" class="text">
 		</form>
 	</div> 
 
-	<div id="listadoBusquedaTipos" class="listado">
-		<table id="listadoTipos"></table>
-		<div id="pieTipo" class="pie"></div>
+	<div id="listadoBusquedaLinks" class="listado">
+		<table id="listadoLinks"></table>
+		<div id="pieLink" class="pie"></div>
 	</div>
 </div>
