@@ -2791,6 +2791,7 @@ if(error == null) error = new Error();
 			pagDestino = "error.jsp";
 		}
 		else{
+			request.setAttribute("listaCategoriasLink",mapaSalida.get("listaCategoriasLink"));
 			request.setAttribute("link", (Link)mapaSalida.get("link"));
 			pagDestino = "/link/cargaLink.jsp";
 		}
