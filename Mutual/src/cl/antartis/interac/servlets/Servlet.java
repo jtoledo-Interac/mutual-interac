@@ -27,6 +27,7 @@ import cl.antartis.interac.beans.CategoriaLink;
 import cl.antartis.interac.beans.Documento;
 import cl.antartis.interac.beans.Empresa;
 import cl.antartis.interac.beans.Estado;
+import cl.antartis.interac.beans.Link;
 import cl.antartis.interac.beans.Medio;
 import cl.antartis.interac.beans.Motivo;
 import cl.antartis.interac.beans.Perfil;
@@ -2093,6 +2094,24 @@ if(error == null) error = new Error();
 		}
 	}
 	
+	public void links(HttpServletRequest request, HttpServletResponse response) 
+	{
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		error = (Error)mapaSalida.get("error");
+		if(error == null) error = new Error();
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{
+			pagDestino = "contenedor.jsp";
+		}
+	}
+	
 	public void crearReclamo(HttpServletRequest request, HttpServletResponse response) 
 	{
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
@@ -2515,6 +2534,31 @@ if(error == null) error = new Error();
 		else{
 			request.setAttribute("listaMotivos", mapaSalida.get("listaMotivos"));
 			pagDestino = "/motivos/listaMotivosXml.jsp";
+		}
+	}
+	
+	public void buscarLinks(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+	
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		Link link = new Link();
+		link.setDesLink("desLink");
+		
+		mapaEntrada.put("link",link);
+		
+		mapaSalida = ejbRemoto.buscarMotivos(mapaEntrada);
+		error = (Error)mapaSalida.get("error");
+		if(error == null) error = new Error();
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{
+			request.setAttribute("listaLinks", mapaSalida.get("listaLinks"));
+			pagDestino = "/link/listaLinksXml.jsp";
 		}
 	}
 	

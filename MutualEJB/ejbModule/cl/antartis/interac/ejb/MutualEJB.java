@@ -39,7 +39,7 @@ public class MutualEJB implements EJBRemoto {
 
 	private Logger log = Logger.getLogger(MutualEJB.class);
 
-	@Resource(mappedName = "java:/MutualDes")
+	@Resource(mappedName = "java:/MutualPro")
 	private DataSource interacDS;
 	private Connection dbConeccion;
 
