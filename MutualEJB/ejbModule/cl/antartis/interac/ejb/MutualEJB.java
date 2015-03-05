@@ -4896,20 +4896,21 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 
 			dbConeccion = interacDS.getConnection();
 
-			cStmt = dbConeccion.prepareCall("{ call buscar_links(?,?,?,?) }");
+			cStmt = dbConeccion.prepareCall("{ call buscar_links(?,?,?,?,?) }");
 			
 		
-			cStmt.setString(1,link.getDesLink());
-			cStmt.registerOutParameter(2, Types.OTHER);// cursor$
-			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
-			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+			cStmt.setLong(1,link.getIdCategoriaLink());
+			cStmt.setString(2, link.getDesLink());
+			cStmt.registerOutParameter(3, Types.OTHER);// cursor$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(5, Types.VARCHAR);// msjerror$
 
 			
 			cStmt.execute();
 
-			ResultSet rs = (ResultSet) cStmt.getObject(2);
-			numError = cStmt.getString(3);
-			msjError = cStmt.getString(4);
+			ResultSet rs = (ResultSet) cStmt.getObject(3);
+			numError = cStmt.getString(4);
+			msjError = cStmt.getString(5);
 		
 			listaLinks = new ArrayList<Link>();
 

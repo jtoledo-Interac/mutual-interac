@@ -2635,7 +2635,8 @@ if(error == null) error = new Error();
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
 		Link link = new Link();
-		link.setDesLink("desLink");
+		link.setDesLink(request.getParameter("desLink"));
+		link.setIdCategoriaLink(Utils.stringToNum(request.getParameter("idCategoriaLink")));
 		
 		mapaEntrada.put("link",link);
 		
