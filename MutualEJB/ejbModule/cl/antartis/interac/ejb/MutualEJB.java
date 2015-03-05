@@ -2807,7 +2807,7 @@ public class MutualEJB implements EJBRemoto {
 
 			dbConeccion = interacDS.getConnection();
 
-			cStmt = dbConeccion.prepareCall("{ call buscar_parametros_link(?,?,?,?,?) }");
+			cStmt = dbConeccion.prepareCall("{ call buscar_parametros_link(?,?,?) }");
 			
 			cStmt.registerOutParameter(1, Types.OTHER);// cursor$
 			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
