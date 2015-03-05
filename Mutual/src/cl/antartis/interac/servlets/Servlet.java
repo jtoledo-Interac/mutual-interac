@@ -1241,6 +1241,33 @@ if(error == null) error = new Error();
 		}
 	}
 	
+	public void modificarLink(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		Link link = new Link();
+		
+		link.setIdLink(Utils.stringToNum(request.getParameter("idLink")));
+		link.setDesLink(request.getParameter("desLink"));
+		link.setIdCategoriaLink(Utils.stringToNum(request.getParameter("idCategoriaLink")));
+		
+		mapaEntrada.put("link",link);
+		
+		mapaSalida = ejbRemoto.modificarLink(mapaEntrada);
+		error = (Error)mapaSalida.get("error");
+		if(error == null) error = new Error();
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{
+			pagDestino = "contenedor.jsp?accion=links";
+		}
+	}
+	
 	public void eliminarCartera(HttpServletRequest request, HttpServletResponse response) {
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();		
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();

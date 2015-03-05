@@ -1638,6 +1638,60 @@ public class MutualEJB implements EJBRemoto {
 		return mapaSalida;
 	}
 	
+	public Map<String, Object> modificarLink(Map<String, Object> mapaEntrada) {
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		Link link = null;
+		Error error = new Error();
+
+		try {
+			log.info("Modificar link");
+			
+			link = (Link)mapaEntrada.get("link");
+
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call modificar_link(?,?,?,?,?) }");
+			cStmt.setLong(1, link.getIdLink());
+			cStmt.setString(2,link.getUrlLink());
+			cStmt.setLong(3, link.getIdCategoriaLink());
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+
+			
+			cStmt.execute();
+			
+			error.setNumError(cStmt.getString(3));
+			error.setMsjError(cStmt.getString(4));
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+
+		log.info("Num Error: "+ error.getNumError());
+		log.info("Msj Error: "+ error.getMsjError());
+
+		return mapaSalida;
+	}
+	
 	public Map<String, Object> eliminarCartera(Map<String, Object> mapaEntrada) {
 		
 		
