@@ -2791,6 +2791,75 @@ public class MutualEJB implements EJBRemoto {
 
 		return mapaSalida;
 	}
+	
+	public Map<String, Object> buscarParametrosLink(Map<String, Object> mapaEntrada) {
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		ArrayList<CategoriaLink> listaCategoriasLink = null;
+		CategoriaLink categoriaLink;
+		String numError = "0";
+		String msjError = "";
+
+		try {
+			log.info("Buscar Parametros Links");
+
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call buscar_parametros(?,?,?,?,?) }");
+			
+			cStmt.registerOutParameter(1, Types.OTHER);// cursor$
+			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
+
+			
+			cStmt.execute();
+
+			ResultSet rsLinks = (ResultSet) cStmt.getObject(1);
+			numError = cStmt.getString(2);
+			msjError = cStmt.getString(3);
+			
+			listaCategoriasLink = new ArrayList<CategoriaLink>();
+
+			if(rsLinks !=null){
+				while (rsLinks.next()) {
+					categoriaLink = new CategoriaLink();
+					categoriaLink.setIdCategoriaLink(rsLinks.getLong("id_categoria_"));
+					categoriaLink.setDesCategoriaLink(rsLinks.getString(""));
+					listaCategoriasLink.add(categoriaLink);
+				}
+				rsLinks.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+
+		log.info("Num Error: "+numError);
+		log.info("Msj Error: "+msjError);
+		
+		mapaSalida.put("listaCategoriasLink", listaCategoriasLink);
+		mapaSalida.put("numError", numError);
+		mapaSalida.put("msjError", msjError);
+
+		return mapaSalida;
+	}
 
 	public Map<String, Object> buscarReclamos(Map<String, Object> mapaEntrada) {
 		CallableStatement cStmt = null;

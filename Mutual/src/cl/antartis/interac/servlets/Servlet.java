@@ -2777,6 +2777,8 @@ if(error == null) error = new Error();
 		
 		mapaEntrada.put("idLink", idLink);
 		
+		mapaSalida = ejbRemoto.buscarParametrosLink(mapaEntrada);
+		
 		mapaSalida = ejbRemoto.cargarLink(mapaEntrada);
 		error = (Error)mapaSalida.get("error");
 		if(error == null) error = new Error();

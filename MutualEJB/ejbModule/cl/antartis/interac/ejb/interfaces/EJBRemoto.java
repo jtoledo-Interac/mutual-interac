@@ -164,5 +164,6 @@ public interface EJBRemoto {
 	
 	public Map<String, Object> modificarLink(Map<String, Object> mapaEntrada);
 
+	public Map<String, Object> buscarParametrosLink(Map<String, Object> mapaEntrada);
 
 }
