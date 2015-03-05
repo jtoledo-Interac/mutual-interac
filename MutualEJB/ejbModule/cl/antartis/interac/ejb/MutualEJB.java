@@ -4919,8 +4919,8 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 					link = new Link();
 					link.setIdLink(rs.getLong("id_link"));
 					link.setDesLink(rs.getString("des_link"));
-					link.setIdCategoriaLink(rs.getLong("id_categoria_link"));
-					link.setDesCategoriaLink(rs.getString("des_categoria_link"));
+					link.setIdCategoriaLink(rs.getLong("id_tipo_link"));
+					link.setDesCategoriaLink(rs.getString("des_tipo_link"));
 					listaLinks.add(link);
 				}
 				rs.close();
