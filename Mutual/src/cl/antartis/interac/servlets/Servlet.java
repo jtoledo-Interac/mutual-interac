@@ -672,8 +672,13 @@ if(error == null) error = new Error();
 	
 	public void crearLink(HttpServletRequest request, HttpServletResponse response) 
 	{
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		mapaSalida = ejbRemoto.buscarParametrosLink(mapaEntrada);
+		
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		request.setAttribute("listaCategoriasLink",mapaSalida.get("listaCategoriasLink"));
 		pagDestino = "link/agregaLink.jsp";
 	}
 	
