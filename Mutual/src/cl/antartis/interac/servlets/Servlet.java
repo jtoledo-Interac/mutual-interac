@@ -2782,8 +2782,6 @@ if(error == null) error = new Error();
 		
 		mapaEntrada.put("idLink", idLink);
 		
-		mapaSalida = ejbRemoto.buscarParametrosLink(mapaEntrada);
-		
 		mapaSalida = ejbRemoto.cargarLink(mapaEntrada);
 		error = (Error)mapaSalida.get("error");
 		if(error == null) error = new Error();
@@ -2791,8 +2789,12 @@ if(error == null) error = new Error();
 			pagDestino = "error.jsp";
 		}
 		else{
-			request.setAttribute("listaCategoriasLink",mapaSalida.get("listaCategoriasLink"));
+			
 			request.setAttribute("link", (Link)mapaSalida.get("link"));
+			
+			mapaSalida = ejbRemoto.buscarParametrosLink(mapaEntrada);
+			request.setAttribute("listaCategoriasLink",mapaSalida.get("listaCategoriasLink"));
+			
 			pagDestino = "/link/cargaLink.jsp";
 		}
 	}
