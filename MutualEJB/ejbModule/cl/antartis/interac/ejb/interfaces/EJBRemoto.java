@@ -160,4 +160,6 @@ public interface EJBRemoto {
 
 	public Map<String, Object> cargarLink(Map<String, Object> mapaEntrada);
 
+	public Map<String, Object> eliminarLink(Map<String, Object> mapaEntrada);
+
 }

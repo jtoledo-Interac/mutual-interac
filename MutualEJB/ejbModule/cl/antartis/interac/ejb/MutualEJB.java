@@ -1910,6 +1910,61 @@ public class MutualEJB implements EJBRemoto {
 	
 	}
 	
+	public Map<String, Object> eliminarLink(Map<String, Object> mapaEntrada) {
+		
+		
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		Long id_link;
+		
+		String numError = "0";
+		String msjError = "";
+		
+		try {
+			log.info("Eliminar link");
+
+			id_link = (Long)mapaEntrada.get("idLink");
+			
+			log.info("id_medio: "+ id_link);
+			
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call eliminar_link(?,?,?) }");
+			cStmt.setLong(1, id_link);
+			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
+
+			cStmt.execute();
+			numError = cStmt.getString(2);
+			msjError = cStmt.getString(3);			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+		mapaSalida.put("numError", numError);
+		mapaSalida.put("msjError", msjError);
+		
+		return mapaSalida;
+	
+	}
+	
 	public Map<String, Object> agregarProducto(Map<String, Object> mapaEntrada) {
 	
 		CallableStatement cStmt = null;

@@ -1385,6 +1385,31 @@ if(error == null) error = new Error();
 		else
 			pagDestino = "/medios/listaMediosXml.jsp";
 	}
+	
+	public void eliminarLink(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		Long idLink = Utils.stringToNum(request.getParameter("idLink"));
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+
+		log.info("idMedio: " + idLink);
+		
+		mapaEntrada.put("idMedio", idLink);
+		
+		mapaSalida = ejbRemoto.eliminarLink(mapaEntrada);
+		
+		request.setAttribute("link", (Link)mapaSalida.get("link"));
+		error = (Error)mapaSalida.get("error");
+		if(error == null) error = new Error();
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else
+			pagDestino = "/links/listaLinksXml.jsp";
+	}
 
 	public void invalideces(HttpServletRequest request, HttpServletResponse response) 
 	{
