@@ -1,8 +1,9 @@
 create or replace function public.modificar_link
 (
     in xid_link numeric,
-    in xlink varchar,
     in xid_tipo_link numeric,
+    in xurl_link varchar,
+    in xdes_link varchar,    
     out numerror varchar, 
     out msjerror varchar
 ) returns record as
@@ -16,7 +17,8 @@ $body$
         update 
             link
         set 
-            des_link = xlink,
+            des_link = xdes_link,
+            url_link = xurl_link,
             id_tipo_link = xid_tipo_link
         where
             id_link = xid_link;
