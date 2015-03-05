@@ -45,7 +45,7 @@
 			},
 			gridComplete: function()
 			{
-				var ids = $("#listadoCategoria").getDataIDs();
+				var ids = $("#listadoCategorias").getDataIDs();
 				
 				for (var i = 0; i < ids.length; i++)
 				{
@@ -188,14 +188,14 @@
 	function getUrlCrearCategoria()
 	{
 		var sData = "Servlet";
-		sData += '?accion=crearCategoria';
+		sData += '?accion=crearCategoriaLink';
 		return sData;
 	}
 	
 	function getUrlCargarCategoria(id)
 	{
 		var sData = "Servlet";
-		sData += '?accion=cargarCategoria';
+		sData += '?accion=cargarCategoriaLink';
 		sData += '&idCategoriaLink='+id;
 		console.log(sData);
 		return sData;
@@ -203,7 +203,7 @@
 
 	function getUrlEliminarCategoria(id){  
 		var sData = 'Servlet';
-		sData += '?accion=eliminarCategoria';
+		sData += '?accion=eliminarCategoriaLink';
 		sData += '&idCategoriaLink='+id;
 		return sData;
     }

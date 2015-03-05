@@ -713,7 +713,7 @@ if(error == null) error = new Error();
 		pagDestino = "tipos/agregaTipo.jsp";
 	}
 	
-	public void crearCategoria(HttpServletRequest request, HttpServletResponse response) 
+	public void crearCategoriaLink(HttpServletRequest request, HttpServletResponse response) 
 	{
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
 		
@@ -774,7 +774,7 @@ if(error == null) error = new Error();
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
 		CategoriaLink categoriaLink = new CategoriaLink();
-		categoriaLink.setDesCategoriaLink(request.getParameter("desCategoriaLink"));
+		categoriaLink.setDesCategoriaLink(request.getParameter("nomCategoria"));
 		
 		mapaEntrada.put("categoriaLink",categoriaLink);
 		
@@ -786,6 +786,7 @@ if(error == null) error = new Error();
 		}
 		else{	
 			request.setAttribute("listaCategoriasLink", mapaSalida.get("listaCategoriasLink"));
+			log.info("size of listaCategoriasLink: "+ ((ArrayList<CategoriaLink>)mapaSalida.get("listaCategoriasLink")).size());
 			pagDestino = "/categoria_link/listaCategoriaXml.jsp";
 		}
 	}
@@ -852,7 +853,7 @@ if(error == null) error = new Error();
 		}
 	}
 
-	public void agregarCategoria(HttpServletRequest request, HttpServletResponse response) {
+	public void agregarCategoriaLink(HttpServletRequest request, HttpServletResponse response) {
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
 		
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();

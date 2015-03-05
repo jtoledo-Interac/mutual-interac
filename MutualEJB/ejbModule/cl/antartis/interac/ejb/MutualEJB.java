@@ -751,6 +751,7 @@ public class MutualEJB implements EJBRemoto {
 			
 			cStmt = dbConeccion.prepareCall("{ call buscar_tipo_links(?,?,?,?) }"); //TODO: esto
 			
+			log.info("categoriaLink.getDesCategoriaLink(): "+categoriaLink.getDesCategoriaLink());
 			cStmt.setString(1, categoriaLink.getDesCategoriaLink());
 			cStmt.registerOutParameter(2, Types.OTHER);// cursor$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
@@ -796,6 +797,7 @@ public class MutualEJB implements EJBRemoto {
 		log.info("Num Error: "+ error.getNumError());
 		log.info("Msj Error: "+ error.getMsjError());
 		
+		log.info(listaCategoriasLink.size());
 		mapaSalida.put("listaCategoriasLink", listaCategoriasLink);
 		mapaSalida.put("error", error);
 
@@ -1584,7 +1586,7 @@ public class MutualEJB implements EJBRemoto {
 		try {
 			log.info("Eliminar categoria link");
 
-			id_categoria_link = Utils.stringToNum((String)mapaEntrada.get("idCategoriaLink"));
+			id_categoria_link = (Long)mapaEntrada.get("idCategoriaLink");
 			
 			log.info("id_categoria_link: "+id_categoria_link);
 			
@@ -1592,7 +1594,7 @@ public class MutualEJB implements EJBRemoto {
 
 			dbConeccion = interacDS.getConnection();
 
-			cStmt = dbConeccion.prepareCall("{ call eliminar_categoria_link(?,?,?) }");
+			cStmt = dbConeccion.prepareCall("{ call eliminar_tipo_link(?,?,?) }");
 			cStmt.setLong(1, id_categoria_link);
 			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
@@ -4290,7 +4292,7 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 
 			dbConeccion = interacDS.getConnection();
 
-			cStmt = dbConeccion.prepareCall("{ call cargar_categoria_link(?,?,?,?) }");
+			cStmt = dbConeccion.prepareCall("{ call cargar_tipo_link(?,?,?,?) }");
 			cStmt.setLong(1, id_categoria_link);
 			cStmt.registerOutParameter(2, Types.OTHER);// documento$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
@@ -4304,7 +4306,7 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 			while (rs.next()) {
 				categoriaLink = new CategoriaLink();
 				categoriaLink.setIdCategoriaLink(rs.getLong("id_tipo_link"));
-				categoriaLink.setDesCategoriaLink(rs.getString("id_tipo_link"));
+				categoriaLink.setDesCategoriaLink(rs.getString("des_tipo_link"));
 			}
 			
 			rs.close();
@@ -4399,7 +4401,7 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 
 			dbConeccion = interacDS.getConnection();
 
-			cStmt = dbConeccion.prepareCall("{ call modificar_categoria_link(?,?,?,?) }");
+			cStmt = dbConeccion.prepareCall("{ call modificar_tipo_link(?,?,?,?) }");
 			cStmt.setLong(1,categoriaLink.getIdCategoriaLink());
 			cStmt.setString(2, categoriaLink.getDesCategoriaLink());
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
