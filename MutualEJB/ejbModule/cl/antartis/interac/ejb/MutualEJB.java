@@ -374,8 +374,31 @@ public class MutualEJB implements EJBRemoto {
 		String numError = "0";
 		String msjError = "";
 		
+	
+		
+		
 		try {
+			log.info("Eliminar perfil usuario");
+
+			idUsuario = (Long)mapaEntrada.get("idUsuario");
+			
+			log.info("ID usuario: "+idUsuario);
+			
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call eliminar_perfil_usuario(?,?,?) }");
+			cStmt.setLong(1, idUsuario);
+			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
+
+			cStmt.execute();
+			numError = cStmt.getString(2);
+			msjError = cStmt.getString(3);	
 			log.info("Eliminar usuario");
+			
+			
 
 			idUsuario = (Long)mapaEntrada.get("idUsuario");
 			
