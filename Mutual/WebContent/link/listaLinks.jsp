@@ -16,13 +16,13 @@
 		{
 		   	url: getUrlBuscarLinks(),
 			datatype: "xml",
-			colNames : ['', '', 'URL', 'Nombre Link', 'Categoría link' ,''],
+			colNames : ['', '', 'URL', 'Descripción Link', 'Categoría link' ,''],
 			colModel : [
 						{name : 'idLink', index:'idLink', hidden : true},
 						{name : 'idCategoriaLink', index:'idCategoriaLink', hidden : true},
 						{name : 'urlLink', index:'urlLink', width : 80, search : true, resizable : false, sortable : true},
 						{name : 'desLink', index:'desLink', width : 80, search : true, resizable : false, sortable : true},
-						{name : 'desCategriaLink', index:'desCategoriaLink', width : 80, search : true, resizable : false, sortable : true},
+						{name : 'desCategoriaLink', index:'desCategoriaLink', width : 80, search : true, resizable : false, sortable : true},
 						{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
 						],
 		   	rowNum: numeroDeFilas,

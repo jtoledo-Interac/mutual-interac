@@ -1424,7 +1424,7 @@ if(error == null) error = new Error();
 
 		log.info("idMedio: " + idLink);
 		
-		mapaEntrada.put("idMedio", idLink);
+		mapaEntrada.put("idLink", idLink);
 		
 		mapaSalida = ejbRemoto.eliminarLink(mapaEntrada);
 		
@@ -1435,7 +1435,7 @@ if(error == null) error = new Error();
 			pagDestino = "error.jsp";
 		}
 		else
-			pagDestino = "/links/listaLinksXml.jsp";
+			pagDestino = "/link/listaLinksXml.jsp";
 	}
 
 	public void invalideces(HttpServletRequest request, HttpServletResponse response) 

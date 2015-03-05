@@ -7,7 +7,7 @@
         <fila>
         	<idLink>${link.idLink}</idLink>
         	<idCategoriaLink>${link.idCategoriaLink}</idCategoriaLink>
-        	<urlLink>${link.urlLink}</urlLink>
+        	<urlLink><a href='${link.urlLink}'>${link.urlLink}</a></urlLink>
         	<desLink>${link.desLink}</desLink>
         	<desCategoriaLink>${link.desCategoriaLink}</desCategoriaLink>
         </fila>
