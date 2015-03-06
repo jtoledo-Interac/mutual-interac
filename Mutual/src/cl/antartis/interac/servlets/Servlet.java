@@ -2644,8 +2644,8 @@ if(error == null) error = new Error();
 		
 		Link link=new Link();
 		link.setIdCategoriaLink(Utils.stringToNum(request.getParameter("id_categorialink")));
-		
-		
+
+	
 		mapaEntrada.put("link",link);		
 		
 	

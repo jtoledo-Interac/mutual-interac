@@ -9,8 +9,21 @@
 	var idLink;
 	var idFila = 0;
 	var numFilas = 10;
+	function Link(id) {
+		
+			
+	    var row = id.split("=");
+	    var row_ID = row[1];
+	    var sitename= $("#listadoLinks").getCell(row_ID, 'urlLink');
+	    var url = "http://"+sitename; // sitename will be like google.com or yahoo.com
+
+	    window.open(url);
+
+
+	}
 	
 	$(function() {
+	
 
 		$('#listadoLinks').jqGrid(
 		{
@@ -19,8 +32,8 @@
 			colNames : ['', '', 'URL', 'Descripción Link', 'Categoría link' ,''],
 			colModel : [
 						{name : 'idLink', index:'idLink', hidden : true},
-						{name : 'idCategoriaLink', index:'idCategoriaLink', hidden : true},
-						{name : 'urlLink', index:'urlLink', width : 80, search : true, resizable : false, sortable : true,},
+						{name : 'idCategoriaLink', index:'idCategoriaLink', hidden : true},					
+						{name : 'urlLink', index:'urlLink', width : 80, search : true, resizable : false, sortable : true,formatter: 'showlink', formatoptions: { baseLinkUrl: 'javascript:', showAction: "Link('", addParam: "');"}},
 						{name : 'desLink', index:'desLink', width : 80, search : true, resizable : false, sortable : true},
 						{name : 'desCategoriaLink', index:'desCategoriaLink', width : 80, search : true, resizable : false, sortable : true},
 						{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
@@ -108,6 +121,8 @@
 				$('#formAgrega input').val(''); //limpia Data
 			}
 		});
+		
+	
 		
 		$('#cargaLink').dialog({
 			autoOpen: false,
@@ -228,7 +243,7 @@
 				<select id="idLink" name="idLink" class="select">
 				<option value="0" selected>Seleccione categoría</option>
 				<c:forEach items="${requestScope.listaCategoriasLink}" var="categoriaLink">
-					<option value="${categoriaLink.idCategoriaLink}" >${categoriaLink.desCategoriaLink}</option>
+					<option value="${categoriaLink.IdCategoriaLink}" >${categoriaLink.DesCategoriaLink}</option>
 				</c:forEach>
 			</select> 
 		</form>

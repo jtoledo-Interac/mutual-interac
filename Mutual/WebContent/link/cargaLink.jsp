@@ -16,10 +16,11 @@ $(function() {
 	<table>
 	<tr>
 	<td> Categoría del link</td><td> : </td>
-	<td><select id="idCategoriaLink"	name="idCategoriaLink" >
-		<option value="0" selected>Seleccione Categoría para el link</option>
+	<td><select  id="idCategoriaLink"	name="idCategoriaLink" required>
+		<option value="" selected>Seleccione Categoría para el link</option>
 		<c:forEach items="${requestScope.listaCategoriasLink}" var="categoriaLink">
-			<option value="${categoriaLink.idCategoriaLink}" <c:if test='${link.idCategoriaLink == categoriaLink.idCategoriaLink}'> selected</c:if>>${categoriaLink.desCategoriaLink} </option>
+				<option value="${categoriaLink.idCategoriaLink}" <c:if test='${link.idCategoriaLink == categoriaLink.idCategoriaLink}'> selected</c:if>>${categoriaLink.desCategoriaLink} </option>
+	
 		</c:forEach>
 		
 	</select></td>
