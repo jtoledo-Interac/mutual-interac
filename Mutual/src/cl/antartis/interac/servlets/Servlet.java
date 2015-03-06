@@ -1259,7 +1259,7 @@ if(error == null) error = new Error();
 		link.setIdLink(Utils.stringToNum(request.getParameter("idLink")));
 		link.setDesLink(request.getParameter("desLink"));
 		link.setIdCategoriaLink(Utils.stringToNum(request.getParameter("idCategoriaLink")));
-		
+		link.setUrlLink(request.getParameter("urlLink"));
 		mapaEntrada.put("link",link);
 		
 		mapaSalida = ejbRemoto.modificarLink(mapaEntrada);
@@ -2639,10 +2639,20 @@ if(error == null) error = new Error();
 	
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
-		Link link = new Link();
+		mapaSalida = ejbRemoto.buscarParametrosLink(mapaEntrada);
+		request.setAttribute("listaCategoriasLink", mapaSalida.get("listaCategoriasLink"));
+		
+		Link link=new Link();
+		link.setIdCategoriaLink(Utils.stringToNum(request.getParameter("id_categorialink")));
+		
+		
+		mapaEntrada.put("link",link);		
+		
+	
 		link.setDesLink(request.getParameter("desLink"));
 		link.setIdCategoriaLink(Utils.stringToNum(request.getParameter("idCategoriaLink")));
-		
+		log.info("(servlet)buscar link (id)-------------------"+Utils.stringToNum(request.getParameter("idCategoriaLink")));
+		log.info("(servlet)buscar link (descri)-------------------"+request.getParameter("desLink"));
 		mapaEntrada.put("link",link);
 		
 		mapaSalida = ejbRemoto.buscarLinks(mapaEntrada);

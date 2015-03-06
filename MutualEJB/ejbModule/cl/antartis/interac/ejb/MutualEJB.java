@@ -406,7 +406,7 @@ public class MutualEJB implements EJBRemoto {
 			
 			mapaSalida = new HashMap<String, Object>();
 
-			dbConeccion = interacDS.getConnection();
+			
 
 			cStmt = dbConeccion.prepareCall("{ call eliminar_usuario(?,?,?) }");
 			cStmt.setLong(1, idUsuario);
@@ -1676,14 +1676,17 @@ public class MutualEJB implements EJBRemoto {
 			mapaSalida = new HashMap<String, Object>();
 
 			dbConeccion = interacDS.getConnection();
-			
+		
+			 
 			// idLink, desLink, idCategoriaLink, url 
-			cStmt = dbConeccion.prepareCall("{ call modificar_link(?,?,?,?,?) }");
+			cStmt = dbConeccion.prepareCall("{ call modificar_link(?,?,?,?,?,?) }");
 			cStmt.setLong(1, link.getIdLink());
-			cStmt.setString(2,link.getUrlLink());
-			cStmt.setLong(3, link.getIdCategoriaLink());
-			cStmt.registerOutParameter(4, Types.VARCHAR);// numerror$
-			cStmt.registerOutParameter(5, Types.VARCHAR);// msjerror$
+			cStmt.setLong(2, link.getIdCategoriaLink());
+			cStmt.setString(3,link.getUrlLink());
+			cStmt.setString(4, link.getDesLink());
+			
+			cStmt.registerOutParameter(5, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(6, Types.VARCHAR);// msjerror$
 
 			
 			cStmt.execute();
@@ -4982,7 +4985,7 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 		String msjError = "";
 
 		try {
-			log.info("Buscar Estados");
+			log.info("Buscar Link");
 			
 			link = (Link)mapaEntrada.get("link");
 
@@ -4991,8 +4994,9 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 			dbConeccion = interacDS.getConnection();
 
 			cStmt = dbConeccion.prepareCall("{ call buscar_links(?,?,?,?,?) }");
+			log.info("(ejb)buscar link (id)-------------------"+link.getIdCategoriaLink());
+			log.info("(ejb)buscar link (descri)-------------------"+link.getDesLink());
 			
-		
 			cStmt.setLong(1,link.getIdCategoriaLink());
 			cStmt.setString(2, link.getDesLink());
 			cStmt.registerOutParameter(3, Types.OTHER);// cursor$

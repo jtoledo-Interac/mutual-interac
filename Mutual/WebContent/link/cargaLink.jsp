@@ -19,8 +19,9 @@ $(function() {
 	<td><select id="idCategoriaLink"	name="idCategoriaLink" >
 		<option value="0" selected>Seleccione Categoría para el link</option>
 		<c:forEach items="${requestScope.listaCategoriasLink}" var="categoriaLink">
-			<option value="${categoriaLink.idCategoriaLink}" <c:if test='${link.idCategoriaLink == categoriaLink.idCategoriaLink}'> selected</c:if>>${categoriaLink.idCategoriaLink} </option>
+			<option value="${categoriaLink.idCategoriaLink}" <c:if test='${link.idCategoriaLink == categoriaLink.idCategoriaLink}'> selected</c:if>>${categoriaLink.desCategoriaLink} </option>
 		</c:forEach>
+		
 	</select></td>
 	</tr>
 	<tr>

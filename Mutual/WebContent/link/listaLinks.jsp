@@ -185,6 +185,7 @@
 		var sData = "Servlet";
 		sData += "?accion=buscarLinks";
 		sData += "&nomLink="+$('#nomLink').val();
+		sData += "&categoriaLink="+$('#categoriaLink').val();
 		return sData;
 	}
 
@@ -223,6 +224,13 @@
 			<input type="button" 	id="btnBuscar" 		name="btnBuscar" 	value="Buscar" class="boton"/>
 			<input type="button" 	id="btnAgregar" 	name="btnAgregar" 	value="Agregar" class="boton"/>
 			<input type="text" 		id="nomLink" 	name="nomLink"	placeholder="Descripción Link" class="text">
+			
+				<select id="idLink" name="idLink" class="select">
+				<option value="" selected>Seleccione categoría</option>
+				<c:forEach items="${requestScope.listaCategoriasLink}" var="categoriaLink">
+					<option value="${categoriaLink.idCategoriaLink}" >${categoriaLink.desCategoriaLink}</option>
+				</c:forEach>
+			</select> 
 		</form>
 	</div> 
 
