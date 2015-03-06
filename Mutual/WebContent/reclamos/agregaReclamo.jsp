@@ -58,7 +58,7 @@
 	<tr>
 		<td> Región </td><td>:</td>
 		<td><select id="cod_region"	name="cod_region"  required>
-		<option value="0" selected>Seleccione una región </option>
+		<option value="" selected>Seleccione una región </option>
 		<c:forEach items="${requestScope.listaRegiones}" var="region">
 			<option value="${region.codRegion}" >${region.desRegion}</option>
 		</c:forEach>
@@ -67,7 +67,7 @@
 	<tr>
 		<td> Tipo </td><td>:</td>
 		<td><select id="id_tipo" name="id_tipo" required>
-			<option value="0" selected>Seleccione un tipo</option>
+			<option value="" selected>Seleccione un tipo</option>
 			<c:forEach items="${requestScope.listaTipos}" var="tipo">
 				<option value="${tipo.idTipo}">${tipo.desTipo}</option>
 			</c:forEach>
@@ -77,7 +77,7 @@
 	<tr>
 		<td> Motivo </td><td>:</td>
 		<td><select id="id_motivo" name="id_motivo" required>
-			<option value="0" selected>Seleccione un motivo</option>
+			<option value="" selected>Seleccione un motivo</option>
 			<c:forEach items="${requestScope.listaMotivos}" var="motivo">
 				<option value="${motivo.idMotivo}" >${motivo.desMotivo}</option>
 			</c:forEach>
@@ -87,7 +87,7 @@
 	<tr>
 		<td> Prioridad </td><td>:</td>
 		<td><select id="id_prioridad" name="id_prioridad" required>
-			<option value="0" selected>Seleccione una prioridad</option>
+			<option value="" selected>Seleccione una prioridad</option>
 			<c:forEach items="${requestScope.listaPrioridades}" var="prioridad">
 				<option value="${prioridad.idPrioridad}" >${prioridad.desPrioridad}</option>
 			</c:forEach>
@@ -97,7 +97,7 @@
 	<tr>
 		<td> Cartera </td><td>:</td>
 		<td><select id="id_cartera" name="id_cartera" required>
-			<option value="0" selected>Seleccione una cartera</option>
+			<option value="" selected>Seleccione una cartera</option>
 			<c:forEach items="${requestScope.listaCarteras}" var="cartera">
 				<option value="${cartera.idCartera}" >${cartera.desCartera}</option>
 			</c:forEach>
@@ -107,7 +107,7 @@
 	<tr>
 		<td> Estado </td><td>:</td>
 		<td><select id="id_estado" name="id_estado" required>
-			<option value="0" selected>Seleccione un estado</option>
+			<option value="" selected>Seleccione un estado</option>
 			<c:forEach items="${requestScope.listaEstados}" var="estado">
 				<option value="${estado.idEstado}" >${estado.desEstado}</option>
 			</c:forEach>
@@ -117,7 +117,7 @@
 	<tr>
 		<td> Medio de respuesta </td><td>:</td>
 		<td><select id="id_medio_respuesta" name="id_medio_respuesta" required>
-			<option value="0" selected>Seleccione un medio de respuesta</option>
+			<option value="" selected>Seleccione un medio de respuesta</option>
 			<c:forEach items="${requestScope.listaMedios}" var="medio">
 				<option value="${medio.idMedio}" >${medio.desMedio}</option>
 			</c:forEach>

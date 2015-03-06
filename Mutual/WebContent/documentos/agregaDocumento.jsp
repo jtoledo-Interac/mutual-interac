@@ -40,8 +40,8 @@
 </tr>
 <tr>	
 	<td> Cartera </td><td> : </td>
-	<td><select id="idCartera" required name="idCartera">
-		<option value="0" disabled selected>Seleccione una cartera</option>
+	<td><select id="idCartera" required name="idCartera" required>
+		<option value="" disabled selected>Seleccione una cartera</option>
 		<c:forEach items="${requestScope.listaCarteras}" var="cartera">
 			<option value="${cartera.idCartera}" >${cartera.desCartera}</option>
 		</c:forEach>
@@ -49,8 +49,8 @@
 </tr>
 <tr>
 	<td> Tipo Documento </td><td> : </td>
-	<td><select id="idProducto" required name="idProducto">
-		<option value="0" disabled selected>Seleccione un tipo documento</option>
+	<td><select id="idProducto" required name="idProducto" required>
+		<option value="" disabled selected>Seleccione un tipo documento</option>
 		<c:forEach items="${requestScope.listaProductos}" var="producto">
 			<option value="${producto.idProducto}" >${producto.desProducto}</option>
 		</c:forEach>
@@ -58,8 +58,8 @@
 </tr>
 <tr>
 	<td> Área</td><td> : </td>
-	<td><select id="codArea" required name="codArea">
-		<option value="0" disabled selected>Seleccione un área</option>
+	<td><select id="codArea" required name="codArea" required>
+		<option value="" disabled selected>Seleccione un área</option>
 		<c:forEach items="${requestScope.listaAreas}" var="area">
 			<option value="${area.codArea}" >${area.desArea}</option>
 		</c:forEach>

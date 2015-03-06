@@ -70,7 +70,7 @@
 		</tr>
 		<tr>
 			<td> Cartera </td><td> : </td>
-			<td><select id="idCartera" name="idCartera">
+			<td><select id="idCartera" name="idCartera" required>
 					<option value="" selected>Seleccione una cartera</option>
 					<c:forEach items="${requestScope.listaCarteras}" var="cartera">
 						<option value="${cartera.idCartera}"
@@ -80,7 +80,7 @@
 		</tr>
 		<tr>
 			<td> Tipo Documento </td><td> : </td>
-			<td><select id="idProducto" name="idProducto">
+			<td><select id="idProducto" name="idProducto" required>
 					<option value="" selected>Seleccione un tipo documento</option>
 					<c:forEach items="${requestScope.listaProductos}" var="producto">
 						<option value="${producto.idProducto}"
@@ -90,7 +90,7 @@
 		</tr>
 		<tr>
 			<td> Área </td><td> : </td>
-			<td><select id="codArea" name="codArea" >
+			<td><select id="codArea" name="codArea" required>
 					<option value="" selected>Seleccione un area</option>
 					<c:forEach items="${requestScope.listaAreas}" var="area">
 						<option value="${area.codArea}"
