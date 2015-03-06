@@ -219,7 +219,7 @@
 		<form id="formCategoria" action="Servlet" method="post">
 			<input type="button" 	id="btnBuscar" 		name="btnBuscar" 	value="Buscar" class="boton"/>
 			<input type="button" 	id="btnAgregar" 	name="btnAgregar" 	value="Agregar" class="boton"/>
-			<input type="text" 		id="nomCategoria" 	name="nomCategoria"	placeholder="Nombre Categoria" class="text">
+			<input type="text" 		id="nomCategoria" 	name="nomCategoria"	placeholder="Nombre Categoria" class="text"onkeypress="return event.keyCode != 13;">
 		</form>
 	</div> 
 
