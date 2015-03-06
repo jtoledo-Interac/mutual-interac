@@ -223,7 +223,7 @@
 		<form id="formLink" action="Servlet" method="post">
 			<input type="button" 	id="btnBuscar" 		name="btnBuscar" 	value="Buscar" class="boton"/>
 			<input type="button" 	id="btnAgregar" 	name="btnAgregar" 	value="Agregar" class="boton"/>
-			<input type="text" 		id="nomLink" 	name="nomLink"	placeholder="Descripción Link" class="text">
+			<input type="text" 		id="nomLink" 	name="nomLink"	placeholder="Descripción Link" class="text" onkeypress="return event.keyCode != 13;">
 			
 				<select id="idLink" name="idLink" class="select">
 				<option value="0" selected>Seleccione categoría</option>
