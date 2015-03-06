@@ -2649,10 +2649,8 @@ if(error == null) error = new Error();
 		mapaEntrada.put("link",link);		
 		
 	
-		link.setDesLink(request.getParameter("desLink"));
-		link.setIdCategoriaLink(Utils.stringToNum(request.getParameter("idCategoriaLink")));
-		log.info("(servlet)buscar link (id)-------------------"+Utils.stringToNum(request.getParameter("idCategoriaLink")));
-		log.info("(servlet)buscar link (descri)-------------------"+request.getParameter("desLink"));
+		link.setDesLink(request.getParameter("nomLink"));
+		//link.setIdCategoriaLink(Utils.stringToNum(request.getParameter("categoriaLink")));
 		mapaEntrada.put("link",link);
 		
 		mapaSalida = ejbRemoto.buscarLinks(mapaEntrada);

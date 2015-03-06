@@ -226,7 +226,7 @@
 			<input type="text" 		id="nomLink" 	name="nomLink"	placeholder="Descripción Link" class="text">
 			
 				<select id="idLink" name="idLink" class="select">
-				<option value="" selected>Seleccione categoría</option>
+				<option value="0" selected>Seleccione categoría</option>
 				<c:forEach items="${requestScope.listaCategoriasLink}" var="categoriaLink">
 					<option value="${categoriaLink.idCategoriaLink}" >${categoriaLink.desCategoriaLink}</option>
 				</c:forEach>

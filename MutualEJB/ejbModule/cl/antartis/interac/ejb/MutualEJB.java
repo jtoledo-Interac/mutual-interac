@@ -4994,8 +4994,7 @@ public Map<String, Object> cargarPrioridad(Map<String, Object> mapaEntrada) {
 			dbConeccion = interacDS.getConnection();
 
 			cStmt = dbConeccion.prepareCall("{ call buscar_links(?,?,?,?,?) }");
-			log.info("(ejb)buscar link (id)-------------------"+link.getIdCategoriaLink());
-			log.info("(ejb)buscar link (descri)-------------------"+link.getDesLink());
+		
 			
 			cStmt.setLong(1,link.getIdCategoriaLink());
 			cStmt.setString(2, link.getDesLink());
