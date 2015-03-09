@@ -1850,8 +1850,11 @@ if(error == null) error = new Error();
 		Empresa empresa = new Empresa();
 
 		empresa.setNombre(request.getParameter("nombre"));
+		empresa.setCodCartera(request.getParameter("codCartera"));
+		empresa.setNomExperto(request.getParameter("nomExperto"));
 		empresa.setNumAdherente(request.getParameter("numAdherente"));
-
+		empresa.setRazonSocial(request.getParameter("razonSocial"));
+		
 		mapaEntrada.put("empresa", empresa);
 
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
@@ -1868,6 +1871,9 @@ if(error == null) error = new Error();
 		} else {
 			pagDestino = "contenedor.jsp?accion=empresas";
 		}
+		
+		log.info(empresa.getEmpresa());
+		System.out.println(empresa.getEmpresa());
 	}
 
 	public void cargarEmpresa(HttpServletRequest request,

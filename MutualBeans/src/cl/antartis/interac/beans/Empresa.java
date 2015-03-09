@@ -592,6 +592,80 @@ public class Empresa implements Serializable {
 		String empresa = "\nDATOS DE Empresa:";
 		empresa += "\nidEmpresa: " + this.idEmpresa;
 		empresa += "\nnombre: " + this.nombre;
+		empresa += "\ncodCartera: " + this.codCartera;
+		empresa += "\nnomExperto: "+ this.nomExperto;
+		empresa += "\nnumAdherente: " + this.numAdherente;
+		empresa += "\nrazonSocial: " + this.razonSocial;
+	/*
+	empresa += "\ndireccion;
+	empresa += "\nrepresentante;
+	empresa += "\ncontactoRepresentante;
+	empresa += "\nnombrePrevencionista;
+	empresa += "\ncontactoPrevencionista;
+	empresa += "\nmasaSum;
+	empresa += "\nsegmentacion;
+	empresa += "\nmultiregional;
+	empresa += "\nnumCentros;
+	empresa += "\nholding;
+	empresa += "\nnumCHPS;
+	empresa += "\nnomPresidente;
+	empresa += "\nnomSecretario;
+	empresa += "\nsaami;
+	empresa += "\namputaciones;
+	empresa += "\nfatales;
+	empresa += "\nproyectosDesarrollados;
+	// CERTIFICACONES
+	// CPHS
+	empresa += "\nnumCPHSCertificados;
+	empresa += "\ntipoCertificacion;
+	empresa += "\nfechaCertificacion;
+	empresa += "\nfechaCaducidad;
+	// PEC ESTANDAR
+	empresa += "\nfechaCertificacionPECE;
+	empresa += "\nfechaCaducidadPECE;
+	empresa += "\nnivelLogroPECE;
+	empresa += "\nfechaProxAuditoriaPECE;
+	// PEC COMPETITIVA
+	empresa += "\nfechaCertificacionPECC;
+	empresa += "\nfechaCaducidadPECC;
+	empresa += "\nnivelLogroPECC;
+	empresa += "\nfechaProxAuditoriaPECC;
+	// PEC EXCELENCIA
+	empresa += "\nfechaCertificacionPECEX;
+	empresa += "\nfechaCaducidadPECEX;
+	empresa += "\nnivelLogroPECEX;
+	empresa += "\nfechaProxAuditoriaPECEX;
+	// Accidentabilidad
+	empresa += "\ntasaAccidentabilidad;
+	empresa += "\nsiniestralidad;
+	empresa += "\nfatalesAcc;
+	empresa += "\ninvalidez;
+	// Protocolo
+	// PREXOR
+	empresa += "\nadherenciaPREX;
+	empresa += "\nfechaAdherenciaPREX;
+	empresa += "\nfechaVencimientoPREX;
+	empresa += "\nindemnizacionesPREX;
+	empresa += "\nnumCasosIndemnizacionesPREX;
+	empresa += "\npensionesPREX;
+	empresa += "\nnumCasosPensionesPREX;
+	empresa += "\nactasDifusionPREX;
+	empresa += "\nnivelExposicionPREX;
+	// PLANESI
+	empresa += "\nadherenciaPLAN;
+	empresa += "\nfechaAdherenciaPLAN;
+	empresa += "\nfechaVencimientoPLAN;
+	empresa += "\nindemnizacionesPLAN;
+	empresa += "\nnumCasosIndemnizacionesPLAN;
+	empresa += "\npensionesPLAN;
+	empresa += "\nnumCasosPensionesPLAN;
+	empresa += "\nactasDifusionPLAN;
+	empresa += "\nnivelExposicionPLAN;
+	// PSICOSOCIAL
+	empresa += "\nadherenciaPSICO;
+	// TMERS
+	empresa += "\ndifusionProtocolo;*/
+		
 		return empresa;
 	}
 }
