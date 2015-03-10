@@ -1854,6 +1854,7 @@ if(error == null) error = new Error();
 		empresa.setNomExperto(request.getParameter("nomExperto"));
 		empresa.setNumAdherente(request.getParameter("numAdherente"));
 		empresa.setRazonSocial(request.getParameter("razonSocial"));
+		empresa.setDireccion(request.getParameter("direccion"));
 		
 		mapaEntrada.put("empresa", empresa);
 

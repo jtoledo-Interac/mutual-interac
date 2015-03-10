@@ -35,7 +35,7 @@ $(function() {
 		</tr>
 		<tr>
 			<td>Dirección</td><td> : </td>
-			<td><input type="text" 		id="direccion" 	name="direccion"	placeholder="Dirección" ></td>
+			<td><input type="text" 		id="direccion" 	name="direccion"	placeholder="Dirección" required></td>
 		</tr>
 		<tr>
 			<td>Representante</td><td> : </td>

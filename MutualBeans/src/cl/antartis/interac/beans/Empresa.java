@@ -596,6 +596,7 @@ public class Empresa implements Serializable {
 		empresa += "\nnomExperto: "+ this.nomExperto;
 		empresa += "\nnumAdherente: " + this.numAdherente;
 		empresa += "\nrazonSocial: " + this.razonSocial;
+		empresa += "\ndireccion: " + this.direccion;
 	/*
 	empresa += "\ndireccion;
 	empresa += "\nrepresentante;
