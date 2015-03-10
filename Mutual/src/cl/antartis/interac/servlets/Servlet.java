@@ -1873,7 +1873,6 @@ if(error == null) error = new Error();
 		}
 		
 		log.info(empresa.getEmpresa());
-		System.out.println(empresa.getEmpresa());
 	}
 
 	public void cargarEmpresa(HttpServletRequest request,
@@ -1912,7 +1911,10 @@ if(error == null) error = new Error();
 
 		empresa.setIdEmpresa(Utils.stringToNum(request.getParameter("idEmpresa")));
 		empresa.setNombre(request.getParameter("nombre"));
+		empresa.setCodCartera(request.getParameter("codCartera"));
+		empresa.setNomExperto(request.getParameter("nomExperto"));
 		empresa.setNumAdherente(request.getParameter("numAdherente"));
+		empresa.setRazonSocial(request.getParameter("razonSocial"));
 
 		mapaEntrada.put("empresa", empresa);
 
