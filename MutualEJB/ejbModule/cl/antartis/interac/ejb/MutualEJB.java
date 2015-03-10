@@ -2190,12 +2190,13 @@ public class MutualEJB implements EJBRemoto {
 
 			log.info(empresa.getEmpresa());
 			
-			cStmt = dbConeccion.prepareCall("{ call modificar_empresa(?,?,?,?,?) }");
+			cStmt = dbConeccion.prepareCall("{ call modificar_empresa_2(?,?,?,?,?,?) }");
 			cStmt.setLong(1,empresa.getIdEmpresa());
 			cStmt.setString(2,empresa.getNumAdherente());
 			cStmt.setString(3,empresa.getNombre());
-			cStmt.registerOutParameter(4, Types.VARCHAR);// numerror$
-			cStmt.registerOutParameter(5, Types.VARCHAR);// msjerror$
+			cStmt.setString(4,empresa.getDireccion());
+			cStmt.registerOutParameter(5, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(6, Types.VARCHAR);// msjerror$
 			cStmt.execute();
 			error.setNumError(cStmt.getString(4));
 			error.setMsjError(cStmt.getString(5));

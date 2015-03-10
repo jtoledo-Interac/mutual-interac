@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -21,6 +22,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.MethodUtils;
 import org.apache.log4j.Logger;
+import org.hibernate.ejb.packaging.Entry;
 
 import cl.antartis.interac.beans.Cartera;
 import cl.antartis.interac.beans.CategoriaLink;
@@ -1916,7 +1918,7 @@ if(error == null) error = new Error();
 		empresa.setNomExperto(request.getParameter("nomExperto"));
 		empresa.setNumAdherente(request.getParameter("numAdherente"));
 		empresa.setRazonSocial(request.getParameter("razonSocial"));
-
+		empresa.setDireccion(request.getParameter("direccion"));
 		mapaEntrada.put("empresa", empresa);
 
 		mapaSalida = ejbRemoto.modificarEmpresa(mapaEntrada);
