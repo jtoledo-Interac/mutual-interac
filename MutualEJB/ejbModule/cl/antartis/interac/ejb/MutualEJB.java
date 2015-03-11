@@ -2200,17 +2200,18 @@ public class MutualEJB implements EJBRemoto {
 
 			cStmt = dbConeccion
 					.prepareCall("{ call modificar_empresa(?,?,?,?,?,?,?,?) }");
+			
 			cStmt.setLong(1, empresa.getIdEmpresa());
 			cStmt.setString(2, empresa.getNumAdherente());
 			cStmt.setString(3, empresa.getNombre());
-			cStmt.setString(4, empresa.getNomExperto());
-			cStmt.setString(5, empresa.getRazonSocial());
-			cStmt.setString(6, empresa.getDireccion());
+			cStmt.setString(4, empresa.getDireccion());
+			cStmt.setString(5, empresa.getNomExperto());
+			cStmt.setString(6, empresa.getRazonSocial());
 			cStmt.registerOutParameter(7, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(8, Types.VARCHAR);// msjerror$
 			cStmt.execute();
-			error.setNumError(cStmt.getString(4));
-			error.setMsjError(cStmt.getString(5));
+			error.setNumError(cStmt.getString(7));
+			error.setMsjError(cStmt.getString(8));
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -3543,9 +3544,9 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(1, empresa.getNumAdherente());// cursor$
 			cStmt.setString(2, empresa.getNombre());// cursor$
 			cStmt.setString(3, empresa.getDireccion());
-			cStmt.setString(3, empresa.getCodCartera());
-			cStmt.registerOutParameter(4, Types.VARCHAR);// numerror$
-			cStmt.registerOutParameter(5, Types.VARCHAR);// msjerror$
+			cStmt.setString(4, empresa.getCodCartera());
+			cStmt.registerOutParameter(5, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(6, Types.VARCHAR);// msjerror$
 
 			cStmt.execute();
 
