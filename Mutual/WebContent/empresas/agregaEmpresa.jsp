@@ -39,11 +39,11 @@ $(function() {
 		</tr>
 		<tr>
 			<td>Representante</td><td> : </td>
-			<td><input type="text" 		id="representante" 	name="representante"	placeholder="Representante" ></td>
+			<td><input type="text" 		id="representante" 	name="representante"	placeholder="Representante" required ></td>
 		</tr>
 		<tr>
 			<td>Contacto Representante</td><td> : </td>
-			<td><input type="text" 		id="contactoRepresentante" 	name="contactoRepresentante"	placeholder="Contacto Rerpresentante" ></td>
+			<td><input type="text" 		id="contactoRepresentante" 	name="contactoRepresentante"	placeholder="Contacto Rerpresentante" required ></td>
 		</tr>
 		<tr>
 			<td>Nombre Prevencionista</td><td> : </td>

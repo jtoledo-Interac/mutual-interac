@@ -1919,6 +1919,8 @@ if(error == null) error = new Error();
 		empresa.setNumAdherente(request.getParameter("numAdherente"));
 		empresa.setRazonSocial(request.getParameter("razonSocial"));
 		empresa.setDireccion(request.getParameter("direccion"));
+		empresa.setRepresentante(request.getParameter("representante"));
+		empresa.setContactoRepresentante(request.getParameter("contactoRepresentante"));
 		mapaEntrada.put("empresa", empresa);
 
 		mapaSalida = ejbRemoto.modificarEmpresa(mapaEntrada);
