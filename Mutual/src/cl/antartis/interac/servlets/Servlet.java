@@ -1921,6 +1921,7 @@ if(error == null) error = new Error();
 		empresa.setDireccion(request.getParameter("direccion"));
 		empresa.setRepresentante(request.getParameter("representante"));
 		empresa.setContactoRepresentante(request.getParameter("contactoRepresentante"));
+		
 		mapaEntrada.put("empresa", empresa);
 
 		mapaSalida = ejbRemoto.modificarEmpresa(mapaEntrada);

@@ -3496,7 +3496,6 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(3, empresa.getDireccion());
 			cStmt.registerOutParameter(4, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(5, Types.VARCHAR);// msjerror$
-
 			
 			cStmt.execute();
 
