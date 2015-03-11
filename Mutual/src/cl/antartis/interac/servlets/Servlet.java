@@ -1851,12 +1851,12 @@ if(error == null) error = new Error();
 
 		Empresa empresa = new Empresa();
 
-		empresa.setNombre(request.getParameter("nombre"));
-		empresa.setCodCartera(request.getParameter("codCartera"));
-		empresa.setNomExperto(request.getParameter("nomExperto"));
 		empresa.setNumAdherente(request.getParameter("numAdherente"));
-		empresa.setRazonSocial(request.getParameter("razonSocial"));
+		empresa.setNombre(request.getParameter("nombre"));
 		empresa.setDireccion(request.getParameter("direccion"));
+		empresa.setNomExperto(request.getParameter("nomExperto"));
+		empresa.setRazonSocial(request.getParameter("razonSocial"));
+		empresa.setCodCartera(request.getParameter("codCartera"));
 		
 		mapaEntrada.put("empresa", empresa);
 
