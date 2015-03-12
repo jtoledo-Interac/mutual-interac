@@ -3743,9 +3743,9 @@ public class MutualEJB implements EJBRemoto {
 
 			while (rsEmpresa.next()) {
 				empresa = new Empresa();
+				empresa.setIdEmpresa(rsEmpresa.getLong("id_empresa"));
 				empresa.setNumAdherente(rsEmpresa.getString("num_adherente"));
 				empresa.setNombre(rsEmpresa.getString("nombre"));
-				empresa.setIdEmpresa(rsEmpresa.getLong("id_empresa"));
 				empresa.setDireccion(rsEmpresa.getString("direccion"));
 				empresa.setNomExperto(rsEmpresa.getString("nom_experto"));
 				empresa.setRazonSocial(rsEmpresa.getString("razon_social"));
