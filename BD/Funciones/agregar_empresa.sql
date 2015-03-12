@@ -9,7 +9,7 @@ IN xfecha_caducidadPECE varchar,IN xnivel_logroPECE varchar,IN Xfecha_proxAudito
 IN xnivel_logroPECC varchar,IN xfecha_proxAuditoriaPECC varchar,IN xfecha_certificacionPECEX varchar,IN xfecha_caducidadPECEX varchar,
 IN xnivel_logroPECEx varchar,IN xfecha_proxAuditoriaPECEX varchar,IN xtasa_accidentabilidad varchar,IN xsiniestralidad varchar,IN xfatales_acc varchar,
 IN xinvalidez varchar,IN xadherenciaPREX varchar,IN xfecha_adherenciaPREX varchar,IN xfecha_vencimientoPREX varchar,IN xindemnizacionesPREX varchar,
-IN xnum_casosIndemnizacionesPREX varchar,IN xpensionesPREX varchar,IN xnum_casosPensionesPREX varchar,IN xactas_difusionePrex varchar,IN xnivel_exposicionPREX varchar,
+IN xnum_casosIndemnizacionesPREX varchar,IN xpensionesPREX varchar,IN xnum_casosPensionesPREX varchar,IN xactas_difusionPrex varchar,IN xnivel_exposicionPREX varchar,
 IN xadherenciaPLAN varchar,IN xfecha_adherenciaPLAN varchar,IN xfecha_vencimientoPLAN varchar,IN xindemnizacionesPLAN varchar,IN xnum_casosIndemnizacionPLAN varchar,
 IN xpensionesPLAN varchar,IN xnum_casosPensionesPLAN varchar,IN xactas_difusionPLAN varchar,IN xnivel_exposicionPLAN varchar,IN xadherenciaPSICO varchar,
 IN xdifusion_protocolo varchar, OUT numerror varchar, OUT msjerror varchar
@@ -81,7 +81,7 @@ $body$
 			num_casosIndemnizacionesPREX ,
 			pensionesPREX ,
 			num_casosPensionesPREX ,
-			actas_difusionePrex ,
+			actas_difusionPrex ,
 			nivel_exposicionPREX ,
 			---PLANESI
 			adherenciaPLAN ,
@@ -155,7 +155,7 @@ $body$
 			xnum_casosIndemnizacionesPREX ,
 			xpensionesPREX ,
 			xnum_casosPensionesPREX ,
-			xactas_difusionePrex ,
+			xactas_difusionPrex ,
 			xnivel_exposicionPREX ,
 			---PLANESI
 			xadherenciaPLAN ,
