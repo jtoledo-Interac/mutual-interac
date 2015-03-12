@@ -75,7 +75,7 @@ $(function() {
 		</tr>
 		<tr>
 			<td>Número CHPS</td><td> : </td>
-			<td><input required type="text"  		id="numCHPS" 	name="numCHPS"	placeholder="Númer CHPS" ></td>
+			<td><input required type="text"  		id="numCPHS" 	name="numCPHS"	placeholder="Númer CPHS" ></td>
 		</tr>
 		<tr>
 			<td>Nombre Presidente</td><td> : </td>

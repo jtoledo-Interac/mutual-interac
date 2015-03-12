@@ -98,7 +98,7 @@ $body$
 			difusion_protocolo = xdifusion_protocolo
 
         where
-            id_empresa = xid_empressa;
+            id_empresa = xid_empresa;
 
         exception
             when others then
