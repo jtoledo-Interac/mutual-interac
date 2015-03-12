@@ -2196,90 +2196,54 @@ public class MutualEJB implements EJBRemoto {
 
 			dbConeccion = interacDS.getConnection();
 
-			log.info(empresa.getEmpresa());
-
 			cStmt = dbConeccion
-					.prepareCall("{ call modificar_empresa(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
+					.prepareCall("{ call modificar_empresa(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
 
 			cStmt.setLong(1, empresa.getIdEmpresa());
-			cStmt.setString(2, empresa.getNumAdherente());// cursor$
-			cStmt.setString(3, empresa.getNombre());// cursor$
-			cStmt.setString(4, empresa.getDireccion());
-			cStmt.setString(5, empresa.getNomExperto());
+			cStmt.setString(2, empresa.getNombre());
+			cStmt.setString(3, empresa.getCodCartera());
+			cStmt.setString(4, empresa.getNomExperto());
+			cStmt.setString(5, empresa.getNumAdherente());
 			cStmt.setString(6, empresa.getRazonSocial());
-			cStmt.setString(7, empresa.getCodCartera());
-			cStmt.setString(8, empresa.getRepresentante());
-			cStmt.setString(9, empresa.getContactoRepresentante());
-			cStmt.setString(10, empresa.getNombrePrevencionista());
-			cStmt.setString(11, empresa.getContactoPrevencionista());
-			cStmt.setString(12, empresa.getMasaSum());
-			cStmt.setString(13, empresa.getSegmentacion());
-			cStmt.setString(14, empresa.getMultiregional());
-			cStmt.setString(15, empresa.getNumCentros());
-			cStmt.setString(16, empresa.getHolding());
-			cStmt.setString(17, empresa.getNumCHPS());
-			cStmt.setString(18, empresa.getNomPresidente());
-			cStmt.setString(19, empresa.getNomSecretario());
-			cStmt.setString(20, empresa.getSaami());
-			cStmt.setString(21, empresa.getAmputaciones());
-			cStmt.setString(22, empresa.getFatales());
-			cStmt.setString(23, empresa.getProyectosDesarrollados());
-			// CERTIFICACIONES CHPS
-			cStmt.setString(24, empresa.getNumCPHSCertificados());
-			cStmt.setString(25, empresa.getTipoCertificacion());
-			cStmt.setString(26, empresa.getFechaCertificacion());
-			cStmt.setString(27, empresa.getFechaCaducidad());
-			// PEC ESTANDAR
-			cStmt.setString(28, empresa.getFechaCaducidadPECE());
-			cStmt.setString(29, empresa.getFechaCaducidadPECE());
-			cStmt.setString(30, empresa.getNivelLogroPECE());
-			cStmt.setString(31, empresa.getFechaProxAuditoriaPECE());
-			// PEC COMPETITIVO
-			cStmt.setString(32, empresa.getFechaCaducidadPECC());
-			cStmt.setString(33, empresa.getFechaCaducidadPECC());
-			cStmt.setString(34, empresa.getNivelLogroPECC());
-			cStmt.setString(35, empresa.getFechaProxAuditoriaPECC());
-			// PEC EXCELENCIA
-			cStmt.setString(36, empresa.getFechaCaducidadPECEX());
-			cStmt.setString(37, empresa.getFechaCaducidadPECEX());
-			cStmt.setString(38, empresa.getNivelLogroPECEX());
-			cStmt.setString(39, empresa.getFechaProxAuditoriaPECEX());
-			// ACCIDENTABILIDAD
-			cStmt.setString(40, empresa.getTasaAccidentabilidad());
-			cStmt.setString(41, empresa.getSiniestralidad());
-			cStmt.setString(42, empresa.getFatalesAcc());
-			cStmt.setString(43, empresa.getInvalidez());
-			// PROTOCOLOS PREXOR
-			cStmt.setString(44, empresa.getAdherenciaPREX());
-			cStmt.setString(45, empresa.getFechaAdherenciaPREX());
-			cStmt.setString(46, empresa.getFechaVencimientoPREX());
-			cStmt.setString(47, empresa.getIndemnizacionesPREX());
-			cStmt.setString(48, empresa.getNumCasosIndemnizacionesPREX());
-			cStmt.setString(49, empresa.getPensionesPREX());
-			cStmt.setString(50, empresa.getNumCasosPensionesPREX());
-			cStmt.setString(51, empresa.getActasDifusionPREX());
-			cStmt.setString(52, empresa.getNivelExposicionPREX());
-			// PROTOCOLOS PLANESI
-			cStmt.setString(53, empresa.getAdherenciaPLAN());
-			cStmt.setString(54, empresa.getFechaAdherenciaPLAN());
-			cStmt.setString(55, empresa.getFechaVencimientoPLAN());
-			cStmt.setString(56, empresa.getIndemnizacionesPLAN());
-			cStmt.setString(57, empresa.getNumCasosIndemnizacionesPLAN());
-			cStmt.setString(58, empresa.getPensionesPLAN());
-			cStmt.setString(59, empresa.getNumCasosPensionesPLAN());
-			cStmt.setString(60, empresa.getActasDifusionPLAN());
-			cStmt.setString(61, empresa.getNivelExposicionPLAN());
-			// PSICOSOCIAL
-			cStmt.setString(62, empresa.getAdherenciaPSICO());
-			// TMERS
-			cStmt.setString(63, empresa.getDifusionProtocolo());
-			cStmt.registerOutParameter(64, Types.VARCHAR);// numerror$
-			cStmt.registerOutParameter(65, Types.VARCHAR);// msjerror$
+			cStmt.setString(7, empresa.getAnoDeAdhesion());
+			cStmt.setString(8, empresa.getSegmentacion());
+			cStmt.setString(9, empresa.getHolding());
+			cStmt.setString(10, empresa.getSituacion());
+			cStmt.setString(11, empresa.getMultiRegion());
+			cStmt.setString(12, empresa.getCasaMatriz());
+			cStmt.setString(13, empresa.getRegionCasaMatriz());
+			cStmt.setString(14, empresa.getMesaSum());
+			cStmt.setString(15, empresa.getPlanesDeCuenta());
+			cStmt.setString(16, empresa.getPlanesDeTrabajo());
+			cStmt.setString(17, empresa.getFirmaDePlanes());
+			cStmt.setString(18, empresa.getSistemaDeGestion());
+			cStmt.setString(19, empresa.getMultiRegion());
+			cStmt.setString(20, empresa.getConstitucionCphs());
+			cStmt.setString(21, empresa.getCertificacionCphs());
+			cStmt.setString(22, empresa.getMmc());
+			cStmt.setString(23, empresa.getTmert());
+			cStmt.setString(24, empresa.getPlanesi());
+			cStmt.setString(25, empresa.getPlaguicida());
+			cStmt.setString(26, empresa.getRadiacionUv());
+			cStmt.setString(27, empresa.getHipobaria());
+			cStmt.setString(28, empresa.getPrexor());
+			cStmt.setString(29, empresa.getPsicosociales());
+			cStmt.setString(30, empresa.getProyectoInvestigacion());
+			cStmt.setString(31, empresa.getUltimaVisitaExperto());
+			cStmt.setString(32, empresa.getUltimaVisitaDirector());
+			cStmt.setString(33, empresa.getUltimaVisitaGtte());
+			cStmt.setString(34, empresa.getUltimaVisitaAltaGerencia());
+			cStmt.setString(35, empresa.getReporteVisita());
+			cStmt.setString(36, empresa.getRiesgoDeFuega());
+			cStmt.setString(37, empresa.getReclamoUltimoPeriodo());
+			cStmt.setString(38, empresa.getParticipaMesaTrabajo());
+			cStmt.registerOutParameter(39, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(40, Types.VARCHAR);// msjerror$
 
 			cStmt.execute();
 
-			error.setNumError(cStmt.getString(64));
-			error.setMsjError(cStmt.getString(65));
+			error.setNumError(cStmt.getString(39));
+			error.setMsjError(cStmt.getString(40));
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -3607,86 +3571,54 @@ public class MutualEJB implements EJBRemoto {
 			dbConeccion = interacDS.getConnection();
 
 			cStmt = dbConeccion
-					.prepareCall("{ call agregar_empresa(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
+					.prepareCall("{ call agregar_empresa(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
 
-			cStmt.setString(1, empresa.getNumAdherente());// cursor$
-			cStmt.setString(2, empresa.getNombre());// cursor$
-			cStmt.setString(3, empresa.getDireccion());
-			cStmt.setString(4, empresa.getNomExperto());
+			cStmt.setString(1, empresa.getNombre());
+			cStmt.setString(2, empresa.getCodCartera());
+			cStmt.setString(3, empresa.getNomExperto());
+			cStmt.setString(4, empresa.getNumAdherente());
 			cStmt.setString(5, empresa.getRazonSocial());
-			cStmt.setString(6, empresa.getCodCartera());
-			cStmt.setString(7, empresa.getRepresentante());
-			cStmt.setString(8, empresa.getContactoRepresentante());
-			cStmt.setString(9, empresa.getNombrePrevencionista());
-			cStmt.setString(10, empresa.getContactoPrevencionista());
-			cStmt.setString(11, empresa.getMasaSum());
-			cStmt.setString(12, empresa.getSegmentacion());
-			cStmt.setString(13, empresa.getMultiregional());
-			cStmt.setString(14, empresa.getNumCentros());
-			cStmt.setString(15, empresa.getHolding());
-			cStmt.setString(16, empresa.getNumCHPS());
-			cStmt.setString(17, empresa.getNomPresidente());
-			cStmt.setString(18, empresa.getNomSecretario());
-			cStmt.setString(19, empresa.getSaami());
-			cStmt.setString(20, empresa.getAmputaciones());
-			cStmt.setString(21, empresa.getFatales());
-			cStmt.setString(22, empresa.getProyectosDesarrollados());
-			// CERTIFICACIONES CHPS
-			cStmt.setString(23, empresa.getNumCPHSCertificados());
-			cStmt.setString(24, empresa.getTipoCertificacion());
-			cStmt.setString(25, empresa.getFechaCertificacion());
-			cStmt.setString(26, empresa.getFechaCaducidad());
-			// PEC ESTANDAR
-			cStmt.setString(27, empresa.getFechaCaducidadPECE());
-			cStmt.setString(28, empresa.getFechaCaducidadPECE());
-			cStmt.setString(29, empresa.getNivelLogroPECE());
-			cStmt.setString(30, empresa.getFechaProxAuditoriaPECE());
-			// PEC COMPETITIVO
-			cStmt.setString(31, empresa.getFechaCaducidadPECC());
-			cStmt.setString(32, empresa.getFechaCaducidadPECC());
-			cStmt.setString(33, empresa.getNivelLogroPECC());
-			cStmt.setString(34, empresa.getFechaProxAuditoriaPECC());
-			// PEC EXCELENCIA
-			cStmt.setString(35, empresa.getFechaCaducidadPECEX());
-			cStmt.setString(36, empresa.getFechaCaducidadPECEX());
-			cStmt.setString(37, empresa.getNivelLogroPECEX());
-			cStmt.setString(38, empresa.getFechaProxAuditoriaPECEX());
-			// ACCIDENTABILIDAD
-			cStmt.setString(39, empresa.getTasaAccidentabilidad());
-			cStmt.setString(40, empresa.getSiniestralidad());
-			cStmt.setString(41, empresa.getFatalesAcc());
-			cStmt.setString(42, empresa.getInvalidez());
-			// PROTOCOLOS PREXOR
-			cStmt.setString(43, empresa.getAdherenciaPREX());
-			cStmt.setString(44, empresa.getFechaAdherenciaPREX());
-			cStmt.setString(45, empresa.getFechaVencimientoPREX());
-			cStmt.setString(46, empresa.getIndemnizacionesPREX());
-			cStmt.setString(47, empresa.getNumCasosIndemnizacionesPREX());
-			cStmt.setString(48, empresa.getPensionesPREX());
-			cStmt.setString(49, empresa.getNumCasosPensionesPREX());
-			cStmt.setString(50, empresa.getActasDifusionPREX());
-			cStmt.setString(51, empresa.getNivelExposicionPREX());
-			// PROTOCOLOS PLANESI
-			cStmt.setString(52, empresa.getAdherenciaPLAN());
-			cStmt.setString(53, empresa.getFechaAdherenciaPLAN());
-			cStmt.setString(54, empresa.getFechaVencimientoPLAN());
-			cStmt.setString(55, empresa.getIndemnizacionesPLAN());
-			cStmt.setString(56, empresa.getNumCasosIndemnizacionesPLAN());
-			cStmt.setString(57, empresa.getPensionesPLAN());
-			cStmt.setString(58, empresa.getNumCasosPensionesPLAN());
-			cStmt.setString(59, empresa.getActasDifusionPLAN());
-			cStmt.setString(60, empresa.getNivelExposicionPLAN());
-			// PSICOSOCIAL
-			cStmt.setString(61, empresa.getAdherenciaPSICO());
-			// TMERS
-			cStmt.setString(62, empresa.getDifusionProtocolo());
-			cStmt.registerOutParameter(63, Types.VARCHAR);// numerror$
-			cStmt.registerOutParameter(64, Types.VARCHAR);// msjerror$
+			cStmt.setString(6, empresa.getAnoDeAdhesion());
+			cStmt.setString(7, empresa.getSegmentacion());
+			cStmt.setString(8, empresa.getHolding());
+			cStmt.setString(9, empresa.getSituacion());
+			cStmt.setString(10, empresa.getMultiRegion());
+			cStmt.setString(11, empresa.getCasaMatriz());
+			cStmt.setString(12, empresa.getRegionCasaMatriz());
+			cStmt.setString(13, empresa.getMesaSum());
+			cStmt.setString(14, empresa.getPlanesDeCuenta());
+			cStmt.setString(15, empresa.getPlanesDeTrabajo());
+			cStmt.setString(16, empresa.getFirmaDePlanes());
+			cStmt.setString(17, empresa.getSistemaDeGestion());
+			cStmt.setString(18, empresa.getMultiRegion());
+			cStmt.setString(19, empresa.getConstitucionCphs());
+			cStmt.setString(20, empresa.getCertificacionCphs());
+			cStmt.setString(21, empresa.getMmc());
+			cStmt.setString(22, empresa.getTmert());
+			cStmt.setString(23, empresa.getPlanesi());
+			cStmt.setString(24, empresa.getPlaguicida());
+			cStmt.setString(25, empresa.getRadiacionUv());
+			cStmt.setString(26, empresa.getHipobaria());
+			cStmt.setString(27, empresa.getPrexor());
+			cStmt.setString(28, empresa.getPsicosociales());
+			cStmt.setString(29, empresa.getProyectoInvestigacion());
+			cStmt.setString(30, empresa.getUltimaVisitaExperto());
+			cStmt.setString(31, empresa.getUltimaVisitaDirector());
+			cStmt.setString(32, empresa.getUltimaVisitaGtte());
+			cStmt.setString(33, empresa.getUltimaVisitaAltaGerencia());
+			cStmt.setString(34, empresa.getReporteVisita());
+			cStmt.setString(35, empresa.getRiesgoDeFuega());
+			cStmt.setString(36, empresa.getReclamoUltimoPeriodo());
+			cStmt.setString(37, empresa.getParticipaMesaTrabajo());
+			
+			
+			cStmt.registerOutParameter(38, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(39, Types.VARCHAR);// msjerror$
 
 			cStmt.execute();
 
-			error.setNumError(cStmt.getString(63));
-			error.setMsjError(cStmt.getString(64));
+			error.setNumError(cStmt.getString(38));
+			error.setMsjError(cStmt.getString(39));
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -3744,116 +3676,42 @@ public class MutualEJB implements EJBRemoto {
 			while (rsEmpresa.next()) {
 				empresa = new Empresa();
 				empresa.setNombre(rsEmpresa.getString("nombre"));
-				empresa.setNumAdherente(rsEmpresa.getString("num_adherente"));
-				empresa.setIdEmpresa(rsEmpresa.getLong("id_empresa"));
-				empresa.setDireccion(rsEmpresa.getString("direccion"));
-				empresa.setNomExperto(rsEmpresa.getString("nom_experto"));
-				empresa.setRazonSocial(rsEmpresa.getString("razon_social"));
-				empresa.setCodCartera(rsEmpresa.getString("cod_cartera"));
-				empresa.setRepresentante(rsEmpresa.getString("representante"));
-				empresa.setContactoRepresentante(rsEmpresa
-						.getString("contacto_representante"));
-				empresa.setNombrePrevencionista(rsEmpresa
-						.getString("nombre_prevencionista"));
-				empresa.setContactoPrevencionista(rsEmpresa
-						.getString("contacto_prevencionista"));
-				empresa.setMasaSum(rsEmpresa.getString("masa_sum"));
+				empresa.setCodCartera(rsEmpresa.getString("codCartera"));
+				empresa.setNomExperto(rsEmpresa.getString("nomExperto"));
+				empresa.setNumAdherente(rsEmpresa.getString("numAdherente"));
+				empresa.setRazonSocial(rsEmpresa.getString("razonSocial"));
+				empresa.setAnoDeAdhesion(rsEmpresa.getString("anoDeAdhesion"));
 				empresa.setSegmentacion(rsEmpresa.getString("segmentacion"));
-				empresa.setMultiregional(rsEmpresa.getString("multiregional"));
-				empresa.setNumCentros(rsEmpresa.getString("num_centros"));
 				empresa.setHolding(rsEmpresa.getString("holding"));
-				empresa.setNumCHPS(rsEmpresa.getString("num_CHPS"));
-				empresa.setNomPresidente(rsEmpresa.getString("nom_presidente"));
-				empresa.setNomSecretario(rsEmpresa.getString("nom_secretario"));
-				empresa.setSaami(rsEmpresa.getString("saami"));
-				empresa.setAmputaciones(rsEmpresa.getString("amputaciones"));
-				empresa.setFatales(rsEmpresa.getString("fatales"));
-				empresa.setProyectosDesarrollados(rsEmpresa
-						.getString("proyectos_desarrollados"));
-				// CERTIFICACIONES CPHS
-				empresa.setNumCPHSCertificados(rsEmpresa
-						.getString("num_CPHScertificados"));
-				empresa.setTipoCertificacion(rsEmpresa
-						.getString("tipo_certificacion"));
-				empresa.setFechaCertificacion(rsEmpresa
-						.getString("fecha_certificacion"));
-				empresa.setFechaCaducidad(rsEmpresa
-						.getString("fecha_caducidad"));
-				// PEC ESTANDAR
-				empresa.setFechaCertificacionPECE(rsEmpresa
-						.getString("fecha_certificacionPECE"));
-				empresa.setFechaCaducidadPECE(rsEmpresa
-						.getString("fecha_caducidadPECE"));
-				empresa.setNivelLogroPECE(rsEmpresa
-						.getString("nivel_logroPECE"));
-				empresa.setFechaProxAuditoriaPECE(rsEmpresa
-						.getString("fecha_proxAuditoriaPECE"));
-				// PEC COMPETITIVA
-				empresa.setFechaCertificacionPECC(rsEmpresa
-						.getString("fecha_certificacionPECC"));
-				empresa.setFechaCaducidadPECC(rsEmpresa
-						.getString("fecha_caducidadPECC"));
-				empresa.setNivelLogroPECC(rsEmpresa
-						.getString("nivel_logroPECC"));
-				empresa.setFechaProxAuditoriaPECC(rsEmpresa
-						.getString("fecha_proxAuditoriaPECC"));
-				// PEC EXCELENCIA
-				empresa.setFechaCertificacionPECEX(rsEmpresa
-						.getString("fecha_certificacionPECEX"));
-				empresa.setFechaCaducidadPECEX(rsEmpresa
-						.getString("fecha_caducidadPECEX"));
-				empresa.setNivelLogroPECEX(rsEmpresa
-						.getString("nivel_logroPECEX"));
-				empresa.setFechaProxAuditoriaPECEX(rsEmpresa
-						.getString("fecha_proxAuditoriaPECEX"));
-				// ACCIDENTABILIDAD
-				empresa.setTasaAccidentabilidad(rsEmpresa
-						.getString("tasa_accidentabilidad"));
-				empresa.setSiniestralidad(rsEmpresa.getString("siniestralidad"));
-				empresa.setFatalesAcc(rsEmpresa.getString("fatales_acc"));
-				empresa.setInvalidez(rsEmpresa.getString("invalidez"));
-				// PROTOCOLO PREXOR
-				empresa.setAdherenciaPREX(rsEmpresa.getString("adherenciaPREX"));
-				empresa.setFechaAdherenciaPREX(rsEmpresa
-						.getString("fecha_adherenciaPREX"));
-				empresa.setFechaVencimientoPREX(rsEmpresa
-						.getString("fecha_vencimientoPREX"));
-				empresa.setIndemnizacionesPREX(rsEmpresa
-						.getString("indemnizacionesPREX"));
-				empresa.setNumCasosIndemnizacionesPREX(rsEmpresa
-						.getString("num_casosIndemnizacionesPREX"));
-				empresa.setPensionesPREX(rsEmpresa.getString("pensionesPREX"));
-				empresa.setNumCasosPensionesPREX(rsEmpresa
-						.getString("num_casosPensionesPREX"));
-				empresa.setActasDifusionPREX(rsEmpresa
-						.getString("actas_difusionPREX"));
-				empresa.setNivelExposicionPREX(rsEmpresa
-						.getString("nivel_exposicionPREX"));
-				// PLANESI
-				empresa.setAdherenciaPLAN(rsEmpresa.getString("adherenciaPLAN"));
-				empresa.setFechaAdherenciaPLAN(rsEmpresa
-						.getString("fecha_adherenciaPLAN"));
-				empresa.setFechaVencimientoPLAN(rsEmpresa
-						.getString("fecha_vencimientoPLAN"));
-				empresa.setIndemnizacionesPLAN(rsEmpresa
-						.getString("indemnizacionesPLAN"));
-				empresa.setNumCasosIndemnizacionesPLAN(rsEmpresa
-						.getString("num_casosIndemnizacionPLAN"));
-				empresa.setPensionesPLAN(rsEmpresa.getString("pensionesPLAN"));
-				empresa.setNumCasosPensionesPLAN(rsEmpresa
-						.getString("num_casosPensionesPLAN"));
-				empresa.setActasDifusionPLAN(rsEmpresa
-						.getString("actas_difusionPLAN"));
-				empresa.setNivelExposicionPLAN(rsEmpresa
-						.getString("nivel_exposicionPLAN"));
-				// PSICOSOCIAL
-				empresa.setAdherenciaPSICO(rsEmpresa
-						.getString("adherenciaPSICO"));
-				// TMERS
-				empresa.setDifusionProtocolo(rsEmpresa
-						.getString("difusion_protocolo"));
-
-				log.info(empresa.getEmpresa());
+				empresa.setSituacion(rsEmpresa.getString("situacion"));
+				empresa.setMultiRegion(rsEmpresa.getString("multiRegion"));
+				empresa.setCasaMatriz(rsEmpresa.getString("casaMatriz"));
+				empresa.setRegionCasaMatriz(rsEmpresa.getString("regionCasaMatriz"));
+				empresa.setMesaSum(rsEmpresa.getString("mesaSum"));
+				empresa.setPlanesDeCuenta(rsEmpresa.getString("planesDeCuenta"));
+				empresa.setPlanesDeTrabajo(rsEmpresa.getString("planesDeTrabajo"));
+				empresa.setFirmaDePlanes(rsEmpresa.getString("fimaDePlanes"));
+				empresa.setSistemaDeGestion(rsEmpresa.getString("sistemaDeGestion"));
+				empresa.setMultiRegion(rsEmpresa.getString("multiRegion"));
+				empresa.setConstitucionCphs(rsEmpresa.getString("constitucionCphs"));
+				empresa.setCertificacionCphs(rsEmpresa.getString("certificacionCphs"));
+				empresa.setMmc(rsEmpresa.getString("mmc"));
+				empresa.setTmert(rsEmpresa.getString("tmert"));
+				empresa.setPlanesi(rsEmpresa.getString("planesi"));
+				empresa.setPlaguicida(rsEmpresa.getString("plaguicida"));
+				empresa.setRadiacionUv(rsEmpresa.getString("radiacionUv"));
+				empresa.setHipobaria(rsEmpresa.getString("hipobaria"));
+				empresa.setPrexor(rsEmpresa.getString("prexor"));
+				empresa.setPsicosociales(rsEmpresa.getString("psicosociales"));
+				empresa.setProyectoInvestigacion(rsEmpresa.getString("proyectoInvestigacion"));
+				empresa.setUltimaVisitaExperto(rsEmpresa.getString("ultimaVisitaExperto"));
+				empresa.setUltimaVisitaDirector(rsEmpresa.getString("ultimaVisitaDirector"));
+				empresa.setUltimaVisitaGtte(rsEmpresa.getString("ultimaVisitaGtte"));
+				empresa.setUltimaVisitaAltaGerencia(rsEmpresa.getString("ultimaVisitaAltaGerencia"));
+				empresa.setReporteVisita(rsEmpresa.getString("reporteVisita"));
+				empresa.setRiesgoDeFuega(rsEmpresa.getString("riesgoDeFuega"));
+				empresa.setReclamoUltimoPeriodo(rsEmpresa.getString("reclamoUltimoPeriodo"));
+				empresa.setParticipaMesaTrabajo(rsEmpresa.getString("participaMesaTrabajo"));
 			}
 
 			rsEmpresa.close();

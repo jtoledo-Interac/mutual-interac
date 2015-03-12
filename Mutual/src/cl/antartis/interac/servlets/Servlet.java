@@ -1888,6 +1888,7 @@ if(error == null) error = new Error();
 		empresa.setRiesgoDeFuega(request.getParameter("riesgoDeFuega"));
 		empresa.setReclamoUltimoPeriodo(request.getParameter("reclamoUltimoPeriodo"));
 		empresa.setParticipaMesaTrabajo(request.getParameter("participaMesaTrabajo"));
+		
 		mapaEntrada.put("empresa", empresa);
 
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
