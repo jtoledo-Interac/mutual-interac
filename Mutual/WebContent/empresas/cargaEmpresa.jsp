@@ -74,12 +74,12 @@
 			<td><input required type="text"  	value="${empresa.sistemaDeGestion}"	id="sistemaDeGestion" 	name="sistemaDeGestion"	placeholder="Sistema de Gestión" ></td>
 		</tr>
 		<tr>
-			<td>Constitución CHPS</td><td> : </td>
-			<td><input required type="text"  	value="${empresa.constitucionChps}"	id="constitucionCphs" 	name="constitucionCphs"	placeholder="Planes de CConstitución CHPS" ></td>
+			<td>Constitución Cphs</td><td> : </td>
+			<td><input required type="text"  	value="${empresa.constitucionCphs}"	id="constitucionCphs" 	name="constitucionCphs"	placeholder="Planes de CConstitución Cphs" ></td>
 		</tr>
 		<tr>
-			<td>Certificación CHPS</td><td> : </td>
-			<td><input required type="text"  	value="${empresa.certificacionChps}"	id="certificacionChps" 	name="certificacionChps"	placeholder="Certificación CHPS" ></td>
+			<td>Certificación Cphs</td><td> : </td>
+			<td><input required type="text"  	value="${empresa.certificacionCphs}"	id="certificacionCphs" 	name="certificacionCphs"	placeholder="Certificación Cphs" ></td>
 		</tr>
 		<tr>
 			<td>MMC</td><td> : </td>

@@ -78,12 +78,12 @@ $(function() {
 			<td><input required type="text"  		id="sistemaDeGestion" 	name="sistemaDeGestion"	placeholder="Sistema de Gestión" ></td>
 		</tr>
 		<tr>
-			<td>Constitución CHPS</td><td> : </td>
-			<td><input required type="text"  		id="constitucionCphs" 	name="constitucionCphs"	placeholder="Planes de CConstitución CHPS" ></td>
+			<td>Constitución Cphs</td><td> : </td>
+			<td><input required type="text"  		id="constitucionCphs" 	name="constitucionCphs"	placeholder="Planes de CConstitución cphs" ></td>
 		</tr>
 		<tr>
-			<td>Certificación CHPS</td><td> : </td>
-			<td><input required type="text"  		id="certificacionChps" 	name="certificacionChps"	placeholder="Certificación CHPS" ></td>
+			<td>Certificación Cphs</td><td> : </td>
+			<td><input required type="text"  		id="certificacionCphs" 	name="certificacionCphs"	placeholder="Certificación cphs" ></td>
 		</tr>
 		<tr>
 			<td>MMC</td><td> : </td>
