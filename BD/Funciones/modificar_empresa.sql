@@ -1,4 +1,3 @@
-DROP FUNCTION modificar_empresa(numeric, character varying);
 create or replace function public.modificar_empresa
 (
     IN xid_empresa numeric,IN xnum_adherente varchar,IN  xnombre varchar,IN  xdireccion varchar,IN  xnom_experto varchar,IN xrazon_social varchar,IN xcod_cartera varchar,IN xrepresentante varchar,
@@ -67,7 +66,7 @@ $body$
 			fecha_certificacionPECEX = xfecha_certificacionPECEX,
 			fecha_caducidadPECEX = xfecha_caducidadPECEX,
 			nivel_logroPECEx = xnivel_logroPECEx,
-			fecha_proxAuditoriaPECEX ,xfecha_proxAuditoriaPECEX
+			fecha_proxAuditoriaPECEX = xfecha_proxAuditoriaPECEX,
 			--- Accidentabilidad
 			tasa_accidentabilidad = xtasa_accidentabilidad,
 			siniestralidad = xsiniestralidad,
