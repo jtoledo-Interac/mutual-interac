@@ -3750,6 +3750,71 @@ public class MutualEJB implements EJBRemoto {
 				empresa.setNomExperto(rsEmpresa.getString("nom_experto"));
 				empresa.setRazonSocial(rsEmpresa.getString("razon_social"));
 				empresa.setCodCartera(rsEmpresa.getString("cod_cartera"));
+				empresa.setRepresentante(rsEmpresa.getString("representante"));
+				empresa.setContactoRepresentante(rsEmpresa.getString("contacto_representante"));
+				empresa.setNombrePrevencionista(rsEmpresa.getString("nombre_prevencionista"));
+				empresa.setContactoPrevencionista(rsEmpresa.getString("contacto_prevencionista"));
+				empresa.setMasaSum(rsEmpresa.getString("masa_sum"));
+				empresa.setSegmentacion(rsEmpresa.getString("segmentacion"));
+				empresa.setMultiregional(rsEmpresa.getString("multiregional"));
+				empresa.setNumCentros(rsEmpresa.getString("num_centros"));
+				empresa.setHolding(rsEmpresa.getString("holding"));
+				empresa.setNumCHPS(rsEmpresa.getString("num_chps"));
+				empresa.setNomPresidente(rsEmpresa.getString("nom_presidente"));
+				empresa.setSaami(rsEmpresa.getString("saami"));
+				empresa.setAmputaciones(rsEmpresa.getString("amputaciones"));
+				empresa.setFatales(rsEmpresa.getString("fatales"));
+				empresa.setProyectosDesarrollados(rsEmpresa.getString("cod_cartera"));
+				//CERTIFICACIONES CHPS
+				empresa.setNumCPHSCertificados(rsEmpresa.getString("num_CHPScertificados"));
+				empresa.setTipoCertificacion(rsEmpresa.getString("tipo_certificado"));
+				empresa.setFechaCertificacion(rsEmpresa.getString("fecha_certificacion"));
+				empresa.setFechaCaducidad(rsEmpresa.getString("fecha_caducidad"));
+				//PEC ESTANDAR
+				empresa.setFechaCertificacionPECE(rsEmpresa.getString("fecha_certificacionPECE"));
+				empresa.setFechaCaducidadPECE(rsEmpresa.getString("fecha_caducidadPECE"));
+				empresa.setNivelLogroPECE(rsEmpresa.getString("nivel_logroPECE"));
+				empresa.setFechaProxAuditoriaPECE(rsEmpresa.getString("fecha_proxAuditoriaPECE"));
+				// PEC COMPETITIVA
+				empresa.setFechaCertificacionPECC(rsEmpresa.getString("fecha_certificacionPECC"));
+				empresa.setFechaCaducidadPECC(rsEmpresa.getString("fecha_caducidadPECC"));
+				empresa.setNivelLogroPECC(rsEmpresa.getString("nivel_logroPECC"));
+				empresa.setFechaProxAuditoriaPECC(rsEmpresa.getString("fecha_proxAuditoriaPECC"));
+				//PEC  EXCELENCIA
+				empresa.setFechaCertificacionPECEX(rsEmpresa.getString("fecha_certificacionPECEX"));
+				empresa.setFechaCaducidadPECEX(rsEmpresa.getString("fecha_caducidadPECEX"));
+				empresa.setNivelLogroPECEX(rsEmpresa.getString("nivel_logroPECEX"));
+				empresa.setFechaProxAuditoriaPECEX(rsEmpresa.getString("fecha_proxAuditoriaPECEX"));
+				//ACCIDENTABILIDAD
+				empresa.setTasaAccidentabilidad(rsEmpresa.getString("ftasa_accidentabilidad"));
+				empresa.setSiniestralidad(rsEmpresa.getString("siniestralidad"));
+				empresa.setFatalesAcc(rsEmpresa.getString("fatales_acc"));
+				empresa.setInvalidez(rsEmpresa.getString("invalidez"));
+				//PROTOCOLO PREXOR
+				empresa.setAdherenciaPREX(rsEmpresa.getString("adherenciaPREX"));
+				empresa.setFechaAdherenciaPREX(rsEmpresa.getString("fecha_adherenciaPREX"));
+				empresa.setFechaVencimientoPREX(rsEmpresa.getString("fecha_vencimientoPREX"));
+				empresa.setIndemnizacionesPREX(rsEmpresa.getString("indemnizacionesPREX"));
+				empresa.setNumCasosIndemnizacionesPREX(rsEmpresa.getString("num_casosIndemnizacionesPREX"));
+				empresa.setPensionesPREX(rsEmpresa.getString("pensionesPREX"));
+				empresa.setNumCasosPensionesPREX(rsEmpresa.getString("num_casosPensionesPREX"));
+				empresa.setActasDifusionPREX(rsEmpresa.getString("acta_difusionPREX"));
+				empresa.setNivelExposicionPREX(rsEmpresa.getString("nivel_exposicionPREX"));
+				//PLANESI
+				empresa.setAdherenciaPLAN(rsEmpresa.getString("adherenciaPLAN"));
+				empresa.setFechaAdherenciaPLAN(rsEmpresa.getString("fecha_adherenciaPLAN"));
+				empresa.setFechaVencimientoPLAN(rsEmpresa.getString("fecha_vencimientoPLAN"));
+				empresa.setIndemnizacionesPLAN(rsEmpresa.getString("indemnizacionesPLAN"));
+				empresa.setNumCasosIndemnizacionesPLAN(rsEmpresa.getString("num_casosIndemnizacionesPLAN"));
+				empresa.setPensionesPLAN(rsEmpresa.getString("pensionesPLAN"));
+				empresa.setNumCasosPensionesPLAN(rsEmpresa.getString("num_casosPensionesPLAN"));
+				empresa.setActasDifusionPLAN(rsEmpresa.getString("acta_difusionPLAN"));
+				empresa.setNivelExposicionPLAN(rsEmpresa.getString("nivel_exposicionPLAN"));
+				//PSICOSOCIAL
+				empresa.setAdherenciaPSICO(rsEmpresa.getString("adherenciaPSICO"));
+				//TMERS
+				empresa.setDifusionProtocolo(rsEmpresa.getString("difusion_protocolo"));
+				
 				log.info(empresa.getEmpresa());
 			}
 
