@@ -20,7 +20,7 @@ begin
             select
             num_adherente,
 			nombre,
-			id_empresa
+			id_empresa,
 			direccion,
 			nom_experto,
 			razon_social,
