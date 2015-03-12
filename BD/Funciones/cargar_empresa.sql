@@ -74,7 +74,7 @@ begin
 			num_casosIndemnizacionesPREX ,
 			pensionesPREX ,
 			num_casosPensionesPREX ,
-			actas_difusionPrex , ---error?
+			actas_difusionPrex ,
 			nivel_exposicionPREX ,
 			---PLANESI
 			adherenciaPLAN ,
