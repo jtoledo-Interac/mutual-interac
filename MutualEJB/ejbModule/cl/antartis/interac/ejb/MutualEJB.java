@@ -2199,19 +2199,87 @@ public class MutualEJB implements EJBRemoto {
 			log.info(empresa.getEmpresa());
 
 			cStmt = dbConeccion
-					.prepareCall("{ call modificar_empresa(?,?,?,?,?,?,?,?) }");
+					.prepareCall("{ call modificar_empresa(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
 			
 			cStmt.setLong(1, empresa.getIdEmpresa());
-			cStmt.setString(2, empresa.getNumAdherente());
-			cStmt.setString(3, empresa.getNombre());
+			cStmt.setString(2, empresa.getNumAdherente());// cursor$
+			cStmt.setString(3, empresa.getNombre());// cursor$
 			cStmt.setString(4, empresa.getDireccion());
 			cStmt.setString(5, empresa.getNomExperto());
 			cStmt.setString(6, empresa.getRazonSocial());
-			cStmt.registerOutParameter(7, Types.VARCHAR);// numerror$
-			cStmt.registerOutParameter(8, Types.VARCHAR);// msjerror$
+			cStmt.setString(7, empresa.getCodCartera());
+			cStmt.setString(8, empresa.getRepresentante());
+			cStmt.setString(9, empresa.getContactoRepresentante());
+			cStmt.setString(10, empresa.getNombrePrevencionista());
+			cStmt.setString(11, empresa.getContactoPrevencionista());
+			cStmt.setString(12, empresa.getMasaSum());
+			cStmt.setString(13, empresa.getSegmentacion());
+			cStmt.setString(14, empresa.getMultiregional());
+			cStmt.setString(15, empresa.getNumCentros());
+			cStmt.setString(16, empresa.getHolding());
+			cStmt.setString(17, empresa.getNumCHPS());
+			cStmt.setString(18, empresa.getNomPresidente());
+			cStmt.setString(19, empresa.getNomSecretario());
+			cStmt.setString(20, empresa.getSaami());
+			cStmt.setString(21, empresa.getAmputaciones());
+			cStmt.setString(22, empresa.getFatales());
+			cStmt.setString(23, empresa.getProyectosDesarrollados());
+			//CERTIFICACIONES CHPS
+			cStmt.setString(24, empresa.getNumCPHSCertificados());
+			cStmt.setString(25, empresa.getTipoCertificacion());
+			cStmt.setString(26, empresa.getFechaCertificacion());
+			cStmt.setString(27, empresa.getFechaCaducidad());
+			//PEC ESTANDAR
+			cStmt.setString(28, empresa.getFechaCaducidadPECE());
+			cStmt.setString(29, empresa.getFechaCaducidadPECE());
+			cStmt.setString(30, empresa.getNivelLogroPECE());
+			cStmt.setString(31, empresa.getFechaProxAuditoriaPECE());
+			//PEC COMPETITIVO
+			cStmt.setString(32, empresa.getFechaCaducidadPECC());
+			cStmt.setString(33, empresa.getFechaCaducidadPECC());
+			cStmt.setString(34, empresa.getNivelLogroPECC());
+			cStmt.setString(35, empresa.getFechaProxAuditoriaPECC());
+			//PEC EXCELENCIA
+			cStmt.setString(36, empresa.getFechaCaducidadPECEX());
+			cStmt.setString(37, empresa.getFechaCaducidadPECEX());
+			cStmt.setString(38, empresa.getNivelLogroPECEX());
+			cStmt.setString(39, empresa.getFechaProxAuditoriaPECEX());
+			//ACCIDENTABILIDAD
+			cStmt.setString(40, empresa.getTasaAccidentabilidad());
+			cStmt.setString(41, empresa.getSiniestralidad());
+			cStmt.setString(42, empresa.getFatalesAcc());
+			cStmt.setString(43, empresa.getInvalidez());
+			//PROTOCOLOS PREXOR
+			cStmt.setString(44, empresa.getAdherenciaPREX());
+			cStmt.setString(45, empresa.getFechaAdherenciaPREX());
+			cStmt.setString(46, empresa.getFechaVencimientoPREX());
+			cStmt.setString(47, empresa.getIndemnizacionesPREX());
+			cStmt.setString(48, empresa.getNumCasosIndemnizacionesPREX());
+			cStmt.setString(49, empresa.getPensionesPREX());
+			cStmt.setString(50, empresa.getNumCasosPensionesPREX());
+			cStmt.setString(51, empresa.getActasDifusionPREX());
+			cStmt.setString(52, empresa.getNivelExposicionPREX());
+			//PROTOCOLOS PLANESI
+			cStmt.setString(53, empresa.getAdherenciaPLAN());
+			cStmt.setString(54, empresa.getFechaAdherenciaPLAN());
+			cStmt.setString(55, empresa.getFechaVencimientoPLAN());
+			cStmt.setString(56, empresa.getIndemnizacionesPLAN());
+			cStmt.setString(57, empresa.getNumCasosIndemnizacionesPLAN());
+			cStmt.setString(58, empresa.getPensionesPLAN());
+			cStmt.setString(59, empresa.getNumCasosPensionesPLAN());
+			cStmt.setString(60, empresa.getActasDifusionPLAN());
+			cStmt.setString(61, empresa.getNivelExposicionPLAN());
+			//PSICOSOCIAL
+			cStmt.setString(62, empresa.getAdherenciaPSICO());
+			//TMERS
+			cStmt.setString(63, empresa.getDifusionProtocolo());			
+			cStmt.registerOutParameter(64, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(65, Types.VARCHAR);// msjerror$
+			
 			cStmt.execute();
-			error.setNumError(cStmt.getString(7));
-			error.setMsjError(cStmt.getString(8));
+			
+			error.setNumError(cStmt.getString(64));
+			error.setMsjError(cStmt.getString(65));
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -3539,7 +3607,7 @@ public class MutualEJB implements EJBRemoto {
 			dbConeccion = interacDS.getConnection();
 
 			cStmt = dbConeccion
-					.prepareCall("{ call agregar_empresa(?,?,?,?,?,?,?,?) }");
+					.prepareCall("{ call agregar_empresa(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
 
 			cStmt.setString(1, empresa.getNumAdherente());// cursor$
 			cStmt.setString(2, empresa.getNombre());// cursor$
@@ -3547,13 +3615,78 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(4, empresa.getNomExperto());
 			cStmt.setString(5, empresa.getRazonSocial());
 			cStmt.setString(6, empresa.getCodCartera());
-			cStmt.registerOutParameter(7, Types.VARCHAR);// numerror$
-			cStmt.registerOutParameter(8, Types.VARCHAR);// msjerror$
+			cStmt.setString(7, empresa.getRepresentante());
+			cStmt.setString(8, empresa.getContactoRepresentante());
+			cStmt.setString(9, empresa.getNombrePrevencionista());
+			cStmt.setString(10, empresa.getContactoPrevencionista());
+			cStmt.setString(11, empresa.getMasaSum());
+			cStmt.setString(12, empresa.getSegmentacion());
+			cStmt.setString(13, empresa.getMultiregional());
+			cStmt.setString(14, empresa.getNumCentros());
+			cStmt.setString(15, empresa.getHolding());
+			cStmt.setString(16, empresa.getNumCHPS());
+			cStmt.setString(17, empresa.getNomPresidente());
+			cStmt.setString(18, empresa.getNomSecretario());
+			cStmt.setString(19, empresa.getSaami());
+			cStmt.setString(20, empresa.getAmputaciones());
+			cStmt.setString(21, empresa.getFatales());
+			cStmt.setString(22, empresa.getProyectosDesarrollados());
+			//CERTIFICACIONES CHPS
+			cStmt.setString(23, empresa.getNumCPHSCertificados());
+			cStmt.setString(24, empresa.getTipoCertificacion());
+			cStmt.setString(25, empresa.getFechaCertificacion());
+			cStmt.setString(26, empresa.getFechaCaducidad());
+			//PEC ESTANDAR
+			cStmt.setString(27, empresa.getFechaCaducidadPECE());
+			cStmt.setString(28, empresa.getFechaCaducidadPECE());
+			cStmt.setString(29, empresa.getNivelLogroPECE());
+			cStmt.setString(30, empresa.getFechaProxAuditoriaPECE());
+			//PEC COMPETITIVO
+			cStmt.setString(31, empresa.getFechaCaducidadPECC());
+			cStmt.setString(32, empresa.getFechaCaducidadPECC());
+			cStmt.setString(33, empresa.getNivelLogroPECC());
+			cStmt.setString(34, empresa.getFechaProxAuditoriaPECC());
+			//PEC EXCELENCIA
+			cStmt.setString(35, empresa.getFechaCaducidadPECEX());
+			cStmt.setString(36, empresa.getFechaCaducidadPECEX());
+			cStmt.setString(37, empresa.getNivelLogroPECEX());
+			cStmt.setString(38, empresa.getFechaProxAuditoriaPECEX());
+			//ACCIDENTABILIDAD
+			cStmt.setString(39, empresa.getTasaAccidentabilidad());
+			cStmt.setString(40, empresa.getSiniestralidad());
+			cStmt.setString(41, empresa.getFatalesAcc());
+			cStmt.setString(42, empresa.getInvalidez());
+			//PROTOCOLOS PREXOR
+			cStmt.setString(43, empresa.getAdherenciaPREX());
+			cStmt.setString(44, empresa.getFechaAdherenciaPREX());
+			cStmt.setString(45, empresa.getFechaVencimientoPREX());
+			cStmt.setString(46, empresa.getIndemnizacionesPREX());
+			cStmt.setString(47, empresa.getNumCasosIndemnizacionesPREX());
+			cStmt.setString(48, empresa.getPensionesPREX());
+			cStmt.setString(49, empresa.getNumCasosPensionesPREX());
+			cStmt.setString(50, empresa.getActasDifusionPREX());
+			cStmt.setString(51, empresa.getNivelExposicionPREX());
+			//PROTOCOLOS PLANESI
+			cStmt.setString(52, empresa.getAdherenciaPLAN());
+			cStmt.setString(53, empresa.getFechaAdherenciaPLAN());
+			cStmt.setString(54, empresa.getFechaVencimientoPLAN());
+			cStmt.setString(55, empresa.getIndemnizacionesPLAN());
+			cStmt.setString(56, empresa.getNumCasosIndemnizacionesPLAN());
+			cStmt.setString(57, empresa.getPensionesPLAN());
+			cStmt.setString(58, empresa.getNumCasosPensionesPLAN());
+			cStmt.setString(59, empresa.getActasDifusionPLAN());
+			cStmt.setString(60, empresa.getNivelExposicionPLAN());
+			//PSICOSOCIAL
+			cStmt.setString(61, empresa.getAdherenciaPSICO());
+			//TMERS
+			cStmt.setString(62, empresa.getDifusionProtocolo());			
+			cStmt.registerOutParameter(63, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(64, Types.VARCHAR);// msjerror$
 
 			cStmt.execute();
 
-			error.setNumError(cStmt.getString(7));
-			error.setMsjError(cStmt.getString(8));
+			error.setNumError(cStmt.getString(63));
+			error.setMsjError(cStmt.getString(64));
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -3598,7 +3731,6 @@ public class MutualEJB implements EJBRemoto {
 
 			cStmt = dbConeccion.prepareCall("{ call cargar_empresa(?,?,?,?) }");
 			cStmt.setLong(1, id_empresa);
-			;
 			cStmt.registerOutParameter(2, Types.OTHER);// empresas$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
@@ -3611,10 +3743,13 @@ public class MutualEJB implements EJBRemoto {
 
 			while (rsEmpresa.next()) {
 				empresa = new Empresa();
-				empresa.setIdEmpresa(rsEmpresa.getLong("id_empresa"));
-				empresa.setNombre(rsEmpresa.getString("nombre"));
 				empresa.setNumAdherente(rsEmpresa.getString("num_adherente"));
+				empresa.setNombre(rsEmpresa.getString("nombre"));
+				empresa.setIdEmpresa(rsEmpresa.getLong("id_empresa"));
 				empresa.setDireccion(rsEmpresa.getString("direccion"));
+				empresa.setNomExperto(rsEmpresa.getString("nom_experto"));
+				empresa.setRazonSocial(rsEmpresa.getString("razon_social"));
+				empresa.setCodCartera(rsEmpresa.getString("cod_cartera"));
 				log.info(empresa.getEmpresa());
 			}
 

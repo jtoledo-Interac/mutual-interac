@@ -1857,6 +1857,67 @@ if(error == null) error = new Error();
 		empresa.setNomExperto(request.getParameter("nomExperto"));
 		empresa.setRazonSocial(request.getParameter("razonSocial"));
 		empresa.setCodCartera(request.getParameter("codCartera"));
+		empresa.setRepresentante(request.getParameter("representante"));
+		empresa.setContactoRepresentante(request.getParameter("contactoRepresentante"));
+		empresa.setNombrePrevencionista(request.getParameter("nombrePrevencionista"));
+		empresa.setContactoPrevencionista(request.getParameter("contactoPrevencionista"));
+		empresa.setMasaSum(request.getParameter("masaSum"));
+		empresa.setSegmentacion(request.getParameter("segmentacion"));
+		empresa.setMultiregional(request.getParameter("multigenional"));
+		empresa.setNumCentros(request.getParameter("numCentros"));
+		empresa.setHolding(request.getParameter("holding"));
+		empresa.setNumCHPS(request.getParameter("numCHPS"));
+		empresa.setNomPresidente(request.getParameter("nomPresiente"));
+		empresa.setNomSecretario(request.getParameter("nomSecretario"));
+		empresa.setSaami(request.getParameter("saami"));
+		empresa.setAmputaciones(request.getParameter("amputaciones"));
+		empresa.setFatales(request.getParameter("fatales"));
+		empresa.setProyectosDesarrollados(request.getParameter("proyectosDesarrollados"));
+		//CERTIFICACIONES CHPS
+		empresa.setNumCPHSCertificados(request.getParameter("numCHPSCertificados"));
+		empresa.setTipoCertificacion(request.getParameter("tipoCertificacion"));
+		empresa.setFechaCertificacion(request.getParameter("fechaCertificacion"));
+		empresa.setFechaCaducidad(request.getParameter("fechaCaducidad"));
+		//PEC ESTANDAR
+		empresa.setFechaCertificacionPECE(request.getParameter("fechaCertficacionPECE"));
+		empresa.setFechaCaducidadPECE(request.getParameter("fechaCaducidadPECE"));
+		empresa.setNivelLogroPECE(request.getParameter("nivelLogroPECE"));
+		empresa.setFechaProxAuditoriaPECE(request.getParameter("fechaProxAuditoriaPECE"));
+		//PEC COMPETITIVA
+		empresa.setFechaCertificacionPECC(request.getParameter("fechaCertificacionPECC"));
+		empresa.setFechaCaducidadPECC(request.getParameter("fechaCaducidadPECC"));
+		empresa.setNivelLogroPECC(request.getParameter("nivelLogroPECC"));
+		empresa.setFechaProxAuditoriaPECC(request.getParameter("fechaProxAuditoriaPECC"));
+		//PEC EXCELENCIA
+		empresa.setFechaCertificacionPECEX(request.getParameter("fechaCertificacionPECEX"));
+		empresa.setFechaCaducidadPECEX(request.getParameter("fechaCaducidadPECEX"));
+		empresa.setNivelLogroPECEX(request.getParameter("nivelLogroPECEX"));
+		empresa.setFechaProxAuditoriaPECEX(request.getParameter("fechaProxAuditoriaPECEX"));
+		//ACCIDENTABILIDAD
+		empresa.setTasaAccidentabilidad(request.getParameter("tasaAccidentabilidad"));
+		empresa.setSiniestralidad(request.getParameter("siniestralidad"));
+		empresa.setFatalesAcc(request.getParameter("fatalesAcc"));
+		empresa.setInvalidez(request.getParameter("invalidez"));
+		//PROTOCOLOS PREXOR
+		empresa.setAdherenciaPREX(request.getParameter("adherenciaPREX"));
+		empresa.setFechaAdherenciaPREX(request.getParameter("fechaAdherenciaPREX"));
+		empresa.setFechaVencimientoPREX(request.getParameter("fechaVencimientoPREX"));
+		empresa.setIndemnizacionesPREX(request.getParameter("indemnizacionesPREX"));
+		empresa.setNumCasosIndemnizacionesPREX(request.getParameter("numCasosIndemnizacionesPREX"));
+		empresa.setActasDifusionPREX(request.getParameter("actasDifusionPREX"));
+		empresa.setNivelExposicionPREX(request.getParameter("nivelExposicionPREX"));
+		//PROTOCOLOS PLAN
+		empresa.setAdherenciaPLAN(request.getParameter("adherenciaPLAN"));
+		empresa.setFechaAdherenciaPLAN(request.getParameter("fechaAdherenciaPLAN"));
+		empresa.setFechaVencimientoPLAN(request.getParameter("fechaVencimientoPLAN"));
+		empresa.setIndemnizacionesPLAN(request.getParameter("indemnizacionesPLAN"));
+		empresa.setNumCasosIndemnizacionesPLAN(request.getParameter("numCasosIndemnizacionesPLAN"));
+		empresa.setActasDifusionPLAN(request.getParameter("actasDifusionPLAN"));
+		empresa.setNivelExposicionPLAN(request.getParameter("nivelExposicionPLAN"));
+		//PSICOSOCIAL
+		empresa.setAdherenciaPSICO(request.getParameter("adherenciaPSICO"));
+		//TMERS
+		empresa.setDifusionProtocolo(request.getParameter("difusionProtocolo"));
 		
 		mapaEntrada.put("empresa", empresa);
 
@@ -1913,14 +1974,73 @@ if(error == null) error = new Error();
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 
 		empresa.setIdEmpresa(Utils.stringToNum(request.getParameter("idEmpresa")));
-		empresa.setNombre(request.getParameter("nombre"));
-		empresa.setCodCartera(request.getParameter("codCartera"));
-		empresa.setNomExperto(request.getParameter("nomExperto"));
 		empresa.setNumAdherente(request.getParameter("numAdherente"));
-		empresa.setRazonSocial(request.getParameter("razonSocial"));
+		empresa.setNombre(request.getParameter("nombre"));
 		empresa.setDireccion(request.getParameter("direccion"));
+		empresa.setNomExperto(request.getParameter("nomExperto"));
+		empresa.setRazonSocial(request.getParameter("razonSocial"));
+		empresa.setCodCartera(request.getParameter("codCartera"));
 		empresa.setRepresentante(request.getParameter("representante"));
 		empresa.setContactoRepresentante(request.getParameter("contactoRepresentante"));
+		empresa.setNombrePrevencionista(request.getParameter("nombrePrevencionista"));
+		empresa.setContactoPrevencionista(request.getParameter("contactoPrevencionista"));
+		empresa.setMasaSum(request.getParameter("masaSum"));
+		empresa.setSegmentacion(request.getParameter("segmentacion"));
+		empresa.setMultiregional(request.getParameter("multigenional"));
+		empresa.setNumCentros(request.getParameter("numCentros"));
+		empresa.setHolding(request.getParameter("holding"));
+		empresa.setNumCHPS(request.getParameter("numCHPS"));
+		empresa.setNomPresidente(request.getParameter("nomPresiente"));
+		empresa.setNomSecretario(request.getParameter("nomSecretario"));
+		empresa.setSaami(request.getParameter("saami"));
+		empresa.setAmputaciones(request.getParameter("amputaciones"));
+		empresa.setFatales(request.getParameter("fatales"));
+		empresa.setProyectosDesarrollados(request.getParameter("proyectosDesarrollados"));
+		//CERTIFICACIONES CHPS
+		empresa.setNumCPHSCertificados(request.getParameter("numCHPSCertificados"));
+		empresa.setTipoCertificacion(request.getParameter("tipoCertificacion"));
+		empresa.setFechaCertificacion(request.getParameter("fechaCertificacion"));
+		empresa.setFechaCaducidad(request.getParameter("fechaCaducidad"));
+		//PEC ESTANDAR
+		empresa.setFechaCertificacionPECE(request.getParameter("fechaCertficacionPECE"));
+		empresa.setFechaCaducidadPECE(request.getParameter("fechaCaducidadPECE"));
+		empresa.setNivelLogroPECE(request.getParameter("nivelLogroPECE"));
+		empresa.setFechaProxAuditoriaPECE(request.getParameter("fechaProxAuditoriaPECE"));
+		//PEC COMPETITIVA
+		empresa.setFechaCertificacionPECC(request.getParameter("fechaCertificacionPECC"));
+		empresa.setFechaCaducidadPECC(request.getParameter("fechaCaducidadPECC"));
+		empresa.setNivelLogroPECC(request.getParameter("nivelLogroPECC"));
+		empresa.setFechaProxAuditoriaPECC(request.getParameter("fechaProxAuditoriaPECC"));
+		//PEC EXCELENCIA
+		empresa.setFechaCertificacionPECEX(request.getParameter("fechaCertificacionPECEX"));
+		empresa.setFechaCaducidadPECEX(request.getParameter("fechaCaducidadPECEX"));
+		empresa.setNivelLogroPECEX(request.getParameter("nivelLogroPECEX"));
+		empresa.setFechaProxAuditoriaPECEX(request.getParameter("fechaProxAuditoriaPECEX"));
+		//ACCIDENTABILIDAD
+		empresa.setTasaAccidentabilidad(request.getParameter("tasaAccidentabilidad"));
+		empresa.setSiniestralidad(request.getParameter("siniestralidad"));
+		empresa.setFatalesAcc(request.getParameter("fatalesAcc"));
+		empresa.setInvalidez(request.getParameter("invalidez"));
+		//PROTOCOLOS PREXOR
+		empresa.setAdherenciaPREX(request.getParameter("adherenciaPREX"));
+		empresa.setFechaAdherenciaPREX(request.getParameter("fechaAdherenciaPREX"));
+		empresa.setFechaVencimientoPREX(request.getParameter("fechaVencimientoPREX"));
+		empresa.setIndemnizacionesPREX(request.getParameter("indemnizacionesPREX"));
+		empresa.setNumCasosIndemnizacionesPREX(request.getParameter("numCasosIndemnizacionesPREX"));
+		empresa.setActasDifusionPREX(request.getParameter("actasDifusionPREX"));
+		empresa.setNivelExposicionPREX(request.getParameter("nivelExposicionPREX"));
+		//PROTOCOLOS PLAN
+		empresa.setAdherenciaPLAN(request.getParameter("adherenciaPLAN"));
+		empresa.setFechaAdherenciaPLAN(request.getParameter("fechaAdherenciaPLAN"));
+		empresa.setFechaVencimientoPLAN(request.getParameter("fechaVencimientoPLAN"));
+		empresa.setIndemnizacionesPLAN(request.getParameter("indemnizacionesPLAN"));
+		empresa.setNumCasosIndemnizacionesPLAN(request.getParameter("numCasosIndemnizacionesPLAN"));
+		empresa.setActasDifusionPLAN(request.getParameter("actasDifusionPLAN"));
+		empresa.setNivelExposicionPLAN(request.getParameter("nivelExposicionPLAN"));
+		//PSICOSOCIAL
+		empresa.setAdherenciaPSICO(request.getParameter("adherenciaPSICO"));
+		//TMERS
+		empresa.setDifusionProtocolo(request.getParameter("difusionProtocolo"));
 		
 		mapaEntrada.put("empresa", empresa);
 
