@@ -65,7 +65,7 @@ $body$
 			--- PEC EXCELENCIA
 			fecha_certificacionPECEX = xfecha_certificacionPECEX,
 			fecha_caducidadPECEX = xfecha_caducidadPECEX,
-			nivel_logroPECEx = xnivel_logroPECEx,
+			nivel_logroPECEX = xnivel_logroPECEx,
 			fecha_proxAuditoriaPECEX = xfecha_proxAuditoriaPECEX,
 			--- Accidentabilidad
 			tasa_accidentabilidad = xtasa_accidentabilidad,

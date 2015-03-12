@@ -3743,9 +3743,9 @@ public class MutualEJB implements EJBRemoto {
 
 			while (rsEmpresa.next()) {
 				empresa = new Empresa();
-				empresa.setIdEmpresa(rsEmpresa.getLong("id_empresa"));
-				empresa.setNumAdherente(rsEmpresa.getString("num_adherente"));
 				empresa.setNombre(rsEmpresa.getString("nombre"));
+				empresa.setNumAdherente(rsEmpresa.getString("num_adherente"));
+				empresa.setIdEmpresa(rsEmpresa.getLong("id_empresa"));
 				empresa.setDireccion(rsEmpresa.getString("direccion"));
 				empresa.setNomExperto(rsEmpresa.getString("nom_experto"));
 				empresa.setRazonSocial(rsEmpresa.getString("razon_social"));
@@ -3759,15 +3759,16 @@ public class MutualEJB implements EJBRemoto {
 				empresa.setMultiregional(rsEmpresa.getString("multiregional"));
 				empresa.setNumCentros(rsEmpresa.getString("num_centros"));
 				empresa.setHolding(rsEmpresa.getString("holding"));
-				empresa.setNumCHPS(rsEmpresa.getString("num_chps"));
+				empresa.setNumCHPS(rsEmpresa.getString("num_CHPS"));
 				empresa.setNomPresidente(rsEmpresa.getString("nom_presidente"));
+				empresa.setNomSecretario(rsEmpresa.getString("nom_secretario"));
 				empresa.setSaami(rsEmpresa.getString("saami"));
 				empresa.setAmputaciones(rsEmpresa.getString("amputaciones"));
 				empresa.setFatales(rsEmpresa.getString("fatales"));
-				empresa.setProyectosDesarrollados(rsEmpresa.getString("cod_cartera"));
+				empresa.setProyectosDesarrollados(rsEmpresa.getString("proyectos_desarrollados"));
 				//CERTIFICACIONES CHPS
 				empresa.setNumCPHSCertificados(rsEmpresa.getString("num_CHPScertificados"));
-				empresa.setTipoCertificacion(rsEmpresa.getString("tipo_certificado"));
+				empresa.setTipoCertificacion(rsEmpresa.getString("tipo_certificacion"));
 				empresa.setFechaCertificacion(rsEmpresa.getString("fecha_certificacion"));
 				empresa.setFechaCaducidad(rsEmpresa.getString("fecha_caducidad"));
 				//PEC ESTANDAR
@@ -3786,7 +3787,7 @@ public class MutualEJB implements EJBRemoto {
 				empresa.setNivelLogroPECEX(rsEmpresa.getString("nivel_logroPECEX"));
 				empresa.setFechaProxAuditoriaPECEX(rsEmpresa.getString("fecha_proxAuditoriaPECEX"));
 				//ACCIDENTABILIDAD
-				empresa.setTasaAccidentabilidad(rsEmpresa.getString("ftasa_accidentabilidad"));
+				empresa.setTasaAccidentabilidad(rsEmpresa.getString("tasa_accidentabilidad"));
 				empresa.setSiniestralidad(rsEmpresa.getString("siniestralidad"));
 				empresa.setFatalesAcc(rsEmpresa.getString("fatales_acc"));
 				empresa.setInvalidez(rsEmpresa.getString("invalidez"));
@@ -3798,7 +3799,7 @@ public class MutualEJB implements EJBRemoto {
 				empresa.setNumCasosIndemnizacionesPREX(rsEmpresa.getString("num_casosIndemnizacionesPREX"));
 				empresa.setPensionesPREX(rsEmpresa.getString("pensionesPREX"));
 				empresa.setNumCasosPensionesPREX(rsEmpresa.getString("num_casosPensionesPREX"));
-				empresa.setActasDifusionPREX(rsEmpresa.getString("acta_difusionPREX"));
+				empresa.setActasDifusionPREX(rsEmpresa.getString("actas_difusionPREX"));
 				empresa.setNivelExposicionPREX(rsEmpresa.getString("nivel_exposicionPREX"));
 				//PLANESI
 				empresa.setAdherenciaPLAN(rsEmpresa.getString("adherenciaPLAN"));
@@ -3808,7 +3809,7 @@ public class MutualEJB implements EJBRemoto {
 				empresa.setNumCasosIndemnizacionesPLAN(rsEmpresa.getString("num_casosIndemnizacionesPLAN"));
 				empresa.setPensionesPLAN(rsEmpresa.getString("pensionesPLAN"));
 				empresa.setNumCasosPensionesPLAN(rsEmpresa.getString("num_casosPensionesPLAN"));
-				empresa.setActasDifusionPLAN(rsEmpresa.getString("acta_difusionPLAN"));
+				empresa.setActasDifusionPLAN(rsEmpresa.getString("actas_difusionPLAN"));
 				empresa.setNivelExposicionPLAN(rsEmpresa.getString("nivel_exposicionPLAN"));
 				//PSICOSOCIAL
 				empresa.setAdherenciaPSICO(rsEmpresa.getString("adherenciaPSICO"));
