@@ -71,7 +71,7 @@
 		</tr>
 		<tr>
 			<td>Número CHPS</td><td> : </td>
-			<td><input required type="text" 		id="numCHPS" 	name="numCHPS" value="${empresa.numCHPS}"	placeholder="Númer CHPS" required></td>
+			<td><input required type="text" 		id="numCPHS" 	name="numCPHS" value="${empresa.numCPHS}"	placeholder="Númer CHPS" required></td>
 		</tr>
 		<tr>
 			<td>Nombre Presidente</td><td> : </td>

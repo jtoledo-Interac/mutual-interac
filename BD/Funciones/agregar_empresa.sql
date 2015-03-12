@@ -81,7 +81,7 @@ $body$
 			num_casosIndemnizacionesPREX ,
 			pensionesPREX ,
 			num_casosPensionesPREX ,
-			actas_difusionPrex ,
+			actas_difusionPREX ,
 			nivel_exposicionPREX ,
 			---PLANESI
 			adherenciaPLAN ,
