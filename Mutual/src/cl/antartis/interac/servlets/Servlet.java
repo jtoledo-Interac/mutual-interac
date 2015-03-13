@@ -1866,7 +1866,7 @@ if(error == null) error = new Error();
 		empresa.setMesaSum(request.getParameter("mesaSum"));
 		empresa.setPlanesDeCuenta(request.getParameter("planesDeCuenta"));
 		empresa.setPlanesDeTrabajo(request.getParameter("planesDeTrabajo"));
-		empresa.setFirmaDePlanes(request.getParameter("fimaDePlanes"));
+		empresa.setFirmaDePlanes(request.getParameter("firmaDePlanes"));
 		empresa.setSistemaDeGestion(request.getParameter("sistemaDeGestion"));
 		empresa.setConstitucionCphs(request.getParameter("constitucionCphs"));
 		empresa.setCertificacionCphs(request.getParameter("certificacionCphs"));

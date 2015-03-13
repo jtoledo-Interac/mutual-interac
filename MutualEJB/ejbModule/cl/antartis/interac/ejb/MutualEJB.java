@@ -3677,7 +3677,7 @@ public class MutualEJB implements EJBRemoto {
 				empresa.setNomExperto(rsEmpresa.getString("nomExperto"));
 				empresa.setNumAdherente(rsEmpresa.getString("numAdherente"));
 				empresa.setRazonSocial(rsEmpresa.getString("razonSocial"));
-				empresa.setAnoDeAdhesion(rsEmpresa.getString("anoDeAdhesion"));
+				empresa.setAnoDeAdhesion(Utils.formateaFecha(rsEmpresa.getString("anoDeAdhesion")));
 				empresa.setSegmentacion(rsEmpresa.getString("segmentacion"));
 				empresa.setHolding(rsEmpresa.getString("holding"));
 				empresa.setSituacion(rsEmpresa.getString("situacion"));
@@ -3700,13 +3700,13 @@ public class MutualEJB implements EJBRemoto {
 				empresa.setPrexor(rsEmpresa.getString("prexor"));
 				empresa.setPsicosociales(rsEmpresa.getString("psicosociales"));
 				empresa.setProyectoInvestigacion(rsEmpresa.getString("proyectoInvestigacion"));
-				empresa.setUltimaVisitaExperto(rsEmpresa.getString("ultimaVisitaExperto"));
-				empresa.setUltimaVisitaDirector(rsEmpresa.getString("ultimaVisitaDirector"));
-				empresa.setUltimaVisitaGtte(rsEmpresa.getString("ultimaVisitaGtte"));
-				empresa.setUltimaVisitaAltaGerencia(rsEmpresa.getString("ultimaVisitaAltaGerencia"));
+				empresa.setUltimaVisitaExperto(Utils.formateaFecha(rsEmpresa.getString("ultimaVisitaExperto")));
+				empresa.setUltimaVisitaDirector(Utils.formateaFecha(rsEmpresa.getString("ultimaVisitaDirector")));
+				empresa.setUltimaVisitaGtte(Utils.formateaFecha(rsEmpresa.getString("ultimaVisitaGtte")));
+				empresa.setUltimaVisitaAltaGerencia(Utils.formateaFecha(rsEmpresa.getString("ultimaVisitaAltaGerencia")));
 				empresa.setReporteVisita(rsEmpresa.getString("reporteVisita"));
 				empresa.setRiesgoDeFuga(rsEmpresa.getString("riesgoDeFuga"));
-				empresa.setReclamoUltimoPeriodo(rsEmpresa.getString("reclamoUltimoPeriodo"));
+				empresa.setReclamoUltimoPeriodo(Utils.formateaFecha(rsEmpresa.getString("reclamoUltimoPeriodo")));
 				empresa.setParticipaMesaTrabajo(rsEmpresa.getString("participaMesaTrabajo"));
 			}
 

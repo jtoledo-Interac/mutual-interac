@@ -35,7 +35,7 @@ $(function() {
 		</tr>
 		<tr>
 			<td>Año de adhesión</td><td> : </td>
-			<td><input required type="date"  		id="anoDeAdhesion" 	name="anoDeAdhesion"	placeholder="Año de Adhesión" ></td>
+			<td><input required type="text" class="fecha" 		id="anoDeAdhesion" 	name="anoDeAdhesion"	placeholder="Año de Adhesión" ></td>
 		</tr>
 		<tr>
 			<td>Segmentación</td><td> : </td>
@@ -44,6 +44,10 @@ $(function() {
 		<tr>
 			<td>Holding</td><td> : </td>
 			<td><input required type="text"  		id="holding" 	name="holding"	placeholder="Holding"  ></td>
+		</tr>
+		<tr>
+			<td>Situación</td><td> : </td>
+			<td><input required type="text"  		id="situacion" 	name="situacion"	placeholder="Situación"  ></td>
 		</tr>
 		<tr>
 			<td>Multi Region</td><td> : </td>
@@ -70,8 +74,8 @@ $(function() {
 			<td><input required type="text"  		id="planesDeTrabajo" 	name="planesDeTrabajo"	placeholder="Planes de Trabajo" ></td>
 		</tr>
 		<tr>
-			<td>Firma de Planes</td><td> : </td>
-			<td><input required type="text"  		id="firmaDePlanes" 	name="firmaDePlanes"	placeholder="Firma De Planes" ></td>
+			<td>Firma de planes</td><td> : </td>
+			<td><input required type="text"  		id="firmaDePlanes" 	name="firmaDePlanes"	placeholder="Firma de Planes" ></td>
 		</tr>
 		<tr>
 			<td>Sistema de Gestión</td><td> : </td>
@@ -119,23 +123,23 @@ $(function() {
 		</tr>
 		<tr>
 			<td>Proyecto Investigación</td><td> : </td>
-			<td> <input required type="text" 		id="proyectoInvestigacion" 		name="proyectoInvestigación" 		placeholder="Proyecto Investigación" ></td>
+			<td> <input required type="text" 		id="proyectoInvestigacion" 		name="proyectoInvestigacion" 		placeholder="Proyecto Investigación" ></td>
 		</tr>
 		<tr>
 			<td>Ultima Visita Experto</td><td> : </td>
-			<td> <input required type="date" 		id="ultimaVisitaExperto" 		name="ultimaVisitaExperto" 		placeholder="Ultima Visita Experto" ></td>
+			<td> <input required type="text" class="fecha"		id="ultimaVisitaExperto" 		name="ultimaVisitaExperto" 		placeholder="Ultima Visita Experto" ></td>
 		</tr>
 		<tr>
 			<td>Ultima Visita Director</td><td> : </td>
-			<td> <input required type="date" 		id="ultimaVisitaDirector" 		name="ultimaVisitaDirector" 		placeholder="Ultima Visita Director" ></td>
+			<td> <input required type="text" class="fecha"		id="ultimaVisitaDirector" 		name="ultimaVisitaDirector" 		placeholder="Ultima Visita Director" ></td>
 		</tr>
 		<tr>
 			<td>Ultima Visita Gerente</td><td> : </td>
-			<td> <input required type="date" 		id="ultimaVisitaGtte" 		name="ultimaVisitaGtte" 		placeholder="Ultima Visita Gerente" ></td>
+			<td> <input required type="text" 	class="fecha"	id="ultimaVisitaGtte" 		name="ultimaVisitaGtte" 		placeholder="Ultima Visita Gerente" ></td>
 		</tr>
 		<tr>
 			<td>Ultima Visita Alta Gerencia</td><td> : </td>
-			<td> <input required type="date" 		id="ultimaVisitaAltaGerencia" 		name="ultimaVisitaAltaGerencia" 		placeholder="Ultima Visita Alta Gerencia" ></td>
+			<td> <input required type="text" 	class="fecha"	id="ultimaVisitaAltaGerencia" 		name="ultimaVisitaAltaGerencia" 		placeholder="Ultima Visita Alta Gerencia" ></td>
 		</tr>
 		<tr>
 			<td>Reporte Visita</td><td> : </td>
@@ -146,8 +150,8 @@ $(function() {
 			<td> <input required type="text" 		id="riesgoDeFuga" 		name="riesgoDeFuga" 		placeholder="Riesgo de Fuga" ></td>
 		</tr>
 		<tr>
-			<td>Reclamo Ultimo Pedido</td><td> : </td>
-			<td> <input required type="date" 		id="reclamoUltimoPedido" 		name="reclamoUltimoPedido" 		placeholder="Reclamo Ultimo Pedido" ></td>
+			<td>Reclamo Ultimo Periodo</td><td> : </td>
+			<td> <input required type="text" 	class="fecha"	id="reclamoUltimoPeriodo" 		name="reclamoUltimoPeriodo" 		placeholder="Reclamo Ultimo Periodo" ></td>
 		</tr>
 		<tr>
 			<td>Participa Mesa Trabajo</td><td> : </td>
