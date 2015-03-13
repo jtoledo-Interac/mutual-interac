@@ -39,7 +39,7 @@ public class Empresa implements Serializable {
 	private String ultimaVisitaGtte;
 	private String ultimaVisitaAltaGerencia;
 	private String reporteVisita;
-	private String riesgoDeFuega;
+	private String riesgoDeFuga;
 	private String reclamoUltimoPeriodo;
 	private String participaMesaTrabajo;
 	public long getIdEmpresa() {
@@ -246,11 +246,11 @@ public class Empresa implements Serializable {
 	public void setReporteVisita(String reporteVisita) {
 		this.reporteVisita = reporteVisita;
 	}
-	public String getRiesgoDeFuega() {
-		return riesgoDeFuega;
+	public String getRiesgoDeFuga() {
+		return riesgoDeFuga;
 	}
-	public void setRiesgoDeFuega(String riesgoDeFuega) {
-		this.riesgoDeFuega = riesgoDeFuega;
+	public void setRiesgoDeFuga(String riesgoDeFuga) {
+		this.riesgoDeFuga = riesgoDeFuga;
 	}
 	public String getReclamoUltimoPeriodo() {
 		return reclamoUltimoPeriodo;

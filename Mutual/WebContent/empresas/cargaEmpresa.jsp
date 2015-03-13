@@ -31,7 +31,7 @@
 		</tr>
 		<tr>
 			<td>Año de adhesión</td><td> : </td>
-			<td><input required type="text"  		id="anoDeAdhesion" 	name="anoDeAdhesion" value="${empresa.anodeAdhesion}"	placeholder="Año de Adhesión" ></td>
+			<td><input required type="date"  		id="anoDeAdhesion" 	name="anoDeAdhesion" value="${empresa.anodeAdhesion}"	placeholder="Año de Adhesión" ></td>
 		</tr>
 		<tr>
 			<td>Segmentación</td><td> : </td>
@@ -119,31 +119,31 @@
 		</tr>
 		<tr>
 			<td>Ultima Visita Experto</td><td> : </td>
-			<td> <input required type="text" value="${empresa.ultimavisitaExperto}"		id="ultimaVisitaExperto" 		name="ultimaVisitaExperto" 		placeholder="Ultima Visita Experto" ></td>
+			<td> <input required type="date" value="${empresa.ultimavisitaExperto}"		id="ultimaVisitaExperto" 		name="ultimaVisitaExperto" 		placeholder="Ultima Visita Experto" ></td>
 		</tr>
 		<tr>
 			<td>Ultima Visita Director</td><td> : </td>
-			<td> <input required type="text" 	value="${empresa.ultimaVisitaDirector}"	id="ultimaVisitaDirector" 		name="ultimaVisitaDirector" 		placeholder="Ultima Visita Director" ></td>
+			<td> <input required type="date" 	value="${empresa.ultimaVisitaDirector}"	id="ultimaVisitaDirector" 		name="ultimaVisitaDirector" 		placeholder="Ultima Visita Director" ></td>
 		</tr>
 		<tr>
 			<td>Ultima Visita Gerente</td><td> : </td>
-			<td> <input required type="text" value="${empresa.ultimaVisitaGtte}"		id="ultimaVisitaGtte" 		name="ultimaVisitaGtte" 		placeholder="Ultima Visita Gerente" ></td>
+			<td> <input required type="date" value="${empresa.ultimaVisitaGtte}"		id="ultimaVisitaGtte" 		name="ultimaVisitaGtte" 		placeholder="Ultima Visita Gerente" ></td>
 		</tr>
 		<tr>
 			<td>Ultima Visita Alta Gerencia</td><td> : </td>
-			<td> <input required type="text" 	value="${empresa.ultimaVisitaAltaGerencia}"	id="ultimaVisitaAltaGerencia" 		name="ultimaVisitaAltaGerencia" 		placeholder="Ultima Visita Alta Gerencia" ></td>
+			<td> <input required type="date" 	value="${empresa.ultimaVisitaAltaGerencia}"	id="ultimaVisitaAltaGerencia" 		name="ultimaVisitaAltaGerencia" 		placeholder="Ultima Visita Alta Gerencia" ></td>
 		</tr>
 		<tr>
 			<td>Reporte Visita</td><td> : </td>
 			<td> <input required type="text" 	value="${empresa.reporteVisita}"	id="reporteVisita" 		name="reporteVisita" 		placeholder="Reporte Visita" ></td>
 		</tr>
 		<tr>
-			<td>Riesgo de Fuega</td><td> : </td>
-			<td> <input required type="text" 	value="${empresa.riesgoDeFuega}"	id="riesgoDeFuega" 		name="riesgoDeFuega" 		placeholder="Riesgo de Fuega" ></td>
+			<td>Riesgo de Fuga</td><td> : </td>
+			<td> <input required type="text" 	value="${empresa.riesgoDeFuga}"	id="riesgoDeFuga" 		name="riesgoDeFuga" 		placeholder="Riesgo de Fuga" ></td>
 		</tr>
 		<tr>
 			<td>Reclamo Ultimo Pedido</td><td> : </td>
-			<td> <input required type="text" 	value="${empresa.reclamoUltimoPedido}"	id="reclamoUltimoPedido" 		name="reclamoUltimoPedido" 		placeholder="Reclamo Ultimo Pedido" ></td>
+			<td> <input required type="date" 	value="${empresa.reclamoUltimoPedido}"	id="reclamoUltimoPedido" 		name="reclamoUltimoPedido" 		placeholder="Reclamo Ultimo Pedido" ></td>
 		</tr>
 		<tr>
 			<td>Participa Mesa Trabajo</td><td> : </td>

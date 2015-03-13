@@ -1884,7 +1884,7 @@ if(error == null) error = new Error();
 		empresa.setUltimaVisitaGtte(request.getParameter("ultimaVisitaGtte"));
 		empresa.setUltimaVisitaAltaGerencia(request.getParameter("ultimaVisitaAltaGerencia"));
 		empresa.setReporteVisita(request.getParameter("reporteVisita"));
-		empresa.setRiesgoDeFuega(request.getParameter("riesgoDeFuega"));
+		empresa.setRiesgoDeFuga(request.getParameter("riesgoDeFuga"));
 		empresa.setReclamoUltimoPeriodo(request.getParameter("reclamoUltimoPeriodo"));
 		empresa.setParticipaMesaTrabajo(request.getParameter("participaMesaTrabajo"));
 		
@@ -1975,7 +1975,7 @@ if(error == null) error = new Error();
 		empresa.setUltimaVisitaGtte(request.getParameter("ultimaVisitaGtte"));
 		empresa.setUltimaVisitaAltaGerencia(request.getParameter("ultimaVisitaAltaGerencia"));
 		empresa.setReporteVisita(request.getParameter("reporteVisita"));
-		empresa.setRiesgoDeFuega(request.getParameter("riesgoDeFuega"));
+		empresa.setRiesgoDeFuga(request.getParameter("riesgoDeFuga"));
 		empresa.setReclamoUltimoPeriodo(request.getParameter("reclamoUltimoPeriodo"));
 		empresa.setParticipaMesaTrabajo(request.getParameter("participaMesaTrabajo"));
 		
