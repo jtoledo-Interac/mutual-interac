@@ -2206,7 +2206,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(4, empresa.getNomExperto());
 			cStmt.setString(5, empresa.getNumAdherente());
 			cStmt.setString(6, empresa.getRazonSocial());
-			cStmt.setString(7, empresa.getAnoDeAdhesion());
+			cStmt.setDate(7, Utils.stringToDate(empresa.getAnoDeAdhesion()));
 			cStmt.setString(8, empresa.getSegmentacion());
 			cStmt.setString(9, empresa.getHolding());
 			cStmt.setString(10, empresa.getSituacion());
@@ -2229,13 +2229,13 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(27, empresa.getPrexor());
 			cStmt.setString(28, empresa.getPsicosociales());
 			cStmt.setString(29, empresa.getProyectoInvestigacion());
-			cStmt.setString(30, empresa.getUltimaVisitaExperto());
-			cStmt.setString(31, empresa.getUltimaVisitaDirector());
-			cStmt.setString(32, empresa.getUltimaVisitaGtte());
-			cStmt.setString(33, empresa.getUltimaVisitaAltaGerencia());
+			cStmt.setDate(30, Utils.stringToDate(empresa.getUltimaVisitaExperto()));
+			cStmt.setDate(31, Utils.stringToDate(empresa.getUltimaVisitaDirector()));
+			cStmt.setDate(32, Utils.stringToDate(empresa.getUltimaVisitaGtte()));
+			cStmt.setDate(33, Utils.stringToDate(empresa.getUltimaVisitaAltaGerencia()));
 			cStmt.setString(34, empresa.getReporteVisita());
 			cStmt.setString(35, empresa.getRiesgoDeFuga());
-			cStmt.setString(36, empresa.getReclamoUltimoPeriodo());
+			cStmt.setDate(36, Utils.stringToDate(empresa.getReclamoUltimoPeriodo()));
 			cStmt.setString(37, empresa.getParticipaMesaTrabajo());
 			cStmt.registerOutParameter(38, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(39, Types.VARCHAR);// msjerror$
