@@ -3687,7 +3687,7 @@ public class MutualEJB implements EJBRemoto {
 				empresa.setMesaSum(rsEmpresa.getString("mesaSum"));
 				empresa.setPlanesDeCuenta(rsEmpresa.getString("planesDeCuenta"));
 				empresa.setPlanesDeTrabajo(rsEmpresa.getString("planesDeTrabajo"));
-				empresa.setFirmaDePlanes(rsEmpresa.getString("fimaDePlanes"));
+				empresa.setFirmaDePlanes(rsEmpresa.getString("firmaDePlanes"));
 				empresa.setSistemaDeGestion(rsEmpresa.getString("sistemaDeGestion"));
 				empresa.setConstitucionCphs(rsEmpresa.getString("constitucionCphs"));
 				empresa.setCertificacionCphs(rsEmpresa.getString("certificacionCphs"));
