@@ -3590,30 +3590,29 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(15, empresa.getPlanesDeTrabajo());
 			cStmt.setString(16, empresa.getFirmaDePlanes());
 			cStmt.setString(17, empresa.getSistemaDeGestion());
-			cStmt.setString(18, empresa.getMultiRegion());
-			cStmt.setString(19, empresa.getConstitucionCphs());
-			cStmt.setString(20, empresa.getCertificacionCphs());
-			cStmt.setString(21, empresa.getMmc());
-			cStmt.setString(22, empresa.getTmert());
-			cStmt.setString(23, empresa.getPlanesi());
-			cStmt.setString(24, empresa.getPlaguicida());
-			cStmt.setString(25, empresa.getRadiacionUv());
-			cStmt.setString(26, empresa.getHipobaria());
-			cStmt.setString(27, empresa.getPrexor());
-			cStmt.setString(28, empresa.getPsicosociales());
-			cStmt.setString(29, empresa.getProyectoInvestigacion());
-			cStmt.setString(30, empresa.getUltimaVisitaExperto());
-			cStmt.setString(31, empresa.getUltimaVisitaDirector());
-			cStmt.setString(32, empresa.getUltimaVisitaGtte());
-			cStmt.setString(33, empresa.getUltimaVisitaAltaGerencia());
-			cStmt.setString(34, empresa.getReporteVisita());
-			cStmt.setString(35, empresa.getRiesgoDeFuega());
-			cStmt.setString(36, empresa.getReclamoUltimoPeriodo());
-			cStmt.setString(37, empresa.getParticipaMesaTrabajo());
+			cStmt.setString(18, empresa.getConstitucionCphs());
+			cStmt.setString(19, empresa.getCertificacionCphs());
+			cStmt.setString(20, empresa.getMmc());
+			cStmt.setString(21, empresa.getTmert());
+			cStmt.setString(22, empresa.getPlanesi());
+			cStmt.setString(23, empresa.getPlaguicida());
+			cStmt.setString(24, empresa.getRadiacionUv());
+			cStmt.setString(25, empresa.getHipobaria());
+			cStmt.setString(26, empresa.getPrexor());
+			cStmt.setString(27, empresa.getPsicosociales());
+			cStmt.setString(28, empresa.getProyectoInvestigacion());
+			cStmt.setString(29, empresa.getUltimaVisitaExperto());
+			cStmt.setString(30, empresa.getUltimaVisitaDirector());
+			cStmt.setString(31, empresa.getUltimaVisitaGtte());
+			cStmt.setString(32, empresa.getUltimaVisitaAltaGerencia());
+			cStmt.setString(33, empresa.getReporteVisita());
+			cStmt.setString(34, empresa.getRiesgoDeFuega());
+			cStmt.setString(35, empresa.getReclamoUltimoPeriodo());
+			cStmt.setString(36, empresa.getParticipaMesaTrabajo());
 			
 			
-			cStmt.registerOutParameter(38, Types.VARCHAR);// numerror$
-			cStmt.registerOutParameter(39, Types.VARCHAR);// msjerror$
+			cStmt.registerOutParameter(35, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(36, Types.VARCHAR);// msjerror$
 
 			cStmt.execute();
 

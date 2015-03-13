@@ -1868,7 +1868,6 @@ if(error == null) error = new Error();
 		empresa.setPlanesDeTrabajo(request.getParameter("planesDeTrabajo"));
 		empresa.setFirmaDePlanes(request.getParameter("fimaDePlanes"));
 		empresa.setSistemaDeGestion(request.getParameter("sistemaDeGestion"));
-		empresa.setMultiRegion(request.getParameter("multiRegion"));
 		empresa.setConstitucionCphs(request.getParameter("constitucionCphs"));
 		empresa.setCertificacionCphs(request.getParameter("certificacionCphs"));
 		empresa.setMmc(request.getParameter("mmc"));

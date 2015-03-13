@@ -1,9 +1,9 @@
 create or replace function public.agregar_empresa
 (
 	IN xnum_adherente varchar,
-	IN  xnombre varchar,
-	IN  xcod_cartera varchar,
-	IN  xnom_experto varchar,
+	IN xnombre varchar,
+	IN xcod_cartera varchar,
+	IN xnom_experto varchar,
 	IN xrazon_social varchar,
 	IN xano_de_adhesion varchar,
 	IN xsegmentacion varchar,
