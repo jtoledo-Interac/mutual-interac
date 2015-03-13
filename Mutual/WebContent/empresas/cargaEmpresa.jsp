@@ -23,7 +23,7 @@
 		</tr>
 		<tr>
 			<td>Número Adherente</td><td> : </td>
-			<td><input required type="text"  value="${empresa.nomAdherente}"		id="numAdherente" 	name="numAdherente"	placeholder="Nº Adherente" ></td>
+			<td><input required type="text"  value="${empresa.numAdherente}"		id="numAdherente" 	name="numAdherente"	placeholder="Nº Adherente" ></td>
 		</tr>
 		<tr>
 			<td>Razón Social</td><td> : </td>
@@ -31,7 +31,7 @@
 		</tr>
 		<tr>
 			<td>Año de adhesión</td><td> : </td>
-			<td><input required type="text" class="fecha"  		id="anoDeAdhesion" 	name="anoDeAdhesion" value="${empresa.anodeAdhesion}"	placeholder="Año de Adhesión" ></td>
+			<td><input required type="text" class="fecha"  		id="anoDeAdhesion" 	name="anoDeAdhesion" value="${empresa.anoDeAdhesion}"	placeholder="Año de Adhesión" ></td>
 		</tr>
 		<tr>
 			<td>Segmentación</td><td> : </td>
@@ -123,7 +123,7 @@
 		</tr>
 		<tr>
 			<td>Ultima Visita Experto</td><td> : </td>
-			<td> <input required type="text" class="fecha" value="${empresa.ultimavisitaExperto}"		id="ultimaVisitaExperto" 		name="ultimaVisitaExperto" 		placeholder="Ultima Visita Experto" ></td>
+			<td> <input required type="text" class="fecha" value="${empresa.ultimaVisitaExperto}"		id="ultimaVisitaExperto" 		name="ultimaVisitaExperto" 		placeholder="Ultima Visita Experto" ></td>
 		</tr>
 		<tr>
 			<td>Ultima Visita Director</td><td> : </td>
@@ -147,7 +147,7 @@
 		</tr>
 		<tr>
 			<td>Reclamo Ultimo Periodo</td><td> : </td>
-			<td> <input required type="text" class="fecha" 	value="${empresa.reclamoUltimoPedido}"	id="reclamoUltimoPeriodo" 		name="reclamoUltimoPeriodo" 		placeholder="Reclamo Ultimo Periodo" ></td>
+			<td> <input required type="text" class="fecha" 	value="${empresa.reclamoUltimoPeriodo}"	id="reclamoUltimoPeriodo" 		name="reclamoUltimoPeriodo" 		placeholder="Reclamo Ultimo Periodo" ></td>
 		</tr>
 		<tr>
 			<td>Participa Mesa Trabajo</td><td> : </td>
