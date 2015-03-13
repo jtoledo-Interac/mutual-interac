@@ -3670,6 +3670,11 @@ public class MutualEJB implements EJBRemoto {
 			error.setNumError(cStmt.getString(3));
 			error.setMsjError(cStmt.getString(4));
 
+			if(rsEmpresa == null){
+				log.info("NULO");
+			}
+			log.info(rsEmpresa.getRow());
+			
 			while (rsEmpresa.next()) {
 				empresa.setNombre(rsEmpresa.getString("nombre"));
 				empresa.setCodCartera(rsEmpresa.getString("codCartera"));

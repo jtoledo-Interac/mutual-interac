@@ -27,7 +27,7 @@
 		</tr>
 		<tr>
 			<td>Razón Social</td><td> : </td>
-			<td><input required type="text"  		id="razonSocial" value="${empresa.razonSocial}"	name="razonSocial"	placeholder="Razón Social" ></td>
+			<td><input required type="text"   value="${empresa.razonSocial}" id="razonSocial"	name="razonSocial"	placeholder="Razón Social" ></td>
 		</tr>
 		<tr>
 			<td>Año de adhesión</td><td> : </td>
@@ -103,7 +103,7 @@
 		</tr>
 		<tr>
 			<td>Radiación UV</td><td> : </td>
-			<td> <input required type="text" 	value="${empresa.radiacionUv}"	id="rdiacionUv" 		name="radiacionUv" 		placeholder="Radiación UV" ></td>
+			<td> <input required type="text" 	value="${empresa.radiacionUv}"	id="radiacionUv" 		name="radiacionUv" 		placeholder="Radiación UV" ></td>
 		</tr>
 		<tr>
 			<td>Hipobaria</td><td> : </td>
