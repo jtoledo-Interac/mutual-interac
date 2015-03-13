@@ -3571,7 +3571,7 @@ public class MutualEJB implements EJBRemoto {
 			dbConeccion = interacDS.getConnection();
 
 			cStmt = dbConeccion
-					.prepareCall("{ call agregar_empresa(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
+					.prepareCall("{ call agregar_empresa(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
 
 			cStmt.setString(1, empresa.getNombre());
 			cStmt.setString(2, empresa.getCodCartera());
@@ -3609,15 +3609,13 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(34, empresa.getRiesgoDeFuega());
 			cStmt.setString(35, empresa.getReclamoUltimoPeriodo());
 			cStmt.setString(36, empresa.getParticipaMesaTrabajo());
-			
-			
-			cStmt.registerOutParameter(35, Types.VARCHAR);// numerror$
-			cStmt.registerOutParameter(36, Types.VARCHAR);// msjerror$
+			cStmt.registerOutParameter(37, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(38, Types.VARCHAR);// msjerror$
 
 			cStmt.execute();
 
-			error.setNumError(cStmt.getString(38));
-			error.setMsjError(cStmt.getString(39));
+			error.setNumError(cStmt.getString(37));
+			error.setMsjError(cStmt.getString(38));
 
 		} catch (SQLException e) {
 			e.printStackTrace();
