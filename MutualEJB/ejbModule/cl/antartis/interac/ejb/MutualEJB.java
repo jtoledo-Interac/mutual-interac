@@ -3671,7 +3671,6 @@ public class MutualEJB implements EJBRemoto {
 			error.setMsjError(cStmt.getString(4));
 
 			while (rsEmpresa.next()) {
-				empresa = new Empresa();
 				empresa.setNombre(rsEmpresa.getString("nombre"));
 				empresa.setCodCartera(rsEmpresa.getString("codCartera"));
 				empresa.setNomExperto(rsEmpresa.getString("nomExperto"));
