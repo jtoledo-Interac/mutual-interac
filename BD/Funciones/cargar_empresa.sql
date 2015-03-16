@@ -30,7 +30,7 @@ begin
 			    multi_region,
 			    casa_matriz,
 			    region_casa_matriz,
-			    mesa_sum,
+			    masa_sum,
 			    planes_de_cuenta,
 			    planes_de_trabajo,
 			    firma_de_planes,

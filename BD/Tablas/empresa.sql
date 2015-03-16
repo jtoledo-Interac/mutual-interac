@@ -12,7 +12,7 @@ CREATE TABLE public.empresa (
     multi_region varchar(200) null,
     casa_matriz varchar(200) null,
     region_casa_matriz varchar(200) null,
-    mesa_sum varchar(200) null,
+    masa_sum varchar(200) null,
     planes_de_cuenta varchar(200) null,
     planes_de_trabajo varchar(200) null,
     firma_de_planes varchar(200) null,
