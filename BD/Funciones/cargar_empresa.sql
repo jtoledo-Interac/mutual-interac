@@ -18,6 +18,7 @@ begin
         open empresas for
 
             select
+            	id_empresa,
 			    num_adherente,
 			    nombre,
 			    cod_cartera,

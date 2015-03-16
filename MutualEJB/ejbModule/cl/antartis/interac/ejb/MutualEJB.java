@@ -2201,10 +2201,10 @@ public class MutualEJB implements EJBRemoto {
 					.prepareCall("{ call modificar_empresa(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
 
 			cStmt.setLong(1, empresa.getIdEmpresa());
-			cStmt.setString(2, empresa.getNombre());
-			cStmt.setString(3, empresa.getCodCartera());
-			cStmt.setString(4, empresa.getNomExperto());
-			cStmt.setString(5, empresa.getNumAdherente());
+			cStmt.setString(2, empresa.getNumAdherente());
+			cStmt.setString(3, empresa.getNombre());
+			cStmt.setString(4, empresa.getCodCartera());
+			cStmt.setString(5, empresa.getNomExperto());
 			cStmt.setString(6, empresa.getRazonSocial());
 			cStmt.setDate(7, Utils.stringToDate(empresa.getAnoDeAdhesion()));
 			cStmt.setString(8, empresa.getSegmentacion());
@@ -2244,6 +2244,9 @@ public class MutualEJB implements EJBRemoto {
 
 			error.setNumError(cStmt.getString(38));
 			error.setMsjError(cStmt.getString(39));
+			
+			log.info(empresa.getIdEmpresa());
+			log.info(empresa.getNombre());
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -3573,10 +3576,10 @@ public class MutualEJB implements EJBRemoto {
 			cStmt = dbConeccion
 					.prepareCall("{ call agregar_empresa(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
 
-			cStmt.setString(1, empresa.getNombre());
-			cStmt.setString(2, empresa.getCodCartera());
-			cStmt.setString(3, empresa.getNomExperto());
-			cStmt.setString(4, empresa.getNumAdherente());
+			cStmt.setString(1, empresa.getNumAdherente());
+			cStmt.setString(2, empresa.getNombre());
+			cStmt.setString(3, empresa.getCodCartera());
+			cStmt.setString(4, empresa.getNomExperto());
 			cStmt.setString(5, empresa.getRazonSocial());
 			cStmt.setDate(6, Utils.stringToDate(empresa.getAnoDeAdhesion()));
 			cStmt.setString(7, empresa.getSegmentacion());
@@ -3676,6 +3679,7 @@ public class MutualEJB implements EJBRemoto {
 			log.info(rsEmpresa.getRow());
 			
 			while (rsEmpresa.next()) {
+				empresa.setIdEmpresa(rsEmpresa.getLong("id_empresa"));
 				empresa.setNombre(rsEmpresa.getString("nombre"));
 				empresa.setCodCartera(rsEmpresa.getString("cod_cartera"));
 				empresa.setNomExperto(rsEmpresa.getString("nom_experto"));
