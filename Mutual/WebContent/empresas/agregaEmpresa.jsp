@@ -62,8 +62,8 @@ $(function() {
 			<td><input required type="text"  		id="regionCasaMatriz" 	name="regionCasaMatriz"	placeholder="Region Casa Matriz" ></td>
 		</tr>
 		<tr>
-			<td>Mesa Sum</td><td> : </td>
-			<td><input required type="text"  		id="mesaSum" 	name="mesaSum"	placeholder="Mesa Sum" ></td>
+			<td>Masa Sum</td><td> : </td>
+			<td><input required type="text"  		id="masaSum" 	name="masaSum"	placeholder="Masa Sum" ></td>
 		</tr>
 		<tr>
 			<td>Planes de Cuenta</td><td> : </td>

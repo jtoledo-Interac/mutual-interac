@@ -18,7 +18,7 @@ public class Empresa implements Serializable {
 	private String multiRegion;
 	private String casaMatriz;
 	private String regionCasaMatriz;
-	private String mesaSum;
+	private String masaSum;
 	private String planesDeCuenta;
 	private String planesDeTrabajo;
 	private String firmaDePlanes;
@@ -120,11 +120,11 @@ public class Empresa implements Serializable {
 	public void setRegionCasaMatriz(String regionCasaMatriz) {
 		this.regionCasaMatriz = regionCasaMatriz;
 	}
-	public String getMesaSum() {
-		return mesaSum;
+	public String getMasaSum() {
+		return masaSum;
 	}
-	public void setMesaSum(String mesaSum) {
-		this.mesaSum = mesaSum;
+	public void setMasaSum(String masaSum) {
+		this.masaSum = masaSum;
 	}
 	public String getPlanesDeCuenta() {
 		return planesDeCuenta;

@@ -2213,7 +2213,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(11, empresa.getMultiRegion());
 			cStmt.setString(12, empresa.getCasaMatriz());
 			cStmt.setString(13, empresa.getRegionCasaMatriz());
-			cStmt.setString(14, empresa.getMesaSum());
+			cStmt.setString(14, empresa.getMasaSum());
 			cStmt.setString(15, empresa.getPlanesDeCuenta());
 			cStmt.setString(16, empresa.getPlanesDeTrabajo());
 			cStmt.setString(17, empresa.getFirmaDePlanes());
@@ -3585,7 +3585,7 @@ public class MutualEJB implements EJBRemoto {
 			cStmt.setString(10, empresa.getMultiRegion());
 			cStmt.setString(11, empresa.getCasaMatriz());
 			cStmt.setString(12, empresa.getRegionCasaMatriz());
-			cStmt.setString(13, empresa.getMesaSum());
+			cStmt.setString(13, empresa.getMasaSum());
 			cStmt.setString(14, empresa.getPlanesDeCuenta());
 			cStmt.setString(15, empresa.getPlanesDeTrabajo());
 			cStmt.setString(16, empresa.getFirmaDePlanes());
@@ -3688,7 +3688,7 @@ public class MutualEJB implements EJBRemoto {
 				empresa.setMultiRegion(rsEmpresa.getString("multi_region"));
 				empresa.setCasaMatriz(rsEmpresa.getString("casa_matriz"));
 				empresa.setRegionCasaMatriz(rsEmpresa.getString("region_casa_matriz"));
-				empresa.setMesaSum(rsEmpresa.getString("mesa_sum"));
+				empresa.setMasaSum(rsEmpresa.getString("masa_sum"));
 				empresa.setPlanesDeCuenta(rsEmpresa.getString("planes_de_cuenta"));
 				empresa.setPlanesDeTrabajo(rsEmpresa.getString("planes_de_trabajo"));
 				empresa.setFirmaDePlanes(rsEmpresa.getString("firma_de_planes"));
