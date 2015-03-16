@@ -6,7 +6,7 @@ create or replace function public.modificar_empresa
 	IN xcod_cartera varchar,
 	IN xnom_experto varchar,
 	IN xrazon_social varchar,
-	IN xano_de_adhesion varchar,
+	IN xano_de_adhesion timestamp,
 	IN xsegmentacion varchar,
 	IN xholding varchar,
 	IN xsituacion varchar,
