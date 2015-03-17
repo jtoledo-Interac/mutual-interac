@@ -1,4 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
+<%@ include file="../declaraciones.jsp" %>
+<%@ include file="../encabezado.jsp" %>
 
 <script type="text/javascript"> 
 	/*$(function() {
@@ -13,28 +15,19 @@
 			$('#formMantenedores').submit();
 		});
 	});*/
-	
-	var idEmpresa;
-	
-	$('#btnBuscar').click(function(){
-		buscarEmpresaReporte();
-	});
-	
-	function buscarEmpresaReporte(){
-		var sData = "Servlet";
-		sData += "?accion=buscarEmpresas";
-		sData += "&nomEmpresa="+$('#nomEmpresa').val();
-		return sData;
-	}
 </script>
 
 <div class="mantenedor">
-	<form id="formEmpresas" action="Servlet" method="post">
-		<div class="filtros">
-			<input type="hidden" id="accion" name="accion">
-			<input type="button" 	id="btnBuscar" 		name="btnBuscar" 	value="Buscar" class="boton"/>
-			<input type="text" 		id="nomEmpresa" 	name="nomEmpresa"	placeholder="Nombre Empresa" class="text">
-		</div>
-		<span></span>
-	</form>
+	<div class="filtros">	
+		<form id="formEmpresa" action="Servlet" method="post">
+			<input type="button"  onSubmit="return validar_form(this)"	id="btnBuscar" 		name="btnBuscar" 	value="Buscar" class="boton">
+			<datalist id="nomEmpresa" 	name="nomEmpresa"	placeholder="Nombre Empresa" class="text">
+				<option value="${empresa.nombre}">
+			</datalist>
+		</form>
+	</div>
+	<div id="listadoBusquedaEmpresas" class="listado">
+		<table id="listadoEmpresas"></table>
+		<div id="pieEmpresa" class="pie"></div>
+	</div>
 </div>

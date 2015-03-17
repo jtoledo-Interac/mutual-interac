@@ -1815,7 +1815,7 @@ if(error == null) error = new Error();
 	}
 
 	public void buscarEmpresas(HttpServletRequest request,
-			HttpServletResponse response) {
+		HttpServletResponse response) {
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 
@@ -2999,5 +2999,26 @@ if(error == null) error = new Error();
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		pagDestino = "contenedor.jsp";
+	}
+	
+	public void buscarReporte(HttpServletRequest request, HttpServletResponse response){
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+
+		Empresa empresa = new Empresa();
+		empresa.setNombre(request.getParameter("nomEmpresa"));
+		
+		mapaEntrada.put("empresa", empresa);
+		mapaSalida = ejbRemoto.buscarEmpresas(mapaEntrada);
+		
+		error = (Error) mapaSalida.get("error");
+		if (error == null)
+			error = new Error();
+		if (!error.getNumError().equals("0")) {
+			pagDestino = "error.jsp";
+		} else {
+			request.setAttribute("listaEmpresas",mapaSalida.get("listaEmpresas"));
+			pagDestino = "/reportes/listaReportesXml.jsp";
+		}
 	}
 }

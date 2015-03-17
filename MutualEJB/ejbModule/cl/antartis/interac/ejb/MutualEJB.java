@@ -5279,6 +5279,77 @@ public class MutualEJB implements EJBRemoto {
 
 		return mapaSalida;
 	}
+	
+	public Map<String, Object> buscarReporte(Map<String, Object> mapaEntrada) {
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		ArrayList<Empresa> listaEmpresas = null;
+		Empresa empresa = null;
+		Error error = new Error();
+
+		try {
+			log.info("Buscar Empresas");
+
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			empresa = (Empresa) mapaEntrada.get("empresa");
+
+			cStmt = dbConeccion
+					.prepareCall("{ call buscar_empresas(?,?,?,?,?) }");
+
+			cStmt.setString(1, empresa.getNombre());
+			cStmt.setString(2, null);
+			cStmt.registerOutParameter(3, Types.OTHER);// cursor$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(5, Types.VARCHAR);// msjerror$
+
+			cStmt.execute();
+
+			ResultSet rs = (ResultSet) cStmt.getObject(3);
+			error.setNumError(cStmt.getString(4));
+			error.setMsjError(cStmt.getString(5));
+
+			listaEmpresas = new ArrayList<Empresa>();
+
+			if (rs != null) {
+				while (rs.next()) {
+					empresa = new Empresa();
+					empresa.setIdEmpresa(rs.getLong("id_empresa"));
+					empresa.setNombre(rs.getString("nombre"));
+					listaEmpresas.add(empresa);
+				}
+				rs.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+
+		log.info("Num Error: " + error.getNumError());
+		log.info("Msj Error: " + error.getMsjError());
+
+		mapaSalida.put("listaEmpresas", listaEmpresas);
+		mapaSalida.put("error", error);
+
+		return mapaSalida;
+	}
 
 	/**********************************/
 }
