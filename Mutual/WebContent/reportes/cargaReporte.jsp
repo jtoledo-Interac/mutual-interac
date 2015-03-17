@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 
 <script type="text/javascript"> 
-	$(function() {
+	/*$(function() {
 		
 		$('#rep1').click(function(){
 			$('#accion').val("repAccidentados");
@@ -12,17 +12,29 @@
 			$('#accion').val("repDias");
 			$('#formMantenedores').submit();
 		});
-	});
-</script>
+	});*/
 	
-<form id="formReportes" action="Servlet" method="post">
-	<input type="hidden" id="accion" name="accion">
-	<div class="botones">
-		<div id="rep1" class="btn">
-			<span>Reporte Accidentados</span>
+	var idEmpresa;
+	
+	$('#btnBuscar').click(function(){
+		buscarEmpresaReporte();
+	});
+	
+	function buscarEmpresaReporte(){
+		var sData = "Servlet";
+		sData += "?accion=buscarEmpresas";
+		sData += "&nomEmpresa="+$('#nomEmpresa').val();
+		return sData;
+	}
+</script>
+
+<div class="mantenedor">
+	<form id="formEmpresas" action="Servlet" method="post">
+		<div class="filtros">
+			<input type="hidden" id="accion" name="accion">
+			<input type="button" 	id="btnBuscar" 		name="btnBuscar" 	value="Buscar" class="boton"/>
+			<input type="text" 		id="nomEmpresa" 	name="nomEmpresa"	placeholder="Nombre Empresa" class="text">
 		</div>
-		<div id="rep2" class="btn">
-			<span>Reporte D&iacute;as Perdidos</span>
-		</div>
-	</div>
-</form>
+		<span></span>
+	</form>
+</div>

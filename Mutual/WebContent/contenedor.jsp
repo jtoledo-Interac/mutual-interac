@@ -134,12 +134,7 @@ function getUrlCargarUsuario(id)
 	        </li>
 	        <li><a href="Servlet?accion=documentos">Documentos</a></li>
 	        <li><a href="Servlet?accion=empresas">Empresas</a></li>
-			<li><a href="#">Reportes</a>
-				<ul>
-					<li><a href="Servlet?accion=repAccidentados">Accidentados</a></li>
-					<li><a href="Servlet?accion=repDias">D&iacute;as Perdidos</a></li>
-				</ul>
-			</li>
+			<li><a href="Servlet?accion=reportes">Reportes</a></li>
 			<li><a href="Servlet?accion=reclamos">Reclamos</a></li>
 			<li><a href="Servlet?accion=links">Links de interés</a></li>
 	        <!-- <li><a href="Servlet?accion=graficar">Graficos Prueba</a></li> -->
