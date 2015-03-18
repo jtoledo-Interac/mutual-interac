@@ -3,7 +3,7 @@ create or replace function public.cargar_dias_perdidos
     in xid_empresa numeric,
 	in xper_inicio numeric,
 	in xper_fin numeric,
-    out empresas refcursor,
+    out dias refcursor,
     out numerror varchar, 
     out msjerror varchar
 ) returns record as
@@ -17,12 +17,12 @@ begin
 
         numerror := 0;
         msjerror := '';
-        open diasperdidos for
+        open dias for
 
             select
             	id_empresa,
 				periodo,
-				dias_perdidos,
+				dias_perdidos
 			
             from 
                 diasperdidos
