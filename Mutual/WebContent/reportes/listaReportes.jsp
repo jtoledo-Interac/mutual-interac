@@ -6,7 +6,7 @@
 </script>
 <script type="text/javascript"> 
 
-	var idReporte;
+	var idEmpresa;
 	var idFila = 0;
 	var numFilas = 15;
 	
@@ -18,7 +18,7 @@
 			datatype: "xml",
 			colNames : [ '', 'Listado Empresas', '' ],
 			colModel : [						
-						{name : 'idReporte', index:'idReporte', hidden : true}, 
+						{name : 'idEmpresa', index:'idEmpresa', hidden : true}, 
 						{name : 'nombre', index:'desReporte', width : 300, search : true, resizable : false, sortable : true},				
 						{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
 						],
@@ -68,7 +68,7 @@
 			ondblClickRow: function()
 			{
 				var fila = $('#listadoReportes').jqGrid('getRowData',idFila);
-				editarReporte(fila.idReporte);
+				editarReporte(fila.idEmpresa);
 			},
 		}).navGrid('#pieReporte',{edit:false,add:false,del:false});	
 		
@@ -146,11 +146,11 @@
 		});
 	}
 	
-	/*function eliminarReporte(idReporte)
+	/*function eliminarReporte(idEmpresa)
 	{  
    		jConfirm('¿ Confirma eliminar el Reporte ?', 'Confirmación', function(res){
    			if (res == true){
-  				ajaxCall(getUrlEliminarReporte(idReporte), function(){
+  				ajaxCall(getUrlEliminarReporte(idEmpresa), function(){
   					jAlert("El Reporte ha sido eliminado exitosamente");
   					buscarReportes();
    				});
@@ -196,14 +196,14 @@
 	{
 		var sData = "Servlet";
 		sData += '?accion=cargarReporte';
-		sData += '&idReporte='+id;
+		sData += '&idEmpresa='+id;
 		return sData;
 	}
 
-	function getUrlEliminarReporte(nIdReporte){  
+	function getUrlEliminarReporte(nIdEmpresa){  
 		var sData = 'Servlet';
 		sData += '?accion=eliminarReporte';
-		sData += '&idReporte='+nIdReporte;
+		sData += '&idEmpresa='+nIdEmpresa;
 		return sData;
     }
 </script>

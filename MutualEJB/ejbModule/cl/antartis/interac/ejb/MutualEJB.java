@@ -5359,7 +5359,7 @@ public class MutualEJB implements EJBRemoto {
 		Error error = new Error();
 
 		try {
-			log.info("Cargar empresas");
+			log.info("Cargar empresa");
 
 			mapaSalida = new HashMap<String, Object>();
 			id_empresa = (Long) mapaEntrada.get("idEmpresa");
@@ -5376,11 +5376,6 @@ public class MutualEJB implements EJBRemoto {
 			ResultSet rsEmpresa = (ResultSet) cStmt.getObject(2);
 			error.setNumError(cStmt.getString(3));
 			error.setMsjError(cStmt.getString(4));
-
-			if(rsEmpresa == null){
-				log.info("NULO");
-			}
-			log.info(rsEmpresa.getRow());
 			
 			while (rsEmpresa.next()) {
 				empresa.setIdEmpresa(rsEmpresa.getLong("id_empresa"));
