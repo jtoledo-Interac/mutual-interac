@@ -16,10 +16,9 @@
 		{
 		   	url: getUrlBuscarReportes(),
 			datatype: "xml",
-			colNames : [ '', 'Nº Adherente', 'Nombre Reporte', '' ],
+			colNames : [ '', 'Listado Empresas', '' ],
 			colModel : [						
 						{name : 'idReporte', index:'idReporte', hidden : true}, 
-						{name : 'numAdherente', index:'numAdherente', width : 110}, 
 						{name : 'nombre', index:'desReporte', width : 300, search : true, resizable : false, sortable : true},				
 						{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
 						],
@@ -30,12 +29,10 @@
 			xmlReader: {
 				root : "filas",
 				row: "fila",
-				repeatitems: false,
-				id: "idReporte"
+				repeatitems: false
 			},
 		   	pager: '#pieReporte',
-		   	pgtext : 'P&aacute;g: {0} de {1}', 
-		   	sortname: 'numAdherente',
+		   	pgtext : 'P&aacute;g: {0} de {1}',
 		    viewrecords: true,
 		    loadonce:true,
 		    sortorder: "desc",
@@ -142,12 +139,12 @@
 		});
 	}
 	
-	/*function editarReporte(idReporte)
+	function cargarReporte(idEmpresa)
 	{
-		ajaxCall(getUrlCargarReporte(idReporte), function(response){
+		ajaxCall(getUrlCargaReporte(idEmpresa), function(response){
 			$('#cargaReporte').html(response).dialog('open');
 		});
-	}*/
+	}
 	
 	/*function eliminarReporte(idReporte)
 	{  
@@ -160,6 +157,13 @@
    			}
    		});
 	}*/
+	
+	function editarReporte(idEmpresa)
+	{
+		ajaxCall(getUrlCargarReporte(idEmpresa), function(response){
+			$('#cargaReporte').html(response).dialog('open');
+		});
+	}
 	
 	function buscarReportes() 
 	{		

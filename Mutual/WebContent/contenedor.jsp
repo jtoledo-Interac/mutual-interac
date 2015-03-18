@@ -237,7 +237,7 @@ function getUrlCargarUsuario(id)
 					
 					<%-- REPORTES --%>
 					<c:when test="${param.accion eq 'reportes'}">
-						<%@ include file="reportes/listaReporte.jsp" %>
+						<%@ include file="reportes/listaReportes.jsp" %>
 					</c:when>
 					
 					<%-- USUARIOS --%>

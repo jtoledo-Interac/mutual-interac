@@ -3023,4 +3023,27 @@ if(error == null) error = new Error();
 			pagDestino = "/reportes/listaReportesXml.jsp";
 		}
 	}
+	
+	public void cargarReporte(HttpServletRequest request,
+			HttpServletResponse response) {
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+
+		Long idEmpresa = Utils.stringToNum(request.getParameter("idEmpresa"));
+
+		log.info("idEmpresa :" + idEmpresa);
+		
+		mapaEntrada.put("idEmpresa", idEmpresa);
+		mapaSalida = ejbRemoto.cargarReporte(mapaEntrada);
+		error = (Error) mapaSalida.get("error");
+		if (error == null)
+			error = new Error();
+		if(!error.getNumError().equals("0")) {
+			pagDestino = "error.jsp";
+		} else {
+			request.setAttribute("empresa", (Empresa) mapaSalida.get("empresa"));
+			pagDestino = "/reportes/cargaReporte.jsp";
+		}
+	}
+	
 }
