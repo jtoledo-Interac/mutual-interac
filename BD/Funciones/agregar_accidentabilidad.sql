@@ -16,7 +16,7 @@ $body$
 		numerror := 0;
 		msjerror := '';
 
-		insert into diasperdidos
+		insert into accidentabilidad
 		(
 		id_empresa,   	
 		accidentes,
