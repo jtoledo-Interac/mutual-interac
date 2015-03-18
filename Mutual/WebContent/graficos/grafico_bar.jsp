@@ -1,4 +1,6 @@
-
+<%@ include file="../declaraciones.jsp" %>
+<%@ include file="../encabezado.jsp" %>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 <div style="width: 50%">
 	Población chilena por regiones
 	<canvas id="canvas" height="450" width="600"></canvas>
@@ -76,5 +78,3 @@
 		window.myDoughnut = new Chart(ctx2).Doughnut(doughnutData, {responsive : true});
 	};
 </script>
-
-

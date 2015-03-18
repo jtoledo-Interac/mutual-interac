@@ -2023,7 +2023,7 @@ if(error == null) error = new Error();
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
-
+		log.info("REPORTES!!!!!!!!");
 		pagDestino = "contenedor.jsp";
 	}	
 	
