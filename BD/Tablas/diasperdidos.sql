@@ -2,6 +2,6 @@
     id_dias 		serial not null,
 	id_empresa   	integer not null,
     dias_perdidos	integer NOT NULL,
-	fecha_ingreso   timestamp,
+	periodo		    integer NOT NULL,
     primary key(id_dias)
 );

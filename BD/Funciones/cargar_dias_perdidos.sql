@@ -1,8 +1,8 @@
 create or replace function public.cargar_dias_perdidos
 (
     in xid_empresa numeric,
-	in xfecha_inicio timestamp,
-	in xfecha_fin timestamp,
+	in xper_inicio numeric,
+	in xper_fin numeric,
     out empresas refcursor,
     out numerror varchar, 
     out msjerror varchar
@@ -21,13 +21,13 @@ begin
 
             select
             	id_empresa,
-				fecha_ingreso,
+				periodo,
 				dias_perdidos,
 			
             from 
                 diasperdidos
             where
-                id_empresa = xid_empresa and xfecha_inicio>=fecha_ingreso and xfecha_fin<= fecha_ingreso;
+                id_empresa = xid_empresa and xper_inicio>=periodo and xper_fin<= periodo;
 
             exception
                 when others then

@@ -2,7 +2,7 @@
 (
 	IN xid_empresa integer,
 	IN xdias_perdidos integer,
-	IN xfecha_ingreso timestamp,
+	IN xperiodo integer,
 	OUT numerror varchar,
 	OUT msjerror varchar
 ) returns record as
@@ -20,13 +20,13 @@ $body$
 		(
 		id_empresa,   	
 		dias_perdidos,
-		fecha_ingreso
+		periodo
 		)
         values
 		(
 	    xid_empresa,
 		xdias_perdidos,
-		xfecha_ingreso
+		xperiodo
 		);
 
        
