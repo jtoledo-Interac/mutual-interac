@@ -5349,6 +5349,70 @@ public class MutualEJB implements EJBRemoto {
 
 		return mapaSalida;
 	}
+	
+	public Map<String, Object> cargarReporte(Map<String, Object> mapaEntrada) {
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		Empresa empresa = new Empresa();
+
+		Long id_empresa;
+		Error error = new Error();
+
+		try {
+			log.info("Cargar empresas");
+
+			mapaSalida = new HashMap<String, Object>();
+			id_empresa = (Long) mapaEntrada.get("idEmpresa");
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion.prepareCall("{ call cargar_empresa(?,?,?,?) }");
+			cStmt.setLong(1, id_empresa);
+			cStmt.registerOutParameter(2, Types.OTHER);// empresas$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
+
+			cStmt.execute();
+
+			ResultSet rsEmpresa = (ResultSet) cStmt.getObject(2);
+			error.setNumError(cStmt.getString(3));
+			error.setMsjError(cStmt.getString(4));
+
+			if(rsEmpresa == null){
+				log.info("NULO");
+			}
+			log.info(rsEmpresa.getRow());
+			
+			while (rsEmpresa.next()) {
+				empresa.setIdEmpresa(rsEmpresa.getLong("id_empresa"));
+				empresa.setNombre(rsEmpresa.getString("nombre"));
+			}
+
+			rsEmpresa.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+		mapaSalida.put("empresa", empresa);
+		mapaSalida.put("error", error);
+
+		return mapaSalida;
+	}
 
 	/**********************************/
 }
