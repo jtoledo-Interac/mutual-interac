@@ -237,7 +237,7 @@ function getUrlCargarUsuario(id)
 					
 					<%-- REPORTES --%>
 					<c:when test="${param.accion eq 'reportes'}">
-						<%@ include file="reportes/cargaReporte.jsp" %>
+						<%@ include file="reportes/listaReporte.jsp" %>
 					</c:when>
 					
 					<%-- USUARIOS --%>
@@ -289,17 +289,7 @@ function getUrlCargarUsuario(id)
 					<c:when test="${param.accion eq 'empresas'}">
 						<%@ include file="empresas/listaEmpresas.jsp" %>
 					</c:when>
-					
-					<%-- REPORTE ACCIDENTADOS --%>
-					<c:when test="${param.accion eq 'repAccidentados'}">
-						<%@ include file="reportes/reporteAccidentados.jsp" %>
-					</c:when>
-					
-					<%-- REPORTE DIAS PERDIDOS --%>
-					<c:when test="${param.accion eq 'repDias'}">
-						<%@ include file="reportes/reporteDias.jsp" %>
-					</c:when>
-					
+									
 					<%-- RECLAMOS --%>
 					<c:when test="${param.accion eq 'reclamos'}">
 						<%@ include file="reclamos/listaReclamos.jsp" %>

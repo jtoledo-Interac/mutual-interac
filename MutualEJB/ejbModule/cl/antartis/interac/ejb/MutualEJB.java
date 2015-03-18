@@ -5288,7 +5288,7 @@ public class MutualEJB implements EJBRemoto {
 		Error error = new Error();
 
 		try {
-			log.info("Buscar Empresas");
+			log.info("Buscar Reportes");
 
 			mapaSalida = new HashMap<String, Object>();
 
@@ -5297,19 +5297,18 @@ public class MutualEJB implements EJBRemoto {
 			empresa = (Empresa) mapaEntrada.get("empresa");
 
 			cStmt = dbConeccion
-					.prepareCall("{ call buscar_empresas(?,?,?,?,?) }");
+					.prepareCall("{ call buscar_reportes(?,?,?,?) }");
 
 			cStmt.setString(1, empresa.getNombre());
-			cStmt.setString(2, null);
-			cStmt.registerOutParameter(3, Types.OTHER);// cursor$
-			cStmt.registerOutParameter(4, Types.VARCHAR);// numerror$
-			cStmt.registerOutParameter(5, Types.VARCHAR);// msjerror$
+			cStmt.registerOutParameter(2, Types.OTHER);// cursor$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
 
 			cStmt.execute();
 
-			ResultSet rs = (ResultSet) cStmt.getObject(3);
-			error.setNumError(cStmt.getString(4));
-			error.setMsjError(cStmt.getString(5));
+			ResultSet rs = (ResultSet) cStmt.getObject(2);
+			error.setNumError(cStmt.getString(3));
+			error.setMsjError(cStmt.getString(4));
 
 			listaReportes = new ArrayList<Empresa>();
 
