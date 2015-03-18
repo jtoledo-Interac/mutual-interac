@@ -103,8 +103,8 @@
 		
 		$('#cargaReporte').dialog({
 			autoOpen: false,
-		    height: 500,
-		    width: 650,
+		    height: 650,
+		    width: 900,
 		    modal: true,
 		    position: 'center',
 		    buttons: {

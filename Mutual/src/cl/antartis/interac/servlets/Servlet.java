@@ -1822,7 +1822,7 @@ if(error == null) error = new Error();
 		Empresa empresa = new Empresa();
 		empresa.setNumAdherente(request.getParameter("numAdherente"));
 		empresa.setNombre(request.getParameter("nomEmpresa"));
-		//empresa.setIdEmpresa(request.getParameter("idEmpresa"));
+		empresa.setCodCartera(request.getParameter("codCartera"));
 
 		log.info("Empresa:++" + empresa.getNumAdherente() + "\n"
 				+ empresa.getNombre());

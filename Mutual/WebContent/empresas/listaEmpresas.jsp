@@ -16,11 +16,12 @@
 		{
 		   	url: getUrlBuscarEmpresas(),
 			datatype: "xml",
-			colNames : [ '', 'Nº Adherente', 'Nombre Empresa', '' ],
+			colNames : [ '', 'Nº Adherente', 'Nombre Empresa', 'Cartera', '' ],
 			colModel : [						
 						{name : 'idEmpresa', index:'idEmpresa', hidden : true}, 
 						{name : 'numAdherente', index:'numAdherente', width : 110}, 
-						{name : 'nombre', index:'desEmpresa', width : 300, search : true, resizable : false, sortable : true},				
+						{name : 'nombre', index:'desEmpresa', width : 300, search : true, resizable : false, sortable : true},
+						{name : 'cartera', index:'codCartera', width : 110}, 				
 						{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
 						],
 		   	rowNum: numeroDeFilas,
@@ -179,6 +180,7 @@
 		sData += "?accion=buscarEmpresas";
 		sData += "&nomEmpresa="+$('#nomEmpresa').val();
 		sData += "&numAdherente="+$('#numAdherente').val();
+		sData += "&codCartera="+$('#codCartera').val();
 		return sData;
 	}
 
@@ -217,6 +219,7 @@
 			<input type="button" 	id="btnAgregar" 	name="btnAgregar" 	value="Agregar" class="boton"/>
 			<input type="text" 		id="nomEmpresa" 	name="nomEmpresa"	placeholder="Nombre Empresa" class="text">
 			<input type="text" 		id="numAdherente" 	name="numAdherente"	placeholder="Nº Adherente" class="text">
+			<input type="text" 		id="codCartera" 	name="codCartera"	placeholder="Cartera" class="text">
 		</form>
 	</div> 
 

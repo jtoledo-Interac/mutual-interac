@@ -2,6 +2,7 @@ create or replace function public.buscar_empresas
 (
     in xnombre$ varchar,
     in xnum_adherente$ varchar,
+    in xcod_cartera$ varchar,
     out empresas refcursor, 
     out numerror varchar, 
     out msjerror varchar
@@ -11,6 +12,7 @@ $body$
 
     declare xnombre varchar;
     declare xnum_adherente varchar;
+    declare xcod_cartera varchar;
 
     begin
 
@@ -23,6 +25,12 @@ $body$
             xnum_adherente := ' ';
         else
             xnum_adherente := upper(trim(xnum_adherente$));
+        end if;
+
+        if trim(xcod_cartera$) = '' then
+            xcod_cartera := ' ';
+        else
+            xcod_cartera := upper(trim(xcod_cartera$));
         end if;
 
         open empresas for
@@ -41,7 +49,7 @@ $body$
             multi_region,
             casa_matriz,
             region_casa_matriz,
-            mesa_sum,
+            masa_sum,
             planes_de_cuenta,
             planes_de_trabajo,
             firma_de_planes,
@@ -68,8 +76,10 @@ $body$
         from 
             empresa
         where
-             upper(nombre) like '%' || xnombre ||'%' and
-            (xnum_adherente =  ' ' or upper(trim(num_adherente)) = xnum_adherente) 
+            upper(nombre) like '%' || xnombre ||'%' and
+            (xnum_adherente =  ' ' or upper(trim(num_adherente)) = xnum_adherente) and
+            (xcod_cartera =  ' ' or upper(trim(cod_cartera)) = xcod_cartera)
+
             
         order by
             nombre;
