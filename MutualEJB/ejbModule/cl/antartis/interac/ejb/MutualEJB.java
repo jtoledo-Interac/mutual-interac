@@ -5280,10 +5280,10 @@ public class MutualEJB implements EJBRemoto {
 		return mapaSalida;
 	}
 	
-	public Map<String, Object> buscarReporte(Map<String, Object> mapaEntrada) {
+	public Map<String, Object> buscarReportes(Map<String, Object> mapaEntrada) {
 		CallableStatement cStmt = null;
 		Map<String, Object> mapaSalida = null;
-		ArrayList<Empresa> listaEmpresas = null;
+		ArrayList<Empresa> listaReportes = null;
 		Empresa empresa = null;
 		Error error = new Error();
 
@@ -5311,14 +5311,14 @@ public class MutualEJB implements EJBRemoto {
 			error.setNumError(cStmt.getString(4));
 			error.setMsjError(cStmt.getString(5));
 
-			listaEmpresas = new ArrayList<Empresa>();
+			listaReportes = new ArrayList<Empresa>();
 
 			if (rs != null) {
 				while (rs.next()) {
 					empresa = new Empresa();
 					empresa.setIdEmpresa(rs.getLong("id_empresa"));
 					empresa.setNombre(rs.getString("nombre"));
-					listaEmpresas.add(empresa);
+					listaReportes.add(empresa);
 				}
 				rs.close();
 			}
@@ -5345,7 +5345,7 @@ public class MutualEJB implements EJBRemoto {
 		log.info("Num Error: " + error.getNumError());
 		log.info("Msj Error: " + error.getMsjError());
 
-		mapaSalida.put("listaEmpresas", listaEmpresas);
+		mapaSalida.put("listaReportes", listaReportes);
 		mapaSalida.put("error", error);
 
 		return mapaSalida;

@@ -3001,15 +3001,17 @@ if(error == null) error = new Error();
 		pagDestino = "contenedor.jsp";
 	}
 	
-	public void buscarReporte(HttpServletRequest request, HttpServletResponse response){
+	public void buscarReportes(HttpServletRequest request, HttpServletResponse response){
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 
 		Empresa empresa = new Empresa();
 		empresa.setNombre(request.getParameter("nomEmpresa"));
+
+		log.info("Empresa:++" + empresa.getNombre());
 		
 		mapaEntrada.put("empresa", empresa);
-		mapaSalida = ejbRemoto.buscarEmpresas(mapaEntrada);
+		mapaSalida = ejbRemoto.buscarReportes(mapaEntrada);
 		
 		error = (Error) mapaSalida.get("error");
 		if (error == null)
@@ -3017,7 +3019,7 @@ if(error == null) error = new Error();
 		if (!error.getNumError().equals("0")) {
 			pagDestino = "error.jsp";
 		} else {
-			request.setAttribute("listaEmpresas",mapaSalida.get("listaEmpresas"));
+			request.setAttribute("listaReportes",mapaSalida.get("listaReportes"));
 			pagDestino = "/reportes/listaReportesXml.jsp";
 		}
 	}
