@@ -39,11 +39,23 @@ $(function() {
 		</tr>
 		<tr>
 			<td>Segmentación</td><td> : </td>
-			<td><input required type="text"  		id="segmentacion" 	name="segmentacion"	placeholder="Segmentación"  ></td>
+			<td>
+			<select id="segmentacion" 	name="segmentacion">
+					<option value="Grandes cuentas">Grandes cuentas</option>
+					<option value="Estrategicas">Estrategicas</option>
+					<option value="Corporativas">Corporativas</option>
+				</select>
+			</td>
 		</tr>
 		<tr>
 			<td>Holding</td><td> : </td>
-			<td><input required type="text"  		id="holding" 	name="holding"	placeholder="Holding"  ></td>
+			<td>
+				<select id="holding" 	name="holding">
+					<option value="Si">Si</option>
+					<option value="No">No</option>
+				</select>
+			</td>
+			
 		</tr>
 		<tr>
 			<td>Situación</td><td> : </td>
@@ -51,7 +63,14 @@ $(function() {
 		</tr>
 		<tr>
 			<td>Multi Region</td><td> : </td>
-			<td><input required type="text"  		id="multiRegion" 	name="multiRegion"	placeholder="Multi Region" ></td>
+			
+			<td>
+			<select id="multiRegion" 	name="multiRegion">
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+				<option value="No Aplica">No Aplica</option>
+			</select>
+			</td>
 		</tr>
 		<tr>
 			<td>Casa Matriz</td><td> : </td>
@@ -59,27 +78,55 @@ $(function() {
 		</tr>
 		<tr>
 			<td>Region Casa Matriz</td><td> : </td>
-			<td><input required type="text"  		id="regionCasaMatriz" 	name="regionCasaMatriz"	placeholder="Region Casa Matriz" ></td>
-		</tr>
+			<td>
+			<select id="regionCasaMatriz" 	name="regionCasaMatriz">
+				<option value="Region">Region</option>
+				<option value="Casa Matriz">Casa Matriz</option>
+			</select>
+			</td>
+			</tr>
 		<tr>
 			<td>Masa Sum</td><td> : </td>
 			<td><input required type="text"  		id="masaSum" 	name="masaSum"	placeholder="Masa Sum" ></td>
 		</tr>
 		<tr>
 			<td>Planes de Cuenta</td><td> : </td>
-			<td><input required type="text"  		id="planesDeCuenta" 	name="planesDeCuenta"	placeholder="Planes De Cuenta" ></td>
-		</tr>
+			<td>
+			<select id="planesDeCuenta" 	name="planesDeCuenta">
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+				<option value="No Aplica">No Aplica</option>
+			</select>
+			</td>
+			</tr>
 		<tr>
 			<td>Planes de Trabajo</td><td> : </td>
-			<td><input required type="text"  		id="planesDeTrabajo" 	name="planesDeTrabajo"	placeholder="Planes de Trabajo" ></td>
+			<td>
+			<select id="planesDeTrabajo" 	name="planesDeTrabajo">
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+			</select>
+			</td>
 		</tr>
 		<tr>
 			<td>Firma de planes</td><td> : </td>
-			<td><input required type="text"  		id="firmaDePlanes" 	name="firmaDePlanes"	placeholder="Firma de Planes" ></td>
+			<td>
+			<select id="firmaDePlanes" 	name="firmaDePlanes">
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+			</select>
+			</td>
 		</tr>
 		<tr>
 			<td>Sistema de Gestión</td><td> : </td>
-			<td><input required type="text"  		id="sistemaDeGestion" 	name="sistemaDeGestion"	placeholder="Sistema de Gestión" ></td>
+			<td>
+			<select id="sistemaDeGestion" 	name="sistemaDeGestion">
+				<option value="PEC Estandar">Si</option>
+				<option value="No">No</option>
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+			</select>
+			<input required type="text"  		id="sistemaDeGestion" 	name="sistemaDeGestion"	placeholder="Sistema de Gestión" ></td>
 		</tr>
 		<tr>
 			<td>Constitución Cphs</td><td> : </td>

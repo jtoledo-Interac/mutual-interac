@@ -68,5 +68,10 @@
 <tr>
 	<td> Nombre </td><td> : </td><td> <input type="text"	id="nombre"	required name="nombre" placeholder="Nombre" > </td>
 </tr>
+	<tr><td><input type="checkbox" name="Invalideces" value="Invalideces"> Invalideces</td></tr>
+	<tr><td><input type="checkbox" name="SAMI" value="SAMI"> SAMI</td></tr>
+	<tr><td><input type="checkbox" name="Fatales" value="Fatales"> Fatales</td></tr>
+	
+
 </table>
 </form>

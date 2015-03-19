@@ -5,6 +5,15 @@
 <script type="text/javascript"> 
 
 </script>
+<style>
+.maman {
+	border: 1px solid #BBB;
+	text-align: center;
+	background: rgba(170,200,50,0.5);
+	border-radius: 5px;
+	margin: 5px;
+}
+</style>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
       google.load("visualization", "1", {packages:["orgchart"]});
@@ -16,36 +25,37 @@
         data.addColumn('string', 'ToolTip');
 
        data.addRows([
-			[{v:'CARLA MARIMAN IBARRA', f:'CARLA MARIMAN IBARRA<div style="color:red; font-style:italic">GERENTE DE CLIENTES<div>'}, '', ''],
-			[{v:'WISMI VISCARRA HELLIE', f:'WISMI VISCARRA HELLIE<div style="color:red; font-style:italic">ASISTENTE<div>'}, 'CARLA MARIMAN IBARRA', ''],
-			[{v:'MARIA ALEJANDRA CARIS E.', f:'MARIA ALEJANDRA CARIS E.<div style="color:red; font-style:italic">INGENIERO DE PROYECTOS<div>'}, 'CARLA MARIMAN IBARRA', ''],
-			[{v:'JOHANNA QUIROZ RODRIGUEZ', f:'JOHANNA QUIROZ RODRIGUEZ<div style="color:red; font-style:italic">MULTIREGIONAL<div>'}, 'CARLA MARIMAN IBARRA', ''],
-			[{v:'SELVA DANYAU ISLA', f:'SELVA DANYAU ISLA<div style="color:red; font-style:italic">ENFERMERA COORDINADORA<div>'}, 'CARLA MARIMAN IBARRA', ''],
-			[{v:'ANA MARISOL ROSALES LECAROS', f:'ANA MARISOL ROSALES LECAROS<div style="color:red; font-style:italic">ENFERMERA COORDINADORA<div>'}, 'CARLA MARIMAN IBARRA', ''],
-			[{v:'XIMENA ROJAS', f:'XIMENA ROJAS<div style="color:red; font-style:italic">GESTOR COMERCIAL <div>'}, 'CARLA MARIMAN IBARRA', ''],
-			[{v:'MANUEL MENA JORQUERA', f:'MANUEL MENA JORQUERA<div style="color:red; font-style:italic">PSICOLOGO GERENCIA<div>'}, 'CARLA MARIMAN IBARRA', ''],
-			[{v:'ANGELICA ZELAYA AHUMADA', f:'ANGELICA ZELAYA AHUMADA<div style="color:red; font-style:italic">DIRECTOR DE CARTERA TRANSPORTE PÚBLICO<div>'}, 'CARLA MARIMAN IBARRA', ''],
-			[{v:'FRANCISCO FAJARDO ALARCON', f:'FRANCISCO FAJARDO ALARCON<div style="color:red; font-style:italic">EXPERTO<div>'}, 'ANGELICA ZELAYA AHUMADA', ''],
-			[{v:'MARIA ANGELICA ACEVEDO ZUÑIGA', f:'MARIA ANGELICA ACEVEDO ZUÑIGA<div style="color:red; font-style:italic">EXPERTO<div>'}, 'ANGELICA ZELAYA AHUMADA', ''],
-			[{v:'CRISTIAN LEIVA MEDINA', f:'CRISTIAN LEIVA MEDINA<div style="color:red; font-style:italic">EXPERTO<div>'}, 'ANGELICA ZELAYA AHUMADA', ''],
-			[{v:'VERONICA BUSTOS GARRIDO', f:'VERONICA BUSTOS GARRIDO<div style="color:red; font-style:italic">EXPERTO<div>'}, 'ANGELICA ZELAYA AHUMADA', ''],
-			[{v:'MAURICIO HERRERA BRAVO', f:'MAURICIO HERRERA BRAVO<div style="color:red; font-style:italic">DIRECTOR DE CARTERA TRANSPORTE DE PERSONAS <div>'}, 'CARLA MARIMAN IBARRA', ''],
-			[{v:'JULIO TOLOZA SAEZ', f:'JULIO TOLOZA SAEZ<div style="color:red; font-style:italic">EXPERTO<div>'}, 'MAURICIO HERRERA BRAVO', ''],
-			[{v:'JOSE MIGUEL MONTENEGRO LILLO', f:'JOSE MIGUEL MONTENEGRO LILLO<div style="color:red; font-style:italic">EXPERTO<div>'}, 'MAURICIO HERRERA BRAVO', ''],
-			[{v:'CARLOS VERA ESPINOZA', f:'CARLOS VERA ESPINOZA<div style="color:red; font-style:italic">EXPERTO<div>'}, 'MAURICIO HERRERA BRAVO', ''],
-			[{v:'NATALIA URREA SOTO', f:'NATALIA URREA SOTO<div style="color:red; font-style:italic">DIRECTOR DE CARTERA TRANSPORTE DE CARGA<div>'}, 'CARLA MARIMAN IBARRA', ''],
-			[{v:'FRANCO ALIAGA GALVEZ', f:'FRANCO ALIAGA GALVEZ<div style="color:red; font-style:italic">EXPERTO<div>'}, 'NATALIA URREA SOTO', ''],
-			[{v:'HUGO HERNANDEZ MIRANDA', f:'HUGO HERNANDEZ MIRANDA<div style="color:red; font-style:italic">EXPERTO<div>'}, 'NATALIA URREA SOTO', ''],
-			[{v:'ELIANA CONTRERAS ROMAN', f:'ELIANA CONTRERAS ROMAN<div style="color:red; font-style:italic">EXPERTO<div>'}, 'NATALIA URREA SOTO', ''],
-			[{v:'MICHAEL SWANECK S.', f:'MICHAEL SWANECK S.<div style="color:red; font-style:italic">DIRECTOR CARTERA TELECOMUNICACIONES Y ENERGÍA<div>'}, 'CARLA MARIMAN IBARRA', ''],
-			[{v:'XIMENA ALFARO SANCHEZ', f:'XIMENA ALFARO SANCHEZ<div style="color:red; font-style:italic">EXPERTO<div>'}, 'MICHAEL SWANECK S.', ''],
-			[{v:'FRANCISCO VALENCIA  HERNANDEZ', f:'FRANCISCO VALENCIA  HERNANDEZ<div style="color:red; font-style:italic">EXPERTO<div>'}, 'MICHAEL SWANECK S.', ''],
-			[{v:'JAIME SOTO ORTEGA', f:'JAIME SOTO ORTEGA<div style="color:red; font-style:italic">EXPERTO<div>'}, 'MICHAEL SWANECK S.', '']
+			[{v:'CARLA MARIMAN IBARRA', f:'<div style="color:black; font-style:bold">CARLA MARIMAN IBARRA</div><div style="color:#555555; font-style:italic">GERENTE DE CLIENTES<div>'}, '', ''],
+			[{v:'WISMI VISCARRA HELLIE', f:'<div style="color:black; font-style:bold">WISMI VISCARRA HELLIE</div><div style="color:#555555; font-style:italic">ASISTENTE<div>'}, 'CARLA MARIMAN IBARRA', ''],
+			[{v:'MARIA ALEJANDRA CARIS E.', f:'<div style="color:black; font-style:bold">MARIA ALEJANDRA CARIS E.</div><div style="color:#555555; font-style:italic">INGENIERO DE PROYECTOS<div>'}, 'CARLA MARIMAN IBARRA', ''],
+			[{v:'JOHANNA QUIROZ RODRIGUEZ', f:'<div style="color:black; font-style:bold">JOHANNA QUIROZ RODRIGUEZ</div><div style="color:#555555; font-style:italic">MULTIREGIONAL<div>'}, 'CARLA MARIMAN IBARRA', ''],
+			[{v:'SELVA DANYAU ISLA', f:'<div style="color:black; font-style:bold">SELVA DANYAU ISLA</div><div style="color:#555555; font-style:italic">ENFERMERA COORDINADORA<div>'}, 'CARLA MARIMAN IBARRA', ''],
+			[{v:'ANA MARISOL ROSALES LECAROS', f:'<div style="color:black; font-style:bold">ANA MARISOL ROSALES LECAROS</div><div style="color:#555555; font-style:italic">ENFERMERA COORDINADORA<div>'}, 'CARLA MARIMAN IBARRA', ''],
+			[{v:'XIMENA ROJAS', f:'<div style="color:black; font-style:bold">XIMENA ROJAS</div><div style="color:#555555; font-style:italic">GESTOR COMERCIAL <div>'}, 'CARLA MARIMAN IBARRA', ''],
+			[{v:'MANUEL MENA JORQUERA', f:'<div style="color:black; font-style:bold">MANUEL MENA JORQUERA</div><div style="color:#555555; font-style:italic">PSICOLOGO GERENCIA<div>'}, 'CARLA MARIMAN IBARRA', ''],
+			[{v:'ANGELICA ZELAYA AHUMADA', f:'<div style="color:black; font-style:bold">ANGELICA ZELAYA AHUMADA</div><div style="color:#555555; font-style:italic">DIRECTOR DE CARTERA TRANSPORTE PÚBLICO<div>'}, 'CARLA MARIMAN IBARRA', ''],
+			[{v:'FRANCISCO FAJARDO ALARCON', f:'<div style="color:black; font-style:bold">FRANCISCO FAJARDO ALARCON</div><div style="color:#555555; font-style:italic">EXPERTO<div>'}, 'ANGELICA ZELAYA AHUMADA', ''],
+			[{v:'MARIA ANGELICA ACEVEDO ZUÑIGA', f:'<div style="color:black; font-style:bold">MARIA ANGELICA ACEVEDO ZUÑIGA</div><div style="color:#555555; font-style:italic">EXPERTO<div>'}, 'ANGELICA ZELAYA AHUMADA', ''],
+			[{v:'CRISTIAN LEIVA MEDINA', f:'<div style="color:black; font-style:bold">CRISTIAN LEIVA MEDINA</div><div style="color:#555555; font-style:italic">EXPERTO<div>'}, 'ANGELICA ZELAYA AHUMADA', ''],
+			[{v:'VERONICA BUSTOS GARRIDO', f:'<div style="color:black; font-style:bold">VERONICA BUSTOS GARRIDO</div><div style="color:#555555; font-style:italic">EXPERTO<div>'}, 'ANGELICA ZELAYA AHUMADA', ''],
+			[{v:'MAURICIO HERRERA BRAVO', f:'<div style="color:black; font-style:bold">MAURICIO HERRERA BRAVO</div><div style="color:#555555; font-style:italic">DIRECTOR DE CARTERA TRANSPORTE DE PERSONAS <div>'}, 'CARLA MARIMAN IBARRA', ''],
+			[{v:'JULIO TOLOZA SAEZ', f:'<div style="color:black; font-style:bold">JULIO TOLOZA SAEZ</div><div style="color:#555555; font-style:italic">EXPERTO<div>'}, 'MAURICIO HERRERA BRAVO', ''],
+			[{v:'JOSE MIGUEL MONTENEGRO LILLO', f:'<div style="color:black; font-style:bold">JOSE MIGUEL MONTENEGRO LILLO</div><div style="color:#555555; font-style:italic">EXPERTO<div>'}, 'MAURICIO HERRERA BRAVO', ''],
+			[{v:'CARLOS VERA ESPINOZA', f:'<div style="color:black; font-style:bold">CARLOS VERA ESPINOZA</div><div style="color:#555555; font-style:italic">EXPERTO<div>'}, 'MAURICIO HERRERA BRAVO', ''],
+			[{v:'NATALIA URREA SOTO', f:'<div style="color:black; font-style:bold">NATALIA URREA SOTO</div><div style="color:#555555; font-style:italic">DIRECTOR DE CARTERA TRANSPORTE DE CARGA<div>'}, 'CARLA MARIMAN IBARRA', ''],
+			[{v:'FRANCO ALIAGA GALVEZ', f:'<div style="color:black; font-style:bold">FRANCO ALIAGA GALVEZ</div><div style="color:#555555; font-style:italic">EXPERTO<div>'}, 'NATALIA URREA SOTO', ''],
+			[{v:'HUGO HERNANDEZ MIRANDA', f:'<div style="color:black; font-style:bold">HUGO HERNANDEZ MIRANDA</div><div style="color:#555555; font-style:italic">EXPERTO<div>'}, 'NATALIA URREA SOTO', ''],
+			[{v:'ELIANA CONTRERAS ROMAN', f:'<div style="color:black; font-style:bold">ELIANA CONTRERAS ROMAN</div><div style="color:#555555; font-style:italic">EXPERTO<div>'}, 'NATALIA URREA SOTO', ''],
+			[{v:'MICHAEL SWANECK S.', f:'<div style="color:black; font-style:bold">MICHAEL SWANECK S.</div><div style="color:#555555; font-style:italic">DIRECTOR CARTERA TELECOMUNICACIONES Y ENERGÍA<div>'}, 'CARLA MARIMAN IBARRA', ''],
+			[{v:'XIMENA ALFARO SANCHEZ', f:'<div style="color:black; font-style:bold">XIMENA ALFARO SANCHEZ</div><div style="color:#555555; font-style:italic">EXPERTO<div>'}, 'MICHAEL SWANECK S.', ''],
+			[{v:'FRANCISCO VALENCIA  HERNANDEZ', f:'<div style="color:black; font-style:bold">FRANCISCO VALENCIA  HERNANDEZ</div><div style="color:#555555; font-style:italic">EXPERTO<div>'}, 'MICHAEL SWANECK S.', ''],
+			[{v:'JAIME SOTO ORTEGA', f:'<div style="color:black; font-style:bold">JAIME SOTO ORTEGA</div><div style="color:#555555; font-style:italic">EXPERTO<div>'}, 'MICHAEL SWANECK S.', '']
 	
         ]);
 
         var chart = new google.visualization.OrgChart(document.getElementById('chart_div'));
-        chart.draw(data, {allowHtml:true});
+        chart.draw(data, {allowHtml:true, nodeClass:'maman'});
+        
       }
    </script>
 

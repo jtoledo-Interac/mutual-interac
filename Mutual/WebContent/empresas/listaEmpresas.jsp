@@ -180,7 +180,7 @@
 		sData += "?accion=buscarEmpresas";
 		sData += "&nomEmpresa="+$('#nomEmpresa').val();
 		sData += "&numAdherente="+$('#numAdherente').val();
-		sData += "&codCartera="+$('#codCartera').val();
+		sData += "&idCartera="+$('#idCartera').val();
 		return sData;
 	}
 
@@ -219,7 +219,8 @@
 			<input type="button" 	id="btnAgregar" 	name="btnAgregar" 	value="Agregar" class="boton"/>
 			<input type="text" 		id="nomEmpresa" 	name="nomEmpresa"	placeholder="Nombre Empresa" class="text">
 			<input type="text" 		id="numAdherente" 	name="numAdherente"	placeholder="Nº Adherente" class="text">
-			<select id="id_cartera" name="id_cartera" placeholder="Cartera"><option value="" selected>Seleccione una cartera</option>
+			<select id="idCartera" name="idCartera" class="select">
+				<option value="" selected>Seleccione una cartera</option>
 				<c:forEach items="${requestScope.listaCarteras}" var="cartera">
 					<option value="${cartera.idCartera}" >${cartera.desCartera}</option>
 				</c:forEach>
