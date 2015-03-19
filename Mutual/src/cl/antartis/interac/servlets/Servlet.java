@@ -36,6 +36,7 @@ import cl.antartis.interac.beans.Perfil;
 import cl.antartis.interac.beans.Prioridad;
 import cl.antartis.interac.beans.Producto;
 import cl.antartis.interac.beans.Reclamo;
+import cl.antartis.interac.beans.Reporte;
 import cl.antartis.interac.beans.Tipo;
 import cl.antartis.interac.beans.Usuario;
 import cl.antartis.interac.beans.Error;
@@ -3030,8 +3031,12 @@ if(error == null) error = new Error();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 
 		Long idEmpresa = Utils.stringToNum(request.getParameter("idEmpresa"));
+		String inicioPeriodo = request.getParameter("inicioPeriodo");
+		String finPeriodo = request.getParameter("finPeriodo");
 
 		log.info("idEmpresa :" + idEmpresa);
+		log.info("Fecha de Inicio :" + inicioPeriodo);
+		log.info("Fecha de Fin :" + finPeriodo);
 		
 		mapaEntrada.put("idEmpresa", idEmpresa);
 		mapaSalida = ejbRemoto.cargarReporte(mapaEntrada);
@@ -3041,9 +3046,8 @@ if(error == null) error = new Error();
 		if(!error.getNumError().equals("0")) {
 			pagDestino = "error.jsp";
 		} else {
-			request.setAttribute("empresa", (Empresa) mapaSalida.get("empresa"));
+			request.setAttribute("reporte", (Reporte) mapaSalida.get("reporte"));
 			pagDestino = "/reportes/cargaReporte.jsp";
 		}
 	}
-	
 }

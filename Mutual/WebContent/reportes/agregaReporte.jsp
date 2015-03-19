@@ -10,12 +10,18 @@ $(function() {
 </script>
 
 <form id="formAgrega" action="Servlet" method="post">
-	<input type="hidden"	id="accion" 		name="accion" 		value="agregarEmpresa">
+	<input type="hidden"	id="accion" 		name="accion" 		value="agregarReporte">
 	<input type="submit" class="submit" style="display:none;">
 	<table>
 		<tr>
-			<td>Nombre</td><td> : </td>
-			<td> <input required type="text" 		id="nombre" 		name="nombre" 		placeholder="Nombre Empresa" ></td>
+			<td>
+				<select id="id_empresa" name="id_empresa" required>
+					<option value="" selected>Seleccione Empresa</option>
+					<c:forEach items="${requestScope.listaEmpresas}" var="prioridad">
+						<option value="${empresa.idEmpresa}" >${empresa.nombre}</option>
+					</c:forEach>
+				</select>
+			</td>
 		</tr>
 	</table>
 </form>

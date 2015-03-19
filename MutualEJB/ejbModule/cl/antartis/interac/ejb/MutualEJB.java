@@ -5361,7 +5361,7 @@ public class MutualEJB implements EJBRemoto {
 		Error error = new Error();
 
 		try {
-			log.info("Cargar empresa");
+			log.info("Cargar Reporte para empresa");
 
 			mapaSalida = new HashMap<String, Object>();
 			id_empresa = (Long) mapaEntrada.get("idEmpresa");
