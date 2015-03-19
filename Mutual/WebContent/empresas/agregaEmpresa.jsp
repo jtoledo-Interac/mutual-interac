@@ -121,12 +121,13 @@ $(function() {
 			<td>Sistema de Gestión</td><td> : </td>
 			<td>
 			<select id="sistemaDeGestion" 	name="sistemaDeGestion">
-				<option value="PEC Estandar">Si</option>
-				<option value="No">No</option>
-				<option value="Si">Si</option>
-				<option value="No">No</option>
+				<option value="PEC Estandar">PEC Estandar</option>
+				<option value="PEC Competitividad">PEC Competitividad</option>
+				<option value="Excelencia">Excelencia</option>
+				<option value="Autogestion">Autogestion</option>
+				<option value="No Tiene">No Tiene</option>
 			</select>
-			<input required type="text"  		id="sistemaDeGestion" 	name="sistemaDeGestion"	placeholder="Sistema de Gestión" ></td>
+			</td>
 		</tr>
 		<tr>
 			<td>Constitución Cphs</td><td> : </td>
@@ -142,31 +143,66 @@ $(function() {
 		</tr>
 		<tr>
 			<td>TMERT</td><td> : </td>
-			<td><input required type="text"  		id="tmert" 	name="tmert"	placeholder="TMERT" ></td>
+			<td>
+			<select id="tmert" 	name="tmert">
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+			</select>
+			</td>
 		</tr>
 		<tr>
 			<td>Planesi</td><td> : </td>
-			<td><input required type="text"  		id="planesi" 	name="planesi"	placeholder="Planesi" ></td>
+			<td>
+			<select id="planesi" 	name="planesi">
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+			</select>
+			</td>
 		</tr>
 		<tr>
 			<td>Plaguicida</td><td> : </td>
-			<td><input required type="text"  		id="plaguicida" 	name="plaguicida"	placeholder="Plaguicida" ></td>
+			<td>
+			<select id="plaguicida" 	name="plaguicida">
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+			</select>
+			</td>
 		</tr>
 		<tr>
 			<td>Radiación UV</td><td> : </td>
-			<td> <input required type="text" 		id="rdiacionUv" 		name="radiacionUv" 		placeholder="Radiación UV" ></td>
+			<td>
+			<select id="rdiacionUv" 	name="rdiacionUv">
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+			</select>
+			</td>
 		</tr>
 		<tr>
 			<td>Hipobaria</td><td> : </td>
-			<td><input required type="text"  		id="hipobaria" 	name="hipobaria"	placeholder="Hipobaria" ></td>
+			<td>
+			<select id="hipobaria" 	name="hipobaria">
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+			</select>
+			</td>
 		</tr>
 		<tr>
 			<td>PREXOR</td><td> : </td>
-			<td><input required type="text"  		id="prexor" 	name="prexor"	placeholder="PREXOR" ></td>
+			<td>
+			<select id="prexor" 	name="prexor">
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+			</select>
+			</td>
 		</tr>
 		<tr>
 			<td>Psicosociales</td><td> : </td>
-			<td><input required type="text"  		id="psicosociales" 	name="psicosociales"	placeholder="Psicosociales" ></td>
+			<td>
+			<select id="psicosociales" 	name="psicosociales">
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+			</select>
+			</td>
 		</tr>
 		<tr>
 			<td>Proyecto Investigación</td><td> : </td>
@@ -194,7 +230,13 @@ $(function() {
 		</tr>
 		<tr>
 			<td>Riesgo de Fuga</td><td> : </td>
-			<td> <input required type="text" 		id="riesgoDeFuga" 		name="riesgoDeFuga" 		placeholder="Riesgo de Fuga" ></td>
+			<td>
+			<select id="riesgoDeFuga" 	name="riesgoDeFuga">
+				<option value="Bajo">Bajo</option>
+				<option value="Medio">Medio</option>
+				<option value="Alto">Alto</option>
+			</select>
+			</td>
 		</tr>
 		<tr>
 			<td>Reclamo Ultimo Periodo</td><td> : </td>
@@ -202,7 +244,13 @@ $(function() {
 		</tr>
 		<tr>
 			<td>Participa Mesa Trabajo</td><td> : </td>
-			<td> <input required type="text" 		id="participaMesaTrabajo" 		name="participaMesaTrabajo" 		placeholder="Participa Mesa Trabajo" ></td>
+			<td>
+			<select id="participaMesaTrabajo" 	name="participaMesaTrabajo">
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+				<option value="No Aplica">No Aplica</option>
+			</select>
+			</td>
 		</tr>
 	</table>
 </form>
