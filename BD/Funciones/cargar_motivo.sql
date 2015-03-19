@@ -19,7 +19,7 @@ begin
                 des_motivo                
             from 
                 motivo             
-                where
+            where
                 id_motivo = xid_motivo; 
 
             exception

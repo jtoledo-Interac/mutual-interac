@@ -2,14 +2,12 @@
 (
 	IN xid_empresa integer,
 	IN xaccidentes float,
-	IN xperiodo integer,
+	IN xfecha_ingreso integer,
 	OUT numerror varchar,
 	OUT msjerror varchar
 ) returns record as
 
-$body$
-
-    
+$body$   
 
 	begin	
 		
@@ -20,13 +18,13 @@ $body$
 		(
 		id_empresa,   	
 		accidentes,
-		periodo
+		fecha_ingreso
 		)
         values
 		(
 	    xid_empresa ,
 		xaccidentes,
-		xperiodo
+		xfecha_ingreso
 		);
 
        
@@ -35,7 +33,7 @@ $body$
 		exception
 			when others then
 				numerror := sqlstate;
-				msjerror := '[agregar_accidentabilida] error al crear accidentabilidad(sql) ' ||sqlerrm;
+				msjerror := '[agregar_accidentabilidad] error al crear accidentabilidad(sql) ' ||sqlerrm;
 				return;	
 	end;
 $body$
