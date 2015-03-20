@@ -3050,4 +3050,58 @@ if(error == null) error = new Error();
 			pagDestino = "/reportes/cargaReporte.jsp";
 		}
 	}
+	
+	public void agregarReporte(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		//Reporte reporte = new Reporte();
+		Empresa empresa = new Empresa();
+
+		Long idEmpresa = Utils.stringToNum(request.getParameter("idEmpresa"));
+		
+		mapaEntrada.put("idEmpresa", idEmpresa);
+		mapaSalida = ejbRemoto.cargarEmpresa(mapaEntrada);
+		 
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		error = (Error)mapaSalida.get("error");
+		if(error == null) error = new Error();
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{
+			pagDestino = "contenedor.jsp?accion=reportes";
+		}
+	}
+	
+	public void crearReporte(HttpServletRequest request,
+			HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0]
+				.getMethodName();
+
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+
+		mapaSalida = ejbRemoto.buscarParametros(mapaEntrada);
+		error = (Error) mapaSalida.get("error");
+		if (error == null)
+			error = new Error();
+		if (!error.getNumError().equals("0")) {
+			pagDestino = "error.jsp";
+		} else {
+			/*request.setAttribute("listaCarteras",
+					mapaSalida.get("listaCarteras"));
+			request.setAttribute("listaProductos",
+					mapaSalida.get("listaProductos"));
+			request.setAttribute("listaAreas", mapaSalida.get("listaAreas"));*/
+			request.setAttribute("listaEmpresas", mapaSalida.get("listaEmpresas"));
+			request.setAttribute("listaReportes", mapaSalida.get("listaReportes"));
+
+			pagDestino = "empresas/agregaReporte.jsp";
+		}
+	}
 }

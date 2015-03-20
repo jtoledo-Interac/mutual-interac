@@ -26,9 +26,7 @@ $body$
         from 
             empresa as e, diasperdidos as d, accidentabilidad as a
         where
-            e.id_empresa = xid_empresa
-            (d.fecha_ingreso >= xinicio_periodo and d.fecha_ingreso <= xfin_periodo)
-            (a.fecha_ingreso >= xinicio_periodo and a.fecha_ingreso <= xfin_periodo);
+            e.id_empresa = xid_empresa;
         exception
             when others then
                 numerror := sqlstate;

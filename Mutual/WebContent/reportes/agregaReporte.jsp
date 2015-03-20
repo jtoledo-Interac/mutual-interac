@@ -15,13 +15,25 @@ $(function() {
 	<table>
 		<tr>
 			<td>
-				<select id="id_empresa" name="id_empresa" required>
+				<select id="idEmpresa" name="idEmpresa" required>
 					<option value="" selected>Seleccione Empresa</option>
 					<c:forEach items="${requestScope.listaEmpresas}" var="prioridad">
 						<option value="${empresa.idEmpresa}" >${empresa.nombre}</option>
 					</c:forEach>
 				</select>
 			</td>
+		</tr>
+		<tr>
+			<td>Dias Perdidos</td><td> : </td>
+			<td> <input required type="text" 		id="diasPerdidos" 		name="diasPerdidos" 		placeholder="Dias Perdidos" ></td>
+		</tr>
+		<tr>
+			<td>Accidentabilidad</td><td> : </td>
+			<td> <input required type="text" 		id="accidentabilidad" 		name="accidentabilidad" 		placeholder="Accidentabilidad" ></td>
+		</tr>
+		<tr>
+			<td>Fecha</td><td> : </td>
+			<td><input required type="text" class="fecha" 		id="fechaReporte" 	name="fechaReporte"	placeholder="Fecha" ></td>
 		</tr>
 	</table>
 </form>
