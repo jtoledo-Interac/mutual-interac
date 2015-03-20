@@ -1,8 +1,6 @@
 create or replace function public.cargar_reporte
 (
-    in xid_empresa integer,
-    in xinicio_periodo varchar,
-    in xfin_periodo varchar,
+    in xid_empresa numeric,
     out reportes refcursor, 
     out numerror varchar, 
     out msjerror varchar
@@ -18,6 +16,7 @@ $body$
         open reportes for
 
         select
+            e.id_empresa,
             e.nombre,
             d.dias_perdidos,
             d.fecha_ingreso,
@@ -31,7 +30,7 @@ $body$
             when others then
                 numerror := sqlstate;
                 msjerror := '[busca_reportes] error al cargar el reporte(sql) ' ||sqlerrm;
-                return; 
+                return;
     end;
 
 $body$

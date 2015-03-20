@@ -31,6 +31,7 @@ import cl.antartis.interac.beans.Prioridad;
 import cl.antartis.interac.beans.Producto;
 import cl.antartis.interac.beans.Reclamo;
 import cl.antartis.interac.beans.Region;
+import cl.antartis.interac.beans.Reporte;
 import cl.antartis.interac.beans.Tipo;
 import cl.antartis.interac.beans.Usuario;
 import cl.antartis.interac.ejb.interfaces.EJBRemoto;
@@ -5361,13 +5362,13 @@ public class MutualEJB implements EJBRemoto {
 		Error error = new Error();
 
 		try {
-			log.info("Cargar Reporte para empresa");
+			log.info("Cargar Reporte");
 
 			mapaSalida = new HashMap<String, Object>();
 			id_empresa = (Long) mapaEntrada.get("idEmpresa");
 			dbConeccion = interacDS.getConnection();
 
-			cStmt = dbConeccion.prepareCall("{ call cargar_empresa(?,?,?,?) }");
+			cStmt = dbConeccion.prepareCall("{ call cargar_reporte(?,?,?,?) }");
 			cStmt.setLong(1, id_empresa);
 			cStmt.registerOutParameter(2, Types.OTHER);// empresas$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
@@ -5409,6 +5410,84 @@ public class MutualEJB implements EJBRemoto {
 		mapaSalida.put("error", error);
 
 		return mapaSalida;
+	}
+	
+	public Map<String, Object> agregarReporte(Map<String, Object> mapaEntrada) {
+
+		CallableStatement cStmt = null;
+		Error error = new Error();
+		Map<String, Object> mapaSalida = null;
+		Reporte reporte = new Reporte();
+		Empresa empresa = new Empresa();
+
+		try {
+			log.info("Agregar Reporte");
+			reporte = (Reporte) mapaEntrada.get("reporte");
+			log.info("Accidentes :" + reporte.getDiasAccidentabilidad());
+			log.info("Dias perdidos :" + reporte.getIngresoDato());
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			log.info("Agregando accidentabilidad");
+			
+			cStmt = dbConeccion.prepareCall("{ call agregar_accidentabilidad(?,?,?,?,?) }");
+
+			cStmt.setLong(1, empresa.getIdEmpresa());
+			cStmt.setFloat(2, reporte.getDiasAccidentabilidad());
+			cStmt.setDate(3, Utils.stringToDate(reporte.getIngresoDato()));
+			cStmt.registerOutParameter(4, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(5, Types.VARCHAR);// msjerror$
+
+			cStmt.execute();
+
+			error.setNumError(cStmt.getString(4));
+			error.setMsjError(cStmt.getString(5));
+			
+			log.info("Agregando dias perdidos");
+			cStmt = dbConeccion.prepareCall("{ call agregar_dias_perdidos(?,?,?,?,?) }");
+
+			cStmt.setLong(1, empresa.getIdEmpresa());
+			cStmt.setFloat(2, reporte.getDiasPerdidos());
+			cStmt.setDate(3, Utils.stringToDate(reporte.getIngresoDato()));
+			cStmt.registerOutParameter(4, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(5, Types.VARCHAR);// msjerror$
+
+			cStmt.execute();
+
+			error.setNumError(cStmt.getString(4));
+			error.setMsjError(cStmt.getString(5));
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+		
+		
+
+		log.info("Num Error: " + error.getNumError());
+		log.info("Msj Error: " + error.getMsjError());
+
+		mapaSalida.put("reporte", reporte);
+		mapaSalida.put("error", error);
+
+		return mapaSalida;
+
 	}
 
 	/**********************************/

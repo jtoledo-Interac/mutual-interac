@@ -14,14 +14,14 @@ $(function() {
 	<input type="submit" class="submit" style="display:none;">
 	<table>
 		<tr>
-			<td>
-				<select id="idEmpresa" name="idEmpresa" required>
-					<option value="" selected>Seleccione Empresa</option>
-					<c:forEach items="${requestScope.listaEmpresas}" var="prioridad">
+				<td>Empresa</td><td> : </td>
+				<td><select id="id_empresa" name="id_empresa" required>
+					<option selected>Seleccione Empresa</option>
+					<c:forEach items="${requestScope.listaEmpresas}" var="empresa">
 						<option value="${empresa.idEmpresa}" >${empresa.nombre}</option>
 					</c:forEach>
 				</select>
-			</td>
+				</td>
 		</tr>
 		<tr>
 			<td>Dias Perdidos</td><td> : </td>

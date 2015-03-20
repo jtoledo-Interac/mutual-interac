@@ -2026,7 +2026,89 @@ if(error == null) error = new Error();
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		log.info("REPORTES!!!!!!!!");
 		pagDestino = "contenedor.jsp";
-	}	
+	}
+	
+	public void cargarReporte(HttpServletRequest request,
+			HttpServletResponse response) {
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+
+		Long idEmpresa = Utils.stringToNum(request.getParameter("idEmpresa"));
+		String nombre = request.getParameter("nombre");
+		
+		log.info("Id Empresa :" + idEmpresa);
+		log.info("Nombre Empresa :" + nombre);
+		
+		mapaEntrada.put("idEmpresa", idEmpresa);
+		mapaSalida = ejbRemoto.cargarReporte(mapaEntrada);
+		error = (Error) mapaSalida.get("error");
+		if (error == null)
+			error = new Error();
+		if(!error.getNumError().equals("0")) {
+			pagDestino = "error.jsp";
+		} else {
+			request.setAttribute("reporte", (Reporte) mapaSalida.get("reporte"));
+			pagDestino = "/reportes/cargaReporte.jsp";
+		}
+	}
+	
+	public void agregarReporte(HttpServletRequest request, HttpServletResponse response) {
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		request.setAttribute("listaEmpresas", mapaSalida.get("listaEmpresas"));
+		
+		//Cargar empresas		
+		Long idEmpresa = Utils.stringToNum(request.getParameter("idEmpresa"));
+		log.info("Id Empresa :" + idEmpresa);
+		
+		mapaEntrada.put("idEmpresa", idEmpresa);
+		mapaSalida = ejbRemoto.cargarEmpresa(mapaEntrada);
+		
+		//Tomar datos para el reporte
+		mapaSalida = ejbRemoto.agregarReporte(mapaEntrada);
+		
+		Reporte reporte = new Reporte();
+		
+		reporte.setIdEmpresa(Utils.stringToNum(request.getParameter("id_empresa")));
+		reporte.setDiasAccidentabilidad(Utils.stringToNum(request.getParameter("accidentabilidad")));
+		reporte.setDiasPerdidos(Utils.stringToNum(request.getParameter("diasPerdidos")));
+		reporte.setIngresoDato(request.getParameter("fechaReporte"));
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		error = (Error)mapaSalida.get("error");
+		if(error == null) error = new Error();
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{
+			pagDestino = "contenedor.jsp?accion=reportes";
+		}
+	}
+	
+	public void crearReporte(HttpServletRequest request, HttpServletResponse response)
+		{
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		mapaSalida = ejbRemoto.agregarReporte(mapaEntrada);
+		error = (Error)mapaSalida.get("error");
+		if(error == null) error = new Error();
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{
+			request.setAttribute("listaEmpresas", mapaSalida.get("listaEmpresas"));
+			pagDestino = "reportes/agregaReporte.jsp";
+		}
+	}
 	
 	public void repAccidentados(HttpServletRequest request, HttpServletResponse response) 
 	{
@@ -3007,7 +3089,7 @@ if(error == null) error = new Error();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 
 		Empresa empresa = new Empresa();
-		empresa.setNombre(request.getParameter("nomEmpresa"));
+		empresa.setNombre(request.getParameter("nombre"));
 
 		log.info("Empresa:++" + empresa.getNombre());
 		
@@ -3022,86 +3104,6 @@ if(error == null) error = new Error();
 		} else {
 			request.setAttribute("listaReportes",mapaSalida.get("listaReportes"));
 			pagDestino = "/reportes/listaReportesXml.jsp";
-		}
-	}
-	
-	public void cargarReporte(HttpServletRequest request,
-			HttpServletResponse response) {
-		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
-		Map<String, Object> mapaSalida = new HashMap<String, Object>();
-
-		Long idEmpresa = Utils.stringToNum(request.getParameter("idEmpresa"));
-		String inicioPeriodo = request.getParameter("inicioPeriodo");
-		String finPeriodo = request.getParameter("finPeriodo");
-
-		log.info("idEmpresa :" + idEmpresa);
-		log.info("Fecha de Inicio :" + inicioPeriodo);
-		log.info("Fecha de Fin :" + finPeriodo);
-		
-		mapaEntrada.put("idEmpresa", idEmpresa);
-		mapaSalida = ejbRemoto.cargarReporte(mapaEntrada);
-		error = (Error) mapaSalida.get("error");
-		if (error == null)
-			error = new Error();
-		if(!error.getNumError().equals("0")) {
-			pagDestino = "error.jsp";
-		} else {
-			request.setAttribute("reporte", (Reporte) mapaSalida.get("reporte"));
-			pagDestino = "/reportes/cargaReporte.jsp";
-		}
-	}
-	
-	public void agregarReporte(HttpServletRequest request, HttpServletResponse response) {
-		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
-		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
-		Map<String, Object> mapaSalida = new HashMap<String, Object>();
-		
-		//Reporte reporte = new Reporte();
-		Empresa empresa = new Empresa();
-
-		Long idEmpresa = Utils.stringToNum(request.getParameter("idEmpresa"));
-		
-		mapaEntrada.put("idEmpresa", idEmpresa);
-		mapaSalida = ejbRemoto.cargarEmpresa(mapaEntrada);
-		 
-		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
-		
-		error = (Error)mapaSalida.get("error");
-		if(error == null) error = new Error();
-		if(!error.getNumError().equals("0")){
-			pagDestino = "error.jsp";
-		}
-		else{
-			pagDestino = "contenedor.jsp?accion=reportes";
-		}
-	}
-	
-	public void crearReporte(HttpServletRequest request,
-			HttpServletResponse response) {
-		String nombreMetodo = new Exception().getStackTrace()[0]
-				.getMethodName();
-
-		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
-		Map<String, Object> mapaSalida = new HashMap<String, Object>();
-
-		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
-
-		mapaSalida = ejbRemoto.buscarParametros(mapaEntrada);
-		error = (Error) mapaSalida.get("error");
-		if (error == null)
-			error = new Error();
-		if (!error.getNumError().equals("0")) {
-			pagDestino = "error.jsp";
-		} else {
-			/*request.setAttribute("listaCarteras",
-					mapaSalida.get("listaCarteras"));
-			request.setAttribute("listaProductos",
-					mapaSalida.get("listaProductos"));
-			request.setAttribute("listaAreas", mapaSalida.get("listaAreas"));*/
-			request.setAttribute("listaEmpresas", mapaSalida.get("listaEmpresas"));
-			request.setAttribute("listaReportes", mapaSalida.get("listaReportes"));
-
-			pagDestino = "empresas/agregaReporte.jsp";
 		}
 	}
 }

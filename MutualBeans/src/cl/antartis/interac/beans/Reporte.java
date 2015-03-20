@@ -5,15 +5,28 @@ import java.io.Serializable;
 public class Reporte {
 
 	private long idReporte;
+	private long idEmpresa;
 	private String nombreEmpresa;
-	private long diasPerdidos;
-	private long accidentabilidad;
+	private float diasPerdidos;
+	private float accidentabilidad;
 	private String inicioPeriodo;
 	private String finPeriodo;
 	private String ingresoDato;
 	
 	public Reporte(){
 		
+	}
+	
+	public void setIdEmpresa(long idEmpresa){
+		this.idEmpresa = idEmpresa;
+	}
+	
+	public long getIdEmpresa(){
+		return idEmpresa;
+	}
+	
+	public void setNombreEmpresa(String nombreEmpresa){
+		this.nombreEmpresa = nombreEmpresa;
 	}
 	
 	public void setIdReporte(long idReporte){
@@ -28,11 +41,31 @@ public class Reporte {
 		return nombreEmpresa;
 	}
 	
-	public void setDiasPerdidos(long diasPerdidos){
+	public float getDiasAccidentabilidad(){
+		return accidentabilidad;
+	}
+	
+	public float getDiasPerdidos(){
+		return diasPerdidos;
+	}
+	
+	public String getInicioPeriodo(){
+		return inicioPeriodo;
+	}
+	
+	public String getFinPeriodo(){
+		return finPeriodo;
+	}
+	
+	public String getIngresoDato(){
+		return ingresoDato;
+	}
+	
+	public void setDiasPerdidos(float diasPerdidos){
 		this.diasPerdidos = diasPerdidos;
 	}
 	
-	public void setDiasAccidentabilidad(long accidentabilidad){
+	public void setDiasAccidentabilidad(float accidentabilidad){
 		this.accidentabilidad = accidentabilidad;
 	}
 	
