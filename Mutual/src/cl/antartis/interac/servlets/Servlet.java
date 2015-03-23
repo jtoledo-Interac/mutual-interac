@@ -3090,7 +3090,7 @@ if(error == null) error = new Error();
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
 		Reporte reporte = new Reporte();
-		reporte.setNombreEmpresa(request.getParameter("nomEmpresa"));
+		reporte.setNombreEmpresa(request.getParameter("nombreEmpresa"));
 		
 		mapaSalida = ejbRemoto.buscarParametros(mapaEntrada);
 		request.setAttribute("listaReportes", mapaSalida.get("listaReportes"));

@@ -5356,9 +5356,7 @@ public class MutualEJB implements EJBRemoto {
 	public Map<String, Object> cargarReporte(Map<String, Object> mapaEntrada) {
 		CallableStatement cStmt = null;
 		Map<String, Object> mapaSalida = null;
-		Empresa empresa = new Empresa();
-		String numError = "0";
-		String msjError = "";
+		Reporte reporte = new Reporte();
 
 		Long id_empresa;
 		Error error = new Error();
@@ -5383,8 +5381,8 @@ public class MutualEJB implements EJBRemoto {
 			error.setMsjError(cStmt.getString(4));
 			
 			while (rsEmpresa.next()) {
-				empresa.setIdEmpresa(rsEmpresa.getLong("id_empresa"));
-				empresa.setNombre(rsEmpresa.getString("nombre"));
+				reporte.setIdEmpresa(rsEmpresa.getLong("id_empresa"));
+				reporte.setNombreEmpresa(rsEmpresa.getString("nombre"));
 			}
 
 			rsEmpresa.close();
@@ -5408,7 +5406,7 @@ public class MutualEJB implements EJBRemoto {
 				e.printStackTrace();
 			}
 		}
-		mapaSalida.put("empresa", empresa);
+		mapaSalida.put("reporte", reporte);
 		mapaSalida.put("error", error);
 
 		return mapaSalida;
@@ -5420,12 +5418,10 @@ public class MutualEJB implements EJBRemoto {
 		Error error = new Error();
 		Map<String, Object> mapaSalida = null;
 		Reporte reporte = new Reporte();
-		Empresa empresa = new Empresa();
 
 		try {
 			log.info("Agregar Reporte");
 			reporte = (Reporte) mapaEntrada.get("reporte");
-			empresa = (Empresa) mapaEntrada.get("empresa");
 			mapaSalida = new HashMap<String, Object>();
 
 			dbConeccion = interacDS.getConnection();
