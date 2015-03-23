@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <filas>
-    <c:forEach items="${requestScope.listaReportes}" var="empresa">
+    <c:forEach items="${requestScope.listaReportes}" var="reporte">
         <fila>
             <idEmpresa>${reporte.idEmpresa}</idEmpresa> 
         	<nombreEmpresa>${reporte.nombreEmpresa}</nombreEmpresa>
