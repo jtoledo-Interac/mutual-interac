@@ -6,7 +6,7 @@
     <c:forEach items="${requestScope.listaReportes}" var="empresa">
         <fila>
             <idEmpresa>${empresa.idEmpresa}</idEmpresa> 
-        	<nombre>${empresa.nombre}</nombre>
+        	<nombreEmpresa>${empresa.nombre}</nombreEmpresa>
         </fila>
      </c:forEach>
 </filas>

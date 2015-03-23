@@ -2,7 +2,9 @@ package cl.antartis.interac.beans;
 
 import java.io.Serializable;
 
-public class Reporte {
+public class Reporte implements Serializable {
+	
+	private static final long serialVersionUID = 6579351231046520207L;
 
 	private long idReporte;
 	private long idEmpresa;

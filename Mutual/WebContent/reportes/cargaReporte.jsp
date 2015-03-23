@@ -44,7 +44,7 @@
 
 <form id="formEdita" action="Servlet" method="post" onSubmit="return validar_form(this)">
 	<!--<input type="hidden"	id="accion" 		name="accion" 		value="modificarEmpresa">-->		
-	<h1>${empresa.nombre}</h1>
+	<h1>${reporte.nombreEmpresa}</h1>
 	<table class="centrado">
 		<tr>
 			<td>Fecha Inicio</td><td> : </td>
