@@ -3083,7 +3083,6 @@ if(error == null) error = new Error();
 	
 	public void buscarReportes(HttpServletRequest request, HttpServletResponse response){
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
-		
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 
@@ -3091,9 +3090,6 @@ if(error == null) error = new Error();
 		
 		Reporte reporte = new Reporte();
 		reporte.setNombreEmpresa(request.getParameter("nombreEmpresa"));
-		
-		mapaSalida = ejbRemoto.buscarParametros(mapaEntrada);
-		request.setAttribute("listaReportes", mapaSalida.get("listaReportes"));
 		
 		mapaEntrada.put("reporte", reporte);
 		mapaSalida = ejbRemoto.buscarReportes(mapaEntrada);

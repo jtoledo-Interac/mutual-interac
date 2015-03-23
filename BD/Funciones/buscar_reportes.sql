@@ -9,7 +9,6 @@ create or replace function public.buscar_reportes
 $body$
 
     declare xnombre varchar;
-    declare xnum_adherente varchar;
 
     begin
 
