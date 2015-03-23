@@ -5286,8 +5286,8 @@ public class MutualEJB implements EJBRemoto {
 	public Map<String, Object> buscarReportes(Map<String, Object> mapaEntrada) {
 		CallableStatement cStmt = null;
 		Map<String, Object> mapaSalida = null;
-		ArrayList<Empresa> listaReportes = null;
-		Empresa empresa = null;
+		ArrayList<Reporte> listaReportes = null;
+		Reporte reporte = null;
 		Error error = new Error();
 
 		try {
@@ -5297,12 +5297,12 @@ public class MutualEJB implements EJBRemoto {
 
 			dbConeccion = interacDS.getConnection();
 
-			empresa = (Empresa) mapaEntrada.get("empresa");
+			reporte = (Reporte) mapaEntrada.get("reporte");
 
 			cStmt = dbConeccion
 					.prepareCall("{ call buscar_reportes(?,?,?,?) }");
 
-			cStmt.setString(1, empresa.getNombre());
+			cStmt.setString(1, reporte.getNombreEmpresa());
 			cStmt.registerOutParameter(2, Types.OTHER);// cursor$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
@@ -5313,14 +5313,14 @@ public class MutualEJB implements EJBRemoto {
 			error.setNumError(cStmt.getString(3));
 			error.setMsjError(cStmt.getString(4));
 
-			listaReportes = new ArrayList<Empresa>();
+			listaReportes = new ArrayList<Reporte>();
 
 			if (rs != null) {
 				while (rs.next()) {
-					empresa = new Empresa();
-					empresa.setIdEmpresa(rs.getLong("id_empresa"));
-					empresa.setNombre(rs.getString("nombre"));
-					listaReportes.add(empresa);
+					reporte = new Reporte();
+					reporte.setIdEmpresa(rs.getLong("id_empresa"));
+					reporte.setNombreEmpresa(rs.getString("nombre"));
+					listaReportes.add(reporte);
 				}
 				rs.close();
 			}
