@@ -5357,6 +5357,8 @@ public class MutualEJB implements EJBRemoto {
 		CallableStatement cStmt = null;
 		Map<String, Object> mapaSalida = null;
 		Empresa empresa = new Empresa();
+		String numError = "0";
+		String msjError = "";
 
 		Long id_empresa;
 		Error error = new Error();
@@ -5423,6 +5425,7 @@ public class MutualEJB implements EJBRemoto {
 		try {
 			log.info("Agregar Reporte");
 			reporte = (Reporte) mapaEntrada.get("reporte");
+			empresa = (Empresa) mapaEntrada.get("empresa");
 			mapaSalida = new HashMap<String, Object>();
 
 			dbConeccion = interacDS.getConnection();
@@ -5431,7 +5434,7 @@ public class MutualEJB implements EJBRemoto {
 			
 			cStmt = dbConeccion.prepareCall("{ call agregar_accidentabilidad(?,?,?,?,?) }");
 
-			cStmt.setLong(1, empresa.getIdEmpresa());
+			cStmt.setLong(1, reporte.getIdEmpresa());
 			cStmt.setFloat(2, reporte.getDiasAccidentabilidad());
 			cStmt.setDate(3, Utils.stringToDate(reporte.getIngresoDato()));
 			cStmt.registerOutParameter(4, Types.VARCHAR);// numerror$
@@ -5445,7 +5448,7 @@ public class MutualEJB implements EJBRemoto {
 			log.info("Agregando dias perdidos");
 			cStmt = dbConeccion.prepareCall("{ call agregar_dias_perdidos(?,?,?,?,?) }");
 
-			cStmt.setLong(1, empresa.getIdEmpresa());
+			cStmt.setLong(1, reporte.getIdEmpresa());
 			cStmt.setFloat(2, reporte.getDiasPerdidos());
 			cStmt.setDate(3, Utils.stringToDate(reporte.getIngresoDato()));
 			cStmt.registerOutParameter(4, Types.VARCHAR);// numerror$
@@ -5476,8 +5479,6 @@ public class MutualEJB implements EJBRemoto {
 			}
 		}
 		
-		
-
 		log.info("Num Error: " + error.getNumError());
 		log.info("Msj Error: " + error.getMsjError());
 

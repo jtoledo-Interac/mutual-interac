@@ -12,16 +12,15 @@ $(function() {
 <form id="formAgrega" action="Servlet" method="post">
 	<input type="hidden"	id="accion" 		name="accion" 		value="agregarReporte">
 	<input type="submit" class="submit" style="display:none;">
-	<table>
+	<table class="centrado">
 		<tr>
 				<td>Empresa</td><td> : </td>
 				<td><select id="id_empresa" name="id_empresa" required>
 					<option selected>Seleccione Empresa</option>
-					<c:forEach items="${requestScope.listaEmpresas}" var="empresa">
-						<option value="${empresa.idEmpresa}" >${empresa.nombre}</option>
+					<c:forEach items="${requestScope.listaReportes}" var="empresa">
+						<option value="${reporte.idEmpresa}">${reporte.nombre}</option>
 					</c:forEach>
-				</select>
-				</td>
+				</select></td>
 		</tr>
 		<tr>
 			<td>Dias Perdidos</td><td> : </td>

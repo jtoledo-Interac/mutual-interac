@@ -19,7 +19,7 @@
 			colNames : [ '', 'Listado Empresas', '' ],
 			colModel : [						
 						{name : 'idEmpresa', index:'idEmpresa', hidden : true}, 
-						{name : 'nombre', index:'desReporte', width : 300, search : true, resizable : false, sortable : true},				
+						{name : 'nombre', index:'nomEmpresa', width : 300, search : true, resizable : false, sortable : true},				
 						{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
 						],
 		   	rowNum: numeroDeFilas,
