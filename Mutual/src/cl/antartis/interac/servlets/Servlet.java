@@ -2058,24 +2058,18 @@ if(error == null) error = new Error();
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		request.setAttribute("listaEmpresas", mapaSalida.get("listaEmpresas"));
-		
-		//Cargar empresas		
-		Long idEmpresa = Utils.stringToNum(request.getParameter("idEmpresa"));
-		log.info("Id Empresa :" + idEmpresa);
-		
-		mapaEntrada.put("idEmpresa", idEmpresa);
-		mapaSalida = ejbRemoto.cargarEmpresa(mapaEntrada);
-		
-		//Tomar datos para el reporte
-		mapaSalida = ejbRemoto.agregarReporte(mapaEntrada);
-		
+		//Tomar datos para el reporte		
 		Reporte reporte = new Reporte();
-		
+				
 		reporte.setIdEmpresa(Utils.stringToNum(request.getParameter("id_empresa")));
 		reporte.setDiasAccidentabilidad(Utils.stringToNum(request.getParameter("accidentabilidad")));
 		reporte.setDiasPerdidos(Utils.stringToNum(request.getParameter("diasPerdidos")));
 		reporte.setIngresoDato(request.getParameter("fechaReporte"));
+		
+		request.setAttribute("listaEmpresas", mapaSalida.get("listaEmpresas"));
+		
+		mapaEntrada.put("reporte", reporte);
+		mapaSalida = ejbRemoto.agregarReporte(mapaEntrada);
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		

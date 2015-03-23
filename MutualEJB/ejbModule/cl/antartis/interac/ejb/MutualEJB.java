@@ -5423,8 +5423,6 @@ public class MutualEJB implements EJBRemoto {
 		try {
 			log.info("Agregar Reporte");
 			reporte = (Reporte) mapaEntrada.get("reporte");
-			log.info("Accidentes :" + reporte.getDiasAccidentabilidad());
-			log.info("Dias perdidos :" + reporte.getIngresoDato());
 			mapaSalida = new HashMap<String, Object>();
 
 			dbConeccion = interacDS.getConnection();
