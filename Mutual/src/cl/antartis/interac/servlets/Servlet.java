@@ -2023,6 +2023,21 @@ if(error == null) error = new Error();
 	{
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
 		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		Empresa empresa = new Empresa();
+		empresa.setNumAdherente(request.getParameter("idEmpresa"));
+		empresa.setNombre(request.getParameter("nomEmpresa"));
+
+		log.info("Empresa:++" + empresa.getNumAdherente() + "\n"
+				+ empresa.getNombre());
+
+		mapaEntrada.put("empresa", empresa);
+		
+		mapaSalida = ejbRemoto.buscarEmpresas(mapaEntrada);
+		request.setAttribute("listaEmpresas", mapaSalida.get("listaEmpresas"));
+		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		pagDestino = "contenedor.jsp";
 	}
