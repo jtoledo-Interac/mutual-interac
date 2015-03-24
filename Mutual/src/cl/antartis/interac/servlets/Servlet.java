@@ -2022,24 +2022,22 @@ if(error == null) error = new Error();
 	public void reportes(HttpServletRequest request, HttpServletResponse response) 
 	{
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
-		
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		Empresa empresa = new Empresa();
-		empresa.setNumAdherente(request.getParameter("idEmpresa"));
-		empresa.setNombre(request.getParameter("nomEmpresa"));
-
-		log.info("Empresa:++" + empresa.getNumAdherente() + "\n"
-				+ empresa.getNombre());
-
-		mapaEntrada.put("empresa", empresa);
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
 		mapaSalida = ejbRemoto.buscarEmpresas(mapaEntrada);
-		request.setAttribute("listaEmpresas", mapaSalida.get("listaEmpresas"));
 		
-		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
-		pagDestino = "contenedor.jsp";
+		error = (Error)mapaSalida.get("error");
+		if(error == null) error = new Error();
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{
+			request.setAttribute("listaReportes", mapaSalida.get("listaEmpresas"));
+			pagDestino = "contenedor.jsp";
+		}
 	}
 	
 	public void cargarReporte(HttpServletRequest request,
@@ -2074,7 +2072,7 @@ if(error == null) error = new Error();
 		
 		mapaSalida = ejbRemoto.buscarParametros(mapaEntrada);
 		
-		request.setAttribute("listaReportes", mapaSalida.get("listaReportes"));
+		request.setAttribute("listaEmpresas", mapaSalida.get("listaEmpresas"));
 		
 		Reporte reporte = new Reporte();
 		
@@ -2109,7 +2107,7 @@ if(error == null) error = new Error();
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
-		mapaSalida = ejbRemoto.agregarReporte(mapaEntrada);
+		mapaSalida = ejbRemoto.buscarEmpresas(mapaEntrada);
 		
 		error = (Error)mapaSalida.get("error");
 		if(error == null) error = new Error();
@@ -2117,7 +2115,7 @@ if(error == null) error = new Error();
 			pagDestino = "error.jsp";
 		}
 		else{
-			request.setAttribute("listaReportes", mapaSalida.get("listaReportes"));
+			request.setAttribute("listaEmpresas", mapaSalida.get("listaEmpresas"));
 			pagDestino = "reportes/agregaReporte.jsp";
 		}
 	}
