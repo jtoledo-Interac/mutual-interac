@@ -16,7 +16,7 @@
 		{
 		   	url: getUrlBuscarEmpresas(),
 			datatype: "xml",
-			colNames : [ '', 'Nº Adherente', 'Nombre Empresa', 'Cartera', '' ],
+			colNames : [ '', 'Nº Adherente', 'Nombre Empresa', '' ],
 			colModel : [						
 						{name : 'idEmpresa', index:'idEmpresa', hidden : true}, 
 						{name : 'numAdherente', index:'numAdherente', width : 110}, 
