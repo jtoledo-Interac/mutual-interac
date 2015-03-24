@@ -21,7 +21,6 @@
 						{name : 'idEmpresa', index:'idEmpresa', hidden : true}, 
 						{name : 'numAdherente', index:'numAdherente', width : 110}, 
 						{name : 'nombre', index:'desEmpresa', width : 300, search : true, resizable : false, sortable : true},
-						{name : 'cartera', index:'codCartera', width : 110}, 				
 						{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
 						],
 		   	rowNum: numeroDeFilas,
@@ -180,7 +179,6 @@
 		sData += "?accion=buscarEmpresas";
 		sData += "&nomEmpresa="+$('#nomEmpresa').val();
 		sData += "&numAdherente="+$('#numAdherente').val();
-		sData += "&idCartera="+$('#idCartera').val();
 		return sData;
 	}
 

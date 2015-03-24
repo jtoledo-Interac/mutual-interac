@@ -1805,11 +1805,7 @@ if(error == null) error = new Error();
 		if (!error.getNumError().equals("0")) {
 			pagDestino = "error.jsp";
 		} else {
-			request.setAttribute("listaCarteras",
-					mapaSalida.get("listaCarteras"));
-			request.setAttribute("listaProductos",
-					mapaSalida.get("listaProductos"));
-			request.setAttribute("listaAreas", mapaSalida.get("listaAreas"));
+			request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
 
 			pagDestino = "empresas/agregaEmpresa.jsp";
 		}
@@ -1823,7 +1819,6 @@ if(error == null) error = new Error();
 		Empresa empresa = new Empresa();
 		empresa.setNumAdherente(request.getParameter("numAdherente"));
 		empresa.setNombre(request.getParameter("nomEmpresa"));
-		empresa.setCodCartera(request.getParameter("codCartera"));
 
 		log.info("Empresa:++" + empresa.getNumAdherente() + "\n"
 				+ empresa.getNombre());
@@ -1838,6 +1833,7 @@ if(error == null) error = new Error();
 			pagDestino = "error.jsp";
 		} else {
 			request.setAttribute("listaEmpresas",mapaSalida.get("listaEmpresas"));
+			request.setAttribute("listaCarteras",mapaSalida.get("listaCarteras"));
 			pagDestino = "/empresas/listaEmpresasXml.jsp";
 		}
 	}
@@ -2035,7 +2031,7 @@ if(error == null) error = new Error();
 			pagDestino = "error.jsp";
 		}
 		else{
-			request.setAttribute("listaReportes", mapaSalida.get("listaEmpresas"));
+			request.setAttribute("listaEmpresas", mapaSalida.get("listaEmpresas"));
 			pagDestino = "contenedor.jsp";
 		}
 	}

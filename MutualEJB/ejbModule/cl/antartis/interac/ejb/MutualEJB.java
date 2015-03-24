@@ -3763,20 +3763,19 @@ public class MutualEJB implements EJBRemoto {
 			empresa = (Empresa) mapaEntrada.get("empresa");
 
 			cStmt = dbConeccion
-					.prepareCall("{ call buscar_empresas(?,?,?,?,?,?) }");
+					.prepareCall("{ call buscar_empresas(?,?,?,?,?) }");
 
 			cStmt.setString(1, empresa.getNombre());
 			cStmt.setString(2, empresa.getNumAdherente());
-			cStmt.setString(3, empresa.getCodCartera());
-			cStmt.registerOutParameter(4, Types.OTHER);// cursor$
-			cStmt.registerOutParameter(5, Types.VARCHAR);// numerror$
-			cStmt.registerOutParameter(6, Types.VARCHAR);// msjerror$
+			cStmt.registerOutParameter(3, Types.OTHER);// cursor$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(5, Types.VARCHAR);// msjerror$
 
 			cStmt.execute();
 
-			ResultSet rs = (ResultSet) cStmt.getObject(4);
-			error.setNumError(cStmt.getString(5));
-			error.setMsjError(cStmt.getString(6));
+			ResultSet rs = (ResultSet) cStmt.getObject(3);
+			error.setNumError(cStmt.getString(4));
+			error.setMsjError(cStmt.getString(5));
 
 			listaEmpresas = new ArrayList<Empresa>();
 
