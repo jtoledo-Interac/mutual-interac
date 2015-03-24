@@ -14,7 +14,8 @@
 	margin: 5px;
 }
 </style>
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<!--<script type="text/javascript" src="https://www.google.com/jsapi"></script>-->
+<script src="js/jsapi.js"></script>
     <script type="text/javascript">
       google.load("visualization", "1", {packages:["orgchart"]});
       google.setOnLoadCallback(drawChart);
