@@ -1806,7 +1806,6 @@ if(error == null) error = new Error();
 			pagDestino = "error.jsp";
 		} else {
 			request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
-
 			pagDestino = "empresas/agregaEmpresa.jsp";
 		}
 	}
@@ -1890,9 +1889,7 @@ if(error == null) error = new Error();
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 
 		mapaSalida = ejbRemoto.agregarEmpresa(mapaEntrada);
-
-		//	log.info("id empresa: " + mapaSalida.get("idEmpresa"));
-
+		
 		error = (Error) mapaSalida.get("error");
 		if (error == null)
 			error = new Error();
@@ -2023,15 +2020,15 @@ if(error == null) error = new Error();
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
-		mapaSalida = ejbRemoto.buscarEmpresas(mapaEntrada);
-		
+		//mapaSalida = ejbRemoto.buscarEmpresas(mapaEntrada);
+		mapaSalida = ejbRemoto.buscarReportes(mapaEntrada);
 		error = (Error)mapaSalida.get("error");
 		if(error == null) error = new Error();
 		if(!error.getNumError().equals("0")){
 			pagDestino = "error.jsp";
 		}
 		else{
-			request.setAttribute("listaEmpresas", mapaSalida.get("listaEmpresas"));
+			request.setAttribute("listaReportes", mapaSalida.get("listaReportes"));
 			pagDestino = "contenedor.jsp";
 		}
 	}
@@ -2066,9 +2063,10 @@ if(error == null) error = new Error();
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		mapaSalida = ejbRemoto.buscarParametros(mapaEntrada);
+		//mapaSalida = ejbRemoto.buscarEmpresas(mapaEntrada);
+		mapaSalida = ejbRemoto.buscarReportes(mapaEntrada);
 		
-		request.setAttribute("listaEmpresas", mapaSalida.get("listaEmpresas"));
+		request.setAttribute("listaReportes", mapaSalida.get("listaReportes"));
 		
 		Reporte reporte = new Reporte();
 		
@@ -2094,8 +2092,7 @@ if(error == null) error = new Error();
 		}
 	}
 	
-	public void crearReporte(HttpServletRequest request, HttpServletResponse response)
-		{
+	public void crearReporte(HttpServletRequest request, HttpServletResponse response){
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
 		
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
@@ -2103,7 +2100,8 @@ if(error == null) error = new Error();
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
-		mapaSalida = ejbRemoto.buscarEmpresas(mapaEntrada);
+		//mapaSalida = ejbRemoto.buscarEmpresas(mapaEntrada);
+		mapaSalida = ejbRemoto.buscarReportes(mapaEntrada);
 		
 		error = (Error)mapaSalida.get("error");
 		if(error == null) error = new Error();
@@ -2111,7 +2109,7 @@ if(error == null) error = new Error();
 			pagDestino = "error.jsp";
 		}
 		else{
-			request.setAttribute("listaEmpresas", mapaSalida.get("listaEmpresas"));
+			request.setAttribute("listaReportes", mapaSalida.get("listaReportes"));
 			pagDestino = "reportes/agregaReporte.jsp";
 		}
 	}

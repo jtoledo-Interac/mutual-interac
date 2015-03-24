@@ -46,7 +46,6 @@
 	<!--<input type="hidden"	id="accion" 		name="accion" 		value="modificarEmpresa">-->		
 	<h1>${reporte.nombreEmpresa}</h1>
 	<table class="centrado">
-		<tr>
 			<td>Fecha Inicio</td><td> : </td>
 			<td><input required type="text" class="fecha" 		id="fechaInicio" 	name="fechaInicio"	placeholder="Fecha Inicio" ></td>
 		</tr>
