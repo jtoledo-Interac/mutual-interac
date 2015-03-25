@@ -5358,18 +5358,18 @@ public class MutualEJB implements EJBRemoto {
 		Map<String, Object> mapaSalida = null;
 		Reporte reporte = new Reporte();
 
-		Long id_empresa;
+		Long idEmpresa;
 		Error error = new Error();
 
 		try {
 			log.info("Cargar Reporte");
 
 			mapaSalida = new HashMap<String, Object>();
-			id_empresa = (Long) mapaEntrada.get("idEmpresa");
+			idEmpresa = (Long) mapaEntrada.get("idEmpresa");
 			dbConeccion = interacDS.getConnection();
 
 			cStmt = dbConeccion.prepareCall("{ call cargar_reporte(?,?,?,?) }");
-			cStmt.setLong(1, id_empresa);
+			cStmt.setLong(1, idEmpresa);
 			cStmt.registerOutParameter(2, Types.OTHER);// empresas$
 			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
 			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$

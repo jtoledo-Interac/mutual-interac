@@ -2020,7 +2020,6 @@ if(error == null) error = new Error();
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
-		mapaSalida = ejbRemoto.buscarReportes(mapaEntrada);
 		error = (Error)mapaSalida.get("error");
 		if(error == null) error = new Error();
 		if(!error.getNumError().equals("0")){
@@ -2038,10 +2037,6 @@ if(error == null) error = new Error();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 
 		Long idEmpresa = Utils.stringToNum(request.getParameter("idEmpresa"));
-		String nombreEmpresa = request.getParameter("nombreEmpresa");
-		
-		log.info("Id Empresa :" + idEmpresa);
-		log.info("Nombre Empresa :" + nombreEmpresa);
 		
 		mapaEntrada.put("idEmpresa", idEmpresa);
 		mapaSalida = ejbRemoto.cargarReporte(mapaEntrada);
@@ -2096,7 +2091,6 @@ if(error == null) error = new Error();
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
-		//mapaSalida = ejbRemoto.buscarEmpresas(mapaEntrada);
 		mapaSalida = ejbRemoto.buscarReportes(mapaEntrada);
 		
 		error = (Error)mapaSalida.get("error");

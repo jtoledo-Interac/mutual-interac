@@ -25,7 +25,9 @@ $body$
         from 
             empresa
         where
-            upper(nombre) like '%' || xnombre ||'%';
+            upper(nombre) like '%' || xnombre ||'%'
+        order by
+            nombre;
         
         exception
             when others then

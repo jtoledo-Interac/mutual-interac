@@ -27,10 +27,7 @@ $body$
         numerror := 0;
         msjerror := ' ';
 
-        
-        xnombre_solicitante := coalesce(upper(trim(xnombre_solicitante$)),'') || '%';
-    
-       
+        xnombre_solicitante := coalesce(upper(trim(xnombre_solicitante$)),'') || '%'; 
         xid_reclamo=xid_reclamo$;
     
 
