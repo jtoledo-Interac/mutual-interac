@@ -15,7 +15,7 @@ public class Reporte implements Serializable {
 	private String finPeriodo;
 	private String ingresoDato;
 	
-	public Reporte(long idReporte, long idEmpresa, String nombreEmpresa, float DiasPerdidos,
+	public Reporte(long idReporte, long idEmpresa, String nombreEmpresa, float diasPerdidos,
 			float accidentabilidad, String inicioPeriodo, String finPeriodo, String ingresoDato){
 		super();
 		this.idReporte = idReporte;
