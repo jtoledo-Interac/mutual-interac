@@ -171,7 +171,7 @@ $(function() {
 		<tr>
 			<td>Radiación UV</td><td> : </td>
 			<td>
-			<select id="rdiacionUv" 	name="rdiacionUv">
+			<select id="radiacionUv" 	name="radiacionUv">
 				<option value="Si">Si</option>
 				<option value="No">No</option>
 			</select>
