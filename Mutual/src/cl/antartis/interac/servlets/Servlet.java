@@ -2073,8 +2073,6 @@ if(error == null) error = new Error();
 		reporte.setDiasPerdidos(Utils.stringToNum(request.getParameter("diasPerdidos")));
 		reporte.setIngresoDato(request.getParameter("fechaReporte"));
 		
-		log.info(request.getParameter("id_empresa"));
-		
 		mapaEntrada.put("reporte", reporte);
 		mapaSalida = ejbRemoto.agregarReporte(mapaEntrada);
 		

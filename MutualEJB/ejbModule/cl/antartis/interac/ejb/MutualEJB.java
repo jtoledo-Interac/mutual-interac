@@ -5296,10 +5296,11 @@ public class MutualEJB implements EJBRemoto {
 
 			dbConeccion = interacDS.getConnection();
 
-			reporte = (Reporte) mapaEntrada.get("reporte");
-
 			cStmt = dbConeccion
 					.prepareCall("{ call buscar_reportes(?,?,?,?) }");
+			
+			reporte = new Reporte();
+			reporte = (Reporte) mapaEntrada.get("reporte");
 
 			cStmt.setString(1, reporte.getNombreEmpresa());
 			cStmt.registerOutParameter(2, Types.OTHER);// cursor$
@@ -5383,6 +5384,9 @@ public class MutualEJB implements EJBRemoto {
 				reporte.setIdEmpresa(rsEmpresa.getLong("id_empresa"));
 				reporte.setNombreEmpresa(rsEmpresa.getString("nombre"));
 			}
+			
+			log.info("Id: "+reporte.getIdEmpresa());
+			log.info("Nombre: "+reporte.getNombreEmpresa());
 
 			rsEmpresa.close();
 
