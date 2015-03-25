@@ -2020,7 +2020,6 @@ if(error == null) error = new Error();
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
-		//mapaSalida = ejbRemoto.buscarEmpresas(mapaEntrada);
 		mapaSalida = ejbRemoto.buscarReportes(mapaEntrada);
 		error = (Error)mapaSalida.get("error");
 		if(error == null) error = new Error();

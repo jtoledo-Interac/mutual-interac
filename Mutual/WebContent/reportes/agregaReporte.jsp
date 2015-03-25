@@ -17,8 +17,8 @@ $(function() {
 				<td>Empresa</td><td> : </td>
 				<td><select id="id_empresa" name="id_empresa" required>
 					<option selected>Seleccione Empresa</option>
-					<c:forEach items="${requestScope.listaEmpresas}" var="empresa">
-						<option value="${empresa.idEmpresa}">${empresa.nombre}</option>
+					<c:forEach items="${requestScope.listaReportes}" var="reporte">
+						<option value="${reporte.idEmpresa}">${reporte.nombreEmpresa}</option>
 					</c:forEach>
 				</select></td>
 		</tr>
