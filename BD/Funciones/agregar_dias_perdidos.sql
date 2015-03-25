@@ -2,14 +2,12 @@
 (
 	IN xid_empresa integer,
 	IN xdias_perdidos integer,
-	IN xfecha_ingreso integer,
+	IN xfecha_ingreso timestamp,
 	OUT numerror varchar,
 	OUT msjerror varchar
 ) returns record as
 
 $body$
-
-    
 
 	begin	
 		
@@ -28,7 +26,6 @@ $body$
 		xdias_perdidos,
 		xfecha_ingreso
 		);
-
        
         return;
 

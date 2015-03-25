@@ -2,7 +2,7 @@
 (
 	IN xid_empresa integer,
 	IN xaccidentes float,
-	IN xfecha_ingreso integer,
+	IN xfecha_ingreso timestamp,
 	OUT numerror varchar,
 	OUT msjerror varchar
 ) returns record as
@@ -22,11 +22,10 @@ $body$
 		)
         values
 		(
-	    xid_empresa ,
+	    xid_empresa,
 		xaccidentes,
 		xfecha_ingreso
 		);
-
        
         return;
 
