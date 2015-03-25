@@ -15,8 +15,17 @@ public class Reporte implements Serializable {
 	private String finPeriodo;
 	private String ingresoDato;
 	
-	public Reporte(){
-		
+	public Reporte(long idReporte, long idEmpresa, String nombreEmpresa, float DiasPerdidos,
+			float accidentabilidad, String inicioPeriodo, String finPeriodo, String ingresoDato){
+		super();
+		this.idReporte = idReporte;
+		this.idEmpresa = idEmpresa;
+		this.nombreEmpresa = nombreEmpresa;
+		this.diasPerdidos = diasPerdidos;
+		this.accidentabilidad = accidentabilidad;
+		this.inicioPeriodo = inicioPeriodo;
+		this.finPeriodo = finPeriodo;
+		this.ingresoDato = ingresoDato;
 	}
 	
 	public void setIdEmpresa(long idEmpresa){

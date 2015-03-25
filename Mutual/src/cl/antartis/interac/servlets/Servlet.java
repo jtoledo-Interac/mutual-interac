@@ -2063,7 +2063,6 @@ if(error == null) error = new Error();
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
-		//mapaSalida = ejbRemoto.buscarEmpresas(mapaEntrada);
 		mapaSalida = ejbRemoto.buscarReportes(mapaEntrada);
 		
 		request.setAttribute("listaReportes", mapaSalida.get("listaReportes"));
