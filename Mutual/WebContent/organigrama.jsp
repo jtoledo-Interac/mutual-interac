@@ -1,6 +1,7 @@
 <%@ include file="declaraciones.jsp" %>
 <%@ include file="encabezado.jsp" %>
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
+<%@page import="org.json.simple.JSONObject"%>
 
 <script type="text/javascript"> 
 
@@ -64,5 +65,8 @@
 <div class="mantenedor">
 	<div class="organigrama">
 		<div id="chart_div" style="overflow: scroll; padding: 10px;"></div>
+		<c:forEach items="${orgEntries}" var="orgEntry">
+    		<c:out value="${orgEntry.Nombre} ${orgEntry.Cargo}"/><br />
+  		</c:forEach>
 	</div>
 </div>

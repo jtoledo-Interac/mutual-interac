@@ -2,12 +2,17 @@
 package cl.antartis.interac.servlets;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
@@ -24,6 +29,12 @@ import org.apache.commons.beanutils.MethodUtils;
 import org.apache.log4j.Logger;
 import org.hibernate.ejb.packaging.Entry;
 
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.ContainerFactory;
+import org.json.simple.parser.JSONParser;
+
 import cl.antartis.interac.beans.Cartera;
 import cl.antartis.interac.beans.CategoriaLink;
 import cl.antartis.interac.beans.Documento;
@@ -32,6 +43,7 @@ import cl.antartis.interac.beans.Estado;
 import cl.antartis.interac.beans.Link;
 import cl.antartis.interac.beans.Medio;
 import cl.antartis.interac.beans.Motivo;
+import cl.antartis.interac.beans.OrgEntry;
 import cl.antartis.interac.beans.Perfil;
 import cl.antartis.interac.beans.Prioridad;
 import cl.antartis.interac.beans.Producto;
@@ -318,9 +330,40 @@ public class Servlet extends HttpServlet {
 	public void organigrama(HttpServletRequest request, HttpServletResponse response) 
 	{
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
-		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 
+		JSONParser parser = new JSONParser();
+		ContainerFactory containerFactory = new ContainerFactory(){
+			public List creatArrayContainer() {
+				return new LinkedList();
+		}
+
+		    public Map createObjectContainer() {
+		    	return new LinkedHashMap();
+		    }                    
+		};
+          
+		try{
+			Map json = (Map)parser.parse(new FileReader("C:/Users/Joaco/Documents/organigrama.txt"), containerFactory);
+		
+			Iterator iter = json.entrySet().iterator();
+			//log.info("==iterate result==");
+			List<OrgEntry> orgEntries = new ArrayList<OrgEntry>();
+			while(iter.hasNext()){
+				Map.Entry entry = (Map.Entry)iter.next();
+				log.info(entry.getKey() + "=>" + entry.getValue());
+				
+				OrgEntry orgEntry=new OrgEntry();
+				orgEntry.setNombre(entry.getKey().toString());
+		        request.setAttribute("orgEntries", orgEntries);
+		}
+	}
+	catch(Exception pe){
+		System.out.println(pe);
+	}
+	//------------
 		pagDestino = "contenedor.jsp";
 	}
 	
