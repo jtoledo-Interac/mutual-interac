@@ -2379,7 +2379,6 @@ public class MutualEJB implements EJBRemoto {
 		Documento documento = null;
 		String numError = "0";
 		String msjError = "";
-
 		try {
 			log.info("Buscar Documentos");
 
@@ -2388,7 +2387,8 @@ public class MutualEJB implements EJBRemoto {
 			mapaSalida = new HashMap<String, Object>();
 
 			dbConeccion = interacDS.getConnection();
-
+			
+			
 			cStmt = dbConeccion
 					.prepareCall("{ call buscar_documentos(?,?,?,?,?,?,?,?,?) }");
 			cStmt.setString(1, documento.getNombre());
@@ -2776,6 +2776,117 @@ public class MutualEJB implements EJBRemoto {
 		return mapaSalida;
 	}
 
+	public Map<String, Object> buscarParametrosNew(Map<String, Object> mapaEntrada) {
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		ArrayList<Producto> listaProductos = null;
+		ArrayList<Cartera> listaCarteras = null;
+		ArrayList<Area> listaAreas = null;
+		Producto producto = null;
+		Cartera cartera = null;
+		Area area = null;
+		
+		Long id_cartera;
+		
+		String numError = "0";
+		String msjError = "";
+
+		try {
+			log.info("Buscar Parametros new");
+			
+
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+			
+			id_cartera = (Long) mapaEntrada.get("idCartera");
+			log.info("idCartera"+id_cartera);
+
+			cStmt = dbConeccion
+					.prepareCall("{ call buscar_parametros_new(?,?,?,?,?,?) }");
+			cStmt.setLong(1, id_cartera);
+			cStmt.registerOutParameter(2, Types.OTHER);// cursor$
+			cStmt.registerOutParameter(3, Types.OTHER);// cursor$
+			cStmt.registerOutParameter(4, Types.OTHER);// cursor$
+			cStmt.registerOutParameter(5, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(6, Types.VARCHAR);// msjerror$
+
+			cStmt.execute();
+
+			ResultSet rsCarteras = (ResultSet) cStmt.getObject(2);
+			ResultSet rsProductos = (ResultSet) cStmt.getObject(3);
+			ResultSet rsAreas = (ResultSet) cStmt.getObject(4);
+			numError = cStmt.getString(5);
+			msjError = cStmt.getString(6);
+
+			listaCarteras = new ArrayList<Cartera>();
+
+			if (rsCarteras != null) {
+				while (rsCarteras.next()) {
+					cartera = new Cartera();
+					cartera.setIdCartera(Utils.stringToNum(rsCarteras
+							.getString("id_cartera")));
+					cartera.setDesCartera(rsCarteras.getString("des_cartera"));
+					listaCarteras.add(cartera);
+				}
+				rsCarteras.close();
+			}
+
+			listaProductos = new ArrayList<Producto>();
+
+			if (rsProductos != null) {
+				while (rsProductos.next()) {
+					producto = new Producto();
+					producto.setIdProducto(rsProductos.getLong("id_producto"));
+					producto.setDesProducto(rsProductos
+							.getString("des_producto"));
+					listaProductos.add(producto);
+				}
+				rsProductos.close();
+			}
+
+			listaAreas = new ArrayList<Area>();
+
+			if (rsAreas != null) {
+				while (rsAreas.next()) {
+					area = new Area();
+					area.setCodArea(rsAreas.getString("cod_area"));
+					area.setDesArea(rsAreas.getString("des_area"));
+					listaAreas.add(area);
+				}
+				rsAreas.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+
+		log.info("Num Error: " + numError);
+		log.info("Msj Error: " + msjError);
+
+		mapaSalida.put("listaCarteras", listaCarteras);
+		mapaSalida.put("listaProductos", listaProductos);
+		mapaSalida.put("listaAreas", listaAreas);
+		mapaSalida.put("numError", numError);
+		mapaSalida.put("msjError", msjError);
+
+		return mapaSalida;
+	}
 	public Map<String, Object> buscarParametros(Map<String, Object> mapaEntrada) {
 		CallableStatement cStmt = null;
 		Map<String, Object> mapaSalida = null;
@@ -2790,11 +2901,11 @@ public class MutualEJB implements EJBRemoto {
 
 		try {
 			log.info("Buscar Parametros");
+			
 
 			mapaSalida = new HashMap<String, Object>();
 
 			dbConeccion = interacDS.getConnection();
-
 			cStmt = dbConeccion
 					.prepareCall("{ call buscar_parametros(?,?,?,?,?) }");
 
