@@ -2089,6 +2089,10 @@ if(error == null) error = new Error();
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
+		Reporte reporte = new Reporte();
+		
+		mapaEntrada.put("reporte", reporte);
+		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
 		mapaSalida = ejbRemoto.buscarReportes(mapaEntrada);
