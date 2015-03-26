@@ -97,11 +97,11 @@ function getUrlCargarUsuario(id)
 	<div id="menuwrapper">	
 	    <ul>
 	        <li><a href="Servlet?accion=organigrama">Organigrama</a></li>
-	        <li><a href="#">Carteras</a>
+	        <li><a href="Servlet?accion=carteras">Carteras</a>
 	        	<ul>
 					<li><a href="#">Transporte P&uacute;blico</a>
 						<ul>
-							<li><a href="Servlet?accion=prodCartera&idCartera=3">Productos</a></li>
+							<li><a href="Servlet?accion=buscarDocumentos&idCartera=3">Productos</a></li>
 							<li><a href="Servlet?accion=planesTrabajo">Planes de Trabajo</a></li>
 						</ul>
 					</li>

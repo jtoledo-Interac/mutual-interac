@@ -1573,18 +1573,7 @@ if(error == null) error = new Error();
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		mapaSalida = ejbRemoto.buscarParametros(mapaEntrada);
-		long idcartera = Utils.stringToNum(request.getParameter("idCartera"));
-		log.info(idcartera);
-		Documento documento = new Documento();
-		documento.setNombre(request.getParameter("nombre"));
-		documento.setNumFolio(request.getParameter("numFolio"));
-		documento.setNumAdherente(request.getParameter("numAdherente"));
-		documento.setIdCartera(idcartera);
-		documento.setIdProducto(Utils.stringToNum(request.getParameter("idProducto")));
-		documento.setCodArea(request.getParameter("codArea"));
-		mapaEntrada.put("documento", documento);
-		mapaSalida = ejbRemoto.buscarDocumentos(mapaEntrada);		
-			
+
 		error = (Error)mapaSalida.get("error");
 		if(error == null) error = new Error();
 		if(!error.getNumError().equals("0")){
@@ -1599,7 +1588,6 @@ if(error == null) error = new Error();
 			pagDestino = "contenedor.jsp";
 		}
 	}
-	
 	public void planesTrabajo(HttpServletRequest request, HttpServletResponse response) 
 	{
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
@@ -1690,7 +1678,7 @@ if(error == null) error = new Error();
 		
 		request.setAttribute("listaProductos", mapaSalida.get("listaProductos"));
 		request.setAttribute("listaAreas", mapaSalida.get("listaAreas"));
-		
+		log.info(request.getParameter("idCartera"));
 	
 		
 		Documento documento = new Documento();
