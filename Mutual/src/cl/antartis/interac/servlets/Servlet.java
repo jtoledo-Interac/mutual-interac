@@ -1832,6 +1832,7 @@ if(error == null) error = new Error();
 
 		mapaSalida = ejbRemoto.buscarParametrosEmpresa(mapaEntrada);
 		request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
+		request.setAttribute("listaRegiones", mapaSalida.get("listaRegiones"));
 		pagDestino = "contenedor.jsp";
 	}
 
@@ -1845,7 +1846,8 @@ if(error == null) error = new Error();
 
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 
-		mapaSalida = ejbRemoto.buscarParametros(mapaEntrada);
+		mapaSalida = ejbRemoto.buscarParametrosEmpresa(mapaEntrada);
+		
 		error = (Error) mapaSalida.get("error");
 		if (error == null)
 			error = new Error();
@@ -1853,6 +1855,7 @@ if(error == null) error = new Error();
 			pagDestino = "error.jsp";
 		} else {
 			request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
+			request.setAttribute("listaRegiones", mapaSalida.get("listaRegiones"));
 			pagDestino = "empresas/agregaEmpresa.jsp";
 		}
 	}
@@ -1867,6 +1870,7 @@ if(error == null) error = new Error();
 		
 		mapaSalida = ejbRemoto.buscarParametrosEmpresa(mapaEntrada);
 		request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
+		request.setAttribute("listaRegiones", mapaSalida.get("listaRegiones"));
 		
 		Empresa empresa = new Empresa();
 		empresa.setNumAdherente(request.getParameter("numAdherente"));
@@ -1908,7 +1912,7 @@ if(error == null) error = new Error();
 		empresa.setSituacion(request.getParameter("situacion"));
 		empresa.setMultiRegion(request.getParameter("multiRegion"));
 		empresa.setCasaMatriz(request.getParameter("casaMatriz"));
-		empresa.setRegionCasaMatriz(request.getParameter("regionCasaMatriz"));
+		empresa.setRegionCasaMatriz(request.getParameter("codRegionCasaMatriz"));
 		empresa.setMasaSum(request.getParameter("masaSum"));
 		empresa.setPlanesDeCuenta(request.getParameter("planesDeCuenta"));
 		empresa.setPlanesDeTrabajo(request.getParameter("planesDeTrabajo"));
@@ -1959,6 +1963,10 @@ if(error == null) error = new Error();
 
 		log.info("idEmpresa :" + idEmpresa);
 		
+		mapaSalida = ejbRemoto.buscarParametrosEmpresa(mapaEntrada);
+		request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
+		request.setAttribute("listaRegiones", mapaSalida.get("listaRegiones"));
+		
 		mapaEntrada.put("idEmpresa", idEmpresa);
 		mapaSalida = ejbRemoto.cargarEmpresa(mapaEntrada);
 		error = (Error) mapaSalida.get("error");
@@ -1996,7 +2004,7 @@ if(error == null) error = new Error();
 		empresa.setSituacion(request.getParameter("situacion"));
 		empresa.setMultiRegion(request.getParameter("multiRegion"));
 		empresa.setCasaMatriz(request.getParameter("casaMatriz"));
-		empresa.setRegionCasaMatriz(request.getParameter("regionCasaMatriz"));
+		empresa.setRegionCasaMatriz(request.getParameter("codRegionCasaMatriz"));
 		empresa.setMasaSum(request.getParameter("masaSum"));
 		empresa.setPlanesDeCuenta(request.getParameter("planesDeCuenta"));
 		empresa.setPlanesDeTrabajo(request.getParameter("planesDeTrabajo"));

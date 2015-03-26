@@ -5577,8 +5577,10 @@ public class MutualEJB implements EJBRemoto {
 		CallableStatement cStmt = null;
 		Map<String, Object> mapaSalida = null;
 		ArrayList<Cartera> listaCarteras = null;
+		ArrayList<Region> listaRegiones = null;
 		Cartera cartera = null;
-
+		Region region = null;
+		
 		String numError = "0";
 		String msjError = "";
 
@@ -5590,17 +5592,19 @@ public class MutualEJB implements EJBRemoto {
 			dbConeccion = interacDS.getConnection();
 
 			cStmt = dbConeccion
-					.prepareCall("{ call buscar_par_empresas(?,?,?) }");
+					.prepareCall("{ call buscar_par_empresas(?,?,?,?) }");
 
-			cStmt.registerOutParameter(1, Types.OTHER);// cursor$
-			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
-			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
+			cStmt.registerOutParameter(1, Types.OTHER);// cursor carteras$
+			cStmt.registerOutParameter(2, Types.OTHER);// cursor regiones$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(4, Types.VARCHAR);// msjerror$
 
 			cStmt.execute();
 			
 			ResultSet rsCarteras = (ResultSet) cStmt.getObject(1);
-			numError = cStmt.getString(2);
-			msjError = cStmt.getString(3);
+			ResultSet rsRegiones = (ResultSet) cStmt.getObject(2);
+			numError = cStmt.getString(3);
+			msjError = cStmt.getString(4);
 
 			listaCarteras = new ArrayList<Cartera>();
 
@@ -5610,6 +5614,18 @@ public class MutualEJB implements EJBRemoto {
 					cartera.setIdCartera(Utils.stringToNum(rsCarteras.getString("id_cartera")));
 					cartera.setDesCartera(rsCarteras.getString("des_cartera"));
 					listaCarteras.add(cartera);
+				}
+				rsCarteras.close();
+			}
+			
+			listaRegiones = new ArrayList<Region>();
+
+			if (rsRegiones != null) {
+				while (rsRegiones.next()) {
+					region = new Region();
+					region.setCodRegion(rsRegiones.getString("cod_region"));
+					region.setDesRegion(rsRegiones.getString("des_region"));
+					listaRegiones.add(region);
 				}
 				rsCarteras.close();
 			}
@@ -5637,6 +5653,7 @@ public class MutualEJB implements EJBRemoto {
 		log.info("Num Error: " + numError);
 		log.info("Msj Error: " + msjError);
 		mapaSalida.put("listaCarteras", listaCarteras);
+		mapaSalida.put("listaRegiones", listaRegiones);
 		mapaSalida.put("numError", numError);
 		mapaSalida.put("msjError", msjError);
 

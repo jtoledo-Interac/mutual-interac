@@ -19,7 +19,14 @@ $(function() {
 		</tr>
 		<tr>
 			<td>Código Cartera</td><td> : </td>
-			<td><input required type="text"  		id="codCartera" 	name="codCartera"	placeholder="Código Cartera" ></td>
+			<td>
+				<select id="codCartera" name="codCartera" required>
+					<option value="" selected>Seleccione una cartera</option>
+						<c:forEach items="${requestScope.listaCarteras}" var="cartera">
+							<option value="${cartera.idCartera}" >${cartera.desCartera}</option>
+						</c:forEach>
+				</select>
+			</td>
 		</tr>
 		<tr>
 			<td>Nombre Experto</td><td> : </td>
@@ -77,15 +84,16 @@ $(function() {
 			<td><input required type="text"  		id="casaMatriz" 	name="casaMatriz"	placeholder="Casa Matriz" ></td>
 		</tr>
 		<tr>
-			<td>Region Casa Matriz</td><td> : </td>
+			<td>Región Casa Matriz </td><td>:</td>
 			<td>
-			<select id="regionCasaMatriz" 	name="regionCasaMatriz">
-				<option value="Region">Region</option>
-				<option value="Casa Matriz">Casa Matriz</option>
-			</select>
+				<select id="codRegionCasaMatriz" 	name="codRegionCasaMatriz"  required>
+					<option value="">Seleccione una región</option>
+					<c:forEach items="${requestScope.listaRegiones}" var="region">
+						<option value="${region.codRegion}">${region.desRegion}</option>
+					</c:forEach>
+				</select>
 			</td>
-			</tr>
-		<tr>
+		</tr>
 			<td>Masa Sum</td><td> : </td>
 			<td><input required type="text"  		id="masaSum" 	name="masaSum"	placeholder="Masa Sum" ></td>
 		</tr>
