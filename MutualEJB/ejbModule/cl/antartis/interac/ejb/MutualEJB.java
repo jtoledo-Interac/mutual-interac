@@ -5610,7 +5610,6 @@ public class MutualEJB implements EJBRemoto {
 					cartera.setIdCartera(Utils.stringToNum(rsCarteras.getString("id_cartera")));
 					cartera.setDesCartera(rsCarteras.getString("des_cartera"));
 					listaCarteras.add(cartera);
-					log.info("Linea: "+rsCarteras.getRow());
 				}
 				rsCarteras.close();
 			}

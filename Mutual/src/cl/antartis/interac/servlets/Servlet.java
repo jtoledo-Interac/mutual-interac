@@ -1830,7 +1830,8 @@ if(error == null) error = new Error();
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 
-		request.setAttribute("listaEmpresas", mapaSalida.get("listaEmpresas"));
+		mapaSalida = ejbRemoto.buscarParametrosEmpresa(mapaEntrada);
+		request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
 		pagDestino = "contenedor.jsp";
 	}
 
