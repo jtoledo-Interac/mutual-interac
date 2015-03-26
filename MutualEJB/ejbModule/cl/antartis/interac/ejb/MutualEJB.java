@@ -455,12 +455,12 @@ public class MutualEJB implements EJBRemoto {
 		try {
 			log.info("Buscar Carteras");
 
-			cartera = (Cartera) mapaEntrada.get("cartera");
-
 			mapaSalida = new HashMap<String, Object>();
 
 			dbConeccion = interacDS.getConnection();
 
+			cartera = (Cartera) mapaEntrada.get("cartera");
+			
 			cStmt = dbConeccion
 					.prepareCall("{ call buscar_carteras(?,?,?,?) }");
 
@@ -3871,22 +3871,24 @@ public class MutualEJB implements EJBRemoto {
 
 			dbConeccion = interacDS.getConnection();
 
+			empresa = new Empresa();
 			empresa = (Empresa) mapaEntrada.get("empresa");
 
 			cStmt = dbConeccion
-					.prepareCall("{ call buscar_empresas(?,?,?,?,?) }");
+					.prepareCall("{ call buscar_empresas(?,?,?,?,?,?) }");
 
 			cStmt.setString(1, empresa.getNombre());
 			cStmt.setString(2, empresa.getNumAdherente());
-			cStmt.registerOutParameter(3, Types.OTHER);// cursor$
-			cStmt.registerOutParameter(4, Types.VARCHAR);// numerror$
-			cStmt.registerOutParameter(5, Types.VARCHAR);// msjerror$
+			cStmt.setString(3, empresa.getCodCartera());
+			cStmt.registerOutParameter(4, Types.OTHER);// cursor$
+			cStmt.registerOutParameter(5, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(6, Types.VARCHAR);// msjerror$
 
 			cStmt.execute();
 
-			ResultSet rs = (ResultSet) cStmt.getObject(3);
-			error.setNumError(cStmt.getString(4));
-			error.setMsjError(cStmt.getString(5));
+			ResultSet rs = (ResultSet) cStmt.getObject(4);
+			error.setNumError(cStmt.getString(5));
+			error.setMsjError(cStmt.getString(6));
 
 			listaEmpresas = new ArrayList<Empresa>();
 
@@ -5567,6 +5569,77 @@ public class MutualEJB implements EJBRemoto {
 			log.info("SQL Exception 2");
 		}
 		
+		return mapaSalida;
+	}
+	
+	public Map<String, Object> buscarParametrosEmpresa(
+			Map<String, Object> mapaEntrada) {
+		CallableStatement cStmt = null;
+		Map<String, Object> mapaSalida = null;
+		ArrayList<Cartera> listaCarteras = null;
+		Cartera cartera = null;
+
+		String numError = "0";
+		String msjError = "";
+
+		try {
+			log.info("Buscar Parametros");
+
+			mapaSalida = new HashMap<String, Object>();
+
+			dbConeccion = interacDS.getConnection();
+
+			cStmt = dbConeccion
+					.prepareCall("{ call buscar_par_empresas(?,?,?) }");
+
+			cStmt.registerOutParameter(1, Types.OTHER);// cursor$
+			cStmt.registerOutParameter(2, Types.VARCHAR);// numerror$
+			cStmt.registerOutParameter(3, Types.VARCHAR);// msjerror$
+
+			cStmt.execute();
+			
+			ResultSet rsCarteras = (ResultSet) cStmt.getObject(1);
+			numError = cStmt.getString(2);
+			msjError = cStmt.getString(3);
+
+			listaCarteras = new ArrayList<Cartera>();
+
+			if (rsCarteras != null) {
+				while (rsCarteras.next()) {
+					cartera = new Cartera();
+					cartera.setIdCartera(Utils.stringToNum(rsCarteras.getString("id_cartera")));
+					cartera.setDesCartera(rsCarteras.getString("des_cartera"));
+					listaCarteras.add(cartera);
+				}
+				rsCarteras.close();
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.info("SQL Exception");
+			// controlar error sql, (de conexion, por ej)
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("SQL Exception 2");
+		} finally {
+
+			try {
+				log.info("Cerrando la conexion");
+				dbConeccion.close();
+				cStmt.close();
+				dbConeccion = null;
+			} catch (SQLException e) {
+				log.info("Error al cerrar la conexion");
+				e.printStackTrace();
+			}
+		}
+
+		log.info("Num Error: " + numError);
+		log.info("Msj Error: " + msjError);
+		mapaSalida.put("listaCarteras", listaCarteras);
+		mapaSalida.put("numError", numError);
+		mapaSalida.put("msjError", msjError);
+
 		return mapaSalida;
 	}
 

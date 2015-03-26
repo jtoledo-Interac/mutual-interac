@@ -20,7 +20,7 @@
 			colModel : [						
 						{name : 'idEmpresa', index:'idEmpresa', hidden : true}, 
 						{name : 'numAdherente', index:'numAdherente', width : 110}, 
-						{name : 'nombre', index:'desEmpresa', width : 300, search : true, resizable : false, sortable : true},
+						{name : 'nombre', index:'nombre', width : 300, search : true, resizable : false, sortable : true},
 						{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
 						],
 		   	rowNum: numeroDeFilas,
@@ -217,7 +217,7 @@
 			<input type="button" 	id="btnAgregar" 	name="btnAgregar" 	value="Agregar" class="boton"/>
 			<input type="text" 		id="nomEmpresa" 	name="nomEmpresa"	placeholder="Nombre Empresa" class="text">
 			<input type="text" 		id="numAdherente" 	name="numAdherente"	placeholder="Nº Adherente" class="text">
-			<select id="idCartera" name="idCartera" class="select">
+			<select id="codCartera" name="codCartera" class="select">
 				<option value="" selected>Seleccione una cartera</option>
 				<c:forEach items="${requestScope.listaCarteras}" var="cartera">
 					<option value="${cartera.idCartera}" >${cartera.desCartera}</option>
