@@ -1671,7 +1671,8 @@ if(error == null) error = new Error();
 	
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
-		
+		Long idCartera;
+		idCartera=Utils.stringToNum("3");
 		mapaSalida = ejbRemoto.buscarParametros(mapaEntrada);
 		
 		request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
@@ -1683,7 +1684,7 @@ if(error == null) error = new Error();
 		documento.setNombre(request.getParameter("nombre"));
 		documento.setNumFolio(request.getParameter("numFolio"));
 		documento.setNumAdherente(request.getParameter("numAdherente"));
-		documento.setIdCartera(Utils.stringToNum(request.getParameter("idCartera")));
+		documento.setIdCartera(idCartera);;
 		documento.setIdProducto(Utils.stringToNum(request.getParameter("idProducto")));
 		documento.setCodArea(request.getParameter("codArea"));
 		mapaEntrada.put("documento", documento);
