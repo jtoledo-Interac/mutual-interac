@@ -334,6 +334,31 @@ $(function() {
 			<td><input required type="text"  		id="asmaObservaciones" 	name="asmaObservaciones"	placeholder="Observaciones" ></td>
 		</tr>
 		<tr>
+			<td>Solventes</td><td> : </td>
+			<td>
+			<select id="solventes" 	name="solventes">
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Solventes Etapa</td><td> : </td>
+			<td>
+			<select id="solventesEtapa" 	name="solventesEtapa">
+				<option value="Evaluación Cualitativa">Evaluación Cualitativa</option>
+				<option value="No Aplica">No Aplica</option>
+				<option value="Evaluación Cuantitativa">Evaluación Cuantitativa</option>
+				<option value="Ingreso a Programa de Vigilancia de Solventes">Ingreso a Programa de Vigilancia de Asma</option>
+				<option value="Seguimiento a las recomendaciones">Seguimiento a las recomendaciones</option>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Solventes Observaciones</td><td> : </td>
+			<td><input required type="text"  		id="solventesObservaciones" 	name="solventesObservaciones"	placeholder="Observaciones" ></td>
+		</tr>
+		<tr>
 			<td>Metales</td><td> : </td>
 			<td>
 			<select id="metales" 	name="metales">
@@ -350,7 +375,7 @@ $(function() {
 				<option value="No Aplica">No Aplica</option>
 				<option value="Evaluación Cuantitativa">Evaluación Cuantitativa</option>
 				<option value="Ingreso a Programa de Vigilancia de Metales">Ingreso a Programa de Vigilancia de Asma</option>
-				<option value="Seguimiento a las recomendaciones">Seguimiento a las recomendaciones</option>
+				<option value="Seguimiento a las recomendaciones">Seguimiento a las recomendaciones<s/option>
 			</select>
 			</td>
 		</tr>
