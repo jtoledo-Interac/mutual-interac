@@ -18,6 +18,10 @@ $(function() {
 			<td> <input required type="text" 		id="nombre" 		name="nombre" 		placeholder="Nombre Empresa" ></td>
 		</tr>
 		<tr>
+			<td>Nombre Experto</td><td> : </td>
+			<td><input required type="text"  		id="nomExperto" 	name="nomExperto"	placeholder="Nombre Experto" ></td>
+		</tr>
+		<tr>
 			<td>Código Cartera</td><td> : </td>
 			<td>
 				<select id="codCartera" name="codCartera" required>
@@ -27,10 +31,6 @@ $(function() {
 						</c:forEach>
 				</select>
 			</td>
-		</tr>
-		<tr>
-			<td>Nombre Experto</td><td> : </td>
-			<td><input required type="text"  		id="nomExperto" 	name="nomExperto"	placeholder="Nombre Experto" ></td>
 		</tr>
 		<tr>
 			<td>Número Adherente</td><td> : </td>
@@ -64,8 +64,15 @@ $(function() {
 			</td>	
 		</tr>
 		<tr>
-			<td>Situación</td><td> : </td>
-			<td><input required type="text"  		id="situacion" 	name="situacion"	placeholder="Situación"  ></td>
+			<td>Casa Matriz </td><td>:</td>
+			<td>
+				<select id="codRegionCasaMatriz" 	name="codRegionCasaMatriz"  required>
+					<option value="">Seleccione una región</option>
+					<c:forEach items="${requestScope.listaRegiones}" var="region">
+						<option value="${region.codRegion}">${region.desRegion}</option>
+					</c:forEach>
+				</select>
+			</td>
 		</tr>
 		<tr>
 			<td>Multi Region</td><td> : </td>
@@ -78,22 +85,16 @@ $(function() {
 			</td>
 		</tr>
 		<tr>
-			<td>Casa Matriz</td><td> : </td>
-			<td><input required type="text"  		id="casaMatriz" 	name="casaMatriz"	placeholder="Casa Matriz" ></td>
+			<td>Numero Centros de Trabajo</td><td> : </td>
+			<td><input required type="text"  		id="numCentrosTrabajo" 	name="numCentrosTrabajo"	placeholder="Numeros Centros de Trabajo" ></td>
 		</tr>
 		<tr>
-			<td>Región Casa Matriz </td><td>:</td>
-			<td>
-				<select id="codRegionCasaMatriz" 	name="codRegionCasaMatriz"  required>
-					<option value="">Seleccione una región</option>
-					<c:forEach items="${requestScope.listaRegiones}" var="region">
-						<option value="${region.codRegion}">${region.desRegion}</option>
-					</c:forEach>
-				</select>
-			</td>
+			<td>Masa Sum Metropolitana</td><td> : </td>
+			<td><input required type="text"  		id="masaSumMetropolitana" 	name="masaSumMetropolitana"	placeholder="Masa Sum Metropolitana" ></td>
 		</tr>
-			<td>Masa Sum</td><td> : </td>
-			<td><input required type="text"  		id="masaSum" 	name="masaSum"	placeholder="Masa Sum" ></td>
+		<tr>
+			<td>Masa Sum Nacional</td><td> : </td>
+			<td><input required type="text"  		id="masaSumNacional" 	name="masaSumNacional"	placeholder="Masa Sum Nacional" ></td>
 		</tr>
 		<tr>
 			<td>Planes de Cuenta</td><td> : </td>
@@ -136,16 +137,66 @@ $(function() {
 			</td>
 		</tr>
 		<tr>
-			<td>Constitución CPHS</td><td> : </td>
-			<td><input required type="text"  		id="constitucionCphs" 	name="constitucionCphs"	placeholder="Planes de Constitución cphs" ></td>
+			<td>Firma del protocolo</td><td> : </td>
+			<td><input required type="text" class="fecha" 		id="fechaFirmaProtocolo" 	name="fechaFirmaProtocolo"	placeholder="Firma del Protocolo" ></td>
 		</tr>
 		<tr>
-			<td>Certificación CPHS</td><td> : </td>
-			<td><input required type="text"  		id="certificacionCphs" 	name="certificacionCphs"	placeholder="Certificación cphs" ></td>
+			<td>Etapa Sistema de Gestión</td><td> : </td>
+			<td>
+			<select id="etapaSistemaGestion" 	name="etapaSistemaGestion" required>
+				<option value="Implementacion">Implementación</option>
+				<option value="Auditoria">Auditoría</option>
+				<option value="Certificacion">Certificación</option>
+				<option value="No Aplica">No Aplica</option>
+			</select>
+			</td>
 		</tr>
 		<tr>
-			<td>MMC</td><td> : </td>
-			<td><input required type="text"  		id="mmc" 	name="mmc"	placeholder="MMC" ></td>
+			<td>Número CPHS</td><td> : </td>
+			<td><input required type="text"  		id="numceroCPHS" 	name="numeroCPHS"	placeholder="Número CPHS" ></td>
+		</tr>
+		<tr>
+			<td>Número CPHS Certificados</td><td> : </td>
+			<td><input required type="text"  		id="numceroCPHSCertificados" 	name="numeroCPHSCertificados"	placeholder="Número CPHS Certificados"></td>
+		</tr>
+		<tr>
+			<td>Número CPHS Bronce</td><td> : </td>
+			<td><input required type="text"  		id="numceroCPHSBronce" 	name="numeroCPHSBronce"	placeholder="Número CPHS Bronce" ></td>
+		</tr>
+		<tr>
+			<td>Número CPHS Plata</td><td> : </td>
+			<td><input required type="text"  		id="numceroCPHSPlata" 	name="numeroCPHSPlata"	placeholder="Número CPHS Plata" ></td>
+		</tr>
+		<tr>
+			<td>Número CPHS Oro</td><td> : </td>
+			<td><input required type="text"  		id="numceroCPHSOro" 	name="numeroCPHSOro"	placeholder="Número CPHS Oro" ></td>
+		</tr>
+		<tr>
+			<td>PREXOR</td><td> : </td>
+			<td>
+			<select id="prexor" name="prexor" required>
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td>PREXOR Etapa</td><td> : </td>
+			<td>
+			<select id="prexorEtapa" name="prexorEtapa" required>
+				<option value="Evaluación Cualitativa">Evaluación Cualitativa</option>
+				<option value="No Aplica">No Aplica</option>
+				<option value="Difusión del Protocolo">Difusión del Protocolo</option>
+				<option value="Asesoría en la Construcción de la matriz de riesgo de ruido">Asesoría en la Construcción de la matriz de riesgo de ruido</option>
+				<option value="Evaluación Cualitativa del GES">Evaluación Cualitativa del GES</option>
+				<option value="Ingreso a programa vigente de conservación auditiva">Ingreso a programa vigente de conservación auditiva</option>
+				<option value="Seguimiento a las recomendaciones">Seguimiento a las recomendaciones</option>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td>PREXOR Observaciones</td><td> : </td>
+			<td><input required type="text"  		id="prexorObservaciones" 	name="prexorObservaciones"	placeholder="Observaciones" ></td>
 		</tr>
 		<tr>
 			<td>TMERT</td><td> : </td>
@@ -157,9 +208,81 @@ $(function() {
 			</td>
 		</tr>
 		<tr>
-			<td>Planesi</td><td> : </td>
+			<td>TMERT Etapa</td><td> : </td>
 			<td>
-			<select id="planesi" 	name="planesi">
+			<select id="tmertEtapa" name="tmertEtapa" required>
+				<option value="Evaluación Cualitativa">Evaluación Cualitativa</option>
+				<option value="No Aplica">No Aplica</option>
+				<option value="Difusión del Protocolo">Difusión del Protocolo</option>
+				<option value="Asesoría en la Construcción de la matriz de riesgo Sílice">Asesoría en la Construcción de la matriz de riesgo Sílice</option>
+				<option value="Evaluación Cualitativa del GES">Evaluación Cualitativa del GES</option>
+				<option value="Ingreso a programa vigente Neumoconiogeno">Ingreso a programa vigente Neumoconiogeno</option>
+				<option value="Seguimiento a las recomendaciones">Seguimiento a las recomendaciones</option>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td>TMERT Observaciones</td><td> : </td>
+			<td><input required type="text"  		id="tmertObservaciones" 	name="tmertObservaciones"	placeholder="Observaciones" ></td>
+		</tr>
+		<tr>
+			<td>Asbesto</td><td> : </td>
+			<td>
+			<select id="asbesto" 	name="asbesto">
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Asbesto Etapa</td><td> : </td>
+			<td>
+			<select id="asbestoEtapa" 	name="asbestoEtapa">
+				<option value="Evaluación Cualitativa">Evaluación Cualitativa</option>
+				<option value="No Aplica">No Aplica</option>
+				<option value="Ingreso a programa vigente Neumoconiogeno">Ingreso a programa vigente Neumoconiogeno</option>
+				<option value="Seguimiento a las recomendaciones">Seguimiento a las recomendaciones</option>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Asbesto Observaciones</td><td> : </td>
+			<td><input required type="text"  		id="asbestoObservaciones" 	name="asbestoObservaciones"	placeholder="Observaciones" ></td>
+		</tr>
+		<tr>
+			<td>Hipobaria</td><td> : </td>
+			<td>
+			<select id="hipobaria" 	name="hipobaria">
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Hipobaria Etapa</td><td> : </td>
+			<td>
+			<select id="hipobariaEtapa" 	name="hipobariaEtapa">
+				<option value="Evaluación Cualitativa">Evaluación Cualitativa</option>
+				<option value="No Aplica">No Aplica</option>
+				<option value="Estudio Diagnostico">Estudio Diagnostico</option>
+				<option value="Ingreso a Programa de Vigilancia">Ingreso a Programa de Vigilancia</option>
+				<option value="Vigilancia, Seguimiento de impacto de medidas de mitigación">Ingreso a programa vigente Neumoconiogeno</option>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Radiación Ionizante</td><td> : </td>
+			<td>
+			<select id="radiacionIonizante" 	name="radiacionIonizante">
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Radiación Ionizante Etapa</td><td> : </td>
+			<td>
+			<select id="radiacionIonizanteEtapa" 	name="radiacionIonizanteEtapa">
 				<option value="Si">Si</option>
 				<option value="No">No</option>
 			</select>
@@ -178,24 +301,6 @@ $(function() {
 			<td>Radiación UV</td><td> : </td>
 			<td>
 			<select id="radiacionUv" 	name="radiacionUv">
-				<option value="Si">Si</option>
-				<option value="No">No</option>
-			</select>
-			</td>
-		</tr>
-		<tr>
-			<td>Hipobaria</td><td> : </td>
-			<td>
-			<select id="hipobaria" 	name="hipobaria">
-				<option value="Si">Si</option>
-				<option value="No">No</option>
-			</select>
-			</td>
-		</tr>
-		<tr>
-			<td>PREXOR</td><td> : </td>
-			<td>
-			<select id="prexor" 	name="prexor">
 				<option value="Si">Si</option>
 				<option value="No">No</option>
 			</select>
