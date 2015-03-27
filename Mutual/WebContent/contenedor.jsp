@@ -101,7 +101,7 @@ function getUrlCargarUsuario(id)
 	        	<ul>
 					<li><a href="#">Transporte P&uacute;blico</a>
 						<ul>
-							<li><a href="Servlet?accion=buscarDocumentos&idCartera=3">Productos</a></li>
+							<li><a href="Servlet?accion=prodCartera">Productos</a></li>
 							<li><a href="Servlet?accion=planesTrabajo">Planes de Trabajo</a></li>
 						</ul>
 					</li>

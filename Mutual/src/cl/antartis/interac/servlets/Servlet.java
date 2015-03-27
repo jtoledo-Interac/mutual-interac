@@ -1678,9 +1678,7 @@ if(error == null) error = new Error();
 		
 		request.setAttribute("listaProductos", mapaSalida.get("listaProductos"));
 		request.setAttribute("listaAreas", mapaSalida.get("listaAreas"));
-		log.info(request.getParameter("idCartera"));
-	
-		
+				
 		Documento documento = new Documento();
 		documento.setNombre(request.getParameter("nombre"));
 		documento.setNumFolio(request.getParameter("numFolio"));
