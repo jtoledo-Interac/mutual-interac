@@ -36,7 +36,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ContainerFactory;
 import org.json.simple.parser.JSONParser;
-
 import com.google.gson.Gson;
 //import com.itextpdf.text.Document;
 //import com.itextpdf.text.DocumentException;
@@ -1945,10 +1944,10 @@ if(error == null) error = new Error();
 
 		Empresa empresa = new Empresa();
 		/*
+		empresa.setNumAdherente(request.getParameter("numAdherente"));
 		empresa.setNombre(request.getParameter("nombre"));
 		empresa.setCodCartera(request.getParameter("codCartera"));
 		empresa.setNomExperto(request.getParameter("nomExperto"));
-		empresa.setNumAdherente(request.getParameter("numAdherente"));
 		empresa.setRazonSocial(request.getParameter("razonSocial"));
 		empresa.setAnoDeAdhesion(request.getParameter("anoDeAdhesion"));
 		empresa.setSegmentacion(request.getParameter("segmentacion"));

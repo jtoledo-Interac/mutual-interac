@@ -545,6 +545,12 @@ public class Empresa implements Serializable {
 	public void setParticipacionMesaTrabajo(String participacionMesaTrabajo) {
 		this.participacionMesaTrabajo = participacionMesaTrabajo;
 	}
+	public String getSolventesTexto() {
+		return solventesTexto;
+	}
+	public void setSolventesTexto(String solventesTexto) {
+		this.solventesTexto = solventesTexto;
+	}
 	
 	
 }
