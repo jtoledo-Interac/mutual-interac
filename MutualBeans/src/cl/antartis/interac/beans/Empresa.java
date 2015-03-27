@@ -33,9 +33,9 @@ public class Empresa implements Serializable {
 	private String numCphsBronce;
 	private String numCphsPlata;
 	private String numCphsOro;
-	private String Prexor;
-	private String PrexorEtapa;
-	private String PrexorTexto;
+	private String prexor;
+	private String prexorEtapa;
+	private String prexorTexto;
 	private String planesi;
 	private String planesiEtapa;
 	private String planesiTexto;
@@ -53,7 +53,7 @@ public class Empresa implements Serializable {
 	private String asmaTexto;
 	private String solventes;
 	private String solventesEtapa;
-	private String solventeEtapa;
+	private String solventesTexto;
 	private String metales;
 	private String metalesEtapa;
 	private String metalesTexto;
@@ -76,7 +76,7 @@ public class Empresa implements Serializable {
 	private String radiacionUVEtapa;
 	private String radiacionUVTexto;
 	private String ultimaVisitaExperto;
-	private String ultimVisitaDirector;
+	private String ultimaVisitaDirector;
 	private String ultimaVisitaGTTE;
 	private String ultimaVisitaAltaGerencia;
 	private String reporteVisita;
@@ -246,22 +246,22 @@ public class Empresa implements Serializable {
 		this.numCphsOro = numCphsOro;
 	}
 	public String getPrexor() {
-		return Prexor;
+		return prexor;
 	}
 	public void setPrexor(String prexor) {
-		Prexor = prexor;
+		prexor = prexor;
 	}
 	public String getPrexorEtapa() {
-		return PrexorEtapa;
+		return prexorEtapa;
 	}
 	public void setPrexorEtapa(String prexorEtapa) {
-		PrexorEtapa = prexorEtapa;
+		prexorEtapa = prexorEtapa;
 	}
 	public String getPrexorTexto() {
-		return PrexorTexto;
+		return prexorTexto;
 	}
 	public void setPrexorTexto(String prexorTexto) {
-		PrexorTexto = prexorTexto;
+		prexorTexto = prexorTexto;
 	}
 	public String getPlanesi() {
 		return planesi;
@@ -365,11 +365,11 @@ public class Empresa implements Serializable {
 	public void setSolventesEtapa(String solventesEtapa) {
 		this.solventesEtapa = solventesEtapa;
 	}
-	public String getSolventeEtapa() {
-		return solventeEtapa;
+	public String getSolventesTexto() {
+		return solventesTexto;
 	}
-	public void setSolventeEtapa(String solventeEtapa) {
-		this.solventeEtapa = solventeEtapa;
+	public void setSolventesTexto(String solventesTexto) {
+		this.solventesTexto = solventesTexto;
 	}
 	public String getMetales() {
 		return metales;
@@ -504,10 +504,10 @@ public class Empresa implements Serializable {
 		this.ultimaVisitaExperto = ultimaVisitaExperto;
 	}
 	public String getUltimVisitaDirector() {
-		return ultimVisitaDirector;
+		return ultimaVisitaDirector;
 	}
-	public void setUltimVisitaDirector(String ultimVisitaDirector) {
-		this.ultimVisitaDirector = ultimVisitaDirector;
+	public void setUltimaVisitaDirector(String ultimVisitaDirector) {
+		this.ultimaVisitaDirector = ultimVisitaDirector;
 	}
 	public String getUltimaVisitaGTTE() {
 		return ultimaVisitaGTTE;
