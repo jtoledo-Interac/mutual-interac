@@ -1,4 +1,4 @@
-create or replace function public.buscar_empresas
+﻿create or replace function public.buscar_empresas
 (
     in xnombre$ varchar,
     in xnum_adherente$ varchar,
@@ -45,6 +45,7 @@ $body$
 			ano_de_adhesion,
 			segmentacion,
 			holding,
+			estrategica,
 			situacion,
 			multi_region,
 			casa_matriz,
@@ -68,6 +69,9 @@ $body$
 			planesi ,
 			planesi_etapa ,
 			planesi_texto ,
+			asbesto,
+			asbesto_etapa,
+			asbesto_texto,
 			hipobaria ,
 			hipobaria_etapa ,
 			hipobaria_texto ,
@@ -80,6 +84,9 @@ $body$
 			solventes ,
 			solventes_etapa ,
 			solventes_texto ,
+			metales,
+			metales_etapa,
+			metales_texto,
 			oxido ,
 			oxido_etapa ,
 			oxido_texto ,
@@ -105,7 +112,7 @@ $body$
 			reporte_visita ,
 			riesgo_de_fuga ,
 			reclamo_ultimo_periodo,
-			participacion_mesa_trabajo ,
+			participacion_mesa_trabajo 
         from 
             empresa
         where

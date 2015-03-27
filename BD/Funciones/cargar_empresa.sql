@@ -1,4 +1,4 @@
-create or replace function public.cargar_empresa
+﻿create or replace function public.cargar_empresa
 (
     in xid_empresa numeric, 
     out empresas refcursor,
@@ -27,6 +27,7 @@ begin
 			ano_de_adhesion,
 			segmentacion,
 			holding,
+			estrategica,
 			situacion,
 			multi_region,
 			casa_matriz,
@@ -50,6 +51,9 @@ begin
 			planesi ,
 			planesi_etapa ,
 			planesi_texto ,
+			asbesto,
+			asbesto_etapa,
+			asbesto_texto,
 			hipobaria ,
 			hipobaria_etapa ,
 			hipobaria_texto ,
@@ -62,6 +66,9 @@ begin
 			solventes ,
 			solventes_etapa ,
 			solventes_texto ,
+			metales,
+			metales_etapa,
+			metales_texto,
 			oxido ,
 			oxido_etapa ,
 			oxido_texto ,
@@ -87,7 +94,7 @@ begin
 			reporte_visita ,
 			riesgo_de_fuga ,
 			reclamo_ultimo_periodo,
-			participacion_mesa_trabajo ,
+			participacion_mesa_trabajo 
             from 
                 empresa
             where

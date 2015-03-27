@@ -1,4 +1,4 @@
-create or replace function public.agregar_empresa
+﻿create or replace function public.agregar_empresa
 (
 	IN xnum_adherente varchar,
 	IN xnombre varchar,
@@ -8,6 +8,7 @@ create or replace function public.agregar_empresa
 	IN xano_de_adhesion timestamp,
 	IN xsegmentacion varchar,
 	IN xholding varchar,
+	IN xestrategica varchar,
 	IN xsituacion varchar,
 	IN xmulti_region varchar,
 	IN xcasa_matriz varchar,
@@ -92,6 +93,7 @@ $body$
 			ano_de_adhesion,
 			segmentacion,
 			holding,
+			estrategica,
 			situacion,
 			multi_region,
 			casa_matriz,
@@ -152,7 +154,7 @@ $body$
 			reporte_visita ,
 			riesgo_de_fuga ,
 			reclamo_ultimo_periodo,
-			participacion_mesa_trabajo ,
+			participacion_mesa_trabajo 
 		)
         values
 		(
@@ -164,6 +166,7 @@ $body$
 			xano_de_adhesion,
 			xsegmentacion,
 			xholding,
+			xestrategica,
 			xsituacion,
 			xmulti_region,
 			xcasa_matriz,
@@ -224,7 +227,7 @@ $body$
 			xreporte_visita,
 			xriesgo_de_fuga,
 			xreclamo_ultimo_periodo,
-			xparticipacion_mesa_trabajo,
+			xparticipacion_mesa_trabajo
 		);
 
        

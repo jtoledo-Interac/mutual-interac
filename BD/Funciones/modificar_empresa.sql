@@ -1,4 +1,4 @@
-create or replace function public.modificar_empresa
+﻿create or replace function public.modificar_empresa
 (
     IN xid_empresa numeric,
 	IN xnum_adherente varchar,
@@ -9,6 +9,7 @@ create or replace function public.modificar_empresa
 	IN xano_de_adhesion timestamp,
 	IN xsegmentacion varchar,
 	IN xholding varchar,
+	IN xestrategica varchar,
 	IN xsituacion varchar,
 	IN xmulti_region varchar,
 	IN xcasa_matriz varchar,
@@ -91,6 +92,7 @@ $body$
 			ano_de_adhesion=xano_de_adhesion,
 			segmentacion=xsegmentacion,
 			holding=xholding,
+			estrategica=xestrategica,
 			situacion=xsituacion,
 			multi_region=xmulti_region,
 			casa_matriz=xcasa_matriz,
@@ -151,7 +153,7 @@ $body$
 			reporte_visita=xreporte_visita,
 			riesgo_de_fuga=xriesgo_de_fuga ,
 			reclamo_ultimo_periodo=xreclamo_ultimo_periodo,
-			participacion_mesa_trabajo=xparticipacion_mesa_trabajo,
+			participacion_mesa_trabajo=xparticipacion_mesa_trabajo
 
         where
             id_empresa = xid_empresa;
