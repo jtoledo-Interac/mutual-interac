@@ -162,23 +162,23 @@ $(function() {
 		</tr>
 		<tr>
 			<td>Número CPHS</td><td> : </td>
-			<td><input required type="text"  		id="numceroCPHS" 	name="numeroCPHS"	placeholder="Número CPHS" ></td>
+			<td><input required type="text"  		id="numeroCPHS" 	name="numeroCPHS"	placeholder="Número CPHS" ></td>
 		</tr>
 		<tr>
 			<td>Número CPHS Certificados</td><td> : </td>
-			<td><input required type="text"  		id="numceroCPHSCertificados" 	name="numeroCPHSCertificados"	placeholder="Número CPHS Certificados"></td>
+			<td><input required type="text"  		id="numeroCPHSCertificados" 	name="numeroCPHSCertificados"	placeholder="Número CPHS Certificados"></td>
 		</tr>
 		<tr>
 			<td>Número CPHS Bronce</td><td> : </td>
-			<td><input required type="text"  		id="numceroCPHSBronce" 	name="numeroCPHSBronce"	placeholder="Número CPHS Bronce" ></td>
+			<td><input required type="text"  		id="numeroCPHSBronce" 	name="numeroCPHSBronce"	placeholder="Número CPHS Bronce" ></td>
 		</tr>
 		<tr>
 			<td>Número CPHS Plata</td><td> : </td>
-			<td><input required type="text"  		id="numceroCPHSPlata" 	name="numeroCPHSPlata"	placeholder="Número CPHS Plata" ></td>
+			<td><input required type="text"  		id="numeroCPHSPlata" 	name="numeroCPHSPlata"	placeholder="Número CPHS Plata" ></td>
 		</tr>
 		<tr>
 			<td>Número CPHS Oro</td><td> : </td>
-			<td><input required type="text"  		id="numceroCPHSOro" 	name="numeroCPHSOro"	placeholder="Número CPHS Oro" ></td>
+			<td><input required type="text"  		id="numeroCPHSOro" 	name="numeroCPHSOro"	placeholder="Número CPHS Oro" ></td>
 		</tr>
 		<tr>
 			<td>PREXOR</td><td> : </td>
@@ -405,7 +405,7 @@ $(function() {
 			</td>
 		</tr>
 		<tr>
-			<td>Óxido de Etileno Observaciones</td><td> : </td>
+			<td>Plaguicida Observaciones</td><td> : </td>
 			<td><input required type="text"  		id="plaguicidaObservaciones" 	name="plaguicidaObservaciones"	placeholder="Observaciones" ></td>
 		</tr>
 		<tr>
