@@ -61,8 +61,6 @@ CREATE TABLE public.empresa (
     radiacion_uv varchar(200) null,
     radiacion_uv_etapa varchar(200) null,
     radiacion_uv_texto varchar(200) null,
-    holding varchar(200) null,
-    segmentacion varchar(200) null,
     ultima_visita_experto timestamp null,
     ultima_visita_director timestamp null,
     ultima_visita_gtte timestamp null,
