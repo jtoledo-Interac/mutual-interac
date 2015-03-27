@@ -17,7 +17,6 @@
 			<td>Código Cartera</td><td> : </td>
 			<td>
 				<select id="codCartera" name="codCartera" required>
-					<option value="" selected>Seleccione una Cartera</option>
 						<c:forEach items="${requestScope.listaCarteras}" var="cartera">
 							<option value="${cartera.idCartera}" >${cartera.desCartera}</option>
 						</c:forEach>
@@ -42,11 +41,22 @@
 		</tr>
 		<tr>
 			<td>Segmentación</td><td> : </td>
-			<td><input required type="text"  value="${empresa.segmentacion}" 		id="segmentacion" 	name="segmentacion"	placeholder="Segmentación"  ></td>
+			<td>
+			<select id="segmentacion" 	name="segmentacion" required>
+					<option value="Grandes cuentas">Grandes cuentas</option>
+					<option value="Estrategicas">Estrategicas</option>
+					<option value="Corporativas">Corporativas</option>
+				</select>
+			</td>
 		</tr>
 		<tr>
 			<td>Holding</td><td> : </td>
-			<td><input required type="text"  value="${empresa.holding}"		id="holding" 	name="holding"	placeholder="Holding"  ></td>
+			<td>
+				<select id="holding" 	name="holding" required>
+					<option value="Si">Si</option>
+					<option value="No">No</option>
+				</select>
+			</td>	
 		</tr>
 		<tr>
 			<td>Situación</td><td> : </td>
@@ -54,7 +64,13 @@
 		</tr>
 		<tr>
 			<td>Multi Region</td><td> : </td>
-			<td><input required type="text"  value="${empresa.multiRegion}"		id="multiRegion" 	name="multiRegion"	placeholder="Multi Region" ></td>
+			<td>
+			<select id="multiRegion" 	name="multiRegion" required>
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+				<option value="No Aplica">No Aplica</option>
+			</select>
+			</td>
 		</tr>
 		<tr>
 			<td>Casa Matriz</td><td> : </td>
@@ -64,9 +80,8 @@
 			<td>Región Casa Matriz </td><td>:</td>
 			<td>
 				<select id="codRegionCasaMatriz"	name="codRegionCasaMatriz" required>
-					<option value="">Seleccione una región</option>		
 					<c:forEach items="${requestScope.listaRegiones}" var="region">
-						<option selected value="${region.codRegion}">${region.desRegion}</option>
+						<option value="${region.codRegion}">${region.desRegion}</option>
 					</c:forEach>
 				</select>
 			</td>
@@ -77,19 +92,44 @@
 		</tr>
 		<tr>
 			<td>Planes de Cuenta</td><td> : </td>
-			<td><input required type="text" value="${empresa.planesDeCuenta}" 		id="planesDeCuenta" 	name="planesDeCuenta"	placeholder="Planes De Cuenta" ></td>
-		</tr>
+			<td>
+			<select id="planesDeCuenta" 	name="planesDeCuenta" required>
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+				<option value="No Aplica">No Aplica</option>
+			</select>
+			</td>
+			</tr>
+		<tr>
 		<tr>
 			<td>Planes de Trabajo</td><td> : </td>
-			<td><input required type="text" value="${empresa.planesDeTrabajo}" 		id="planesDeTrabajo" 	name="planesDeTrabajo"	placeholder="Planes de Trabajo" ></td>
+			<td>
+			<select id="planesDeTrabajo" 	name="planesDeTrabajo" required>
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+			</select>
+			</td>
 		</tr>
 		<tr>
-			<td>Firma de Planes</td><td> : </td>
-			<td><input required type="text"  value="${empresa.firmaDePlanes}"		id="firmaDePlanes" 	name="firmaDePlanes"	placeholder="Firma De Planes" ></td>
+			<td>Firma de planes</td><td> : </td>
+			<td>
+			<select id="firmaDePlanes" 	name="firmaDePlanes" required>
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+			</select>
+			</td>
 		</tr>
 		<tr>
 			<td>Sistema de Gestión</td><td> : </td>
-			<td><input required type="text"  	value="${empresa.sistemaDeGestion}"	id="sistemaDeGestion" 	name="sistemaDeGestion"	placeholder="Sistema de Gestión" ></td>
+			<td>
+			<select id="sistemaDeGestion" 	name="sistemaDeGestion" required>
+				<option value="PEC Estandar">PEC Estandar</option>
+				<option value="PEC Competitividad">PEC Competitividad</option>
+				<option value="Excelencia">Excelencia</option>
+				<option value="Autogestion">Autogestion</option>
+				<option value="No Tiene">No Tiene</option>
+			</select>
+			</td>
 		</tr>
 		<tr>
 			<td>Constitución Cphs</td><td> : </td>
@@ -105,31 +145,66 @@
 		</tr>
 		<tr>
 			<td>TMERT</td><td> : </td>
-			<td><input required type="text"  	value="${empresa.tmert}"	id="tmert" 	name="tmert"	placeholder="TMERT" ></td>
+			<td>
+			<select id="tmert" 	name="tmert">
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+			</select>
+			</td>
 		</tr>
 		<tr>
 			<td>Planesi</td><td> : </td>
-			<td><input required type="text"  	value="${empresa.planesi}"	id="planesi" 	name="planesi"	placeholder="Planesi" ></td>
+			<td>
+			<select id="planesi" 	name="planesi">
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+			</select>
+			</td>
 		</tr>
 		<tr>
 			<td>Plaguicida</td><td> : </td>
-			<td><input required type="text"  	value="${empresa.plaguicida}"	id="plaguicida" 	name="plaguicida"	placeholder="Plaguicida" ></td>
+			<td>
+			<select id="plaguicida" 	name="plaguicida">
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+			</select>
+			</td>
 		</tr>
 		<tr>
 			<td>Radiación UV</td><td> : </td>
-			<td> <input required type="text" 	value="${empresa.radiacionUv}"	id="radiacionUv" 		name="radiacionUv" 		placeholder="Radiación UV" ></td>
+			<td>
+			<select id="radiacionUv" 	name="radiacionUv">
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+			</select>
+			</td>
 		</tr>
 		<tr>
 			<td>Hipobaria</td><td> : </td>
-			<td><input required type="text"  	value="${empresa.hipobaria}"	id="hipobaria" 	name="hipobaria"	placeholder="Hipobaria" ></td>
+			<td>
+			<select id="hipobaria" 	name="hipobaria">
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+			</select>
+			</td>
 		</tr>
 		<tr>
 			<td>PREXOR</td><td> : </td>
-			<td><input required type="text"  	value="${empresa.prexor}"	id="prexor" 	name="prexor"	placeholder="PREXOR" ></td>
+			<td>
+			<select id="prexor" 	name="prexor">
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+			</select>
+			</td>
 		</tr>
 		<tr>
 			<td>Psicosociales</td><td> : </td>
-			<td><input required type="text"  	value="${empresa.psicosociales}"	id="psicosociales" 	name="psicosociales"	placeholder="Psicosociales" ></td>
+			<td>
+			<select id="psicosociales" 	name="psicosociales">
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+			</select>
+			</td>
 		</tr>
 		<tr>
 			<td>Proyecto Investigación</td><td> : </td>
@@ -157,7 +232,13 @@
 		</tr>
 		<tr>
 			<td>Riesgo de Fuga</td><td> : </td>
-			<td> <input required type="text" 	value="${empresa.riesgoDeFuga}"	id="riesgoDeFuga" 		name="riesgoDeFuga" 		placeholder="Riesgo de Fuga" ></td>
+			<td>
+			<select id="riesgoDeFuga" 	name="riesgoDeFuga">
+				<option value="Bajo">Bajo</option>
+				<option value="Medio">Medio</option>
+				<option value="Alto">Alto</option>
+			</select>
+			</td>
 		</tr>
 		<tr>
 			<td>Reclamo Ultimo Periodo</td><td> : </td>
@@ -165,7 +246,13 @@
 		</tr>
 		<tr>
 			<td>Participa Mesa Trabajo</td><td> : </td>
-			<td> <input required type="text" 	value="${empresa.participaMesaTrabajo}"	id="participaMesaTrabajo" 		name="participaMesaTrabajo" 		placeholder="Participa Mesa Trabajo" ></td>
+			<td>
+			<select id="participaMesaTrabajo" 	name="participaMesaTrabajo">
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+				<option value="No Aplica">No Aplica</option>
+			</select>
+			</td>
 		</tr>
 	</table>
 	<input type="submit" class="submit" style="display:none;">

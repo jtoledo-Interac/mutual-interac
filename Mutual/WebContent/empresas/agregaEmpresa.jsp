@@ -47,7 +47,7 @@ $(function() {
 		<tr>
 			<td>Segmentación</td><td> : </td>
 			<td>
-			<select id="segmentacion" 	name="segmentacion">
+			<select id="segmentacion" 	name="segmentacion" required>
 					<option value="Grandes cuentas">Grandes cuentas</option>
 					<option value="Estrategicas">Estrategicas</option>
 					<option value="Corporativas">Corporativas</option>
@@ -57,12 +57,11 @@ $(function() {
 		<tr>
 			<td>Holding</td><td> : </td>
 			<td>
-				<select id="holding" 	name="holding">
+				<select id="holding" 	name="holding" required>
 					<option value="Si">Si</option>
 					<option value="No">No</option>
 				</select>
-			</td>
-			
+			</td>	
 		</tr>
 		<tr>
 			<td>Situación</td><td> : </td>
@@ -70,9 +69,8 @@ $(function() {
 		</tr>
 		<tr>
 			<td>Multi Region</td><td> : </td>
-			
 			<td>
-			<select id="multiRegion" 	name="multiRegion">
+			<select id="multiRegion" 	name="multiRegion" required>
 				<option value="Si">Si</option>
 				<option value="No">No</option>
 				<option value="No Aplica">No Aplica</option>
@@ -100,7 +98,7 @@ $(function() {
 		<tr>
 			<td>Planes de Cuenta</td><td> : </td>
 			<td>
-			<select id="planesDeCuenta" 	name="planesDeCuenta">
+			<select id="planesDeCuenta" 	name="planesDeCuenta" required>
 				<option value="Si">Si</option>
 				<option value="No">No</option>
 				<option value="No Aplica">No Aplica</option>
@@ -110,7 +108,7 @@ $(function() {
 		<tr>
 			<td>Planes de Trabajo</td><td> : </td>
 			<td>
-			<select id="planesDeTrabajo" 	name="planesDeTrabajo">
+			<select id="planesDeTrabajo" 	name="planesDeTrabajo" required>
 				<option value="Si">Si</option>
 				<option value="No">No</option>
 			</select>
@@ -119,7 +117,7 @@ $(function() {
 		<tr>
 			<td>Firma de planes</td><td> : </td>
 			<td>
-			<select id="firmaDePlanes" 	name="firmaDePlanes">
+			<select id="firmaDePlanes" 	name="firmaDePlanes" required>
 				<option value="Si">Si</option>
 				<option value="No">No</option>
 			</select>
@@ -128,7 +126,7 @@ $(function() {
 		<tr>
 			<td>Sistema de Gestión</td><td> : </td>
 			<td>
-			<select id="sistemaDeGestion" 	name="sistemaDeGestion">
+			<select id="sistemaDeGestion" 	name="sistemaDeGestion" required>
 				<option value="PEC Estandar">PEC Estandar</option>
 				<option value="PEC Competitividad">PEC Competitividad</option>
 				<option value="Excelencia">Excelencia</option>
@@ -138,11 +136,11 @@ $(function() {
 			</td>
 		</tr>
 		<tr>
-			<td>Constitución Cphs</td><td> : </td>
-			<td><input required type="text"  		id="constitucionCphs" 	name="constitucionCphs"	placeholder="Planes de CConstitución cphs" ></td>
+			<td>Constitución CPHS</td><td> : </td>
+			<td><input required type="text"  		id="constitucionCphs" 	name="constitucionCphs"	placeholder="Planes de Constitución cphs" ></td>
 		</tr>
 		<tr>
-			<td>Certificación Cphs</td><td> : </td>
+			<td>Certificación CPHS</td><td> : </td>
 			<td><input required type="text"  		id="certificacionCphs" 	name="certificacionCphs"	placeholder="Certificación cphs" ></td>
 		</tr>
 		<tr>
