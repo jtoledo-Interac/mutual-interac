@@ -249,19 +249,19 @@ public class Empresa implements Serializable {
 		return prexor;
 	}
 	public void setPrexor(String prexor) {
-		prexor = prexor;
+		this.prexor = prexor;
 	}
 	public String getPrexorEtapa() {
 		return prexorEtapa;
 	}
 	public void setPrexorEtapa(String prexorEtapa) {
-		prexorEtapa = prexorEtapa;
+		this.prexorEtapa = prexorEtapa;
 	}
 	public String getPrexorTexto() {
 		return prexorTexto;
 	}
 	public void setPrexorTexto(String prexorTexto) {
-		prexorTexto = prexorTexto;
+		this.prexorTexto = prexorTexto;
 	}
 	public String getPlanesi() {
 		return planesi;
@@ -503,11 +503,11 @@ public class Empresa implements Serializable {
 	public void setUltimaVisitaExperto(String ultimaVisitaExperto) {
 		this.ultimaVisitaExperto = ultimaVisitaExperto;
 	}
-	public String getUltimVisitaDirector() {
+	public String getUltimaVisitaDirector() {
 		return ultimaVisitaDirector;
 	}
-	public void setUltimaVisitaDirector(String ultimVisitaDirector) {
-		this.ultimaVisitaDirector = ultimVisitaDirector;
+	public void setUltimaVisitaDirector(String ultimaVisitaDirector) {
+		this.ultimaVisitaDirector = ultimaVisitaDirector;
 	}
 	public String getUltimaVisitaGTTE() {
 		return ultimaVisitaGTTE;
@@ -545,12 +545,8 @@ public class Empresa implements Serializable {
 	public void setParticipacionMesaTrabajo(String participacionMesaTrabajo) {
 		this.participacionMesaTrabajo = participacionMesaTrabajo;
 	}
-	public String getSolventesTexto() {
-		return solventesTexto;
-	}
-	public void setSolventesTexto(String solventesTexto) {
-		this.solventesTexto = solventesTexto;
-	}
+
+
 	
 	
 }
