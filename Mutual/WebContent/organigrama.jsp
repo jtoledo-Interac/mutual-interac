@@ -1,8 +1,9 @@
 <%@ include file="declaraciones.jsp" %>
 <%@ include file="encabezado.jsp" %>
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
-<%@page import="org.json.simple.JSONObject"%>
-
+<%@page import="com.google.gson.Gson"%>
+<%@page import="cl.antartis.interac.beans.OrgEntry"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <script type="text/javascript"> 
 
 </script>
@@ -17,6 +18,9 @@
 </style>
 <!--<script type="text/javascript" src="https://www.google.com/jsapi"></script>-->
 <script src="js/jsapi.js"></script>
+	<script type="text/javascript">
+		function
+	</script>
     <script type="text/javascript">
       google.load("visualization", "1", {packages:["orgchart"]});
       google.setOnLoadCallback(drawChart);
@@ -65,8 +69,9 @@
 <div class="mantenedor">
 	<div class="organigrama">
 		<div id="chart_div" style="overflow: scroll; padding: 10px;"></div>
-		<c:forEach items="${orgEntries}" var="orgEntry">
-    		<c:out value="${orgEntry.Nombre} ${orgEntry.Cargo}"/><br />
-  		</c:forEach>
+		ENTRIES!!!!
+		<c:forEach items="${OrgEntries}" var="oEntry">
+					<option value="${oEntry.nombre}" >${oEntry.cargo}</option>
+		</c:forEach>
 	</div>
 </div>

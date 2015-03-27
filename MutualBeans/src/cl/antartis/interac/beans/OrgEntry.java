@@ -6,26 +6,26 @@ public class OrgEntry implements Serializable {
 
 	private static final long serialVersionUID = 5722839945964495910L;
 
-	String Nombre;
-	String Cargo;
-	String Supervisor;
+	private String nombre;
+	private String cargo;
+	private String supervisor;
 	
 	public String getNombre() {
-		return Nombre;
+		return nombre;
 	}
 	public String getCargo() {
-		return Cargo;
+		return cargo;
 	}
 	public String getSupervisor() {
-		return Supervisor;
+		return supervisor;
 	}
-	public void setNombre(String Nombre) {
-		this.Nombre = Nombre;
+	public void setNombre(String _Nombre) {
+		this.nombre = _Nombre;
 	}
-	public void setCargo(String Cargo) {
-		this.Cargo = Cargo;
+	public void setCargo(String _Cargo) {
+		this.cargo = _Cargo;
 	}
-	public void setSupervisor(String Supervisor) {
-		this.Supervisor = Supervisor;
+	public void setSupervisor(String _Supervisor) {
+		this.supervisor = _Supervisor;
 	}
 }

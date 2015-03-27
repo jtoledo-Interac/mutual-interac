@@ -1,9 +1,11 @@
 
 package cl.antartis.interac.servlets;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,6 +36,12 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ContainerFactory;
 import org.json.simple.parser.JSONParser;
+
+import com.google.gson.Gson;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 
 import cl.antartis.interac.beans.Cartera;
 import cl.antartis.interac.beans.CategoriaLink;
@@ -326,47 +334,43 @@ public class Servlet extends HttpServlet {
 		
 	}
 	
-	/**********ORGANIGRAMA****************************************************************************/	
-	public void organigrama(HttpServletRequest request, HttpServletResponse response) 
+	/**********ORGANIGRAMA
+	 * @throws IOException ****************************************************************************/	
+	public void organigrama(HttpServletRequest request, HttpServletResponse response) throws IOException 
 	{
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
 		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 
-		JSONParser parser = new JSONParser();
-		ContainerFactory containerFactory = new ContainerFactory(){
-			public List creatArrayContainer() {
-				return new LinkedList();
-		}
-
-		    public Map createObjectContainer() {
-		    	return new LinkedHashMap();
-		    }                    
-		};
-          
-		try{
-			Map json = (Map)parser.parse(new FileReader("C:/Users/Joaco/Documents/organigrama.txt"), containerFactory);
+		Gson gson = new Gson();
+		String FileContent = readEntireFile("C:/Users/Joaco/Documents/organigrama.txt");
+		OrgEntry[] orgEntries = gson.fromJson(FileContent, OrgEntry[].class);
+		log.info(orgEntries.length);
 		
-			Iterator iter = json.entrySet().iterator();
-			//log.info("==iterate result==");
-			List<OrgEntry> orgEntries = new ArrayList<OrgEntry>();
-			while(iter.hasNext()){
-				Map.Entry entry = (Map.Entry)iter.next();
-				log.info(entry.getKey() + "=>" + entry.getValue());
-				
-				OrgEntry orgEntry=new OrgEntry();
-				orgEntry.setNombre(entry.getKey().toString());
-		        request.setAttribute("orgEntries", orgEntries);
-		}
-	}
-	catch(Exception pe){
-		System.out.println(pe);
-	}
+		for(int i=0; i<orgEntries.length; i++){
+			log.info(i);
+            log.info(orgEntries[i].getNombre());
+            log.info(orgEntries[i].getCargo());
+            log.info(orgEntries[i].getSupervisor());
+       }
+		request.setAttribute("OrgEntries", orgEntries);// mapaSalida.put("OrgEntries",orgEntries);
 	//------------
 		pagDestino = "contenedor.jsp";
 	}
 	
+	
+	private static String readEntireFile(String filename) throws IOException {
+        FileReader in = new FileReader(filename);
+        StringBuilder contents = new StringBuilder();
+        char[] buffer = new char[4096];
+        int read = 0;
+        do {
+            contents.append(buffer, 0, read);
+            read = in.read(buffer);
+        } while (read >= 0);
+        return contents.toString();
+    }
 	/**********USUARIOS****************************************************************************/	
 	public void usuarios(HttpServletRequest request, HttpServletResponse response) 
 	{
@@ -1539,7 +1543,7 @@ if(error == null) error = new Error();
 		}
 	}
 	
-	public void fatales(HttpServletRequest request, HttpServletResponse response) 
+	public void fatales(HttpServletRequest request, HttpServletResponse response) throws IOException 
 	{
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
 		
@@ -1547,7 +1551,7 @@ if(error == null) error = new Error();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
-		
+		/*
 		mapaSalida = ejbRemoto.buscarParametros(mapaEntrada);
 		error = (Error)mapaSalida.get("error");
 		if(error == null) error = new Error();
@@ -1562,6 +1566,46 @@ if(error == null) error = new Error();
 	
 			pagDestino = "contenedor.jsp";
 		}
+		*/
+		 try {
+	            // Get the text that will be added to the PDF
+	            String text = request.getParameter("text");
+	            if (text == null || text.trim().length() == 0) {
+	                 text = "You didn't enter any text.";
+	            }
+	            // step 1
+	            Document document = new Document();
+	            // step 2
+	            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+	            PdfWriter.getInstance(document, baos);
+	            // step 3
+	            document.open();
+	            // step 4
+	            document.add(new Paragraph(String.format(
+	                "You have submitted the following text using the %s method:",
+	                request.getMethod())));
+	            document.add(new Paragraph(text));
+	            // step 5
+	            document.close();
+	 
+	            // setting some response headers
+	            response.setHeader("Expires", "0");
+	            response.setHeader("Cache-Control",
+	                "must-revalidate, post-check=0, pre-check=0");
+	            response.setHeader("Pragma", "public");
+	            // setting the content type
+	            response.setContentType("application/pdf");
+	            // the contentlength
+	            response.setContentLength(baos.size());
+	            // write ByteArrayOutputStream to the ServletOutputStream
+	            OutputStream os = response.getOutputStream();
+	            baos.writeTo(os);
+	            os.flush();
+	            os.close();
+	        }
+	        catch(DocumentException e) {
+	            throw new IOException(e.getMessage());
+	        }
 	}
 	
 	public void prodCartera(HttpServletRequest request, HttpServletResponse response) 
