@@ -64,6 +64,15 @@ $(function() {
 			</td>	
 		</tr>
 		<tr>
+			<td>Estrategicas</td><td> : </td>
+			<td>
+			<select id="estrategicas" 	name="estrategias" required>
+					<option value="Si">Si</option>
+					<option value="No">No</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
 			<td>Casa Matriz </td><td>:</td>
 			<td>
 				<select id="codRegionCasaMatriz" 	name="codRegionCasaMatriz"  required>
@@ -271,6 +280,10 @@ $(function() {
 			</td>
 		</tr>
 		<tr>
+			<td>Hipobaria Observaciones</td><td> : </td>
+			<td><input required type="text"  		id="hipobariaObservaciones" 	name="hipobariaObservaciones"	placeholder="Observaciones" ></td>
+		</tr>
+		<tr>
 			<td>Radiación Ionizante</td><td> : </td>
 			<td>
 			<select id="radiacionIonizante" 	name="radiacionIonizante">
@@ -283,10 +296,92 @@ $(function() {
 			<td>Radiación Ionizante Etapa</td><td> : </td>
 			<td>
 			<select id="radiacionIonizanteEtapa" 	name="radiacionIonizanteEtapa">
+				<option value="Evaluación Cualitativa">Evaluación Cualitativa</option>
+				<option value="No Aplica">No Aplica</option>
+				<option value="Evaluación Cuantitativa">Evaluación Cuantitativa</option>
+				<option value="Ingreso a Programa de Vigilancia de exposición a radiaciones">Ingreso a Programa de Vigilancia de exposición a radiaciones</option>
+				<option value="Seguimiento a las recomendaciones">Seguimiento a las recomendaciones</option>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Radiación Observaciones</td><td> : </td>
+			<td><input required type="text"  		id="radiacionObservaciones" 	name="radiacionObservaciones"	placeholder="Observaciones" ></td>
+		</tr>
+		<tr>
+			<td>Asma</td><td> : </td>
+			<td>
+			<select id="asma" 	name="asma">
 				<option value="Si">Si</option>
 				<option value="No">No</option>
 			</select>
 			</td>
+		</tr>
+		<tr>
+			<td>Asma Etapa</td><td> : </td>
+			<td>
+			<select id="asmaEtapa" 	name="asmaEtapa">
+				<option value="Evaluación Cualitativa">Evaluación Cualitativa</option>
+				<option value="No Aplica">No Aplica</option>
+				<option value="Evaluación Cuantitativa">Evaluación Cuantitativa</option>
+				<option value="Ingreso a Programa de Vigilancia de Asma">Ingreso a Programa de Vigilancia de Asma</option>
+				<option value="Seguimiento a las recomendaciones">Seguimiento a las recomendaciones</option>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Asma Observaciones</td><td> : </td>
+			<td><input required type="text"  		id="asmaObservaciones" 	name="asmaObservaciones"	placeholder="Observaciones" ></td>
+		</tr>
+		<tr>
+			<td>Metales</td><td> : </td>
+			<td>
+			<select id="metales" 	name="metales">
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Metales Etapa</td><td> : </td>
+			<td>
+			<select id="metalesEtapa" 	name="metalesEtapa">
+				<option value="Evaluación Cualitativa">Evaluación Cualitativa</option>
+				<option value="No Aplica">No Aplica</option>
+				<option value="Evaluación Cuantitativa">Evaluación Cuantitativa</option>
+				<option value="Ingreso a Programa de Vigilancia de Metales">Ingreso a Programa de Vigilancia de Asma</option>
+				<option value="Seguimiento a las recomendaciones">Seguimiento a las recomendaciones</option>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Metales Observaciones</td><td> : </td>
+			<td><input required type="text"  		id="metalesObservaciones" 	name="metalesObservaciones"	placeholder="Observaciones" ></td>
+		</tr>
+		<tr>
+			<td>Óxido de Etileno</td><td> : </td>
+			<td>
+			<select id="oxido" 	name="oxido">
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Óxido de Etileno Etapa</td><td> : </td>
+			<td>
+			<select id="oxidoEtapa" 	name="oxidoEtapa">
+				<option value="Evaluación Cualitativa">Evaluación Cualitativa</option>
+				<option value="No Aplica">No Aplica</option>
+				<option value="Evaluación Cuantitativa">Evaluación Cuantitativa</option>
+				<option value="Ingreso a Programa de Vigilancia de Oxido">Ingreso a Programa de Vigilancia de Oxido</option>
+				<option value="Seguimiento a las recomendaciones">Seguimiento a las recomendaciones</option>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Óxido de Etileno Observaciones</td><td> : </td>
+			<td><input required type="text"  		id="oxidoObservaciones" 	name="oxidoObservaciones"	placeholder="Observaciones" ></td>
 		</tr>
 		<tr>
 			<td>Plaguicida</td><td> : </td>
@@ -298,6 +393,70 @@ $(function() {
 			</td>
 		</tr>
 		<tr>
+			<td>Plaguicida Etapa</td><td> : </td>
+			<td>
+			<select id="plaguicidaEtapa" 	name="plaguicidaEtapa">
+				<option value="Evaluación Cualitativa">Evaluación Cualitativa</option>
+				<option value="No Aplica">No Aplica</option>
+				<option value="Evaluación Cuantitativa">Evaluación Cuantitativa</option>
+				<option value="Ingreso a Programa de Vigilancia de Plaguicida">Ingreso a Programa de Vigilancia de Oxido</option>
+				<option value="Seguimiento a las recomendaciones">Seguimiento a las recomendaciones</option>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Óxido de Etileno Observaciones</td><td> : </td>
+			<td><input required type="text"  		id="plaguicidaObservaciones" 	name="plaguicidaObservaciones"	placeholder="Observaciones" ></td>
+		</tr>
+		<tr>
+			<td>MMC</td><td> : </td>
+			<td>
+			<select id="mmc" 	name="mmc">
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td>MMC Etapa</td><td> : </td>
+			<td>
+			<select id="mmcEtapa" 	name="mmcEtapa">
+				<option value="Difusión">Difusión</option>
+				<option value="Asesoría en la construcción de la matriz  MMC">Asesoría en la construcción de la matriz  MMC</option>
+				<option value="Reunión de presentación resultados de la Matriz MMC">Reunión de presentación resultados de la Matriz MMC</option>
+				<option value="Seguimiento a las recomendaciones">Seguimiento a las recomendaciones</option>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td>MMC Observaciones</td><td> : </td>
+			<td><input required type="text"  		id="mmcObservaciones" 	name="mmcObservaciones"	placeholder="Observaciones" ></td>
+		</tr>
+		<tr>
+			<td>TMERT</td><td> : </td>
+			<td>
+			<select id="tmert" 	name="tmert">
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td>TMERT Etapa</td><td> : </td>
+			<td>
+			<select id="tmertEtapa" 	name="tmertEtapa">
+				<option value="Difusión">Difusión</option>
+				<option value="Asesoría en la aplicación de listas de chequeo">Asesoría en la aplicación de listas de chequeo</option>
+				<option value="Reunión de presentación resultados de la Matriz MMC">Reunión de presentación resultados de la Matriz MMC</option>
+				<option value="Seguimiento a las recomendaciones">Seguimiento a las recomendaciones</option>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td>TMERT Observaciones</td><td> : </td>
+			<td><input required type="text"  		id="tmertObservaciones" 	name="tmertObservaciones"	placeholder="Observaciones" ></td>
+		</tr>
+		<tr>
 			<td>Radiación UV</td><td> : </td>
 			<td>
 			<select id="radiacionUv" 	name="radiacionUv">
@@ -307,13 +466,19 @@ $(function() {
 			</td>
 		</tr>
 		<tr>
-			<td>Psicosociales</td><td> : </td>
+			<td>Radiación UV Etapa</td><td> : </td>
 			<td>
-			<select id="psicosociales" 	name="psicosociales">
-				<option value="Si">Si</option>
-				<option value="No">No</option>
+			<select id="radiacionUvEtapa" 	name="radiacionUvEtapa">
+				<option value="Evaluación Cualitativa">Evaluación Cualitativa</option>
+				<option value="Difusión de la Guía">Difusión de la Guía</option>
+				<option value="Asesoría en la definición del Programa de gestión del riesgo de UV solar">Asesoría en la definición del Programa de gestión del riesgo de UV solar</option>
+				<option value="Apoyo en la implementación del programa y seguimiento">Apoyo en la implementación del programa y seguimiento</option>
 			</select>
 			</td>
+		</tr>
+		<tr>
+			<td>Radiación UV Observaciones</td><td> : </td>
+			<td><input required type="text"  		id="radiacionUvObservaciones" 	name="radiacionUvObservaciones"	placeholder="Observaciones" ></td>
 		</tr>
 		<tr>
 			<td>Proyecto Investigación</td><td> : </td>
