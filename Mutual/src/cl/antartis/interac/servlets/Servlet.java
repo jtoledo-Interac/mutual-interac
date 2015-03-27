@@ -38,10 +38,10 @@ import org.json.simple.parser.ContainerFactory;
 import org.json.simple.parser.JSONParser;
 
 import com.google.gson.Gson;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
+//import com.itextpdf.text.Document;
+//import com.itextpdf.text.DocumentException;
+//import com.itextpdf.text.Paragraph;
+//import com.itextpdf.text.pdf.PdfWriter;
 
 import cl.antartis.interac.beans.Cartera;
 import cl.antartis.interac.beans.CategoriaLink;
@@ -1551,7 +1551,7 @@ if(error == null) error = new Error();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
-		/*
+		
 		mapaSalida = ejbRemoto.buscarParametros(mapaEntrada);
 		error = (Error)mapaSalida.get("error");
 		if(error == null) error = new Error();
@@ -1566,7 +1566,7 @@ if(error == null) error = new Error();
 	
 			pagDestino = "contenedor.jsp";
 		}
-		*/
+		/*
 		 try {
 	            // Get the text that will be added to the PDF
 	            String text = request.getParameter("text");
@@ -1606,6 +1606,7 @@ if(error == null) error = new Error();
 	        catch(DocumentException e) {
 	            throw new IOException(e.getMessage());
 	        }
+	        */
 	}
 	
 	public void prodCartera(HttpServletRequest request, HttpServletResponse response) 
