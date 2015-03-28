@@ -2018,7 +2018,7 @@ if(error == null) error = new Error();
 		empresa.setUltimaVisitaAltaGerencia(request.getParameter("ultimaVisitaAltaGerencia"));
 		empresa.setUltimaVisitaExperto(request.getParameter("ultimaVisitaExperto"));
 		empresa.setUltimaVisitaGTTE(request.getParameter("ultimaVisitaGTTE"));
-		empresa.setUltimaVisitaDirector(request.getParameter("ultimVisitaDirector"));
+		empresa.setUltimaVisitaDirector(request.getParameter("ultimaVisitaDirector"));
 		
 		
 		

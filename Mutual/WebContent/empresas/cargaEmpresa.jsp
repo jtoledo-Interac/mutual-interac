@@ -23,7 +23,7 @@
 				<select id="codCartera" name="codCartera" required>
 					<option value="" selected>Seleccione una cartera</option>
 						<c:forEach items="${requestScope.listaCarteras}" var="cartera">
-							<option value="${cartera.idCartera}" >${cartera.desCartera}</option>
+							<option value="${cartera.idCartera}" <c:if test='${empresa.codCartera == cartera.idCartera}'> selected</c:if>>${cartera.desCartera}</option>
 						</c:forEach>
 				</select>
 			</td>
@@ -44,9 +44,9 @@
 			<td>Segmentación</td><td> : </td>
 			<td>
 			<select id="segmentacion" 	name="segmentacion" required>
-					<option value="Grandes cuentas">Grandes cuentas</option>
-					<option value="Estrategicas">Estrategicas</option>
-					<option value="Corporativas">Corporativas</option>
+					<option value="Seg01"<c:if test='${empresa.segmentacion == "Seg01"}'> selected</c:if>>Grandes cuentas</option>
+					<option value="Seg02"<c:if test='${empresa.segmentacion == "Seg02"}'> selected</c:if>>Estrategicas</option>
+					<option value="Seg03"<c:if test='${empresa.segmentacion == "Seg03"}'> selected</c:if>>Corporativas</option>
 				</select>
 			</td>
 		</tr>
@@ -54,27 +54,27 @@
 			<td>Holding</td><td> : </td>
 			<td>
 				<select id="holding" 	name="holding" required>
-					<option value="Si">Si</option>
-					<option value="No">No</option>
+					<option value="Si"<c:if test='${empresa.holding == "Si"}'> selected</c:if>>Si</option>
+					<option value="No"<c:if test='${empresa.holding == "No"}'> selected</c:if>>No</option>
 				</select>
 			</td>	
 		</tr>
 		<tr>
 			<td>Estrategicas</td><td> : </td>
 			<td>
-			<select id="estrategicas" 	name="estrategias" required>
-					<option value="Si">Si</option>
-					<option value="No">No</option>
+			<select id="estrategica" 	name="estrategia" required>
+					<option value="Si"<c:if test='${empresa.estrategica == "Si"}'> selected</c:if>>Si</option>
+					<option value="No"<c:if test='${empresa.estrategica == "No"}'> selected</c:if>>No</option>
 				</select>
 			</td>
 		</tr>
 		<tr>
 			<td>Casa Matriz </td><td>:</td>
 			<td>
-				<select id="codRegionCasaMatriz" 	name="codRegionCasaMatriz"  required>
+				<select id="casaMatriz" 	name="casaMatriz"  required>
 					<option value="">Seleccione una región</option>
 					<c:forEach items="${requestScope.listaRegiones}" var="region">
-						<option value="${region.codRegion}">${region.desRegion}</option>
+						<option value="${region.codRegion}"<c:if test='${empresa.casaMatriz == region.codRegion}'> selected</c:if>>${region.desRegion}</option>
 					</c:forEach>
 				</select>
 			</td>
@@ -82,10 +82,10 @@
 		<tr>
 			<td>Multi Region</td><td> : </td>
 			<td>
-			<select id="multiRegion" 	name="multiRegion" required>
-				<option value="Si">Si</option>
-				<option value="No">No</option>
-				<option value="No Aplica">No Aplica</option>
+			<select id="multiregion" 	name="multiregion" required>
+				<option value="Si"<c:if test='${empresa.multiregion == "Si"}'> selected</c:if>>Si</option>
+				<option value="No"<c:if test='${empresa.multiregion == "No"}'> selected</c:if>>No</option>
+				<option value="NoAplica"<c:if test='${empresa.multiregion == "NoAplica"}'> selected</c:if>>No Aplica</option>
 			</select>
 			</td>
 		</tr>
@@ -105,9 +105,9 @@
 			<td>Planes de Cuenta</td><td> : </td>
 			<td>
 			<select id="planesDeCuenta" 	name="planesDeCuenta" required>
-				<option value="Si">Si</option>
-				<option value="No">No</option>
-				<option value="No Aplica">No Aplica</option>
+				<option value="Si"<c:if test='${empresa.planesDeCuenta == "Si"}'> selected</c:if>>Si</option>
+				<option value="No"<c:if test='${empresa.planesDeCuenta == "No"}'> selected</c:if>>No</option>
+				<option value="NoAplica"<c:if test='${empresa.planesDeCuenta == "NoAplica"}'> selected</c:if>>No Aplica</option>
 			</select>
 			</td>
 			</tr>
