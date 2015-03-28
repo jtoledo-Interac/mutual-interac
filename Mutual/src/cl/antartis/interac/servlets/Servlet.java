@@ -1715,8 +1715,6 @@ if(error == null) error = new Error();
 	
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
-		Long idCartera;
-		idCartera=Utils.stringToNum("3");
 		mapaSalida = ejbRemoto.buscarParametros(mapaEntrada);
 		
 		request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
@@ -1728,7 +1726,7 @@ if(error == null) error = new Error();
 		documento.setNombre(request.getParameter("nombre"));
 		documento.setNumFolio(request.getParameter("numFolio"));
 		documento.setNumAdherente(request.getParameter("numAdherente"));
-		documento.setIdCartera(idCartera);;
+		documento.setIdCartera(Utils.stringToNum(request.getParameter("idCartera")));
 		documento.setIdProducto(Utils.stringToNum(request.getParameter("idProducto")));
 		documento.setCodArea(request.getParameter("codArea"));
 		mapaEntrada.put("documento", documento);
@@ -1943,44 +1941,6 @@ if(error == null) error = new Error();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 
 		Empresa empresa = new Empresa();
-		/*
-		empresa.setNumAdherente(request.getParameter("numAdherente"));
-		empresa.setNombre(request.getParameter("nombre"));
-		empresa.setCodCartera(request.getParameter("codCartera"));
-		empresa.setNomExperto(request.getParameter("nomExperto"));
-		empresa.setRazonSocial(request.getParameter("razonSocial"));
-		empresa.setAnoDeAdhesion(request.getParameter("anoDeAdhesion"));
-		empresa.setSegmentacion(request.getParameter("segmentacion"));
-		empresa.setHolding(request.getParameter("holding"));
-		empresa.setSituacion(request.getParameter("situacion"));
-		empresa.setMultiRegion(request.getParameter("multiRegion"));
-		empresa.setCasaMatriz(request.getParameter("casaMatriz"));
-		empresa.setRegionCasaMatriz(request.getParameter("codRegionCasaMatriz"));
-		empresa.setMasaSum(request.getParameter("masaSum"));
-		empresa.setPlanesDeCuenta(request.getParameter("planesDeCuenta"));
-		empresa.setPlanesDeTrabajo(request.getParameter("planesDeTrabajo"));
-		empresa.setFirmaDePlanes(request.getParameter("firmaDePlanes"));
-		empresa.setSistemaDeGestion(request.getParameter("sistemaDeGestion"));
-		empresa.setConstitucionCphs(request.getParameter("constitucionCphs"));
-		empresa.setCertificacionCphs(request.getParameter("certificacionCphs"));
-		empresa.setMmc(request.getParameter("mmc"));
-		empresa.setTmert(request.getParameter("tmert"));
-		empresa.setPlanesi(request.getParameter("planesi"));
-		empresa.setPlaguicida(request.getParameter("plaguicida"));
-		empresa.setRadiacionUv(request.getParameter("radiacionUv"));
-		empresa.setHipobaria(request.getParameter("hipobaria"));
-		empresa.setPrexor(request.getParameter("prexor"));
-		empresa.setPsicosociales(request.getParameter("psicosociales"));
-		empresa.setProyectoInvestigacion(request.getParameter("proyectoInvestigacion"));
-		empresa.setUltimaVisitaExperto(request.getParameter("ultimaVisitaExperto"));
-		empresa.setUltimaVisitaDirector(request.getParameter("ultimaVisitaDirector"));
-		empresa.setUltimaVisitaGtte(request.getParameter("ultimaVisitaGtte"));
-		empresa.setUltimaVisitaAltaGerencia(request.getParameter("ultimaVisitaAltaGerencia"));
-		empresa.setReporteVisita(request.getParameter("reporteVisita"));
-		empresa.setRiesgoDeFuga(request.getParameter("riesgoDeFuga"));
-		empresa.setReclamoUltimoPeriodo(request.getParameter("reclamoUltimoPeriodo"));
-		empresa.setParticipaMesaTrabajo(request.getParameter("participaMesaTrabajo"));
-		*/
 		
 		empresa.setAnoDeAdhesion(request.getParameter("anoDeAdhesion"));
 		empresa.setAsbesto(request.getParameter("asbesto"));
@@ -1995,6 +1955,7 @@ if(error == null) error = new Error();
 		empresa.setEtapaSistemaGestion(request.getParameter("etapaSistemaGestion"));
 		empresa.setFirmaDePlanes(request.getParameter("firmaDePlanes"));
 		empresa.setFirmaProtocolo(request.getParameter("firmaProtocolo"));
+		empresa.setHolding(request.getParameter("holding"));
 		empresa.setHipobaria(request.getParameter("hipobaria"));
 		empresa.setHipobariaEtapa(request.getParameter("hipobariaEtapa"));
 		empresa.setHipobariaTexto(request.getParameter("hipobariaTexto"));
@@ -2129,6 +2090,7 @@ if(error == null) error = new Error();
 		empresa.setEtapaSistemaGestion(request.getParameter("etapaSistemaGestion"));
 		empresa.setFirmaDePlanes(request.getParameter("firmaDePlanes"));
 		empresa.setFirmaProtocolo(request.getParameter("firmaProtocolo"));
+		empresa.setHolding(request.getParameter("holding"));
 		empresa.setHipobaria(request.getParameter("hipobaria"));
 		empresa.setHipobariaEtapa(request.getParameter("hipobariaEtapa"));
 		empresa.setHipobariaTexto(request.getParameter("hipobariaTexto"));
