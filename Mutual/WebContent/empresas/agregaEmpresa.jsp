@@ -189,7 +189,7 @@ $(function() {
 		</tr>
 			</table>
 		</div>
-		<div id="#tabs-salud_ocupacional">
+		<div id="tabs-salud_ocupacional">
 		<table>
 		<tr>
 			<td>PREXOR</td><td> : </td>
