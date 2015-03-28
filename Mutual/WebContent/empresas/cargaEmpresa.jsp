@@ -15,7 +15,7 @@
 		</tr>
 		<tr>
 			<td>Nombre Experto</td><td> : </td>
-			<td><input required type="text"  value="${empresa.nomExpoerto}"		id="nomExperto" 	name="nomExperto"	placeholder="Nombre Experto" ></td>
+			<td><input required type="text"  value="${empresa.nomExperto}"		id="nomExperto" 	name="nomExperto"	placeholder="Nombre Experto" ></td>
 		</tr>
 		<tr>
 			<td>Código Cartera</td><td> : </td>
@@ -38,7 +38,7 @@
 		</tr>
 		<tr>
 			<td>Año de adhesión</td><td> : </td>
-			<td><input required type="text" class="fecha" value="${empresa.anoAdhesion}"		id="anoDeAdhesion" 	name="anoDeAdhesion"	placeholder="Año de Adhesión" ></td>
+			<td><input required type="text" class="fecha" value="${empresa.anoDeAdhesion}"		id="anoDeAdhesion" 	name="anoDeAdhesion"	placeholder="Año de Adhesión" ></td>
 		</tr>
 		<tr>
 			<td>Segmentación</td><td> : </td>

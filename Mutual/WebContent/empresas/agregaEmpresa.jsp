@@ -6,21 +6,28 @@
 $(function() {
 		setDatePicker();
 		formatRut();
-	});
+		$("#tabs").tabs();
+});
 </script>
 
 <form id="formAgrega" action="Servlet" method="post">
 	<input type="hidden"	id="accion" 		name="accion" 		value="agregarEmpresa">
 	<input type="submit" class="submit" style="display:none;">
-	<table>
-		<tr>
-			<td>Nombre</td><td> : </td>
-			<td> <input required  type="text" 		id="nombre" 		name="nombre" 		placeholder="Nombre Empresa" ></td>
-		</tr>
-		<tr>
-			<td>Nombre Experto</td><td> : </td>
-			<td><input required type="text"  	id="nomExperto" 	name="nomExperto"	placeholder="Nombre Experto" ></td>
-		</tr>
+	<div id="tabs">
+		<ul>
+			<li><a href="#tabs-general">General</a></li>
+			<li><a href="#tabs-salud_ocupacional">Salud Ocupacional</a></li>
+		</ul>
+		<div id="tabs-general">
+			<table>
+				<tr>
+					<td>Nombre</td><td> : </td>
+					<td> <input required  type="text" 		id="nombre" 		name="nombre" 		placeholder="Nombre Empresa" ></td>
+				</tr>
+				<tr>
+					<td>Nombre Experto</td><td> : </td>
+					<td><input required type="text"  	id="nomExperto" 	name="nomExperto"	placeholder="Nombre Experto" ></td>
+				</tr>
 		<tr>
 			<td>Código Cartera</td><td> : </td>
 			<td>
@@ -180,6 +187,10 @@ $(function() {
 			<td>Número CPHS Oro</td><td> : </td>
 			<td><input required type="text"  		id="numeroCPHSOro" 	name="numeroCPHSOro"	placeholder="Número CPHS Oro" ></td>
 		</tr>
+			</table>
+		</div>
+		<div id="#tabs-salud_ocupacional">
+		<table>
 		<tr>
 			<td>PREXOR</td><td> : </td>
 			<td>
@@ -549,5 +560,7 @@ $(function() {
 			</select>
 			</td>
 		</tr>
-	</table>
+		</table>
+	</div>
+	</div>
 </form>
