@@ -99,25 +99,25 @@ function getUrlCargarUsuario(id)
 	        <li><a href="Servlet?accion=organigrama">Organigrama</a></li>
 	        <li><a href="Servlet?accion=carteras">Carteras</a>
 	        	<ul>
-					<li><a href="#">Transporte P&uacute;blico</a>
+					<li><a href="#">Transporte de Personas y Bienes</a>
 						<ul>
 							<li><a href="Servlet?accion=prodCartera">Productos</a></li>
 							<li><a href="Servlet?accion=planesTrabajo">Planes de Trabajo</a></li>
 						</ul>
 					</li>
-					<li><a href="#">Telecomunicaciones y Energ&iacute;a</a>
+					<li><a href="#">Telecomunicaciones</a>
 						<ul>
 							<li><a href="Servlet?accion=prodCartera">Productos</a></li>
 							<li><a href="Servlet?accion=planesTrabajo">Planes de Trabajo</a></li>
 						</ul>
 					</li>
-					<li><a href="#"> Administraci&oacute;n y Transporte de Carga</a>
+					<li><a href="#">Administraci&oacute;n y Transporte de Carga</a>
 						<ul>
 							<li><a href="Servlet?accion=prodCartera">Productos</a></li>
 							<li><a href="Servlet?accion=planesTrabajo">Planes de Trabajo</a></li>
 						</ul>
 					</li>
-					<li><a href="#"> Transporte de Personas y Bienes</a>
+					<li><a href="#">Transversal</a>
 						<ul>
 							<li><a href="Servlet?accion=prodCartera">Productos</a></li>
 							<li><a href="Servlet?accion=planesTrabajo">Planes de Trabajo</a></li>
