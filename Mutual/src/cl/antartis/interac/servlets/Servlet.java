@@ -2652,13 +2652,18 @@ if(error == null) error = new Error();
 		
 		if(mapaSalida.get("reclamo")!=null){
 			reclamo = (Reclamo)mapaSalida.get("reclamo");
-			String to = ConfigUtils.loadProperties("reclamos_user");
+			List<String> recipients = new ArrayList();
+			recipients.add(ConfigUtils.loadProperties("reclamos_user"));
+			recipients.add(reclamo.getEmailSolicitante());
+			//String to = ConfigUtils.loadProperties("reclamos_user");
 			String subject = "Nuevo reclamo("+reclamo.getIdReclamo()+")";
 			String body = reclamo.getEmailBody();
 			String signature = "Firma de mutual..";
-			EmailUtils.sendMail(to, subject, body, signature);
-			to = reclamo.getEmailSolicitante();
-			EmailUtils.sendMail(to, subject, body, signature);	
+			//EmailUtils.sendMail(to, subject, body, signature);
+			//to = reclamo.getEmailSolicitante();
+			
+			//EmailUtils.sendMail(to, subject, body, signature);
+			EmailUtils.sendMail(recipients, subject, body, signature);
 		}
 		
 		error = (Error)mapaSalida.get("error");

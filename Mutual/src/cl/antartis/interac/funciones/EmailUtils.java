@@ -1,6 +1,7 @@
 package cl.antartis.interac.funciones;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
 import javax.mail.Authenticator;
@@ -54,6 +55,51 @@ public class EmailUtils {
 			e.printStackTrace();
 			return false;
 		}
+        return true;
+	}
+	public static Boolean sendMail(List<String> to, String subject, String body, String signature){
+		String out = "contacto";
+        Properties props = ConfigUtils.getEmailProperties(out);
+        user = ConfigUtils.loadProperties(out+"_user");
+        password = ConfigUtils.loadProperties(out+"_password");
+                
+        String message = body+"\n-- \n"+signature;
+        
+        // creates a new session with an authenticator
+        Authenticator auth = new Authenticator() {
+            public PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(user, password);
+            }
+        };
+ 
+        Session session = Session.getInstance(props, auth);
+        
+        // creates a new e-mail message
+        Message msg = new MimeMessage(session);
+        for (int i = 0; i < to.size(); i++) {
+        	
+			//log.info(to.get(i));
+        	 try{
+             	msg.setFrom(new InternetAddress(user));
+     	        InternetAddress[] toAddresses = { new InternetAddress(to.get(i))};
+     	        msg.setRecipients(Message.RecipientType.TO, toAddresses);
+     	        msg.setSubject(subject);
+     	        msg.setSentDate(new Date());
+     	        msg.setText(message);
+             }catch(Exception e){
+             	e.printStackTrace();
+             	return false;
+             }
+             // sends the e-mail
+             try {
+     			Transport.send(msg);
+     		} catch (MessagingException e) {
+     			// TODO Auto-generated catch block
+     			e.printStackTrace();
+     			return false;
+     		}
+		}
+       
         return true;
 	}
 	
