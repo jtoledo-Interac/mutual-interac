@@ -1953,7 +1953,7 @@ if(error == null) error = new Error();
 		empresa.setCodCartera(request.getParameter("codCartera"));
 		empresa.setEstrategica(request.getParameter("estrategica"));
 		empresa.setEtapaSistemaGestion(request.getParameter("etapaSistemaGestion"));
-		empresa.setFirmaDePlanes(request.getParameter("firmaDePlanes"));
+		empresa.setFirmaDePlanes(request.getParameter("firmaPlanes"));
 		empresa.setFirmaProtocolo(request.getParameter("firmaProtocolo"));
 		empresa.setHolding(request.getParameter("holding"));
 		empresa.setHipobaria(request.getParameter("hipobaria"));

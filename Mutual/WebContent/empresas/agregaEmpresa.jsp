@@ -73,16 +73,21 @@ $(function() {
 		<tr>
 			<td>Estrategicas</td><td> : </td>
 			<td>
-			<select id="estrategicas" 	name="estrategias" required>
+			<select id="estrategica" 	name="estrategica" required>
 					<option value="Si">Si</option>
 					<option value="No">No</option>
 				</select>
 			</td>
 		</tr>
 		<tr>
+		<tr>
+			<td>Situacion</td><td> : </td>
+			<td><input required type="text"	id="situacion" 	name="situacion"	placeholder="Situacion" ></td>
+		</tr>
+		<tr>
 			<td>Casa Matriz </td><td>:</td>
 			<td>
-				<select id="codRegionCasaMatriz" 	name="codRegionCasaMatriz"  required>
+				<select id="casaMatriz" 	name="casaMatriz"  required>
 					<option value="">Seleccione una región</option>
 					<c:forEach items="${requestScope.listaRegiones}" var="region">
 						<option value="${region.codRegion}">${region.desRegion}</option>
@@ -93,7 +98,7 @@ $(function() {
 		<tr>
 			<td>Multi Region</td><td> : </td>
 			<td>
-			<select id="multiRegion" 	name="multiRegion" required>
+			<select id="multiregion" 	name="multiregion" required>
 				<option value="Si">Si</option>
 				<option value="No">No</option>
 				<option value="No Aplica">No Aplica</option>
@@ -154,7 +159,7 @@ $(function() {
 		</tr>
 		<tr>
 			<td>Firma del protocolo</td><td> : </td>
-			<td><input required type="text" class="fecha" 		id="fechaFirmaProtocolo" 	name="fechaFirmaProtocolo"	placeholder="Firma del Protocolo" ></td>
+			<td><input required type="text" class="fecha" 		id="firmaProtocolo" 	name="firmaProtocolo"	placeholder="Firma del Protocolo" ></td>
 		</tr>
 		<tr>
 			<td>Etapa Sistema de Gestión</td><td> : </td>
@@ -169,23 +174,23 @@ $(function() {
 		</tr>
 		<tr>
 			<td>Número CPHS</td><td> : </td>
-			<td><input required type="text"  	id="numeroCPHS" 	name="numeroCPHS"	placeholder="Número CPHS" ></td>
+			<td><input required type="text"  	id="numCphs" 	name="numCphs"	placeholder="Número CPHS" ></td>
 		</tr>
 		<tr>
 			<td>Número CPHS Certificados</td><td> : </td>
-			<td><input required type="text" 	id="numeroCPHSCertificados" 	name="numeroCPHSCertificados"	placeholder="Número CPHS Certificados"></td>
+			<td><input required type="text" 	id="numCphsCertificados" 	name="numCphsCertificados"	placeholder="Número CPHS Certificados"></td>
 		</tr>
 		<tr>
 			<td>Número CPHS Bronce</td><td> : </td>
-			<td><input required type="text"  	id="numcroCPHSBronce" 	name="numeroCPHSBronce"	placeholder="Número CPHS Bronce" ></td>
+			<td><input required type="text"  	id="numCphsBronce" 	name="numCphsBronce"	placeholder="Número CPHS Bronce" ></td>
 		</tr>
 		<tr>
 			<td>Número CPHS Plata</td><td> : </td>
-			<td><input required type="text"  		id="numeroCPHSPlata" 	name="numeroCPHSPlata"	placeholder="Número CPHS Plata" ></td>
+			<td><input required type="text"  		id="numCphsPlata" 	name="numCphsPlata"	placeholder="Número CPHS Plata" ></td>
 		</tr>
 		<tr>
 			<td>Número CPHS Oro</td><td> : </td>
-			<td><input required type="text"  		id="numeroCPHSOro" 	name="numeroCPHSOro"	placeholder="Número CPHS Oro" ></td>
+			<td><input required type="text"  		id="numCphsOro" 	name="numCphsOro"	placeholder="Número CPHS Oro" ></td>
 		</tr>
 			</table>
 		</div>

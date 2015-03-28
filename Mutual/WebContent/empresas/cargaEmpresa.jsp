@@ -91,7 +91,7 @@
 		</tr>
 		<tr>
 			<td>Numero Centros de Trabajo</td><td> : </td>
-			<td><input required type="text" value="${empresa.numCentrostrabajo}" 		id="numCentrosTrabajo" 	name="numCentrosTrabajo"	placeholder="Numeros Centros de Trabajo" ></td>
+			<td><input required type="text" value="${empresa.numCentrosTrabajo}" 		id="numCentrosTrabajo" 	name="numCentrosTrabajo"	placeholder="Numeros Centros de Trabajo" ></td>
 		</tr>
 		<tr>
 			<td>Masa Sum Metropolitana</td><td> : </td>
@@ -143,7 +143,7 @@
 		</tr>
 		<tr>
 			<td>Firma del protocolo</td><td> : </td>
-			<td><input required type="text" class="fecha" 	value="${empresa.fechafirmaProtocolo}"	id="fechaFirmaProtocolo" 	name="fechaFirmaProtocolo"	placeholder="Firma del Protocolo" ></td>
+			<td><input required type="text" class="fecha" 	value="${empresa.firmaProtocolo}"	id="fechaFirmaProtocolo" 	name="fechaFirmaProtocolo"	placeholder="Firma del Protocolo" ></td>
 		</tr>
 		<tr>
 			<td>Etapa Sistema de Gestión</td><td> : </td>
@@ -158,23 +158,23 @@
 		</tr>
 		<tr>
 			<td>Número CPHS</td><td> : </td>
-			<td><input required type="text"  value="${empresa.numeroCPHS}"		id="numeroCPHS" 	name="numeroCPHS"	placeholder="Número CPHS" ></td>
+			<td><input required type="text"  value="${empresa.numCphs}"		id="numCPHS" 	name="numCPHS"	placeholder="Número CPHS" ></td>
 		</tr>
 		<tr>
 			<td>Número CPHS Certificados</td><td> : </td>
-			<td><input required type="text"  	value="${empresa.numeroCPHSCertificados}"	id="numeroCPHSCertificados" 	name="numeroCPHSCertificados"	placeholder="Número CPHS Certificados"></td>
+			<td><input required type="text"  	value="${empresa.numCphsCertificado}"	id="numCPHSCertificados" 	name="numCPHSCertificados"	placeholder="Número CPHS Certificados"></td>
 		</tr>
 		<tr>
 			<td>Número CPHS Bronce</td><td> : </td>
-			<td><input required type="text"  	value="${empresa.numeroCPHSBronce}"	id="numcroCPHSBronce" 	name="numeroCPHSBronce"	placeholder="Número CPHS Bronce" ></td>
+			<td><input required type="text"  	value="${empresa.numCphsBronce}"	id="numCPHSBronce" 	name="numCPHSBronce"	placeholder="Número CPHS Bronce" ></td>
 		</tr>
 		<tr>
 			<td>Número CPHS Plata</td><td> : </td>
-			<td><input required type="text"  value="${empresa.numeroCPHSPlata}"		id="numeroCPHSPlata" 	name="numeroCPHSPlata"	placeholder="Número CPHS Plata" ></td>
+			<td><input required type="text"  value="${empresa.numCphsPlata}"		id="numCPHSPlata" 	name="numCPHSPlata"	placeholder="Número CPHS Plata" ></td>
 		</tr>
 		<tr>
 			<td>Número CPHS Oro</td><td> : </td>
-			<td><input required type="text"  value="${empresa.numeroCPHSOro}"		id="numeroCPHSOro" 	name="numeroCPHSOro"	placeholder="Número CPHS Oro" ></td>
+			<td><input required type="text"  value="${empresa.numCphsOro}"		id="numCPHSOro" 	name="numCPHSOro"	placeholder="Número CPHS Oro" ></td>
 		</tr>
 		<tr>
 			<td>PREXOR</td><td> : </td>
@@ -201,7 +201,7 @@
 		</tr>
 		<tr>
 			<td>PREXOR Observaciones</td><td> : </td>
-			<td><input  type="text"  	value="${empresa.prexorObservaciones}"	id="prexorObservaciones" 	name="prexorObservaciones"	placeholder="Observaciones" ></td>
+			<td><input  type="text"  	value="${empresa.prexorTexto}"	id="prexorTexto" 	name="prexorTexto"	placeholder="Observaciones" ></td>
 		</tr>
 		<tr>
 			<td>PLANESI</td><td> : </td>
@@ -228,7 +228,7 @@
 		</tr>
 		<tr>
 			<td>PLANESI Observaciones</td><td> : </td>
-			<td><input  type="text"  value="${empresa.planesiObservaciones}"		id="planesiObservaciones" 	name="planesiObservaciones"	placeholder="Observaciones" ></td>
+			<td><input  type="text"  value="${empresa.planesiTexto}"		id="planesiTexto" 	name="planesiTexto"	placeholder="Observaciones" ></td>
 		</tr>
 		<tr>
 			<td>Asbesto</td><td> : </td>
@@ -252,7 +252,7 @@
 		</tr>
 		<tr>
 			<td>Asbesto Observaciones</td><td> : </td>
-			<td><input  type="text"  value="${empresa.asbestoObservaciones}"		id="asbestoObservaciones" 	name="asbestoObservaciones"	placeholder="Observaciones" ></td>
+			<td><input  type="text"  value="${empresa.asbestoTexto}"		id="asbestoTexto" 	name="asbestoTexto"	placeholder="Observaciones" ></td>
 		</tr>
 		<tr>
 			<td>Hipobaria</td><td> : </td>
@@ -277,12 +277,12 @@
 		</tr>
 		<tr>
 			<td>Hipobaria Observaciones</td><td> : </td>
-			<td><input  type="text"  value="${empresa.hipobariaObservaciones}"		id="hipobariaObservaciones" 	name="hipobariaObservaciones"	placeholder="Observaciones" ></td>
+			<td><input  type="text"  value="${empresa.hipobariaTexto}"		id="hipobariaTexto" 	name="hipobariaTexto"	placeholder="Observaciones" ></td>
 		</tr>
 		<tr>
 			<td>Radiación Ionizante</td><td> : </td>
 			<td>
-			<select id="radiacionIonizante" 	name="radiacionIonizante" required>
+			<select id="radiaciones" 	name="radiaciones" required>
 				<option value="Si">Si</option>
 				<option value="No">No</option>
 			</select>
@@ -291,7 +291,7 @@
 		<tr>
 			<td>Radiación Ionizante Etapa</td><td> : </td>
 			<td>
-			<select id="radiacionIonizanteEtapa" 	name="radiacionIonizanteEtapa">
+			<select id="radiacionesEtapa" 	name="radiacionesEtapa">
 				<option value="Evaluación Cualitativa">Evaluación Cualitativa</option>
 				<option value="No Aplica">No Aplica</option>
 				<option value="Evaluación Cuantitativa">Evaluación Cuantitativa</option>
@@ -302,7 +302,7 @@
 		</tr>
 		<tr>
 			<td>Radiación Observaciones</td><td> : </td>
-			<td><input  type="text"  value="${empresa.radiacionObservaciones}"		id="radiacionObservaciones" 	name="radiacionObservaciones"	placeholder="Observaciones" ></td>
+			<td><input  type="text"  value="${empresa.radiacionesTexto}"		id="radiacionesTexto" 	name="radiacionesTexto"	placeholder="Observaciones" ></td>
 		</tr>
 		<tr>
 			<td>Asma</td><td> : </td>
@@ -327,7 +327,7 @@
 		</tr>
 		<tr>
 			<td>Asma Observaciones</td><td> : </td>
-			<td><input  type="text"  	value="${empresa.asmaObservaciones}"	id="asmaObservaciones" 	name="asmaObservaciones"	placeholder="Observaciones" ></td>
+			<td><input  type="text"  	value="${empresa.asmaTexto}"	id="asmaTexto" 	name="asmaTexto"	placeholder="Observaciones" ></td>
 		</tr>
 		<tr>
 			<td>Solventes</td><td> : </td>
@@ -352,7 +352,7 @@
 		</tr>
 		<tr>
 			<td>Solventes Observaciones</td><td> : </td>
-			<td><input  type="text"  	value="${empresa.solventesObservaciones}"	id="solventesObservaciones" 	name="solventesObservaciones"	placeholder="Observaciones" ></td>
+			<td><input  type="text"  	value="${empresa.solventesTexto}"	id="solventesTexto" 	name="solventesTexto"	placeholder="Observaciones" ></td>
 		</tr>
 		<tr>
 			<td>Metales</td><td> : </td>
@@ -377,7 +377,7 @@
 		</tr>
 		<tr>
 			<td>Metales Observaciones</td><td> : </td>
-			<td><input  type="text"  	value="${empresa.metalesObservaciones}"	id="metalesObservaciones" 	name="metalesObservaciones"	placeholder="Observaciones" ></td>
+			<td><input  type="text"  	value="${empresa.metalesTexto}"	id="metalesTexto" 	name="metalesTexto"	placeholder="Observaciones" ></td>
 		</tr>
 		<tr>
 			<td>Óxido de Etileno</td><td> : </td>
@@ -402,7 +402,7 @@
 		</tr>
 		<tr>
 			<td>Óxido de Etileno Observaciones</td><td> : </td>
-			<td><input  type="text"  	value="${empresa.oxidoObservaciones}"	id="oxidoObservaciones" 	name="oxidoObservaciones"	placeholder="Observaciones" ></td>
+			<td><input  type="text"  	value="${empresa.oxidoTexto}"	id="oxidoTexto" 	name="oxidoTexto"	placeholder="Observaciones" ></td>
 		</tr>
 		<tr>
 			<td>Plaguicida</td><td> : </td>
@@ -427,7 +427,7 @@
 		</tr>
 		<tr>
 			<td>Plaguicida Observaciones</td><td> : </td>
-			<td><input  type="text"  value="${empresa.plaguicidaObservaciones}"		id="plaguicidaObservaciones" 	name="plaguicidaObservaciones"	placeholder="Observaciones" ></td>
+			<td><input  type="text"  value="${empresa.plaguicidaTexto}"		id="plaguicidaTexto" 	name="plaguicidaTexto"	placeholder="Observaciones" ></td>
 		</tr>
 		<tr>
 			<td>MMC</td><td> : </td>
@@ -451,7 +451,7 @@
 		</tr>
 		<tr>
 			<td>MMC Observaciones</td><td> : </td>
-			<td><input  type="text"  	value="${empresa.mmcObservaciones}"	id="mmcObservaciones" 	name="mmcObservaciones"	placeholder="Observaciones" ></td>
+			<td><input  type="text"  	value="${empresa.mmcTexto}"	id="mmcTexto" 	name="mmcTexto"	placeholder="Observaciones" ></td>
 		</tr>
 		<tr>
 			<td>TMERT</td><td> : </td>
@@ -475,12 +475,12 @@
 		</tr>
 		<tr>
 			<td>TMERT Observaciones</td><td> : </td>
-			<td><input  type="text"  value="${empresa.tmertObservaciones}"		id="tmertObservaciones" 	name="tmertObservaciones"	placeholder="Observaciones" ></td>
+			<td><input  type="text"  value="${empresa.tmertTexto}"		id="tmertTexto" 	name="tmertTexto"	placeholder="Observaciones" ></td>
 		</tr>
 		<tr>
 			<td>Radiación UV</td><td> : </td>
 			<td>
-			<select id="radiacionUv" 	name="radiacionUv" required>
+			<select id="radiacionUV" 	name="radiacionUV" required>
 				<option value="Si">Si</option>
 				<option value="No">No</option>
 			</select>
@@ -489,7 +489,7 @@
 		<tr>
 			<td>Radiación UV Etapa</td><td> : </td>
 			<td>
-			<select id="radiacionUvEtapa" 	name="radiacionUvEtapa">
+			<select id="radiacionUVEtapa" 	name="radiacionUVEtapa">
 				<option value="Evaluación Cualitativa">Evaluación Cualitativa</option>
 				<option value="Difusión de la Guía">Difusión de la Guía</option>
 				<option value="Asesoría en la definición del Programa de gestión del riesgo de UV solar">Asesoría en la definición del Programa de gestión del riesgo de UV solar</option>
@@ -499,7 +499,7 @@
 		</tr>
 		<tr>
 			<td>Radiación UV Observaciones</td><td> : </td>
-			<td><input  type="text"  	value="${empresa.radiacionUvObservaciones}"	id="radiacionUvObservaciones" 	name="radiacionUvObservaciones"	placeholder="Observaciones" ></td>
+			<td><input  type="text"  	value="${empresa.radiacionUVTexto}"	id="radiacionUVTexto" 	name="radiacionUVTexto"	placeholder="Observaciones" ></td>
 		</tr>
 		<tr>
 			<td>Ultima Visita Experto</td><td> : </td>
@@ -511,7 +511,7 @@
 		</tr>
 		<tr>
 			<td>Ultima Visita Gerente</td><td> : </td>
-			<td> <input required type="text" 	class="fecha" value="${empresa.ultimaVisitaGtte}"	id="ultimaVisitaGtte" 		name="ultimaVisitaGtte" 		placeholder="Ultima Visita Gerente" ></td>
+			<td> <input required type="text" 	class="fecha" value="${empresa.ultimaVisitaGTTE}"	id="ultimaVisitaGTTE" 		name="ultimaVisitaGTTE" 		placeholder="Ultima Visita Gerente" ></td>
 		</tr>
 		<tr>
 			<td>Ultima Visita Alta Gerencia</td><td> : </td>
