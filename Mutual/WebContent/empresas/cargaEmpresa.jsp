@@ -536,9 +536,9 @@
 			<td> <input required type="text" value="${empresa.reclamoUltimoPeriodo}"	class="fecha"	id="reclamoUltimoPeriodo" 		name="reclamoUltimoPeriodo" 		placeholder="Reclamo Ultimo Periodo" ></td>
 		</tr>
 		<tr>
-			<td>Participa Mesa Trabajo</td><td> : </td>
+			<td>Participación Mesa Trabajo</td><td> : </td>
 			<td>
-			<select id="participaMesaTrabajo" 	name="participaMesaTrabajo">
+			<select id="participacionMesaTrabajo" 	name="participacionMesaTrabajo">
 				<option value="Si">Si</option>
 				<option value="No">No</option>
 				<option value="No Aplica">No Aplica</option>

@@ -15,11 +15,11 @@ $(function() {
 	<table>
 		<tr>
 			<td>Nombre</td><td> : </td>
-			<td> <input required type="text" 		id="nombre" 		name="nombre" 		placeholder="Nombre Empresa" ></td>
+			<td> <input required  type="text" 		id="nombre" 		name="nombre" 		placeholder="Nombre Empresa" ></td>
 		</tr>
 		<tr>
 			<td>Nombre Experto</td><td> : </td>
-			<td><input required type="text"  		id="nomExperto" 	name="nomExperto"	placeholder="Nombre Experto" ></td>
+			<td><input required type="text"  	id="nomExperto" 	name="nomExperto"	placeholder="Nombre Experto" ></td>
 		</tr>
 		<tr>
 			<td>Código Cartera</td><td> : </td>
@@ -42,7 +42,7 @@ $(function() {
 		</tr>
 		<tr>
 			<td>Año de adhesión</td><td> : </td>
-			<td><input required type="text" class="fecha" 		id="anoDeAdhesion" 	name="anoDeAdhesion"	placeholder="Año de Adhesión" ></td>
+			<td><input required type="text" class="fecha" 	id="anoDeAdhesion" 	name="anoDeAdhesion"	placeholder="Año de Adhesión" ></td>
 		</tr>
 		<tr>
 			<td>Segmentación</td><td> : </td>
@@ -95,15 +95,15 @@ $(function() {
 		</tr>
 		<tr>
 			<td>Numero Centros de Trabajo</td><td> : </td>
-			<td><input required type="text"  		id="numCentrosTrabajo" 	name="numCentrosTrabajo"	placeholder="Numeros Centros de Trabajo" ></td>
+			<td><input required type="text"	id="numCentrosTrabajo" 	name="numCentrosTrabajo"	placeholder="Numeros Centros de Trabajo" ></td>
 		</tr>
 		<tr>
 			<td>Masa Sum Metropolitana</td><td> : </td>
-			<td><input required type="text"  		id="masaSumMetropolitana" 	name="masaSumMetropolitana"	placeholder="Masa Sum Metropolitana" ></td>
+			<td><input required type="text"   		id="masaSumMetropolitana" 	name="masaSumMetropolitana"	placeholder="Masa Sum Metropolitana" ></td>
 		</tr>
 		<tr>
 			<td>Masa Sum Nacional</td><td> : </td>
-			<td><input required type="text"  		id="masaSumNacional" 	name="masaSumNacional"	placeholder="Masa Sum Nacional" ></td>
+			<td><input required type="text"  	id="masaSumNacional" 	name="masaSumNacional"	placeholder="Masa Sum Nacional" ></td>
 		</tr>
 		<tr>
 			<td>Planes de Cuenta</td><td> : </td>
@@ -146,6 +146,10 @@ $(function() {
 			</td>
 		</tr>
 		<tr>
+			<td>Firma del protocolo</td><td> : </td>
+			<td><input required type="text" class="fecha" 		id="fechaFirmaProtocolo" 	name="fechaFirmaProtocolo"	placeholder="Firma del Protocolo" ></td>
+		</tr>
+		<tr>
 			<td>Etapa Sistema de Gestión</td><td> : </td>
 			<td>
 			<select id="etapaSistemaGestion" 	name="etapaSistemaGestion" required>
@@ -157,20 +161,16 @@ $(function() {
 			</td>
 		</tr>
 		<tr>
-			<td>Firma del protocolo</td><td> : </td>
-			<td><input required type="text" class="fecha" 		id="fechaFirmaProtocolo" 	name="fechaFirmaProtocolo"	placeholder="Firma del Protocolo" ></td>
-		</tr>
-		<tr>
 			<td>Número CPHS</td><td> : </td>
-			<td><input required type="text"  		id="numeroCPHS" 	name="numeroCPHS"	placeholder="Número CPHS" ></td>
+			<td><input required type="text"  	id="numeroCPHS" 	name="numeroCPHS"	placeholder="Número CPHS" ></td>
 		</tr>
 		<tr>
 			<td>Número CPHS Certificados</td><td> : </td>
-			<td><input required type="text"  		id="numeroCPHSCertificados" 	name="numeroCPHSCertificados"	placeholder="Número CPHS Certificados"></td>
+			<td><input required type="text" 	id="numeroCPHSCertificados" 	name="numeroCPHSCertificados"	placeholder="Número CPHS Certificados"></td>
 		</tr>
 		<tr>
 			<td>Número CPHS Bronce</td><td> : </td>
-			<td><input required type="text"  		id="numeroCPHSBronce" 	name="numeroCPHSBronce"	placeholder="Número CPHS Bronce" ></td>
+			<td><input required type="text"  	id="numcroCPHSBronce" 	name="numeroCPHSBronce"	placeholder="Número CPHS Bronce" ></td>
 		</tr>
 		<tr>
 			<td>Número CPHS Plata</td><td> : </td>
@@ -192,7 +192,7 @@ $(function() {
 		<tr>
 			<td>PREXOR Etapa</td><td> : </td>
 			<td>
-			<select id="prexorEtapa" name="prexorEtapa" >
+			<select id="prexorEtapa" name="prexorEtapa">
 				<option value="Evaluación Cualitativa">Evaluación Cualitativa</option>
 				<option value="No Aplica">No Aplica</option>
 				<option value="Difusión del Protocolo">Difusión del Protocolo</option>
@@ -205,12 +205,12 @@ $(function() {
 		</tr>
 		<tr>
 			<td>PREXOR Observaciones</td><td> : </td>
-			<td><input type="text"  		id="prexorObservaciones" 	name="prexorObservaciones"	placeholder="Observaciones" ></td>
+			<td><input  type="text"  		id="prexorObservaciones" 	name="prexorObservaciones"	placeholder="Observaciones" ></td>
 		</tr>
 		<tr>
 			<td>PLANESI</td><td> : </td>
 			<td>
-			<select id="planesi" 	name="planesi">
+			<select id="planesi" 	name="planesi" required>
 				<option value="Si">Si</option>
 				<option value="No">No</option>
 			</select>
@@ -219,7 +219,7 @@ $(function() {
 		<tr>
 			<td>PLANESI Etapa</td><td> : </td>
 			<td>
-			<select id="planesiEtapa" name="planesiEtapa">
+			<select id="planesiEtapa" name="planesiEtapa" >
 				<option value="Evaluación Cualitativa">Evaluación Cualitativa</option>
 				<option value="No Aplica">No Aplica</option>
 				<option value="Difusión del Protocolo">Difusión del Protocolo</option>
@@ -232,11 +232,7 @@ $(function() {
 		</tr>
 		<tr>
 			<td>PLANESI Observaciones</td><td> : </td>
-			<td><input  type="text"		id="planesiObservaciones" 	name="planesiObservaciones"	placeholder="Observaciones" ></td>
-		</tr>
-		<tr>
-			<td>TMERT Observaciones</td><td> : </td>
-			<td><input type="text"  		id="tmertObservaciones" 	name="tmertObservaciones"	placeholder="Observaciones" ></td>
+			<td><input  type="text"  		id="planesiObservaciones" 	name="planesiObservaciones"	placeholder="Observaciones" ></td>
 		</tr>
 		<tr>
 			<td>Asbesto</td><td> : </td>
@@ -260,7 +256,7 @@ $(function() {
 		</tr>
 		<tr>
 			<td>Asbesto Observaciones</td><td> : </td>
-			<td><input  type="text"  		id="asbestoObservaciones" 	name="asbestoObservaciones"	placeholder="Observaciones" ></td>
+			<td><input  type="text"  id="asbestoObservaciones" 	name="asbestoObservaciones"	placeholder="Observaciones" ></td>
 		</tr>
 		<tr>
 			<td>Hipobaria</td><td> : </td>
@@ -285,7 +281,7 @@ $(function() {
 		</tr>
 		<tr>
 			<td>Hipobaria Observaciones</td><td> : </td>
-			<td><input type="text"  		id="hipobariaObservaciones" 	name="hipobariaObservaciones"	placeholder="Observaciones" ></td>
+			<td><input  type="text"  		id="hipobariaObservaciones" 	name="hipobariaObservaciones"	placeholder="Observaciones" ></td>
 		</tr>
 		<tr>
 			<td>Radiación Ionizante</td><td> : </td>
@@ -335,7 +331,7 @@ $(function() {
 		</tr>
 		<tr>
 			<td>Asma Observaciones</td><td> : </td>
-			<td><input  type="text"  		id="asmaObservaciones" 	name="asmaObservaciones"	placeholder="Observaciones" ></td>
+			<td><input  type="text"  	id="asmaObservaciones" 	name="asmaObservaciones"	placeholder="Observaciones" ></td>
 		</tr>
 		<tr>
 			<td>Solventes</td><td> : </td>
@@ -360,7 +356,7 @@ $(function() {
 		</tr>
 		<tr>
 			<td>Solventes Observaciones</td><td> : </td>
-			<td><input  type="text"  		id="solventesObservaciones" 	name="solventesObservaciones"	placeholder="Observaciones" ></td>
+			<td><input  type="text"  	id="solventesObservaciones" 	name="solventesObservaciones"	placeholder="Observaciones" ></td>
 		</tr>
 		<tr>
 			<td>Metales</td><td> : </td>
@@ -385,7 +381,7 @@ $(function() {
 		</tr>
 		<tr>
 			<td>Metales Observaciones</td><td> : </td>
-			<td><input  type="text"  		id="metalesObservaciones" 	name="metalesObservaciones"	placeholder="Observaciones" ></td>
+			<td><input  type="text"  	id="metalesObservaciones" 	name="metalesObservaciones"	placeholder="Observaciones" ></td>
 		</tr>
 		<tr>
 			<td>Óxido de Etileno</td><td> : </td>
@@ -410,7 +406,7 @@ $(function() {
 		</tr>
 		<tr>
 			<td>Óxido de Etileno Observaciones</td><td> : </td>
-			<td><input  type="text"  		id="oxidoObservaciones" 	name="oxidoObservaciones"	placeholder="Observaciones" ></td>
+			<td><input  type="text"  	id="oxidoObservaciones" 	name="oxidoObservaciones"	placeholder="Observaciones" ></td>
 		</tr>
 		<tr>
 			<td>Plaguicida</td><td> : </td>
@@ -435,7 +431,7 @@ $(function() {
 		</tr>
 		<tr>
 			<td>Plaguicida Observaciones</td><td> : </td>
-			<td><input  type="text"  		id="plaguicidaObservaciones" 	name="plaguicidaObservaciones"	placeholder="Observaciones" ></td>
+			<td><input  type="text" 		id="plaguicidaObservaciones" 	name="plaguicidaObservaciones"	placeholder="Observaciones" ></td>
 		</tr>
 		<tr>
 			<td>MMC</td><td> : </td>
@@ -459,12 +455,12 @@ $(function() {
 		</tr>
 		<tr>
 			<td>MMC Observaciones</td><td> : </td>
-			<td><input  type="text"  		id="mmcObservaciones" 	name="mmcObservaciones"	placeholder="Observaciones" ></td>
+			<td><input  type="text" 	id="mmcObservaciones" 	name="mmcObservaciones"	placeholder="Observaciones" ></td>
 		</tr>
 		<tr>
 			<td>TMERT</td><td> : </td>
 			<td>
-			<select id="tmert" 	name="tmert">
+			<select id="tmert" 	name="tmert" required>
 				<option value="Si">Si</option>
 				<option value="No">No</option>
 			</select>
@@ -483,7 +479,7 @@ $(function() {
 		</tr>
 		<tr>
 			<td>TMERT Observaciones</td><td> : </td>
-			<td><input  type="text"  		id="tmertObservaciones" 	name="tmertObservaciones"	placeholder="Observaciones" ></td>
+			<td><input  type="text" 		id="tmertObservaciones" 	name="tmertObservaciones"	placeholder="Observaciones" ></td>
 		</tr>
 		<tr>
 			<td>Radiación UV</td><td> : </td>
@@ -507,7 +503,7 @@ $(function() {
 		</tr>
 		<tr>
 			<td>Radiación UV Observaciones</td><td> : </td>
-			<td><input  type="text"  		id="radiacionUvObservaciones" 	name="radiacionUvObservaciones"	placeholder="Observaciones" ></td>
+			<td><input  type="text" 	id="radiacionUvObservaciones" 	name="radiacionUvObservaciones"	placeholder="Observaciones" ></td>
 		</tr>
 		<tr>
 			<td>Ultima Visita Experto</td><td> : </td>
@@ -519,11 +515,11 @@ $(function() {
 		</tr>
 		<tr>
 			<td>Ultima Visita Gerente</td><td> : </td>
-			<td> <input required type="text" 	class="fecha"	id="ultimaVisitaGtte" 		name="ultimaVisitaGtte" 		placeholder="Ultima Visita Gerente" ></td>
+			<td> <input required type="text" 	class="fecha" 	id="ultimaVisitaGtte" 		name="ultimaVisitaGtte" 		placeholder="Ultima Visita Gerente" ></td>
 		</tr>
 		<tr>
 			<td>Ultima Visita Alta Gerencia</td><td> : </td>
-			<td> <input required type="text" 	class="fecha"	id="ultimaVisitaAltaGerencia" 		name="ultimaVisitaAltaGerencia" 		placeholder="Ultima Visita Alta Gerencia" ></td>
+			<td> <input required type="text" 	class="fecha" id="ultimaVisitaAltaGerencia" 		name="ultimaVisitaAltaGerencia" 		placeholder="Ultima Visita Alta Gerencia" ></td>
 		</tr>
 		<tr>
 			<td>Reporte Visita</td><td> : </td>
@@ -544,9 +540,9 @@ $(function() {
 			<td> <input required type="text" 	class="fecha"	id="reclamoUltimoPeriodo" 		name="reclamoUltimoPeriodo" 		placeholder="Reclamo Ultimo Periodo" ></td>
 		</tr>
 		<tr>
-			<td>Participa Mesa Trabajo</td><td> : </td>
+			<td>Participación Mesa Trabajo</td><td> : </td>
 			<td>
-			<select id="participaMesaTrabajo" 	name="participaMesaTrabajo">
+			<select id="participacionMesaTrabajo" 	name="participacionMesaTrabajo">
 				<option value="Si">Si</option>
 				<option value="No">No</option>
 				<option value="No Aplica">No Aplica</option>
