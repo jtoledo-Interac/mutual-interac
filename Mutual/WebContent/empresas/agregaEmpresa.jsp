@@ -146,10 +146,6 @@ $(function() {
 			</td>
 		</tr>
 		<tr>
-			<td>Firma del protocolo</td><td> : </td>
-			<td><input required type="text" class="fecha" 		id="fechaFirmaProtocolo" 	name="fechaFirmaProtocolo"	placeholder="Firma del Protocolo" ></td>
-		</tr>
-		<tr>
 			<td>Etapa Sistema de Gestión</td><td> : </td>
 			<td>
 			<select id="etapaSistemaGestion" 	name="etapaSistemaGestion" required>
@@ -159,6 +155,10 @@ $(function() {
 				<option value="No Aplica">No Aplica</option>
 			</select>
 			</td>
+		</tr>
+		<tr>
+			<td>Firma del protocolo</td><td> : </td>
+			<td><input required type="text" class="fecha" 		id="fechaFirmaProtocolo" 	name="fechaFirmaProtocolo"	placeholder="Firma del Protocolo" ></td>
 		</tr>
 		<tr>
 			<td>Número CPHS</td><td> : </td>
