@@ -342,18 +342,18 @@ public class Servlet extends HttpServlet {
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 
-		Gson gson = new Gson();
-		String FileContent = readEntireFile("C:/Users/Joaco/Documents/organigrama.txt");
-		OrgEntry[] orgEntries = gson.fromJson(FileContent, OrgEntry[].class);
-		log.info(orgEntries.length);
+		//Gson gson = new Gson();
+		//String FileContent = readEntireFile("C:/Users/Joaco/Documents/organigrama.txt");
+		//OrgEntry[] orgEntries = gson.fromJson(FileContent, OrgEntry[].class);
+		//log.info(orgEntries.length);
 		
-		for(int i=0; i<orgEntries.length; i++){
-			log.info(i);
-            log.info(orgEntries[i].getNombre());
-            log.info(orgEntries[i].getCargo());
-            log.info(orgEntries[i].getSupervisor());
-       }
-		request.setAttribute("OrgEntries", orgEntries);// mapaSalida.put("OrgEntries",orgEntries);
+		//for(int i=0; i<orgEntries.length; i++){
+		//	log.info(i);
+        //    log.info(orgEntries[i].getNombre());
+        //    log.info(orgEntries[i].getCargo());
+        //    log.info(orgEntries[i].getSupervisor());
+      // }
+		//request.setAttribute("OrgEntries", orgEntries);// mapaSalida.put("OrgEntries",orgEntries);
 	//------------
 		pagDestino = "contenedor.jsp";
 	}

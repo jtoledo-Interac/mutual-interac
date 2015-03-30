@@ -69,9 +69,9 @@
 <div class="mantenedor">
 	<div class="organigrama">
 		<div id="chart_div" style="overflow: scroll; padding: 10px;"></div>
-		ENTRIES!!!!
-		<c:forEach items="${OrgEntries}" var="oEntry">
-					<option value="${oEntry.nombre}" >${oEntry.cargo}</option>
-		</c:forEach>
+		<!-- ENTRIES!!!!  -->
+		<!-- <c:forEach items="${OrgEntries}" var="oEntry"> -->
+		<!-- 			<option value="${oEntry.nombre}" >${oEntry.cargo}</option> -->
+		<!-- </c:forEach> -->
 	</div>
 </div>
