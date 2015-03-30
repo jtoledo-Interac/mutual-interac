@@ -1953,7 +1953,7 @@ if(error == null) error = new Error();
 		empresa.setCodCartera(request.getParameter("codCartera"));
 		empresa.setEstrategica(request.getParameter("estrategica"));
 		empresa.setEtapaSistemaGestion(request.getParameter("etapaSistemaGestion"));
-		empresa.setFirmaDePlanes(request.getParameter("firmaPlanes"));
+		empresa.setFirmaDePlanes(request.getParameter("firmaDePlanes"));
 		empresa.setFirmaProtocolo(request.getParameter("firmaProtocolo"));
 		empresa.setHolding(request.getParameter("holding"));
 		empresa.setHipobaria(request.getParameter("hipobaria"));
@@ -2652,18 +2652,13 @@ if(error == null) error = new Error();
 		
 		if(mapaSalida.get("reclamo")!=null){
 			reclamo = (Reclamo)mapaSalida.get("reclamo");
-			List<String> recipients = new ArrayList();
-			recipients.add(ConfigUtils.loadProperties("reclamos_user"));
-			recipients.add(reclamo.getEmailSolicitante());
-			//String to = ConfigUtils.loadProperties("reclamos_user");
+			String to = ConfigUtils.loadProperties("reclamos_user");
 			String subject = "Nuevo reclamo("+reclamo.getIdReclamo()+")";
 			String body = reclamo.getEmailBody();
 			String signature = "Firma de mutual..";
-			//EmailUtils.sendMail(to, subject, body, signature);
-			//to = reclamo.getEmailSolicitante();
-			
-			//EmailUtils.sendMail(to, subject, body, signature);
-			EmailUtils.sendMail(recipients, subject, body, signature);
+			EmailUtils.sendMail(to, subject, body, signature);
+			to = reclamo.getEmailSolicitante();
+			EmailUtils.sendMail(to, subject, body, signature);	
 		}
 		
 		error = (Error)mapaSalida.get("error");

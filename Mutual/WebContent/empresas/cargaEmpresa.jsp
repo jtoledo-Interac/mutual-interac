@@ -47,6 +47,7 @@
 					<option value="Seg01"<c:if test='${empresa.segmentacion == "Seg01"}'> selected</c:if>>Grandes cuentas</option>
 					<option value="Seg02"<c:if test='${empresa.segmentacion == "Seg02"}'> selected</c:if>>Estrategicas</option>
 					<option value="Seg03"<c:if test='${empresa.segmentacion == "Seg03"}'> selected</c:if>>Corporativas</option>
+					
 				</select>
 			</td>
 		</tr>
@@ -115,8 +116,9 @@
 			<td>Planes de Trabajo</td><td> : </td>
 			<td>
 			<select id="planesDeTrabajo" 	name="planesDeTrabajo" required>
-				<option value="Si">Si</option>
-				<option value="No">No</option>
+					<option value="Si"<c:if test='${empresa.planesDeTrabajo == "Si"}'> selected</c:if>>Si</option>
+				<option value="No"<c:if test='${empresa.planesDeTrabajo == "No"}'> selected</c:if>>No</option>
+				<option value="NoAplica"<c:if test='${empresa.planesDeTrabajo == "NoAplica"}'> selected</c:if>>No Aplica</option>
 			</select>
 			</td>
 		</tr>
@@ -124,8 +126,8 @@
 			<td>Firma de planes</td><td> : </td>
 			<td>
 			<select id="firmaDePlanes" 	name="firmaDePlanes" required>
-				<option value="Si">Si</option>
-				<option value="No">No</option>
+				<option value="Si"<c:if test='${empresa.firmaDePlanes == "Si"}'> selected</c:if>>Si</option>
+				<option value="No"<c:if test='${empresa.firmaDePlanes == "No"}'> selected</c:if>>No</option>
 			</select>
 			</td>
 		</tr>
@@ -133,11 +135,11 @@
 			<td>Sistema de Gestión</td><td> : </td>
 			<td>
 			<select id="sistemaDeGestion" 	name="sistemaDeGestion" required>
-				<option value="PEC Estandar">PEC Estandar</option>
-				<option value="PEC Competitividad">PEC Competitividad</option>
-				<option value="Excelencia">Excelencia</option>
-				<option value="Autogestion">Autogestion</option>
-				<option value="No Tiene">No Tiene</option>
+				<option value="Seg01"<c:if test='${empresa.sistemaDeGestion == "Seg01"}'> selected</c:if>>PEC Estandar</option>
+				<option value="Seg02"<c:if test='${empresa.sistemaDeGestion == "Seg02"}'> selected</c:if>>PEC Competitividad</option>
+				<option value="Seg03"<c:if test='${empresa.sistemaDeGestion == "Seg03"}'> selected</c:if>>Excelencia</option>
+				<option value="Seg04"<c:if test='${empresa.sistemaDeGestion == "Seg04"}'> selected</c:if>>Autogestion</option>
+				<option value="Seg05"<c:if test='${empresa.sistemaDeGestion == "Seg05"}'> selected</c:if>>No Tiene</option>
 			</select>
 			</td>
 		</tr>
@@ -149,10 +151,10 @@
 			<td>Etapa Sistema de Gestión</td><td> : </td>
 			<td>
 			<select id="etapaSistemaGestion" 	name="etapaSistemaGestion" required>
-				<option value="Implementacion">Implementación</option>
-				<option value="Auditoria">Auditoría</option>
-				<option value="Certificacion">Certificación</option>
-				<option value="No Aplica">No Aplica</option>
+				<option value="Seg01"<c:if test='${empresa.etapaSistemaGestion == "Seg01"}'> selected</c:if>>Implementación</option>
+				<option value="Seg02"<c:if test='${empresa.etapaSistemaGestion == "Seg02"}'> selected</c:if>>Auditoría</option>
+				<option value="Seg03"<c:if test='${empresa.etapaSistemaGestion == "Seg03"}'> selected</c:if>>Certificación</option>
+				<option value="Seg04"<c:if test='${empresa.etapaSistemaGestion == "Seg04"}'> selected</c:if>>No Aplica</option>
 			</select>
 			</td>
 		</tr>
@@ -180,8 +182,8 @@
 			<td>PREXOR</td><td> : </td>
 			<td>
 			<select id="prexor" name="prexor" required>
-				<option value="Si">Si</option>
-				<option value="No">No</option>
+				<option value="Si"<c:if test='${empresa.prexor == "Si"}'> selected</c:if>>Si</option>
+				<option value="No"<c:if test='${empresa.prexor == "No"}'> selected</c:if>>No</option>
 			</select>
 			</td>
 		</tr>
@@ -189,13 +191,13 @@
 			<td>PREXOR Etapa</td><td> : </td>
 			<td>
 			<select id="prexorEtapa" name="prexorEtapa">
-				<option value="Evaluación Cualitativa">Evaluación Cualitativa</option>
-				<option value="No Aplica">No Aplica</option>
-				<option value="Difusión del Protocolo">Difusión del Protocolo</option>
-				<option value="Asesoría en la Construcción de la matriz de riesgo de ruido">Asesoría en la Construcción de la matriz de riesgo de ruido</option>
-				<option value="Evaluación Cualitativa del GES">Evaluación Cualitativa del GES</option>
-				<option value="Ingreso a programa vigente de conservación auditiva">Ingreso a programa vigente de conservación auditiva</option>
-				<option value="Seguimiento a las recomendaciones">Seguimiento a las recomendaciones</option>
+				<option value="Seg01"<c:if test='${empresa.prexorEtapa == "Seg01"}'> selected</c:if>>Evaluación Cualitativa</option>
+				<option value="Seg02"<c:if test='${empresa.prexorEtapa == "Seg02"}'> selected</c:if>>No Aplica</option>
+				<option value="Seg03"<c:if test='${empresa.prexorEtapa == "Seg03"}'> selected</c:if>>Difusión del Protocolo</option>
+				<option value="Seg04"<c:if test='${empresa.prexorEtapa == "Seg04"}'> selected</c:if>>Asesoría en la Construcción de la matriz de riesgo de ruido</option>
+				<option value="Seg05"<c:if test='${empresa.prexorEtapa == "Seg05"}'> selected</c:if>>Evaluación Cualitativa del GES</option>
+				<option value="Seg06"<c:if test='${empresa.prexorEtapa == "Seg06"}'> selected</c:if>>Ingreso a programa vigente de conservación auditiva</option>
+				<option value="Seg07"<c:if test='${empresa.prexorEtapa == "Seg07"}'> selected</c:if>>Seguimiento a las recomendaciones</option>
 			</select>
 			</td>
 		</tr>
@@ -207,8 +209,8 @@
 			<td>PLANESI</td><td> : </td>
 			<td>
 			<select id="planesi" 	name="planesi" required>
-				<option value="Si">Si</option>
-				<option value="No">No</option>
+				<option value="Si"<c:if test='${empresa.planesi == "Si"}'> selected</c:if>>Si</option>
+				<option value="No"<c:if test='${empresa.planesi == "No"}'> selected</c:if>>No</option>
 			</select>
 			</td>
 		</tr>
@@ -216,13 +218,13 @@
 			<td>PLANESI Etapa</td><td> : </td>
 			<td>
 			<select id="planesiEtapa" name="planesiEtapa" >
-				<option value="Evaluación Cualitativa">Evaluación Cualitativa</option>
-				<option value="No Aplica">No Aplica</option>
-				<option value="Difusión del Protocolo">Difusión del Protocolo</option>
-				<option value="Asesoría en la Construcción de la matriz de riesgo Sílice">Asesoría en la Construcción de la matriz de riesgo Sílice</option>
-				<option value="Evaluación Cualitativa del GES">Evaluación Cualitativa del GES</option>
-				<option value="Ingreso a programa vigente Neumoconiogeno">Ingreso a programa vigente Neumoconiogeno</option>
-				<option value="Seguimiento a las recomendaciones">Seguimiento a las recomendaciones</option>
+				<option value="Seg01"<c:if test='${empresa.planesiEtapa == "Seg01"}'> selected</c:if>>Evaluación Cualitativa</option>
+				<option value="Seg02"<c:if test='${empresa.planesiEtapa == "Seg02"}'> selected</c:if>>No Aplica</option>
+				<option value="Seg03"<c:if test='${empresa.planesiEtapa == "Seg03"}'> selected</c:if>>Difusión del Protocolo</option>
+				<option value="Seg04"<c:if test='${empresa.planesiEtapa == "Seg04"}'> selected</c:if>>Asesoría en la Construcción de la matriz de riesgo Sílice</option>
+				<option value="Seg05"<c:if test='${empresa.planesiEtapa == "Seg05"}'> selected</c:if>>Evaluación Cualitativa del GES</option>
+				<option value="Seg06"<c:if test='${empresa.planesiEtapa == "Seg06"}'> selected</c:if>>Ingreso a programa vigente Neumoconiogeno</option>
+				<option value="Seg07"<c:if test='${empresa.planesiEtapa == "Seg07"}'> selected</c:if>>Seguimiento a las recomendaciones</option>
 			</select>
 			</td>
 		</tr>
@@ -234,8 +236,8 @@
 			<td>Asbesto</td><td> : </td>
 			<td>
 			<select id="asbesto" 	name="asbesto" required>
-				<option value="Si">Si</option>
-				<option value="No">No</option>
+				<option value="Si"<c:if test='${empresa.asbesto == "Si"}'> selected</c:if>>Si</option>
+				<option value="No"<c:if test='${empresa.asbesto == "No"}'> selected</c:if>>No</option>
 			</select>
 			</td>
 		</tr>
@@ -243,10 +245,10 @@
 			<td>Asbesto Etapa</td><td> : </td>
 			<td>
 			<select id="asbestoEtapa" 	name="asbestoEtapa">
-				<option value="Evaluación Cualitativa">Evaluación Cualitativa</option>
-				<option value="No Aplica">No Aplica</option>
-				<option value="Ingreso a programa vigente Neumoconiogeno">Ingreso a programa vigente Neumoconiogeno</option>
-				<option value="Seguimiento a las recomendaciones">Seguimiento a las recomendaciones</option>
+				<option value="Seg01"<c:if test='${empresa.asbestoEtapa == "Seg01"}'> selected</c:if>>Evaluación Cualitativa</option>
+				<option value="Seg02"<c:if test='${empresa.asbestoEtapa == "Seg02"}'> selected</c:if>>No Aplica</option>
+				<option value="Seg03"<c:if test='${empresa.asbestoEtapa == "Seg03"}'> selected</c:if>>Ingreso a programa vigente Neumoconiogeno</option>
+				<option value="Seg04"<c:if test='${empresa.asbestoEtapa == "Seg04"}'> selected</c:if>>Seguimiento a las recomendaciones</option>
 			</select>
 			</td>
 		</tr>
@@ -258,8 +260,8 @@
 			<td>Hipobaria</td><td> : </td>
 			<td>
 			<select id="hipobaria" 	name="hipobaria" required>
-				<option value="Si">Si</option>
-				<option value="No">No</option>
+				<option value="Si"<c:if test='${empresa.hipobaria == "Si"}'> selected</c:if>>Si</option>
+				<option value="No"<c:if test='${empresa.hipobaria == "No"}'> selected</c:if>>No</option>
 			</select>
 			</td>
 		</tr>
@@ -267,11 +269,11 @@
 			<td>Hipobaria Etapa</td><td> : </td>
 			<td>
 			<select id="hipobariaEtapa" 	name="hipobariaEtapa">
-				<option value="Evaluación Cualitativa">Evaluación Cualitativa</option>
-				<option value="No Aplica">No Aplica</option>
-				<option value="Estudio Diagnostico">Estudio Diagnostico</option>
-				<option value="Ingreso a Programa de Vigilancia">Ingreso a Programa de Vigilancia</option>
-				<option value="Vigilancia, Seguimiento de impacto de medidas de mitigación">Ingreso a programa vigente Neumoconiogeno</option>
+				<option value="Seg01"<c:if test='${empresa.hipobariaEtapa == "Seg01"}'> selected</c:if>>Evaluación Cualitativa</option>
+				<option value="Seg02"<c:if test='${empresa.hipobariaEtapa == "Seg02"}'> selected</c:if>>No Aplica</option>
+				<option value="Seg03"<c:if test='${empresa.hipobariaEtapa == "Seg03"}'> selected</c:if>>Estudio Diagnostico</option>
+				<option value="Seg04"<c:if test='${empresa.hipobariaEtapa == "Seg04"}'> selected</c:if>>Ingreso a Programa de Vigilancia</option>
+				<option value="Seg05"<c:if test='${empresa.hipobariaEtapa == "Seg05"}'> selected</c:if>>Ingreso a programa vigente Neumoconiogeno</option>
 			</select>
 			</td>
 		</tr>
@@ -283,8 +285,8 @@
 			<td>Radiación Ionizante</td><td> : </td>
 			<td>
 			<select id="radiaciones" 	name="radiaciones" required>
-				<option value="Si">Si</option>
-				<option value="No">No</option>
+				<option value="Si"<c:if test='${empresa.radiaciones == "Si"}'> selected</c:if>>Si</option>
+				<option value="No"<c:if test='${empresa.radiaciones == "No"}'> selected</c:if>>No</option>
 			</select>
 			</td>
 		</tr>
@@ -292,11 +294,11 @@
 			<td>Radiación Ionizante Etapa</td><td> : </td>
 			<td>
 			<select id="radiacionesEtapa" 	name="radiacionesEtapa">
-				<option value="Evaluación Cualitativa">Evaluación Cualitativa</option>
-				<option value="No Aplica">No Aplica</option>
-				<option value="Evaluación Cuantitativa">Evaluación Cuantitativa</option>
-				<option value="Ingreso a Programa de Vigilancia de exposición a radiaciones">Ingreso a Programa de Vigilancia de exposición a radiaciones</option>
-				<option value="Seguimiento a las recomendaciones">Seguimiento a las recomendaciones</option>
+				<option value="Seg01"<c:if test='${empresa.radiacionesEtapa == "Seg01"}'> selected</c:if>>Evaluación Cualitativa</option>
+				<option value="Seg02"<c:if test='${empresa.radiacionesEtapa == "Seg02"}'> selected</c:if>>No Aplica</option>
+				<option value="Seg03"<c:if test='${empresa.radiacionesEtapa == "Seg03"}'> selected</c:if>>Evaluación Cuantitativa</option>
+				<option value="Seg04"<c:if test='${empresa.radiacionesEtapa == "Seg04"}'> selected</c:if>>Ingreso a Programa de Vigilancia de exposición a radiaciones</option>
+				<option value="Seg05"<c:if test='${empresa.radiacionesEtapa == "Seg05"}'> selected</c:if>>Seguimiento a las recomendaciones</option>
 			</select>
 			</td>
 		</tr>
@@ -308,8 +310,8 @@
 			<td>Asma</td><td> : </td>
 			<td>
 			<select id="asma" 	name="asma" required>
-				<option value="Si">Si</option>
-				<option value="No">No</option>
+				<option value="Si"<c:if test='${empresa.asma == "Si"}'> selected</c:if>>Si</option>
+				<option value="No"<c:if test='${empresa.asma == "No"}'> selected</c:if>>No</option>
 			</select>
 			</td>
 		</tr>
@@ -317,11 +319,11 @@
 			<td>Asma Etapa</td><td> : </td>
 			<td>
 			<select id="asmaEtapa" 	name="asmaEtapa">
-				<option value="Evaluación Cualitativa">Evaluación Cualitativa</option>
-				<option value="No Aplica">No Aplica</option>
-				<option value="Evaluación Cuantitativa">Evaluación Cuantitativa</option>
-				<option value="Ingreso a Programa de Vigilancia de Asma">Ingreso a Programa de Vigilancia de Asma</option>
-				<option value="Seguimiento a las recomendaciones">Seguimiento a las recomendaciones</option>
+				<option value="Seg01"<c:if test='${empresa.asmaEtapa == "Seg01"}'> selected</c:if>>Evaluación Cualitativa</option>
+				<option value="Seg02"<c:if test='${empresa.asmaEtapa == "Seg02"}'> selected</c:if>>No Aplica</option>
+				<option value="Seg03"<c:if test='${empresa.asmaEtapa == "Seg03"}'> selected</c:if>>Evaluación Cuantitativa</option>
+				<option value="Seg04"<c:if test='${empresa.asmaEtapa == "Seg04"}'> selected</c:if>>Ingreso a Programa de Vigilancia de Asma</option>
+				<option value="Seg05"<c:if test='${empresa.asmaEtapa == "Seg05"}'> selected</c:if>>Seguimiento a las recomendaciones</option>
 			</select>
 			</td>
 		</tr>
@@ -333,8 +335,8 @@
 			<td>Solventes</td><td> : </td>
 			<td>
 			<select id="solventes" 	name="solventes" required>
-				<option value="Si">Si</option>
-				<option value="No">No</option>
+				<option value="Si"<c:if test='${empresa.solventes == "Si"}'> selected</c:if>>Si</option>
+				<option value="No"<c:if test='${empresa.solventes == "No"}'> selected</c:if>>No</option>
 			</select>
 			</td>
 		</tr>
@@ -342,11 +344,11 @@
 			<td>Solventes Etapa</td><td> : </td>
 			<td>
 			<select id="solventesEtapa" 	name="solventesEtapa">
-				<option value="Evaluación Cualitativa">Evaluación Cualitativa</option>
-				<option value="No Aplica">No Aplica</option>
-				<option value="Evaluación Cuantitativa">Evaluación Cuantitativa</option>
-				<option value="Ingreso a Programa de Vigilancia de Solventes">Ingreso a Programa de Vigilancia de Asma</option>
-				<option value="Seguimiento a las recomendaciones">Seguimiento a las recomendaciones</option>
+				<option value="Seg01"<c:if test='${empresa.solventesEtapa == "Seg01"}'> selected</c:if>>Evaluación Cualitativa</option>
+				<option value="Seg02"<c:if test='${empresa.solventesEtapa == "Seg02"}'> selected</c:if>>No Aplica</option>
+				<option value="Seg03"<c:if test='${empresa.solventesEtapa == "Seg03"}'> selected</c:if>>Evaluación Cuantitativa</option>
+				<option value="Seg04"<c:if test='${empresa.solventesEtapa == "Seg04"}'> selected</c:if>>Ingreso a Programa de Vigilancia de Solventes</option>
+				<option value="Seg05"<c:if test='${empresa.solventesEtapa == "Seg05"}'> selected</c:if>>Seguimiento a las recomendaciones</option>
 			</select>
 			</td>
 		</tr>
@@ -358,8 +360,8 @@
 			<td>Metales</td><td> : </td>
 			<td>
 			<select id="metales" 	name="metales" required>
-				<option value="Si">Si</option>
-				<option value="No">No</option>
+				<option value="Si"<c:if test='${empresa.metales == "Si"}'> selected</c:if>>Si</option>
+				<option value="No"<c:if test='${empresa.metales == "No"}'> selected</c:if>>No</option>
 			</select>
 			</td>
 		</tr>
@@ -367,11 +369,11 @@
 			<td>Metales Etapa</td><td> : </td>
 			<td>
 			<select id="metalesEtapa" 	name="metalesEtapa">
-				<option value="Evaluación Cualitativa">Evaluación Cualitativa</option>
-				<option value="No Aplica">No Aplica</option>
-				<option value="Evaluación Cuantitativa">Evaluación Cuantitativa</option>
-				<option value="Ingreso a Programa de Vigilancia de Metales">Ingreso a Programa de Vigilancia de Asma</option>
-				<option value="Seguimiento a las recomendaciones">Seguimiento a las recomendaciones</option>
+				<option value="Seg01"<c:if test='${empresa.metalesEtapa == "Seg01"}'> selected</c:if>>Evaluación Cualitativa</option>
+				<option value="Seg02"<c:if test='${empresa.metalesEtapa == "Seg02"}'> selected</c:if>>No Aplica</option>
+				<option value="Seg03"<c:if test='${empresa.metalesEtapa == "Seg03"}'> selected</c:if>>Evaluación Cuantitativa</option>
+				<option value="Seg04"<c:if test='${empresa.metalesEtapa == "Seg04"}'> selected</c:if>>Ingreso a Programa de Vigilancia de Metales</option>
+				<option value="Seg05"<c:if test='${empresa.metalesEtapa == "Seg05"}'> selected</c:if>>Seguimiento a las recomendaciones</option>
 			</select>
 			</td>
 		</tr>
@@ -383,8 +385,8 @@
 			<td>Óxido de Etileno</td><td> : </td>
 			<td>
 			<select id="oxido" 	name="oxido" required>
-				<option value="Si">Si</option>
-				<option value="No">No</option>
+				<option value="Si"<c:if test='${empresa.oxido == "Si"}'> selected</c:if>>Si</option>
+				<option value="No"<c:if test='${empresa.oxido == "No"}'> selected</c:if>>No</option>
 			</select>
 			</td>
 		</tr>
@@ -392,11 +394,11 @@
 			<td>Óxido de Etileno Etapa</td><td> : </td>
 			<td>
 			<select id="oxidoEtapa" 	name="oxidoEtapa">
-				<option value="Evaluación Cualitativa">Evaluación Cualitativa</option>
-				<option value="No Aplica">No Aplica</option>
-				<option value="Evaluación Cuantitativa">Evaluación Cuantitativa</option>
-				<option value="Ingreso a Programa de Vigilancia de Oxido">Ingreso a Programa de Vigilancia de Oxido</option>
-				<option value="Seguimiento a las recomendaciones">Seguimiento a las recomendaciones</option>
+				<option value="Seg01"<c:if test='${empresa.oxidoEtapa == "Seg01"}'> selected</c:if>>Evaluación Cualitativa</option>
+				<option value="Seg02"<c:if test='${empresa.oxidoEtapa == "Seg02"}'> selected</c:if>>No Aplica</option>
+				<option value="Seg03"<c:if test='${empresa.oxidoEtapa == "Seg03"}'> selected</c:if>>Evaluación Cuantitativa</option>
+				<option value="Seg04"<c:if test='${empresa.oxidoEtapa == "Seg04"}'> selected</c:if>>Ingreso a Programa de Vigilancia de Oxido</option>
+				<option value="Seg05"<c:if test='${empresa.oxidoEtapa == "Seg05"}'> selected</c:if>>Seguimiento a las recomendaciones</option>
 			</select>
 			</td>
 		</tr>
@@ -408,8 +410,8 @@
 			<td>Plaguicida</td><td> : </td>
 			<td>
 			<select id="plaguicida" 	name="plaguicida" required>
-				<option value="Si">Si</option>
-				<option value="No">No</option>
+				<option value="Si"<c:if test='${empresa.plaguicida == "Si"}'> selected</c:if>>Si</option>
+				<option value="No"<c:if test='${empresa.plaguicida == "No"}'> selected</c:if>>No</option>
 			</select>
 			</td>
 		</tr>
@@ -417,11 +419,11 @@
 			<td>Plaguicida Etapa</td><td> : </td>
 			<td>
 			<select id="plaguicidaEtapa" 	name="plaguicidaEtapa">
-				<option value="Evaluación Cualitativa">Evaluación Cualitativa</option>
-				<option value="No Aplica">No Aplica</option>
-				<option value="Evaluación Cuantitativa">Evaluación Cuantitativa</option>
-				<option value="Ingreso a Programa de Vigilancia de Plaguicida">Ingreso a Programa de Vigilancia de Oxido</option>
-				<option value="Seguimiento a las recomendaciones">Seguimiento a las recomendaciones</option>
+				<option value="Seg01"<c:if test='${empresa.plaguicidaEtapa == "Seg01"}'> selected</c:if>>Evaluación Cualitativa</option>
+				<option value="Seg02"<c:if test='${empresa.plaguicidaEtapa == "Seg02"}'> selected</c:if>>No Aplica</option>
+				<option value="Seg03"<c:if test='${empresa.plaguicidaEtapa == "Seg03"}'> selected</c:if>>Evaluación Cuantitativa</option>
+				<option value="Seg04"<c:if test='${empresa.plaguicidaEtapa == "Seg04"}'> selected</c:if>>Ingreso a Programa de Vigilancia de Plaguicida</option>
+				<option value="Seg05"<c:if test='${empresa.plaguicidaEtapa == "Seg05"}'> selected</c:if>>Seguimiento a las recomendaciones</option>
 			</select>
 			</td>
 		</tr>
@@ -433,8 +435,8 @@
 			<td>MMC</td><td> : </td>
 			<td>
 			<select id="mmc" 	name="mmc" required>
-				<option value="Si">Si</option>
-				<option value="No">No</option>
+				<option value="Si"<c:if test='${empresa.mmc == "Si"}'> selected</c:if>>Si</option>
+				<option value="No"<c:if test='${empresa.mmc == "No"}'> selected</c:if>>No</option>
 			</select>
 			</td>
 		</tr>
@@ -442,10 +444,10 @@
 			<td>MMC Etapa</td><td> : </td>
 			<td>
 			<select id="mmcEtapa" 	name="mmcEtapa">
-				<option value="Difusión">Difusión</option>
-				<option value="Asesoría en la construcción de la matriz  MMC">Asesoría en la construcción de la matriz  MMC</option>
-				<option value="Reunión de presentación resultados de la Matriz MMC">Reunión de presentación resultados de la Matriz MMC</option>
-				<option value="Seguimiento a las recomendaciones">Seguimiento a las recomendaciones</option>
+				<option value="Seg01"<c:if test='${empresa.mmcEtapa == "Seg01"}'> selected</c:if>>Difusión</option>
+				<option value="Seg02"<c:if test='${empresa.mmcEtapa == "Seg02"}'> selected</c:if>>Asesoría en la construcción de la matriz  MMC</option>
+				<option value="Seg03"<c:if test='${empresa.mmcEtapa == "Seg03"}'> selected</c:if>>Reunión de presentación resultados de la Matriz MMC</option>
+				<option value="Seg04"<c:if test='${empresa.mmcEtapa == "Seg04"}'> selected</c:if>>Seguimiento a las recomendaciones</option>
 			</select>
 			</td>
 		</tr>
@@ -457,8 +459,8 @@
 			<td>TMERT</td><td> : </td>
 			<td>
 			<select id="tmert" 	name="tmert" required>
-				<option value="Si">Si</option>
-				<option value="No">No</option>
+				<option value="Si"<c:if test='${empresa.tmert == "Si"}'> selected</c:if>>Si</option>
+				<option value="No"<c:if test='${empresa.tmert == "No"}'> selected</c:if>>No</option>
 			</select>
 			</td>
 		</tr>
@@ -466,10 +468,10 @@
 			<td>TMERT Etapa</td><td> : </td>
 			<td>
 			<select id="tmertEtapa" 	name="tmertEtapa">
-				<option value="Difusión">Difusión</option>
-				<option value="Asesoría en la aplicación de listas de chequeo">Asesoría en la aplicación de listas de chequeo</option>
-				<option value="Reunión de presentación resultados de la Matriz MMC">Reunión de presentación resultados de la Matriz MMC</option>
-				<option value="Seguimiento a las recomendaciones">Seguimiento a las recomendaciones</option>
+				<option value="Seg01"<c:if test='${empresa.tmertEtapa == "Seg01"}'> selected</c:if>>Difusión</option>
+				<option value="Seg02"<c:if test='${empresa.tmertEtapa == "Seg02"}'> selected</c:if>>Asesoría en la aplicación de listas de chequeo</option>
+				<option value="Seg03"<c:if test='${empresa.tmertEtapa == "Seg03"}'> selected</c:if>>Reunión de presentación resultados de la Matriz MMC</option>
+				<option value="Seg04"<c:if test='${empresa.tmertEtapa == "Seg04"}'> selected</c:if>>Seguimiento a las recomendaciones</option>
 			</select>
 			</td>
 		</tr>
@@ -481,8 +483,8 @@
 			<td>Radiación UV</td><td> : </td>
 			<td>
 			<select id="radiacionUV" 	name="radiacionUV" required>
-				<option value="Si">Si</option>
-				<option value="No">No</option>
+				<option value="Si"<c:if test='${empresa.radiacionUV == "Si"}'> selected</c:if>>Si</option>
+				<option value="No"<c:if test='${empresa.radiacionUV == "No"}'> selected</c:if>>No</option>
 			</select>
 			</td>
 		</tr>
@@ -490,10 +492,10 @@
 			<td>Radiación UV Etapa</td><td> : </td>
 			<td>
 			<select id="radiacionUVEtapa" 	name="radiacionUVEtapa">
-				<option value="Evaluación Cualitativa">Evaluación Cualitativa</option>
-				<option value="Difusión de la Guía">Difusión de la Guía</option>
-				<option value="Asesoría en la definición del Programa de gestión del riesgo de UV solar">Asesoría en la definición del Programa de gestión del riesgo de UV solar</option>
-				<option value="Apoyo en la implementación del programa y seguimiento">Apoyo en la implementación del programa y seguimiento</option>
+				<option value="Seg01"<c:if test='${empresa.radiacionUVEtapa == "Seg01"}'> selected</c:if>>Evaluación Cualitativa</option>
+				<option value="Seg02"<c:if test='${empresa.radiacionUVEtapa == "Seg02"}'> selected</c:if>>Difusión de la Guía</option>
+				<option value="Seg03"<c:if test='${empresa.radiacionUVEtapa == "Seg03"}'> selected</c:if>>Asesoría en la definición del Programa de gestión del riesgo de UV solar</option>
+				<option value="Seg04"<c:if test='${empresa.radiacionUVEtapa == "Seg04"}'> selected</c:if>>Apoyo en la implementación del programa y seguimiento</option>
 			</select>
 			</td>
 		</tr>
@@ -525,9 +527,9 @@
 			<td>Riesgo de Fuga</td><td> : </td>
 			<td>
 			<select id="riesgoDeFuga" 	name="riesgoDeFuga">
-				<option value="Bajo">Bajo</option>
-				<option value="Medio">Medio</option>
-				<option value="Alto">Alto</option>
+				<option value="1"<c:if test='${empresa.riesgoDeFuga == "1"}'> selected</c:if>>Bajo</option>
+				<option value="2"<c:if test='${empresa.riesgoDeFuga == "2"}'> selected</c:if>>Medio</option>
+				<option value="3"<c:if test='${empresa.riesgoDeFuga == "3"}'> selected</c:if>>Alto</option>
 			</select>
 			</td>
 		</tr>
@@ -539,9 +541,9 @@
 			<td>Participación Mesa Trabajo</td><td> : </td>
 			<td>
 			<select id="participacionMesaTrabajo" 	name="participacionMesaTrabajo">
-				<option value="Si">Si</option>
-				<option value="No">No</option>
-				<option value="No Aplica">No Aplica</option>
+				<option value="Si"<c:if test='${empresa.participacionMesaTrabajo == "Si"}'> selected</c:if>>Si</option>
+				<option value="No"<c:if test='${empresa.participacionMesaTrabajo == "No"}'> selected</c:if>>No</option>
+				<option value="NoAplica"<c:if test='${empresa.participacionMesaTrabajo == "NoAplica"}'> selected</c:if>>No Aplica</option>
 			</select>
 			</td>
 		</tr>

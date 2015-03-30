@@ -33,7 +33,7 @@
 						name="nomExperto" placeholder="Nombre Experto"></td>
 				</tr>
 				<tr>
-					<td>Código Cartera</td>
+					<td>Codigo Cartera</td>
 					<td>:</td>
 					<td><select id="codCartera" name="codCartera" required>
 							<option value="" selected>Seleccione una cartera</option>
@@ -140,17 +140,14 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td>Planes de Trabajo</td>
-					<td>:</td>
-					<td><select id="planesDeTrabajo" name="planesDeTrabajo"
-						required>
+					<td>Planes de Trabajo</td><td>:</td>
+					<td><select id="planesDeTrabajo" name="planesDeTrabajo" required>
 							<option value="Si">Si</option>
 							<option value="No">No</option>
 					</select></td>
 				</tr>
 				<tr>
-					<td>Firma de planes</td>
-					<td>:</td>
+					<td>Firma de planes</td><td>:</td>
 					<td><select id="firmaDePlanes" name="firmaDePlanes" required>
 							<option value="Si">Si</option>
 							<option value="No">No</option>
@@ -523,6 +520,35 @@
 						name="plaguicidaTexto" placeholder="Observaciones"></td>
 				</tr>
 				<tr>
+				<tr>
+					<td>Psicosociales</td>
+					<td>:</td>
+					<td><select id="psicosociales" name="psicosociales" required>
+							<option value="Si">Si</option>
+							<option value="No">No</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td>Psicosociales Etapa</td>
+					<td>:</td>
+					<td><select id="psicosocialesEtapa" name="psicosocialesEtapa">
+							<option value="Seg01">Evaluación
+								Cualitativa</option>
+							<option value="Seg02">No Aplica</option>
+							<option value="Seg03">Evaluación
+								Cuantitativa</option>
+							<option value="Seg04">Ingreso
+								a Programa de Vigilancia Psicosociales</option>
+							<option value="Seg05">Seguimiento
+								a las recomendaciones</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td>Psicosociales Observaciones</td>
+					<td>:</td>
+					<td><input type="text" id="psicoocialesTexto" name="psicosocialesTexto"
+						placeholder="Observaciones"></td>
+				</tr>
 					<td>MMC</td>
 					<td>:</td>
 					<td><select id="mmc" name="mmc" required>
@@ -534,13 +560,13 @@
 					<td>MMC Etapa</td>
 					<td>:</td>
 					<td><select id="mmcEtapa" name="mmcEtapa">
-							<option value="Difusión">Difusión</option>
-							<option value="Asesoría en la construcción de la matriz  MMC">Asesoría
+							<option value="Seg01">Difusión</option>
+							<option value="Seg02">Asesoría
 								en la construcción de la matriz  MMC</option>
 							<option
-								value="Reunión de presentación resultados de la Matriz MMC">Reunión
+								value="Seg03">Reunión
 								de presentación resultados de la Matriz MMC</option>
-							<option value="Seguimiento a las recomendaciones">Seguimiento
+							<option value="Seg04">Seguimiento
 								a las recomendaciones</option>
 					</select></td>
 				</tr>
@@ -562,13 +588,13 @@
 					<td>TMERT Etapa</td>
 					<td>:</td>
 					<td><select id="tmertEtapa" name="tmertEtapa">
-							<option value="Difusión">Difusión</option>
-							<option value="Asesoría en la aplicación de listas de chequeo">Asesoría
+							<option value="Seg01">Difusión</option>
+							<option value="Seg02">Asesoría
 								en la aplicación de listas de chequeo</option>
 							<option
-								value="Reunión de presentación resultados de la Matriz MMC">Reunión
+								value="Seg03">Reunión
 								de presentación resultados de la Matriz MMC</option>
-							<option value="Seguimiento a las recomendaciones">Seguimiento
+							<option value="Seg01">Seguimiento
 								a las recomendaciones</option>
 					</select></td>
 				</tr>
