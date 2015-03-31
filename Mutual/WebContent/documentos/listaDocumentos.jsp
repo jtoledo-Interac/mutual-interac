@@ -38,11 +38,11 @@
 			},
 		   	pager: $('#pieDocumento'),
 		   	pgtext : 'P&aacute;g: {0} de {1}', 
-		   	sortname: 'codDocumento',
+		   	sortname: 'idDocumento',
 		   	loadonce:true,
 		    viewrecords: true,
 		    sortorder: "desc",
-		    caption:"${title}",
+		    caption:"Documentos de Trabajo",
 		    hoverrows : true,
 		    multiselect : false,
 			onPaging: function(){
@@ -181,7 +181,7 @@
 	}
 
 	function getUrlBuscarDocumentos()
-	{  
+	{
 		var sData = "Servlet";
 		sData += "?accion=buscarDocumentos";
 		sData += "&nombre="+$('#nombre').val();
@@ -200,18 +200,18 @@
 		return sData;
 	}
 	
-	function getUrlCargarDocumento(id)
+	function getUrlCargarDocumento(idDocumento)
 	{
 		var sData = "Servlet";
 		sData += '?accion=cargarDocumento';
-		sData += '&idDocumento='+id;
+		sData += '&idDocumento='+idDocumento;
 		return sData;
 	}
 
-	function getUrlEliminarDocumento(nIdDocumento){  
+	function getUrlEliminarDocumento(idDocumento){  
 		var sData = 'Servlet';
 		sData += '?accion=eliminarDocumento';
-		sData += '&idDocumento='+nIdDocumento;
+		sData += '&idDocumento='+idDocumento;
 		return sData;
     }
 </script>

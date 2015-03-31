@@ -27,7 +27,7 @@
 						{name : 'desPrioridad', index:'desPrioridad', width : 80, search : true, resizable : false, sortable : true},
 						{name : 'diasSistema', index:'diasSistema', width : 80, search : true, resizable : false, sortable : true},	
 						{name : 'diasBandeja', index:'diasBandeja', width : 80, search : true, resizable : false, sortable : true},	
-						{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
+						{name : 'act',index:'act', width : 40, resizable:false,sortable : true}
 						],		
 		   	rowNum: numeroDeFilas,
 		   	height: altoGrilla,

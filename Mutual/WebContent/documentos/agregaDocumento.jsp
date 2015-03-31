@@ -22,69 +22,53 @@
 <form id="formAgrega" action="Upload" method="post" enctype="multipart/form-data">
 	<input type="hidden" id="accion" name="accion" value="agregarDocumento">
 	<input type="submit" class="submit" style="display:none;">
-	<table>
+	<table class="centrado">
 		<tr>
-			<td>
-				<input type="file" required id="documento" class="validar" name="documento" placeholder="Documento Adjunto">
-			</td>
+			<td colspan="2"><input type="file" required id="documento" class="validar" name="documento" placeholder="Documento Adjunto"></td>
 		</tr>
 	</table>
 	<br/>
-	<table>
+	
+	<table class="centrado"> 
 	<tr>
 		<td>Nombre Documento</td><td> : </td>
 		<td><input type="text"	id="nombre"	required name="nombre" placeholder="Nombre" > </td>
+		
+		<td> Número Folio </td><td> : </td><td> <input type="text"	id="numFolio" required name="numFolio" placeholder="Nº Folio"	onkeypress="return valida_numeros(event)"> </td>
+
 	</tr>
 	<tr>
-		<td>Número Folio</td><td> : </td>
-		<td><input type="text"	id="numFolio" required name="numFolio" placeholder="Nº Folio"	onkeypress="return valida_numeros(event)"></td>
+		<td> Número Adherente </td><td> : </td><td> <input type="text"	id="numAdherente" required name="numAdherente"	placeholder="Nº Adherente" onkeypress="return valida_numeros(event)"> </td>
 	</tr>
 	<tr>
-		<td>Número Adherente</td><td> : </td>
-		<td><input type="text"	id="numAdherente" required name="numAdherente"	placeholder="Nº Adherente" onkeypress="return valida_numeros(event)"></td>
-	</tr>
-	<tr>
-		<td>Descripción</td><td> : </td>
-		<td> <input type="text"	id="descripcion" required name="descripcion" placeholder="Descripción"> </td>
+		<td> Descripción </td><td> : </td><td> <input type="text"	id="descripcion" required name="descripcion" placeholder="Descripción"> </td>
 	</tr>
 	<tr>	
-		<td>Cartera</td><td> : </td>
-		<td>
-			<select id="idCartera" required name="idCartera" required>
-				<option value="" disabled selected>Seleccione una cartera</option>
-					<c:forEach items="${requestScope.listaCarteras}" var="cartera">
-						<option value="${cartera.idCartera}" >${cartera.desCartera}</option>
-					</c:forEach>
-			</select>
-		</td>
+		<td> Cartera </td><td> : </td>
+		<td><select id="idCartera" required name="idCartera" required>
+			<option value="" disabled selected>Seleccione una cartera</option>
+			<c:forEach items="${requestScope.listaCarteras}" var="cartera">
+				<option value="${cartera.idCartera}" >${cartera.desCartera}</option>
+			</c:forEach>
+		</select> </td>
 	</tr>
 	<tr>
-		<td>Tipo Documento</td><td> : </td>
-		<td>
-			<select id="idProducto" required name="idProducto" required>
-				<option value="" disabled selected>Seleccione un tipo documento</option>
-				<c:forEach items="${requestScope.listaProductos}" var="producto">
-					<option value="${producto.idProducto}" >${producto.desProducto}</option>
-				</c:forEach>
-			</select>
-		</td>	
+		<td> Tipo Documento </td><td> : </td>
+		<td><select id="idProducto" required name="idProducto" required>
+			<option value="" disabled selected>Seleccione un tipo documento</option>
+			<c:forEach items="${requestScope.listaProductos}" var="producto">
+				<option value="${producto.idProducto}" >${producto.desProducto}</option>
+			</c:forEach>
+		</select> </td>	
 	</tr>
 	<tr>
-		<td>Área</td><td> : </td>
-		<td>
-			<select id="codArea" required name="codArea" required>
-				<option value="" disabled selected>Seleccione un área</option>
-				<c:forEach items="${requestScope.listaAreas}" var="area">
-					<option value="${area.codArea}" >${area.desArea}</option>
-				</c:forEach>
-			</select>
-		</td>	
-	</tr>
-		<tr><td><input type="checkbox" name="Invalideces" value="Invalideces">Invalideces</td></tr>
-		<tr><td><input type="checkbox" name="SAMI" value="SAMI">SAMI</td></tr>
-		<tr><td><input type="checkbox" name="Fatales" value="Fatales">Fatales</td>
-		<tr><td><input type="checkbox" name="Graves" value="Graves">Graves</td>
-		<tr><td><input type="checkbox" name="Graves Amputados" value="Graves Amputados">Graves Amputados</td>
+		<td> Área</td><td> : </td>
+		<td><select id="codArea" required name="codArea" required>
+			<option value="" disabled selected>Seleccione un área</option>
+			<c:forEach items="${requestScope.listaAreas}" var="area">
+				<option value="${area.codArea}" >${area.desArea}</option>
+			</c:forEach>
+		</select></td>	
 	</tr>
 	</table>
 </form>

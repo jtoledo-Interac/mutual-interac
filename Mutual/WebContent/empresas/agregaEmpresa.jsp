@@ -4,6 +4,141 @@
 		setDatePicker();
 		formatRut();
 		$("#tabs").tabs();
+		
+		
+		
+				$('#listadoAccidentabilidad').jqGrid(
+				{
+				   	//url: getUrlBuscarDocumentos(),
+					datatype: "xml",			
+					colNames : ['', '% Accidentabilidad','Fecha',''],
+					colModel : [
+								{name : 'idDocumento', index:'idDocumento', hidden : true},
+								{name : 'numAdherente', index:'numAdherente', width : 80, search : true, resizable : false, sortable : true},
+								{name : 'numFolio', index:'numFolio', width : 80, search : true, resizable : false, sortable : true},				
+								{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
+								],		
+				   	rowNum: numeroDeFilas,
+				   	height: 200,
+				   	width: 300,
+				   	rowList:[10,20,30],
+					xmlReader: {
+						root : "filas",
+						row: "fila",
+						repeatitems: false,
+						id: "idDocumento"
+					},
+				   	pager: $('#pieDocumento'),
+				   	pgtext : 'P&aacute;g: {0} de {1}', 
+				   	sortname: 'idDocumento',
+				   	loadonce:true,
+				    viewrecords: true,
+				    sortorder: "desc",
+				    caption:"Accidentabilidad",
+				    hoverrows : true,
+				    multiselect : false,
+					onPaging: function(){
+
+					},
+					gridComplete: function()
+					{
+						var ids = $("#listadoAccidentabilidad").getDataIDs();
+						
+						for (var i = 0; i < ids.length; i++)
+						{
+							var idFila = ids[i];
+
+							var btnEditar="";
+							btnEditar+= "<div id='btnEditar' onclick='editarDocumento("+idFila+")'>";
+							btnEditar+= 	"<img title='editar' class='icono' src='img/btnEditar.png'>";
+							btnEditar+= "</div>";
+							
+							var btnEliminar="";
+							btnEliminar+= "<div id='btnEliminar' onclick='eliminarDocumento("+idFila+")'>";
+							btnEliminar+= 	"<img title='eliminar' class='icono' src='img/btnEliminar.png'>";
+							btnEliminar+= "</div>";
+
+							$("#listadoAccidentabilidad").setRowData(ids[i], {act : btnEditar + btnEliminar});
+						}
+					},
+					onSelectRow : function(rowId, status) 
+					{
+						idFila = rowId;
+					},
+					ondblClickRow: function()
+					{
+						var fila = $('#listadoAccidentabilidad').jqGrid('getRowData',idFila);
+						editarDocumento(fila.idDocumento);
+					},
+				}).navGrid('#pieAccidentabilidad',{edit:false,add:false,del:false});	
+		
+
+				
+				$('#listadoDias').jqGrid(
+				{
+				   	//url: getUrlBuscarDocumentos(),
+					datatype: "xml",			
+					colNames : ['', 'Dias Perdidos','Fecha',''],
+					colModel : [
+								{name : 'idDocumento', index:'idDocumento', hidden : true},
+								{name : 'numAdherente', index:'numAdherente', width : 80, search : true, resizable : false, sortable : true},
+								{name : 'numFolio', index:'numFolio', width : 80, search : true, resizable : false, sortable : true},				
+								{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
+								],		
+				   	rowNum: numeroDeFilas,
+				   	height: 200,
+				   	width: 300,
+				   	rowList:[10,20,30],
+					xmlReader: {
+						root : "filas",
+						row: "fila",
+						repeatitems: false,
+						id: "idDocumento"
+					},
+				   	pager: $('#pieDias'),
+				   	pgtext : 'P&aacute;g: {0} de {1}', 
+				   	sortname: 'idDocumento',
+				   	loadonce:true,
+				    viewrecords: true,
+				    sortorder: "desc",
+				    caption:"Dias Perdidos",
+				    hoverrows : true,
+				    multiselect : false,
+					onPaging: function(){
+
+					},
+					gridComplete: function()
+					{
+						var ids = $("#listadoDias").getDataIDs();
+						
+						for (var i = 0; i < ids.length; i++)
+						{
+							var idFila = ids[i];
+
+							var btnEditar="";
+							btnEditar+= "<div id='btnEditar' onclick='editarDocumento("+idFila+")'>";
+							btnEditar+= 	"<img title='editar' class='icono' src='img/btnEditar.png'>";
+							btnEditar+= "</div>";
+							
+							var btnEliminar="";
+							btnEliminar+= "<div id='btnEliminar' onclick='eliminarDocumento("+idFila+")'>";
+							btnEliminar+= 	"<img title='eliminar' class='icono' src='img/btnEliminar.png'>";
+							btnEliminar+= "</div>";
+
+							$("#listadoDias").setRowData(ids[i], {act : btnEditar + btnEliminar});
+						}
+					},
+					onSelectRow : function(rowId, status) 
+					{
+						idFila = rowId;
+					},
+					ondblClickRow: function()
+					{
+						var fila = $('#listadoDias').jqGrid('getRowData',idFila);
+						editarDocumento(fila.idDocumento);
+					},
+				}).navGrid('#pieDias',{edit:false,add:false,del:false});	
+
 	});
 </script>
 
@@ -14,6 +149,8 @@
 		<ul>
 			<li><a href="#tabs-general">General</a></li>
 			<li><a href="#tabs-salud_ocupacional">Salud Ocupacional</a></li>
+			<li><a href="#tabs-accidentabilidad">Accidentabilidad</a></li>
+			<li><a href="#tabs-dias-perdidos">Días Perdidos</a></li>
 		</ul>
 		<div id="tabs-general">
 			<table>
@@ -61,11 +198,14 @@
 				<tr>
 					<td>Segmentación</td>
 					<td>:</td>
-					<td><select id="segmentacion" name="segmentacion" required>
+					<td>
+						<select id="segmentacion" name="segmentacion" required>
 							<option value="Seg01">Grandes cuentas</option>
-							<option value="Seg02">Estrategicas</option>
-							<option value="Seg03">Corporativas</option>
-					</select></td>
+							<option value="Seg02">Corporativa 1</option>
+							<option value="Seg03">Corporativa 2</option>
+							<option value="Seg03">Resto</option>							
+						</select>
+					</td>
 				</tr>
 				<tr>
 					<td>Holding</td>
@@ -209,6 +349,67 @@
 					<td>:</td>
 					<td><input required type="text" id="numCphsOro"
 						name="numCphsOro" placeholder="Número CPHS Oro"></td>
+				</tr>
+				
+				<tr>
+					<td>Ultima Visita Experto</td>
+					<td>:</td>
+					<td><input required type="text" class="fecha"
+						id="ultimaVisitaExperto" name="ultimaVisitaExperto"
+						placeholder="Ultima Visita Experto"></td>
+				</tr>
+				<tr>
+					<td>Ultima Visita Director</td>
+					<td>:</td>
+					<td><input required type="text" class="fecha"
+						id="ultimaVisitaDirector" name="ultimaVisitaDirector"
+						placeholder="Ultima Visita Director"></td>
+				</tr>
+				<tr>
+					<td>Ultima Visita Gerente</td>
+					<td>:</td>
+					<td><input required type="text" class="fecha"
+						id="ultimaVisitaGTTE" name="ultimaVisitaGTTE"
+						placeholder="Ultima Visita Gerente"></td>
+				</tr>
+				<tr>
+					<td>Ultima Visita Alta Gerencia</td>
+					<td>:</td>
+					<td><input required type="text" class="fecha"
+						id="ultimaVisitaAltaGerencia" name="ultimaVisitaAltaGerencia"
+						placeholder="Ultima Visita Alta Gerencia"></td>
+				</tr>
+				<tr>
+					<td>Reporte Visita</td>
+					<td>:</td>
+					<td><input required type="text" id="reporteVisita"
+						name="reporteVisita" placeholder="Reporte Visita"></td>
+				</tr>
+				<tr>
+					<td>Riesgo de Fuga</td>
+					<td>:</td>
+					<td><select id="riesgoDeFuga" name="riesgoDeFuga">
+							<option value="Bajo">Bajo</option>
+							<option value="Medio">Medio</option>
+							<option value="Alto">Alto</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td>Reclamo Ultimo Periodo</td>
+					<td>:</td>
+					<td><input required type="text" class="fecha"
+						id="reclamoUltimoPeriodo" name="reclamoUltimoPeriodo"
+						placeholder="Reclamo Ultimo Periodo"></td>
+				</tr>
+				<tr>
+					<td>Participaci&oacute;n Mesa Trabajo</td>
+					<td>:</td>
+					<td><select id="participacionMesaTrabajo"
+						name="participacionMesaTrabajo">
+							<option value="Si">Si</option>
+							<option value="No">No</option>
+							<option value="No Aplica">No Aplica</option>
+					</select></td>
 				</tr>
 			</table>
 		</div>
@@ -630,67 +831,22 @@
 					<td><input type="text" id="radiacionUVTexto"
 						name="radiacionUVTexto" placeholder="Observaciones"></td>
 				</tr>
-				<tr>
-					<td>Ultima Visita Experto</td>
-					<td>:</td>
-					<td><input required type="text" class="fecha"
-						id="ultimaVisitaExperto" name="ultimaVisitaExperto"
-						placeholder="Ultima Visita Experto"></td>
-				</tr>
-				<tr>
-					<td>Ultima Visita Director</td>
-					<td>:</td>
-					<td><input required type="text" class="fecha"
-						id="ultimaVisitaDirector" name="ultimaVisitaDirector"
-						placeholder="Ultima Visita Director"></td>
-				</tr>
-				<tr>
-					<td>Ultima Visita Gerente</td>
-					<td>:</td>
-					<td><input required type="text" class="fecha"
-						id="ultimaVisitaGTTE" name="ultimaVisitaGTTE"
-						placeholder="Ultima Visita Gerente"></td>
-				</tr>
-				<tr>
-					<td>Ultima Visita Alta Gerencia</td>
-					<td>:</td>
-					<td><input required type="text" class="fecha"
-						id="ultimaVisitaAltaGerencia" name="ultimaVisitaAltaGerencia"
-						placeholder="Ultima Visita Alta Gerencia"></td>
-				</tr>
-				<tr>
-					<td>Reporte Visita</td>
-					<td>:</td>
-					<td><input required type="text" id="reporteVisita"
-						name="reporteVisita" placeholder="Reporte Visita"></td>
-				</tr>
-				<tr>
-					<td>Riesgo de Fuga</td>
-					<td>:</td>
-					<td><select id="riesgoDeFuga" name="riesgoDeFuga">
-							<option value="Bajo">Bajo</option>
-							<option value="Medio">Medio</option>
-							<option value="Alto">Alto</option>
-					</select></td>
-				</tr>
-				<tr>
-					<td>Reclamo Ultimo Periodo</td>
-					<td>:</td>
-					<td><input required type="text" class="fecha"
-						id="reclamoUltimoPeriodo" name="reclamoUltimoPeriodo"
-						placeholder="Reclamo Ultimo Periodo"></td>
-				</tr>
-				<tr>
-					<td>Participaci&oacute;n Mesa Trabajo</td>
-					<td>:</td>
-					<td><select id="participacionMesaTrabajo"
-						name="participacionMesaTrabajo">
-							<option value="Si">Si</option>
-							<option value="No">No</option>
-							<option value="No Aplica">No Aplica</option>
-					</select></td>
-				</tr>
 			</table>
+		</div>
+		
+		<div id="tabs-accidentabilidad">
+			<div id="listadoBusquedaAccidentabilidad" class="listado">
+				<table id="listadoAccidentabilidad"></table>
+			<div id="pieAccidentabilidad" class="pie"></div>
+		</div>
+		
+		</div>
+		<div id="tabs-dias-perdidos">
+			<div id="listadoBusquedaDias" class="listado">
+				<table id="listadoDias"></table>
+				<div id="pieDias" class="pie"></div>
+			</div>
+		
 		</div>
 	</div>
 </form>

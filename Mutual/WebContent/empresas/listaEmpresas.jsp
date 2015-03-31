@@ -18,7 +18,7 @@
 						{name : 'idEmpresa', index:'idEmpresa', hidden : true}, 
 						{name : 'numAdherente', index:'numAdherente', width : 110}, 
 						{name : 'nombre', index:'nombre', width : 300, search : true, resizable : false, sortable : true},
-						{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
+						{name : 'act',index:'act', width : 40, resizable:false,sortable : true}
 						],
 		   	rowNum: numeroDeFilas,
 		   	height: altoGrilla,
@@ -56,8 +56,13 @@
 					btnEliminar+= "<div id='btnEliminar' onclick='eliminarEmpresa("+idFila+")'>";
 					btnEliminar+= 	"<img title='eliminar' class='icono' src='img/btnEliminar.png'>";
 					btnEliminar+= "</div>";
+					
+					var btnReporte="";
+					btnReporte+= "<div id='btnReporte' onclick='reporte("+idFila+")'>";
+					btnReporte+= 	"<img title='reporte' class='icono' src='img/btnReporte.png'>";
+					btnReporte+= "</div>";
 
-					$("#listadoEmpresas").setRowData(ids[i], {act : btnEditar + btnEliminar});
+					$("#listadoEmpresas").setRowData(ids[i], {act : btnEditar + btnEliminar + btnReporte});
 				}
 			},
 			onSelectRow : function(rowId, status) 
@@ -221,6 +226,9 @@
 					<option value="${cartera.idCartera}" >${cartera.desCartera}</option>
 				</c:forEach>
 			</select>
+			<input type="button" 	id="btnReporte" 	name="btnReporte" 	value="Generar Reporte" class="boton" style="width:120px;"/>
+			
+			
 		</form>
 	</div> 
 
