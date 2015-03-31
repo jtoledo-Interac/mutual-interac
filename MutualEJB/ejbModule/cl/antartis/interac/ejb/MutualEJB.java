@@ -2469,7 +2469,6 @@ public class MutualEJB implements EJBRemoto {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			log.info("SQL Exception");
-			// controlar error sql, (de conexion, por ej)
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.info("SQL Exception 2");
