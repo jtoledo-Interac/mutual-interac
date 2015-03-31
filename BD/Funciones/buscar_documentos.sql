@@ -63,11 +63,11 @@ $body$
             fec_creacion
         from 
             documento d 
-        inner join area as a 
+        left join area as a 
             on d.cod_area = a.cod_area
-        inner join cartera as c 
+        left join cartera as c 
             on d.id_cartera = c.id_cartera
-        inner join producto as p 
+        left join producto as p 
             on d.id_producto = p.id_producto
         where
             upper(d.nombre) like '%' || xnombre ||'%'         and

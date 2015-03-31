@@ -1,20 +1,13 @@
 
 package cl.antartis.interac.servlets;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
@@ -29,23 +22,12 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.MethodUtils;
 import org.apache.log4j.Logger;
-import org.hibernate.ejb.packaging.Entry;
-
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.ContainerFactory;
-import org.json.simple.parser.JSONParser;
-import com.google.gson.Gson;
-//import com.itextpdf.text.Document;
-//import com.itextpdf.text.DocumentException;
-//import com.itextpdf.text.Paragraph;
-//import com.itextpdf.text.pdf.PdfWriter;
 
 import cl.antartis.interac.beans.Cartera;
 import cl.antartis.interac.beans.CategoriaLink;
 import cl.antartis.interac.beans.Documento;
 import cl.antartis.interac.beans.Empresa;
+import cl.antartis.interac.beans.Error;
 import cl.antartis.interac.beans.Estado;
 import cl.antartis.interac.beans.Link;
 import cl.antartis.interac.beans.Medio;
@@ -58,13 +40,18 @@ import cl.antartis.interac.beans.Reclamo;
 import cl.antartis.interac.beans.Reporte;
 import cl.antartis.interac.beans.Tipo;
 import cl.antartis.interac.beans.Usuario;
-import cl.antartis.interac.beans.Error;
 import cl.antartis.interac.ejb.interfaces.EJBRemoto;
 import cl.antartis.interac.funciones.ConfigUtils;
 import cl.antartis.interac.funciones.EmailUtils;
 import cl.antartis.interac.funciones.Encriptador;
 import cl.antartis.interac.funciones.FileUtils;
 import cl.antartis.interac.funciones.Utils;
+
+import com.google.gson.Gson;
+//import com.itextpdf.text.Document;
+//import com.itextpdf.text.DocumentException;
+//import com.itextpdf.text.Paragraph;
+//import com.itextpdf.text.pdf.PdfWriter;
 
 public class Servlet extends HttpServlet {
 	private static final long serialVersionUID = 24805145326056582L;
@@ -84,6 +71,9 @@ public class Servlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    Properties props = System.getProperties();  
 	    String jbossServerHomeUrl = props.getProperty( "jboss.server.home.url");  
+ 
+	    log.info("Mutual Folder: "+System.getProperty("mutual.folder"));
+	    
 	    log.info("<<<<<<<"+jbossServerHomeUrl+">>>>>");
 	    permitidosSinLogin.add("login");
 	    permitidosSinLogin.add("recuperar");
@@ -91,6 +81,7 @@ public class Servlet extends HttpServlet {
 	    permitidosSinLogin.add("actualizarContrasena");
 	    
 		try {
+				
 			log.info("Service controller");
 			String accion = request.getParameter("accion");
 			log.info("Accion service: "+accion);
@@ -178,11 +169,13 @@ public class Servlet extends HttpServlet {
 			request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
 			request.setAttribute("listaProductos", mapaSalida.get("listaProductos"));
 			request.setAttribute("listaAreas", mapaSalida.get("listaAreas"));
+			request.setAttribute("path", System.getProperty("mutual.folder"));
 			
 			pagDestino = "contenedor.jsp";
 		}
-		else{
-			System.out.println("Deber�a mandar a login.");
+		else
+		{			
+			request.setAttribute("path", System.getProperty("mutual.folder"));
 			pagDestino = "login.jsp";
 		}
 	}
@@ -1529,6 +1522,7 @@ if(error == null) error = new Error();
 		mapaSalida = ejbRemoto.buscarParametros(mapaEntrada);
 		error = (Error)mapaSalida.get("error");
 		if(error == null) error = new Error();
+		
 		if(!error.getNumError().equals("0")){
 			pagDestino = "error.jsp";
 		}
@@ -1540,6 +1534,8 @@ if(error == null) error = new Error();
 	
 			pagDestino = "contenedor.jsp";
 		}
+		
+		request.setAttribute("sami", "sami");
 	}
 	
 	public void graves(HttpServletRequest request, HttpServletResponse response) 
@@ -1724,6 +1720,8 @@ if(error == null) error = new Error();
 	
 		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
 		
+		Long idCartera;
+		idCartera=Utils.stringToNum("3");
 		mapaSalida = ejbRemoto.buscarParametros(mapaEntrada);
 		
 		request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
@@ -1735,20 +1733,31 @@ if(error == null) error = new Error();
 		documento.setNombre(request.getParameter("nombre"));
 		documento.setNumFolio(request.getParameter("numFolio"));
 		documento.setNumAdherente(request.getParameter("numAdherente"));
-		documento.setIdCartera(Utils.stringToNum(request.getParameter("idCartera")));
+		documento.setIdCartera(idCartera);;
 		documento.setIdProducto(Utils.stringToNum(request.getParameter("idProducto")));
 		documento.setCodArea(request.getParameter("codArea"));
 		mapaEntrada.put("documento", documento);
 		mapaSalida = ejbRemoto.buscarDocumentos(mapaEntrada);
-		error = (Error)mapaSalida.get("error");
+		
+		ArrayList<Documento> listaDocumentos = (ArrayList<Documento>)mapaSalida.get("listaDocumentos");
+		
+		
+		log.info("Nombre: "+listaDocumentos.get(0).getNombre());
+		
+		request.setAttribute("listaDocumentos", listaDocumentos);
+		pagDestino = "/documentos/listaDocumentosXml.jsp";
+		
+		
+		/*error = (Error)mapaSalida.get("error");
 		if(error == null) error = new Error();
+		
 		if(!error.getNumError().equals("0")){
 			pagDestino = "error.jsp";
 		}
 		else{
 			request.setAttribute("listaDocumentos", mapaSalida.get("listaDocumentos"));
 			pagDestino = "/documentos/listaDocumentosXml.jsp";
-		}
+		}*/
 	}
 
 	public void agregarDocumento(HttpServletRequest request, HttpServletResponse response) {
@@ -1950,6 +1959,44 @@ if(error == null) error = new Error();
 		Map<String, Object> mapaSalida = new HashMap<String, Object>();
 
 		Empresa empresa = new Empresa();
+		/*
+		empresa.setNumAdherente(request.getParameter("numAdherente"));
+		empresa.setNombre(request.getParameter("nombre"));
+		empresa.setCodCartera(request.getParameter("codCartera"));
+		empresa.setNomExperto(request.getParameter("nomExperto"));
+		empresa.setRazonSocial(request.getParameter("razonSocial"));
+		empresa.setAnoDeAdhesion(request.getParameter("anoDeAdhesion"));
+		empresa.setSegmentacion(request.getParameter("segmentacion"));
+		empresa.setHolding(request.getParameter("holding"));
+		empresa.setSituacion(request.getParameter("situacion"));
+		empresa.setMultiRegion(request.getParameter("multiRegion"));
+		empresa.setCasaMatriz(request.getParameter("casaMatriz"));
+		empresa.setRegionCasaMatriz(request.getParameter("codRegionCasaMatriz"));
+		empresa.setMasaSum(request.getParameter("masaSum"));
+		empresa.setPlanesDeCuenta(request.getParameter("planesDeCuenta"));
+		empresa.setPlanesDeTrabajo(request.getParameter("planesDeTrabajo"));
+		empresa.setFirmaDePlanes(request.getParameter("firmaDePlanes"));
+		empresa.setSistemaDeGestion(request.getParameter("sistemaDeGestion"));
+		empresa.setConstitucionCphs(request.getParameter("constitucionCphs"));
+		empresa.setCertificacionCphs(request.getParameter("certificacionCphs"));
+		empresa.setMmc(request.getParameter("mmc"));
+		empresa.setTmert(request.getParameter("tmert"));
+		empresa.setPlanesi(request.getParameter("planesi"));
+		empresa.setPlaguicida(request.getParameter("plaguicida"));
+		empresa.setRadiacionUv(request.getParameter("radiacionUv"));
+		empresa.setHipobaria(request.getParameter("hipobaria"));
+		empresa.setPrexor(request.getParameter("prexor"));
+		empresa.setPsicosociales(request.getParameter("psicosociales"));
+		empresa.setProyectoInvestigacion(request.getParameter("proyectoInvestigacion"));
+		empresa.setUltimaVisitaExperto(request.getParameter("ultimaVisitaExperto"));
+		empresa.setUltimaVisitaDirector(request.getParameter("ultimaVisitaDirector"));
+		empresa.setUltimaVisitaGtte(request.getParameter("ultimaVisitaGtte"));
+		empresa.setUltimaVisitaAltaGerencia(request.getParameter("ultimaVisitaAltaGerencia"));
+		empresa.setReporteVisita(request.getParameter("reporteVisita"));
+		empresa.setRiesgoDeFuga(request.getParameter("riesgoDeFuga"));
+		empresa.setReclamoUltimoPeriodo(request.getParameter("reclamoUltimoPeriodo"));
+		empresa.setParticipaMesaTrabajo(request.getParameter("participaMesaTrabajo"));
+		*/
 		
 		empresa.setAnoDeAdhesion(request.getParameter("anoDeAdhesion"));
 		empresa.setAsbesto(request.getParameter("asbesto"));
@@ -1964,7 +2011,6 @@ if(error == null) error = new Error();
 		empresa.setEtapaSistemaGestion(request.getParameter("etapaSistemaGestion"));
 		empresa.setFirmaDePlanes(request.getParameter("firmaDePlanes"));
 		empresa.setFirmaProtocolo(request.getParameter("firmaProtocolo"));
-		empresa.setHolding(request.getParameter("holding"));
 		empresa.setHipobaria(request.getParameter("hipobaria"));
 		empresa.setHipobariaEtapa(request.getParameter("hipobariaEtapa"));
 		empresa.setHipobariaTexto(request.getParameter("hipobariaTexto"));
@@ -2027,7 +2073,7 @@ if(error == null) error = new Error();
 		empresa.setUltimaVisitaAltaGerencia(request.getParameter("ultimaVisitaAltaGerencia"));
 		empresa.setUltimaVisitaExperto(request.getParameter("ultimaVisitaExperto"));
 		empresa.setUltimaVisitaGTTE(request.getParameter("ultimaVisitaGTTE"));
-		empresa.setUltimaVisitaDirector(request.getParameter("ultimaVisitaDirector"));
+		empresa.setUltimaVisitaDirector(request.getParameter("ultimVisitaDirector"));
 		
 		
 		
@@ -2099,7 +2145,6 @@ if(error == null) error = new Error();
 		empresa.setEtapaSistemaGestion(request.getParameter("etapaSistemaGestion"));
 		empresa.setFirmaDePlanes(request.getParameter("firmaDePlanes"));
 		empresa.setFirmaProtocolo(request.getParameter("firmaProtocolo"));
-		empresa.setHolding(request.getParameter("holding"));
 		empresa.setHipobaria(request.getParameter("hipobaria"));
 		empresa.setHipobariaEtapa(request.getParameter("hipobariaEtapa"));
 		empresa.setHipobariaTexto(request.getParameter("hipobariaTexto"));

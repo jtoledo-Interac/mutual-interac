@@ -7,7 +7,7 @@ import cl.antartis.interac.funciones.Utils;
 
 public class Documento implements Serializable {
 
-	private static final long serialVersionUID = 3764757332350720257L;
+	private static final long serialVersionUID = -5538425115902172709L;
 	private long idDocumento;
 	private String nombre;
 	private String numFolio;
@@ -19,6 +19,7 @@ public class Documento implements Serializable {
 	private Long idProducto;
 	private String desProducto;
 	private String fecCreacion;
+
 	public Long getIdCartera() {
 		return idCartera;
 	}
@@ -28,7 +29,7 @@ public class Documento implements Serializable {
 	}
 
 	private String desCartera;
-	
+
 	public Long getIdProducto() {
 		return idProducto;
 	}
@@ -36,22 +37,35 @@ public class Documento implements Serializable {
 	public void setIdProducto(Long idProducto) {
 		this.idProducto = idProducto;
 	}
-	public Documento(){}
-	
-	public Documento(HashMap map){
-		if(map.containsKey("nombre")) nombre = (String)map.get("nombre") ;
-		if(map.containsKey("numFolio")) numFolio = (String)map.get("numFolio") ;
-		if(map.containsKey("numAdherente")) numAdherente = (String)map.get("numAdherente") ;
-		if(map.containsKey("descripcion")) descripcion = (String)map.get("descripcion") ;
-		if(map.containsKey("codArea")) codArea = (String)map.get("codArea") ;
-		if(map.containsKey("desArea")) desArea = (String)map.get("desArea") ;
-		if(map.containsKey("idCartera")) idCartera = Utils.stringToNum((String)map.get("idCartera"));
-		if(map.containsKey("desCartera")) desCartera = (String)map.get("desCartera") ;
-		if(map.containsKey("idProducto")) idProducto = Utils.stringToNum((String)map.get("idProducto"));
-		if(map.containsKey("desProducto")) desProducto = (String)map.get("desProducto") ;
-		if(map.containsKey("fecCreacion")) fecCreacion = (String)map.get("fecCreacion") ;
+
+	public Documento() {
 	}
-	
+
+	public Documento(HashMap map) {
+		if (map.containsKey("nombre"))
+			nombre = (String) map.get("nombre");
+		if (map.containsKey("numFolio"))
+			numFolio = (String) map.get("numFolio");
+		if (map.containsKey("numAdherente"))
+			numAdherente = (String) map.get("numAdherente");
+		if (map.containsKey("descripcion"))
+			descripcion = (String) map.get("descripcion");
+		if (map.containsKey("codArea"))
+			codArea = (String) map.get("codArea");
+		if (map.containsKey("desArea"))
+			desArea = (String) map.get("desArea");
+		if (map.containsKey("idCartera"))
+			idCartera = Utils.stringToNum((String) map.get("idCartera"));
+		if (map.containsKey("desCartera"))
+			desCartera = (String) map.get("desCartera");
+		if (map.containsKey("idProducto"))
+			idProducto = Utils.stringToNum((String) map.get("idProducto"));
+		if (map.containsKey("desProducto"))
+			desProducto = (String) map.get("desProducto");
+		if (map.containsKey("fecCreacion"))
+			fecCreacion = (String) map.get("fecCreacion");
+	}
+
 	public String getDesArea() {
 		return desArea;
 	}
@@ -134,7 +148,7 @@ public class Documento implements Serializable {
 
 	public String getDocumento() {
 		String documento = "\nDATOS DE Documento:";
-		documento += "\nidDocumento" + this.idDocumento; 
+		documento += "\nidDocumento" + this.idDocumento;
 		documento += "\nnombre" + this.nombre;
 		documento += "\nnumFolio" + this.numFolio;
 		documento += "\nnumAdherente" + this.numAdherente;

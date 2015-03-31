@@ -4,7 +4,6 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,7 +41,7 @@ public class MutualEJB implements EJBRemoto {
 
 	private Logger log = Logger.getLogger(MutualEJB.class);
 
-	@Resource(mappedName = "java:/MutualPro")
+	@Resource(mappedName = "java:/MutualDes")
 	private DataSource interacDS;
 	private Connection dbConeccion;
 
