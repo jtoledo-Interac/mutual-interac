@@ -19,6 +19,7 @@ $(function()
 });
 </script>
 
+
 <div id="contenedor">
 	<form id="formLogin" action="Servlet" method="post">
 		<input type="hidden"	id="accion" 		name="accion" 		value="login">	
