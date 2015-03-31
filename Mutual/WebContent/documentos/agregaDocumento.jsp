@@ -32,6 +32,10 @@
 	<br/>
 	<table>
 	<tr>
+		<td>Nombre Documento</td><td> : </td>
+		<td><input type="text"	id="nombre"	required name="nombre" placeholder="Nombre" > </td>
+	</tr>
+	<tr>
 		<td>Número Folio</td><td> : </td>
 		<td><input type="text"	id="numFolio" required name="numFolio" placeholder="Nº Folio"	onkeypress="return valida_numeros(event)"></td>
 	</tr>
@@ -76,13 +80,11 @@
 			</select>
 		</td>	
 	</tr>
-	<tr>
-		<td> Nombre </td><td> : </td>
-		<td> <input type="text"	id="nombre"	required name="nombre" placeholder="Nombre" > </td>
-	</tr>
 		<tr><td><input type="checkbox" name="Invalideces" value="Invalideces">Invalideces</td></tr>
 		<tr><td><input type="checkbox" name="SAMI" value="SAMI">SAMI</td></tr>
 		<tr><td><input type="checkbox" name="Fatales" value="Fatales">Fatales</td>
+		<tr><td><input type="checkbox" name="Graves" value="Graves">Graves</td>
+		<tr><td><input type="checkbox" name="Graves Amputados" value="Graves Amputados">Graves Amputados</td>
 	</tr>
 	</table>
 </form>
