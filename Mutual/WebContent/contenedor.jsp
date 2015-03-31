@@ -129,7 +129,9 @@ function getUrlCargarUsuario(id)
 	        	<ul>
 					<li><a href="Servlet?accion=invalideces">Invalideces</a></li>
 					<li><a href="Servlet?accion=sami">SAMI</a></li>
-					<li><a href="Servlet?accion=fatales"> Fatales</a></li>
+					<li><a href="Servlet?accion=fatales">Fatales</a></li>
+					<li><a href="Servlet?accion=graves">Graves</a></li>
+					<li><a href="Servlet?accion=gravesAmputados">Graves Amputados</a></li>
 				</ul>
 	        </li>
 	        <li><a href="Servlet?accion=documentos">Documentos</a></li>

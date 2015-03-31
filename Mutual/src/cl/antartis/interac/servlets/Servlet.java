@@ -1542,6 +1542,31 @@ if(error == null) error = new Error();
 		}
 	}
 	
+	public void graves(HttpServletRequest request, HttpServletResponse response) 
+	{
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		mapaSalida = ejbRemoto.buscarParametros(mapaEntrada);
+		error = (Error)mapaSalida.get("error");
+		if(error == null) error = new Error();
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{
+			request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
+			request.setAttribute("listaProductos", mapaSalida.get("listaProductos"));
+			request.setAttribute("listaAreas", mapaSalida.get("listaAreas"));
+			request.setAttribute("title", "Graves");
+	
+			pagDestino = "contenedor.jsp";
+		}
+	}
+	
 	public void fatales(HttpServletRequest request, HttpServletResponse response) throws IOException 
 	{
 		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
@@ -1565,47 +1590,31 @@ if(error == null) error = new Error();
 	
 			pagDestino = "contenedor.jsp";
 		}
-		/*
-		 try {
-	            // Get the text that will be added to the PDF
-	            String text = request.getParameter("text");
-	            if (text == null || text.trim().length() == 0) {
-	                 text = "You didn't enter any text.";
-	            }
-	            // step 1
-	            Document document = new Document();
-	            // step 2
-	            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-	            PdfWriter.getInstance(document, baos);
-	            // step 3
-	            document.open();
-	            // step 4
-	            document.add(new Paragraph(String.format(
-	                "You have submitted the following text using the %s method:",
-	                request.getMethod())));
-	            document.add(new Paragraph(text));
-	            // step 5
-	            document.close();
-	 
-	            // setting some response headers
-	            response.setHeader("Expires", "0");
-	            response.setHeader("Cache-Control",
-	                "must-revalidate, post-check=0, pre-check=0");
-	            response.setHeader("Pragma", "public");
-	            // setting the content type
-	            response.setContentType("application/pdf");
-	            // the contentlength
-	            response.setContentLength(baos.size());
-	            // write ByteArrayOutputStream to the ServletOutputStream
-	            OutputStream os = response.getOutputStream();
-	            baos.writeTo(os);
-	            os.flush();
-	            os.close();
-	        }
-	        catch(DocumentException e) {
-	            throw new IOException(e.getMessage());
-	        }
-	        */
+	}
+	
+	public void gravesAmputados(HttpServletRequest request, HttpServletResponse response) throws IOException 
+	{
+		String nombreMetodo = new Exception().getStackTrace()[0].getMethodName();
+		
+		Map<String, Object> mapaEntrada = new HashMap<String, Object>();
+		Map<String, Object> mapaSalida = new HashMap<String, Object>();
+		
+		log.info("[Metodo: " + nombreMetodo + "] Iniciando");
+		
+		mapaSalida = ejbRemoto.buscarParametros(mapaEntrada);
+		error = (Error)mapaSalida.get("error");
+		if(error == null) error = new Error();
+		if(!error.getNumError().equals("0")){
+			pagDestino = "error.jsp";
+		}
+		else{
+			request.setAttribute("listaCarteras", mapaSalida.get("listaCarteras"));
+			request.setAttribute("listaProductos", mapaSalida.get("listaProductos"));
+			request.setAttribute("listaAreas", mapaSalida.get("listaAreas"));
+			request.setAttribute("title", "Graves Amputados");
+	
+			pagDestino = "contenedor.jsp";
+		}
 	}
 	
 	public void prodCartera(HttpServletRequest request, HttpServletResponse response) 
