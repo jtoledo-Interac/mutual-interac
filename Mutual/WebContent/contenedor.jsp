@@ -10,8 +10,6 @@ if( session.getAttribute("user")== null){
 
 <script type="text/javascript">
 
-var flag = 1;
-
 $(function()
 {	
 	$('#cerrar').click(function(){
@@ -55,7 +53,7 @@ function getUrlCargarUsuario(id)
 	return sData;
 }
 </script>
-<div class="linea"> </div>
+<div class="linea"></div>
 
 <div class="banner">
 	<div class="banner-left">
@@ -99,7 +97,7 @@ function getUrlCargarUsuario(id)
 	        <li><a href="Servlet?accion=organigrama">Organigrama</a></li>
 	        <li><a href="Servlet?accion=carteras">Carteras</a>
 	        	<ul>
-					<li><a href="#">Transporte de Personas y Bienes</a>
+					<li><a href="#">Transporte de Personas</a>
 						<ul>
 							<li><a href="Servlet?accion=prodCartera">Productos</a></li>
 							<li><a href="Servlet?accion=planesTrabajo">Planes de Trabajo</a></li>
@@ -111,7 +109,7 @@ function getUrlCargarUsuario(id)
 							<li><a href="Servlet?accion=planesTrabajo">Planes de Trabajo</a></li>
 						</ul>
 					</li>
-					<li><a href="#">Administraci&oacute;n y Transporte de Carga</a>
+					<li><a href="#">Transporte de Carga</a>
 						<ul>
 							<li><a href="Servlet?accion=prodCartera">Productos</a></li>
 							<li><a href="Servlet?accion=planesTrabajo">Planes de Trabajo</a></li>
@@ -129,14 +127,19 @@ function getUrlCargarUsuario(id)
 	        	<ul>
 					<li><a href="Servlet?accion=invalideces">Invalideces</a></li>
 					<li><a href="Servlet?accion=sami">SAMI</a></li>
+<<<<<<< .mine
+					<li><a href="Servlet?accion=fatales">Fatales</a></li>
+					<li><a href="Servlet?accion=graves">Graves</a></li>
+					<li><a href="Servlet?accion=graves-amputados">Graves Amputados</a></li>
+=======
 					<li><a href="Servlet?accion=fatales">Fatales</a></li>
 					<li><a href="Servlet?accion=graves">Graves</a></li>
 					<li><a href="Servlet?accion=gravesAmputados">Graves Amputados</a></li>
+>>>>>>> .r508
 				</ul>
 	        </li>
-	        <li><a href="Servlet?accion=documentos">Documentos</a></li>
+	        <li><a href="Servlet?accion=documentos">Documentos Hist&oacute;ricos</a></li>
 	        <li><a href="Servlet?accion=empresas">Empresas</a></li>
-			<li><a href="Servlet?accion=reportes">Reportes</a></li>
 			<li><a href="Servlet?accion=reclamos">Reclamos</a></li>
 			<li><a href="Servlet?accion=links">Links de interés</a></li>
 	        <!-- <li><a href="Servlet?accion=graficar">Graficos Prueba</a></li> -->
@@ -155,11 +158,12 @@ function getUrlCargarUsuario(id)
 				menuAdmin += "	<li><a href='Servlet?accion=motivos'>Motivos Reclamo</a></li>";
 				menuAdmin += "	<li><a href='Servlet?accion=prioridades'>Prioridades</a></li>";
 				menuAdmin += "	<li><a href='Servlet?accion=tipos'>Tipos de Reclamo</a></li>";
-				menuAdmin += "	<li><a href='Servlet?accion=categorias'>Cateegoría Link de interés </a></li>";
+				menuAdmin += "	<li><a href='Servlet?accion=categorias'>Categor&iacute;a Links de Inter&eacute;s </a></li>";
 				menuAdmin += "</ul>";
 				menuAdmin += "</li>";
 				
-				if(perfiles.contains("admin"))out.print(menuAdmin);
+				if(perfiles.contains("admin"))
+					out.print(menuAdmin);
 			%>
 			<br/>
 			<li><a href="#">Vídeos tutoriales</a>
@@ -180,7 +184,7 @@ function getUrlCargarUsuario(id)
 		<form id="formMantenedores" action="Servlet" method="post">
 			<input type="hidden" id="accion" name="accion">
 			
-			<div class="listas">
+			<div class="listas" style="margin-left:30px;">
 				<c:choose>
 					<%-- LOGIN --%>
 					<c:when test="${param.accion eq 'login'}">	
