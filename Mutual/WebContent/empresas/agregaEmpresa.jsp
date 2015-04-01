@@ -4,141 +4,71 @@
 		setDatePicker();
 		formatRut();
 		$("#tabs").tabs();
-		
-		
-		
-				$('#listadoAccidentabilidad').jqGrid(
-				{
-				   	//url: getUrlBuscarDocumentos(),
-					datatype: "xml",			
-					colNames : ['', '% Accidentabilidad','Fecha',''],
-					colModel : [
-								{name : 'idDocumento', index:'idDocumento', hidden : true},
-								{name : 'numAdherente', index:'numAdherente', width : 80, search : true, resizable : false, sortable : true},
-								{name : 'numFolio', index:'numFolio', width : 80, search : true, resizable : false, sortable : true},				
-								{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
-								],		
-				   	rowNum: numeroDeFilas,
-				   	height: 200,
-				   	width: 300,
-				   	rowList:[10,20,30],
-					xmlReader: {
-						root : "filas",
-						row: "fila",
-						repeatitems: false,
-						id: "idDocumento"
-					},
-				   	pager: $('#pieDocumento'),
-				   	pgtext : 'P&aacute;g: {0} de {1}', 
-				   	sortname: 'idDocumento',
-				   	loadonce:true,
-				    viewrecords: true,
-				    sortorder: "desc",
-				    caption:"Accidentabilidad",
-				    hoverrows : true,
-				    multiselect : false,
-					onPaging: function(){
 
-					},
-					gridComplete: function()
-					{
-						var ids = $("#listadoAccidentabilidad").getDataIDs();
-						
-						for (var i = 0; i < ids.length; i++)
-						{
-							var idFila = ids[i];
+		$('#listadoEstadisticas').jqGrid(
+		{
+		   	//url: getUrlBuscarDocumentos(),
+			datatype: "xml",			
+			colNames : ['', '% Accidentabilidad','Fecha',''],
+			colModel : [
+						{name : 'idDocumento', index:'idDocumento', hidden : true},
+						{name : 'numAdherente', index:'numAdherente', width : 80, search : true, resizable : false, sortable : true},
+						{name : 'numFolio', index:'numFolio', width : 80, search : true, resizable : false, sortable : true},				
+						{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
+						],		
+		   	rowNum: numeroDeFilas,
+		   	height: 200,
+		   	width: 300,
+		   	rowList:[10,20,30],
+			xmlReader: {
+				root : "filas",
+				row: "fila",
+				repeatitems: false,
+				id: "idDocumento"
+			},
+		   	pager: $('#pieDocumento'),
+		   	pgtext : 'P&aacute;g: {0} de {1}', 
+		   	sortname: 'idDocumento',
+		   	loadonce:true,
+		    viewrecords: true,
+		    sortorder: "desc",
+		    caption:"Accidentabilidad",
+		    hoverrows : true,
+		    multiselect : false,
+			onPaging: function(){
 
-							var btnEditar="";
-							btnEditar+= "<div id='btnEditar' onclick='editarDocumento("+idFila+")'>";
-							btnEditar+= 	"<img title='editar' class='icono' src='img/btnEditar.png'>";
-							btnEditar+= "</div>";
-							
-							var btnEliminar="";
-							btnEliminar+= "<div id='btnEliminar' onclick='eliminarDocumento("+idFila+")'>";
-							btnEliminar+= 	"<img title='eliminar' class='icono' src='img/btnEliminar.png'>";
-							btnEliminar+= "</div>";
-
-							$("#listadoAccidentabilidad").setRowData(ids[i], {act : btnEditar + btnEliminar});
-						}
-					},
-					onSelectRow : function(rowId, status) 
-					{
-						idFila = rowId;
-					},
-					ondblClickRow: function()
-					{
-						var fila = $('#listadoAccidentabilidad').jqGrid('getRowData',idFila);
-						editarDocumento(fila.idDocumento);
-					},
-				}).navGrid('#pieAccidentabilidad',{edit:false,add:false,del:false});	
-		
-
+			},
+			gridComplete: function()
+			{
+				var ids = $("#listadoEstadisticas").getDataIDs();
 				
-				$('#listadoDias').jqGrid(
+				for (var i = 0; i < ids.length; i++)
 				{
-				   	//url: getUrlBuscarDocumentos(),
-					datatype: "xml",			
-					colNames : ['', 'Dias Perdidos','Fecha',''],
-					colModel : [
-								{name : 'idDocumento', index:'idDocumento', hidden : true},
-								{name : 'numAdherente', index:'numAdherente', width : 80, search : true, resizable : false, sortable : true},
-								{name : 'numFolio', index:'numFolio', width : 80, search : true, resizable : false, sortable : true},				
-								{name : 'act',index:'act', width : 30, resizable:false,sortable : true}
-								],		
-				   	rowNum: numeroDeFilas,
-				   	height: 200,
-				   	width: 300,
-				   	rowList:[10,20,30],
-					xmlReader: {
-						root : "filas",
-						row: "fila",
-						repeatitems: false,
-						id: "idDocumento"
-					},
-				   	pager: $('#pieDias'),
-				   	pgtext : 'P&aacute;g: {0} de {1}', 
-				   	sortname: 'idDocumento',
-				   	loadonce:true,
-				    viewrecords: true,
-				    sortorder: "desc",
-				    caption:"Dias Perdidos",
-				    hoverrows : true,
-				    multiselect : false,
-					onPaging: function(){
+					var idFila = ids[i];
 
-					},
-					gridComplete: function()
-					{
-						var ids = $("#listadoDias").getDataIDs();
-						
-						for (var i = 0; i < ids.length; i++)
-						{
-							var idFila = ids[i];
+					var btnEditar="";
+					btnEditar+= "<div id='btnEditar' onclick='editarDocumento("+idFila+")'>";
+					btnEditar+= 	"<img title='editar' class='icono' src='img/btnEditar.png'>";
+					btnEditar+= "</div>";
+					
+					var btnEliminar="";
+					btnEliminar+= "<div id='btnEliminar' onclick='eliminarDocumento("+idFila+")'>";
+					btnEliminar+= 	"<img title='eliminar' class='icono' src='img/btnEliminar.png'>";
+					btnEliminar+= "</div>";
 
-							var btnEditar="";
-							btnEditar+= "<div id='btnEditar' onclick='editarDocumento("+idFila+")'>";
-							btnEditar+= 	"<img title='editar' class='icono' src='img/btnEditar.png'>";
-							btnEditar+= "</div>";
-							
-							var btnEliminar="";
-							btnEliminar+= "<div id='btnEliminar' onclick='eliminarDocumento("+idFila+")'>";
-							btnEliminar+= 	"<img title='eliminar' class='icono' src='img/btnEliminar.png'>";
-							btnEliminar+= "</div>";
-
-							$("#listadoDias").setRowData(ids[i], {act : btnEditar + btnEliminar});
-						}
-					},
-					onSelectRow : function(rowId, status) 
-					{
-						idFila = rowId;
-					},
-					ondblClickRow: function()
-					{
-						var fila = $('#listadoDias').jqGrid('getRowData',idFila);
-						editarDocumento(fila.idDocumento);
-					},
-				}).navGrid('#pieDias',{edit:false,add:false,del:false});	
-
+					$("#listadoEstadisticas").setRowData(ids[i], {act : btnEditar + btnEliminar});
+				}
+			},
+			onSelectRow : function(rowId, status) 
+			{
+				idFila = rowId;
+			},
+			ondblClickRow: function()
+			{
+				var fila = $('#listadoEstadisticas').jqGrid('getRowData',idFila);
+				editarDocumento(fila.idDocumento);
+			},
+		}).navGrid('#pieEstadisticas',{edit:false,add:false,del:false});
 	});
 </script>
 
@@ -149,8 +79,7 @@
 		<ul>
 			<li><a href="#tabs-general">General</a></li>
 			<li><a href="#tabs-salud_ocupacional">Salud Ocupacional</a></li>
-			<li><a href="#tabs-accidentabilidad">Accidentabilidad</a></li>
-			<li><a href="#tabs-dias-perdidos">Días Perdidos</a></li>
+			<li><a href="#tabs-estadisticas">Estad&iacute;sticas SST</a></li>
 		</ul>
 		<div id="tabs-general">
 			<table>
@@ -424,7 +353,7 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td>PREXOR Etapa</td>
+					<td>Etapa</td>
 					<td>:</td>
 					<td><select id="prexorEtapa" name="prexorEtapa">
 							<option value="Evaluación Cualitativa">Evaluación
@@ -445,7 +374,7 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td>PREXOR Observaciones</td>
+					<td>Observaciones</td>
 					<td>:</td>
 					<td><input type="text" id="prexorTexto" name="prexorTexto"
 						placeholder="Observaciones"></td>
@@ -459,7 +388,7 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td>PLANESI Etapa</td>
+					<td>Etapa</td>
 					<td>:</td>
 					<td><select id="planesiEtapa" name="planesiEtapa">
 							<option value="Evaluación Cualitativa">Evaluación
@@ -479,7 +408,7 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td>PLANESI Observaciones</td>
+					<td>Observaciones</td>
 					<td>:</td>
 					<td><input type="text" id="planesiTexto" name="planesiTexto"
 						placeholder="Observaciones"></td>
@@ -493,7 +422,7 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td>Asbesto Etapa</td>
+					<td>Etapa</td>
 					<td>:</td>
 					<td><select id="asbestoEtapa" name="asbestoEtapa">
 							<option value="Evaluación Cualitativa">Evaluación
@@ -506,7 +435,7 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td>Asbesto Observaciones</td>
+					<td>Observaciones</td>
 					<td>:</td>
 					<td><input type="text" id="asbestoTexto" name="asbestoTexto"
 						placeholder="Observaciones"></td>
@@ -520,7 +449,7 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td>Hipobaria Etapa</td>
+					<td>Etapa</td>
 					<td>:</td>
 					<td><select id="hipobariaEtapa" name="hipobariaEtapa">
 							<option value="Evaluación Cualitativa">Evaluación
@@ -535,7 +464,7 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td>Hipobaria Observaciones</td>
+					<td>Observaciones</td>
 					<td>:</td>
 					<td><input type="text" id="hipobariaTexto"
 						name="hipobariaTexto" placeholder="Observaciones"></td>
@@ -550,7 +479,7 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td>Radiación Ionizante Etapa</td>
+					<td>Etapa</td>
 					<td>:</td>
 					<td><select id="radiacionesEtapa"
 						name="radiacionesEtapa">
@@ -567,7 +496,7 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td>Radiación Observaciones</td>
+					<td>Observaciones</td>
 					<td>:</td>
 					<td><input type="text" id="radiacionesTexto"
 						name="radiacionesTexto" placeholder="Observaciones"></td>
@@ -581,7 +510,7 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td>Asma Etapa</td>
+					<td>Etapa</td>
 					<td>:</td>
 					<td><select id="asmaEtapa" name="asmaEtapa">
 							<option value="Evaluación Cualitativa">Evaluación
@@ -596,7 +525,7 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td>Asma Observaciones</td>
+					<td>Observaciones</td>
 					<td>:</td>
 					<td><input type="text" id="asmaTexto" name="asmaTexto"
 						placeholder="Observaciones"></td>
@@ -610,7 +539,7 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td>Solventes Etapa</td>
+					<td>Etapa</td>
 					<td>:</td>
 					<td><select id="solventesEtapa" name="solventesEtapa">
 							<option value="Evaluación Cualitativa">Evaluación
@@ -625,7 +554,7 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td>Solventes Observaciones</td>
+					<td>Observaciones</td>
 					<td>:</td>
 					<td><input type="text" id="solventesTexto"
 						name="solventesTexto" placeholder="Observaciones"></td>
@@ -639,7 +568,7 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td>Metales Etapa</td>
+					<td>Etapa</td>
 					<td>:</td>
 					<td><select id="metalesEtapa" name="metalesEtapa">
 							<option value="Evaluación Cualitativa">Evaluación
@@ -683,7 +612,7 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td>Óxido de Etileno Observaciones</td>
+					<td>Óxido de Etileno</td>
 					<td>:</td>
 					<td><input type="text" id="oxidoTexto" name="oxidoTexto"
 						placeholder="Observaciones"></td>
@@ -697,7 +626,7 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td>Plaguicida Etapa</td>
+					<td>Plaguicida</td>
 					<td>:</td>
 					<td><select id="plaguicidaEtapa" name="plaguicidaEtapa">
 							<option value="Evaluación Cualitativa">Evaluación
@@ -712,7 +641,7 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td>Plaguicida Observaciones</td>
+					<td>Plaguicida</td>
 					<td>:</td>
 					<td><input type="text" id="plaguicidaTexto"
 						name="plaguicidaTexto" placeholder="Observaciones"></td>
@@ -727,7 +656,7 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td>Psicosociales Etapa</td>
+					<td>Etapa</td>
 					<td>:</td>
 					<td><select id="psicosocialesEtapa" name="psicosocialesEtapa">
 							<option value="Seg01">Evaluación
@@ -742,11 +671,12 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td>Psicosociales Observaciones</td>
+					<td>Observaciones</td>
 					<td>:</td>
 					<td><input type="text" id="psicoocialesTexto" name="psicosocialesTexto"
 						placeholder="Observaciones"></td>
 				</tr>
+				<tr>
 					<td>MMC</td>
 					<td>:</td>
 					<td><select id="mmc" name="mmc" required>
@@ -755,7 +685,7 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td>MMC Etapa</td>
+					<td>Etapa</td>
 					<td>:</td>
 					<td><select id="mmcEtapa" name="mmcEtapa">
 							<option value="Seg01">Difusión</option>
@@ -769,7 +699,7 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td>MMC Observaciones</td>
+					<td>Observaciones</td>
 					<td>:</td>
 					<td><input type="text" id="mmcTexto" name="mmcTexto"
 						placeholder="Observaciones"></td>
@@ -783,7 +713,7 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td>TMERT Etapa</td>
+					<td>Etapa</td>
 					<td>:</td>
 					<td><select id="tmertEtapa" name="tmertEtapa">
 							<option value="Seg01">Difusión</option>
@@ -797,7 +727,7 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td>TMERT Observaciones</td>
+					<td>Observaciones</td>
 					<td>:</td>
 					<td><input type="text" id="tmertTexto" name="tmertTexto"
 						placeholder="Observaciones"></td>
@@ -811,7 +741,7 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td>Radiación UV Etapa</td>
+					<td>Etapa</td>
 					<td>:</td>
 					<td><select id="radiacionUvEtapa" name="radiacionUvEtapa">
 							<option value="Evaluación Cualitativa">Evaluación
@@ -826,27 +756,17 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td>Radiación UV Observaciones</td>
+					<td>Observaciones</td>
 					<td>:</td>
-					<td><input type="text" id="radiacionUVTexto"
-						name="radiacionUVTexto" placeholder="Observaciones"></td>
+					<td><input type="text" id="radiacionUVTexto" name="radiacionUVTexto" placeholder="Observaciones"></td>
 				</tr>
 			</table>
 		</div>
 		
-		<div id="tabs-accidentabilidad">
-			<div id="listadoBusquedaAccidentabilidad" class="listado">
-				<table id="listadoAccidentabilidad"></table>
-			<div id="pieAccidentabilidad" class="pie"></div>
-		</div>
-		
-		</div>
-		<div id="tabs-dias-perdidos">
-			<div id="listadoBusquedaDias" class="listado">
-				<table id="listadoDias"></table>
-				<div id="pieDias" class="pie"></div>
-			</div>
-		
+		<div id="tabs-estadisticas">
+			<div id="listadoBusquedaEstadisticas" class="listado">
+				<table id="listadoEstadisticas"></table>
+			<div id="pieEstadisticas" class="pie"></div>
 		</div>
 	</div>
 </form>

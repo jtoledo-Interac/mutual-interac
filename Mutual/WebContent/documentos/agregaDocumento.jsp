@@ -33,15 +33,18 @@
 	<tr>
 		<td>Nombre Documento</td><td> : </td>
 		<td><input type="text"	id="nombre"	required name="nombre" placeholder="Nombre" > </td>
-		
-		<td> Número Folio </td><td> : </td><td> <input type="text"	id="numFolio" required name="numFolio" placeholder="Nº Folio"	onkeypress="return valida_numeros(event)"> </td>
-
 	</tr>
 	<tr>
-		<td> Número Adherente </td><td> : </td><td> <input type="text"	id="numAdherente" required name="numAdherente"	placeholder="Nº Adherente" onkeypress="return valida_numeros(event)"> </td>
+		<td> Número Folio </td><td> : </td>
+		<td> <input type="text"	id="numFolio" required name="numFolio" placeholder="Nº Folio"	onkeypress="return valida_numeros(event)"> </td>
 	</tr>
 	<tr>
-		<td> Descripción </td><td> : </td><td> <input type="text"	id="descripcion" required name="descripcion" placeholder="Descripción"> </td>
+		<td> Número Adherente </td><td> : </td>
+		<td> <input type="text"	id="numAdherente" required name="numAdherente"	placeholder="Nº Adherente" onkeypress="return valida_numeros(event)"> </td>
+	</tr>
+	<tr>
+		<td> Descripción </td><td> : </td>
+		<td> <input type="text"	id="descripcion" required name="descripcion" placeholder="Descripción"> </td>
 	</tr>
 	<tr>	
 		<td> Cartera </td><td> : </td>

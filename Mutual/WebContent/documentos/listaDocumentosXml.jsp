@@ -9,7 +9,7 @@
           <numAdherente>${documento.numAdherente}</numAdherente>
           <numFolio>${documento.numFolio}</numFolio>
           <nombre>${documento.nombre}</nombre>
-          <desCartera></desCartera>
+          <desCartera>${documento.desCartera}</desCartera>
           <desProducto>${documento.desProducto}</desProducto>
           <fecCreacion>${documento.fecCreacion}</fecCreacion>
           <desArea>${documento.desArea}</desArea>
