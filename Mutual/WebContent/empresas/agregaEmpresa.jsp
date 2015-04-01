@@ -106,7 +106,7 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td>Número Adherente</td>
+					<td>Numero Adherente</td>
 					<td>:</td>
 					<td><input required type="text" id="numAdherente"
 						name="numAdherente" placeholder="Nº Adherente"></td>

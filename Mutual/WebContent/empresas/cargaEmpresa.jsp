@@ -562,6 +562,26 @@
 		</tr>
 	</table>
 	</div>
+	<div id="tabs-accidentabilidad">
+	<table>
+	<tr>
+					<td>Porcentaje de Accidentabilidad</td>
+					<td>:</td>
+					<td><input required type="text" id="accidentabilidad"
+						name="accidentabilidad" placeholder="% de accidentabilidad"></td>
+		</tr>
+	</table>
+	</div>
+		<div id="tabs-dias_perdidos">
+	<table>
+	<tr>
+					<td>Dias Perdidos</td>
+					<td>:</td>
+					<td><input required type="text" id="diasPerdidos"
+						name="diasPerdidos" placeholder="Nº de dias Perdidos"></td>
+		</tr>
+	</table>
+	</div>
 	</div>
 	<input type="submit" class="submit" style="display:none;">
 	<input type="hidden" id="idEmpresa" name="idEmpresa" value="${empresa.idEmpresa}">

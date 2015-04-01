@@ -19,6 +19,7 @@ public class Documento implements Serializable {
 	private Long idProducto;
 	private String desProducto;
 	private String fecCreacion;
+	
 
 	public Long getIdCartera() {
 		return idCartera;
